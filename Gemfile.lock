@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/alphagov/table_of_contents.git
-  revision: ee6d26c6ead059e60b212f10f906766ec89b25df
+  revision: f6d37fe1e837cebf7354abafd891f755148e7efa
+  ref: f6d37fe1e837cebf7354abafd891f755148e7efa
   specs:
     table_of_contents (0.1.0)
       nokogiri
@@ -112,7 +113,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
-    nokogiri (1.6.8.1)
+    nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     padrino-helpers (0.13.3.3)
       i18n (~> 0.6, >= 0.6.7)

@@ -16,6 +16,7 @@
 
     a:link, a:visited {
       text-decoration: none;
+      color: $link-colour;
     }
 
     a:hover {
@@ -31,6 +32,7 @@
 
         &.toc-link--in-view {
           font-weight: bold;
+          color: $link-active-colour;
           letter-spacing: normal;
         }
       }
@@ -59,6 +61,12 @@
   @include media(tablet) {
     .toc {
       padding: $gutter-half $gutter;
+    }
+
+    // Prevent the fixedsticky spacer from appearing if the browser is resized
+    // from mobile to desktop.
+    .fixedsticky-on + .fixedsticky-dummy {
+      display: none !important;
     }
   }
 
