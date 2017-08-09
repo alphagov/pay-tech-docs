@@ -2,16 +2,18 @@
 
 set -eo pipefail
 
+# Set up term colors
+green='\033[1;32m'
+red='\033[0;31m'
+white='\033[1;37m'
+yellow='\033[1;33m'
+NC='\033[0m' # No Color
+
 BUNDLE="bundle"
 MIDDLEMAN="middleman"
 
 if ! which ${BUNDLE} > /dev/null; then \
   echo -e "${red} ${BUNDLE} not installed, please install Bundler (http://bundler.io) ${NC}"
-  exit 1; \
-fi
-
-if ! which ${MIDDLEMAN} > /dev/null; then \
-  echo -e "${red} ${MIDDLEMAN} not installed, please install ${MIDDLEMAN} (https://middlemanapp.com/basics/install/) ${NC}"
   exit 1; \
 fi
 
