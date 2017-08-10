@@ -1,6 +1,5 @@
 # Glossary of terms
-
-
+This section defines commonly used terms in GOV.UK Pay.
 
 | Term                 | Definition                        |
 | -------------     |-------------------------- |
