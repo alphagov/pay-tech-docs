@@ -16,4 +16,4 @@ The platform currently supports one-off payments (like fees, fines or licence pa
 
 There are [4 departments and agencies currently partnering with the platform](https://gds.blog.gov.uk/2015/10/15/introducing-gov-uk-pay/).
 
-To find out more about GOV.UK Pay, read our [blogs and newsletters](https://gds-payments.gelato.io/docs/versions/1.0.0/support-contact-and-more-information).
+To find out more about GOV.UK Pay, read our [blogs and newsletters](https://govukpay-docs.cloudapps.digital/#support-contact-and-more-information).
