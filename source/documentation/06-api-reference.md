@@ -22,7 +22,7 @@ For full details of each API action, see the API Browser:
 
 You can also use our interactive [API Explorer](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/) to try out API calls and view responses.
 
-See the [Quick Start Guide](https://gds-payments.gelato.io/docs/versions/1.0.0/quick-start-guide) section for how to set up the API Explorer. Make sure you enter your sandbox API key to avoid generating real payments!
+See the [Quick Start Guide](https://govukpay-docs.cloudapps.digital/#quick-start-guide) section for how to set up the API Explorer. Make sure you enter your sandbox API key to avoid generating real payments!
 
 
 
