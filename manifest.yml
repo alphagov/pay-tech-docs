@@ -1,6 +1,6 @@
 ---
 applications:
-- name: govukpay-tech-docs
+- name: govukpay-docs
   memory: 64M
   path: ./build
   buildpack: staticfile_buildpack
