@@ -121,7 +121,7 @@ The ``return_url`` should specify a page on your service. When the user visits t
   + match the returning user with their payment (with a secure cookie, or a secure random ID string included in the ``return_url``)
   + check the status of the payment using an API call
 
-See the [Integration details](https://gds-payments.gelato.io/docs/versions/1.0.0/integration-details) section for more details about how to match the user to the payment.
+See the [Integration details](https://govukpay-docs.cloudapps.digital/#integration-details) section for more details about how to match the user to the payment.
 
 To check the status of the payment, you must make a [**Find payment by ID**](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/v1/find-payment-by-id) API call, using the ``payment_id`` of the payment as the parameter.
 
@@ -151,4 +151,4 @@ In this example, the payment was successful, and the payment journey is finished
 
 It is up to your page at the ``return_url`` to show an appropriate message based on the state of the payment. For example, for a completed payment, you would likely want to confirm that the payment has been received and explain what will happen next. For a failed payment, you should make clear that payment failed and offer the user a chance to try again.
 
-Now that you understand the payment process, see the [Integration details](https://gds-payments.gelato.io/docs/versions/1.0.0/integration-details) section for more  about how you can integrate your service with GOV.UK Pay.
+Now that you understand the payment process, see the [Integration details](https://govukpay-docs.cloudapps.digital/#integration-details) section for more  about how you can integrate your service with GOV.UK Pay.
