@@ -6,7 +6,7 @@ CF="cf"
 CF_API_URL="api.cloud.service.gov.uk"
 CF_SPACE="sandbox"
 CF_ORG="govuk-pay"
-APP_NAME="govukpay-tech-docs"
+APP_NAME="govukpay-docs"
 
 # Set up term colors
 green='\033[1;32m'
