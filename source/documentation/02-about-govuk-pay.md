@@ -4,7 +4,7 @@ GOV.UK Pay makes it easy for departments and agencies across government to take 
 
 GOV.UK Pay is currently in beta development.
 
-The platform can connect your government service to different [payment service providers (PSPs)](https://en.wikipedia.org/wiki/Payment_service_provider). (During beta, the platform will be connected to a single PSP.)
+The platform can connect your government service to different [payment service providers (PSPs)](https://en.wikipedia.org/wiki/Payment_service_provider).
 
 During beta, GOV.UK Pay will support credit and debit card payments only. Over time, further payment methods, such as direct debit or eWallet, will be added.
 
@@ -12,8 +12,16 @@ Your service only needs to integrate with GOV.UK Pay once to let your users make
 
 The platform currently supports one-off payments (like fees, fines or licence payments). In the future, it will also support recurring payments, for example, monthly tax payments.
 
+The GOV.UK Pay platform does not currently support payments to cardholders, for example, payments of benefits, or grants. The platform only supports taking payments, or providing refunds.
+
 >There is no charge to use GOV.UK Pay. You will still need to pay your PSP's transaction fees.
 
-There are [4 departments and agencies currently partnering with the platform](https://gds.blog.gov.uk/2015/10/15/introducing-gov-uk-pay/).
+There are five departments and agencies currently partnering with the platform:
+
+- Ministry of Justice
+- Home Office
+- Department for Business, Energy & Industrial Strategy
+- Office of the Public Guardian
+- HM Courts and Tribunals Service. 
 
 To find out more about GOV.UK Pay, read our [blogs and newsletters](https://govukpay-docs.cloudapps.digital/#support-contact-and-more-information).
