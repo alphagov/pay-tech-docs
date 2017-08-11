@@ -22,6 +22,6 @@ There are five departments and agencies currently partnering with the platform:
 - Home Office
 - Department for Business, Energy & Industrial Strategy
 - Office of the Public Guardian
-- HM Courts and Tribunals Service. 
+- HM Courts and Tribunals Service
 
 To find out more about GOV.UK Pay, read our [blogs and newsletters](https://govukpay-docs.cloudapps.digital/#support-contact-and-more-information).
