@@ -1,6 +1,79 @@
 # Support, contact and more information
 
-If your problem is not addressed in this documentation, please contact us at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk), including any error messages you’re getting.
+## Support hours and service
+
+In hours:
+
+- On site support: Mon-Fri 9.30am-5.30pm
+- Full support of GOV.UK Pay for all ticket priorities
+- 2 dedicated support people, with additional cover from the whole team as required
+
+Out of hours:
+
+- On call support: Mon-Fri 5.30pm-9.30am Sat-Sun 24x7
+- P1 priority only
+- 2 dedicated on call support people, with escalation as necessary
+
+## Asking for support
+
+You can ask for support via email. The severity of the incident affects who you should ask for support:
+
+- For all non-P1 support queries, get in touch by emailing [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk). This will raise a support ticket.
+
+- In emergencies, Service teams can raise a P1 incident by emailing us. This will raise a high priority ticket and __could alert the team in the middle of the night, so please only use it for P1 incidents__. Please do not share this address with people outside your team.
+
+Incident severity is defined below:
+
+| Classification | AKA | Example | Initial response time | Update Time |
+| :--- | :--- | :--- | :--- | :--- |
+| P1 | Critical Incident | complete outage; substantial degradation of service; significant security issue; significant availability issue  | 30 minutes (at any time) | 1hr |
+| P2 | Major Incident | elevated error rate; mostly up; noticeably degraded service; upstream vulnerabilities; complete component failure | 60 minutes (in waking hours) | 2hrs |
+| P3 | Significant | Users experiencing intermittent or degraded service due to platform issue | 1 business day or next working day | 2 business days |
+| P4 | Minor | Component failure that is not immediately service impacting | 2 business days | weekly |
+
+Please always raise support tickets using the email addresses supplied above rather than relying on a personal email address. This ensures your issue will be dealt with as soon as possible.
+
+Support requests are raised both automatically and manually. Our automated monitoring and system alerts feed into our helpdesk ticketing system.
+
+## Communication
+
+The Pay support team will contact you via two methods:
+
+1. If you have raised a support request, we will communicate with you individually using our Deskpro ticketing system via [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk). This will ensure that you are not relying on a single individual for comms.
+
+2. We will provide general incident updates to all GOV.UK Pay users through an email mailing list. All users of GOV.UK Pay will be subscribed to this list. You can choose to unsubscribe, but should ensure that anyone who needs to know about incident or maintenance alerts is subscribed. If you would like someone subscribed to this list please email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
+
+## Who deals with support issues
+
+At all times, we have a dedicated Support Lead and Secondary (rotated weekly) who draw on additional support as required from other members of the team.
+
+Additionally, a manager will act as the Support escalation route.
+
+For an incident, an Incident Lead and an Incident Comms person will be assigned.
+
+## How do we respond
+
+In general, our priority is to ensure high availability of the service.
+
+However, in the event of a critical P1 incident we may need to isolate the issue and take GOV.UK Pay offline in order to minimise any security breach until we can investigate fully.
+
+For general or non urgent support queries our service levels are:
+
+| First reply service level | First resolution service level |
+| :--- | :--- |
+| 80% within two working days | 80% within 5 working days |
+
+## Resolution and Closure
+
+For all incidents:
+
+- Resolution occurs when the Incident Lead, in consultation with the initiator, confirms that the matter reported is no longer impacting the service.
+- Any follow up work will be tracked as part of business as usual.
+- An incident post mortem will be held for all P1 incidents, and for any others where one is needed. The outputs will be made available to our beta partners.
+
+## Feedback on support matters
+
+If we are not responding to your requests for support in the way that you would expect or your problem is not addressed in this documentation, please [email us](mailto:govuk-pay-support@digital.cabinet-office.gov.uk), including any error messages you’re getting.
 
 #### Newsletter and blogs
 
