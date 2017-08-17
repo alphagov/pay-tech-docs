@@ -10,10 +10,10 @@ We are experimenting with taking in Open Source contributions from our live part
 
 | Component | Description | Use |
 | --- | --- | --- |
-| [pay-adminusers](https://github.com/alphagov/pay-adminusers) | GOV.UK Pay identity and service management component. | Used by pay-selfservice to allow users authenticate and configure GOV.UK Pay. |
+| [pay-adminusers](https://github.com/alphagov/pay-adminusers) | GOV.UK Pay identity and service management component. | Used by pay-selfservice to allow users to authenticate and configure GOV.UK Pay. |
 | [pay-cardid](https://github.com/alphagov/pay-cardid) | GOV.UK Pay card type identification Service. | Used by pay-frontend to validate card details and autocomplete card brand. |
 | [pay-connector](https://github.com/alphagov/pay-connector) | GOV.UK Pay payments connector. | Used by other services to configure payment gateways and handle transactions. |
 | [pay-frontend](https://github.com/alphagov/pay-frontend) | GOV.UK Pay frontend payments application. | Used to collect payment details from our users. |
-| [pay-publicapi](https://github.com/alphagov/pay-publicapi) | GOV.UK Pay public API endpoint. | Used by partner services to manage a payment, report and configure their account. |
-| [pay-publicauth](https://github.com/alphagov/pay-publicauth) | GOV.UK Pay API authentication service. | Used by pay-publicapi to validate API tokens and by pay-selfservice to mange API tokens. |
+| [pay-publicapi](https://github.com/alphagov/pay-publicapi) | GOV.UK Pay public API endpoint. | Used by partner services for managing payments, reporting and configuring their account. |
+| [pay-publicauth](https://github.com/alphagov/pay-publicauth) | GOV.UK Pay API authentication service. | Used by pay-publicapi to validate API tokens and by pay-selfservice to manage API tokens. |
 | [pay-selfservice](https://github.com/alphagov/pay-selfservice) | GOV.UK Pay self service application. | Used by authenticated users of our partner services to administer their accounts. |
