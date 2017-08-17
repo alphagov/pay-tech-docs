@@ -8,10 +8,10 @@ We are experimenting with taking in Open Source contributions from our live part
 
 ## Key Open Source components
 
-| Name | Description | Use |
+| Component | Description | Use |
 | --- | --- | --- |
 | [pay-adminusers](https://github.com/alphagov/pay-adminusers) | GOV.UK Pay identity and service management component. | Used by pay-selfservice to allow users authenticate and configure GOV.UK Pay. |
-| [pay-cardid](https://github.com/alphagov/pay-cardid) | GOV.UK Pay Card Type Identification Service. | Used by pay-frontend validate card details and autocomplete card brand. |
+| [pay-cardid](https://github.com/alphagov/pay-cardid) | GOV.UK Pay card type identification Service. | Used by pay-frontend to validate card details and autocomplete card brand. |
 | [pay-connector](https://github.com/alphagov/pay-connector) | GOV.UK Pay payments connector. | Used by other services to configure payment gateways and handle transactions. |
 | [pay-frontend](https://github.com/alphagov/pay-frontend) | GOV.UK Pay frontend payments application. | Used to collect payment details from our users. |
 | [pay-publicapi](https://github.com/alphagov/pay-publicapi) | GOV.UK Pay public API endpoint. | Used by partner services to manage a payment, report and configure their account. |
