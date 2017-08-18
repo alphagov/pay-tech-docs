@@ -1,8 +1,8 @@
-#Security
+# Security
 
 #### Reporting vulnerabilities
 
-If you believe GOV.UK Pay security has been breached, contact us immediately at [govuk-pay-support@digital.cabinet-office.gov.uk] (mailto:govuk-pay-support@digital.cabinet-office.gov.uk). If you are a production user and the suspected breach is severe, consider using the urgent contact details provided to your service manager.
+If you believe GOV.UK Pay security has been breached, contact us immediately at [govuk-pay-support@digital.cabinet-office.gov.uk] (mailto:govuk-pay-support@digital.cabinet-office.gov.uk). If you are a live user and the suspected breach is severe, consider using the urgent contact details provided to your service manager.
 
 Please don’t disclose the suspected breach publically until it has been fixed.
 
