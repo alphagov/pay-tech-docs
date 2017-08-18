@@ -1,4 +1,4 @@
-#Refunding payments
+# Refunding payments
 
 GOV.UK Pay now supports refunding payments. You can choose to refund part of a payment, or the full amount.
 
@@ -143,4 +143,8 @@ In the details view, you can use the red **Refund payment** button at the upper 
 
 #### Refund notifications
 
-End users are automatically notified by email about payments (according to the settings you have entered in the self-service admin site), but not when a payment is refunded (either manually or via the API). You should arrange to notify end users about refunds as appropriate for your service.
+End users are automatically notified by email about successful payments (according to the settings you have entered in the self-service admin site), but not when a payment has either failed or is refunded (either manually or via the API). You should arrange to notify end users about payment failures and / or refunds as appropriate for your service.
+
+#### Refund Destination
+
+Refunds are sent back to the source account of the original payment. It is not possible to refund a payment to another card or bank account. If the original card expired or was canceled, the customer’s new card will be credited with the refund. If the customer does not have a new card, the refund should be sent to the customer’s bank account.
