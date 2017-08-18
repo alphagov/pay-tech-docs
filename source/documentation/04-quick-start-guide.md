@@ -40,7 +40,7 @@ The quickest way to learn about the API is to use [the API Explorer](https://gds
   + For **API Key**, enter "[YOUR-API-KEY]" (do not include the quotation marks), replacing [YOUR-API-KEY] with the actual value of your sandbox API key, as shown in the screenshot below. You do not need to put the "Bearer: " prefix which is required when calling the API from code; the API Explorer adds that automatically.
   + For **Label**, enter "Authorization" (do not include the quotation marks).
 
-> Make sure you are using an API key from your sandbox account on the self-service site, not the production account.
+> Make sure you are using an API key from your sandbox account on the self-service site, not the live account.
 
 #### Making a test API call
 
