@@ -29,7 +29,10 @@ Imagine that this is a page on your service, where the end user needs to make a 
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-service-pay-page.png)
 
-Note that this page might be the end point of a series of pages you host which allow the user to choose between a variety of possible payments.
+Note that this page might be the end point of a series of pages you host which allow the user to choose between a variety of possible payments. This page should:
+
+- make it clear to the user that they are about to pay for your product or service with a clear call to action, for example, a button that says “Pay now” or “Continue to payment”; the user will then be taken to the GOV.UK Pay pages to complete their transaction 
+- include clear information on what is being purchased; you do not need to tell the user that they are being handed over to GOV.UK Pay’s pages to make their payment
 
 The user clicks **Continue**.
 
@@ -104,6 +107,37 @@ The user enters their payment details and clicks **Continue**.
 If the details are valid and the payment is approved, the user is then taken to a payment confirmation page, still hosted by GOV.UK Pay:
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-confirm-page.png)
+
+If the payment is successful, the user will:
+
+- receive a confirmation email (if you have chosen to send these using GOV.UK Pay)
+- return to your service and see a confirmation page
+
+##### Confirmation Email
+
+The user will receive a payment confirmation email containing:
+
+- payment reference number
+- date of payment
+- who the payment was to
+- the total payment amount
+
+You can add a custom paragraph to a payment confirmation emails at the Email notifications page on GOV.UK Pay. For further customisation, you can visit [GOV.UK Notify](https://www.notifications.service.gov.uk/) to set up custom notifications. It is recommended to disable GOV.UK Pay notifications if you do this.
+
+###### Confirmation Page
+
+The confirmation page is hosted by you and should:
+
+- contain a reference number (make them short and usable)
+- have a clear payment summary, showing the amount and description
+- clearly state what is going to happen next (this will be different for each service)
+- if applicable, let the user know they will receive a receipt email (services can either use GOV.UK Notify to send email payment receipts or ask GOV.UK Pay to do that for them)
+
+Users have different ways of recording this confirmation information, including screenshots, prints, pdf receipts to download, and writing down the reference number and other relevant information. Teams building services should be aware of, and cater for, all these behaviours.
+
+>Read more about confirmation pages in the [service manual](https://www.gov.uk/service-manual/design/confirmation-pages).
+
+##### After confirmation
 
 After confirming, the user is directed to the ``return_url`` you provided in the initial request.
 
