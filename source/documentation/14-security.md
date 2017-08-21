@@ -43,9 +43,9 @@ All GOV.UK Pay users must validate their PCI DSS compliance annually. A typical 
 
 Your requirements depend on the number of transactions you process in a year.
 
-#### Process less than 6 million transactions per year
+#### Process fewer than 6 million transactions per year
 
-If you process less than 6 million transactions per year, you can self-assess by completing the PCI DSS Self-Assessment Questionnaire (SAQ); this is is a self-assessment tool to assess security for cardholder data. 
+If you process fewer than 6 million transactions per year, you can self-assess by completing the PCI DSS Self-Assessment Questionnaire (SAQ); this is is a self-assessment tool to assess security for cardholder data. 
 
 Most services will be asked to complete the SAQ A questionnaire which can be found in the [PCI documents library](https://www.pcisecuritystandards.org/document_library); see the criteria in the table below:
 
