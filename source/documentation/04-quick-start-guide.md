@@ -19,7 +19,7 @@ To use the GOV.UK Pay API, you will need your own individual staff account. A st
 
 1. Have your service manager email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) to get your staff account credentials. You'll receive access to a sandbox account which allows you to familiarise yourself and your developers with the platform before processing real payments. The GOV.UK Pay team will set up your service and provide you with login details for your account.
 
-2. Sign in to the [self-service admin site](https://selfservice.payments.service.gov.uk/) with the sandbox account login details you received.
+2. Sign in to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/) with the sandbox account login details you received.
 
 3. Click on the API key section, then click **Generate a new key**.
 
@@ -40,7 +40,7 @@ The quickest way to learn about the API is to use [the API Explorer](https://gds
   + For **API Key**, enter "[YOUR-API-KEY]" (do not include the quotation marks), replacing [YOUR-API-KEY] with the actual value of your sandbox API key, as shown in the screenshot below. You do not need to put the "Bearer: " prefix which is required when calling the API from code; the API Explorer adds that automatically.
   + For **Label**, enter "Authorization" (do not include the quotation marks).
 
-> Make sure you are using an API key from your sandbox account on the self-service site, not the live account.
+> Make sure you are using an API key from your sandbox account on the admin site, not the live account.
 
 #### Making a test API call
 
