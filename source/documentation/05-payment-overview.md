@@ -122,7 +122,7 @@ The user will receive a payment confirmation email containing:
 - who the payment was to
 - the total payment amount
 
-You can add a custom paragraph to a payment confirmation emails at the Email notifications page on GOV.UK Pay. For further customisation, you can visit [GOV.UK Notify](https://www.notifications.service.gov.uk/) to set up custom notifications. It is recommended to disable GOV.UK Pay notifications if you do this.
+You can add a custom paragraph to a payment confirmation email at the Email notifications page on GOV.UK Pay. For further customisation, you can visit [GOV.UK Notify](https://www.notifications.service.gov.uk/) to set up custom notifications. It is recommended to disable GOV.UK Pay notifications if you do this.
 
 ###### Confirmation Page
 
