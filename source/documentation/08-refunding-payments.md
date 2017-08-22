@@ -147,4 +147,4 @@ End users are automatically notified by email about successful payments (accordi
 
 #### Refund Destination
 
-Refunds are sent back to the source account of the original payment. It is not possible to refund a payment to another card or bank account. If the original card expired or was canceled, the customer’s new card will be credited with the refund. If the customer does not have a new card, the refund should be sent to the customer’s bank account.
+Refunds are sent back to the source account of the original payment. It is not possible to refund a payment to another card or bank account. If the original card expired or was canceled, the bank will attempt to credit the customer’s new card with the refund. If the customer does not have a new card, the refund should be sent to the customer’s bank account.
