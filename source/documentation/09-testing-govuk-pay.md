@@ -1,11 +1,11 @@
 # Testing GOV.UK Pay
 
-You will receive a sandbox account for testing in addition to your production credentials.
+You will receive a sandbox account for testing in addition to your live credentials.
 
 When testing, you’ll need to ensure:
 
  - you’ve tested with mock card numbers (see below) to simulate both successful and unsuccessful transactions - never use real card numbers for testing purposes, as this breaks PCI rules
- - you test with your sandbox account, not your production account
+ - you test with your sandbox account, not your live account
  - REST calls succeed with 200 API codes
  - you’ve tested the user journey from your service to the payments platform using end-to-end/smoke tests
 
@@ -53,6 +53,9 @@ When you're using these card numbers, you can enter any valid value for the othe
 
 ##### For _Worldpay_ accounts
 Please refer to [Worldpay test card numbers](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/usefultables.htm#Test)
+
+##### For _Barclays ePDQ_ accounts
+Please go to [ePDQ Get Started](https://support.epdq.co.uk/en/products/onboarding) and click on __What credit cards can I use for testing?__
 
 ####  Performance testing
 
