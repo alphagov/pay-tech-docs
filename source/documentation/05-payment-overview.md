@@ -111,7 +111,9 @@ If the details are valid and the payment is approved, the user is then taken to 
 If the payment is successful, the user will:
 
 - receive a confirmation email (if you have chosen to send these using GOV.UK Pay)
-- return to your service and see a confirmation page
+- return to your service and see your confirmation page
+
+It is up to your page at the ``return_url`` to show an appropriate message based on the state of the payment. For example, for a successful payment, you would likely want to confirm that the payment has been received and explain what will happen next. For a failed payment, you should make clear that payment failed and offer the user a chance to try again.
 
 ##### Confirmation Email
 
@@ -122,7 +124,7 @@ The user will receive a payment confirmation email containing:
 - who the payment was to
 - the total payment amount
 
-You can add a custom paragraph to a payment confirmation email at the Email notifications page on GOV.UK Pay. For further customisation, you can visit [GOV.UK Notify](https://www.notifications.service.gov.uk/) to set up custom notifications. It is recommended to disable GOV.UK Pay notifications if you do this.
+You can add a custom paragraph to a payment confirmation email at the [Email notifications page](https://selfservice.payments.service.gov.uk/email-notifications) on the GOV.UK Pay admin site. For further customisation, you can visit [GOV.UK Notify](https://www.notifications.service.gov.uk/) to set up custom notifications. It is recommended to disable GOV.UK Pay notifications if you do this.
 
 ###### Confirmation Page
 
@@ -180,9 +182,5 @@ The ``state`` array within the JSON lets you know the outcome of the payment:
 
 + The ``status`` value describes a stage of the payment journey.
 + The ``finished`` value indicates if the payment journey is complete or not; that is, if the ``status`` of this payment can change.
-
-In this example, the payment was successful, and the payment journey is finished.
-
-It is up to your page at the ``return_url`` to show an appropriate message based on the state of the payment. For example, for a completed payment, you would likely want to confirm that the payment has been received and explain what will happen next. For a failed payment, you should make clear that payment failed and offer the user a chance to try again.
 
 Now that you understand the payment process, see the [Integration details](https://govukpay-docs.cloudapps.digital/#integration-details) section for more  about how you can integrate your service with GOV.UK Pay.
