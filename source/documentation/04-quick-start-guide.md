@@ -11,7 +11,7 @@ This section explains how to get started with our API Explorer and make a test A
 
 #### Generate API Key for API Explorer
 
-1. Sign in to the [self-service admin site](https://selfservice.payments.service.gov.uk/) with the sandbox account login details you received.
+1. Sign in to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/) with the sandbox account login details you received.
 
 1. Click on the API key section, then click **Generate a new key**.
 
