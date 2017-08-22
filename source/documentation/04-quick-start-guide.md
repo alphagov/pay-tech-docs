@@ -17,6 +17,7 @@ This section explains how to get started with our API Explorer and make a test A
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/Generate+API+key+image1.png)
  <br /><br />Enter a description for your API key. <br /><br />
+ 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/DescribeAPIKey+image2.png)
 <br /><br />Your API key will be shown on the screen for you to copy.<br /><br /> ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/NewKeygenerate+image+3.png)
 
@@ -28,11 +29,12 @@ The quickest way to learn about the API is to use [the API Explorer](https://gds
 
 1. [Go to the API Explorer](https://gds-payments.gelato.io/api-explorer/) and click the blue “Add API Credentials” button. <br/><br/>
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-add-api-key.png)
-<br/><br/>In the resulting pop-up, enter the following values:
+<br/><br/>
+1.  In the resulting pop-up, enter the following values:
   + For **API Key**, enter "[YOUR-API-KEY]" (do not include the quotation marks), replacing [YOUR-API-KEY] with the actual value of your sandbox API key, as shown in the screenshot below. You do not need to put the "Bearer: " prefix which is required when calling the API from code; the API Explorer adds that automatically.
   + For **Label**, enter "Authorization" (do not include the quotation marks).
 
-> Make sure you are using an API key from your sandbox account on the self-service site, not the production account.
+> Make sure you are using an API key from your sandbox account on the admin site, not the live account.
 
 #### Making a test API call
 

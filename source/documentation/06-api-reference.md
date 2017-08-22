@@ -1,4 +1,4 @@
-#API reference
+# API reference
 
 The GOV.UK Pay platform is based on REST principles with endpoints returning data in JSON format, and standard HTTP error response codes. The platform API allows you to:
 
@@ -13,7 +13,7 @@ The GOV.UK Pay platform is based on REST principles with endpoints returning dat
 
 The base URL for the API is https://publicapi.payments.service.gov.uk/
 
-The same base URL is now used for testing and production. The API key you use determines if the actions are treated as sandbox test payments or processed as real payments.
+The same base URL is now used for testing and live. The API key you use determines if the actions are treated as sandbox test payments or processed as real payments.
 
 For full details of each API action, see the API Browser:
 
