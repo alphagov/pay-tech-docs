@@ -7,24 +7,17 @@ The GOV.UK Pay platform is based on REST principles with endpoints returning dat
 - view the event history for individual payments
 - view transactions within a specified time period
 <br /><br />
-This section explains how to get started with our API Explorer.
+This section explains how to get started with our API Explorer and make a test API call.
 
-#### Account setup
+#### Generate API Key for API Explorer
 
-If your department or agency is not yet a beta partner, please contact us at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) to discuss using GOV.UK Pay
+1. Sign in to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/) with the sandbox account login details you received.
 
-If your department or agency is participating in the beta, it will have a GOV.UK Pay service account (in some cases, it may have several service accounts, one for each service that is going to integrate with Pay).
-
-To use the GOV.UK Pay API, you will need your own individual staff account. A staff account is linked to a service account and can be used to create API keys for that service, as well as access the transaction history and service settings.
-
-1. Have your service manager email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) to get your staff account credentials. You'll receive access to a sandbox account which allows you to familiarise yourself and your developers with the platform before processing real payments. The GOV.UK Pay team will set up your service and provide you with login details for your account.
-
-2. Sign in to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/) with the sandbox account login details you received.
-
-3. Click on the API key section, then click **Generate a new key**.
+1. Click on the API key section, then click **Generate a new key**.
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/Generate+API+key+image1.png)
  <br /><br />Enter a description for your API key. <br /><br />
+ 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/DescribeAPIKey+image2.png)
 <br /><br />Your API key will be shown on the screen for you to copy.<br /><br /> ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/NewKeygenerate+image+3.png)
 
@@ -36,7 +29,8 @@ The quickest way to learn about the API is to use [the API Explorer](https://gds
 
 1. [Go to the API Explorer](https://gds-payments.gelato.io/api-explorer/) and click the blue “Add API Credentials” button. <br/><br/>
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-add-api-key.png)
-<br/><br/>In the resulting pop-up, enter the following values:
+<br/><br/>
+1.  In the resulting pop-up, enter the following values:
   + For **API Key**, enter "[YOUR-API-KEY]" (do not include the quotation marks), replacing [YOUR-API-KEY] with the actual value of your sandbox API key, as shown in the screenshot below. You do not need to put the "Bearer: " prefix which is required when calling the API from code; the API Explorer adds that automatically.
   + For **Label**, enter "Authorization" (do not include the quotation marks).
 
@@ -44,7 +38,10 @@ The quickest way to learn about the API is to use [the API Explorer](https://gds
 
 #### Making a test API call
 
-1. To test the API Explorer, select [Create new payment](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/general/create-new-payment) from the API Explorer **Action** dropdown menu. Click on the **Body** tab lower down to see an example JSON body that you would send when creating a payment.
+You will now make a test API call to GOV.UK Pay by creating a new payment. This is the call your service will make when 
+initiating a payment using GOV.UK Pay.
+
+1. To test the API Explorer, select General from the API Explorer **Resource** dropdown menu. Select [Create new payment](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/general/create-new-payment) from the API Explorer **Action** dropdown menu. Click on the **Body** tab lower down to see an example JSON body that you would send when creating a payment.
 
 ```javascript
 {
@@ -66,11 +63,15 @@ The ``return_url`` is the URL of a page on your service that the user will be re
 <br/><br/>
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-api-explorer-response.png)
 
+#### Follow end user payment journey
+
 1. Go to the ``next_url`` with your browser. You'll see the payment screen. Refer to the [Testing GOV.UK Pay](https://govukpay-docs.cloudapps.digital/#testing-gov-uk-pay) section to find a mock credit card number that you can enter to simulate a payment in the sandbox environment. For the rest of the details, enter some test information, bearing in mind that:
-    + the expiry date must be in the future
+    + the expiry date must be in the future and in the format MM/YYYY
     + the postcode must be valid
 
 1. Submit the payment.
+
+#### View transaction at GOV.UK Pay Admin site
 
 1. Go to the [service admin site](https://selfservice.payments.service.gov.uk/). Select **Transactions** at left. You’ll see the payment you just made.
 
