@@ -39,7 +39,7 @@ GOV.UK Pay doesn’t store full card numbers or CVV data for security reasons. T
 
 Anyone involved with the processing, transmission, or storage of card data must comply with the [Payment Card Industry Data Security Standards](https://www.pcisecuritystandards.org/) (PCI DSS). GOV.UK Pay is certified as fully compliant with PCI DSS version 3.2.
 
-All GOV.UK Pay users must validate their PCI DSS compliance annually. A typical approach is to break down reporting by channel and independently report your PCI DSS status for each channel to your acquiring bank. This approach must be agreed with your acquiring bank, but is usually accepted.  The individual channels are normally established based on Merchant ID (MID) so it is important that you use unique MIDs for this payment channel (as discussed with your acquiring bank).
+All GOV.UK Pay users must validate their PCI DSS compliance annually. A typical approach is to break down reporting by payment channel and independently report your PCI DSS status for each channel to your acquiring bank. This approach must be agreed with your acquiring bank, but is usually accepted.  The individual channels are normally established based on Merchant ID (MID) so it is important that you use unique MIDs for this payment channel (as discussed with your acquiring bank).
 
 Your requirements depend on the number of transactions you process in a year.
 
@@ -51,7 +51,7 @@ Most services will be asked to complete the SAQ A questionnaire which can be fou
 
 | SAQ A eligibility criteria | Notes |
 | :---- | :---- |
-| Your company accepts only card-not-present (e-commerce or mail/telephone-order) transactions. | | 
+| Your payment channel accepts only card-not-present (e-commerce or mail/telephone-order) transactions. | | 
 | All processing of cardholder data is entirely outsourced to PCI DSS validated third-party service providers. | GOV.UK Pay is PCI DSS certified. |
 | Your company does not electronically store, process, or transmit any cardholder data on your systems or premises, but relies entirely on a third party(s) to handle all these functions. | |
 | Your company has confirmed that all third party(s) handling storage, processing, and/or transmission of cardholder data are PCI DSS compliant. | GOV.UK Pay is PCI DSS compliant. |
