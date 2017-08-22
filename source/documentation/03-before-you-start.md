@@ -5,7 +5,7 @@ To start using the GOV.UK Pay platform, you'll need:
 - a digital service that needs to process payments
 - a [GOV.UK Pay account](https://selfservice.payments.service.gov.uk/create-service/register) 
 - a service team with the development skills to build the technical integration with GOV.UK Pay; refer to the [Service Manual](https://www.gov.uk/service-manual/the-team/what-each-role-does-in-service-team#roles-your-team-must-have) for more information
-  >The time taken to integrate will vary depending on team and capability; for example, it took a team of two developers two weeks to integrate a Home Office service with GOV.UK Pay.
+  >The time taken to integrate will vary depending on team and capability; for example, it took a single developer five days to integrate a Home Office service with GOV.UK Pay.
   
 Check the [Getting Started guide](https://www.payments.service.gov.uk/getstarted/) to ensure that your team is ready to start using the GOV.UK Pay platform.
 
