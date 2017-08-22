@@ -142,10 +142,9 @@ Users have different ways of recording this confirmation information, including 
 
 ##### Failed Payment
 
-If the payment *cannot* be approved, the user is shown an error page. This error page must:
+If the payment fails - perhaps because it was declined or there was a technical error - the user will see a GOV.UK Pay error page. This includes a link to return to your service. When a user returns to your service after a failed payment you should show them a page that offers useful next steps. This page should:
 
-- make it clear that the payment failed
-- include a message describing the reason for failure
+- confirm that the payment failed
 - offer the user a chance to try the payment again via the ``return_url`` link that you provided in the initial request
 
 An example can be seen below:
