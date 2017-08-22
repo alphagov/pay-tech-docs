@@ -108,14 +108,13 @@ If the details are valid and the payment is approved, the user is then taken to 
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-confirm-page.png)
 
-If the payment is successful, the user will:
+The user clicks confirm, and what happens next depends on whether the payment was successful or not.
 
-- receive a confirmation email (if you have chosen to send these using GOV.UK Pay)
-- return to your service and see your confirmation page
+##### Successful Payment
 
-It is up to your page at the ``return_url`` to show an appropriate message based on the state of the payment. For example, for a successful payment, you would likely want to confirm that the payment has been received and explain what will happen next. For a failed payment, you should make clear that payment failed and offer the user a chance to try again.
+If the payment is successful, the user will receive a confirmation email (if you have chosen to send these using GOV.UK Pay), and return to your service and see your confirmation page.
 
-##### Confirmation Email
+###### Confirmation Email
 
 The user will receive a payment confirmation email containing:
 
@@ -130,24 +129,28 @@ You can add a custom paragraph to a payment confirmation email at the [Email not
 
 The confirmation page is hosted by you and should:
 
+- confirm that the payment has been received successfully
 - contain a reference number (make them short and usable)
 - have a clear payment summary, showing the amount and description
 - clearly state what is going to happen next (this will be different for each service)
 - if applicable, let the user know they will receive a receipt email (services can either use GOV.UK Notify to send email payment receipts or ask GOV.UK Pay to do that for them)
+- direct the user to the ``return_url`` you provided in the initial request
 
 Users have different ways of recording this confirmation information, including screenshots, prints, pdf receipts to download, and writing down the reference number and other relevant information. Teams building services should be aware of, and cater for, all these behaviours.
 
 >Read more about confirmation pages in the [service manual](https://www.gov.uk/service-manual/design/confirmation-pages).
 
-##### After confirmation
+##### Failed Payment
 
-After confirming, the user is directed to the ``return_url`` you provided in the initial request.
+If the payment *cannot* be approved, the user is shown an error page. This error page must:
 
-If the payment *cannot* be approved, the user is shown an error page with a message describing the reason, for example:
+- make it clear that the payment failed
+- include a message describing the reason for failure
+- offer the user a chance to try the payment again via the ``return_url`` link that you provided in the initial request
+
+An example can be seen below:
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-declined.png)
-
-The link to try the payment again sends the user to the ``return_url`` you provided in the initial request.
 
 #### Payment flow: after payment
 
