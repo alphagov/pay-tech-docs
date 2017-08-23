@@ -17,7 +17,7 @@ You will receive the ``next_url``  to which you should direct the user to comple
 
 #### Tracking the progress of a payment
 
-You can track the progress of a payment while the user is on GOV.UK Pay using the [**Find payment by ID**](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/v1/find-payment-by-id) call.
+You can track the progress of a payment while the user is on GOV.UK Pay using the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/v1/find-payment-by-id" target="blank">Find payment by ID</a> call.
 
 NOTE: The status of the payment will go through several phases until it either succeeds or fails. See the [API reference section](https://govukpay-docs.cloudapps.digital/#api-reference) for more details.
 
@@ -55,7 +55,7 @@ If a user does not have enough funds in their account to make a payment, the cur
 
 #### Cancelling a payment
 
-You can cancel a payment that is not yet in a final state by using the [**Cancel payment**](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/payment-id/cancel-payment) API call.
+You can cancel a payment that is not yet in a final state by using the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/payment-id/cancel-payment" target="blank">Cancel payment</a> API call.
 
 
 #### Financial reporting integration
