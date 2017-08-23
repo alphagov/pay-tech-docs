@@ -156,8 +156,9 @@ An example can be seen below:
 After the user attempts payment, GOV.UK Pay returns them to the ``return_url`` you provided in the initial request, whatever the status of the payment.
 
 The ``return_url`` should specify a page on your service. When the user visits the ``return_url``, your service should:
-  + match the returning user with their payment (with a secure cookie, or a secure random ID string included in the ``return_url``)
-  + check the status of the payment using an API call
+ 
+- match the returning user with their payment (with a secure cookie, or a secure random ID string included in the ``return_url``)
+- check the status of the payment using an API call
 
 See the [Integration details](https://govukpay-docs.cloudapps.digital/#integration-details) section for more details about how to match the user to the payment.
 
