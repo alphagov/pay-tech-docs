@@ -33,7 +33,7 @@ Note that this page might be the end point of a series of pages you host which a
 
 The user clicks **Continue**.
 
-At this point, your service makes a [**Create new payment**](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/general/create-new-payment) call to the Pay API. The body of the call contains information in JSON format:
+At this point, your service makes a <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/general/create-new-payment" target="blank">Create new payment</a> call to the Pay API (link opens in new window). The body of the call contains information in JSON format:
 
 
 ```javascript
@@ -123,7 +123,7 @@ The ``return_url`` should specify a page on your service. When the user visits t
 
 See the [Integration details](https://govukpay-docs.cloudapps.digital/#integration-details) section for more details about how to match the user to the payment.
 
-To check the status of the payment, you must make a [**Find payment by ID**](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/v1/find-payment-by-id) API call, using the ``payment_id`` of the payment as the parameter.
+To check the status of the payment, you must make a <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/v1/find-payment-by-id" target="blank">Find payment by ID</a> API call (link opens in new window), using the ``payment_id`` of the payment as the parameter.
 
 The URL to do this is the same as the ``self`` URL provided in the response when the payment was first created.
 
