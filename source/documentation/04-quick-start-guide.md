@@ -25,9 +25,9 @@ This section explains how to get started with our API Explorer and make a test A
 
 #### API Explorer setup
 
-The quickest way to learn about the API is to use the <a href="https://gds-payments.gelato.io/api-explorer/" target="blank">API Explorer</a> with the API key that you just created.
+The quickest way to learn about the API is to use the <a href="https://gds-payments.gelato.io/api-explorer/" target="blank">API Explorer</a> (link opens in new window) with the API key that you just created.
 
-1. Go to the <a href="https://gds-payments.gelato.io/api-explorer/" target="blank">API Explorer</a> and click the blue “Add API Credentials” button. <br/><br/>
+1. Go to the <a href="https://gds-payments.gelato.io/api-explorer/" target="blank">API Explorer</a> (link opens in new window) and click the blue “Add API Credentials” button. <br/><br/>
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-add-api-key.png)
 <br/><br/>
 1.  In the resulting pop-up, enter the following values:
@@ -41,7 +41,7 @@ The quickest way to learn about the API is to use the <a href="https://gds-payme
 You will now make a test API call to GOV.UK Pay by creating a new payment. This is the call your service will make when 
 initiating a payment using GOV.UK Pay.
 
-1. To test the API Explorer, select General from the API Explorer **Resource** dropdown menu. Select <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/general/create-new-payment" target="blank">Create new payment</a> from the API Explorer **Action** dropdown menu. Click on the **Body** tab lower down to see an example JSON body that you would send when creating a payment.
+1. To test the API Explorer, select General from the API Explorer **Resource** dropdown menu. Select <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/general/create-new-payment" target="blank">Create new payment</a> (link opens in new window) from the API Explorer **Action** dropdown menu. Click on the **Body** tab lower down to see an example JSON body that you would send when creating a payment.
 
 ```javascript
 {
