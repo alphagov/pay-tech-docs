@@ -36,6 +36,7 @@ To match up a returning user with their payment, there are two recommended metho
 #### Accepting returning users
 
  A user directed to the return URL could have:
+ 
  - paid successfully
  - not paid because their card was rejected or they clicked cancel
  - not paid because your service (via the API) or service manager (via the self-service dashboard) cancelled the payment in progress
