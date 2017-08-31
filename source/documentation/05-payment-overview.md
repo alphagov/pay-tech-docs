@@ -104,28 +104,47 @@ The user enters their payment details and clicks **Continue**.
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-details-page.png)
 
-If the details are valid and the payment is approved, the user is then taken to a payment confirmation page, still hosted by GOV.UK Pay:
+GOV.UK Pay will then attempt to validate the payment with the appropriate Payment Service Provider (PSP). There are four possible outcomes from this validation:
+
+- payment successful
+- payment fails either because it is declined or the user chooses to cancel
+- payment fails due to a technical error
+- payment fails because it is cancelled by your service
+
+Regardless of the payment outcome, GOV.UK Pay will then return the user to the `return_url` you provided in the initial request. 
+
+The `return_url` should specify a page on your service. When the user visits the `return_url`, your service should:
+
+- match the returning user with their payment (with a secure cookie, or a secure random ID string included in the `return_url`)
+- check the status of the payment using an API call
+
+See the payment outcome sections for more details on the user experience for each scenario. 
+
+See the [Integration details](https://govukpay-docs.cloudapps.digital/#integration-details) section for more details about how to match the user to the payment.
+
+#### Payment Flow: Payment successful
+
+If the details are valid and the payment is approved by the PSP, the user is then taken to a payment confirmation page, still hosted by GOV.UK Pay:
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-confirm-page.png)
 
-The user clicks confirm, and what happens next depends on whether the payment was successful or not.
+The user clicks confirm, and will:
 
-##### Successful Payment
+- receive a confirmation email (if you have chosen to send these using GOV.UK Pay)
+- be re-directed to your `return_url` page which will then send the user to your payment confirmation page.
 
-If the payment is successful, the user will receive a confirmation email (if you have chosen to send these using GOV.UK Pay), and return to your service and see your confirmation page.
-
-###### Confirmation Email
+##### Confirmation email
 
 The user will receive a payment confirmation email containing:
 
-- payment reference number
-- date of payment
+- a payment reference number
+- the date of payment
 - who the payment was to
 - the total payment amount
 
 You can add a custom paragraph to a payment confirmation email at the [Email notifications page](https://selfservice.payments.service.gov.uk/email-notifications) on the GOV.UK Pay admin site. For further customisation, you can visit [GOV.UK Notify](https://www.notifications.service.gov.uk/) to set up custom notifications. It is recommended to disable GOV.UK Pay notifications if you do this.
 
-###### Confirmation Page
+##### Confirmation page
 
 The confirmation page is hosted by you and should:
 
@@ -134,33 +153,24 @@ The confirmation page is hosted by you and should:
 - have a clear payment summary, showing the amount and description
 - clearly state what is going to happen next (this will be different for each service)
 - if applicable, let the user know they will receive a receipt email (services can either use GOV.UK Notify to send email payment receipts or ask GOV.UK Pay to do that for them)
-- direct the user to the ``return_url`` you provided in the initial request
 
 Users have different ways of recording this confirmation information, including screenshots, prints, pdf receipts to download, and writing down the reference number and other relevant information. Teams building services should be aware of, and cater for, all these behaviours.
 
 >Read more about confirmation pages in the [service manual](https://www.gov.uk/service-manual/design/confirmation-pages).
 
-##### Failed Payment
+#### Payment Flow: Payment fails
 
-If the payment fails - perhaps because it was declined or there was a technical error - the user will see a GOV.UK Pay error page. This includes a link to return to your service. When a user returns to your service after a failed payment you should show them a page that offers useful next steps. This page should:
+If the payment fails for any reason (decline, technical error, or user / service cancellation),the user will see a GOV.UK Pay error page. This includes a link to return to your service: Go back to try the payment again. When a user returns to your service after a failed payment you should show them a page that offers useful next steps. This page should:
 
 - confirm that the payment failed
-- offer the user a chance to try the payment again via the ``return_url`` link that you provided in the initial request
+- offer the user a chance to try the payment again either by initiating a new payment with GOV.UK Pay or using another method supported by your service
+- advise the user of an alternative course of action
 
 An example can be seen below:
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-declined.png)
 
-#### Payment flow: after payment
-
-After the user attempts payment, GOV.UK Pay returns them to the ``return_url`` you provided in the initial request, whatever the status of the payment.
-
-The ``return_url`` should specify a page on your service. When the user visits the ``return_url``, your service should:
- 
-- match the returning user with their payment (with a secure cookie, or a secure random ID string included in the ``return_url``)
-- check the status of the payment using an API call
-
-See the [Integration details](https://govukpay-docs.cloudapps.digital/#integration-details) section for more details about how to match the user to the payment.
+#### Payment flow: Check the status of a payment
 
 To check the status of the payment, you must make a [**Find payment by ID**](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/v1/find-payment-by-id) API call, using the ``payment_id`` of the payment as the parameter.
 
