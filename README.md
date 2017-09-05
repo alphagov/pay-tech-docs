@@ -10,7 +10,7 @@ and the [Bundler gem][bundler].
 In the application folder type the following to install the required gems:
 
 ```
-bundle install
+bundle install 
 ```
 
 ## Making changes

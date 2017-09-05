@@ -3,7 +3,7 @@ host: https://www.payments.service.gov.uk/
 
 # Header-related options
 show_govuk_logo: true
-service_name: GOV.UK Pay
+service_name: Pay
 service_link: https://www.payments.service.gov.uk/
 phase: Beta
 

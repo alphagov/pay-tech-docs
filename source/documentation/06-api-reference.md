@@ -1,4 +1,4 @@
-#API reference
+# API reference
 
 The GOV.UK Pay platform is based on REST principles with endpoints returning data in JSON format, and standard HTTP error response codes. The platform API allows you to:
 
@@ -13,14 +13,14 @@ The GOV.UK Pay platform is based on REST principles with endpoints returning dat
 
 The base URL for the API is https://publicapi.payments.service.gov.uk/
 
-The same base URL is now used for testing and production. The API key you use determines if the actions are treated as sandbox test payments or processed as real payments.
+The same base URL is now used for testing and live. The API key you use determines if the actions are treated as sandbox test payments or processed as real payments.
 
 For full details of each API action, see the API Browser:
 
-+ [General functions](https://gds-payments.gelato.io/docs/versions/1.0.0/resources/general)
-+ [Payment ID functions](https://gds-payments.gelato.io/docs/versions/1.0.0/resources/payment-id)
+- <a href="https://gds-payments.gelato.io/docs/versions/1.0.0/resources/general" target="blank">General functions</a> (link opens in new window)
+- <a href="https://gds-payments.gelato.io/docs/versions/1.0.0/resources/payment-id" target="blank">Payment ID functions</a> (link opens in new window)
 
-You can also use our interactive [API Explorer](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/) to try out API calls and view responses.
+You can also use our interactive <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0//" target="blank">API Explorer</a> (link opens in new window) to try out API calls and view responses.
 
 See the [Quick Start Guide](https://govukpay-docs.cloudapps.digital/#quick-start-guide) section for how to set up the API Explorer. Make sure you enter your sandbox API key to avoid generating real payments!
 
@@ -43,7 +43,7 @@ This diagram gives an overview of the payment status lifecycle and the possible 
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-transaction-states.png)
 
-You can check the status of a given payment using the [**Find payment by ID**](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/v1/find-payment-by-id) API call.
+You can check the status of a given payment using the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/v1/find-payment-by-id" target="blank">Find payment by ID</a> API call (link opens in new window).
 
 The response will include a ``status`` value as described in the table below, and a true/false ``finished`` value which indicates if the status can change.
 
