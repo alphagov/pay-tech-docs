@@ -36,6 +36,8 @@ To set up ePDQ to work with GOV.UK Pay, you must log into the ePDQ admin site an
 
 ### Add payment methods to your account
 
+![](images/epq-2.png)
+
 1. Log into the [ePDQ admin site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index). On the homepage, go to _Configuration > Payment methods_ and select _Choose new payment methods_
 
 1. Click _Add_ next to the relevant payment method.
@@ -48,17 +50,26 @@ To set up ePDQ to work with GOV.UK Pay, you must log into the ePDQ admin site an
     - Click _Submit_
 1. Add all relevant payment methods to your account.
 
-![](images/epq-2.png)
+
 
 ### Set up account security parameters
-Go to _Configuration > Technical information_
-> If you cannot access this page, ask an admin user to grant you access to it; they can do this at _Configuration > Users_
+
+#### Set up hashing method
 
 ![](images/epq-3.png)
+
+Go to _Configuration > Technical information_
+> If you cannot access this page, ask an admin user to grant you access to it; they can do this at _Configuration > Users_
 
 1. On the _Technical Information_ page, click the _Global security parameters_ tab.
 1. For the _Hash algorithm_, choose _SHA-512_.
 1. For the _Character encoding_, choose _UTF-8_ and click _Save_.
+
+
+
+#### Set up checks for e-Commerce & Alias Gateway
+
+![](images/epq-4.png)
 
 1. On the _Technical information_ page, click the _Data and origin verification_ tab.
 1. Scroll to the _Checks for e-Commerce & Alias Gateway_ section.
@@ -68,32 +79,37 @@ Enter a strong SHA-IN passphrase; this will be used when setting up the GOV.UK a
 1. Leave the _IP address_ blank.
 1. Enter the same SHA-IN passphrase as the _Checks for e-Commerce & Alias Gateway_ section and click _Save_.
 
-![](images/epq-4.png)
-
 > _Strong_ is defined as a passphrase with at least 16 characters, containing at least 4 different characters, at least one letter (a-z) and at least one number (0-9) or symbol (&, @, #, !, etc.). The following symbols cannot be used: ^, {, }, [, ], “, ‘, |, <, >
 
 ### Set up notification settings
 
+#### Set up Direct HTTP server to server requests
+
+![](images/epq-5.png)
+
 1. On the _Technical information_ page, click _Transaction feedback_.
 1. Scroll to the _e-Commerce → Direct HTTP server-to-server request_ section.
-![](images/epq-5.png)
 1. Leave _Timing of the request_ on the default _No request_ setting.
 1. Leave the following two fields blank:
     - _If the payment's status is "accepted", "on hold" or "uncertain"_
     - _If the payment's status is "cancelled by the client" or "too many rejections by the acquirer"_
 1. Set the _Request method_ to _POST_.
-1. Scroll to the e-Commerce → Dynamic e-Commerce parameters section.
+1. Scroll to the _e-Commerce → Dynamic e-Commerce parameters_ section.
 1. Check if PAYIDSUB is included in the Selected box:
     - If it is not included, find it in the Available box and click “>” to add it to the Selected box.
-1. Scroll to the _All transaction submission modes > Security for request parameters_ section.
 
+#### Set up security for request parameters
+
+![](images/epq-6.png)
+
+1. Scroll to the _All transaction submission modes > Security for request parameters_ section.
 1. Enter a strong SHA-OUT passphrase; this will be used when setting up the GOV.UK account credentials.
 1. Leave the _Basic Authentication Credentials_ blank.
 1. Set _Timing of the request_ to _For each offline status change (payment, cancellation, etc.)_
 1. Enter **https://notifications.payments.service.gov.uk/v1/api/notifications/epdq** into the _URL on which the merchant wishes to receive a deferred HTTP request, should the status of a transaction change offline_ field.
 1. Click _Save_.
 
-![](images/epq-6.png)
+
 
 
 ### Set up an API user
