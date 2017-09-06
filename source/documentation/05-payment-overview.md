@@ -2,7 +2,7 @@
 
 This section outlines how your service will interact with GOV.UK Pay after integration.
 
-#### Overview of payment flow
+### Overview of payment flow
 
 When an end user needs to make a payment, your service makes an API call to create a new payment, then redirects the user to the payment pages hosted on GOV.UK Pay.
 
@@ -10,18 +10,18 @@ The end user enters their payment details (for example, credit/debit card detail
 
 After the transaction reaches a final state, the end user is then redirected back to your service.
 
-A final state means that the transaction:
+A final state means that the payment:
 
 + succeeds
-+ fails (for example because the payment details are wrong)
-+ cannot be completed because of a technical error
-+ was cancelled by your service
++ fails either because it is declined or the user chooses to cancel
++ fails due to a technical error
++ fails because it is cancelled by your service
 
 When the user arrives back at your service, you can use the API to check the status of the transaction and show them an appropriate message.
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-transaction-states.png)
 
-#### Payment flow: making a payment
+### Payment flow: making a payment
 
 Let's walk through an example of the payment flow in more detail.
 
@@ -29,7 +29,10 @@ Imagine that this is a page on your service, where the end user needs to make a 
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-service-pay-page.png)
 
-Note that this page might be the end point of a series of pages you host which allow the user to choose between a variety of possible payments.
+Note that this page might be the end point of a series of pages you host which allow the user to choose between a variety of possible payments. This page should:
+
+- make it clear to the user that they are about to pay for your product or service with a clear call to action, for example, a button that says “Pay now” or “Continue to payment”; the user will then be taken to the GOV.UK Pay pages to complete their transaction 
+- include clear information on what is being purchased; you do not need to tell the user that they are being handed over to GOV.UK Pay’s pages to make their payment
 
 The user clicks **Continue**.
 
@@ -101,25 +104,72 @@ The user enters their payment details and clicks **Continue**.
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-details-page.png)
 
-If the details are valid and the payment is approved, the user is then taken to a payment confirmation page, still hosted by GOV.UK Pay:
+GOV.UK Pay will then attempt a payment authorisation through the Payment Service Provider (PSP). This checks with the card issuer whether there are sufficient funds available to make this payment and also carries out some anti-fraud checks.
+
+### Payment Flow: Payment successful
+
+If the details are valid and the payment is approved by the PSP, the user is then taken to a payment confirmation page, still hosted by GOV.UK Pay, where the user decides whether or not to complete their payment:
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-confirm-page.png)
 
-After confirming, the user is directed to the ``return_url`` you provided in the initial request.
+If the user decides to complete the payment, they click confirm, and will:
 
-If the payment *cannot* be approved, the user is shown an error page with a message describing the reason, for example:
+- receive a confirmation email (if you have chosen to send these using GOV.UK Pay)
+- be re-directed to your `return_url` page which will then send the user to your payment confirmation page
+
+##### Confirmation email
+
+The user will receive a payment confirmation email containing:
+
+- a payment reference number
+- the date of payment
+- who the payment was to
+- the total payment amount
+
+You can add a custom paragraph to a payment confirmation email at the [Email notifications page](https://selfservice.payments.service.gov.uk/email-notifications) on the GOV.UK Pay admin site. For further customisation, you can visit [GOV.UK Notify](https://www.notifications.service.gov.uk/) to set up custom notifications. It is recommended to disable GOV.UK Pay notifications if you do this.
+
+#### Confirmation page
+
+The confirmation page is hosted by you and should:
+
+- confirm that the payment has been received successfully
+- contain a reference number (make them short and usable)
+- have a clear payment summary, showing the amount and description
+- clearly state what is going to happen next (this will be different for each service)
+- if applicable, let the user know they will receive a receipt email (services can either use GOV.UK Notify to send email payment receipts or ask GOV.UK Pay to do that for them)
+
+Users have different ways of recording this confirmation information, including screenshots, prints, pdf receipts to download, and writing down the reference number and other relevant information. Teams building services should be aware of, and cater for, all these behaviours.
+
+>Read more about confirmation pages in the [service manual](https://www.gov.uk/service-manual/design/confirmation-pages).
+
+### Payment Flow: Payment fails
+
+The payment can fail at any point in the process due to:
+
++ the payment being declined or the user choosing to cancel
++ a technical error
++ the payment being cancelled by your service
+
+If the payment fails, the user will see a GOV.UK Pay error page. This includes a link to return to your service that states _Go back to try the payment again_. When a user returns to your service after a failed payment you should show them a page that offers useful next steps. This page should:
+
+- confirm that the payment failed
+- offer the user a chance to try the payment again either by initiating a new payment with GOV.UK Pay or using another method supported by your service
+- advise the user of an alternative course of action
+
+An example can be seen below:
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-declined.png)
 
-The link to try the payment again sends the user to the ``return_url`` you provided in the initial request.
 
-#### Payment flow: after payment
+### Payment flow: Check the status of a payment
 
-After the user attempts payment, GOV.UK Pay returns them to the ``return_url`` you provided in the initial request, whatever the status of the payment.
+Regardless of the payment outcome, when a payment journey has reached a terminal state, GOV.UK Pay will return the user to the `return_url` you provided in the initial request. 
 
-The ``return_url`` should specify a page on your service. When the user visits the ``return_url``, your service should:
-  + match the returning user with their payment (with a secure cookie, or a secure random ID string included in the ``return_url``)
-  + check the status of the payment using an API call
+The `return_url` should specify a page on your service. When the user visits the `return_url`, your service should:
+
+- match the returning user with their payment (with a secure cookie, or a secure random ID string included in the `return_url`)
+- check the status of the payment using an API call
+- display an appropriate final page as outlined above (hosted by your service)
 
 See the [Integration details](https://govukpay-docs.cloudapps.digital/#integration-details) section for more details about how to match the user to the payment.
 
@@ -146,9 +196,5 @@ The ``state`` array within the JSON lets you know the outcome of the payment:
 
 + The ``status`` value describes a stage of the payment journey.
 + The ``finished`` value indicates if the payment journey is complete or not; that is, if the ``status`` of this payment can change.
-
-In this example, the payment was successful, and the payment journey is finished.
-
-It is up to your page at the ``return_url`` to show an appropriate message based on the state of the payment. For example, for a completed payment, you would likely want to confirm that the payment has been received and explain what will happen next. For a failed payment, you should make clear that payment failed and offer the user a chance to try again.
 
 Now that you understand the payment process, see the [Integration details](https://govukpay-docs.cloudapps.digital/#integration-details) section for more  about how you can integrate your service with GOV.UK Pay.
