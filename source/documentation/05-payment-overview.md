@@ -2,7 +2,7 @@
 
 This section outlines how your service will interact with GOV.UK Pay after integration.
 
-#### Overview of payment flow
+### Overview of payment flow
 
 When an end user needs to make a payment, your service makes an API call to create a new payment, then redirects the user to the payment pages hosted on GOV.UK Pay.
 
@@ -21,7 +21,7 @@ When the user arrives back at your service, you can use the API to check the sta
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-transaction-states.png)
 
-#### Payment flow: making a payment
+### Payment flow: making a payment
 
 Let's walk through an example of the payment flow in more detail.
 
@@ -106,7 +106,7 @@ The user enters their payment details and clicks **Continue**.
 
 GOV.UK Pay will then attempt a payment authorisation through the Payment Service Provider (PSP). This checks with the card issuer whether there are sufficient funds available to make this payment and also carries out some anti-fraud checks.
 
-#### Payment Flow: Payment successful
+### Payment Flow: Payment successful
 
 If the details are valid and the payment is approved by the PSP, the user is then taken to a payment confirmation page, still hosted by GOV.UK Pay, where the user decides whether or not to complete their payment:
 
@@ -128,7 +128,7 @@ The user will receive a payment confirmation email containing:
 
 You can add a custom paragraph to a payment confirmation email at the [Email notifications page](https://selfservice.payments.service.gov.uk/email-notifications) on the GOV.UK Pay admin site. For further customisation, you can visit [GOV.UK Notify](https://www.notifications.service.gov.uk/) to set up custom notifications. It is recommended to disable GOV.UK Pay notifications if you do this.
 
-##### Confirmation page
+#### Confirmation page
 
 The confirmation page is hosted by you and should:
 
@@ -142,7 +142,7 @@ Users have different ways of recording this confirmation information, including 
 
 >Read more about confirmation pages in the [service manual](https://www.gov.uk/service-manual/design/confirmation-pages).
 
-#### Payment Flow: Payment fails
+### Payment Flow: Payment fails
 
 The payment can fail at any point in the process due to:
 
@@ -161,7 +161,7 @@ An example can be seen below:
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-declined.png)
 
 
-#### Payment flow: Check the status of a payment
+### Payment flow: Check the status of a payment
 
 Regardless of the payment outcome, when a payment journey has reached a terminal state, GOV.UK Pay will return the user to the `return_url` you provided in the initial request. 
 
