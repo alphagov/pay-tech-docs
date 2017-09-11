@@ -53,7 +53,7 @@ The response will include a ``status`` value as described in the table below, an
 | started      | User has visited next_url and is entering payment details                                      | false          |
 | submitted    | User has submitted payment details but has not yet clicked Confirm                             | false          |
 | success      | User successfully completed the payment                                                        | true           |
-| failed       | User cancelled or otherwise didn't complete the payment, due to invalid or expired payment details, fraud block, etc. | true           |
+| failed       | User attempted to make a payment but the payment did not complete. Possible reasons: user cancelled; user entered payment details but never confirmed; payment declined due to insufficent funds; payment declined due to fraud or other checks | true           |
 | cancelled    | Your service cancelled the payment using an API call or the self-service site.                 | true           |
 | error        | Something went wrong with GOV.UK Pay or the underlying Payment Service Provider.               | true           |
 
