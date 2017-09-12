@@ -154,7 +154,7 @@ Account activation is completed during ePDQ account creation.
     - Click _Submit_.
 1. You will see a message that your password has been successfully updated. Click _Back to List_.
 
-### Set up GOV.UK account credentials
+### Set up GOV.UK Pay account credentials
 
 1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
 1. Sign in to your GOV.UK Pay account.
