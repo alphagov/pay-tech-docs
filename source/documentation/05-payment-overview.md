@@ -117,7 +117,7 @@ If the user decides to complete the payment, they click confirm, and will:
 - receive a confirmation email (if you have chosen to send these using GOV.UK Pay)
 - be re-directed to your `return_url` page which will then send the user to your payment confirmation page
 
-##### Confirmation email
+#### Confirmation email
 
 The user will receive a payment confirmation email containing:
 
