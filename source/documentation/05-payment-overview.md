@@ -51,7 +51,7 @@ At this point, your service makes a <a href="https://gds-payments.gelato.io/api-
 
 + **amount**: in pence; in this example, the payment is for £145
 + **reference**: This is the reference number you wish to associate with this payment. The format is up to you, so if you have an existing format, you can keep using it with Pay (maximum 255 characters; it must not contain URLs)
-+ **description**: A human-readable description of the payment; this will be shown to the end user on the payment pages and to your staff on the GOV.UK Pay self-service site (maximum 255 characters; it must not contain URLs)
++ **description**: A human-readable description of the payment; this will be shown to the end user on the payment pages and to your staff on the GOV.UK Pay admin site (maximum 255 characters; it must not contain URLs)
 + **return_url**: This is an HTTPS URL on your site that the user will be sent back to once they have completed their payment attempt on GOV.UK Pay (this should not be JSON-encoded as backslashes will not be accepted)
 
 This is the header and the first part of the JSON body of the response to the **Create new payment** API call that your service will receive:
