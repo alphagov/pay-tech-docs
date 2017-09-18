@@ -45,7 +45,7 @@ When you're using these card numbers, you can enter any valid value for the othe
 ||3566002020360505| JCB | Credit |
 ||6011000990139424|Discover| Credit |
 ||36148900647913|Diners Club| Credit |
-|Simulate card type not accepted |6759649826438453|Maestro| Dedit |
+|Simulate card type not accepted |6759649826438453|Maestro| Debit |
 |Simulate a declined card|4000000000000002|Visa| N/A |
 |Simulate an invalid CVC security code|4000000000000127|Visa| N/A |
 |Simulate an expired card|4000000000000069|Visa| N/A |
