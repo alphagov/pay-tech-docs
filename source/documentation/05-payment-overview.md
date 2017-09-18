@@ -96,13 +96,11 @@ The ``next_url`` is the URL where you should now direct the end user. It points 
 
 When your service redirects the user to ``next_url``, they see a page something like this:
 
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-page.png)
+![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-details-page.png)
 
 The page shows the ``description`` you provided as well as the amount the end user has to pay, making it clear what they're paying for.
 
 The user enters their payment details and clicks **Continue**.
-
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-details-page.png)
 
 GOV.UK Pay will then attempt a payment authorisation through the Payment Service Provider (PSP). This checks with the card issuer whether there are sufficient funds available to make this payment and also carries out some anti-fraud checks.
 
