@@ -96,7 +96,7 @@ The ``next_url`` is the URL where you should now direct the end user. It points 
 
 When your service redirects the user to ``next_url``, they see a page something like this:
 
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-details-page.png)
+![](images/flow-payment-details-page.png)
 
 The page shows the ``description`` you provided as well as the amount the end user has to pay, making it clear what they're paying for.
 
@@ -108,7 +108,7 @@ GOV.UK Pay will then attempt a payment authorisation through the Payment Service
 
 If the details are valid and the payment is approved by the PSP, the user is then taken to a payment confirmation page, still hosted by GOV.UK Pay, where the user decides whether or not to complete their payment:
 
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-confirm-page.png)
+![](images/flow-payment-confirm-page.png)
 
 If the user decides to complete the payment, they click confirm, and will:
 
