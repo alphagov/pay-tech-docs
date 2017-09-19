@@ -15,11 +15,11 @@ This section explains how to get started with our API Explorer and make a test A
 
 1. Click on the API key section, then click **Generate a new key**.
 
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/Generate+API+key+image1.png)
+![](images/pay_9.png)
  <br /><br />Enter a description for your API key. <br /><br />
  
  
-![](images/pay_9.png)
+![](images/DescribeAPIKey+image2.png)
 <br /><br />Your API key will be shown on the screen for you to copy.<br /><br /> ![](images/NewKeygenerate+image+3.png)
 
 
