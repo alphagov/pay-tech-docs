@@ -28,21 +28,22 @@ echo -e "${green}Virtualenv installed...${NC}"
 
 echo -e "${yellow}Getting CF API Pass${NC}"
 
-credstash get paas.api_pass
-
-echo -e "${green}Got PaaS CF API password...${NC}"
 set +x
 CF_API_PASS=$(credstash get paas.api_pass)
 CF_API_USER=$(credstash get paas.api_user)
 set -x
 
+echo -e "${green}Got PaaS CF API password...${NC}"
+
 echo -e "${white}Logging into CF...${NC}"
+set +x
 ${CF} login \
   -a ${CF_API_URL} \
   -u ${CF_API_USER} \
   -p ${CF_API_PASS} \
   -o ${CF_ORG} \
   -s ${CF_SPACE}
+set -x
 echo -e "${green}Successfully logged into CF...${NC}"
 echo -e "${white}Pushing application to CF...${NC}"
 ${CF} push ${APP_NAME}
