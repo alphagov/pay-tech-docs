@@ -2,7 +2,7 @@
 
 GOV.UK Pay makes it easy for departments and agencies across government to take payments. It provides a standard set of GOV.UK branded pages which can be incorporated into a service to take payments, and an admin console which enables services to administer and process payments taken through GOV.UK Pay. Much of GOV.UK Pay’s functionality can be incorporated into existing case management tools via our API.
 
-GOV.UK Pay is currently in beta development.
+GOV.UK Pay is currently in beta development. The payment pages are responsive and work on both desktop and mobile.
 
 The platform can connect your government service to different [payment service providers (PSPs)](https://en.wikipedia.org/wiki/Payment_service_provider).
 
