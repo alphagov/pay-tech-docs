@@ -14,8 +14,6 @@ The platform currently supports one-off payments (like fees, fines or licence pa
 
 The GOV.UK Pay platform does not currently support payments to cardholders, for example, payments of benefits, or grants. The platform only supports taking payments, or providing refunds.
 
->There is no charge to use GOV.UK Pay. You will still need to pay your PSP's transaction fees.
-
 There are five departments and agencies currently partnering with the platform:
 
 - Ministry of Justice
@@ -25,3 +23,9 @@ There are five departments and agencies currently partnering with the platform:
 - HM Courts and Tribunals Service
 
 To find out more about GOV.UK Pay, read our [blogs and newsletters](https://govukpay-docs.cloudapps.digital/#support-contact-and-more-information).
+
+## How much does it cost?
+
+There is no charge to use GOV.UK Pay. You will still need to pay your PSP's transaction fees.
+
+
