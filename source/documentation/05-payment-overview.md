@@ -156,7 +156,7 @@ If the payment fails, the user will see a GOV.UK Pay error page. This includes a
 
 An example can be seen below:
 
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-payment-declined.png)
+![](images/flow-payment-declined.png)
 
 
 ### Payment flow: Check the status of a payment
