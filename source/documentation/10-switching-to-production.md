@@ -46,10 +46,10 @@ If you want to use 3D Secure authentication for your payments, ask your Worldpay
 
 To set up ePDQ to work with GOV.UK Pay, you must log into the ePDQ admin site and:
 
-1. [Add payment methods to your account](https://govukpay-docs.cloudapps.digital/#add-payment-methods-to-your-account).
-1. [Set up account security parameters](https://govukpay-docs.cloudapps.digital/#set-up-account-security-parameters).
-1. [Set up notification settings](https://govukpay-docs.cloudapps.digital/#set-up-notification-settings).
-1. [Set up an API user](https://govukpay-docs.cloudapps.digital/#set-up-an-api-user).
+1. Add payment methods to your account.
+1. Set up account security parameters.
+1. Set up notification settings.
+1. Set up an API user.
 
 ### Add payment methods to your account
 
