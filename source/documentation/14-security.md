@@ -37,30 +37,31 @@ GOV.UK Pay doesn’t store full card numbers or CVV data for security reasons. T
 
 ### Payment Card Industry (PCI) compliance
 
-Anyone involved with the processing, transmission, or storage of card data must comply with the [Payment Card Industry Data Security Standards](https://www.pcisecuritystandards.org/) (PCI DSS) [external link]. GOV.UK Pay is certified as fully compliant as a Level 1 Service Provider with PCI DSS version 3.2.
+Anyone involved with the processing, transmission, or storage of cardholder data must comply with the [Payment Card Industry Data Security Standards](https://www.pcisecuritystandards.org/) (PCI DSS) [external link]. GOV.UK Pay is certified as fully compliant as a Level 1 Service Provider with PCI DSS version 3.2.
 
-All GOV.UK Pay partners must validate their PCI DSS compliance annually. A typical approach is to break down reporting by merchant and independently report your PCI DSS status for each merchant to your acquiring bank. This approach must be agreed with your acquiring bank, but is usually accepted.  Merchant is normally established based on Merchant ID (MID), so it is important that you use unique MIDs, as discussed with your acquiring bank.
+All GOV.UK Pay partners must validate their PCI DSS compliance annually. A typical approach is to break down reporting by Merchant ID (MID) and independently report your PCI DSS status for each MID to your acquiring bank. This approach must be agreed with your acquiring bank, but is usually accepted. A MID is normally allocated by your acquiring bank for each separate payment channel you have in place, so it is important that you use unique MIDs, as agreed with your acquiring bank.
 
-Your requirements depend on the number of transactions your merchant processes per scheme (Visa, Mastercard) per year. For example, if your merchant processes 4 million transactions with Visa and 3 million with Mastercard, the "Fewer than 6 million transactions per year" category still applies despite the fact that the total number of transactions is larger than 6 million.
+Your requirements depend on the number of transactions that you process as a merchant per scheme (Visa, MasterCard) per year. For example, if you process 4 million transactions with Visa and 3 million with MasterCard, the "Fewer than 6 million transactions per year" category still applies despite the fact that the total number of transactions is larger than 6 million. Your merchant level should be confirmed with your acquiring bank.
 
 #### Process fewer than 6 million transactions per year
 
-If your merchant processes fewer than 6 million transactions per scheme per year, you can self-assess by completing the PCI DSS Self-Assessment Questionnaire (SAQ); this is a self-assessment tool to assess security for cardholder data. 
+If you process fewer than 6 million transactions per scheme per year, you can self-assess by completing the PCI DSS Self-Assessment Questionnaire (SAQ); this is a self-assessment tool to assess security for cardholder data. 
 
-Most services will be asked to complete the SAQ A questionnaire which can be found in the [PCI documents library](https://www.pcisecuritystandards.org/document_library) [external link]; see the criteria in the table below:
+When using the GOV.UK Pay service you should be able to complete the SAQ A questionnaire which can be found in the [PCI documents library](https://www.pcisecuritystandards.org/document_library) [external link]; see the criteria in the table below:
 
 | SAQ A eligibility criteria | Notes |
 | :---- | :---- |
-| Your merchant accepts only card-not-present (e-commerce or mail/telephone-order) transactions. | This applies where your merchant is exclusive to transactions processed via GOV.UK Pay. | 
+| Your merchant accepts only card-not-present (e-commerce or mail/telephone-order) transactions. | This applies where your MID is exclusive to transactions processed via GOV.UK Pay. | 
 | All processing of cardholder data is entirely outsourced to PCI DSS validated third-party service providers. | GOV.UK Pay is PCI DSS certified. |
-| Your company does not electronically store, process, or transmit any cardholder data on your systems or premises, but relies entirely on a third party(s) to handle all these functions. | This applies where your merchant is exclusive to transactions processed via GOV.UK Pay. |
+| Your company does not electronically store, process, or transmit any cardholder data on your systems or premises, but relies entirely on a third party(s) to handle all these functions. | This applies where your MID is exclusive to transactions processed via GOV.UK Pay. |
 | Your company has confirmed that all third party(s) handling storage, processing, and/or transmission of cardholder data are PCI DSS compliant. | GOV.UK Pay is PCI DSS compliant. |
-| Any cardholder data your company retains is on paper (for example, printed reports or receipts), and these documents are not received electronically. | You may need to dispose of any earlier receipts containing cardholder data. |
+| Any cardholder data your company retains is on paper (for example, printed reports or receipts), and these documents are not received electronically. | You may need to dispose of any earlier receipts containing cardholder data. 
+Chargebacks received from your bank may fall into this category. |
 | All elements of the payment page(s) delivered to the consumer’s browser originate only and directly from a PCI DSS validated third-party service provider(s). | The payment page will be delivered to the end user directly from a PCI DSS validated service provider, GOV.UK Pay. |
 
 #### Process more than 6 million transactions per year
 
-If your merchant processes more than 6 million transactions per scheme per year, you will need to undertake a formal on-site security assessment by a PCI DSS Qualified Security Assessor (QSA). It may be possible to be assessed against only the SAQ A requirements but this should be discussed with your own PCI DSS compliance team and your acquiring bank. More information on this can be found at the [PCI Security Standards Council website](https://www.pcisecuritystandards.org) [external link].
+If you process more than 6 million transactions per scheme per year, you will need to undertake a formal on-site security assessment by a PCI DSS Qualified Security Assessor (QSA). It may be possible to be assessed against only the SAQ A requirements but this should be discussed with your own PCI DSS compliance team and your acquiring bank. More information on this can be found at the [PCI Security Standards Council website](https://www.pcisecuritystandards.org) [external link].
 
 Your service manager may also be asked to supply extra evidence on your internal security protocols, and you may have to undertake security awareness training to ensure you are qualified to handle credit card data.
 
