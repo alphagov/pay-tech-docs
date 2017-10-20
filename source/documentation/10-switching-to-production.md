@@ -2,9 +2,27 @@
 
 Once you have finished testing with your sandbox account, here are the steps you will need to take to switch over from testing to live.
 
-1. You’ll need to request a live account by emailing GOV.UK Pay at govuk-pay-support@digital.cabinet-office.gov.uk. Once you have a live account, it will appear in the “My Services” section and be clearly labelled as a “Live” account, e.g. “worldpay live”, “smartpay live” or “ePDQ live”.
+## Set up GOV.UK Pay account
 
-2. Generate an API key for use with your live code; refer to the documentation to see how to do this.
+Request a live account by emailing GOV.UK Pay at [govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk). Once you have a live account, it will appear in the “My Services” section and be clearly labelled as a “Live” account, e.g. “worldpay live”, “smartpay live” or “ePDQ live”.
+
+To set up your live account credentials:
+
+1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
+1. Sign in to your GOV.UK Pay account.
+1. Go to _My Services_ and click on the _ePDQ Live_ service.
+1. Go to _Settings > Account Credentials > Edit credentials_.
+1. Complete the fields on this page:
+  - _PSP ID_ - enter your PSP ID for ePDQ
+  - _Username_ - enter the API user’s username
+  - _Password_ - enter the API user’s password
+  - _SHA-IN passphrase_ - enter the SHA-IN passphrase created on the Data and origin verification page
+  - _SHA-OUT passphrase_ - enter the SHA-OUT passphrase created on the Transaction feedback page
+1. Click _Save credentials_ to go back to the _Account Credentials_ page.
+
+## Generate API Key
+
+Refer to the documentation for instructions on how to [generate an API key for use with your live code](https://govukpay-docs.cloudapps.digital/#generate-api-key-for-api-explorer).
 
 GOV.UK currently supports Worldpay and Barclays ePDQ live gateways. Setup instructions are explained in the Worldpay and ePDQ sections.
 
@@ -32,7 +50,6 @@ To set up ePDQ to work with GOV.UK Pay, you must log into the ePDQ admin site an
 1. Set up account security parameters.
 1. Set up notification settings.
 1. Set up an API user.
-1. Set up GOV.UK account credentials.
 
 ### Add payment methods to your account
 
@@ -153,20 +170,6 @@ Account activation is completed during ePDQ account creation.
     - Confirm the password for the API user.
     - Click _Submit_.
 1. You will see a message that your password has been successfully updated. Click _Back to List_.
-
-### Set up GOV.UK Pay account credentials
-
-1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
-1. Sign in to your GOV.UK Pay account.
-1. Go to _My Services_ and click on the _ePDQ Live_ service.
-1. Go to _Settings > Account Credentials > Edit credentials_.
-1. Complete the fields on this page:
-  - _PSP ID_ - enter your PSP ID for ePDQ
-  - _Username_ - enter the API user’s username
-  - _Password_ - enter the API user’s password
-  - _SHA-IN passphrase_ - enter the SHA-IN passphrase created on the Data and origin verification page
-  - _SHA-OUT passphrase_ - enter the SHA-OUT passphrase created on the Transaction feedback page
-1. Click _Save credentials_ to go back to the _Account Credentials_ page.
 
 You have now successfully set up your ePDQ account to work with GOV.UK Pay.
 
