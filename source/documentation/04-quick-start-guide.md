@@ -43,7 +43,7 @@ The quickest way to learn about the API is to use the <a href="https://gds-payme
 You will now make a test API call to GOV.UK Pay by creating a new payment. This is the call your service will make when 
 initiating a payment using GOV.UK Pay.
 
-1. To test the API Explorer, select General from the API Explorer **Resource** dropdown menu. Select <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.0/general/create-new-payment" target="blank">Create new payment</a> (link opens in new window) from the API Explorer **Action** dropdown menu. Click on the **Body** tab lower down to see an example JSON body that you would send when creating a payment.
+1. To test the API Explorer, select General from the API Explorer **Resource** dropdown menu. Select <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.1/general/create-new-payment" target="blank">Create new payment</a> (link opens in new window) from the API Explorer **Action** dropdown menu. Click on the **Body** tab lower down to see an example JSON body that you would send when creating a payment.
 
 ```javascript
 {
