@@ -15,6 +15,9 @@ To set up your live account credentials:
 1. Complete the fields on this page; these will vary depending on which live service you use.
 1. Click _Save credentials_ to go back to the _Account Credentials_ page.
 
+>For an _ePDQ_ live account, enter the SHA-IN passphrase created on the _Data and origin verification_ page, and the SHA-OUT passphrase created on the _All transaction submission modes_ page
+
+
 ## Generate API Key
 
 Refer to the documentation for instructions on how to [generate an API key for use with your live code](https://govukpay-docs.cloudapps.digital/#generate-api-key-for-api-explorer).
