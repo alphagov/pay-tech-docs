@@ -12,12 +12,7 @@ To set up your live account credentials:
 1. Sign in to your GOV.UK Pay account.
 1. Go to _My Services_ and click on the _ePDQ Live_ service.
 1. Go to _Settings > Account Credentials > Edit credentials_.
-1. Complete the fields on this page:
-  - _PSP ID_ - enter your PSP ID for ePDQ
-  - _Username_ - enter the API user’s username
-  - _Password_ - enter the API user’s password
-  - _SHA-IN passphrase_ - enter the SHA-IN passphrase created on the Data and origin verification page
-  - _SHA-OUT passphrase_ - enter the SHA-OUT passphrase created on the Transaction feedback page
+1. Complete the fields on this page; these will vary depending on which live service you use.
 1. Click _Save credentials_ to go back to the _Account Credentials_ page.
 
 ## Generate API Key
