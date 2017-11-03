@@ -89,7 +89,7 @@ Go to _Configuration > Technical information_
 1. On the _Technical information_ page, click the _Data and origin verification_ tab.
 1. Scroll to the _Checks for e-Commerce & Alias Gateway_ section.
 1. Leave the _URL of the merchant page containing the payment form that will call the page: orderstandard.asp_ field blank.
-1. Enter a strong plaintext string SHA-IN passphrase; this will be used when setting up the GOV.UK account credentials.
+1. Enter a strong SHA-IN passphrase (plain text, not a hash); this will be used when setting up the GOV.UK Pay account credentials.
 1. Scroll down to the _Checks for Barclaycard Direct Link_ section.
 1. Leave the _IP address_ blank.
 1. Enter the same SHA-IN passphrase as the _Checks for e-Commerce & Alias Gateway_ section and click _Save_.
@@ -118,7 +118,7 @@ Go to _Configuration > Technical information_
 ![](images/epq-6.png)
 
 1. Scroll to the _All transaction submission modes > Security for request parameters_ section.
-1. Enter a strong plaintext string SHA-OUT passphrase; this will be used when setting up the GOV.UK account credentials.
+1. Enter a strong SHA-OUT passphrase (plain text, not a hash); this will be used when setting up the GOV.UK Pay account credentials.
 1. Leave the _Basic Authentication Credentials_ blank.
 1. Set _Timing of the request_ to _For each offline status change (payment, cancellation, etc.)_
 1. Enter **https://notifications.payments.service.gov.uk/v1/api/notifications/epdq** into the _URL on which the merchant wishes to receive a deferred HTTP request, should the status of a transaction change offline_ field.
