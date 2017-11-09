@@ -4,7 +4,26 @@ Once you have finished testing with your sandbox account, here are the steps you
 
 ## Set up GOV.UK Pay account
 
+### Request a live account
+
 Request a live account by emailing GOV.UK Pay at [govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk). Once you have a live account, it will appear in the “My Services” section and be clearly labelled as a “Live” account, e.g. “worldpay live”, “smartpay live” or “ePDQ live”.
+
+### Complete merchant details
+
+Payment card schemes require the details of the merchant taking payment to be shown on payment pages where the user enters card details. This information is displayed in the payment page footer. Note that:
+
+- the merchant must be the entity that has a contract with the PSP
+- merchant details are not specific to test or live accounts, meaning that if you complete the details for your test account then they will be transferred to your live account automatically
+
+To complete your merchant details:
+
+1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
+1. Sign in to your GOV.UK Pay account.
+1. Go to _Settings > Merchant Details_.
+1. Complete the _Merchant name_ and _Merchant address_ fields on this page.
+1. Click _Save_ to see the following message: "Merchant Details updated".
+
+### Set up live account credentials
 
 To set up your live account credentials:
 
