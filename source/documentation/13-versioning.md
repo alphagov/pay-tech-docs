@@ -9,7 +9,7 @@ New, dated versions of the public API will be released if JSON values are remove
 Our version number will be updated in the URL when there is a release. All releases will be marked with full version numbers.
 
 
-#### Updating to the latest Pay API
+## Updating to the latest Pay API
 
 We’ll send you an email to let you know about any new versions of our API.
 
@@ -19,7 +19,7 @@ If you want to update to our latest API, make sure you test your code before com
 
 Soon, we hope to let you check which version of our API you’re currently running by checking your dashboard.
 
-#### Revision history
+## Revision history
 
 |Version|Date|Author|Comments|
 | --------  | -------| ----| -----|
