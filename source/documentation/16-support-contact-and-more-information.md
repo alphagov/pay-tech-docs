@@ -75,7 +75,7 @@ For all incidents:
 
 If we are not responding to your requests for support in the way that you would expect or your problem is not addressed in this documentation, please [email us](mailto:govuk-pay-support@digital.cabinet-office.gov.uk), including any error messages you’re getting.
 
-#### Newsletter and blogs
+## Newsletter and blogs
 
 GOV.UK Pay publishes a newsletter every few weeks. This will help you stay updated with any new features we release.
 
@@ -92,7 +92,7 @@ Posts we've published are:
  - [GOV.UK Pay gets Payment Card Industry (PCI) accreditation](https://governmentasaplatform.blog.gov.uk/2016/07/29/pay-pci-accreditation/)
  - [GOV.UK Pay is ready for business](https://governmentasaplatform.blog.gov.uk/2016/09/16/ready-for-business/)
 
-#### Press coverage
+## Press coverage
 More coverage of the platform can be found in press reports. Published articles include:
 
  - Computer Weekly [unveiling the payments platform](http://www.computerweekly.com/news/4500250431/GDS-unveils-payments-platform-protoype-in-government-as-a-platform-strategy) (23 July 2015)
