@@ -11,7 +11,7 @@ When testing, you’ll need to ensure:
 
 
 
-#### Integration testing
+## Integration testing
 
 To check your integration with GOV.UK Pay is working as expected, you’ll need to run a series of tests.
 
@@ -28,7 +28,7 @@ If you experience any problems when testing, please email us at [govuk-pay-suppo
 
 
 
-#### Mock card numbers for testing purposes
+## Mock card numbers for testing purposes
 
 When you're testing your integration, you must not use real card numbers. Use the below test numbers.
 
@@ -51,12 +51,12 @@ When you're using these card numbers, you can enter any valid value for the othe
 |Simulate an expired card|4000000000000069|Visa| N/A |
 |Simulate a general processing error|4000000000000119|Visa| N/A |
 
-##### For _Worldpay_ accounts
+### For _Worldpay_ accounts
 Please refer to [Worldpay test card numbers](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/usefultables.htm#Test)
 
-##### For _Barclays ePDQ_ accounts
+### For _Barclays ePDQ_ accounts
 Please go to [ePDQ Get Started](https://support.epdq.co.uk/en/products/onboarding) and click on __What credit cards can I use for testing?__
 
-####  Performance testing
+##  Performance testing
 
 If you’d like to carry out any kind of performance testing, including in a rate-limiting environment, please contact us at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
