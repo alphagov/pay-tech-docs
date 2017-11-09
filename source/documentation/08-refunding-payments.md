@@ -17,7 +17,7 @@ In the sandbox, you will not see the ``pending`` status as there is no delay in 
 
 > This refund status is a property of a payment; each refund will also have its own status of submitted/success/error.
 
-#### Payment refund status and partial refunds
+## Payment refund status and partial refunds
 
 You can find out the refund status of a payment with the API using the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.1/v1/find-payment-by-id" target="blank">Find payment by ID</a> or <a href="https://gds-payments.gelato.io/docs/versions/1.0.1/resources/general/endpoints/search-payments" target="blank">Search payments</a> functions (links open in new window).
 
@@ -51,7 +51,7 @@ In this case, the original payment was for £90. The ``amount_available`` value 
 
 If you needed to know the details of the partial refunds (for example, whether there had been a single refund of £30 or multiple smaller refunds), you could use the API function to <a href="https://gds-payments.gelato.io/docs/versions/1.0.1/resources/payment-id/endpoints/get-all-refunds-for-a-payment" target="blank">Get all refunds for a payment</a> (link opens in new window).
 
-#### Specifying the expected refund available
+## Specifying the expected refund available
 
 When you submit a refund request for a payment via the API, you can optionally specify a ``refund_amount_available`` value in the body of the request.
 
@@ -67,7 +67,7 @@ We recommend that your service tracks the expected refund amount available and s
 
 When a refund request is rejected due to a refund amount available mismatch, the error code returned is P0604, with an HTTP status of 412.
 
-#### Refunding with the API
+## Refunding with the API
 
 You can initiate a refund with the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.1/payment-id/submit-a-refund-for-a-payment" target="blank">Submit a refund for a payment</a> function (link opens in new window).
 
@@ -89,7 +89,7 @@ You can use the <a href="https://gds-payments.gelato.io/docs/versions/1.0.1/reso
 You can retrieve information about an individual refund using the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.1/payment-id/find-payment-refund-by-id" target="blank">Find payment refund by ID</a> function (link opens in new window).
 
 
-#### Handling refund errors
+## Handling refund errors
 
 When you try to create a refund with the API, it may fail immediately - for example if you try to refund more than the amount available. In that case, the original <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.1/payment-id/submit-a-refund-for-a-payment" target="blank">Submit a refund for a payment</a> request (link opens in new window) will return an error code and a description of what it means. (A refund attempt that fails like this with an error code is not assigned a refundId and is not available using <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.1/payment-id/find-payment-refund-by-id" target="blank">Find payment refund by ID</a> (link opens in new window)).
 
@@ -126,7 +126,7 @@ In the event of an error, GOV.UK Pay will not currently provide any more informa
 
 
 
-#### Refunds from the admin site
+## Refunds from the admin site
 
 As an alternative to refunding via the API, you can use the service admin site at https://selfservice.payments.service.gov.uk  to view transactions and issue refunds.
 
@@ -141,10 +141,10 @@ In the details view, you can use the red **Refund payment** button at the upper 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/refund-payment-button.png)
 
 
-#### Refund notifications
+## Refund notifications
 
 End users are automatically notified by email about successful payments (according to the settings you have entered in the self-service admin site), but not when a payment has either failed or is refunded (either manually or via the API). You should arrange to notify end users about payment failures and / or refunds as appropriate for your service.
 
-#### Refund Destination
+## Refund Destination
 
 Refunds are sent back to the source account of the original payment. It is not possible to refund a payment to another card or bank account. If the original card expired or was canceled, the bank will attempt to credit the customer’s new card with the refund. If this attempt fails, or the customer does not have a new card, the refund will have to be made using another channel (eg bank transfer or cheque).
