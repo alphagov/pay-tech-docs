@@ -9,7 +9,7 @@ The GOV.UK Pay platform is based on REST principles with endpoints returning dat
 <br /><br />
 
 
-#### API overview
+## API overview
 
 The base URL for the API is https://publicapi.payments.service.gov.uk/
 
@@ -26,7 +26,7 @@ See the [Quick Start Guide](https://govukpay-docs.cloudapps.digital/#quick-start
 
 
 
-#### API authentication
+## API authentication
 
 GOV.UK Pay authenticates API calls with OAuth2 HTTP bearer tokens. These are easy to use and consist of one component: your API key. Bearer tokens are specified in [RFC 6750](http://tools.ietf.org/html/rfc6750).
 
@@ -37,7 +37,7 @@ Authorization: Bearer 2o9bkusxaicha5c9gnsj790of7asggo1feraoufbai4a
 ```
 
 
-#### Payment status lifecycle
+## Payment status lifecycle
 
 This diagram gives an overview of the payment status lifecycle and the possible outcomes.
 
@@ -58,7 +58,7 @@ The response will include a ``status`` value as described in the table below, an
 | error        | Something went wrong with GOV.UK Pay or the underlying Payment Service Provider.               | true           |
 
 
-#### HTTP status codes
+## HTTP status codes
 
 You will encounter typical HTTP success and error response codes when using the Pay API. Generally any:
 
@@ -83,7 +83,7 @@ These are the known error codes you are likely to receive:
 |Any 500 error|Something is wrong with GOV.UK Pay - please contact us|
 
 
-#### API error codes
+## API error codes
 
 When an error occurs, you will receive these API codes in the body of the response.
 
@@ -135,7 +135,7 @@ These error codes provide more information about why a request failed.
 | General | PO999 | GOV.UK Pay is unavailable | The GOV.UK Pay service is temporarily down. |
 
 
-#### Card types
+## Card types
 
 These are the possible values of the card_brand parameter.
 
@@ -152,7 +152,7 @@ These are the possible values of the card_brand parameter.
 | unionpay         | CREDIT | Union Pay        |
 
 
-#### API rate limits
+## API rate limits
 
 There is a maximum rate limit for requests to the API from your service account. The limit is high and most services are unlikely ever to exceed it.
 

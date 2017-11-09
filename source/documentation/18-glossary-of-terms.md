@@ -11,7 +11,7 @@ This section defines commonly used terms in GOV.UK Pay.
 | Platform developer | a member of the GOV.UK dev team |
 
 
-#### Platform accounts
+## Platform accounts
 
 | Account type        | Account definition             |
 | -------------     |-------------------------- |

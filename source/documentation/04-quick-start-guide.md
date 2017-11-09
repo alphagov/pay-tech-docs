@@ -9,7 +9,7 @@ The GOV.UK Pay platform is based on REST principles with endpoints returning dat
 <br /><br />
 This section explains how to get started with our API Explorer and make a test API call.
 
-#### Generate API Key for API Explorer
+## Generate API Key for API Explorer
 
 1. Sign in to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/) with the sandbox account login details you received.
 
@@ -25,7 +25,7 @@ This section explains how to get started with our API Explorer and make a test A
 
 <blockquote>You must store your API keys away securely. Make sure you never share this key in publicly accessible documents or repositories, or with people who shouldn't be using the GOV.UK Pay API directly. <a href="https://govukpay-docs.cloudapps.digital/#security">Read our security section</a> for more information on how to keep your API key safe.</blockquote>
 
-#### API Explorer setup
+## API Explorer setup
 
 The quickest way to learn about the API is to use the <a href="https://gds-payments.gelato.io/api-explorer/" target="blank">API Explorer</a> (link opens in new window) with the API key that you just created.
 
@@ -38,7 +38,7 @@ The quickest way to learn about the API is to use the <a href="https://gds-payme
 
 > Make sure you are using an API key from your sandbox account on the admin site, not the live account.
 
-#### Making a test API call
+## Making a test API call
 
 You will now make a test API call to GOV.UK Pay by creating a new payment. This is the call your service will make when 
 initiating a payment using GOV.UK Pay.
@@ -65,7 +65,7 @@ The ``return_url`` is the URL of a page on your service that the user will be re
 <br/><br/>
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-api-explorer-response.png)
 
-#### Follow end user payment journey
+## Follow end user payment journey
 
 1. Go to the ``next_url`` with your browser. You'll see the payment screen. Refer to the [Testing GOV.UK Pay](https://govukpay-docs.cloudapps.digital/#testing-gov-uk-pay) section to find a mock credit card number that you can enter to simulate a payment in the sandbox environment. For the rest of the details, enter some test information, bearing in mind that:
     + the expiry date must be in the future and in the format MM/YYYY
@@ -73,7 +73,7 @@ The ``return_url`` is the URL of a page on your service that the user will be re
 
 1. Submit the payment.
 
-#### View transaction at GOV.UK Pay Admin site
+## View transaction at GOV.UK Pay Admin site
 
 1. Go to the [service admin site](https://selfservice.payments.service.gov.uk/). Select **Transactions** at left. You’ll see the payment you just made.
 

@@ -1,12 +1,12 @@
 # Security
 
-### Reporting vulnerabilities
+## Reporting vulnerabilities
 
 If you believe GOV.UK Pay security has been breached, contact us immediately at [govuk-pay-support@digital.cabinet-office.gov.uk] (mailto:govuk-pay-support@digital.cabinet-office.gov.uk). If you are a live user and the suspected breach is severe, consider using the urgent contact details provided to your service manager.
 
 Please don’t disclose the suspected breach publically until it has been fixed.
 
-### Securing your developer keys
+## Securing your developer keys
 
 The GOV.UK Pay platform will let you create as many API keys as you want.
 
@@ -24,18 +24,18 @@ To further secure your live developer keys:
  - revoke your developer keys when they’re no longer required (this limits the number of entry points into your account)
  - have a leavers’ process, so that a developer's API key is revoked when they leave
 
-### Securing your integration with GOV.UK Pay
+## Securing your integration with GOV.UK Pay
 
 Make sure you’ve fully tested your integration with GOV.UK Pay. When doing so, take care not to use any real card numbers. Read our testing section for more details.
 
-### Securing user information
+## Securing user information
 
 GOV.UK Pay doesn’t store full card numbers or CVV data for security reasons. This means you won’t be able to search for transactions using card numbers. You’ll only be able to look up certain transactions using the:
 
  - payment ID
  - reference metadata put into the system when creating the payment ID
 
-### Payment Card Industry (PCI) compliance
+## Payment Card Industry (PCI) compliance
 
 Anyone involved with the processing, transmission, or storage of cardholder data must comply with the [Payment Card Industry Data Security Standards](https://www.pcisecuritystandards.org/) (PCI DSS) [external link]. GOV.UK Pay is certified as fully compliant as a Level 1 Service Provider with PCI DSS version 3.2.
 
@@ -43,7 +43,7 @@ All GOV.UK Pay partners must validate their PCI DSS compliance annually. A typic
 
 Your requirements depend on the number of transactions that you process as a merchant per scheme (Visa, MasterCard) per year. For example, if you process 4 million transactions with Visa and 3 million with MasterCard, the "Fewer than 6 million transactions per year" category still applies despite the fact that the total number of transactions is larger than 6 million. Your merchant level should be confirmed with your acquiring bank.
 
-#### Process fewer than 6 million transactions per year
+### Process fewer than 6 million transactions per year
 
 If you process fewer than 6 million transactions per scheme per year, you can self-assess by completing the PCI DSS Self-Assessment Questionnaire (SAQ); this is a self-assessment tool to assess security for cardholder data. 
 
@@ -59,14 +59,14 @@ When using the GOV.UK Pay service you should be able to complete the SAQ A quest
 Chargebacks received from your bank may fall into this category. |
 | All elements of the payment page(s) delivered to the consumer’s browser originate only and directly from a PCI DSS validated third-party service provider(s). | The payment page will be delivered to the end user directly from a PCI DSS validated service provider, GOV.UK Pay. |
 
-#### Process more than 6 million transactions per year
+### Process more than 6 million transactions per year
 
 If you process more than 6 million transactions per scheme per year, you will need to undertake a formal on-site security assessment by a PCI DSS Qualified Security Assessor (QSA). It may be possible to be assessed against only the SAQ A requirements but this should be discussed with your own PCI DSS compliance team and your acquiring bank. More information on this can be found at the [PCI Security Standards Council website](https://www.pcisecuritystandards.org) [external link].
 
 Your service manager may also be asked to supply extra evidence on your internal security protocols, and you may have to undertake security awareness training to ensure you are qualified to handle credit card data.
 
 
-### HTTPS
+## HTTPS
 
 GOV.UK Pay follows [government HTTPS security guidelines](https://www.gov.uk/service-manual/domain-names/https.html). The Hypertext Transfer Protocol Secure (HTTPS), which involves the Transport Layer Security  (TLS) protocol is used by the platform to authenticate servers / clients and to provide secure connections.
 
