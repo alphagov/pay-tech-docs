@@ -29,15 +29,26 @@ To set up your live account credentials:
 
 1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
 1. Sign in to your GOV.UK Pay account.
-1. Go to _My Services_ and click on the _ePDQ Live_ service.
+1. Go to _My Services_ and click on the live service you want to set up.
 1. Go to _Settings > Account Credentials > Edit credentials_.
-1. Complete the fields on this page:
-  - _PSP ID_ - enter your PSP ID for ePDQ
-  - _Username_ - enter the API user’s username
-  - _Password_ - enter the API user’s password
-  - _SHA-IN passphrase_ - enter the SHA-IN passphrase created on the Data and origin verification page
-  - _SHA-OUT passphrase_ - enter the SHA-OUT passphrase created on the Transaction feedback page
-1. Click _Save credentials_ to go back to the _Account Credentials_ page.
+1. Complete the fields on this page; these will vary depending on which live service you use.
+
+### ePDQ
+
+Complete the fields on this page:
+- _PSP ID_ - enter your PSP ID for ePDQ
+- _Username_ - enter the API user’s username
+- _Password_ - enter the API user’s password
+- _SHA-IN passphrase_ - this passphrase is created on the [_Data and origin verification_ page](/#set-up-checks-for-e-commerce-amp-alias-gateway)
+- _SHA-OUT passphrase_ - this passphrase is created on the [_All transaction submission modes_ page](/#set-up-security-for-request-parameters)
+- click _Save credentials_ to go back to the _Account Credentials_ page
+
+### Worldpay
+
+- _Merchant ID_ - enter your merchant ID for Worldpay
+- _Username_ - enter the XML username
+- _Password_ - enter the XML password
+- click _Save credentials_ to go back to the _Account Credentials_ page
 
 ## Generate API Key
 
@@ -110,7 +121,7 @@ Go to _Configuration > Technical information_
 1. On the _Technical information_ page, click the _Data and origin verification_ tab.
 1. Scroll to the _Checks for e-Commerce & Alias Gateway_ section.
 1. Leave the _URL of the merchant page containing the payment form that will call the page: orderstandard.asp_ field blank.
-Enter a strong SHA-IN passphrase; this will be used when setting up the GOV.UK account credentials.
+1. Enter a strong SHA-IN passphrase (plain text, not a hash); this will be used when setting up the GOV.UK Pay account credentials.
 1. Scroll down to the _Checks for Barclaycard Direct Link_ section.
 1. Leave the _IP address_ blank.
 1. Enter the same SHA-IN passphrase as the _Checks for e-Commerce & Alias Gateway_ section and click _Save_.
@@ -139,7 +150,7 @@ Enter a strong SHA-IN passphrase; this will be used when setting up the GOV.UK a
 ![](images/epq-6.png)
 
 1. Scroll to the _All transaction submission modes > Security for request parameters_ section.
-1. Enter a strong SHA-OUT passphrase; this will be used when setting up the GOV.UK account credentials.
+1. Enter a strong SHA-OUT passphrase (plain text, not a hash); this will be used when setting up the GOV.UK Pay account credentials.
 1. Leave the _Basic Authentication Credentials_ blank.
 1. Set _Timing of the request_ to _For each offline status change (payment, cancellation, etc.)_
 1. Enter **https://notifications.payments.service.gov.uk/v1/api/notifications/epdq** into the _URL on which the merchant wishes to receive a deferred HTTP request, should the status of a transaction change offline_ field.
