@@ -27,8 +27,8 @@ Complete the fields on this page:
 ### Worldpay
 
 - _Merchant ID_ - enter your merchant ID for Worldpay
-- _Username_ - enter the API user's username
-- _Password_ - enter the API User's password
+- _Username_ - enter the XML username
+- _Password_ - enter the XML password
 - click _Save credentials_ to go back to the _Account Credentials_ page
 
 ## Generate API Key
