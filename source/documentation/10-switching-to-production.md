@@ -66,7 +66,7 @@ You must change some settings in your Worldpay account to get it ready for live 
 2. Still in Worldpay, go to *Profile > Merchant Channel* and set the endpoint for HTTP notifications from Worldpay to GOV.UK Pay to https://notifications.payments.service.gov.uk/v1/api/notifications/worldpay
 <br /><br />
 Use the same URL for Test and Live channels within Worldpay. The completed settings should look like this:
-<br /><br />![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/worldpay-settings1.png)
+<br /><br />![](images/worldpay-settings1.png)
 
 ### Worldpay setup for 3D Secure
 
