@@ -138,7 +138,7 @@ In this list, click on the reference for an individual payment (in the **Referen
 
 In the details view, you can use the red **Refund payment** button at the upper right to carry out a full or partial payment.
 
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/refund-payment-button.png)
+![](images/refund-payment-button.png)
 
 
 ## Refund notifications
