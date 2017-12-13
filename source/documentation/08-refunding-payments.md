@@ -132,7 +132,7 @@ As an alternative to refunding via the API, you can use the service admin site a
 
 Go to the Transactions section of the site to see a list of transactions.
 
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/transactions-section.png)
+![](images/transaction+list+image+4.png)
 
 In this list, click on the reference for an individual payment (in the **Reference number** column) to see details of that payment (including any previous refunds).
 
