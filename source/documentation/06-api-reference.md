@@ -68,9 +68,9 @@ You will encounter typical HTTP success and error response codes when using the 
 - 400 code indicates a client error (your error)
 - 500 code indicates a server error (something went wrong on the GOV.UK Pay end)
 
-These are the known error codes you are likely to receive:
+These are the known status codes you are likely to receive:
 
-|Common error code| Meaning|
+|Common status code| Meaning|
 | --------  | -------|
 |200 | Payment information request succeeded |
 |201|Payment has been created |
@@ -132,7 +132,7 @@ These error codes provide more information about why a request failed.
 | Get refunds | P0898 | Downstream system error | Internal error with GOV.UK Pay; contact us, quoting the error code |
 | General | P0900 | Too many requests | Your service account is sending requests above the allowed rate; try the request again in a few seconds |
 | General | P0920 | Request blocked by security rules | Our firewall blocked your request. See Troubleshooting section for details. |
-| General | PO999 | GOV.UK Pay is unavailable | The GOV.UK Pay service is temporarily down. |
+| General | P0999 | GOV.UK Pay is unavailable | The GOV.UK Pay service is temporarily down. |
 
 
 ## Card types
