@@ -27,29 +27,57 @@
 
       a:link, a:visited {
         display: block;
-        padding: 8px 0;
-        letter-spacing: 0.03em;
+        padding: 8px $gutter-half;
+        margin: 0 $gutter-half * -1;
+        border-left: 5px solid transparent;
 
-        &.toc-link--in-view {
-          font-weight: bold;
-          color: $link-active-colour;
-          letter-spacing: normal;
+        @include media(tablet) {
+          &.toc-link--in-view {
+            color: $link-active-colour;
+            border-left-color: $link-active-colour;
+            background-color: $grey-4;
+          }
         }
       }
 
+      // Top level
       > ul > li > a:link {
         @include bold-19;
-        letter-spacing: normal;
       }
 
-      // Second Level
-      > ul > li > ul {
-        margin-bottom: 20px;
-      }
+      @include media(tablet) {
+        // Level 2
+        > ul > li > ul {
+          margin-bottom: 20px;
+        }
 
-      // Third Level & Below
-      li li li {
-        margin-left: $gutter-half;
+        // Level 3
+        li li li {
+          a:link, a:visited {
+            padding-left: $gutter-half * 2;
+          }
+        }
+
+        // Level 4
+        li li li li {
+          a:link, a:visited {
+            padding-left: $gutter-half * 4;
+          }
+        }
+
+        // Level 5
+        li li li li li {
+          a:link, a:visited {
+            padding-left: $gutter-half * 5;
+          }
+        }
+
+        // Level 6
+        li li li li li li {
+          a:link, a:visited {
+            padding-left: $gutter-half * 6;
+          }
+        }
       }
     }
   }
@@ -60,7 +88,7 @@
 
   @include media(tablet) {
     .toc {
-      padding: $gutter-half $gutter;
+      padding: 22px $gutter $gutter-half;
     }
 
     // Prevent the fixedsticky spacer from appearing if the browser is resized
@@ -133,11 +161,9 @@
         right: 0;
         top: 0;
 
+        float: right;
         width: 20px;
         height: 20px;
-        float: right;
-
-        text-indent: -10000px;
 
         background-image: file-url('govuk-icn-close.png');
         background-repeat: no-repeat;
@@ -156,6 +182,7 @@
         body {
           height: 100%;
           overflow: hidden;
+          pointer-events: none;
         }
 
         .toc-show {
@@ -164,6 +191,7 @@
 
         .toc {
           display: block;
+          pointer-events: auto;
           position: fixed;
           top: 0;
           bottom: 0;
@@ -180,26 +208,6 @@
             background: transparentize($white, 0.05);
             backdrop-filter: blur(2px);
           }
-        }
-      }
-
-      // Allow space header on mobile
-      .technical-documentation {
-        $offset: 20px + $gutter-half + 10px + 1px;
-
-        h1, h2, h3, h4, h5, h6 {
-          // Line height + padding + border of .toc-show
-
-          padding-top: $gutter-half + $offset;
-          margin-top: -$offset;
-        }
-
-        h1 {
-          margin-top: ($gutter * 2) - $offset;
-        }
-
-        h1:first-child {
-          margin-top: -$offset;
         }
       }
     }
