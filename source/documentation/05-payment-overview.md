@@ -198,3 +198,22 @@ The ``state`` array within the JSON lets you know the outcome of the payment:
 + The ``finished`` value indicates if the payment journey is complete or not; that is, if the ``status`` of this payment can change.
 
 Now that you understand the payment process, see the [Integration details](https://govukpay-docs.cloudapps.digital/#integration-details) section for more  about how you can integrate your service with GOV.UK Pay.
+
+## Payment flow: Resume a payment
+
+If your user starts a payment but does not complete it, they can resume that incomplete payment. An example of this could be if they click the browser's back button during a payment, and then go forward by clicking the links on your website. 
+
+If your service uses the resume payment feature:
+
+- you will minimise the number of expired payments
+- you won’t unnecessarily create new payments
+
+### Incomplete payments
+
+An incomplete payment will have a status of `created`, `started` or `submitted`. These payment types have a `next_URL`. The `next_URL` is where you should direct the user next in the payment process. You will receive a `next_URL` every time you query the status of a payment using the API.
+
+### Resuming a payment
+
+When a user resumes a payment, the `next_URL` will take them to a screen that is appropriate for their payment's current status. For example, a payment with a `started` status will resume at the card details input page. The `next_URL` is a one-time URL; if a payment has already resumed using a `next_URL`, that URL will not be usable again.
+
+A payment cannot resume if it has a status of `success`, `failed`, `cancelled` or `error`. If your service tries to resume a payment of this type, the user will be sent to your service's `return_url`. The `return_url` is the URL of a page on your service that we send the user to after they have completed their payment attempt.   
