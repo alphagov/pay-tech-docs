@@ -27,7 +27,7 @@ Let's walk through an example of the payment flow in more detail.
 
 Imagine that this is a page on your service, where the end user needs to make a payment.
 
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/flow-service-pay-page.png)
+![](images/flow-service-pay-page.png)
 
 >The payment pages are responsive and work on both desktop and mobile.
 
