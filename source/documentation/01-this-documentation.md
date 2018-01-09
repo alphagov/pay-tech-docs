@@ -1,4 +1,4 @@
-# This Documentation
+# Documentation for GOV.UK Pay
 
 This documentation is for developers, technical architects and service managers interested in using GOV.UK Pay.
 
