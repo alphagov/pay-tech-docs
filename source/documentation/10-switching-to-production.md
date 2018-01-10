@@ -33,9 +33,10 @@ To set up your live account credentials:
 1. Go to _Settings > Account Credentials > Edit credentials_.
 1. Complete the fields on this page; these will vary depending on which live service you use.
 
-### ePDQ
+#### ePDQ
 
 Complete the fields on this page:
+
 - _PSP ID_ - enter your PSP ID for ePDQ
 - _Username_ - enter the API user’s username
 - _Password_ - enter the API user’s password
@@ -43,7 +44,9 @@ Complete the fields on this page:
 - _SHA-OUT passphrase_ - this passphrase is created on the [_All transaction submission modes_ page](/#set-up-security-for-request-parameters)
 - click _Save credentials_ to go back to the _Account Credentials_ page
 
-### Worldpay
+#### Worldpay
+
+Complete the fields on this page:
 
 - _Merchant ID_ - enter your merchant ID for Worldpay
 - _Username_ - enter the XML username
