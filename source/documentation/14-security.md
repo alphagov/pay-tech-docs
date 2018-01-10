@@ -79,13 +79,6 @@ If you process more than 6 million transactions per scheme per year, you will ne
 
 Your service manager may also be asked to supply extra evidence on your internal security protocols, and you may have to undertake security awareness training to ensure you are qualified to handle credit card data.
 
-#### Process more than 6 million transactions per year
-
-If you process more than 6 million transactions per scheme per year, you will need to undertake a formal on-site security assessment by a PCI DSS Qualified Security Assessor (QSA). It may be possible to be assessed against only the SAQ A requirements but this should be discussed with your own PCI DSS compliance team and your acquiring bank. More information on this can be found at the [PCI Security Standards Council website](https://www.pcisecuritystandards.org) [external link].
-
-Your service manager may also be asked to supply extra evidence on your internal security protocols, and you may have to undertake security awareness training to ensure you are qualified to handle credit card data.
-
-
 ## HTTPS
 
 GOV.UK Pay follows [government HTTPS security guidelines](https://www.gov.uk/service-manual/domain-names/https.html). The Hypertext Transfer Protocol Secure (HTTPS), which involves the Transport Layer Security  (TLS) protocol is used by the platform to authenticate servers / clients and to provide secure connections.
