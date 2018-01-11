@@ -11,7 +11,7 @@ The GOV.UK Pay platform is based on REST principles with endpoints returning dat
 
 ## API overview
 
-The base URL for the API is https://publicapi.payments.service.gov.uk/
+>The base URL for the API is __https://publicapi.payments.service.gov.uk/__
 
 The same base URL is now used for testing and live. The API key you use determines if the actions are treated as sandbox test payments or processed as real payments.
 
