@@ -15,3 +15,18 @@ Make sure you’re also familiar with the government guidance on [deploying new 
 ## How long will it take?
 
 The time taken to integrate will vary depending on team and capability; for example, it took a single developer five days to integrate a Home Office service with GOV.UK Pay.
+
+## Try the service out
+
+You can try the GOV.UK Pay service before integrating with the API. 
+
+You must be logged into a GOV.UK Pay __test__ account to try these features out.
+
+### Make a demo payment
+
+You can [try the payment experience as a user](https://selfservice.payments.service.gov.uk/make-a-demo-payment), and then view the completed payment as a GOV.UK Pay administrator.
+
+### Test your service with your users 
+
+You can [create a reusable link](https://selfservice.payments.service.gov.uk/test-with-your-users) to integrate your service prototype with GOV.UK Pay, and test with your users.
+
