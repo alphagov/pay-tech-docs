@@ -57,6 +57,9 @@ Please refer to [Worldpay test card numbers](http://support.worldpay.com/support
 ### For _Barclays ePDQ_ accounts
 Please go to [ePDQ Get Started](https://support.epdq.co.uk/en/products/onboarding) and click on __What credit cards can I use for testing?__
 
+### For _Barclays SmartPay_ accounts
+Please go to [SmartPay TestCards](https://www.barclaycard.co.uk/business/files/SmartPay_Test_Cards_document.pdf)
+
 ##  Performance testing
 
 If you’d like to carry out any kind of performance testing, including in a rate-limiting environment, please contact us at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
