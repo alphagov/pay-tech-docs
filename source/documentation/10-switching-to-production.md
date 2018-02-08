@@ -53,6 +53,15 @@ Complete the fields on this page:
 - _Password_ - enter the XML password
 - click _Save credentials_ to go back to the _Account Credentials_ page
 
+#### Smartpay
+
+Complete the fields on this page:
+
+- _Merchant ID_ - enter your merchant ID for Smartpay
+- _Username_ - enter the Smartpay username
+- _Password_ - enter the SmartPay password
+- click _Save credentials_ to go back to the _Account Credentials_ page
+
 ## Generate API Key
 
 Refer to the documentation for instructions on how to [generate an API key for use with your live code](https://govukpay-docs.cloudapps.digital/#generate-api-key-for-api-explorer).
@@ -159,9 +168,6 @@ Go to _Configuration > Technical information_
 1. Enter **https://notifications.payments.service.gov.uk/v1/api/notifications/epdq** into the _URL on which the merchant wishes to receive a deferred HTTP request, should the status of a transaction change offline_ field.
 1. Click _Save_.
 
-
-
-
 ### Set up an API user
 
 To set up an API user:
@@ -205,6 +211,116 @@ Account activation is completed during ePDQ account creation.
 1. You will see a message that your password has been successfully updated. Click _Back to List_.
 
 You have now successfully set up your ePDQ account to work with GOV.UK Pay.
+
+## Smartpay setup
+
+To set up Smartpay to work with GOV.UK Pay, you must:
+
+- set up your notification credentials
+- configure your user profile
+- configure server communication
+
+### Set up notification credentials
+
+1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
+1. Sign in to your GOV.UK Pay account.
+1. Go to _Settings > Account Credentials > Edit notification credentials_.
+1. Enter a unique username and password (the password must contain more than 10 characters).
+1. Click _Save credentials_.
+
+### Configure your user profile
+
+[PLACEHOLDER FOR IMAGE]
+
+#### Sign in to Smartpay
+
+1. Sign in to Smartpay and your Smartpay organisation.
+1. Select the correct merchant account (you can view all merchant accounts by clicking on the organisation name at the top of the page).
+
+#### Add new user
+
+1. Click on _Settings_ and select _Users_.
+1. Click the _Add new user_ button.
+1. Select _Web Service_ as the user type.
+1. Complete both the _Password_ fields (the username is assigned by SmartPay).
+1. Leave the _Client Certificate_ field blank.
+
+#### Generate client encryption key
+
+1. Under _Easy Encryption_, click _Generate client encryption key_. 
+1. Leave the other options in this section as default.
+
+#### Edit Allowed User IP Range
+
+1. Set the _IP address_ to 0.0.0.1.
+1. Leave the other options in this section as default.
+
+#### Enable roles and accounts
+
+1. Under _Roles and Associated Accounts_, click on _Roles_ and enable the following roles:
+
+    - API PCI Payments role
+    - API tokenise payment details
+    - Merchant PAL Webservice role
+    - Merchant Recurring role
+
+1. Click on _Accounts_ and enable your account.
+1. Click _Save_.
+
+### Configure server communication
+
+1. Click on Settings and select Server Communication.
+1. On the Server Communication settings for page, click the Add button in the Standard notification row.
+
+[PLACEHOLDER FOR IMAGE]
+
+Complete the fields on the _Standard Notification settings_ page.
+
+[PLACEHOLDER FOR IMAGE]
+
+#### Transport
+
+- _URL_: [https://notifications.payments.service.gov.uk/v1/api/notifications/smartpay](https://notifications.payments.service.gov.uk/v1/api/notifications/smartpay) 
+- _SSL Version_: TLSv1.2
+- _Active_: Checked
+- _Service version_: 1
+- _Method_: JSON
+- _Populate SOAP Action header_: Leave unchecked
+
+#### Authentication 
+
+Enter the same unique username and password you set in the [Set up notification credentials](/#set-up-notification-credentials) section.
+
+Leave all other settings as default and click the _Test Configuration_ button. If you have correctly set up your account, you will see a success message like this example:
+
+```
+HTTP test:
+
+Test 1:test_AUTHORISATION_1
+ResponseCode:200
+Output:[accepted]
+ResponseTime_ms:353
+
+Test 2:test_AUTHORISATION_2
+ResponseCode:200
+Output:[accepted]
+ResponseTime_ms:261
+
+Test 3:test_AUTHORISATION_3
+ResponseCode:200
+Output:[accepted]
+ResponseTime_ms:262
+
+Test 4:test_AUTHORISATION_4
+ResponseCode:200
+Output:[accepted]
+ResponseTime_ms:294
+```
+
+Click _Save configuration_.
+
+Contact us at [govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk) if you have any questions. 
+
 
 ## Emergency contact details
 
