@@ -138,20 +138,10 @@ These error codes provide more information about why a request failed.
 
 ### API errors caused by payment statuses
 
-The API error codes in this section are driven by payment status.
+The API error codes in this section are driven by payment status. You can see which payments have these error codes using either of the following methods:
 
-| Error code | Meaning | Cause |
-|:---|:---|:---|
-| P0050 | Payment provider returned an error | Multiple possible causes, for example a configuration problem with the payment provider, or incorrect login credentials; contact us, quoting the error code |
-| P0040 | Payment was cancelled by service | The service cancelled the payment |
-| P0010 | Payment method rejected | Multiple possible causes, for example the user does not have enough money in account, or 3D Secure authentication failure |
-| P0020 | Payment expired | A payment has not been confirmed and completed within one hour of being created; if the payment was already authorised, GOV.UK PAY will send a cancellation to the payment provider |
-| P0030 | Payment cancelled by user | User clicks on the "Cancel payment" button during the payment journey; if the payment was already authorised, GOV.UK PAY will send a cancellation to the payment provider |
-
-You can see which transactions have these error codes using either of the following methods:
-
-- log into the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/), go to _Transactions_ and click on a failed transaction
-- use the API to look at the `state` object in a transaction's API response, for example:
+- log into the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/), go to _Transactions_ and click on a failed payment
+- use the API to look at the `state` object in a payment's API response, for example:
 
     ```
     {
@@ -164,6 +154,16 @@ You can see which transactions have these error codes using either of the follow
         },
     }
     ```
+
+| Error code | Meaning | Cause |
+|:---|:---|:---|
+| P0010 | Payment method rejected | Payment rejected due to payment method selected or payment information entered, for example, failed fraud check, a 3D Secure authentication failure, or the user does not have enough money in account |
+| P0020 | Payment expired | Payment was not confirmed and completed within one hour of being created; if the payment was already authorised, GOV.UK PAY will send a cancellation to the payment provider |
+| P0030 | Payment cancelled by user | User clicked on the "Cancel payment" button during the payment journey; if the payment was already authorised, GOV.UK PAY will send a cancellation to the payment provider |
+| P0040 | Payment was cancelled by your service | Your service cancelled the payment |
+| P0050 | Payment provider returned an error | Multiple possible causes, for example a configuration problem with the payment provider, or incorrect login credentials; contact us, quoting the error code |
+
+
 
 ## Card types
 
