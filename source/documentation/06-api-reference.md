@@ -140,7 +140,7 @@ These error codes provide more information about why a request failed.
 
 The API error codes in this section are driven by payment status. You can see which payments have these error codes using either of the following methods:
 
-- log into the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/), go to _Transactions_ and click on a  payment with a "failed", "cancelled" or "error" status.
+- log into the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/), go to _Transactions_ and click on a payment with a "failed", "cancelled" or "error" status.
 - use the API to look at the `state` object in a payment's API response, for example:
 
     ```
