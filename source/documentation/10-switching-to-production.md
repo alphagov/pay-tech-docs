@@ -274,7 +274,7 @@ To set up Smartpay to work with GOV.UK Pay, you must:
 1. Click on Settings and select Server Communication.
 1. On the Server Communication settings for page, click the Add button in the Standard notification row.
 
-![](/documentation/images/smartpay-stndrd-add.png)
+![](documentation/images/smartpay-stndrd-add.png)
 
 Complete the fields on the _Standard Notification settings_ page.
 
