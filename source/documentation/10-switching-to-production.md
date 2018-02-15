@@ -263,6 +263,8 @@ To set up Smartpay to work with GOV.UK Pay, you must:
     - API tokenise payment details
     - Merchant PAL Webservice role
     - Merchant Recurring role
+    
+    >Contact Smartpay if any of these roles are not available to enable.
 
 1. Click on _Accounts_ and enable your account.
 1. Click _Save_.
