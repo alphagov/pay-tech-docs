@@ -52,7 +52,7 @@ When you're using these card numbers, you can enter any valid value for the othe
 |Simulate a general processing error|4000000000000119|Visa| N/A |
 
 ### For _Worldpay_ accounts
-Please refer to [Worldpay test card numbers](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/usefultables.htm#Test)
+Please refer to [Worldpay test card numbers](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/testvalues.htm#Test)
 
 ### For _Barclays ePDQ_ accounts
 Please go to [ePDQ Get Started](https://support.epdq.co.uk/en/products/onboarding) and click on __What credit cards can I use for testing?__
