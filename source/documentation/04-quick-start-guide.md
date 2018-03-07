@@ -29,11 +29,11 @@ This section explains how to get started with our API Explorer and make a test A
 
 The quickest way to learn about the API is to use the <a href="https://gds-payments.gelato.io/api-explorer/" target="blank">API Explorer</a> (link opens in new window) with the API key that you just created.
 
-1. Go to the <a href="https://gds-payments.gelato.io/api-explorer/" target="blank">API Explorer</a> (link opens in new window) and click the blue “Add API Credentials” button. <br/><br/>
+1. Go to the <a href="https://gds-payments.gelato.io/api-explorer/" target="blank">API Explorer</a> (link opens in new window), log in, and click the “Add API Key” button.<br/><br/>
 ![](images/pay-add-api-key.png)
 <br/><br/>
 1.  In the resulting pop-up, enter the following values:
-  + For **API Key**, enter "[YOUR-API-KEY]" (do not include the quotation marks), replacing [YOUR-API-KEY] with the actual value of your sandbox API key, as shown in the screenshot below. You do not need to put the "Bearer: " prefix which is required when calling the API from code; the API Explorer adds that automatically.
+  + For **API Key**, enter "[YOUR-API-KEY]" (do not include the quotation marks), replacing [YOUR-API-KEY] with the actual value of your sandbox API key. You do not need to put the "Bearer: " prefix which is required when calling the API from code; the API Explorer adds that automatically.
   + For **Label**, enter "Authorization" (do not include the quotation marks).
 
 > Make sure you are using an API key from your sandbox account on the admin site, not the live account.
