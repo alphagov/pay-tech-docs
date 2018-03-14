@@ -66,7 +66,7 @@ Complete the fields on this page:
 
 Refer to the documentation for instructions on how to [generate an API key for use with your live code](https://govukpay-docs.cloudapps.digital/#generate-api-key-for-api-explorer).
 
-GOV.UK currently supports Worldpay and Barclays ePDQ live gateways. Setup instructions are explained in the Worldpay and ePDQ sections.
+GOV.UK currently supports Worldpay, Barclays ePDQ and Smartpay live gateways. Setup instructions are explained in the [Worldpay](/#worldpay-setup), [ePDQ](/#epdq-setup) and [Smartpay](/#smartpay-setup) sections.
 
 The API endpoint for live is now the same as for testing: https://publicapi.payments.service.gov.uk/
 
@@ -215,6 +215,12 @@ Account activation is completed during ePDQ account creation.
 
 You have now successfully set up your ePDQ account to work with GOV.UK Pay.
 
+### Set up 3D Secure for ePDQ
+
+3D Secure payment authentication is enabled by default for ePDQ. To check this, sign in to the [GOV.UK Pay self-service admin site](https://selfservice.payments.service.gov.uk/) and click 3D Secure.
+
+You can also check on the [ePDQ admin site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index). On the homepage, go to _Configuration > Payment methods_ and select _3D Secure column_.
+
 ## Smartpay setup
 
 To set up Smartpay to work with GOV.UK Pay, you must:
@@ -261,7 +267,6 @@ To set up Smartpay to work with GOV.UK Pay, you must:
 #### Enable roles and accounts
 
 1. Under _Roles and Associated Accounts_, click on _Roles_ and enable the following roles:
-
     - API PCI Payments role
     - API tokenise payment details
     - Merchant PAL Webservice role
