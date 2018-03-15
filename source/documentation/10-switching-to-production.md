@@ -217,9 +217,9 @@ You have now successfully set up your ePDQ account to work with GOV.UK Pay.
 
 ### Set up 3D Secure for ePDQ
 
-3D Secure payment authentication is enabled by default for ePDQ. To check this, sign in to the [GOV.UK Pay self-service admin site](https://selfservice.payments.service.gov.uk/) and click 3D Secure.
+To enable 3D Secure payment authentication, sign in to the [GOV.UK Pay self-service admin site](https://selfservice.payments.service.gov.uk/), click _3D Secure_ and turn 3D Secure on.
 
-You can also check on the [ePDQ admin site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index). On the homepage, go to _Configuration > Payment methods_ and select _3D Secure column_.
+3D Secure should be enabled by default on the [ePDQ admin site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index). To check this, on the homepage, go to _Configuration > Payment methods_ and select _3D Secure column_.
 
 ## Smartpay setup
 
