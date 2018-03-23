@@ -64,7 +64,7 @@ Complete the fields on this page:
 
 ## Generate API Key
 
-Refer to the documentation for instructions on how to [generate an API key for use with your live code](https://govukpay-docs.cloudapps.digital/#generate-api-key-for-api-explorer).
+Refer to the documentation for instructions on how to [generate an API key for use with your live code](https://docs.payments.service.gov.uk/#generate-api-key-for-api-explorer).
 
 GOV.UK currently supports Worldpay, Barclays ePDQ and Smartpay live gateways. Setup instructions are explained in the [Worldpay](/#worldpay-setup), [ePDQ](/#epdq-setup) and [Smartpay](/#smartpay-setup) sections.
 

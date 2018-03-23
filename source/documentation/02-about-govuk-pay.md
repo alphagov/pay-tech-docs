@@ -22,7 +22,7 @@ There are five departments and agencies currently partnering with the platform:
 - Office of the Public Guardian
 - HM Courts and Tribunals Service
 
-To find out more about GOV.UK Pay, read our [blogs and newsletters](https://govukpay-docs.cloudapps.digital/#support-contact-and-more-information).
+To find out more about GOV.UK Pay, read our [blogs and newsletters](https://docs.payments.service.gov.uk/#support-contact-and-more-information).
 
 ## How much does it cost?
 
