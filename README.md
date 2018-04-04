@@ -10,7 +10,7 @@ and the [Bundler gem][bundler].
 In the application folder type the following to install the required gems:
 
 ```
-bundle install 
+bundle install
 ```
 
 ## Making changes
@@ -72,6 +72,18 @@ bundle exec middleman build
 
 This will create a `build` subfolder in the application folder which contains
 the HTML and asset files ready to be published.
+
+## Updating the template
+
+You can update to the latest version of [tech-docs-template][] by running:
+
+```
+bundle update govuk_tech_docs
+```
+
+Read [the changelog for the gem][gem-changelog] for the latest changes.
+
+[gem-changelog]: https://github.com/alphagov/tech-docs-gem/blob/master/CHANGELOG.md
 
 [rvm]: https://www.ruby-lang.org/en/documentation/installation/#managers
 [bundler]: http://bundler.io/
