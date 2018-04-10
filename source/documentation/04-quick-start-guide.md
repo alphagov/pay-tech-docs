@@ -102,10 +102,9 @@ Before you set up a self-service payment link, you must have a [live service](/#
 
 On the __Set payment link information__ page:
 
-1. Complete the __Title__ field.
-1. Edit the __URL__ field if required. The __URL__ field follows this format: __https://<i></i>gov.uk/payments/SERVICE_NAME/TITLE__. For example, _https://<i></i>gov.uk/payments/dvla/renew-your-licence_. You can edit the __TITLE__ section of the URL. Refer to the [GOV.UK guidance on URL standards](https://www.gov.uk/guidance/content-design/url-standards-for-gov-uk).  
+1. Complete the __Title__ field.  
 1. Complete the optional __Details__ field if necessary, and select __Continue__.
->Once you create the payment link, it cannot be changed.
+1. You must change your payment link if it is identical to an existing link.
 
 ### Specify payment type
 
