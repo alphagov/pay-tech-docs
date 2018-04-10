@@ -2,9 +2,9 @@
 
 To start using the GOV.UK Pay platform, you'll need:
 
-- a digital service that needs to process payments
+- a service that needs to process payments
 - a [GOV.UK Pay account](https://selfservice.payments.service.gov.uk/create-service/register) 
-- a service team with the development skills to build the technical integration with GOV.UK Pay; refer to the [Service Manual](https://www.gov.uk/service-manual/the-team/what-each-role-does-in-service-team#roles-your-team-must-have) for more information
+- a service team with the development skills to build the technical integration between your service and GOV.UK Pay; refer to the [Service Manual](https://www.gov.uk/service-manual/the-team/what-each-role-does-in-service-team#roles-your-team-must-have) for more information (this does not apply if you only use [self service payments](/#self-service-payments))
   
 Check the [Getting Started guide](https://www.payments.service.gov.uk/getstarted/) to ensure that your team is ready to start using the GOV.UK Pay platform.
 

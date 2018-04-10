@@ -2,6 +2,8 @@
 
 This section outlines how your service will interact with GOV.UK Pay after integration.
 
+>This does not apply to users who use the [self service payments](/#self-service-payments) functionality.
+
 ## Overview of payment flow
 
 When an end user needs to make a payment, your service makes an API call to create a new payment, then redirects the user to the payment pages hosted on GOV.UK Pay.
