@@ -46,9 +46,9 @@ At this point, your service makes a <a href="https://gds-payments.gelato.io/api-
 ```javascript
 {
   "amount": 14500,
-  "reference" : "12345"
+  "reference" : "12345",
   "description": "Payment description",
-  "return_url": "https://your.service.gov.uk/completed",
+  "return_url": "https://your.service.gov.uk/completed"
 }
 ```
 
