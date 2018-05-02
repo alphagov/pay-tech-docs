@@ -210,6 +210,12 @@ If your service uses the resume payment feature:
 - you will minimise the number of expired payments
 - you won’t unnecessarily create new payments
 
+## Payment flow: Payment expires
+
+Payments that are not confirmed and completed after 90 minutes will expire automatically. 
+
+If the payment was authorised but incomplete, GOV.UK PAY will send a cancellation to the payment provider. This will raise a [P0020 API error](/#api-errors-caused-by-payment-statuses).
+
 ### Incomplete payments
 
 An incomplete payment will have a status of `created`, `started` or `submitted`. These payment types have a `next_URL`. The `next_URL` is where you should direct the user next in the payment process. You will receive a `next_URL` every time you query the status of a payment using the API.

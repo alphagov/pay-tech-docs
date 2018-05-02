@@ -50,7 +50,7 @@ The user may close their browser or lose internet connection in the middle of th
 
 You can still check on the status of these payments by making a GET request using the Location Header or Self Link, the same way you would if they were redirected, but just after a set time (eg, an hour).
 
->Note: GOV.UK Pay will eventually expire incomplete payments, but you should expect an occasional success or failure if the user experienced problems right at the moment of the redirect.
+>Note: GOV.UK Pay will expire incomplete payments after 90 minutes, but you should expect an occasional success or failure if the user experienced problems right at the moment of the redirect.
 
 If a user does not have enough funds in their account to make a payment, the current GOV.UK Pay frontend will not let them try again with separate card details. This will soon be fixed as part of the beta.
 
