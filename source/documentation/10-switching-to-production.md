@@ -8,7 +8,7 @@ Unless stated otherwise, this section applies both to services that have integra
 
 ### Request a live account
 
-Request a live account by emailing GOV.UK Pay at [govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk). Once you have a live account, it will appear in the “My Services” section and be clearly labelled as a “Live” account, e.g. “worldpay live”, “smartpay live” or “ePDQ live”.
+Request a live account by emailing GOV.UK Pay at [govuk-pay-support@digital.cabinet-office.gov.uk](a href="mailto:govuk-pay-support@digital.cabinet-office.gov.uk"). Once you have a live account, it will appear in the “My Services” section and be clearly labelled as a “Live” account.
 
 ### Complete merchant details
 
@@ -21,9 +21,9 @@ To complete your merchant details:
 
 1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
 1. Sign in to your GOV.UK Pay account.
-1. Go to _Settings > Merchant Details_.
+1. Go to _My services > Edit merchant details_.
 1. Complete the _Merchant name_ and _Merchant address_ fields on this page.
-1. Click _Save_ to see the following message: "Merchant Details updated".
+1. Click _Save_ to see the following message: "Merchant details updated".
 
 ### Set up live account credentials
 
@@ -37,7 +37,7 @@ To set up your live account credentials:
 
 #### ePDQ
 
-Complete the fields on this page:
+Complete the fields on the Account credentials page:
 
 - _PSP ID_ - enter your PSP ID for ePDQ
 - _Username_ - enter the API user’s username
@@ -48,7 +48,7 @@ Complete the fields on this page:
 
 #### Worldpay
 
-Complete the fields on this page:
+Complete the fields on the Account credentials page:
 
 - _Merchant ID_ - enter your merchant ID for Worldpay
 - _Username_ - enter the XML username
@@ -57,7 +57,7 @@ Complete the fields on this page:
 
 #### Smartpay
 
-Complete the fields on this page:
+Complete the fields on the Account credentials page:
 
 - _Merchant ID_ - enter your merchant ID for Smartpay
 - _Username_ - enter the Smartpay username
