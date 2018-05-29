@@ -14,13 +14,18 @@ The platform currently supports one-off payments (like fees, fines or licence pa
 
 The GOV.UK Pay platform does not currently support payments to cardholders, for example, payments of benefits, or grants. The platform only supports taking payments, or providing refunds.
 
-There are five departments and agencies currently partnering with the platform:
+There are ten departments and agencies currently partnering with the platform:
 
 - Ministry of Justice
 - Home Office
-- Department for Business, Energy & Industrial Strategy
+- Disclosure and Barring Service
 - Office of the Public Guardian
 - HM Courts and Tribunals Service
+- Disclosure Scotland 
+- Foreign and Commonwealth Office 
+- Ministry of Defence
+- Department for Digital, Culture, Media & Sport
+- Department for International Trade 
 
 To find out more about GOV.UK Pay, read our [blogs and newsletters](https://docs.payments.service.gov.uk/#support-contact-and-more-information).
 
