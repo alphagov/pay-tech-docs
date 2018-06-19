@@ -106,6 +106,12 @@ On the __Set payment link information__ page:
 1. Complete the optional __Details__ field if necessary, and select __Continue__.
 1. You must change your payment link if it is identical to an existing link.
 
+### Specify payment reference
+
+1. Use your own payment reference number or let us create a unique one for you.
+1. Complete the __Name of your payment reference number__ and optional __Hint text__ fields if necessary
+1. Select __Continue__.
+
 ### Specify payment type
 
 1. Select __fixed__ or __variable__ for the payment amount, and enter the payment amount if required.
