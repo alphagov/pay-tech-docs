@@ -29,7 +29,7 @@ This section explains how to get started with our API Explorer and make a test A
 
 The quickest way to learn about the API is to use the <a href="https://gds-payments.gelato.io/api-explorer/" target="blank">API Explorer</a> (link opens in new window) with the API key that you just created.
 
-1. Go to the <a href="https://gds-payments.gelato.io/api-explorer/" target="blank">API Explorer</a> (link opens in new window), log in, and click the “Add API Key” button.<br/><br/>
+1. Go to the <a href="https://gds-payments.gelato.io/api-explorer/" target="blank">API Explorer</a> (link opens in new window), sign in, and click the “Add API Key” button.<br/><br/>
 ![](images/pay-add-api-key.png)
 <br/><br/>
 1.  In the resulting pop-up, enter the following values:
