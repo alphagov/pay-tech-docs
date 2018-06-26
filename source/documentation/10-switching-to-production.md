@@ -91,7 +91,7 @@ If you want to use 3D Secure authentication for your payments, ask your Worldpay
 
 ## ePDQ setup
 
-To set up ePDQ to work with GOV.UK Pay, you must sign into the ePDQ admin site and:
+To set up ePDQ to work with GOV.UK Pay, you must sign in to the ePDQ admin site and:
 
 1. Add payment methods to your account.
 1. Set up account security parameters.
