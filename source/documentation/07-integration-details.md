@@ -10,7 +10,7 @@ You will also need to supply a ``return_url``, a URL hosted by your service for 
 
 You will need to store the URL from the Location header/in the ``self`` section of ``links`` in the JSON body (the same URL is shown in both places).  This URL contains the GOV.UK Pay ``payment_id`` which uniquely identifies the payment. An authenticated GET request to the URL will return information about the payment and its status.
 
->It is important that you do not expose the URL with the ``payment_id`` publically, for example as a URL parameter or in an insecure cookie. You should store it as a secure cookie or in a database.
+>It is important that you do not expose the URL with the ``payment_id`` publicly, for example as a URL parameter or in an insecure cookie. You should store it as a secure cookie or in a database.
 
 You will receive the ``next_url``  to which you should direct the user to complete their payment. During the GOV.UK Pay beta, it is only returned in response to the initial POST call to create a payment, not on sub. It will only work once.
 
