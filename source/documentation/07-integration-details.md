@@ -10,7 +10,7 @@ You will also need to supply a ``return_url``, a URL hosted by your service for 
 
 You will need to store the URL from the Location header/in the ``self`` section of ``links`` in the JSON body (the same URL is shown in both places).  This URL contains the GOV.UK Pay ``payment_id`` which uniquely identifies the payment. An authenticated GET request to the URL will return information about the payment and its status.
 
->It is important that you do not expose the URL with the ``payment_id`` publically, for example as a URL parameter or in an insecure cookie. You should store it as a secure cookie or in a database.
+>It is important that you do not expose the URL with the ``payment_id`` publicly, for example as a URL parameter or in an insecure cookie. You should store it as a secure cookie or in a database.
 
 You will receive the ``next_url``  to which you should direct the user to complete their payment. During the GOV.UK Pay beta, it is only returned in response to the initial POST call to create a payment, not on sub. It will only work once.
 
@@ -27,7 +27,7 @@ For security reasons, GOV.UK Pay does not add the payment ID or outcome to your 
 
 To match up a returning user with their payment, there are two recommended methods:
 
-+ use a secure cookie containing the Payment ID from GOV.UK Pay, issued by your service when the payment is created (before sending the user to ``next_url``). Users won't be able to decrypt a secure cookie, so a fraudster could not alter the payment ID and intercept other users' payments.
++ use a secure cookie containing the Payment ID from GOV.UK Pay, issued by your service when the payment is created (before sending the user to ``next_url``). Users will not be able to decrypt a secure cookie, so a fraudster could not alter the payment ID and intercept other users' payments.
 
 + create a secure random ID (such as a UUID) and include this as part of the ``return_url``, using a different ``return_url`` for each payment. Since a securely generated UUID is not guessable, fraudsters will not be able to intercept users’ payments.
 
@@ -44,7 +44,7 @@ To match up a returning user with their payment, there are two recommended metho
 
 Your service should use the API to check the payment status when the user reaches the return URL, and provide an appropriate response based on the final status of the payment attempt.
 
-## When a user doesn't complete their payment journey
+## When a user does not complete their payment journey
 
 The user may close their browser or lose internet connection in the middle of the payment flow on GOV.UK Pay. These users will not be redirected back to your service.
 

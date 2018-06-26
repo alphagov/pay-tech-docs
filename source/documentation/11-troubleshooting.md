@@ -23,7 +23,7 @@ Possible reasons why your call may be rejected include:
 + there are URLs inside the ``reference`` or ``description`` you provide
 
 
-## The code examples in the documentation don't work
+## The code examples in the documentation do not work
 
 **Problem**: The "Example Request" code snippets in the API documentation always cause the request to fail with a "401 unauthorized" error.
 

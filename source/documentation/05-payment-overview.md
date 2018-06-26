@@ -208,7 +208,7 @@ If your user starts a payment but does not complete it, they can resume that inc
 If your service uses the resume payment feature:
 
 - you will minimise the number of expired payments
-- you won’t unnecessarily create new payments
+- you will not unnecessarily create new payments
 
 ## Payment flow: Payment expires
 
