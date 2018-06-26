@@ -79,7 +79,7 @@ The API endpoint for live is now the same as for testing: https://publicapi.paym
 
 You must change some settings in your Worldpay account to get it ready for live use.
 
-1. Log in to Worldpay and in your Worldpay profile, set *Capture delay* to "Off".<br /><br />![](images/pay-worldpay-autocaptureoff.png)
+1. Sign in to Worldpay and in your Worldpay profile, set *Capture delay* to "Off".<br /><br />![](images/pay-worldpay-autocaptureoff.png)
 2. Still in Worldpay, go to *Profile > Merchant Channel* and set the endpoint for HTTP notifications from Worldpay to GOV.UK Pay to _https://notifications.payments.service.gov.uk/v1/api/notifications/worldpay_
 <br /><br />
 Use the same URL for Test and Live channels within Worldpay. The completed settings should look like this:
@@ -91,7 +91,7 @@ If you want to use 3D Secure authentication for your payments, ask your Worldpay
 
 ## ePDQ setup
 
-To set up ePDQ to work with GOV.UK Pay, you must log into the ePDQ admin site and:
+To set up ePDQ to work with GOV.UK Pay, you must sign into the ePDQ admin site and:
 
 1. Add payment methods to your account.
 1. Set up account security parameters.
@@ -102,7 +102,7 @@ To set up ePDQ to work with GOV.UK Pay, you must log into the ePDQ admin site an
 
 ![](images/epq-2.png)
 
-1. Log into the [ePDQ admin site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index). On the homepage, go to _Configuration > Payment methods_ and select _Choose new payment methods_
+1. Sign in to the [ePDQ admin site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index). On the homepage, go to _Configuration > Payment methods_ and select _Choose new payment methods_
 
 1. Click _Add_ next to the relevant payment method.
 1. On the _Contract data_ tab:
