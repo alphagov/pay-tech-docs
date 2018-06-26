@@ -27,7 +27,7 @@ For security reasons, GOV.UK Pay does not add the payment ID or outcome to your 
 
 To match up a returning user with their payment, there are two recommended methods:
 
-+ use a secure cookie containing the Payment ID from GOV.UK Pay, issued by your service when the payment is created (before sending the user to ``next_url``). Users won't be able to decrypt a secure cookie, so a fraudster could not alter the payment ID and intercept other users' payments.
++ use a secure cookie containing the Payment ID from GOV.UK Pay, issued by your service when the payment is created (before sending the user to ``next_url``). Users will not be able to decrypt a secure cookie, so a fraudster could not alter the payment ID and intercept other users' payments.
 
 + create a secure random ID (such as a UUID) and include this as part of the ``return_url``, using a different ``return_url`` for each payment. Since a securely generated UUID is not guessable, fraudsters will not be able to intercept users’ payments.
 
@@ -44,7 +44,7 @@ To match up a returning user with their payment, there are two recommended metho
 
 Your service should use the API to check the payment status when the user reaches the return URL, and provide an appropriate response based on the final status of the payment attempt.
 
-## When a user doesn't complete their payment journey
+## When a user does not complete their payment journey
 
 The user may close their browser or lose internet connection in the middle of the payment flow on GOV.UK Pay. These users will not be redirected back to your service.
 

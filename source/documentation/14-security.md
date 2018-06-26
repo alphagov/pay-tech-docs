@@ -4,7 +4,7 @@
 
 If you believe GOV.UK Pay security has been breached, contact us immediately at [govuk-pay-support@digital.cabinet-office.gov.uk] (mailto:govuk-pay-support@digital.cabinet-office.gov.uk). If you are a live user and the suspected breach is severe, consider using the urgent contact details provided to your service manager.
 
-Please don’t disclose the suspected breach publically until it has been fixed.
+Please do not disclose the suspected breach publically until it has been fixed.
 
 ## Securing your developer keys
 
@@ -19,8 +19,8 @@ Revoke your key immediately using the self-service site if you believe it has be
 
 To further secure your live developer keys:
 
- - don’t embed your developer keys in any of your code - this only increases the risk that they will be discovered (instead store your keys inside your configuration files)
- - don’t store your API keys in your application source tree (even when you’re not making your source code publically available)
+ - avoid embedding your developer keys in any of your code - this only increases the risk that they will be discovered (instead store your keys inside your configuration files)
+ - avoid storing your API keys in your application source tree (even when you’re not making your source code publically available)
  - revoke your developer keys when they’re no longer required (this limits the number of entry points into your account)
  - have a leavers’ process, so that a developer's API key is revoked when they leave
 
@@ -30,7 +30,7 @@ Make sure you’ve fully tested your integration with GOV.UK Pay. When doing so,
 
 ## Securing user information
 
-GOV.UK Pay doesn’t store full card numbers or CVV data for security reasons. This means you won’t be able to search for transactions using card numbers. You’ll only be able to look up certain transactions using the:
+GOV.UK Pay doesn’t store full card numbers or CVV data for security reasons. This means you will not be able to search for transactions using card numbers. You’ll only be able to look up certain transactions using the:
 
  - payment ID
  - reference metadata put into the system when creating the payment ID

@@ -16,7 +16,7 @@ When testing, you’ll need to ensure:
 To check your integration with GOV.UK Pay is working as expected, you’ll need to run a series of tests.
 
 
-We recommend that you build tests to include both the GOV.UK Pay API and its front end user journey. We are constantly iterating our interface, so you shouldn’t rely on any specific page layout, but you can build tests that address form elements (such as buttons) using their IDs. Alternatively, you can build stubs that will emulate GOV.UK Pay functionality.
+We recommend that you build tests to include both the GOV.UK Pay API and its front end user journey. We are constantly iterating our interface, so you should not rely on any specific page layout, but you can build tests that address form elements (such as buttons) using their IDs. Alternatively, you can build stubs that will emulate GOV.UK Pay functionality.
 
 
 Our APIs will evolve over time. We will always let you know in advance if we intend to make any breaking, or backwards-incompatible API changes so you can ensure your service works with the new version. Please see our section on versioning for more information.
@@ -32,7 +32,7 @@ If you experience any problems when testing, please email us at [govuk-pay-suppo
 
 When you're testing your integration, you must not use real card numbers. Use the below test numbers.
 
-When you're using these card numbers, you can enter any valid value for the other details (name, expiry date, card security code etc). For example, it doesn't matter what expiry date you enter, but it must be in the future.
+When you're using these card numbers, you can enter any valid value for the other details (name, expiry date, card security code etc). For example, it does not matter what expiry date you enter, but it must be in the future.
 
 |Testing action |Card numbers to use | Card type | Debit/Credit |
 | --------  | ------- | ------- | ------- |

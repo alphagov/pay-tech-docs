@@ -35,7 +35,7 @@ In this example, the refund status of the payment is ``available``, indicating t
 
 The ``amount_submitted`` is 0, showing that there have been no previous refunds.
 
-Partial refunds are possible, and you can make multiple partial refunds against the same payment. As you'd expect, the total of refunds against a payment can't be greater than the original payment.
+Partial refunds are possible, and you can make multiple partial refunds against the same payment. As you'd expect, the total of refunds against a payment cannot be greater than the original payment.
 
 Here's another example:
 
@@ -57,7 +57,7 @@ When you submit a refund request for a payment via the API, you can optionally s
 
 This is so you can provide the total amount of the original payment you expect to be available for refund at the time your refund request is made.
 
-The purpose of this is to prevent accidentally processing a partial refund more than once, by rejecting requests where your ``refund_amount_available`` doesn't match the real amount that's available to be refunded.
+The purpose of this is to prevent accidentally processing a partial refund more than once, by rejecting requests where your ``refund_amount_available`` does not match the real amount that's available to be refunded.
 
 For example, suppose a payment was made for £5, but later it turns out the user is due a £2 refund. Your system for processing refunds submits a request for a £2 refund to our API, but it accidentally gets sent twice. Without a ``refund_amount_available`` specified, GOV.UK PAY would have no way to tell the second request was a mistake, so it would process both requests, generating two refunds of £2 each.
 
