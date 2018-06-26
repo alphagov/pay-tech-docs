@@ -4,7 +4,7 @@
 
 If you believe GOV.UK Pay security has been breached, contact us immediately at [govuk-pay-support@digital.cabinet-office.gov.uk] (mailto:govuk-pay-support@digital.cabinet-office.gov.uk). If you are a live user and the suspected breach is severe, consider using the urgent contact details provided to your service manager.
 
-Please do not disclose the suspected breach publically until it has been fixed.
+Please do not disclose the suspected breach publicly until it has been fixed.
 
 ## Securing your developer keys
 
@@ -20,7 +20,7 @@ Revoke your key immediately using the self-service site if you believe it has be
 To further secure your live developer keys:
 
  - avoid embedding your developer keys in any of your code - this only increases the risk that they will be discovered (instead store your keys inside your configuration files)
- - avoid storing your API keys in your application source tree (even when you’re not making your source code publically available)
+ - avoid storing your API keys in your application source tree (even when you’re not making your source code publicly available)
  - revoke your developer keys when they’re no longer required (this limits the number of entry points into your account)
  - have a leavers’ process, so that a developer's API key is revoked when they leave
 
