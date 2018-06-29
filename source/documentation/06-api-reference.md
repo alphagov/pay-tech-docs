@@ -17,10 +17,10 @@ The same base URL is now used for testing and live. The API key you use determin
 
 For full details of each API action, see the API Browser:
 
-- <a href="https://gds-payments.gelato.io/docs/versions/1.0.1/resources/general" target="blank">General functions</a> (link opens in new window)
-- <a href="https://gds-payments.gelato.io/docs/versions/1.0.1/resources/payment-id" target="blank">Payment ID functions</a> (link opens in new window)
+- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general" target="blank">General functions</a> (link opens in new window)
+- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id" target="blank">Payment ID functions</a> (link opens in new window)
 
-You can also use our interactive <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.1//" target="blank">API Explorer</a> (link opens in new window) to try out API calls and view responses.
+You can also use our interactive <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//" target="blank">API Explorer</a> (link opens in new window) to try out API calls and view responses.
 
 See the [Quick Start Guide](https://docs.payments.service.gov.uk/#quick-start-guide) section for how to set up the API Explorer. Make sure you enter your sandbox API key to avoid generating real payments.
 
@@ -43,7 +43,7 @@ This diagram gives an overview of the payment status lifecycle and the possible 
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-transaction-states.png)
 
-You can check the status of a given payment using the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.1/v1/find-payment-by-id" target="blank">Find payment by ID</a> API call (link opens in new window).
+You can check the status of a given payment using the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id" target="blank">Find payment by ID</a> API call (link opens in new window).
 
 The response will include a ``status`` value as described in the table below, and a true/false ``finished`` value which indicates if the status can change.
 
