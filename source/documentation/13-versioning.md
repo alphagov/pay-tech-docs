@@ -1,6 +1,6 @@
 # Versioning
 
-> The current version of the GOV.UK Pay API is 1.0.
+The current version of the GOV.UK Pay API is 1.0.2.
 
 When we add new properties to the JSON responses, the Pay API version number will not change. You should develop your service to ignore properties it does not understand.
 
@@ -24,3 +24,5 @@ Soon, we hope to let you check which version of our API you’re currently runni
 |Version|Date|Author|Comments|
 | --------  | -------| ----| -----|
 |1.0 | | |
+|1.0.1 | | |
+|1.0.2 | | |
