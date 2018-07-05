@@ -10,20 +10,20 @@ Unless stated otherwise, this section applies both to services that have integra
 
 Request a live account by emailing GOV.UK Pay at [govuk-pay-support@digital.cabinet-office.gov.uk](a href="mailto:govuk-pay-support@digital.cabinet-office.gov.uk"). Once you have a live account, it will appear in the “My Services” section and be clearly labelled as a “Live” account.
 
-### Complete merchant details
+### Complete organisation details
 
-Payment card schemes require the details of the merchant taking payment to be shown on payment pages where the user enters card details. This information is displayed in the payment page footer. Note that:
+Payment card schemes require the details of the organisation taking payment to be shown on payment pages where the user enters card details. This information is displayed in the payment page footer. Note that:
 
-- the merchant must be the entity that has a contract with the PSP
-- merchant details are not specific to test or live accounts, meaning that if you complete the details for your test account then they will be transferred to your live account automatically
+- the organisation must be the entity that has a contract with the PSP
+- organisation details are not specific to test or live accounts, meaning that if you complete the details for your test account then they will be transferred to your live account automatically
 
-To complete your merchant details:
+To complete your organisation details:
 
 1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
 1. Sign in to your GOV.UK Pay account.
-1. Go to _My services > Edit merchant details_.
-1. Complete the _Merchant name_ and _Merchant address_ fields on this page.
-1. Click _Save_ to see the following message: "Merchant details updated".
+1. Go to _Switch services > Edit organisation details_.
+1. Complete the _Organisation name_ and _Organisation address_ fields on this page.
+1. Click _Save_ to see the following message: "Organisation details updated".
 
 ### Set up live account credentials
 
