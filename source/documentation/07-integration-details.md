@@ -66,7 +66,7 @@ If you’re a beta partner, the GOV.UK Pay team will hold technical workshops wi
 
 With our API,  you’ll be able to:
 
- - GET the status of an individual payment
+ - get the status of an individual payment
  - cancel a payment that’s not yet captured
- - soon get the status of multiple payments based on certain criteria, e.g. date range (this feature is under development)
- - soon issue full and partial refunds (this feature is under development)
+ - get the status of multiple payments based on certain criteria, e.g. date range 
+ - issue full and partial refunds
