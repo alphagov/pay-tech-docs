@@ -1,5 +1,7 @@
 # Versioning
 
+GOV.UK Pay adheres to the [SemVer semantic versioning specification](https://semver.org/). 
+
 The current version of the GOV.UK Pay API is 1.0.2.
 
 When we add new properties to the JSON responses, the Pay API version number will not change. You should develop your service to ignore properties it does not understand.
