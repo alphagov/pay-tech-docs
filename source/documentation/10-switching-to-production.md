@@ -2,6 +2,8 @@
 
 Once you’ve finished testing with your sandbox account, follow these steps to switch from testing to live.
 
+Unless stated otherwise, this section applies both to services that have integrated with the GOV.UK Pay API, and to services that use the [self service payment link](/#self-service-payments) functionality.
+
 ## Request a live account
 
 You must send GOV.UK Pay your test account’s service ID before the account can go live. To get the service ID:
