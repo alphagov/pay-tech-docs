@@ -21,7 +21,7 @@ To complete your organisation details:
 
 1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
 1. Sign in to your GOV.UK Pay account.
-1. Go to _Switch services > Edit organisation details_.
+1. Go to _Switch services > Organisation details_.
 1. Complete the _Organisation name_ and _Organisation address_ fields on this page.
 1. Click _Save_ to see the following message: "Organisation details updated".
 
