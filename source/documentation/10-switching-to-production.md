@@ -2,14 +2,14 @@
 
 Once you’ve finished testing with your sandbox account, follow these steps to switch from testing to live.
 
-Unless stated otherwise, this section applies both to services that have integrated with the GOV.UK Pay API, and to services that use the [self service payment link](/#self-service-payments) functionality.
+Unless stated otherwise, this information applies both to services that have integrated with the GOV.UK Pay API, and to services that use the [self service payment link](/#self-service-payments) functionality.
 
 ## Request a live account
 
 You must send GOV.UK Pay your test account’s service ID before the account can go live. To get the service ID:
 
 1. Sign in to your [GOV.UK Pay account](https://selfservice.payments.service.gov.uk/login).
-1. Select __My services__ in the header menu.
+1. Select __Switch service__ in the header menu.
 1. Select __Manage team members__ for the test account you want to make live.
 1. Copy the page URL, for example https://selfservice.payments.service.gov.uk/service/23f0eb425a9569988b99b5bb641a541d
 1. Send the service ID to the GOV.UK Pay team at [govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk).
@@ -31,8 +31,8 @@ To complete your organisation details:
 
 1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
 1. Sign in to your GOV.UK Pay account.
-1. Go to __Switch services > Edit organisation Details__.
-1. Complete the __Organisation name__ and __Organisation address__ fields on this page.
+1. Go to __Switch service > Organisation Details__.
+1. Complete the __Name__ and __Address__ fields on this page.
 1. Select __Save__ to see the following message: "Organisation Details updated".
 
 ## Generate API Key
@@ -77,8 +77,8 @@ Open your Worldpay and GOV.UK Pay accounts in 2 different web browser windows
 
 1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
 1. Sign in to your GOV.UK Pay account.
-1. Go to __My Services__ and select the live service you want to set up.
-1. Select __Settings > Account Credentials > Edit credentials__.
+1. Go to __Switch service__ and select the live service you want to set up.
+1. Select __Settings > Account credentials > Edit credentials__.
 
 In your Worldpay account Profile page, in the __Identification__ category:
 
@@ -90,7 +90,7 @@ In your Worldpay account Profile page, in the __Identification__ category:
     - select __OK__ to go back to the Profile page
     - select the pencil icon again, select __Complete__ and then select __OK__
 1. Copy the XML password into the GOV.UK Pay __Password__ field.
-1. On the GOV.UK Pay page, select __Save credentials__ to go back to the __Account Credentials__ page.
+1. On the GOV.UK Pay page, select __Save credentials__ to go back to the __Account credentials__ page.
 
 In the __Payment Service__ category on the Worldpay account Profile page, set __Capture delay (days)__ to __Off__.
 
@@ -125,7 +125,6 @@ Ask your Worldpay account manager to configure your merchant code to enable 3D S
 
 Once complete, sign in to the GOV.UK Pay self-service admin site, select [3D Secure and turn 3D Secure on](https://selfservice.payments.service.gov.uk/3ds).
 
-
 ## Set up ePDQ
 
 To set up ePDQ to work with GOV.UK Pay, you must sign in to the ePDQ admin site and:
@@ -267,15 +266,15 @@ To enable 3D Secure payment authentication:
 
 1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
 1. Sign in to your GOV.UK Pay account.
-1. Go to __My Services__ and select the live service you want to set up.
-1. Go to __Settings > Account Credentials > Edit credentials__.
+1. Go to __Switch service__ and select the live service you want to set up.
+1. Go to __Settings > Account credentials > Edit credentials__.
 1. Complete the fields on this page:
-    - __PSP ID__ - enter your PSP ID for ePDQ
+    - __PSP ID__ - enter your PSP ID for ePDQ 
     - __Username__ - enter the API user’s username
     - __Password__ - enter the API user’s password
     - __SHA-IN passphrase__ - this passphrase is created on the [_Data and origin verification_ page](/#set-up-checks-for-e-commerce-amp-alias-gateway)
     - __SHA-OUT passphrase__ - this passphrase is created on the [_All transaction submission modes_ page](/#set-up-security-for-request-parameters)
-    - select __Save credentials__ to go back to the __Account Credentials__ page    
+    - select __Save credentials__ to go back to the __Account credentials__ page    
 
 You have now successfully set up your ePDQ account to work with GOV.UK Pay.
 
@@ -367,30 +366,30 @@ You must set up both your Smartpay account credentials and account notification 
 
 1. Go to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/login).
 1. Sign in to your GOV.UK Pay account.
-1. Go to __My Services__ and select the Smartpay live service you want to set up.
-1. Go to __Settings__ > __Account Credentials__.
+1. Go to __Switch service__ and select the Smartpay live service you want to set up.
+1. Go to __Settings__ > __Account credentials__.
 
 #### Set up account credentials
 
-1. Select __Edit credentials__ under __Your smartpay Credentials__.
+1. Select __Edit credentials__ under __Your Smartpay credentials__.
 1. Complete the fields on this page:
     - __Merchant ID__ - enter your merchant ID for Smartpay
     - __Username__ - enter the username allocated to you when you [added a news user](/#Add new user)
     - __Password__ - enter the password you chose when you [added a news user](/#Add new user)
-    - select __Save credentials__ to go back to the __Account Credentials__ page
+    - select __Save credentials__ to go back to the __Account credentials__ page
 
 #### Set up notification credentials
 
-1. Select __Edit notification credentials__ under __Your smartpay Notification Credentials__.
+1. Select __Edit notification credentials__ under __Your Smartpay notification credentials__.
 1. Complete the __Username__ and __Password__ fields on this page using the username and password you chose when you [configured the notification authentication settings](/#Authentication).
-1. Select __Save credentials__ to go back to the __Account Credentials__ page.
+1. Select __Save credentials__ to go back to the __Account credentials__ page.
 
 ### Test your configuration
 
 Check that you have set up your Smartpay account correctly by [creating a payment link](https://selfservice.payments.service.gov.uk/create-payment-link) (requires signing into GOV.UK Pay) and trying to make a payment.
 
 Contact us at [govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk) if you have any questions.
-
+
 ## Emergency contact details
 In the event of an emergency, first check the [status page](https://payments.statuspage.io). Select __subscribe to updates__ to get email notifications whenever GOV.UK Pay creates or updates an incident.
 
@@ -403,7 +402,7 @@ Before you enter live, make sure that the right people on your team know how to 
 If you’re a beta partner, the GOV.UK Pay team will hold technical workshops with you to discuss how to integrate GOV.UK Pay reporting with your own financial systems.
 
 
-## Support 
+## Support
 
 If you have raised a support request, we will communicate with you individually using our Deskpro ticketing system via [govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk). This will ensure that you are not relying on a single individual for comms.
 
@@ -412,4 +411,5 @@ We will provide general incident updates to all GOV.UK Pay users through an emai
 You can also select __subscribe to updates__ on the [status page](https://payments.statuspage.io) to get email notifications whenever GOV.UK Pay creates or updates an incident.
 
 In the event of an emergency, first check the [status page](https://payments.statuspage.io). Select __subscribe to updates__ to get email notifications whenever GOV.UK Pay creates or updates an incident.
+
 
