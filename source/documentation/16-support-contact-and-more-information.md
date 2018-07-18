@@ -39,7 +39,7 @@ Support requests are raised both automatically and manually. Our automated monit
 
 The Pay support team will contact you via two methods:
 
-1. If you have raised a support request, we will communicate with you individually using our Deskpro ticketing system via [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk). This will ensure that you are not relying on a single individual for comms.
+1. If you have raised a support request, we will communicate with you individually using our Zendesk ticketing system via [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk). This will ensure that you are not relying on a single individual for comms.
 
 2. We will provide general incident updates to all GOV.UK Pay users through an email mailing list. All users of GOV.UK Pay will be subscribed to this list. You can choose to unsubscribe, but should ensure that anyone who needs to know about incident or maintenance alerts is subscribed. If you would like someone subscribed to this list please email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
 
