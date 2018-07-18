@@ -33,7 +33,7 @@ Imagine that this is a page on your service, where the end user needs to make a 
 
 >The payment pages are responsive and work on both desktop and mobile.
 
-Note that this page might be the end point of a series of pages you host which allow the user to choose between a variety of possible payments. This page should:
+Note that this page might be the end of a series of pages you host which allow the user to choose between a variety of possible payments. This page should:
 
 - make it clear to the user that they are about to pay for your product or service with a clear call to action, for example, a button that says “Pay now” or “Continue to payment”; the user will then be taken to the GOV.UK Pay pages to complete their transaction 
 - include clear information on what is being purchased; you do not need to tell the user that they are being handed over to GOV.UK Pay’s pages to make their payment
