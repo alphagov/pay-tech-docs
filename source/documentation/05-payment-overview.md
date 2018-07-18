@@ -98,7 +98,7 @@ The ``self`` URL (also provided in the Location header of the response) is a uni
 
 The ``next_url`` is the URL where you should now direct the end user. It points to a payment page hosted by GOV.UK Pay where the user can enter their payment details. Note that this is a one-time URL; after it's been visited once, it will give an error message.
 
-When your service redirects the user to ``next_url``, they see a page something like this:
+When your service redirects the user to ``next_url``, they'll see an __Enter card details__ page: 
 
 ![](images/flow-payment-details-page.png)
 
