@@ -30,10 +30,7 @@ Make sure you’ve fully tested your integration with GOV.UK Pay. When doing so,
 
 ## Securing user information
 
-GOV.UK Pay does not store full card numbers or CVV data for security reasons. This means you will not be able to search for transactions using card numbers. You’ll only be able to look up certain transactions using the:
-
- - payment ID
- - reference metadata put into the system when creating the payment ID
+GOV.UK Pay does not store full card numbers or CVV data for security reasons. This means you will not be able to search for transactions using card numbers.
 
 ## Payment Card Industry (PCI) compliance
 
