@@ -75,7 +75,7 @@ The ``return_url`` is the URL of a page on your service that the user will be re
 
 ## View transaction at GOV.UK Pay Admin site
 
-1. Go to the [service admin site](https://selfservice.payments.service.gov.uk/). Select **Transactions** at left. You’ll see the payment you just made.
+1. Go to the [service admin site](https://selfservice.payments.service.gov.uk/) and select **Transactions**. 
 
 ![](images/transaction+list+image+4.png)
 
