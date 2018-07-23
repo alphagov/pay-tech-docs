@@ -52,7 +52,7 @@ You can still check on the status of these payments by making a GET request usin
 
 >Note: GOV.UK Pay will expire incomplete payments after 90 minutes, but you should expect an occasional success or failure if the user experienced problems right at the moment of the redirect.
 
-If a user does not have enough funds in their account to make a payment, the current GOV.UK Pay frontend will not let them try again with separate card details. They will have to return to the service retry the payment. 
+If a user does not have enough funds in their account to make a payment, the current GOV.UK Pay frontend will not let them try again with separate card details. They will have to return to the service to retry the payment. 
 
 
 ## Cancelling a payment
