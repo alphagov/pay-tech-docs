@@ -30,5 +30,3 @@ To find out more about GOV.UK Pay, read our [blogs and newsletters](https://docs
 ## How much does it cost?
 
 There is no charge to use GOV.UK Pay. You will still need to pay your PSP's transaction fees.
-
-

@@ -63,6 +63,8 @@ For general or non urgent support queries our service levels are:
 | :--- | :--- |
 | 80% within two working days | 80% within 5 working days |
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 ## Resolution and Closure
 
 For all incidents:

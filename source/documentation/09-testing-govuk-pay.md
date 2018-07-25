@@ -9,24 +9,17 @@ When testing, you’ll need to ensure:
  - REST calls succeed with 200 API codes
  - you’ve tested the user journey from your service to the payments platform using end-to-end/smoke tests
 
-
-
 ## Integration testing
 
 To check your integration with GOV.UK Pay is working as expected, you’ll need to run a series of tests.
 
-
 We recommend that you build tests to include both the GOV.UK Pay API and its front end user journey. We are constantly iterating our interface, so you should not rely on any specific page layout, but you can build tests that address form elements (such as buttons) using their IDs. Alternatively, you can build stubs that will emulate GOV.UK Pay functionality.
 
-
 Our APIs will evolve over time. We will always let you know in advance if we intend to make any breaking, or backwards-incompatible API changes so you can ensure your service works with the new version. Please see our section on versioning for more information.
-
 
 There is guidance in the GOV.UK Service Manual on [smoke testing](https://www.gov.uk/service-manual/making-software/deployment.html). At the Government Digital Service, we tend to use Cucumber for testing (regardless of the core code language), as you can easily describe the behaviour you expect at the appropriate level.
 
 If you experience any problems when testing, please email us at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
-
-
 
 ## Mock card numbers for testing purposes
 
@@ -51,7 +44,10 @@ When you're using these card numbers, you can enter any valid value for the othe
 |Simulate an expired card|4000000000000069|Visa| N/A |
 |Simulate a general processing error|4000000000000119|Visa| N/A |
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 ### For _Worldpay_ accounts
+
 Please refer to [Worldpay test card numbers](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/testvalues.htm#Test)
 
 ### For _Barclays ePDQ_ accounts

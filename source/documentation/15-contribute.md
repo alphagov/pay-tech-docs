@@ -8,6 +8,8 @@ We are experimenting with taking in Open Source contributions from our live part
 
 ## Key Open Source components
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 | Component | Description | Use |
 | --- | --- | --- |
 | [pay-adminusers](https://github.com/alphagov/pay-adminusers) | GOV.UK Pay identity and service management component. | Used by pay-selfservice to allow users to authenticate and configure GOV.UK Pay. |
@@ -17,3 +19,5 @@ We are experimenting with taking in Open Source contributions from our live part
 | [pay-publicapi](https://github.com/alphagov/pay-publicapi) | GOV.UK Pay public API endpoint. | Used by partner services to manage payments, generate reporting and configure their accounts. |
 | [pay-publicauth](https://github.com/alphagov/pay-publicauth) | GOV.UK Pay API authentication service. | Used by pay-publicapi to validate API tokens and by pay-selfservice to manage API tokens. |
 | [pay-selfservice](https://github.com/alphagov/pay-selfservice) | GOV.UK Pay self service application. | Used by authenticated users of our partner services to administer their accounts. |
+
+<div style="height:1px;font-size:1px;">&nbsp;</div>
