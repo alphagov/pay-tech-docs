@@ -163,10 +163,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  govuk_tech_docs
+  govuk_tech_docs (= 1.5.0)
   therubyracer
   tzinfo-data
   wdm (~> 0.1.0)
 
 BUNDLED WITH
-   1.15.4
+   1.16.1

@@ -6,8 +6,8 @@ The GOV.UK Pay platform is based on REST principles with endpoints returning dat
 - view the event history for individual payments
 - view transactions within a specified time period
 - provide full or partial refunds
-<br /><br />
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 ## API overview
 
@@ -71,16 +71,16 @@ You will encounter typical HTTP success and error response codes when using the 
 These are the known status codes you are likely to receive:
 
 |Common status code| Meaning|
-| --------  | -------|
+|------------------|--------|
 |200 | Payment information request succeeded |
-|201|Payment has been created |
-| 204 |The server successfully processed the request, but is not returning any content |
-| 400|The server cannot process the request due to a client error, e.g. missing details in the request or a failed payment cancellation|
-|401|Required authentication has failed or not been provided|
-|404|The resource you want cannot be found|
-|412|Precondition failed: e.g. mismatch in expected refund amount available|
-|422|Unprocessable entity obtained on a request validation|
-|Any 500 error|Something is wrong with GOV.UK Pay - please contact us|
+|201 | Payment has been created |
+|204 | The server successfully processed the request, but is not returning any content |
+|400 | The server cannot process the request due to a client error, e.g. missing details in the request or a failed payment cancellation|
+|401 | Required authentication has failed or not been provided|
+|404 | The resource you want cannot be found|
+|412 | Precondition failed: e.g. mismatch in expected refund amount available|
+|422 | Unprocessable entity obtained on a request validation|
+|Any 500 error | Something is wrong with GOV.UK Pay - please contact us|
 
 
 ## API error codes
@@ -100,12 +100,12 @@ This is the format of the general JSON error response body:
 
 Note that the description provided is written to be informative to you, the developer, and is not intended for the end user.
 
-Also note that extra keys, e.g ```field```, may be provided on a per-error basis.
+Also note that extra keys, e.g `field`, may be provided on a per-error basis.
 
 These error codes provide more information about why a request failed.
 
 | Request type | Error code | Meaning | Cause |
-|-----------------------------|------------|-----------------------------------|---------------------------------------------------------------------------------------------------------|
+|--------------|------------|---------|-------|
 | Create payment | P0101 | Missing mandatory attribute | The request you sent is missing a required attribute |
 | Create payment | P0102 | Invalid attribute value | The value of an attribute you sent is invalid |
 | Create payment | P0197 | Unable to parse JSON | The JSON you sent in the request body is invalid |
@@ -136,6 +136,8 @@ These error codes provide more information about why a request failed.
 | General | P0920 | Request blocked by security rules | Our firewall blocked your request. See Troubleshooting section for details. |
 | General | P0999 | GOV.UK Pay is unavailable | The GOV.UK Pay service is temporarily down. |
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 ### API errors caused by payment statuses
 
 The API error codes in this section are driven by payment status. You can see which payments have these error codes using either of the following methods:
@@ -156,7 +158,7 @@ The API error codes in this section are driven by payment status. You can see wh
     ```
 
 | Error code | Meaning | Cause |
-|:---|:---|:---|
+|------------|---------|-------|
 | P0010 | Payment method rejected | Payment rejected due to payment method selected or payment information entered, for example, failed fraud check, a 3D Secure authentication failure, or the user does not have enough money in account |
 | P0020 | Payment expired | Payment was not confirmed and completed within 90 minutes of being created; if the payment was already authorised, GOV.UK PAY will send a cancellation to the payment provider |
 | P0030 | Payment cancelled by user | User clicked on the "Cancel payment" button during the payment journey; if the payment was already authorised, GOV.UK PAY will send a cancellation to the payment provider |
@@ -181,6 +183,7 @@ These are the possible values of the card_brand parameter.
 | jcb              | CREDIT | Jcb              |
 | unionpay         | CREDIT | Union Pay        |
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 ## API rate limits
 

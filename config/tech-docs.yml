@@ -21,9 +21,11 @@ ga_tracking_id: UA-72121642-3
 # Table of contents depth – how many levels to include in the table of contents.
 # If your ToC is too long, reduce this number and we'll only show higher-level
 # headings.
-max_toc_heading_level: 6
+max_toc_heading_level: 8
 
 # Prevent robots from indexing (e.g. whilst in development)
-prevent_indexing: false
 
 google_site_verification: "IJ5HOXpZrISM6la-YO_iX0rBUC5YFftpexygcKLsNs4"
+
+multipage_nav: true
+collapsible_nav: true 

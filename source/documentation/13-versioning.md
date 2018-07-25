@@ -21,8 +21,12 @@ Soon, we hope to let you check which version of our API you’re currently runni
 
 ## Revision history
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 |Version|Date|Author|Comments|
 | --------  | -------| ----| -----|
 |1.0 | | |
 |1.0.1 | | |
 |1.0.2 | | |
+
+<div style="height:1px;font-size:1px;">&nbsp;</div>

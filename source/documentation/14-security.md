@@ -70,6 +70,8 @@ When using the GOV.UK Pay service, the SAQ A questionnaire should apply. You sho
 | Any CHD the merchant retains is on paper (for example, printed reports or receipts), and these documents are not received electronically | Chargebacks received from your bank would fall into this category |
 | All elements of the payment page(s) delivered to the consumer’s browser originate only and directly from a PCI DSS validated third-party service provider(s) | The payment page will be delivered to the end user directly from a PCI DSS validated service provider, GOV.UK Pay |
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 #### Process more than 6 million transactions per year
 
 If you process more than 6 million transactions per scheme per year, you will need to undertake a formal on-site security assessment by a PCI DSS Qualified Security Assessor (QSA). It may be possible to be assessed against only the SAQ A requirements but this should be discussed with your own PCI DSS compliance team and your acquiring bank. More information on this can be found at the [PCI Security Standards Council website](https://www.pcisecuritystandards.org) [external link].
