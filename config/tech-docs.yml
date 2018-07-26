@@ -27,5 +27,11 @@ max_toc_heading_level: 8
 
 google_site_verification: "IJ5HOXpZrISM6la-YO_iX0rBUC5YFftpexygcKLsNs4"
 
+# Multipage
+
 multipage_nav: true
 collapsible_nav: true 
+
+# Search
+
+enable_search: true
