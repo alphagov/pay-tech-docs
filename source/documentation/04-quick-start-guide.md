@@ -23,7 +23,7 @@ This section explains how to get started with our API Explorer and make a test A
 <br /><br />Your API key will be shown on the screen for you to copy.<br /><br /> ![](images/NewKeygenerate+image+3.png)
 
 
-<blockquote>You must store your API keys away securely. Make sure you never share this key in publicly accessible documents or repositories, or with people who should not be using the GOV.UK Pay API directly. <a href="https://docs.payments.service.gov.uk/#security">Read our security section</a> for more information on how to keep your API key safe.</blockquote>
+<blockquote>You must store your API keys away securely. Make sure you never share this key in publicly accessible documents or repositories, or with people who should not be using the GOV.UK Pay API directly. [Read our security section](/security/#security) for more information on how to keep your API key safe.</blockquote>
 
 ## API Explorer setup
 
@@ -67,7 +67,7 @@ The ``return_url`` is the URL of a page on your service that the user will be re
 
 ## Follow end user payment journey
 
-1. Go to the ``next_url`` with your browser. You'll see the payment screen. Refer to the [Testing GOV.UK Pay](https://docs.payments.service.gov.uk/#testing-gov-uk-pay) section to find a mock credit card number that you can enter to simulate a payment in the sandbox environment. For the rest of the details, enter some test information, bearing in mind that:
+1. Go to the ``next_url`` with your browser. You'll see the payment screen. Refer to the [Testing GOV.UK Pay](/testing_govuk_pay/#testing-gov-uk-pay) section to find a mock credit card number that you can enter to simulate a payment in the sandbox environment. For the rest of the details, enter some test information, bearing in mind that:
     + the expiry date must be in the future and in the format MM/YYYY
     + the postcode must be valid
 
@@ -90,7 +90,7 @@ You may want to use self-service payment links rather than integrate with the GO
 
 ### Prerequisites
 
-Before you set up a self-service payment link, you must have a [live service](/#switching-to-live). You do not need an [API key](/#generate-api-key-for-api-explorer) or to use the [API explorer](/#api-explorer-setup).
+Before you set up a self-service payment link, you must have a [live service](/switching_to_production/#switching-to-live). You do not need an [API key](/#generate-api-key-for-api-explorer) or to use the [API explorer](/#api-explorer-setup).
 
 ### Create a payment link
 
