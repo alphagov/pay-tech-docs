@@ -2,7 +2,7 @@
 
 Once you have finished testing with your sandbox account, here are the steps you will need to take to switch over from testing to live.
 
-Unless stated otherwise, this section applies both to services that have integrated with the GOV.UK Pay API, and to services that use the [self service payment link](/#self-service-payments) functionality.
+Unless stated otherwise, this section applies both to services that have integrated with the GOV.UK Pay API, and to services that use the [self service payment link](/quick_start_guide/#self-service-payments) functionality.
 
 ## Set up GOV.UK Pay account
 
