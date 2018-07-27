@@ -2,7 +2,7 @@
 
 This section outlines how your service will interact with GOV.UK Pay after integration.
 
->This does not apply to users who use the [self service payments](/#self-service-payments) functionality.
+>This does not apply to users who use the [self service payments](/quick_start_guide//#self-service-payments) functionality.
 
 ## Overview of payment flow
 
@@ -173,7 +173,7 @@ The `return_url` should specify a page on your service. When the user visits the
 - check the status of the payment using an API call
 - display an appropriate final page as outlined above (hosted by your service)
 
-See the [Integration details](https://docs.payments.service.gov.uk/#integration-details) section for more details about how to match the user to the payment.
+See the [Integration details](/integration_details/#integration-details) section for more details about how to match the user to the payment.
 
 To check the status of the payment, you must make a <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id" target="blank">Find payment by ID</a> API call (link opens in new window), using the ``payment_id`` of the payment as the parameter.
 
@@ -199,7 +199,7 @@ The ``state`` array within the JSON lets you know the outcome of the payment:
 + The ``status`` value describes a stage of the payment journey.
 + The ``finished`` value indicates if the payment journey is complete or not; that is, if the ``status`` of this payment can change.
 
-Now that you understand the payment process, see the [Integration details](https://docs.payments.service.gov.uk/#integration-details) section for more  about how you can integrate your service with GOV.UK Pay.
+Now that you understand the payment process, see the [Integration details](/integration_details/#integration-details) section for more  about how you can integrate your service with GOV.UK Pay.
 
 ## Payment flow: Resume a payment
 
@@ -214,7 +214,7 @@ If your service uses the resume payment feature:
 
 Payments that are not confirmed and completed after 90 minutes will expire automatically. 
 
-If the payment was authorised but incomplete, GOV.UK PAY will send a cancellation to the payment provider. This will raise a [P0020 API error](/#api-errors-caused-by-payment-statuses).
+If the payment was authorised but incomplete, GOV.UK PAY will send a cancellation to the payment provider. This will raise a [P0020 API error](/api_reference/#api-errors-caused-by-payment-statuses).
 
 ### Incomplete payments
 
