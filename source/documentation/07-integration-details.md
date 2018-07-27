@@ -19,7 +19,7 @@ You will receive the ``next_url``  to which you should direct the user to comple
 
 You can track the progress of a payment while the user is on GOV.UK Pay using the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id" target="blank">Find payment by ID</a> call (link opens in new window).
 
-NOTE: The status of the payment will go through several phases until it either succeeds or fails. See the [API reference section](https://docs.payments.service.gov.uk/#api-reference) for more details.
+NOTE: The status of the payment will go through several phases until it either succeeds or fails. See the [API reference section](/api_reference/#api-reference) for more details.
 
 ## Choosing the return URL and matching user to payment
 
