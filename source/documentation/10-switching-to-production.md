@@ -66,13 +66,13 @@ Complete the fields on the Account credentials page:
 
 ## Generate API Key
 
-Refer to the documentation for instructions on how to [generate an API key for use with your live code](https://docs.payments.service.gov.uk/#generate-api-key-for-api-explorer).
+Refer to the documentation for instructions on how to [generate an API key for use with your live code](/quick_start_guide/#generate-api-key-for-api-explorer).
 
-GOV.UK currently supports Worldpay, Barclays ePDQ and Smartpay live gateways. Setup instructions are explained in the [Worldpay](/#worldpay-setup), [ePDQ](/#epdq-setup) and [Smartpay](/#smartpay-setup) sections.
+GOV.UK currently supports Worldpay, Barclays ePDQ and Smartpay live gateways. Setup instructions are explained in the [Worldpay](/switching_to_production/#worldpay-setup), [ePDQ](/switching_to_production/#epdq-setup) and [Smartpay](/switching_to_production/#smartpay-setup) sections.
 
 The API endpoint for live is now the same as for testing: https://publicapi.payments.service.gov.uk/
 
->This only applies if your service is integrating with the GOV.UK Pay API. It does not apply to [self service payments](/#self-service-payments).
+>This only applies if your service is integrating with the GOV.UK Pay API. It does not apply to [self service payments](/quick_start_guide/#self-service-payments).
 
 
 ## Worldpay setup
@@ -304,7 +304,7 @@ Complete the fields on the _Standard Notification settings_ page.
 
 #### Authentication 
 
-Enter the same unique username and password you set in the [Set up notification credentials](/#set-up-notification-credentials) section.
+Enter the same unique username and password you set in the [Set up notification credentials](/switching_to_production/#set-up-notification-credentials) section.
 
 Leave all other settings as default and click the _Test Configuration_ button. If you have correctly set up your account, you will see a success message like this example:
 
