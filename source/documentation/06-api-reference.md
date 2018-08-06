@@ -80,6 +80,7 @@ These are the known status codes you are likely to receive:
 |404 | The resource you want cannot be found|
 |412 | Precondition failed: e.g. mismatch in expected refund amount available|
 |422 | Unprocessable entity obtained on a request validation|
+|429 | Too many requests. Request rate is above the rate limit|
 |Any 500 error | Something is wrong with GOV.UK Pay - please contact us|
 
 
@@ -187,8 +188,10 @@ These are the possible values of the card_brand parameter.
 
 ## API rate limits
 
-There is a maximum rate limit for requests to the API from your service account. The limit is high and most services are unlikely ever to exceed it.
+POST requests to the GOV.UK Pay API are rate-limited to 15 requests per second, for each government service. 
 
-If you do exceed the limit (that is, send a large number of requests in a short amount of time), you will receive P0900 errors. If this happens, you can attempt any rate-limited requests again after a second has passed.
+GET requests are also rate-limited, but at a very high level. In the future, we will publish an official rate limit for GET requests.
 
-Please contact us if you want to discuss the rate limiting applied to your service account.
+If you exceed the rate limit, this will return HTTP status code "429" (Too many requests) and error code P0900. After a second, you'll be able to retry your attempt in a reasonable way. For example, using exponential backoff.
+
+Please [contact us](https://docs.payments.service.gov.uk/support_contact_and_more_information/#support-contact-and-more-information) if you would like to discuss rate limiting applied to your service account, or give us feedback.
