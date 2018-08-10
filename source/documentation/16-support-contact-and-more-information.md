@@ -1,5 +1,8 @@
 # Support
 
+You can subscribe to our public status page for updates on the status of our system:
+https://payments.statuspage.io/
+
 ## Incident severity 
 
 GOV.UK Pay incident severities are defined as follows:
