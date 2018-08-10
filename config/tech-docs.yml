@@ -28,4 +28,6 @@ max_toc_heading_level: 8
 google_site_verification: "IJ5HOXpZrISM6la-YO_iX0rBUC5YFftpexygcKLsNs4"
 
 multipage_nav: true
-collapsible_nav: true 
+collapsible_nav: true
+
+enable_search: true
