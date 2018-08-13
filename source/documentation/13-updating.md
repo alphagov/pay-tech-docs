@@ -1,4 +1,4 @@
-## Updating to the latest API
+# Updating to the latest API
 
 You can use [our API explorer](https://gds-payments.gelato.io/) to use the latest version of our API. We’ll also send you an email to let you know about any new versions we release. 
 
