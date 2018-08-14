@@ -21,7 +21,7 @@ In-hours support is from Monday-Friday 9:30am-5:30pm and covers all ticket prior
 Out-of-hours support covers P1 support tickets only, during:
 
 - Monday-Friday 5:30pm-9:30am
-- Saturday-Sunday 24x7
+- Saturday-Sunday and bank holidays 24x7
 
 ## Contact us 
 
