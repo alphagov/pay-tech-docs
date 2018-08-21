@@ -15,10 +15,11 @@ After the transaction reaches a final state, the end user is then redirected bac
 A final state means that the payment:
 
 + succeeds
-+ fails either because it is declined 
++ fails because it is declined 
 + fails because the user chooses to cancel
 + fails due to a technical error
 + fails because it is cancelled by your service
++ fails because it times out - users have 90 minutes to complete a payment once it is created 
 
 When the user arrives back at your service, you can use the API to check the status of the transaction and show them an appropriate message.
 
