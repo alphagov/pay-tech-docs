@@ -25,17 +25,17 @@ Out-of-hours support covers P1 support tickets only, during:
 
 ## Contact us 
 
-If you raise a support request, a member of the GOV.UK Pay team will contact you using
-Zendesk.  
+If you raise a support request, the GOV.UK Pay team will contact you using the 
+Zendesk ticketing system. 
 
 ### P1 support queries (critical incidents)
 
-For P1 support queries, you will receive instructions from us when you
+For P1 support requests, you will receive instructions from us when you
 sign on as a partner. 
 
 ### P2-P4 support queries (non-critical incidents) 
 
-For all non-P1 support queries, contact us via email at
+For all non-P1 support requests, contact us via email at
 [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
 
 ### General feedback 
