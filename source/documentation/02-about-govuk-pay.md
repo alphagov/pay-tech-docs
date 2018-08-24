@@ -3,8 +3,8 @@ GOV.UK Pay makes it easy for public sector organisations to take payments. It pr
 GOV.UK Pay is currently in beta development. The payment pages are responsive
 and work on both desktop and mobile.
 
-The platform can connect your service to different [payment service providers
-(PSPs)](https://en.wikipedia.org/wiki/Payment_service_provider).
+The GOV.UK platform can connect your service to different payment service providers
+(PSPs), which give merchants a way to accept electronic payments. Acquiring banks partner with PSPs to provide this service, or can act as PSPs themselves. Acquiring banks (or ‘acquirers’) are members of a card network such as MasterCard or Visa. They process credit or debit card transactions through these networks on behalf of a merchant.  
 
 During beta, GOV.UK Pay will support credit and debit card payments only. Over
 time, further payment methods, such as direct debit or eWallet, will be added.
