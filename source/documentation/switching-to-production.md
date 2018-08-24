@@ -2,7 +2,7 @@
 
 Once you have finished testing with your sandbox account, here are the steps you will need to take to switch over from testing to live.
 
-Unless stated otherwise, this section applies both to services that have integrated with the GOV.UK Pay API, and to services that use [payment links](/#payment-links) functionality.
+Unless stated otherwise, this section applies both to services that have integrated with the GOV.UK Pay API, and to services that use [payment links](/payment_links/#payment-links) functionality.
 
 ## Set up GOV.UK Pay account
 
@@ -72,7 +72,7 @@ GOV.UK currently supports Worldpay, Barclays ePDQ and Smartpay live gateways. Se
 
 The API endpoint for live is now the same as for testing: https://publicapi.payments.service.gov.uk/
 
->This only applies if your service is integrating with the GOV.UK Pay API. It does not apply to [payment links](#payment-links).
+>This only applies if your service is integrating with the GOV.UK Pay API. It does not apply to [payment links](/payment_links/#payment-links).
 
 
 ## Worldpay setup
