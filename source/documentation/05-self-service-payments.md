@@ -1,6 +1,6 @@
-# Self-service payments
+# Payment links 
 
-You may want to use self-service payment links rather than integrate with the GOV.UK Pay API if your service:
+You may want to use payment links rather than integrate with the GOV.UK Pay API if your service:
 
 - is non-digital and uses paper applications to process payments
 - is non-digital and has low transaction volumes
@@ -9,7 +9,7 @@ You may want to use self-service payment links rather than integrate with the GO
 
 ### Prerequisites
 
-Before you set up a self-service payment link, you must have a [live service](/switching_to_production/#switching-to-live). You do not need an [API key](/#generate-api-key-for-api-explorer) or to use the [API explorer](/#api-explorer-setup).
+Before you set up a payment link, you must have a [live service](/switching_to_production/#switching-to-live). You do not need an [API key](/#generate-api-key-for-api-explorer) or to use the [API explorer](/#api-explorer-setup).
 
 ### Create a payment link
 
@@ -46,6 +46,6 @@ You can now send the live payment link to your users.
 
 ### Reference number and confirmation
 
-Your users will receive a reference number and confirmation email when they use a self-service payment link. You can find the reference number on the [Transactions page](https://selfservice.payments.service.gov.uk/transactions). You will not receive a transaction reference number by default, unless you tell your users to send them to you.
+Your users will receive a reference number and confirmation email when they use a payment link. You can find the reference number on the [Transactions page](https://selfservice.payments.service.gov.uk/transactions). You will not receive a transaction reference number by default, unless you tell your users to send them to you.
 
-GOV.UK Pay creates and hosts the self-service payment confirmation page.
+GOV.UK Pay creates and hosts the payment confirmation page.
