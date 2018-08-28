@@ -34,9 +34,6 @@ There are ten departments and agencies currently partnering with the platform:
 - Department for Digital, Culture, Media & Sport
 - Department for International Trade 
 
-To find out more about GOV.UK Pay, read our [blogs and
-newsletters](/support_contact_and_more_information/#support-contact-and-more-information).
-
 ## How much does it cost?
 
 There is no charge to use GOV.UK Pay. You will still need to pay your PSP's transaction fees.
