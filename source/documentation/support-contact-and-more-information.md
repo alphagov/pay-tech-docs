@@ -1,7 +1,7 @@
 # Support
 
-You can subscribe to our public status page for updates on the status of our system:
-https://payments.statuspage.io/
+You can subscribe to our public status page for updates [on the status of our
+system](https://payments.statuspage.io/). 
 
 ## Incident severity 
 
@@ -13,6 +13,8 @@ GOV.UK Pay incident severities are defined as follows:
 | P2 | Major Incident | elevated error rate; mostly up; noticeably degraded service; upstream vulnerabilities; complete component failure | 60 minutes (in waking hours) | 2hrs |
 | P3 | Significant | Users experiencing intermittent or degraded service due to platform issue | 1 business day or next working day | 2 business days |
 | P4 | Minor | Component failure that is not immediately service impacting | 2 business days | weekly |
+
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 ## Hours of service
 
