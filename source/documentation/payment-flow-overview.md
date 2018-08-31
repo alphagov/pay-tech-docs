@@ -2,7 +2,7 @@
 
 This section outlines how your service will interact with GOV.UK Pay after integration.
 
->This does not apply to users who use the [self-service payments](/quick_start_guide//#self-service-payments) functionality.
+>This does not apply to users who use the [payment links](/payment_links/#payment-links) functionality.
 
 ## Overview 
 
