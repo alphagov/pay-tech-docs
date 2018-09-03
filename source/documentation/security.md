@@ -34,7 +34,7 @@ GOV.UK Pay does not store full card numbers or CVV data for security reasons. Th
 
 ## Payment Card Industry (PCI) compliance
 
-Anyone involved with the processing, transmission, or storage of cardholder data must comply with the [Payment Card Industry Data Security Standards](https://www.pcisecuritystandards.org/) (PCI DSS) [external link]. GOV.UK Pay is certified as fully compliant as a Level 1 Service Provider with PCI DSS version 3.2. All GOV.UK partners must be compliant with PCI DSS, and must validate their compliance annually.
+Anyone involved with the processing, transmission, or storage of cardholder data must comply with the [Payment Card Industry Data Security Standards](https://www.pcisecuritystandards.org/) (PCI DSS) [external link]. GOV.UK Pay is certified as fully compliant as a Level 1 Service Provider with PCI DSS version 3.2. All GOV.UK Pay partners must be compliant with PCI DSS, and must validate their compliance annually.
 
 ### Use your Merchant ID to report PCI DSS compliance
 

@@ -3,8 +3,8 @@ GOV.UK Pay makes it easy for public sector organisations to take payments. It pr
 GOV.UK Pay is currently in beta development. The payment pages are responsive
 and work on both desktop and mobile.
 
-The platform can connect your service to different [payment service providers
-(PSPs)](https://en.wikipedia.org/wiki/Payment_service_provider).
+The platform can connect your service to different payment service providers
+(PSPs).
 
 During beta, GOV.UK Pay will support credit and debit card payments only. Over
 time, further payment methods, such as direct debit or eWallet, will be added.
@@ -33,9 +33,6 @@ There are ten departments and agencies currently partnering with the platform:
 - Ministry of Defence
 - Department for Digital, Culture, Media & Sport
 - Department for International Trade 
-
-To find out more about GOV.UK Pay, read our [blogs and
-newsletters](/support_contact_and_more_information/#support-contact-and-more-information).
 
 ## How much does it cost?
 
