@@ -1,12 +1,12 @@
 # Before you start
 
-To start using the GOV.UK Pay platform, you'll need:
+To start using GOV.UK Pay, you'll need:
 
 - a service that needs to process payments
 - a [GOV.UK Pay account](https://selfservice.payments.service.gov.uk/create-service/register) 
 - a service team with the development skills to build the technical integration between your service and GOV.UK Pay; refer to the [Service Manual](https://www.gov.uk/service-manual/the-team/what-each-role-does-in-service-team#roles-your-team-must-have) for more information (this does not apply if you only use [payment links](/payment_links/#payment-links))
   
-Check the [Getting Started guide](https://www.payments.service.gov.uk/getstarted/) to ensure that your team is ready to start using the GOV.UK Pay platform.
+Check the [Getting Started guide](https://www.payments.service.gov.uk/getstarted/) to ensure that your team is ready to start using GOV.UK Pay.
 
 Make sure you’re also familiar with the government guidance on [deploying new software](https://www.gov.uk/service-manual/making-software/deployment.html).
 
@@ -18,7 +18,7 @@ The time taken to integrate will vary depending on team and capability; for exam
 
 ## Try the service out
 
-You can try the GOV.UK Pay service before integrating with the API. 
+You can try GOV.UK Pay before integrating with the API. 
 
 You must be logged into a GOV.UK Pay __test__ account to try these features out.
 

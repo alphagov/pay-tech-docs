@@ -1,6 +1,6 @@
 # Quick start guide
 
-The GOV.UK Pay platform is based on REST principles with endpoints returning data in JSON format, and standard HTTP error response codes. The platform API allows you to:
+GOV.UK Pay is based on REST principles with endpoints returning data in JSON format, and standard HTTP error response codes. The platform API allows you to:
 
 - initiate and complete payments
 - issue refunds
@@ -73,7 +73,7 @@ The ``return_url`` is the URL of a page on your service that the user will be re
 
 1. Submit the payment.
 
-## View transaction at GOV.UK Pay Admin site
+## View transaction at GOV.UK Pay admin site
 
 1. Go to the [service admin site](https://selfservice.payments.service.gov.uk/) and select **Transactions**. 
 
