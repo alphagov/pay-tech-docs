@@ -1,6 +1,6 @@
 # API reference
 
-The GOV.UK Pay platform is based on REST principles with endpoints returning data in JSON format, and standard HTTP error response codes. The platform API allows you to:
+GOV.UK Pay is based on REST principles with endpoints returning data in JSON format, and standard HTTP error response codes. The platform API allows you to:
 
 - initiate and complete payments
 - view the event history for individual payments
@@ -60,7 +60,7 @@ The response will include a ``status`` value as described in the table below, an
 
 ## HTTP status codes
 
-You will encounter typical HTTP success and error response codes when using the Pay API. Generally any:
+You will encounter typical HTTP success and error response codes when using the GOV.UK Pay API. Generally any:
 
 - 100 code is informational
 - 200 code indicates you’ve been successful
