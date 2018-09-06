@@ -16,7 +16,7 @@ the organisation name at the top of the page to view all merchant accounts.
 1. Leave the __Client Certificate (DN)__ field blank.
 
 >  You will use this username and password on the GOV.UK Pay admin site to
->  [set up your account credentials](/switching_to_production/#set-up-credentials-on-gov-uk-pay).
+>  [set up your account credentials](/switching_to_live/#set-up-credentials-on-gov-uk-pay).
 
 ### Enable roles and accounts
 
