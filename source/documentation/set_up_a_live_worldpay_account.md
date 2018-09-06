@@ -1,6 +1,8 @@
 # Set up a live Worldpay account
 
-Worldpay uses the term 'production' for live accounts.
+You should follow these instructions in order.
+
+> Worldpay uses the term 'production' for live accounts.
 
 ## Prerequisites
 
