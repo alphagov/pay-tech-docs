@@ -14,7 +14,7 @@ If you add a Welsh service
 name to your service, users will see this on Welsh-language payment pages instead of the
 usual service name.  
 
-When users create a payment, they will also [see a
+When users make a payment, they will also [see a
 `description`](/payment_flow_overview/#making-a-payment). If you use Welsh-language
 payment pages, you may also want to use Welsh text in the
 `description`.  
