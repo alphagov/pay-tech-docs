@@ -1,8 +1,16 @@
 # Set up a live Worldpay account
 
+Please read the guidance on what to do [before you switch to
+live](/switching_to_live/before_you_switch_to_live/#before-you-switch-to-live)
+first.
+
 You should follow these instructions in order.
 
 > Worldpay uses the term 'production' for live accounts.
+
+You can also read about setting up live
+[ePDQ](/switching_to_live/set_up_a_live_epdq_account) and
+[Smartpay](/switching_to_live/set_up_a_live_smartpay_account) accounts.
 
 ## Prerequisites
 

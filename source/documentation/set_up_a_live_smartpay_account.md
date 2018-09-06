@@ -1,6 +1,14 @@
 # Set up a live Smartpay account
 
+Please read the guidance on what to do [before you switch to
+live](/switching_to_live/before_you_switch_to_live/#before-you-switch-to-live)
+first.
+
 You should follow these instructions in order.
+
+You can also read about setting up live
+[ePDQ](/switching_to_live/set_up_a_live_epdq_account) and
+[Worldpay](/switching_to_live/set_up_a_live_worldpay_account) accounts. 
 
 ## Configure your user profile on Smartpay
 

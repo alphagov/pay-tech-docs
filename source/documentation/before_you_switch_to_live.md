@@ -2,10 +2,15 @@
 
 Before you start taking live payments, you should: 
 
-* make sure that the right people on your
-team [know how to report an emergency](#emergency-contact-details)
 * [provide organisation information](#provide-organisation-information) to GOV.UK Pay 
 * request a [live GOV.UK Pay account](#request-a-live-gov-uk-pay-account)
+* make sure that the right people on your
+team [know how to report an emergency](#emergency-contact-details)
+
+GOV.UK Pay currently supports
+[ePDQ](/switching_to_live/set_up_a_live_epdq_account),
+[Smartpay](/switching_to_live/set_up_a_live_smartpay_account) and
+[Worldpay](/switching_to_live/set_up_a_live_worldpay_account) live gateways.
 
 ## Provide organisation information
 
