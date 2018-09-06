@@ -110,7 +110,7 @@ Complete the following fields on this page:
 1. Under __Your Smartpay notification credentials__, select __Edit
    notification credentials__. 
 1. Complete the __Username__ and __Password__ fields on this page using the
-   username and password described in []"Authentication"](#authentication).
+   username and password described in ["Authentication"](#authentication).
 1. Select __Save credentials__ to go back to the __Account credentials__ page.
 
 ## Test your configuration
