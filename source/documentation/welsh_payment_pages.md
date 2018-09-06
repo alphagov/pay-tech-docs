@@ -2,7 +2,7 @@
 
 GOV.UK Pay supports Welsh-language payment pages. 
 
-To use Welsh, include `"language": "cy"` in the body of
+To use Welsh, you can include `"language": "cy"` in the body of
 a request to create a payment. Users will see Welsh text on the payment
 pages as they complete the [payment flow](/payment_flow_overview).  
 
@@ -10,7 +10,7 @@ Sign in to your [GOV.UK Pay
 account](https://selfservice.payments.service.gov.uk/login) and use the admin
 tool to add a Welsh service name to your service.  
 
-If you have added a Welsh service
+If you add a Welsh service
 name to your service, users will see this on Welsh-language payment pages instead of the
 usual service name.  
 
@@ -19,5 +19,5 @@ When users create a payment, they will also [see a
 payment pages, you may also want to use Welsh text in the
 `description`.  
 
-Emails are not currently translated into Welsh. Please [contact
+GOV.UK Pay does not automatically translate emails into Welsh. Please [contact
 us](/support_contact_and_more_information) if you would like to send Welsh language emails to your users.
