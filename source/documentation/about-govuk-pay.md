@@ -19,7 +19,7 @@ The platform currently supports one-off payments (like fees, fines or licence
 payments). In the future, it will also support recurring payments, for
 example, monthly tax payments.
 
-The GOV.UK Pay platform does not currently support payments to cardholders, for example, payments of benefits, or grants. The platform only supports taking payments, or providing refunds.
+GOV.UK Pay does not currently support payments to cardholders, for example, payments of benefits, or grants. The platform only supports taking payments, or providing refunds.
 
 There are ten departments and agencies currently partnering with the platform:
 

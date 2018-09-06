@@ -41,7 +41,7 @@ This page should make it clear to the user that they are about to pay for your p
 
 The page should include clear information on what is being purchased. You do not need to tell the user that they are being handed over to GOV.UK Pay’s pages to make their payment.
 
-When the user clicks **Continue** in the example page, the service makes a <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/create-new-payment" target="blank">Create new payment</a> call to the Pay API (link opens in new window). The body of the call contains information in JSON format. 
+When the user clicks **Continue** in the example page, the service makes a <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/create-new-payment" target="blank">Create new payment</a> call to the GOV.UK Pay API (link opens in new window). The body of the call contains information in JSON format. 
 
 For example:
 

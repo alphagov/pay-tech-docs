@@ -8,7 +8,7 @@ Please do not disclose the suspected breach publicly until it has been fixed.
 
 ## Securing your developer keys
 
-The GOV.UK Pay platform will let you create as many API keys as you want.
+GOV.UK Pay will let you create as many API keys as you want.
 
 We suggest letting all your developers experiment with their own test keys in the Sandbox environment, but keys for real integrations should only be shared with the minimum number of people necessary. This is because these keys can be used to create and manipulate payments. Do not commit these keys to public source code repositories.
 
@@ -55,7 +55,7 @@ Your requirements depend on the number of transactions that you process as a mer
 
 If you process fewer than 6 million transactions per scheme per year, you may be able to self-assess by completing one of the PCI DSS Self-Assessment Questionnaire (SAQ); this is a self-assessment tool to assess security for cardholder data.
 
-When using the GOV.UK Pay service, the SAQ A questionnaire should apply. You should be eligible to complete the SAQ A questionnaire if you fulfil all the eligibility criteria and comply with SAQ A requirements 2, 8, 9 and 12:
+When using GOV.UK Pay, the SAQ A questionnaire should apply. You should be eligible to complete the SAQ A questionnaire if you fulfil all the eligibility criteria and comply with SAQ A requirements 2, 8, 9 and 12:
 
 - the SAQ A questionnaire can be found in the [PCI documents library](https://www.pcisecuritystandards.org/document_library) [external link]
 - more detailed information on meeting requirements 2 and 8 can be found in [this article](https://pcissc.secure.force.com/faq/articles/Frequently_Asked_Question/How-do-PCI-DSS-Requirements-2-and-8-apply-to-SAQ-A-merchants) [external link]
