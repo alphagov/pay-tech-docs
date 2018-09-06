@@ -60,6 +60,17 @@ If a user does not have enough funds in their account to make a payment, the cur
 You can cancel a payment that is not yet in a final state by using the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/cancel-payment" target="blank">Cancel payment</a> API call (link opens in new window).
 
 
+## Welsh language support
+
+GOV.UK Pay supports showing Welsh language payment pages to the user. To use Welsh, include `"language": "cy"` in the body of your request to create a payment. The user will see Welsh text on the payment pages while completing the payment flow.
+
+If you have added a Welsh service name to your service, this will be displayed instead of the usual service name when the payment pages are shown in Welsh. Use the admin tool to add a Welsh service name to your service.
+
+Note that the `description` specified when you create a payment also appears on the payment pages. If you request Welsh payment pages for a payment, you may also want to use Welsh text in the `description`.
+
+Emails are not currently translated into Welsh. Please contact us if you would like to send Welsh language emails to your users.
+
+
 ## Financial reporting integration
 
 If you’re a beta partner, the GOV.UK Pay team will hold technical workshops with you to discuss how to integrate the reporting from GOV.UK Pay with your own financial systems.
