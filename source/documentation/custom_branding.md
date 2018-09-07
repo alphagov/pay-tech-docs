@@ -24,23 +24,5 @@ directly](/support_contact_and_more_information). Your image should:
 You can make a request for custom colours [to GOV.UK Pay
 directly](/support_contact_and_more_information). 
 
-
-
-
-To customise the banner colours, you can make a copy of the SCSS file 
-`assets/sass/custom/custom.scss`.  You must give the new file a unique name,
-and place it in the `public/stylesheets/custom` directory. 
-
-In your new file, you should only change the following values:
-
-```
-$custom-banner-colour
-$custom-banner-border-colour
-$custom-text-colour
-```
-
-Builds should automatically generate a CSS file and place it in
-`public/stylesheets/custom`. You can run the command `grunt
-generate-assets` to build manually.
-
+Colours are customised using hexadecimal representations. 
 
