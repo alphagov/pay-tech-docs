@@ -3,6 +3,8 @@
 
 Worldpay uses the term 'production' for live accounts.
 
+You should follow these instructions in order.
+
 ## Prerequisites
 
 Before you begin, make sure you have an admin account with both Worldpay and GOV.UK Pay.
