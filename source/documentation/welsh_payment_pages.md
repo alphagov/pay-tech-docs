@@ -1,5 +1,3 @@
-## Welsh language support 
-
 GOV.UK Pay supports Welsh-language payment pages. 
 
 To use Welsh, you can include `"language": "cy"` in the body of

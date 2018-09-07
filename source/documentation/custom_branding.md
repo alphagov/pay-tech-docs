@@ -1,5 +1,3 @@
-## Custom branding 
-
 GOV.UK Pay supports custom branding on payment pages.
 
 You can [contact the GOV.UK Pay](/support_contact_and_more_information) to
