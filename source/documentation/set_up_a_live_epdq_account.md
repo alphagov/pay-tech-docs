@@ -1,13 +1,6 @@
 # Set up a live ePDQ account
 
-Please read the guidance on what to do [before you switch to
-live](/switching_to_live/before_you_switch_to_live/#before-you-switch-to-live)
-first.
-
 You should follow these instructions in order.
-
-You can also read about setting up live [Smartpay](/switching_to_live/set_up_a_live_smartpay_account) and
-[Worldpay](/switching_to_live/set_up_a_live_worldpay_account) accounts. 
 
 ## Add payment methods to your account
 
@@ -18,14 +11,14 @@ new payment methods__. Select __Add__ next to all relevant payment methods.
 
 On the __Contract data__ tab:
     
-  * specify whether you have signed a contract for distance selling with an acquiring bank 
-  * complete the __Affiliation number (UID/Merch ID/VP number)__ field 
-  * select __Submit__
+specify whether you have signed a contract for distance selling with an acquiring bank 
+ complete the __Affiliation number (UID/Merch ID/VP number)__ field 
+select __Submit__
 
 On the __PM Activation__ tab:
     
-  * select __Yes__ for __Activation__
-  * select __Submit__
+ select __Yes__ for __Activation__
+select __Submit__
 
 ## Set up account security parameters
 
@@ -90,7 +83,9 @@ __Configuration__.
 
 1. Go to __All transaction submission modes__ and the __Security for request
    parameters__ section.
-1. Enter a strong SHA-OUT passphrase in plain text. Do not use a hash. 
+1. Enter a strong SHA-OUT passphrase in plain text. Do not use a hash. You will
+   need to copy this passphrase into the GOV.UK Pay account credentials page
+   later.
 1. Leave the __Basic Authentication Credentials__ field blank.
 1. Set __Timing of the request__ to: <br> __For each offline status change
    (payment, cancellation, etc.)__</br>
@@ -102,13 +97,11 @@ should the status of a transaction change offline__ field, enter:
 
 ## Set up an API user
 
-You can add a user manager, then create an API user. 
-
 ### Add a user manager
 
 1. Go to __Configuration__ then __Account__.
 1. Go to the __Your options__ tab.
-1. Under the __Available options__ sub-tab, you’ll see a list of IDs with
+1. Under the __Available options__ sub-tab, there is a list of IDs with
    __Activate__ options. 
 1. Activate one of the __User Manager__ options.
 1. Select __Accept__ on the __General Conditions__ screen.
@@ -118,12 +111,12 @@ You can add a user manager, then create an API user.
 
 1. On the __Users__ page, select __New User__.
 1. Complete the __UserID__ and __User’s name__ fields.
-1. Complete the __Email address__ field. This should contain the email address you want to receive notifications at.
+1. Complete the __Email address__ field. This should contain the email address you want to receive notifications.
 1. In the __Profile__ field, select __Admin__.  
 1. Check the __Special user for API (no access to admin.)__ option.
 1. Enter your own password and select __Create__.
 
-> Store the API user’s username and password securely. You will need to copy them into the GOV.UK Pay account credentials page later.
+> Store the API user’s username and password securely. You will need to copy them into the > GOV.UK Pay account credentials page later.
 
 ## Set up 3D Secure for ePDQ
 
@@ -138,8 +131,9 @@ this, go to __Configuration__ then  __Payment methods__ and select __3D Secure__
 
 ## Set up live GOV.UK Pay credentials
 
-1. Sign in to your [GOV.UK Pay
-   account](https://selfservice.payments.service.gov.uk/login).
+In your [GOV.UK Pay
+   account](https://selfservice.payments.service.gov.uk/login):
+
 1. Go to __Switch service__ and select the live service you want to set up.
 1. Go to __Settings__ then __Account credentials__ then __Edit credentials__.
 

@@ -16,7 +16,7 @@ GOV.UK Pay currently supports
 
 Card networks require organisation information to be displayed on payment
 pages. Before you make an account live, you need to provide this information
-to GOV.UK Pay:
+to GOV.UK Pay.
 
 1. Sign in to your [GOV.UK Pay
    account](https://selfservice.payments.service.gov.uk/login).
@@ -26,7 +26,7 @@ to GOV.UK Pay:
 1. Complete the __Name__ and __Address__ fields.
 1. Select __Save__. 
 
-> Make sure that the organisation is the entity that has a contract with the
+> Make sure the organisation is the entity that has a contract with the
 > payment service provider.
 
 ## Request a live GOV.UK Pay account
@@ -36,15 +36,14 @@ to GOV.UK Pay:
 1. Select __Switch service__.
 1. For the test account you want to make live, select __Manage team members__
    on the dashboard. 
-1. Copy the full page URL - this will be of the form
-   `https://selfservice.payments.service.gov.uk/service/23f0eb425a9569988b99b5bb641a541d`.
+1. Copy the full page URL, for example   `https://selfservice.payments.service.gov.uk/service/23f0eb425a9569988b99b5bb641a541d`.
 1. Send this via email to the GOV.UK Pay team at
    [govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk).
 
 The GOV.UK Pay team will change your account to live within one business day.
 
 When your account is live, it will appear in the __Switch service__ page
-labelled as a "Live card account".
+labelled as a _Live card account_.
 
 ## Support
 
@@ -56,15 +55,16 @@ make your service live if you require it.
 
 ### Emergency contact details
 
-Before you switch to live, make sure that the right people on your team know
+Before you switch to live, make sure your team knows
 how to report an emergency.
 
 In the event of an emergency, first check the [status
 page](https://payments.statuspage.io). Select __Subscribe to updates__ to get
 email notifications whenever GOV.UK Pay creates or updates an incident.
 
-The GOV.UK Pay will contact your service manager with specific
-contact details to reach the appropriate support team in case of an urgent
-problem. For example, if you suspect that fraudulent transactions are being
+When you sign up for GOV.UK Pay, the team will contact you with specific
+contact details. You can use these to reach the appropriate support team in case of an urgent problem. For example, if you suspect that fraudulent transactions are being
 made on your account.
+
+
 

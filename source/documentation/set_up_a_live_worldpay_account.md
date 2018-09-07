@@ -1,16 +1,7 @@
+
 # Set up a live Worldpay account
 
-Please read the guidance on what to do [before you switch to
-live](/switching_to_live/before_you_switch_to_live/#before-you-switch-to-live)
-first.
-
-You should follow these instructions in order.
-
-> Worldpay uses the term 'production' for live accounts.
-
-You can also read about setting up live
-[ePDQ](/switching_to_live/set_up_a_live_epdq_account) and
-[Smartpay](/switching_to_live/set_up_a_live_smartpay_account) accounts.
+Worldpay uses the term 'production' for live accounts.
 
 ## Prerequisites
 
@@ -22,7 +13,7 @@ Sign in to your [Worldpay
 account](https://secure.worldpay.com/sso/public/auth/login.html) and use
 __Select MerchantCode__ to find your merchant code.
 
-If __Switch to Production__ is at the bottom of the left-hand menu, toggle it.
+If __Switch to Production__ is at the bottom of the left-hand menu, toggle it on.
 
 ## Set up your profile
 
@@ -71,6 +62,8 @@ account](https://secure.worldpay.com/sso/public/auth/login.html), select
 __Merchant Channel__. Go to the __http Protocol__ row of the __Merchant
 Channels (Production)__ category.
 
+You should see 4 groupings of settings. For the first 2, __Merchant Channels (Production)__ and __Merchant Channels (Test)__: 
+
 1. Under __Active__, select __yes__.
 2. Set __Address__ to
    `https://notifications.payments.service.gov.uk/v1/api/notifications/worldpay`.
@@ -79,13 +72,36 @@ Channels (Production)__ category.
 5. Under __Merchant Channels (Production)__ and __Active__, set the __email__ and __shopper
    email__ protocols to __no__.
 
-Use the same settings for the __Merchant Channels (Test)__ category.
+The next 2 are also named __Merchant Channels (Production)__ and __Merchant Channels (Test)__. Here you should only check settings in the _http_ row. Check the following for both:
 
-> Your settings should match [those in this image](/images/worldpay_merchantchanneleventsettings.png). 
+_SIGNED_FORM_RECEIVED_
+_SHOPPER_REDIRECTED_
+_SENT_FOR_AUTHORISATION_
+_AUTHORISED_
+_ERROR_
+_CANCELLED_
+_CAPTURED_
+_CAPTURE_FAILED_
+_SETTLED_
+_SETTLED_BY_MERCHANT_
+_CHARGED_BACK_
+_CHARGEBACK_REVERSED_
+_INFORMATION_REQUESTED_
+_INFORMATION_SUPPLIED_
+_EXPIRED_
+_SENT_FOR_REFUND_
+_REFUNDED_
+_REFUNDED BY MERCHANT_
+_REFUSED_
+_REFUSED_BY_BANK_
+_REFUND_FAILED_
+_REVOKE_REQUESTED_
+_REVOKE_FAILED
+_REVOKED_
 
 ## How to check Worldpay settings  
 
-1. Contact your Worldpay account manager to confirm that cards you want to
+1. Contact your Worldpay account manager to confirm the cards you want to
    accept are set up.
 2. Make a test transaction on your live account. You can use [the GOV.UK Pay
    API](/api_reference) to do this, or use [payment
@@ -94,8 +110,8 @@ Use the same settings for the __Merchant Channels (Test)__ category.
    account](https://selfservice.payments.service.gov.uk/).
 4. Go to the [__Transactions__
    page](https://selfservice.payments.service.gov.uk/transactions) and check
-   that your test transaction is in the list of transactions.
-5. Select the test transaction, and check if you can refund it.
+   your test transaction is in the list of transactions.
+5. Select the test transaction and check if you can refund it.
 
 > The refund option may take up to 20 minutes to appear after submitting the transaction.
 
@@ -108,4 +124,5 @@ When this is available, sign in to your [GOV.UK Pay
 account](https://selfservice.payments.service.gov.uk/login). Go to __Switch
 service__ to select the live service you want to set up. Select __Settings__,
 then __3D Secure__ and then select __Turn 3D Secure on__. 
+
 
