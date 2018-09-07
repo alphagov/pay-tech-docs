@@ -43,7 +43,7 @@ to GOV.UK Pay.
 The GOV.UK Pay team will change your account to live within one business day.
 
 When your account is live, it will appear in the __Switch service__ page
-labelled as a _Live card account_.
+labelled as a __Live card account__.
 
 ## Support
 

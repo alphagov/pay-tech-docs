@@ -24,7 +24,7 @@ the organisation name at the top of the page to view all merchant accounts.
 1. Leave the __Client Certificate (DN)__ field blank.
 
 >  You will use this username and password on the GOV.UK Pay admin site to
->  [set up your account credentials](/switching_to_live/#set-up-credentials-on-gov-uk-pay) later.
+>  [set up your account credentials](#set-up-credentials-on-gov-uk-pay) later.
 
 ### Enable roles and accounts
 
@@ -78,7 +78,7 @@ Enter a unique username and password. The password must be at least 10
 characters long.
 
 > You will use this username and password to set
-> up your notification credentials on the GOV.UK Pay admin site later..
+> up your notification credentials on the GOV.UK Pay admin site later.
 
 Leave all other settings to their defaults and select __Save configuration__.
 

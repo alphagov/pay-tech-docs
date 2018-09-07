@@ -19,14 +19,14 @@ new payment methods__. Select __Add__ next to all relevant payment methods.
 
 On the __Contract data__ tab:
     
-specify whether you have signed a contract for distance selling with an acquiring bank 
- complete the __Affiliation number (UID/Merch ID/VP number)__ field 
-select __Submit__
+1. specify whether you have signed a contract for distance selling with an acquiring bank 
+2. complete the __Affiliation number (UID/Merch ID/VP number)__ field 
+3. select __Submit__
 
 On the __PM Activation__ tab:
     
- select __Yes__ for __Activation__
-select __Submit__
+1. select __Yes__ for __Activation__
+2. select __Submit__
 
 ## Set up account security parameters
 
@@ -124,7 +124,7 @@ should the status of a transaction change offline__ field, enter:
 1. Check the __Special user for API (no access to admin.)__ option.
 1. Enter your own password and select __Create__.
 
-> Store the API user’s username and password securely. You will need to copy them into the > GOV.UK Pay account credentials page later.
+> Store the API user’s username and password securely. You will need to copy them into the GOV.UK Pay account credentials page later.
 
 ## Set up 3D Secure for ePDQ
 

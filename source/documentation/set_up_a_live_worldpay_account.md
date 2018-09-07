@@ -71,7 +71,9 @@ account](https://secure.worldpay.com/sso/public/auth/login.html), select
 __Merchant Channel__. Go to the __http Protocol__ row of the __Merchant
 Channels (Production)__ category.
 
-You should see 4 groupings of settings. For the first 2, __Merchant Channels (Production)__ and __Merchant Channels (Test)__: 
+You should see 4 groupings of settings. 
+
+For the first 2, __Merchant Channels (Production)__ and __Merchant Channels (Test)__: 
 
 1. Under __Active__, select __yes__.
 2. Set __Address__ to
@@ -81,10 +83,9 @@ You should see 4 groupings of settings. For the first 2, __Merchant Channels (Pr
 5. Under __Merchant Channels (Production)__ and __Active__, set the __email__ and __shopper
    email__ protocols to __no__.
 
-The next 2 are also named __Merchant Channels (Production)__ and __Merchant Channels (Test)__. 
+For the next 2, also named __Merchant Channels (Production)__ and __Merchant Channels (Test)__: 
 
-Check the following in the __http__ row only, for both __Merchant Channels
-(Production)__ and __Merchant Channels (Test)__:
+Check the following in the __http__ row only:
 
 __SIGNED_FORM_RECEIVED__
 
