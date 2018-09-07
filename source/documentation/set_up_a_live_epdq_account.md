@@ -1,6 +1,14 @@
 # Set up a live ePDQ account
 
+Please read the guidance on what to do [before you switch to
+live](/switching_to_live/before_you_switch_to_live/#before-you-switch-to-live)
+first.
+
 You should follow these instructions in order.
+
+You can also read about setting up live
+[Smartpay](/switching_to_live/set_up_a_live_smartpay_account) and
+[Worldpay](/switching_to_live/set_up_a_live_worldpay_account) accounts. 
 
 ## Add payment methods to your account
 

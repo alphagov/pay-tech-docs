@@ -1,6 +1,14 @@
 # Set up a live Smartpay account
 
+Please read the guidance on what to do [before you switch to
+live](/switching_to_live/before_you_switch_to_live/#before-you-switch-to-live)
+first.
+
 You should follow these instructions in order.
+
+You can also read about setting up live
+[ePDQ](/switching_to_live/set_up_a_live_epdq_account) and
+[Worldpay](/switching_to_live/set_up_a_live_worldpay_account) accounts. 
 
 ## Configure your user profile on Smartpay
 
@@ -16,7 +24,7 @@ the organisation name at the top of the page to view all merchant accounts.
 1. Leave the __Client Certificate (DN)__ field blank.
 
 >  You will use this username and password on the GOV.UK Pay admin site to
->  [set up your account credentials](/switching_to_production/#set-up-credentials-on-gov-uk-pay) later.
+>  [set up your account credentials](/switching_to_live/#set-up-credentials-on-gov-uk-pay) later.
 
 ### Enable roles and accounts
 

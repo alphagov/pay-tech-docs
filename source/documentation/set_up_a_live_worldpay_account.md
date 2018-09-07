@@ -1,9 +1,16 @@
-
 # Set up a live Worldpay account
+
+Please read the guidance on what to do [before you switch to
+live](/switching_to_live/before_you_switch_to_live/#before-you-switch-to-live)
+first.
 
 Worldpay uses the term 'production' for live accounts.
 
 You should follow these instructions in order.
+
+You can also read about setting up live
+[ePDQ](/switching_to_live/set_up_a_live_epdq_account) and
+[Smartpay](/switching_to_live/set_up_a_live_smartpay_account) accounts.
 
 ## Prerequisites
 
@@ -74,32 +81,58 @@ You should see 4 groupings of settings. For the first 2, __Merchant Channels (Pr
 5. Under __Merchant Channels (Production)__ and __Active__, set the __email__ and __shopper
    email__ protocols to __no__.
 
-The next 2 are also named __Merchant Channels (Production)__ and __Merchant Channels (Test)__. Here you should only check settings in the _http_ row. Check the following for both:
+The next 2 are also named __Merchant Channels (Production)__ and __Merchant Channels (Test)__. 
 
-_SIGNED_FORM_RECEIVED_
-_SHOPPER_REDIRECTED_
-_SENT_FOR_AUTHORISATION_
-_AUTHORISED_
-_ERROR_
-_CANCELLED_
-_CAPTURED_
-_CAPTURE_FAILED_
-_SETTLED_
-_SETTLED_BY_MERCHANT_
-_CHARGED_BACK_
-_CHARGEBACK_REVERSED_
-_INFORMATION_REQUESTED_
-_INFORMATION_SUPPLIED_
-_EXPIRED_
-_SENT_FOR_REFUND_
-_REFUNDED_
-_REFUNDED BY MERCHANT_
-_REFUSED_
-_REFUSED_BY_BANK_
-_REFUND_FAILED_
-_REVOKE_REQUESTED_
-_REVOKE_FAILED
-_REVOKED_
+Check the following in the __http__ row only, for both __Merchant Channels
+(Production)__ and __Merchant Channels (Test)__:
+
+__SIGNED_FORM_RECEIVED__
+
+__SHOPPER_REDIRECTED__
+
+__SENT_FOR_AUTHORISATION__
+
+__AUTHORISED__
+
+__ERROR__
+
+__CANCELLED__
+
+__CAPTURED__
+
+__CAPTURE_FAILED__
+
+__SETTLED__
+
+__SETTLED_BY_MERCHANT__
+
+__CHARGED_BACK__
+
+__CHARGEBACK_REVERSED__
+
+__INFORMATION_REQUESTED__
+
+__INFORMATION_SUPPLIED__
+
+__EXPIRED__
+
+__SENT_FOR_REFUND__
+
+__REFUNDED__
+
+__REFUNDED_BY_MERCHANT__
+
+__REFUSED__
+
+__REFUSED_BY_BANK__
+
+__REFUND_FAILED__
+
+__REVOKE_REQUESTED__
+
+__REVOKE_FAILED__
+
+__REVOKED__
 
 ## How to check Worldpay settings  
 
