@@ -145,7 +145,7 @@ In your [GOV.UK Pay
 
 ## Test your configuration
 
-1. Contact your Worldpay account manager to confirm the cards you want to
+1. Contact your ePDQ account manager to confirm the cards you want to
    accept are set up.
 2. Make a test transaction on your live account. You can use [the GOV.UK Pay
    API](/api_reference) to do this, or use [payment
