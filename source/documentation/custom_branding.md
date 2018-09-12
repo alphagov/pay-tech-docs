@@ -10,12 +10,12 @@ request customisation for the following features:
 ### Banner logo
 
 You should provide an image of your desired custom banner logo [to GOV.UK Pay
-directly](/support_contact_and_more_information). Your image should:
+directly](/support_contact_and_more_information). Your image should be:
 
-* be in PNG or SVG format
-* be at least 2x the image that will be displayed on-screen
-* be cropped to leave minimal whitespace around the logo
-* be optimised for web and compressed using imageOptim or similar software
+* in PNG or SVG format
+* at least 2x the size of the image that will be displayed on-screen
+* cropped to leave minimal whitespace around the logo
+* optimised for web and compressed using imageOptim or similar software
 
 ### Banner background and border colour
 
