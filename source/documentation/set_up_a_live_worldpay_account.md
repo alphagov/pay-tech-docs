@@ -135,7 +135,7 @@ __REVOKE_FAILED__
 
 __REVOKED__
 
-## How to check Worldpay settings  
+## Test your configuration
 
 1. Contact your Worldpay account manager to confirm the cards you want to
    accept are set up.

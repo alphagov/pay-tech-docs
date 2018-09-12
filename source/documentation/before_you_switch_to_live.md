@@ -37,8 +37,10 @@ to GOV.UK Pay.
 1. For the test account you want to make live, select __Manage team members__
    on the dashboard. 
 1. Copy the full page URL, for example   `https://selfservice.payments.service.gov.uk/service/23f0eb425a9569988b99b5bb641a541d`.
-1. Send this via email to the GOV.UK Pay team at
-   [govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk).
+
+Send the GOV.UK Pay team the page URL, your service name, and what type of PSP
+account you want to make live. You can email the team at
+[govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk).
 
 The GOV.UK Pay team will change your account to live within one business day.
 
@@ -62,9 +64,10 @@ In the event of an emergency, first check the [status
 page](https://payments.statuspage.io). Select __Subscribe to updates__ to get
 email notifications whenever GOV.UK Pay creates or updates an incident.
 
-When you sign up for GOV.UK Pay, the team will contact you with specific
-contact details. You can use these to reach the appropriate support team in case of an urgent problem. For example, if you suspect that fraudulent transactions are being
-made on your account.
+When you sign up for GOV.UK Pay, the team will give you emergency contact
+details. You can use these to reach the appropriate support team in case of an
+urgent problem. For example, if you suspect that fraudulent transactions are
+being made on your account.
 
 
 

@@ -82,17 +82,6 @@ characters long.
 
 Leave all other settings to their defaults and select __Save configuration__.
 
-## 3D Secure for Smartpay
-
-To enable 3D Secure payment authentication, sign in to the [GOV.UK Pay
-self-service admin site](https://selfservice.payments.service.gov.uk/). 
-
-Go to __Switch service__ to select the live service you want to set up. 
-Select __Settings__, then __3D Secure__ and then __Turn on 3D Secure__. 
-
-Barclaycard is responsible for setting up 3D Secure payment authentication
-for your Smartpay account. You do not need to set anything manually.
-
 ## Set up credentials on GOV.UK Pay
 
 1. Sign in to your [GOV.UK Pay
@@ -124,8 +113,28 @@ Complete the following fields on this page:
 
 ## Test your configuration
 
-Sign in to GOV.UK Pay and create a payment link, then try to make a payment. If this is successful, your Smartpay account is set up
-correctly. 
+1. Contact your Worldpay account manager to confirm the cards you want to
+   accept are set up.
+2. Make a test transaction on your live account. You can use [the GOV.UK Pay
+   API](/api_reference) to do this, or use [payment
+   links](/payment_links) if your service is not yet connected to GOV.UK Pay. 
+3. Sign in to your [GOV.UK Pay
+   account](https://selfservice.payments.service.gov.uk/).
+4. Go to the [__Transactions__
+   page](https://selfservice.payments.service.gov.uk/transactions) and check
+   your test transaction is in the list of transactions.
+5. Select the test transaction and check if you can refund it.
 
-You can [read about how to create payment links](/payment_links/#payment-links).
+> The refund option may take up to 20 minutes to appear after submitting the transaction.
+
+## Set up 3D Secure 
+
+To enable 3D Secure payment authentication, sign in to the [GOV.UK Pay
+self-service admin site](https://selfservice.payments.service.gov.uk/). 
+
+Go to __Switch service__ to select the live service you want to set up. 
+Select __Settings__, then __3D Secure__ and then __Turn on 3D Secure__. 
+
+Barclaycard is responsible for setting up 3D Secure payment authentication
+for your Smartpay account. You do not need to set anything manually.
 

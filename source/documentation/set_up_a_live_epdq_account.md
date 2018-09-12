@@ -126,17 +126,6 @@ should the status of a transaction change offline__ field, enter:
 
 > Store the API user’s username and password securely. You will need to copy them into the GOV.UK Pay account credentials page later.
 
-## Set up 3D Secure for ePDQ
-
-To enable 3D Secure payment authentication, sign in to the [GOV.UK Pay
-self-service admin site](https://selfservice.payments.service.gov.uk/). Go to
-__Switch service__ to select the live service you want to set up. Select
-__Settings__, then __3D Secure__ and then __turn 3D Secure on__. 
-
-3D Secure should be enabled by default on the [ePDQ admin
-site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index). To check
-this, go to __Configuration__ then  __Payment methods__ and select __3D Secure__.
-
 ## Set up live GOV.UK Pay credentials
 
 In your [GOV.UK Pay
@@ -153,4 +142,31 @@ In your [GOV.UK Pay
   <br> __SHA-OUT passphrase__ - described in ["Set up notification settings"](#set-up-notification-settings)</br>
 
 1. Select __Save credentials__.  
+
+## Test your configuration
+
+1. Contact your Worldpay account manager to confirm the cards you want to
+   accept are set up.
+2. Make a test transaction on your live account. You can use [the GOV.UK Pay
+   API](/api_reference) to do this, or use [payment
+   links](/payment_links) if your service is not yet connected to GOV.UK Pay. 
+3. Sign in to your [GOV.UK Pay
+   account](https://selfservice.payments.service.gov.uk/).
+4. Go to the [__Transactions__
+   page](https://selfservice.payments.service.gov.uk/transactions) and check
+   your test transaction is in the list of transactions.
+5. Select the test transaction and check if you can refund it.
+
+> The refund option may take up to 20 minutes to appear after submitting the transaction.
+
+## Set up 3D Secure 
+
+To enable 3D Secure payment authentication, sign in to the [GOV.UK Pay
+self-service admin site](https://selfservice.payments.service.gov.uk/). Go to
+__Switch service__ to select the live service you want to set up. Select
+__Settings__, then __3D Secure__ and then __turn 3D Secure on__. 
+
+3D Secure should be enabled by default on the [ePDQ admin
+site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index). To check
+this, go to __Configuration__ then  __Payment methods__ and select __3D Secure__.
 
