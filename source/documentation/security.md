@@ -61,6 +61,8 @@ When using GOV.UK Pay, the SAQ A questionnaire should apply. You should be eligi
 - more detailed information on meeting requirements 2 and 8 can be found in [this article](https://pcissc.secure.force.com/faq/articles/Frequently_Asked_Question/How-do-PCI-DSS-Requirements-2-and-8-apply-to-SAQ-A-merchants) [external link]
 - more detailed information on the eligibility criteria can be found in the table below
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 | SAQ A eligibility criteria | Notes |
 | :---- | :---- |
 | Your MID accepts only card-not-present (e-commerce or mail/telephone-order) transactions | This applies where your MID is exclusive to transactions processed via GOV.UK Pay |
