@@ -9,6 +9,11 @@ When testing, you’ll need to ensure:
  - REST calls succeed with 200 API codes
  - you’ve tested the user journey from your service to the payments platform using end-to-end/smoke tests
 
+You can make payments using HTTP with sandbox accounts, when testing. 
+
+If you make your account live, you [must use HTTPS](/security/#https) to make
+payments.  
+
 ## Integration testing
 
 To check your integration with GOV.UK Pay is working as expected, you’ll need to run a series of tests.
