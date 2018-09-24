@@ -6,12 +6,16 @@ After issuing a partial refund of a payment, you can issue further partial refun
 
 Each payment has a refund status which can take one of the following values:
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 | Payment refund status | Meaning                                                                                                                                                                            |
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | pending               | The payment is potentially refundable, but is not ready to be refunded yet.                                                                                                        |
 | unavailable           | It is not possible to refund the payment: for example, the payment failed.                                                                                                         |
 | available             | It's possible to initiate a refund. Note that this does not mean that the full original value of the payment is available to refund: there may have been previous partial refunds. |
 | full                  | The original value of the payment has been fully refunded, so it is not possible to refund any more.                                                                               |
+
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 In the sandbox, you will not see the ``pending`` status as there is no delay in processing a payment. In a live environment, successful payments will spend some time in ``pending`` state before a refund becomes possible.
 
@@ -110,12 +114,15 @@ This is a partial example of a response including the refund's processing status
 
 Initially, in a live environment, the status returned will be ``submitted``. After the PSP has processed the refund, the status returned will be ``success`` or ``error``. (In the sandbox environment, the status will always go straight to ``success``).
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 | Refund processing status | Meaning                                                                                                            |
 |--------------------------|--------------------------------------------------------------------------------------------------------------------|
 | submitted                | The refund request is valid as far as GOV.UK Pay can tell and has been passed to the underlying payment processor. |
 | success                  | The refund has been successfully processed.                                                                        |
 | error                    | It was not possible for the payment processor to make the refund.                                                  |
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 To handle this, you must use <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id" target="blank">Find payment refund by ID</a> (link opens in new window) to check the processing status of the refund until it changes to either ``success`` or ``error``.
 

@@ -27,6 +27,8 @@ When you're testing your integration, you must not use real card numbers. Use th
 
 When you're using these card numbers, you can enter any valid value for the other details (name, expiry date, card security code etc). For example, it does not matter what expiry date you enter, but it must be in the future.
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 |Testing action |Card numbers to use | Card type | Debit/Credit |
 | --------  | ------- | ------- | ------- |
 |Simulate a successful transaction | 4444333322221111 | Visa | Credit |

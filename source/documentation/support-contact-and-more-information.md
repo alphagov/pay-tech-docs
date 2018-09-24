@@ -7,6 +7,8 @@ system](https://payments.statuspage.io/).
 
 GOV.UK Pay incident severities are defined as follows:
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 | Classification | AKA | Example | Initial response time | Update Time |
 | :--- | :--- | :--- | :--- | :--- |
 | P1 | Critical Incident | complete outage; substantial degradation of service; significant security issue; significant availability issue  | 30 minutes (at any time) | 1hr |
