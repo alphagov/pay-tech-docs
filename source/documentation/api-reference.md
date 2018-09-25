@@ -47,6 +47,8 @@ You can check the status of a given payment using the <a href="https://gds-payme
 
 The response will include a ``status`` value as described in the table below, and a true/false ``finished`` value which indicates if the status can change.
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 | status value | Meaning                                                                                        | finished value |
 |--------------|------------------------------------------------------------------------------------------------|----------------|
 | created      | Payment created; user has not yet visited next_url                                             | false          |
@@ -57,6 +59,7 @@ The response will include a ``status`` value as described in the table below, an
 | cancelled    | Your service cancelled the payment using an API call or the self-service site.                 | true           |
 | error        | Something went wrong with GOV.UK Pay or the underlying Payment Service Provider.               | true           |
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 ## HTTP status codes
 
@@ -69,6 +72,8 @@ You will encounter typical HTTP success and error response codes when using the 
 - 500 code indicates a server error (something went wrong on the GOV.UK Pay end)
 
 These are the known status codes you are likely to receive:
+
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 |Common status code| Meaning|
 |------------------|--------|
@@ -83,6 +88,7 @@ These are the known status codes you are likely to receive:
 |429 | Too many requests. Request rate is above the rate limit|
 |Any 500 error | Something is wrong with GOV.UK Pay - please contact us|
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 ## API error codes
 
@@ -104,6 +110,8 @@ Note that the description provided is written to be informative to you, the deve
 Also note that extra keys, e.g `field`, may be provided on a per-error basis.
 
 These error codes provide more information about why a request failed.
+
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 | Request type | Error code | Meaning | Cause |
 |--------------|------------|---------|-------|
@@ -158,6 +166,8 @@ The API error codes in this section are driven by payment status. You can see wh
     }
     ```
 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 | Error code | Meaning | Cause |
 |------------|---------|-------|
 | P0010 | Payment method rejected | Payment rejected due to payment method selected or payment information entered, for example, failed fraud check, a 3D Secure authentication failure, or the user does not have enough money in account |
@@ -166,11 +176,13 @@ The API error codes in this section are driven by payment status. You can see wh
 | P0040 | Payment was cancelled by your service | Your service cancelled the payment |
 | P0050 | Payment provider returned an error | Multiple possible causes, for example a configuration problem with the payment provider, or incorrect login credentials; contact us, quoting the error code |
 
-
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 ## Card types
 
 These are the possible values of the card_brand parameter.
+
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 | card_brand       | type   | label            |
 |------------------|--------|------------------|
