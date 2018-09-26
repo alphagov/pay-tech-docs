@@ -8,10 +8,10 @@ to:
 - issue refunds
 - view the event history for individual payments
 - view transactions within a specified time period
-<br /><br />
 
-This section explains how to get started with our API Explorer and make a test
-API call. You should follow these instructions in order. 
+Once you [have a sandbox account](/before_you_start/#before-you-start), follow
+these instructions to get started with our API Explorer and make a test API
+call. 
 
 ## Generate API Key for API Explorer
 
@@ -19,14 +19,14 @@ API call. You should follow these instructions in order.
    site](https://selfservice.payments.service.gov.uk/) with the sandbox
    account login details you received.
 
-1. From the landing page, select __API key__, then __Generate a new key__.
+2. From the landing page, select __API key__, then __Generate a new key__.
 
 ![](images/pay_9.png)
- <br /><br />Enter a description for your API key. <br /><br />
+ <br /><br />Enter a description for your API key: <br /><br />
  
  
 ![](images/DescribeAPIKey+image2.png)
-<br /><br />Your API key will be shown on the screen for you to copy.<br /><br /> ![](images/NewKeygenerate+image+3.png)
+<br /><br />Your API key will be shown for you to copy:<br /><br /> ![](images/NewKeygenerate+image+3.png)
 
 
 <blockquote>You must store your API keys securely. You must not share 
@@ -38,18 +38,16 @@ to keep your API key safe.
 
 ## API Explorer setup
 
-The quickest way to learn about the API is to use the <a
+The quickest way to get started with the API is to use the <a
 href="https://gds-payments.gelato.io/api-explorer/" target="blank">API
 Explorer</a> (link opens in new window) with your API key. 
 
-1. Go to the <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">API Explorer</a> (link opens in new window), sign in, and
-   select __Add API Key__.<br/><br/> ![](images/pay-add-api-key.png)
-   <br/><br/>
-1.  In the pop-up, enter the following values:
+1. Sign in to the API Explorer and select __Add API Key__.<br/><br/>
+   ![](images/pay-add-api-key.png) <br/><br/>
+2.  In the pop-up, enter the following values:
 
   * For __API Key__, enter your sandbox API key. You do not need to add the
-  + "Bearer: " prefix, because the API Explorer adds that automatically.  For
+  "Bearer: " prefix, because the API Explorer adds that automatically.  
   * For __Label__, enter `Authorization`. 
 
 > Do not use an API key from a live account on the GOV.UK Pay admin site. Only
@@ -61,7 +59,9 @@ This section describes how to make a test API call to GOV.UK Pay, by creating
 a new payment.  This is the same call your service will make when beginning a
 payment using GOV.UK Pay.
 
-1. Under __Resource__, select __General__. Under __Action__, select <a
+1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
+   target="blank">the API Explorer</a> (link opens in new window).  
+2. Under __Resource__, select __General__. Under __Action__, select <a
    href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/create-new-payment"
    target="blank">__Create new payment__</a> (link opens in new window) Select
    the __Body__ tab down to see an example JSON body that you would send when
@@ -83,13 +83,13 @@ that the user will be redirected to after they have completed their payment
 (or payment has failed).  <br/><br/>
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-api-explorer-createpay.png)
 
-Services that use sandbox accounts can optionally use HTTP, rather than HTTPs,
+Services that use sandbox accounts can optionally use HTTP, rather than HTTPS,
 for return URLs. You can read more about this in [the "Security"
 section](/security/#https). 
 
 1. Select the green __Send Request__ button.
 
-1. If the API Explorer is set up correctly, you will receive a 201 Created
+2. If the API Explorer is set up correctly, you will receive a `201 Created`
    response with a JSON body, confirming that the payment was created:
 
    ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-api-explorer-response.png)
@@ -97,18 +97,18 @@ section](/security/#https).
    The JSON includes a ``next_url`` link. This URL is where your service
    should redirect the user for them to make their payment.  <br/><br/>
 
-## Follow end user payment journey
+## Simulate an end-user payment journey 
 
-1. Go to the ``next_url`` with your browser. You'll see the payment screen.
-   Choose a mock card number from the [Testing GOV.UK
-   Pay](/testing_govuk_pay/#mock-card-numbers-for-testing-purposes) section
-   and enter it to simulate a payment in the sandbox environment. For
-   the other details, enter some test information which should have:
+Go to the ``next_url`` with a browser, and you'll see the payment screen.
+Choose a mock card number from the [Testing GOV.UK
+Pay](/testing_govuk_pay/#mock-card-numbers-for-testing-purposes) section and
+enter it to simulate a payment in the sandbox environment. For the other
+required details, enter some test information which should have:
 
-    * an expiry date that is in the future and in the format MM/YYYY 
-    * a valid postcode 
+  * an expiry date that is in the future and in the format MM/YYYY 
+  * a valid postcode 
 
-1. Submit the payment.
+Submit the payment.
 
 ## View transactions at GOV.UK Pay admin site
 
