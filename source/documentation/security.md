@@ -84,4 +84,8 @@ Your service manager may also be asked to supply extra evidence on your internal
 
 GOV.UK Pay follows [government HTTPS security guidelines](https://www.gov.uk/service-manual/domain-names/https.html). The Hypertext Transfer Protocol Secure (HTTPS), which involves the Transport Layer Security  (TLS) protocol is used by the platform to authenticate servers / clients and to provide secure connections.
 
-Your government service will only be able to integrate with the GOV.UK Pay if it also uses HTTPS.
+You must use HTTPS for all direct communication between your service and
+GOV.UK Pay. 
+
+Return URLs for live services using GOV.UK Pay must use HTTPS, but [you can use HTTP for return
+URLs with sandbox accounts](/testing_govuk_pay/#testing-gov-uk-pay).
