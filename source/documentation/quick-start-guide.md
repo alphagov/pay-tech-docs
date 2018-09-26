@@ -100,8 +100,8 @@ section](/security/#https).
 ## Simulate an end-user payment journey 
 
 Go to the ``next_url`` with a browser, and you'll see the payment screen.
-Choose a mock card number from the [Testing GOV.UK
-Pay](/testing_govuk_pay/#mock-card-numbers-for-testing-purposes) section and
+Choose a mock card number from the ["Testing GOV.UK
+Pay"](/testing_govuk_pay/#mock-card-numbers-for-testing-purposes) section and
 enter it to simulate a payment in the sandbox environment. For the other
 required details, enter some test information which should have:
 
