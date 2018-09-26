@@ -23,7 +23,9 @@ This section explains how to get started with our API Explorer and make a test A
 <br /><br />Your API key will be shown on the screen for you to copy.<br /><br /> ![](images/NewKeygenerate+image+3.png)
 
 
-<blockquote>You must store your API keys away securely. Make sure you never share this key in publicly accessible documents or repositories, or with people who should not be using the GOV.UK Pay API directly. [Read our security section](/security/#security) for more information on how to keep your API key safe.</blockquote>
+<blockquote>You must store your API keys away securely. Make sure you never share this key in publicly accessible documents or repositories, or with people who should not be using the GOV.UK Pay API directly.</blockquote>
+ 
+[Read the "Security" section](/security/#security) for more information on how to keep your API key safe.
 
 ## API Explorer setup
 
