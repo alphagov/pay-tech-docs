@@ -15,7 +15,7 @@ directly](/support_contact_and_more_information). Your image should be:
 * in PNG or SVG format
 * at least 2x the size of the image that will be displayed on-screen
 * cropped to leave minimal whitespace around the logo
-* optimised for web and compressed using imageOptim or similar software
+* compressed (optimised for web)
 
 ### Banner background and border colour
 
