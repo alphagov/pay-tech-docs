@@ -64,9 +64,7 @@ For example:
 + **description**: a human-readable description of the payment. This will be shown to the end user on the payment pages and to your staff on the GOV.UK Pay admin site (maximum 255 characters, and must not contain URLs)
 + **return_url**: an HTTPS URL on your site that the user will be sent back to once they have completed their payment attempt on GOV.UK Pay (this should not be JSON-encoded as backslashes will not be accepted)
 
-The **Create new payment** API call that the service will receive will be of the form:
-
-Example request:
+In the example, the **Create new payment** API call the service receives would give the following response header:
 
 ```response
 HTTP/1.1 201 Created
@@ -74,7 +72,7 @@ Content-Type: application/json
 Location: https://publicapi.pymnt.uk/v1/payments/icus7b4umg4b4g5fat4831es5f
 ```
 
-Example response:
+And the following response body: 
 
 ```javascript
 {
