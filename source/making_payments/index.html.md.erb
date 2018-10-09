@@ -28,7 +28,6 @@ complete their payment. During the GOV.UK Pay beta, it is only returned in
 response to the initial POST call to create a payment, not on sub. It will
 only work once.
 
-
 ## Tracking the progress of a payment
 
 You can track the progress of a payment while the user is on GOV.UK Pay using
@@ -90,4 +89,36 @@ If a user does not have enough funds in their account to make a payment, the
 current GOV.UK Pay frontend will not let them try again with separate card
 details. They will have to return to the service to retry the payment. 
 
+## Cancel a payment that's in progress
+
+Users can click a link on the payment page to cancel a payment that's in
+progress. Alternatively, a service can make the following API call for a given
+`PaymentId`:
+
+`POST /v1/payments/paymentId/cancel`
+
+A `204` response indicates success. Any other response indicates an error.
+
+To test this with our API Explorer:
+
+* 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
+   target="blank">the API Explorer</a> (link opens in new window).  
+* 2. Under __Resource__, select __{Payment Id}__. Under __Action__, select <a
+   href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
+   target="blank">__Search payments__</a> (link opens in new window). 
+
+### Find out if you can cancel a payment 
+
+Use a GET request against a single payment to find out if you can cancel it:
+
+`GET /v1/payments/paymentId`
+
+If the JSON response body contains a `"cancel"` field that is not `null`, you
+can cancel the payment. For example:
+
+```
+    "cancel": {
+    "href": "https://publicapi.payments.service.gov.uk/v1/payments/{paymentId}/cancel",
+      "method": "POST"
+```
 
