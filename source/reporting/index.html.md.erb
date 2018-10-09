@@ -5,29 +5,41 @@ weight: 70
 
 # Reporting 
 
+You can extract reporting information from GOV.UK Pay manually, or via the
+API.
+
+## Manual reporting
+
+You can sign in to your [GOV.UK Pay admin
+account](https://selfservice.payments.service.gov.uk/login) and export
+transaction information in a CSV file. 
+
+For a given account, select __Transactions__ in the __Dashboard__ page.
+
+You can filter transactions using the available search criteria, and then
+select __Download all transaction details as a CSV file__. 
+
+You can process CSV files using spreadsheet software.
+
+## Reporting via the GOV.UK Pay API 
+
+Before reading this section, you should read the section describing [Making
+payments](/making_payments). 
+
+You can use the GOV.UK Pay API to export data automatically into your finance
+systems. This requires you to do some development, but could remove 
+routine manual operations from your workflow and lead to significant cost
+savings for your organisation. Before you do this, you should have a datastore 
+where you are already recording payments. 
+
 You can use the GOV.UK Pay API to:
 
-* get information about a single payment
-* check the status of a single payment
-* see information users have entered 
-* search through payments 
-* cancel a payment
-* refund a payment
+* get information about single payments
+* generate a list of payments 
 
-You may want to integrate calls to the GOV.UK Pay API in your service if you
-set up dedicated financial reporting and reconciliation. 
+## Get information about single payments
 
-### Get information about single payments
-
-You can make GET requests to single payments to get information about them. 
-
-`GET /v1/payments/paymentId`
-
-[For a valid GET request to a URL, the response will contain information about
-a payment](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//)
-(link opens in new window).
-
-## Check the status of a payment
+### Check the status of a single payment
 
 `GET /v1/payments/paymentId`
 
@@ -48,9 +60,7 @@ For example, for a successful payment:
     },
 ```
 
-Other values of `status` are:  
-
-## See information users have entered
+### See information users have entered for a single payment
 
 `GET /v1/payments/paymentId`
 
@@ -80,9 +90,9 @@ For example:
     },
 ```
 
-## Search through payments 
+## Generate a list of payments (search payments) 
 
-`GET /v1/payments/paymentId`
+`GET /v1/payments`
 
 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
    target="blank">the API Explorer</a> (link opens in new window).  
@@ -90,58 +100,14 @@ For example:
    href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
    target="blank">__Search payments__</a> (link opens in new window). 
 
-You can search using the following criteria:
+You can search payments using the following criteria:
 
-* reference
-* email 
-* state
-* card_brand
-* from_date
-* to_date
-* page
-* display_size
+* `reference`
+* `email`
+* `state`
+* `card_brand`
+* `from_date`
+* `to_date`
+* `page`
+* `display_size`
 
-## Cancel a payment
-
-`POST /v1/payments/paymentId/cancel`
-
-1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">the API Explorer</a> (link opens in new window).  
-2. Under __Resource__, select __{Payment Id}__. Under __Action__, select <a
-   href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
-   target="blank">__Search payments__</a> (link opens in new window). 
-   
-A `204` response indicates success. Any other response indicates an error.
-
-### Find out if you can cancel a payment 
-
-Use a GET request against a single payment to find out if you can cancel it:
-
-`GET /v1/payments/paymentId`
-
-If the JSON response body contains a `"cancel"` field that is not `null`, you
-can cancel the payment. For example:
-
-```
-    "cancel": {
-    "href": "https://publicapi.payments.service.gov.uk/v1/payments/{paymentId}/cancel",
-      "method": "POST"
-```
-
-## Refund a payment 
-
-1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">the API Explorer</a> (link opens in new window).  
-2. Under __Resource__, select __{Payment Id}__. Under __Action__, select <a
-   href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
-   target="blank">__Submit a refund for a payment</a> (link opens in new window). 
-
-```
-  "refund_summary": {
-    "status": "available",
-    "amount_available": 2000,
-    "amount_submitted": 0
-  },
-```
-
-A `204` response indicates success. Any other response indicates an error.
