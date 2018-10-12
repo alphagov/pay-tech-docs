@@ -15,11 +15,12 @@ the section below on **Choosing the return URL** for more information.
 
 You will need to store the URL from the Location header or in the ``self``
 section of ``_links`` in the JSON body (the same URL is shown in both places).
-This URL contains the GOV.UK Pay ``payment_id`` which uniquely identifies the
+This URL contains the GOV.UK Pay ``payment_id`` which identifies the
 payment. An authenticated GET request to the URL will return information about
 the payment and its status.
 
-You can read more about this in the [Reporting](/reporting) section.
+You can read more about this in the [Reporting](/reporting) section of the
+documentation.
 
 An example URL:
 `https://publicapi.payments.service.gov.uk/v1/payments/{paymentId}`
