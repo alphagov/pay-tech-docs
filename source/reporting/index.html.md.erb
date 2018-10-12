@@ -26,20 +26,16 @@ You can process CSV files using spreadsheet software.
 Before reading this section, you should read the section describing [Making
 payments](/making_payments). 
 
-You can use the GOV.UK Pay API to export data automatically into your finance
-systems. This requires you to do some development, but could remove 
-routine manual operations from your workflow and lead to significant cost
-savings for your organisation. Before you do this, you should have a datastore 
-where you are already recording payments. 
+You can develop software to get data from the GOV.UK Pay API and import it into 
+a finance system. This could remove routine manual operations from your workflow and
+lead to significant cost savings for your organisation. 
 
 You can use the GOV.UK Pay API to:
 
-* get information about single payments
-* generate a list of payments 
+* get information about a single payment
+* generate a list of payments matching search criteria  
 
-## Get information about single payments
-
-### Check the status of a single payment
+## Get information about a single payment
 
 `GET /v1/payments/paymentId`
 
@@ -49,9 +45,10 @@ You can use the GOV.UK Pay API to:
    href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
    target="blank">__Find payment by ID__</a> (link opens in new window). 
    
-For a valid request, the JSON response body contains a `"state"` field. 
+For a valid request, the JSON response body contains a `"state"` field. You
+can use this information when designing your service.  
 
-For example, for a successful payment:
+For example, the response for a successful payment contains:
 
 ```
   "state": {
@@ -60,20 +57,13 @@ For example, for a successful payment:
     },
 ```
 
-### See information users have entered for a single payment
+With a successful payment, you know that the user can continue their journey
+through your service.
 
-`GET /v1/payments/paymentId`
-
-1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">the API Explorer</a> (link opens in new window).  
-2. Under __Resource__, select __{Payment Id}. Under __Action__, select <a
-   href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
-   target="blank">__Find payment by ID__</a> (link opens in new window). 
-
-For a valid request, the JSON response body contains the `"card_details"`
-section. This shows information that users enter when making a payment. 
-
-For example:
+For a valid request, the JSON response body to this API call also contains
+other useful information. For example, if a user has gone far enough in their
+journey, the `"card_details"` section shows information that they have entered
+when making a payment: 
 
 ```
   "card_details": {

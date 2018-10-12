@@ -5,28 +5,31 @@ weight: 70
 
 # Making payments
 
-When you make a payment, you will need to supply a ``reference``. This is a
-unique identifier for the payment. If your organisation already has an
-existing identifier for payments, you can use it here.
+When you make a payment, you will need to supply a ``reference``. If possible,
+this should be a unique identifier for the payment. If your organisation
+already has an existing identifier for payments, you can use it here.
 
 You will also need to supply a ``return_url``, a URL hosted by your service
 for the user to return to after they have completed payment on GOV.UK Pay. See
 the section below on **Choosing the return URL** for more information.
 
-You will need to store the URL from the Location header/in the ``self``
-section of ``links`` in the JSON body (the same URL is shown in both places).
+You will need to store the URL from the Location header or in the ``self``
+section of ``_links`` in the JSON body (the same URL is shown in both places).
 This URL contains the GOV.UK Pay ``payment_id`` which uniquely identifies the
 payment. An authenticated GET request to the URL will return information about
 the payment and its status.
+
+You can read more about this in the [Reporting](/reporting) section.
+
+An example URL:
+`https://publicapi.payments.service.gov.uk/v1/payments/{paymentId}`
 
 >It is important that you do not expose the URL with the ``payment_id``
 publicly, for example as a URL parameter or in an insecure cookie. You should
 store it as a secure cookie or in a database.
 
 You will receive the ``next_url``  to which you should direct the user to
-complete their payment. During the GOV.UK Pay beta, it is only returned in
-response to the initial POST call to create a payment, not on sub. It will
-only work once.
+complete their payment. 
 
 ## Tracking the progress of a payment
 
@@ -93,7 +96,7 @@ details. They will have to return to the service to retry the payment.
 
 Users can click a link on the payment page to cancel a payment that's in
 progress. Alternatively, a service can make the following API call for a given
-`PaymentId`:
+`paymentId`:
 
 `POST /v1/payments/paymentId/cancel`
 
@@ -113,7 +116,7 @@ Use a GET request against a single payment to find out if you can cancel it:
 
 `GET /v1/payments/paymentId`
 
-If the JSON response body contains a `"cancel"` field that is not `null`, you
+If the JSON response body contains a `"cancel"` field in the `_links` object that is not `null`, you
 can cancel the payment. For example:
 
 ```
