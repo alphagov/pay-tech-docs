@@ -23,3 +23,11 @@ You can then read about switching to live for:
 * [ePDQ](/switching_to_live/set_up_a_live_epdq_account) accounts
 * [Smartpay](/switching_to_live/set_up_a_live_smartpay_account) accounts
 * [Worldpay](/switching_to_live/set_up_a_live_worldpay_account) accounts 
+
+## The differences between test and live accounts 
+
+The key differences are:
+
+- return URLs for live services using GOV.UK Pay must use HTTPS, but you [can use HTTP for return URLs with sandbox accounts](https://docs.payments.service.gov.uk/security/#https)
+- 3D Secure is not part of the payment journey on test accounts
+- response times of test accounts do not match live accounts, because live accounts are subject to response times of payment service providers
