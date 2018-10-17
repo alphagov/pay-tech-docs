@@ -183,7 +183,7 @@ The `return_url` should specify a page on your service. When the user visits the
 - check the status of the payment using an API call
 - display an appropriate final page (hosted by your service)
 
-The [Making payments](/making_payments/#making-payments) section contains more details about how to match the user to the payment.
+The "[Making payments](/making_payments/#making-payments)" section contains more details about how to match the user to the payment.
 
 To check the status of the payment, you must make a <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id" target="blank">Find payment by ID</a> API call (link opens in new window), using the ``payment_id`` of the payment as the parameter.
 
@@ -209,7 +209,7 @@ The ``state`` array within the JSON lets you know the outcome of the payment:
 + The ``status`` value describes a stage of the payment journey.
 + The ``finished`` value indicates if the payment journey is complete or not - that is, if the ``status`` of this payment can change.
 
-See the [Making payments](/making_payments/#making-payments) section for more information about how you can integrate your service with GOV.UK Pay.
+See the ["Making payments"](/making_payments/#making-payments) section for more information about how you can integrate your service with GOV.UK Pay.
 
 ## Resume a payment
 
