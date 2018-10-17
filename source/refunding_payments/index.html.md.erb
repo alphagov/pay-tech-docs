@@ -40,7 +40,12 @@ The response will contain a ``refund_summary`` section. Here is an example of th
   },
 ```
 
-In this example, the refund status of the payment is ``available``, indicating that a refund can be initiated. The ``amount_available`` value is 5000: that is, £50 is available to be refunded.
+In this example, the refund status of the payment is ``available``, indicating
+that a refund can be initiated. The ``amount_available`` value is 5000: that
+is, £50 is available to be refunded.
+
+The ``amount_available`` value includes [any corporate card
+surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges).
 
 The ``amount_submitted`` is 0, showing that there have been no previous refunds.
 
@@ -62,7 +67,10 @@ If you needed to know the details of the partial refunds (for example, whether t
 
 ## Specifying the expected refund available
 
-When you submit a refund request for a payment via the API, you can optionally specify a ``refund_amount_available`` value in the body of the request.
+When you submit a refund request for a payment via the API, you can optionally
+specify a ``refund_amount_available`` value in the body of the request. This
+value [includes any corporate card 
+surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges). 
 
 This is so you can provide the total amount of the original payment you expect to be available for refund at the time your refund request is made.
 
