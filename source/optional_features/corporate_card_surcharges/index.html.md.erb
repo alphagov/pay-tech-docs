@@ -33,9 +33,9 @@ payment amount and the surcharge amount listed separately.
 If a corporate surcharge is applied to a particular payment, you can see this
 in API responses:
 
-* the `"total_amount"` field contains the total amount
+* the `"total_amount"` field contains the total amount including any surcharge
 * the `"amount"` field contains the amount without any surcharge
-* the `"corporate_card_surcharge"` field contains the surcharge amount
+* the `"corporate_card_surcharge"` field contains only the surcharge amount
 
 All amounts are in pence.
 
