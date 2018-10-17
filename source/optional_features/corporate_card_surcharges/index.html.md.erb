@@ -21,10 +21,11 @@ corporate card types:
 * prepaid debit cards 
 
 When a user enters a card number in their payment journey, the GOV.UK Pay
-platform checks it against the 4 corporate card types. If a surcharge is
-applicable, GOV.UK Pay will inform the user that a corporate surcharge of a
-certain amount will be added to the total. If the platform cannot determine
-the exact type of a card being used, it will not apply a surcharge.
+platform checks to determine if it's one of the 4 corporate card types. If a
+surcharge is applicable, GOV.UK Pay will inform the user that a corporate
+surcharge of a certain amount will be added to the total. If the platform
+cannot determine the exact type of a card being used, it will not apply a
+surcharge.
 
 You can sign in to the [GOV.UK Pay admin
 tool](https://selfservice.payments.service.gov.uk/login) [external link] to see the
@@ -34,7 +35,7 @@ If a corporate surcharge is applied to a particular payment, you can see this
 in API responses:
 
 * the `"total_amount"` field contains the total amount including any surcharge
-* the `"amount"` field contains the amount without any surcharge
+* the `"amount"` field contains the amount without any surcharge 
 * the `"corporate_card_surcharge"` field contains only the surcharge amount
 
 All amounts are in pence.
