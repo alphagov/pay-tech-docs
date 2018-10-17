@@ -10,21 +10,23 @@ API.
 
 ## Manual reporting
 
-You can sign in to your [GOV.UK Pay admin
-account](https://selfservice.payments.service.gov.uk/login) and export
+You can use your [GOV.UK Pay admin
+account](https://selfservice.payments.service.gov.uk/login) to export
 transaction information in a CSV file. 
 
-For a given account, select __Transactions__ in the __Dashboard__ page.
+1. For the account you want reporting information for, select __Transactions__
+in the __Dashboard__ page.
 
-You can filter transactions using the available search criteria, and then
-select __Download all transaction details as a CSV file__. 
+2. Optionally, filter transactions using the available search criteria. 
+
+3. Select __Download all transaction details as a CSV file__. 
 
 You can process CSV files using spreadsheet software.
 
 ## Reporting via the GOV.UK Pay API 
 
-Before reading this section, you should read the section describing [Making
-payments](/making_payments). 
+Before reading this section, you should be familiar with the "[Making
+payments](/making_payments)" section. 
 
 You can get data from the GOV.UK Pay API in a format suitable for automatic
 processing. For example, you could develop software to query the GOV.UK Pay
@@ -43,12 +45,14 @@ You can use the GOV.UK Pay API to:
 
 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
    target="blank">the API Explorer</a> (link opens in new window).  
-2. Under __Resource__, select __{Payment Id}. Under __Action__, select <a
+2. Under __Resource__, select __{Payment Id}. 
+3. Under __Action__, select <a
    href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
    target="blank">__Find payment by ID__</a> (link opens in new window). 
    
-If a payment exists, the JSON response body to this API call contains a
-`"state"` field. You can use this information when designing a service.  
+If the payment exists, the JSON response body to this
+API call contains a `"state"` field. You can use this information when
+designing a service.  
 
 For example, the response for a successful payment contains:
 
@@ -88,7 +92,8 @@ have entered when making a payment:
 
 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
    target="blank">the API Explorer</a> (link opens in new window).  
-2. Under __Resource__, select __General__. Under __Action__, select <a
+2. Under __Resource__, select __General__. 
+3. Under __Action__, select <a
    href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
    target="blank">__Search payments__</a> (link opens in new window). 
 
