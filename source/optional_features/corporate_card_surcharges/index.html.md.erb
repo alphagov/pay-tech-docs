@@ -12,30 +12,36 @@ set this up for you.
 
 Each surcharge is a flat amount added to a payment, not a percentage. 
 
-Different corporate surcharges are possible for 4 different types of card.
-These are: 
+You can set a different corporate surcharge for each of the following 4
+corporate card types: 
 
 * non-prepaid credit cards 
 * non-prepaid debit cards
-* corporate pre-paid credit cards
-* corporate pre-paid debit cards 
+* prepaid credit cards
+* prepaid debit cards 
 
-GOV.UK Pay maintains a list of cards of all 4 types. This means the platform
-can identify when a user enters a card number that matches one of these. If a
-surcharge is applicable, GOV.UK Pay will inform the user that a corporate
-surcharge of a certain amount will be added to the total. If the platform
-cannot determine the exact type of a card being used, it will not apply a
-surcharge.
+When a user enters a card number in their payment journey, the GOV.UK Pay
+platform checks it against the 4 corporate card types.If a surcharge is
+applicable, GOV.UK Pay will inform the user that a corporate surcharge of a
+certain amount will be added to the total. If the platform cannot determine
+the exact type of a card being used, it will not apply a surcharge.
 
 You can sign in to the [GOV.UK Pay admin
 tool](https://selfservice.payments.service.gov.uk/login) to see the
 payment amount and the surcharge amount listed separately. 
 
 If a corporate surcharge is applied to a particular payment, you can see this
-in API responses. The `"corporate_card_surcharge"` and `"total _amount"`
-fields contain amounts in pence. 
+in API responses:
 
-If you issue a refund, you can optionally refund up to the full amount -
-including the surcharge. You can also use the partial refund feature to only
-refund the non-surcharge total. You can read more in the ("Refunding
-payments")[/refunding_payments] section.
+* the `"total_amount"` field contains the total amount
+* the `"amount"` field contains the amount without any surcharge
+* the `"corporate_card_surcharge"` field contains the surcharge amount
+
+All amounts in pence.
+
+If a payment has a surcharge applied, the full amount available for refund
+includes the surcharge. You can also use the partial refund feature to only
+refund the total amount excluding the surcharge. You can read more about
+partial refunds in the ("Refunding
+payments")[/refunding_payments/#payment-refund-status-and-partial-refunds]
+section.
