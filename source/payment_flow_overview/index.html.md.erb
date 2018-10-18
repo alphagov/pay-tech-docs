@@ -64,17 +64,16 @@ For example:
 + **description**: a human-readable description of the payment. This will be shown to the end user on the payment pages and to your staff on the GOV.UK Pay admin site (maximum 255 characters, and must not contain URLs)
 + **return_url**: an HTTPS URL on your site that the user will be sent back to once they have completed their payment attempt on GOV.UK Pay (this should not be JSON-encoded as backslashes will not be accepted)
 
-The **Create new payment** API call that the service will receive will be of the form:
-
-Example request:
+In the example, responses to the __Create new payment__ API call would have
+headers of the form:  
 
 ```response
 HTTP/1.1 201 Created
 Content-Type: application/json
-Location: https://publicapi.pymnt.uk/v1/payments/icus7b4umg4b4g5fat4831es5f
+Location: https://publicapi.payments.service.gov.uk/v1/payments/icus7b4umg4b4g5fat4831es5f
 ```
 
-Example response:
+And response bodies would be of the form: 
 
 ```javascript
 {
@@ -91,11 +90,11 @@ Example response:
   "created_date": "2016-06-24T11:46:11.414Z",
   "_links": {
     "self": {
-      "href": "https://publicapi.pymnt.uk/v1/payments/icus7b4umg4b4g5fat4831es5f",
+      "href": "https://publicapi.payments.service.gov.uk/v1/payments/icus7b4umg4b4g5fat4831es5f",
       "method": "GET"
     },
     "next_url": {
-      "href": "https://www-integration-2.pymnt.uk/secure/bb0a272c-8eaf-468d-b3xf-ae5e000d2231",
+      "href": "https://publicapi.payments.service.gov.uk/secure/bb0a272c-8eaf-468d-b3xf-ae5e000d2231",
       "method": "GET"
     },
  ...}  
@@ -154,7 +153,7 @@ The confirmation page is hosted by your service and should:
 
 Users have different ways of recording this confirmation information. This can include screenshots, prints, PDF receipts to download, and writing down the reference number and other relevant information. Teams building services should be aware of all these behaviours, and plan accordingly.
 
-> Read more about confirmation pages in the [GOV.UK Service Manual](https://www.gov.uk/service-manual/design/confirmation-pages).
+> Read more about confirmation pages in the [GOV.UK Design System](https://www.gov.uk/service-manual/design/confirmation-pages).
 
 ## Payment failure
 
@@ -184,7 +183,7 @@ The `return_url` should specify a page on your service. When the user visits the
 - check the status of the payment using an API call
 - display an appropriate final page (hosted by your service)
 
-The [Integration details](/integration_details/#integration-details) section contains more details about how to match the user to the payment.
+The "[Making payments](/making_payments/#making-payments)" section contains more details about how to match the user to the payment.
 
 To check the status of the payment, you must make a <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id" target="blank">Find payment by ID</a> API call (link opens in new window), using the ``payment_id`` of the payment as the parameter.
 
@@ -210,7 +209,7 @@ The ``state`` array within the JSON lets you know the outcome of the payment:
 + The ``status`` value describes a stage of the payment journey.
 + The ``finished`` value indicates if the payment journey is complete or not - that is, if the ``status`` of this payment can change.
 
-See the [Integration details](/integration_details/#integration-details) section for more information about how you can integrate your service with GOV.UK Pay.
+See the ["Making payments"](/making_payments/#making-payments) section for more information about how you can integrate your service with GOV.UK Pay.
 
 ## Resume a payment
 
