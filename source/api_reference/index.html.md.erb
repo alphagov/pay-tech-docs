@@ -3,54 +3,58 @@ title: API reference
 weight: 60
 ---
 
-# API reference
+# API reference 
 
-GOV.UK Pay is based on REST principles with endpoints returning data in JSON format, and standard HTTP error response codes. The platform API allows you to:
+The base URL for the GOV.UK Pay API is
+`https://publicapi.payments.service.gov.uk/`. 
 
-- initiate and complete payments
-- view the event history for individual payments
-- view transactions within a specified time period
-- provide full or partial refunds
+The same base URL is used for testing and live. The API key you use
+determines if the actions are treated as sandbox test payments, or processed as
+real payments.
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
+The API is based on REST principles. It returns data in JSON format, and uses
+standard HTTP error response codes. 
 
-## API overview
+For full details of each API action, see the API browser: 
 
->The base URL for the API is __https://publicapi.payments.service.gov.uk/__
+- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general" target="blank">General functions</a> [external link] 
+- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id" target="blank">Payment ID functions</a> [external link] 
 
-The same base URL is now used for testing and live. The API key you use determines if the actions are treated as sandbox test payments or processed as real payments.
+You can also use the interactive <a
+href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//"
+target="blank">API explorer</a> [external link] to try out API calls and view
+responses.
 
-For full details of each API action, see the API Browser:
+See the ["Quick start guide"](/quick_start_guide/#quick-start-guide) section for
+how to set up the API explorer. Make sure you enter your sandbox API key to
+avoid generating real payments.
 
-- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general" target="blank">General functions</a> (link opens in new window)
-- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id" target="blank">Payment ID functions</a> (link opens in new window)
+## Authentication
 
-You can also use our interactive <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//" target="blank">API Explorer</a> (link opens in new window) to try out API calls and view responses.
+GOV.UK Pay authenticates API calls with OAuth2 HTTP bearer tokens. These are
+easy to use and contain only your API key. [RFC
+6750](http://tools.ietf.org/html/rfc6750) details bearer tokens.  
 
-See the [Quick Start Guide](/quick_start_guide/#quick-start-guide) section for how to set up the API Explorer. Make sure you enter your sandbox API key to avoid generating real payments.
-
-
-
-## API authentication
-
-GOV.UK Pay authenticates API calls with OAuth2 HTTP bearer tokens. These are easy to use and consist of one component: your API key. Bearer tokens are specified in [RFC 6750](http://tools.ietf.org/html/rfc6750).
-
-When making an API call, you’ll need to add your API key to an "Authorization" HTTP header and prefix it with "Bearer ". This is an example of how a header would look.
+When making an API call, you need to add your API key to an "Authorization"
+HTTP header prefixed with "Bearer ". For example: 
 
 ```text
-Authorization: Bearer 2o9bkusxaicha5c9gnsj790of7asggo1feraoufbai4a
+Authorization: Bearer <YOUR-API-KEY-HERE> 
 ```
-
 
 ## Payment status lifecycle
 
-This diagram gives an overview of the payment status lifecycle and the possible outcomes.
+This diagram gives an overview of the payment status lifecycle and the
+possible outcomes.
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-transaction-states.png)
 
-You can check the status of a given payment using the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id" target="blank">Find payment by ID</a> API call (link opens in new window).
+You can check the status of a payment using the <a
+href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
+target="blank">Find payment by ID</a> API call [external link].  
 
-The response will include a ``status`` value as described in the table below, and a true/false ``finished`` value which indicates if the status can change.
+The response will include a ``status`` value as described in the table below,
+and a true/false ``finished`` value which indicates if the status can change.
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
@@ -68,7 +72,8 @@ The response will include a ``status`` value as described in the table below, an
 
 ## HTTP status codes
 
-You will encounter typical HTTP success and error response codes when using the GOV.UK Pay API. Generally any:
+You will encounter typical HTTP success and error response codes when using
+the GOV.UK Pay API. Generally any:
 
 - 100 code is informational
 - 200 code indicates you’ve been successful
@@ -97,24 +102,7 @@ These are the known status codes you are likely to receive:
 
 ## API error codes
 
-### API errors caused by an API call
-
-When your API call results in an error, you will receive these API codes in the body of the response.
-
-This is the format of the general JSON error response body:
-
-```javascript
-{
-  "code": "PXXXX",
-  "description": "Message explaining the error"
-}
-```
-
-Note that the description provided is written to be informative to you, the developer, and is not intended for the end user.
-
-Also note that extra keys, e.g `field`, may be provided on a per-error basis.
-
-These error codes provide more information about why a request failed.
+### Errors caused by an API call
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
@@ -152,24 +140,20 @@ These error codes provide more information about why a request failed.
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-### API errors caused by payment statuses
+The general format of JSON error response bodies is:
 
-The API error codes in this section are driven by payment status. You can see which payments have these error codes using either of the following methods:
+```javascript
+{
+  "code": "PXXXX",
+  "description": "Message explaining the error"
+}
+```
 
-- Sign in to the [GOV.UK Pay admin site](https://selfservice.payments.service.gov.uk/), go to _Transactions_ and click on a payment with a "failed", "cancelled" or "error" status.
-- use the API to look at the `state` object in a payment's API response, for example:
+These error descriptions are intended for developers, not end users. 
 
-    ```
-    {
-        "amount": 2000,
-        "state": {
-            "status": "failed",
-            "finished": true,
-            "message": "Payment expired",
-            "code": "P0020"
-        },
-    }
-    ```
+Some errors may contain additional fields , such as `field`. 
+
+### Errors caused by payment statuses
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
@@ -183,9 +167,35 @@ The API error codes in this section are driven by payment status. You can see wh
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-## Card types
+You can see which payments have status-related error codes using the GOV.UK
+Pay admin tool or directly using the API. 
 
-These are the possible values of the card_brand parameter.
+#### Use the admin tool  
+
+1. Sign in to the [GOV.UK Pay admin
+site](https://selfservice.payments.service.gov.uk/) (link opens in new window).
+2. Select _Transactions_. 
+3. Select a payment with a "failed", "cancelled" or "error" status.
+
+#### Use the API 
+
+You can use the API to examine the `state` object in a payment's API response.
+
+For example:
+
+    ```
+    {
+        "amount": 2000,
+        "state": {
+            "status": "failed",
+            "finished": true,
+            "message": "Payment expired",
+            "code": "P0020"
+        },
+    }
+    ```
+
+## Card types
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
@@ -205,10 +215,17 @@ These are the possible values of the card_brand parameter.
 
 ## API rate limits
 
-POST requests to the GOV.UK Pay API are rate-limited to 15 requests per second, for each government service. 
+POST requests to the GOV.UK Pay API are rate-limited to 15 requests per
+second, for each government service. 
 
-GET requests are also rate-limited, but at a very high level. In the future, we will publish an official rate limit for GET requests.
+GET requests are also rate-limited, but at a very high level. In the future,
+we will publish an official rate limit for GET requests.
 
-If you exceed the rate limit, this will return HTTP status code "429" (Too many requests) and error code P0900. After a second, you'll be able to retry your attempt in a reasonable way. For example, using exponential backoff.
+If you exceed the rate limit, this will return HTTP status code "429" (Too
+many requests) and error code P0900. After a second, you'll be able to retry
+your attempt in a reasonable way. For example, using exponential backoff.
 
-Please [contact us](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us) if you would like to discuss rate limiting applied to your service account, or give us feedback.
+Please [contact
+us](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us)
+if you would like to discuss rate limiting applied to your service account, or
+give us feedback.
