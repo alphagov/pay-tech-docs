@@ -12,7 +12,7 @@ set this up for you.
 
 Each surcharge is a flat amount added to a payment, not a percentage. 
 
-You can set a different corporate surcharge for each of the following 4
+You can set a different surcharge for each of the following 4
 corporate card types: 
 
 * non-prepaid credit cards 
@@ -21,8 +21,8 @@ corporate card types:
 * prepaid debit cards 
 
 When a user enters a card number in their payment journey, the GOV.UK Pay
-platform checks to determine if it's one of the 4 corporate card types. If a
-surcharge is applicable, GOV.UK Pay will inform the user that a corporate
+platform checks to determine if it’s one of the 4 corporate card types. If a
+surcharge is applicable, GOV.UK Pay will inform the user that a 
 surcharge of a certain amount will be added to the total. If the platform
 cannot determine the exact type of a card being used, it will not apply a
 surcharge.
@@ -36,7 +36,7 @@ includes the surcharge. You can also use the [partial refund
 feature](/refunding_payments/#payment-refund-status-and-partial-refunds) to
 only refund the total amount excluding the surcharge. 
 
-If a corporate surcharge is applied to a particular payment, you can see this
+If a surcharge is applied to a particular payment, you can see this
 in API responses:
 
 ### `"amount"` 
