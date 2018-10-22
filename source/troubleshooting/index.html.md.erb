@@ -26,7 +26,8 @@ Possible reasons why your call may be rejected include:
 + the use of invalid characters such as ``<``, ``>``, ``|``, ``"`` or backslashes
 + the ``return_url`` you provide is not ``https://``
 + there are URLs inside the ``reference`` or ``description`` you provide
-
++ you have not included a ``Content-Type: application/json`` header
++ you've included an ``Accept`` header but with something other than ``application/json``
 
 ## The code examples in the documentation do not work
 
