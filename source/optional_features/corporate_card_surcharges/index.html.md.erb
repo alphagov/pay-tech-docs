@@ -38,22 +38,15 @@ includes the surcharge. You can also use the [partial refund
 feature](/refunding_payments/#payment-refund-status-and-partial-refunds) to
 only refund the total amount excluding the surcharge. 
 
-If a surcharge is applied to a particular payment, you can see this in the API
-response fields `"amount"`, `"total_amount"` and `"corporate_card_surcharge"`.
+If a surcharge is applied to a particular payment, you can see this in API
+response fields:  
 
-#### `"amount"` 
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
-Contains the amount in pence, without any surcharge. This field always
-appears, even if a surcharge is not applicable.  
+| Response field                   | Meaning                                                                                        
+|----------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| `"amount"`                       | Contains the amount in pence, without any surcharge. </br> This field always appears, even if a surcharge is not applicable.|  
+| `"total_amount"`                 | Contains the total amount in pence, including any surcharge. </br> Only appears if a surcharge is applicable.               |
+| `"corporate_card_surcharge"`     | Contains only the surcharge amount, in pence. </br> Only appears if a surcharge is applicable.                              |
 
-#### `"total_amount"` 
-
-Contains the total amount in pence, including any surcharge. Only appears if a
-surcharge is applicable. 
-
-#### `"corporate_card_surcharge"` 
-
-Contains only the surcharge amount, in pence. Only appears if a surcharge is
-applicable.
-
-
+<div style="height:1px;font-size:1px;">&nbsp;</div>
