@@ -5,17 +5,32 @@ weight: 55
 
 # Account structure 
 
+If you have multiple services integrated with GOV.UK Pay, you can treat them
+differently at each level (service, GOV.UK Pay, and PSP).
+
+For example, if you had services for parking permits and parking fines, you
+could have these treated individually at your service level, but have them be
+treated as part of the same service at the GOV.UK Pay level (e.g. "Parking
+service") level). You could also have them be treated separately or as part of
+the same service at the PSP level. How they are treated at the PSP level
+determines what appears on the user's bank statement.  
+
 Within each service you can edit: 
 
 * user permissions 
 * email template to user
 * accepted card types
 * name that appears on the payment pages 
-* accept 3DS (all the things you can manage on the settings page). 
+* accept 3DS 
 
-Each service has its own API.
+Each service defined in GOV.UK Pay has its own API.
 
-Within each you can edit: what appears on bank statement of your users, which
-of your bank accounts your revenue goes to
+Within each service on GOV.UK Pay, you can edit: 
+
+* what appears on bank statement of your users 
+* which of your bank accounts your revenue goes to
+
+This image illustrates how you can treat services within your payment
+integration:
 
 ![This is an image](https://raw.githubusercontent.com/alphagov/pay-tech-docs/account_structure/source/images/account_structure.png)
