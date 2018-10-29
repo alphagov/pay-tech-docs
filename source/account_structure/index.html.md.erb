@@ -5,15 +5,34 @@ weight: 55
 
 # Account structure 
 
-If you have multiple services integrated with GOV.UK Pay, you can treat them
-differently at each level (you, GOV.UK Pay, and PSP).
+If you have multiple services integrated, you can treat them separately or as
+a combined single service. You can use the GOV.UK Pay platform to set this this within
+GOV.UK Pay and within your Payment Service Provider (PSP). 
 
-For example, if you had services for parking permits and parking fines, you
-could have these treated individually at your level, but have them be
-treated as part of the same service at the GOV.UK Pay level (e.g. "Parking
-service"). You could also have them be treated separately or as part of
-the same service at the PSP level. How services are treated at the PSP level
-determines what appears on the user's bank statement.  
+![Account structures diagram](https://raw.githubusercontent.com/alphagov/pay-tech-docs/account_structure/source/images/account_structure.png)
+
+You may have 2 services, for example for parking permits and parking fines.
+The diagram takes this example and illustrates the different possible
+structures you can have:
+
+### Type 1 (GOV.UK Pay separate, PSP separate)
+
+"Parking permits" and "Parking fines" are considered as separate services in
+both GOV.UK Pay and the PSP.
+
+### Type 2 (GOV.UK Pay combined, PSP combined)
+
+"Parking permits" and "Parking fines" are considered as a single combined
+service in GOV.UK Pay and in the PSP.
+
+### Type 3 (GOV.UK Pay separate, PSP combined)
+
+"Parking permits" and "Parking fines" are considered as separate services in
+GOV.UK Pay and as a single combined service in the PSP. 
+
+## Editing GOV.UK Pay services 
+
+Each service defined in GOV.UK Pay has its own API.
 
 In GOV.UK Pay, within each service you can edit: 
 
@@ -23,14 +42,10 @@ In GOV.UK Pay, within each service you can edit:
 * name that appears on the payment pages 
 * accept 3DS 
 
-Each service defined in GOV.UK Pay has its own API.
+## Editing PSP services 
 
-Within each service at the PSP level, you can edit: 
+Within each service for the PSP, you can edit: 
 
 * what appears on bank statement of your users 
 * which of your bank accounts your revenue goes to
 
-This image illustrates how you can treat services within your payment
-integration:
-
-![This is an image](https://raw.githubusercontent.com/alphagov/pay-tech-docs/account_structure/source/images/account_structure.png)
