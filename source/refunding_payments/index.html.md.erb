@@ -102,11 +102,17 @@ in the ``refund_amount_available`` value.
 
 ## Refunding with the API
 
-You can initiate a refund with the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/submit-a-refund-for-a-payment" target="blank">Submit a refund for a payment</a> function (link opens in new window).
+You can initiate a refund with the <a
+href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/submit-a-refund-for-a-payment"
+target="blank">Submit a refund for a payment</a> function (link opens in new
+window).
 
-You need to specify the ``paymentId`` of the original payment, and provide the amount to refund (in pence).
+You need to specify the ``paymentId`` of the original payment, and provide the
+amount to refund (in pence).
 
-You should check that the amount you attempt to refund does not exceed the ``amount_available`` value; otherwise you will receive a P0603 error like this:
+You should check that the amount you attempt to refund does not exceed the
+``amount_available`` value; otherwise you will receive a P0603 error like
+this:
 
 ```
 {
@@ -117,20 +123,42 @@ You should check that the amount you attempt to refund does not exceed the ``amo
 
 Each refund has a unique ``refund_id``.
 
-You can use the <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id/endpoints/get-all-refunds-for-a-payment" target="blank">Get all refunds for a payment</a> function (link opens in new window) to get information all the refunds for a payment (including their ``refund_id``s).
+You can use the <a
+href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id/endpoints/get-all-refunds-for-a-payment"
+target="blank">Get all refunds for a payment</a> function (link opens in new
+window) to get information all the refunds for a payment (including their
+``refund_id``s).
 
-You can retrieve information about an individual refund using the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id" target="blank">Find payment refund by ID</a> function (link opens in new window).
+You can retrieve information about an individual refund using the <a
+href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id"
+target="blank">Find payment refund by ID</a> function (link opens in new
+window).
 
+A `204` response from the API indicates that a refund was successful. Any
+other response indicates an error.
 
 ## Handling refund errors
 
-When you try to create a refund with the API, it may fail immediately - for example if you try to refund more than the amount available. In that case, the original <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/submit-a-refund-for-a-payment" target="blank">Submit a refund for a payment</a> request (link opens in new window) will return an error code and a description of what it means. (A refund attempt that fails like this with an error code is not assigned a refundId and is not available using <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id" target="blank">Find payment refund by ID</a> (link opens in new window)).
+When you try to create a refund with the API, it may fail immediately - for
+example if you try to refund more than the amount available. In that case, the
+original <a
+href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/submit-a-refund-for-a-payment"
+target="blank">Submit a refund for a payment</a> request (link opens in new
+window) will return an error code and a description of what it means. (A
+refund attempt that fails like this with an error code is not assigned a
+refundId and is not available using <a
+href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id"
+target="blank">Find payment refund by ID</a> (link opens in new window)).
 
-If accepted by GOV.UK Pay, a refund may still go on to fail at the PSP. This may happen if the card involved is cancelled or has expired, or if your account with the PSP does not have enough funds to cover the refund.
+If accepted by GOV.UK Pay, a refund may still go on to fail at the PSP. This
+may happen if the card involved is cancelled or has expired, or if your
+account with the PSP does not have enough funds to cover the refund.
 
-Each refund has a processing status indicated by a "status" value that is returned in response to a successful request to a ``/refunds/`` endpoint.
+Each refund has a processing status indicated by a "status" value that is
+returned in response to a successful request to a ``/refunds/`` endpoint.
 
-This is a partial example of a response including the refund's processing status:
+This is a partial example of a response including the refund's processing
+status:
 
 ```javascript
 {
