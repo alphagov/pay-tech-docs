@@ -18,17 +18,21 @@ structures you can have:
 ### Type 1 (GOV.UK Pay separate, PSP separate)
 
 "Parking permits" and "Parking fines" are considered as separate services in
-both GOV.UK Pay and the PSP.
+both GOV.UK Pay and the PSP. In this setup, payments to services can go to
+separate bank accounts because each service has a PSP account. 
 
 ### Type 2 (GOV.UK Pay combined, PSP combined)
 
 "Parking permits" and "Parking fines" are considered as a single combined
-service in GOV.UK Pay and in the PSP.
+service in GOV.UK Pay and in the PSP. In this setup, payments to services must
+go to the same bank account because they are a single service in the PSP. 
 
 ### Type 3 (GOV.UK Pay separate, PSP combined)
 
 "Parking permits" and "Parking fines" are considered as separate services in
-GOV.UK Pay and as a single combined service in the PSP. 
+GOV.UK Pay and as a single combined service in the PSP. In this setup,
+payments to services must go to the same bank account because they are a
+single service in the PSP. 
 
 ## Editing GOV.UK Pay services 
 
@@ -44,7 +48,7 @@ In GOV.UK Pay, within each service you can edit:
 
 ## Editing PSP services 
 
-Within each service for the PSP, you can edit: 
+Within each gateway account for the PSP, you can edit: 
 
 * what appears on bank statement of your users 
 * which of your bank accounts your revenue goes to
