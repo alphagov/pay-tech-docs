@@ -6,14 +6,16 @@ weight: 55
 # Account structure 
 
 If you have multiple services integrated, you can treat them separately or as
-a combined single service. You can use the GOV.UK Pay platform to set this this within
-GOV.UK Pay and within your Payment Service Provider (PSP). 
+a combined single service. This gives 3 possible account configurations.
+
+You can use the GOV.UK Pay platform to set this within
+GOV.UK Pay itself, and within your Payment Service Provider (PSP). 
+
+## Configuration example
+
+You might have 2 services called "parking permits" and "parking fines": 
 
 ![Account structures diagram](https://raw.githubusercontent.com/alphagov/pay-tech-docs/account_structure/source/images/account_structure.png)
-
-You may have 2 services, for example for parking permits and parking fines.
-The diagram takes this example and illustrates the different possible
-structures you can have:
 
 ### Type 1 (GOV.UK Pay separate, PSP separate)
 
@@ -41,10 +43,10 @@ Each service defined in GOV.UK Pay has its own API.
 In GOV.UK Pay, within each service you can edit: 
 
 * user permissions 
-* email template to user
+* email templates to users
 * accepted card types
-* name that appears on the payment pages 
-* accept 3DS 
+* the name that appears on the payment pages 
+* whether you accept 3DS 
 
 ## Editing PSP services 
 
