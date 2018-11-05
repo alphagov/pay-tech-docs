@@ -163,7 +163,7 @@ The payment can fail at any point in the process due to:
 + a technical error
 + the payment being cancelled by your service
 
-If the payment fails, the user will see a GOV.UK Pay error page. This includes a link to return to your service that states _Go back to try the payment again_. When a user returns to your service after a failed payment you should show them a page that offers useful next steps. This page should:
+If the payment fails, the user will see a GOV.UK Pay error page, which includes a __Continue__ button. When a user selects this button, your service should show them a page that:
 
 - confirm that the payment failed
 - offer the user a chance to try the payment again either by initiating a new payment with GOV.UK Pay or using another method supported by your service
