@@ -9,42 +9,66 @@ If you have multiple services integrated, you can treat them separately or as
 a combined single service within GOV.UK and your Payment Service Provider
 (PSP). This gives 3 possible account configurations.
 
-## Configuration examples
-
-You might have 2 services called "parking permits" and "parking fines": 
-
-![Account structures diagram](https://raw.githubusercontent.com/alphagov/pay-tech-docs/account_structure/source/images/account_structure.png)
+As an example, take 2 services called "parking permits" and "parking fines": 
 
 ### Type 1 (GOV.UK Pay separate, PSP separate)
 
+![Account structures diagram](https://raw.githubusercontent.com/alphagov/pay-tech-docs/account_structure/source/images/accountstructure_1.png)
+
 "Parking permits" and "Parking fines" are considered as separate services in
-both GOV.UK Pay and the PSP. In this setup, payments to services can go to
-separate bank accounts because each service has a PSP account. 
+both GOV.UK Pay and the PSP. 
+
+This is the default configuration for services. 
+
+In this setup, payments to services can go to separate bank accounts because
+each service has a PSP account. 
 
 ### Type 2 (GOV.UK Pay combined, PSP combined)
 
+![Account structures diagram](https://raw.githubusercontent.com/alphagov/pay-tech-docs/account_structure/source/images/accountstructure_2.png)
+
 "Parking permits" and "Parking fines" are considered as a single combined
-service in GOV.UK Pay and in the PSP. In this setup, payments to services must
-go to the same bank account because they are a single service in the PSP. 
+service in GOV.UK Pay and in the PSP. 
+
+You may want to use this configuration if you want to simplify the
+administration of multiple services in GOV.UK Pay, and have them appear as a
+single item on the end user's bank statement.  
+
+In this setup, payments to services must go to the same bank account because
+they are a single service in the PSP. 
 
 ### Type 3 (GOV.UK Pay separate, PSP combined)
 
+![Account structures diagram](https://raw.githubusercontent.com/alphagov/pay-tech-docs/account_structure/source/images/accountstructure_3.png)
+
 "Parking permits" and "Parking fines" are considered as separate services in
-GOV.UK Pay and as a single combined service in the PSP. In this setup,
-payments to services must go to the same bank account because they are a
-single service in the PSP. 
+GOV.UK Pay and as a single combined service in the PSP. 
+
+You may want to use this configuration if you want to administrate multiple
+services individually in GOV.UK Pay, but have them appear as a single item on
+the end user's bank statement.  
+
+In this setup, payments to services must go to the same bank account because
+they are a single service in the PSP. 
 
 ## Editing GOV.UK Pay services 
 
-Each service defined in GOV.UK Pay has its own API.
+Each service defined in GOV.UK Pay has its own API key. 
 
 In GOV.UK Pay, within each service you can edit: 
 
-* user permissions 
-* email templates to users
-* accepted card types
-* the name that appears on the payment pages 
-* whether you accept 3DS 
+Sign in to [the GOV.UK Pay admin
+site](https://selfservice.payments.service.gov.uk/) and go to the __Settings__
+page to change: 
+
+* account credentials 
+* 3D secure settings 
+* the card types you accept 
+* email notifications settings 
+
+You can also change the name of a service, including as it appears on payment
+pages. To do this, select __My services__ and then __Edit name__ for the
+service name you want to change.  
 
 ## Editing PSP services 
 
@@ -53,3 +77,4 @@ Within each gateway account for the PSP, you can edit:
 * what appears on bank statement of your users 
 * which of your bank accounts your revenue goes to
 
+Contact your PSP to find out more. 
