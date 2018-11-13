@@ -3,66 +3,63 @@ title: API reference
 weight: 60
 ---
 
-# API reference 
+# API reference
 
 The base URL for the GOV.UK Pay API is
-`https://publicapi.payments.service.gov.uk/`. 
+`https://publicapi.payments.service.gov.uk/`.
 
-The same base URL is used for testing and live. The API key you use
-determines if the actions are treated as sandbox test payments, or processed as
-real payments.
+The same base URL is used for test and live accounts. The API key you use
+determines if actions are treated as test payments, or processed as real payments.
 
 The API is based on REST principles. It returns data in JSON format, and uses
-standard HTTP error response codes. 
+standard HTTP error response codes.
 
-For full details of each API action, see the API browser: 
+For full details of each API action, see the API browser:
 
 - <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general" target="blank">General functions</a> [external link] 
-- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id" target="blank">Payment ID functions</a> [external link] 
+- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id" target="blank">Payment ID functions</a> [external link]
 
 You can also use the interactive <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//"
-target="blank">API explorer</a> [external link] to try out API calls and view
-responses.
+target="blank">API explorer</a> [external link] to try API calls and view responses.
 
-See the ["Quick start guide"](/quick_start_guide/#quick-start-guide) section for
-how to set up the API explorer. Make sure you enter your sandbox API key to
-avoid generating real payments.
+See the ["Quick start guide"](/quick_start_guide/#quick-start-guide) section
+to read how to set up the API explorer. Make sure you enter your test API
+key to avoid generating real payments.
 
 ## Authentication
 
-GOV.UK Pay authenticates API calls with OAuth2 HTTP bearer tokens. These are
-easy to use and contain only your API key. [RFC
-6750](http://tools.ietf.org/html/rfc6750) details bearer tokens.  
+GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer
+tokens](http://tools.ietf.org/html/rfc6750) [external link]. These are easy to
+use and contain only your API key. 
 
-When making an API call, you need to add your API key to an "Authorization"
-HTTP header prefixed with "Bearer ". For example: 
+When you make an API call, you need to use an "Authorization" HTTP header to
+provide your API key, with a "Bearer" prefix. For example:
 
 ```text
-Authorization: Bearer <YOUR-API-KEY-HERE> 
+Authorization: Bearer <YOUR-API-KEY-HERE>
 ```
 
 ## Payment status lifecycle
 
-This diagram gives an overview of the payment status lifecycle and the
-possible outcomes.
+The following diagram gives an overview of the payment status lifecycle and the
+possible outcomes, excluding for delayed capture payments:
 
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-transaction-states.png)
 
 You can check the status of a payment using the <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
-target="blank">Find payment by ID</a> API call [external link].  
+target="blank">Find payment by ID</a> API call [external link].
 
-The response will include a ``status`` value as described in the table below,
-and a true/false ``finished`` value which indicates if the status can change.
+A successful response includes ``status`` and ``finished`` values:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-| status value | Meaning                                                                                        | finished value |
+| ``status``   | Meaning                                                                                        | ``finished``   |
 |--------------|------------------------------------------------------------------------------------------------|----------------|
-| created      | Payment created; user has not yet visited next_url                                             | false          |
-| started      | User has visited next_url and is entering payment details                                      | false          |
-| submitted    | User has submitted payment details but has not yet clicked Confirm                             | false          |
+| created      | Payment created. User has not yet visited next_url                                             | false          |
+| started      | User has visited `next_url` and is entering payment details                                    | false          |
+| submitted    | User has submitted payment details but has not yet selected Confirm                            | false          |
 | success      | User successfully completed the payment                                                        | true           |
 | failed       | User attempted to make a payment but the payment did not complete. Possible reasons: user cancelled; user entered payment details but never confirmed; payment declined due to insufficent funds; payment declined due to fraud or other checks | true           |
 | cancelled    | Your service cancelled the payment using an API call or the self-service site.                 | true           |
@@ -72,31 +69,30 @@ and a true/false ``finished`` value which indicates if the status can change.
 
 ## HTTP status codes
 
-You will encounter typical HTTP success and error response codes when using
-the GOV.UK Pay API. Generally any:
+The GOV.UK Pay uses standard HTTP response code conventions:
 
-- 100 code is informational
-- 200 code indicates you’ve been successful
-- 300 code indicates a redirection
-- 400 code indicates a client error (your error)
-- 500 code indicates a server error (something went wrong on the GOV.UK Pay end)
+- 100 codes are informational
+- 200 codes indicate success
+- 300 codes indicate a redirection
+- 400 codes indicate a client-side error
+- 500 codes indicate a server-side error
 
-These are the known status codes you are likely to receive:
+Common status codes are:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-|Common status code| Meaning|
-|------------------|--------|
-|200 | Payment information request succeeded |
-|201 | Payment has been created |
-|204 | The server successfully processed the request, but is not returning any content |
-|400 | The server cannot process the request due to a client error, e.g. missing details in the request or a failed payment cancellation|
-|401 | Required authentication has failed or not been provided|
-|404 | The resource you want cannot be found|
-|412 | Precondition failed: e.g. mismatch in expected refund amount available|
-|422 | Unprocessable entity obtained on a request validation|
-|429 | Too many requests. Request rate is above the rate limit|
-|Any 500 error | Something is wrong with GOV.UK Pay - please contact us|
+| Common status code| Meaning|
+|-------------------|--------|
+| 200 | Payment information request succeeded |
+| 201 | Payment has been created |
+| 204 | The server successfully processed the request, but is not returning any content |
+| 400 | The server cannot process the request due to a client error, eg missing details in the request or a failed payment cancellation |
+| 401 | Required authentication has failed or not been provided |
+| 404 | The resource you want cannot be found |
+| 412 | Precondition failed, eg mismatch in expected refund amount available |
+| 422 | Unprocessable entity obtained on a request validation |
+| 429 | Too many requests. Request rate is above the rate limit |
+| Any 500 error | Something is wrong with GOV.UK Pay - please contact us |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
@@ -126,7 +122,7 @@ These are the known status codes you are likely to receive:
 | Create refund | P0600 | paymentId not found | No payment matched the paymentId you provided |
 | Create refund | P0601 | Missing mandatory attribute | The request you sent is missing a required attribute |
 | Create refund | P0602 | Invalid attribute value | The value of an attribute you sent is invalid |
-| Create refund | P0603 | Refund not available | The payment is not available for refund. |
+| Create refund | P0603 | Refund not available | The payment is not available for refund |
 | Create refund | P0604 | Refund amount available mismatch | The **refund_amount_available** value you provided does not match the true amount available to refund. |
 | Create refund | P0697 | Unable to parse JSON | The JSON you sent in the request body is invalid |
 | Create refund | P0698 | Downstream system error | Internal error with GOV.UK Pay; contact us, quoting the error code |
@@ -149,9 +145,9 @@ The general format of JSON error response bodies is:
 }
 ```
 
-These error descriptions are intended for developers, not end users. 
+These error descriptions are intended for developers, not end users.
 
-Some errors may contain additional fields , such as `field`. 
+Some errors may contain additional fields , such as `field`.
 
 ### Errors caused by payment statuses
 
@@ -170,14 +166,14 @@ Some errors may contain additional fields , such as `field`.
 You can see which payments have status-related error codes using the GOV.UK
 Pay admin tool or directly using the API. 
 
-#### Use the admin tool  
+#### Use the admin tool
 
 1. Sign in to the [GOV.UK Pay admin
 site](https://selfservice.payments.service.gov.uk/) (link opens in new window).
-2. Select _Transactions_. 
+2. Select _Transactions_.
 3. Select a payment with a "failed", "cancelled" or "error" status.
 
-#### Use the API 
+#### Use the API
 
 You can use the API to examine the `state` object in a payment's API response.
 
@@ -216,7 +212,7 @@ For example:
 ## API rate limits
 
 POST requests to the GOV.UK Pay API are rate-limited to 15 requests per
-second, for each government service. 
+second, for each government service.
 
 GET requests are also rate-limited, but at a very high level. In the future,
 we will publish an official rate limit for GET requests.
