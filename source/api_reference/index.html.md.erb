@@ -45,7 +45,7 @@ Authorization: Bearer <YOUR-API-KEY-HERE>
 The following diagram gives an overview of the payment status lifecycle and the
 possible outcomes, excluding for delayed capture payments:
 
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-transaction-states.png)
+![](images/payment-states.svg)
 
 You can check the status of a payment using the <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
@@ -53,17 +53,48 @@ target="blank">Find payment by ID</a> API call [external link].
 
 A successful response includes ``status`` and ``finished`` values:
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
-
-| ``status``   | Meaning                                                                                        | ``finished``   |
-|--------------|------------------------------------------------------------------------------------------------|----------------|
-| created      | Payment created. User has not yet visited next_url                                             | false          |
-| started      | User has visited `next_url` and is entering payment details                                    | false          |
-| submitted    | User has submitted payment details but has not yet selected Confirm                            | false          |
-| success      | User successfully completed the payment                                                        | true           |
-| failed       | User attempted to make a payment but the payment did not complete. Possible reasons: user cancelled; user entered payment details but never confirmed; payment declined due to insufficent funds; payment declined due to fraud or other checks | true           |
-| cancelled    | Your service cancelled the payment using an API call or the self-service site.                 | true           |
-| error        | Something went wrong with GOV.UK Pay or the underlying Payment Service Provider.               | true           |
+<table style="width:100%">
+  <tr>
+  <th><code>status</code></th>
+  <th>Meaning</th> 
+  <th nowrap><code>finished</code></th>
+  </tr>
+  <tr>
+    <td> created </td>     
+    <td> Payment created. User has not yet visited <code>next_url</code> </td>
+    <td> false </td> 
+  </tr>
+  <tr>
+    <td> started </td>
+    <td> User has visited <code>next_url</code> and is entering payment details </td> 
+    <td> false </td>
+  </tr>
+  <tr>
+    <td> submitted </td>
+    <td> User has submitted payment details but has not yet selected 'Confirm' </td> 
+    <td> false </td>
+  </tr>
+  <tr>
+    <td> success </td>
+    <td> User successfully completed the payment </td> 
+    <td> true </td>
+  </tr>
+  <tr>
+    <td> failed </td>
+    <td> User attempted to make a payment but the payment did not complete </td>
+    <td> true </td>
+  </tr>
+  <tr>
+    <td> cancelled </td>
+    <td> Your service cancelled the payment using an API call or the self-service site </td>
+    <td> true </td>
+  </tr>
+  <tr>
+    <td> error </td>
+    <td> Something went wrong with GOV.UK Pay or the underlying payment service provider </td>
+    <td> true </td>
+  </tr>
+</table>
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
@@ -209,7 +240,7 @@ For example:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-## API rate limits
+## Rate limits 
 
 POST requests to the GOV.UK Pay API are rate-limited to 15 requests per
 second, for each government service.
