@@ -5,18 +5,30 @@ weight: 90
 
 # Testing GOV.UK Pay
 
-You will receive a sandbox account for testing in addition to your live credentials.
+You will receive a test account for testing in addition to your live credentials.
 
 When testing, you’ll need to ensure:
 
  - you’ve tested with mock card numbers (see below) to simulate both successful and unsuccessful transactions - never use real card numbers for testing purposes, as this breaks PCI rules
- - you test with your sandbox account, not your live account
+ - you test with your test account, not your live account
  - REST calls succeed with 200 API codes
  - you’ve tested the user journey from your service to the payments platform using end-to-end/smoke tests
 
-Services testing with sandbox accounts can optionally use HTTP (rather than HTTPS)
+Services testing with test accounts can optionally use HTTP (rather than HTTPS)
 for return URLs. You can read more about this in [the "Security"
 section](/security/#https). 
+
+### Make a demo payment
+
+You can [try the payment experience as a
+user](https://selfservice.payments.service.gov.uk/make-a-demo-payment), and
+then view the completed payment as a GOV.UK Pay administrator.
+
+### Test your service with your users 
+
+You can [create a reusable
+link](https://selfservice.payments.service.gov.uk/test-with-your-users) to
+integrate your service prototype with GOV.UK Pay, and test with your users.
 
 ## Integration testing
 
