@@ -7,7 +7,7 @@ weight: 50
 
 This section outlines how your service will interact with GOV.UK Pay after integration.
 
-<br> 
+<br>
 
 <style>
 .govuk-warning-text{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400;font-size:16px;font-size:1rem;line-height:1.25;color:#0b0c0c;position:relative;margin-bottom:20px;padding:10px 0}@media print{.govuk-warning-text{font-family:sans-serif}}@media (min-width:40.0625em){.govuk-warning-text{font-size:19px;font-size:1.1875rem;line-height:1.31579}}@media print{.govuk-warning-text{font-size:14pt;line-height:1.15;color:#000}}@media (min-width:40.0625em){.govuk-warning-text{margin-bottom:30px}}.govuk-warning-text__assistive{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;-webkit-clip-path:inset(50%)!important;clip-path:inset(50%)!important;border:0!important;white-space:nowrap!important}.govuk-warning-text__icon{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:700;display:inline-block;position:absolute;top:50%;left:0;min-width:32px;min-height:29px;margin-top:-20px;padding-top:3px;border:3px solid #0b0c0c;border-radius:50%;color:#fff;background:#0b0c0c;font-size:1.6em;line-height:29px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}@media print{.govuk-warning-text__icon{font-family:sans-serif}}.govuk-warning-text__text{display:block;margin-left:-15px;padding-left:65px}
@@ -23,9 +23,17 @@ This section outlines how your service will interact with GOV.UK Pay after integ
 
 ## Overview 
 
+The following diagram shows the payment process for a service that has an
+integration with GOV.UK Pay:
+
+![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/Card+payment+process.png)
+
+It also shows the relationship between GOV.UK Pay, payment service providers
+(PSPs) and issuing banks.
+
 When an end user needs to make a payment, your service makes an API call to create a new payment, then redirects the user to the payment pages hosted on GOV.UK Pay.
 
-The end user enters their payment details (for example, credit/debit card details and billing address) on the GOV.UK Pay pages. GOV.UK Pay verifies the payment with the underlying Payment Service Provider(PSP).
+The end user enters their payment details (for example, credit/debit card details and billing address) on the GOV.UK Pay pages. GOV.UK Pay verifies the payment with the underlying PSP. 
 
 After the transaction reaches a final state, the end user is then redirected back to your service.
 
@@ -38,13 +46,15 @@ A final state means that the payment:
 + fails because it is cancelled by your service
 + fails because it times out - users have 90 minutes to complete a payment once it is created 
 
-When the user arrives back at your service, you can use the API to check the status of the transaction and show them an appropriate message.
+When the user arrives back at your service, you can use the API to check the
+status of the transaction and show them an appropriate message.
 
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-transaction-states.png)
+The following diagram illustrates the states a payment can pass through before
+reaching a final state:
+
+![](images/payment-states.svg)
 
 ## Making a payment 
-
-This section contains an example of the payment flow, using an example. 
 
 The following image represents a page on a service where the end user needs to make a payment:
 
@@ -127,7 +137,7 @@ This page shows the ``description`` as well as the amount the end user has to pa
 
 The user enters their payment details and clicks **Continue**.
 
-GOV.UK Pay will then attempt a payment authorisation through the Payment Service Provider (PSP). This checks with the card issuer whether there are sufficient funds available to make this payment and also carries out some anti-fraud checks.
+GOV.UK Pay will then attempt a payment authorisation through the PSP. This checks with the card issuer whether there are sufficient funds available to make this payment and also carries out some anti-fraud checks.
 
 ## Payment successful
 
