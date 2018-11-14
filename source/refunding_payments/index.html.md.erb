@@ -24,7 +24,7 @@ Each payment has a refund status which can take one of the following values:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-For sandbox accounts, you will not see the `pending` state because there is
+For test accounts, you will not see the `pending` state because there is
 no delay in processing a payment when testing. For live accounts, successful
 payments spend some time in `pending` state before a refund becomes
 possible.
@@ -184,7 +184,7 @@ For example, the response body for a refund would include:
 
 Initially, in a live environment, the status returned will be `submitted`.
 After the PSP has processed the refund, the status returned will be
-`success` or `error`. (In the sandbox environment, the status will always
+`success` or `error`. (In the test environment, the status will always
 go straight to `success`).
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>

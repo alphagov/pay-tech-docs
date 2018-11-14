@@ -3,25 +3,50 @@ title: Quick start guide
 weight: 40
 ---
 
-# Quick start guide
+# Quick start guide 
 
-GOV.UK Pay is based on REST principles with endpoints returning data in JSON
-format, and standard HTTP error response codes. The platform API allows you
-to:
+Read this section to learn about what to do to get started with GOV.UK Pay.
+
+## Before you start
+
+Before you start testing GOV.UK Pay, you should:
+
+* read the ["Get started"
+guide](https://www.payments.service.gov.uk/getstarted/) (link opens in new
+window) to decide if GOV.UK Pay is right for your service 
+
+* sign up for [the GOV.UK Pay admin
+tool](https://selfservice.payments.service.gov.uk/create-service/register) 
+
+* read the government guidance on [deploying new
+software](https://www.gov.uk/service-manual/making-software/deployment.html).
+
+If you want to build a technical integration between your service and the
+GOV.UK Pay API, your service team should have the necessary skills. You can
+refer to the [Service
+Manual](https://www.gov.uk/service-manual/the-team/what-each-role-does-in-service-team#roles-your-team-must-have)
+for more information. This does not apply if you only use [payment
+links](/payment_links/#payment-links).
+
+## The GOV.UK Pay API 
+
+The GOV.UK Pay API is based on REST principles with endpoints returning data
+in JSON format, and standard HTTP error response codes. The platform API
+allows you to:
 
 - begin and complete payments
 - issue refunds
 - view the event history for individual payments
 - view transactions within a specified time period
 
-Once you [have a sandbox account](/before_you_start/#before-you-start), follow
+Once you [have a test account](/before_you_start/#before-you-start), follow
 these instructions to get started with our API Explorer and make a test API
 call. 
 
 ## Generate API Key for API Explorer
 
 1. Sign in to the [GOV.UK Pay admin
-   site](https://selfservice.payments.service.gov.uk/) with the sandbox
+   site](https://selfservice.payments.service.gov.uk/) with the test
    account login details you received.
 
 2. From the landing page, select __API key__, then __Generate a new key__.
@@ -51,12 +76,12 @@ Explorer</a> (link opens in new window) with your API key.
    ![](images/pay-add-api-key.png) <br/><br/>
 2.  In the pop-up, enter the following values:
 
-  * For __API Key__, enter your sandbox API key. You do not need to add the
+  * For __API Key__, enter your test API key. You do not need to add the
   "Bearer: " prefix, because the API Explorer adds that automatically.  
   * For __Label__, enter `Authorization`. 
 
 > Do not use an API key from a live account on the GOV.UK Pay admin site. Only
-> use a sandbox API key 
+> use a test API key 
 
 ## Make a test API call
 
@@ -88,7 +113,7 @@ that the user will be redirected to after they have completed their payment
 (or payment has failed).  <br/><br/>
 ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-api-explorer-createpay.png)
 
-Services that use sandbox accounts can optionally use HTTP, rather than HTTPS,
+Services that use test accounts can optionally use HTTP, rather than HTTPS,
 for return URLs. You can read more about this in [the "Security"
 section](/security/#https). 
 
@@ -107,7 +132,7 @@ section](/security/#https).
 Go to the ``next_url`` with a browser, and you'll see the payment screen.
 Choose a mock card number from the ["Testing GOV.UK
 Pay"](/testing_govuk_pay/#mock-card-numbers-for-testing-purposes) section and
-enter it to simulate a payment in the sandbox environment. For the other
+enter it to simulate a payment in the test environment. For the other
 required details, enter some test information which should have:
 
   * an expiry date that is in the future and in the format MM/YYYY 
