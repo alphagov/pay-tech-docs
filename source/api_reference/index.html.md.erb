@@ -61,37 +61,37 @@ A successful response includes ``status`` and ``finished`` values:
   </tr>
   <tr>
     <td> created </td>     
-    <td> Payment created. User has not yet visited <code>next_url</code> </td>
+    <td> Payment created. User has not yet visited <code>next_url</code>. </td>
     <td> false </td> 
   </tr>
   <tr>
     <td> started </td>
-    <td> User has visited <code>next_url</code> and is entering payment details </td> 
+    <td> User has visited <code>next_url</code> and is entering payment details. </td> 
     <td> false </td>
   </tr>
   <tr>
     <td> submitted </td>
-    <td> User has submitted payment details but has not yet selected 'Confirm' </td> 
+    <td> User has submitted payment details but has not yet selected <b>Confirm</b>. Or, user has selected <b>Confirm</b> and the payment is a delayed capture.</td> 
     <td> false </td>
   </tr>
   <tr>
     <td> success </td>
-    <td> User successfully completed the payment </td> 
+    <td> User successfully completed the payment. </td> 
     <td> true </td>
   </tr>
   <tr>
     <td> failed </td>
-    <td> User attempted to make a payment but the payment did not complete </td>
+    <td> User attempted to make a payment but the payment did not complete. </td>
     <td> true </td>
   </tr>
   <tr>
     <td> cancelled </td>
-    <td> Your service cancelled the payment using an API call or the self-service site </td>
+    <td> Your service cancelled the payment using an API call or the GOV.UK Pay admin tool. </td>
     <td> true </td>
   </tr>
   <tr>
     <td> error </td>
-    <td> Something went wrong with GOV.UK Pay or the underlying payment service provider </td>
+    <td> Something went wrong with GOV.UK Pay or the underlying payment service provider. Please <a href="/support_contact_and_more_information/#contact-us">contact us.</a> </td>
     <td> true </td>
   </tr>
 </table>
@@ -114,16 +114,16 @@ Common status codes are:
 
 | Common status code| Meaning|
 |-------------------|--------|
-| 200 | Payment information request succeeded |
-| 201 | Payment has been created |
-| 204 | The server successfully processed the request, but is not returning any content |
-| 400 | The server cannot process the request due to a client error, eg missing details in the request or a failed payment cancellation |
-| 401 | Required authentication has failed or not been provided |
-| 404 | The resource you want cannot be found |
-| 412 | Precondition failed, eg mismatch in expected refund amount available |
-| 422 | Unprocessable entity obtained on a request validation |
-| 429 | Too many requests. Request rate is above the rate limit |
-| Any 500 error | Something is wrong with GOV.UK Pay - please contact us |
+| 200 | Payment information request succeeded. |
+| 201 | Payment has been created. |
+| 204 | The server successfully processed the request, but is not returning any content. |
+| 400 | The server cannot process the request due to a client error, eg missing details in the request or a failed payment cancellation. |
+| 401 | Required authentication has failed or has not been provided. |
+| 404 | The resource you have requested cannot be found. |
+| 412 | Precondition failed, eg mismatch in expected refund amount available. |
+| 422 | Unprocessable entity obtained on a request validation. |
+| 429 | Too many requests. Request rate is above the rate limit. |
+| Any 500 error | Something is wrong with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us). |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
@@ -135,34 +135,34 @@ Common status codes are:
 
 | Request type | Error code | Meaning | Cause |
 |--------------|------------|---------|-------|
-| Create payment | P0101 | Missing mandatory attribute | The request you sent is missing a required attribute |
-| Create payment | P0102 | Invalid attribute value | The value of an attribute you sent is invalid |
-| Create payment | P0197 | Unable to parse JSON | The JSON you sent in the request body is invalid |
-| Create payment | P0198 | Downstream system error | Internal error with GOV.UK Pay: contact us, quoting the error code |
-| Create payment | P0199 | Account error | There is a problem with your service account: contact us, quoting the error code |
-| Find payment by ID | P0200 | paymentId not found | No payment matched the paymentId you provided |
-| Find payment by ID | P0298 | Downstream system error | Internal error with GOV.UK Pay: contact us, quoting the error code |
-| Return payment events by ID | P0300 | paymentId not found | No payment matched the paymentId you provided |
-| Return payment events by ID | P0398 | Downstream system error | Internal error with GOV.UK Pay: contact us, quoting the error code |
+| Create payment | P0101 | Missing mandatory attribute | The request you sent is missing a required attribute. |
+| Create payment | P0102 | Invalid attribute value | The value of an attribute you sent is invalid. |
+| Create payment | P0197 | Unable to parse JSON | The JSON you sent in the request body is invalid. |
+| Create payment | P0198 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Create payment | P0199 | Account error | There is a problem with your service account. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Find payment by ID | P0200 | `paymentId` not found | No payment matched the `paymentId` you provided. |
+| Find payment by ID | P0298 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Return payment events by ID | P0300 | `paymentId` not found | No payment matched the `paymentId you` provided. |
+| Return payment events by ID | P0398 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | Search payments | P0401 | Invalid parameters | The parameters you sent are invalid. |
-| Search payments | P0402 | Page not found | The requested page of search results does not exist |
-| Search payments | P0498 | Downstream system error | Internal error with GOV.UK Pay: contact us, quoting the error code |
-| Cancel payment | P0500 | paymentId not found | No payment matched the paymentId you provided |
-| Cancel payment | P0501 | Cancellation failed | Cancelling the payment failed; contact us, quoting the error code |
-| Cancel payment | P0598 | Downstream system error | Internal error with GOV.UK Pay; contact us, quoting the error code |
-| Create refund | P0600 | paymentId not found | No payment matched the paymentId you provided |
-| Create refund | P0601 | Missing mandatory attribute | The request you sent is missing a required attribute |
-| Create refund | P0602 | Invalid attribute value | The value of an attribute you sent is invalid |
-| Create refund | P0603 | Refund not available | The payment is not available for refund |
-| Create refund | P0604 | Refund amount available mismatch | The **refund_amount_available** value you provided does not match the true amount available to refund. |
-| Create refund | P0697 | Unable to parse JSON | The JSON you sent in the request body is invalid |
-| Create refund | P0698 | Downstream system error | Internal error with GOV.UK Pay; contact us, quoting the error code |
-| Get refund | P0700 | refundId not found | No refund matched the refundId you provided |
-| Get refund | P0798 | Downstream system error | Internal error with GOV.UK Pay; contact us, quoting the error code |
-| Get refunds | P0800 | refundId not found | No refund match the refundId you provided |
-| Get refunds | P0898 | Downstream system error | Internal error with GOV.UK Pay; contact us, quoting the error code |
-| General | P0900 | Too many requests | Your service account is sending requests above the allowed rate; try the request again in a few seconds |
-| General | P0920 | Request blocked by security rules | Our firewall blocked your request. See Troubleshooting section for details. |
+| Search payments | P0402 | Page not found | The requested page of search results does not exist. |
+| Search payments | P0498 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Cancel payment | P0500 | paymentId not found | No payment matched the `paymentId` you provided. |
+| Cancel payment | P0501 | Cancellation failed | Cancelling the payment failed. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Cancel payment | P0598 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Create refund | P0600 | paymentId not found | No payment matched the `paymentId` you provided. |
+| Create refund | P0601 | Missing mandatory attribute | The request you sent is missing a required attribute. |
+| Create refund | P0602 | Invalid attribute value | The value of an attribute you sent is invalid. |
+| Create refund | P0603 | Refund not available | The payment is not available for refund. |
+| Create refund | P0604 | Refund amount available mismatch | The `refund_amount_available` value you provided does not match the true amount available to refund. |
+| Create refund | P0697 | Unable to parse JSON | The JSON you sent in the request body is invalid. |
+| Create refund | P0698 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Get refund | P0700 | refundId not found | No refund matched the `refundId` you provided. |
+| Get refund | P0798 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Get refunds | P0800 | refundId not found | No refund match the `refundId` you provided. |
+| Get refunds | P0898 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| General | P0900 | Too many requests | Your service account is sending requests above the allowed rate. Please try the request again in a few seconds. |
+| General | P0920 | Request blocked by security rules | Our firewall blocked your request. See the [“Troubleshooting”](/troubleshooting) section for details. |
 | General | P0999 | GOV.UK Pay is unavailable | The GOV.UK Pay service is temporarily down. |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
@@ -186,11 +186,11 @@ Some errors may contain additional fields , such as `field`.
 
 | Error code | Meaning | Cause |
 |------------|---------|-------|
-| P0010 | Payment method rejected | Payment rejected due to payment method selected or payment information entered, for example, failed fraud check, a 3D Secure authentication failure, or the user does not have enough money in account |
-| P0020 | Payment expired | Payment was not confirmed and completed within 90 minutes of being created; if the payment was already authorised, GOV.UK PAY will send a cancellation to the payment provider |
-| P0030 | Payment cancelled by user | User clicked on the "Cancel payment" button during the payment journey; if the payment was already authorised, GOV.UK PAY will send a cancellation to the payment provider |
-| P0040 | Payment was cancelled by your service | Your service cancelled the payment |
-| P0050 | Payment provider returned an error | Multiple possible causes, for example a configuration problem with the payment provider, or incorrect login credentials; contact us, quoting the error code |
+| P0010 | Payment method rejected | Payment rejected due to payment method selected, or payment information entered. For example, failed fraud check, a 3D Secure authentication failure, or the user has insufficient funds in account. |
+| P0020 | Payment expired | Payment was not confirmed and completed within 90 minutes of being created. If the payment was already authorised, GOV.UK Pay will send a cancellation to the payment provider. |
+| P0030 | Payment cancelled by user | User selected **Cancel payment** during the payment journey. If the payment was already authorised, GOV.UK Pay will send a cancellation to the payment provider. |
+| P0040 | Payment was cancelled by your service | Your service cancelled the payment. |
+| P0050 | Payment provider returned an error | Multiple possible causes, for example a configuration problem with the payment provider, or incorrect credentials. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
@@ -235,7 +235,7 @@ For example:
 | american-express | CREDIT | American Express |
 | diners-club      | CREDIT | Diners Club      |
 | discover         | CREDIT | Discover         |
-| jcb              | CREDIT | Jcb              |
+| jcb              | CREDIT | JCB              |
 | unionpay         | CREDIT | Union Pay        |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
