@@ -1,0 +1,52 @@
+---
+title: Use your own payment failure pages
+weight: 135
+---
+
+# Use your own payment failure pages
+
+You can [contact us](/support_contact_and_more_information/#contact-us) to set
+this feature up for your service.
+
+If you do not use your own payment failure pages, users will see standard
+GOV.UK Pay payment failure pages.
+
+Terminal, unsuccessful payment states are:
+
+* payment declined
+* payment cancelled
+* payment expired
+* error (for example, technical error)
+
+If you use this feature, GOV.UK Pay will immediately redirect the user to the
+`return_url` when a payment reaches a terminal unsuccessful
+state. You can [set the `return_url` manually for your service](/payment_flow//#making-a-payment) in the request
+to the `POST /v1/payments` API call.
+
+You should configure your service to query payments to determine what
+payment failure states are from API responses. Once your service
+knows the [state of a payment](/payment_flow/#check-the-status-of-a-payment), it should direct users appropriately. For
+example if a user's payment expires, you may want your service to return the
+user to the start of their payment journey.
+
+You can experiment with querying payments using [our
+interactive API
+explorer](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//)
+[external link].
+
+In very rare cases, GOV.UK Pay is unable to redirect payments. You should
+[contact us](/support_contact_and_more_information/#contact-us) if this
+happens.
+
+## Expired payments
+
+If a user abandons a payment and it expires, GOV.UK Pay can only redirect the
+user if they did not leave the payment screen. If the user tries to
+continue their journey from the payment screen after their payment has
+expired, they will be returned to the service.
+
+You may want to read about [what happens when a user does not complete
+their payment
+journey](/making_payments/#when-a-user-does-not-complete-their-payment-journey).
+
+
