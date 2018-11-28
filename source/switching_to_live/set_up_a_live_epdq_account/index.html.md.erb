@@ -1,5 +1,5 @@
 ---
-title: Switching to live 
+title: Switching to live
 weight: 100
 ---
 
@@ -13,7 +13,7 @@ You should follow these instructions in order.
 
 You can also read about setting up live
 [Smartpay](/switching_to_live/set_up_a_live_smartpay_account) and
-[Worldpay](/switching_to_live/set_up_a_live_worldpay_account) accounts. 
+[Worldpay](/switching_to_live/set_up_a_live_worldpay_account) accounts.
 
 ## Add payment methods to your account
 
@@ -23,13 +23,13 @@ landing page, go to __Configuration__ then __Payment methods__ and select __Choo
 new payment methods__. Select __Add__ next to all relevant payment methods.
 
 On the __Contract data__ tab:
-    
-1. specify whether you have signed a contract for distance selling with an acquiring bank 
-2. complete the __Affiliation number (UID/Merch ID/VP number)__ field 
+
+1. specify whether you have signed a contract for distance selling with an acquiring bank
+2. complete the __Affiliation number (UID/Merch ID/VP number)__ field
 3. select __Submit__
 
 On the __PM Activation__ tab:
-    
+
 1. select __Yes__ for __Activation__
 2. select __Submit__
 
@@ -39,7 +39,7 @@ On the __PM Activation__ tab:
 
 On the [ePDQ admin
 site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index), go to
-__Configuration__. 
+__Configuration__.
 
 1. On the __Technical Information__ page, select the __Global security
    parameters__ tab.
@@ -50,7 +50,7 @@ __Configuration__.
 
 On the [ePDQ admin
 site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index), go to
-__Configuration__. 
+__Configuration__.
 
 1. On the __Technical information__ page, select the __Data and origin
    verification__ tab.
@@ -75,7 +75,7 @@ Gateway__ section and select __Save__.
 
 On the [ePDQ admin
 site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index), go to
-__Configuration__. 
+__Configuration__.
 
 1. On the __Technical information__ page, select __Transaction feedback__.
 1. Go to __e-Commerce__ and the __Direct HTTP server-to-server request__
@@ -105,7 +105,7 @@ __Configuration__.
 1. In the __URL on which the merchant wishes to receive a deferred HTTP request,
 should the status of a transaction change offline__ field, enter:
 <br> `https://notifications.payments.service.gov.uk/v1/api/notifications/epdq`
-</br> 
+</br>
 1. Select __Save__.
 
 ## Set up an API user
@@ -115,7 +115,7 @@ should the status of a transaction change offline__ field, enter:
 1. Go to __Configuration__ then __Account__.
 1. Go to the __Your options__ tab.
 1. Under the __Available options__ sub-tab, there is a list of IDs with
-   __Activate__ options. 
+   __Activate__ options.
 1. Activate one of the __User Manager__ options.
 1. Select __Accept__ on the __General Conditions__ screen.
 1. Sign out and then sign back in again.
@@ -125,7 +125,7 @@ should the status of a transaction change offline__ field, enter:
 1. On the __Users__ page, select __New User__.
 1. Complete the __UserID__ and __User’s name__ fields.
 1. Complete the __Email address__ field. This should contain the email address you want to receive notifications.
-1. In the __Profile__ field, select __Admin__.  
+1. In the __Profile__ field, select __Admin__.
 1. Check the __Special user for API (no access to admin.)__ option.
 1. Enter your own password and select __Create__.
 
@@ -146,7 +146,7 @@ In your [GOV.UK Pay
   <br> __SHA-IN passphrase__ - described in [__Set up account security parameters__](#set-up-account-security-parameters)</br>
   <br> __SHA-OUT passphrase__ - described in [__Set up notification settings__](#set-up-notification-settings)</br>
 
-1. Select __Save credentials__.  
+1. Select __Save credentials__.
 
 ## Test your configuration
 
@@ -154,7 +154,7 @@ In your [GOV.UK Pay
    accept are set up.
 2. Make a test transaction on your live account. You can use [the GOV.UK Pay
    API](/api_reference) to do this, or use [payment
-   links](/payment_links) if your service is not yet connected to GOV.UK Pay. 
+   links](/payment_links) if your service is not yet connected to GOV.UK Pay.
 3. Sign in to your [GOV.UK Pay
    account](https://selfservice.payments.service.gov.uk/).
 4. Go to the [__Transactions__
@@ -164,12 +164,12 @@ In your [GOV.UK Pay
 
 > The refund option may take up to 20 minutes to appear after submitting the transaction.
 
-## Set up 3D Secure 
+## Set up 3D Secure
 
 To enable 3D Secure payment authentication, sign in to the [GOV.UK Pay
 self-service admin site](https://selfservice.payments.service.gov.uk/). Go to
 __My services__ to select the live service you want to set up. Select
-__Settings__, then __3D Secure__ and then __turn 3D Secure on__. 
+__Settings__, then __3D Secure__ and then __turn 3D Secure on__.
 
 3D Secure should be enabled by default on the [ePDQ admin
 site](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index). To check

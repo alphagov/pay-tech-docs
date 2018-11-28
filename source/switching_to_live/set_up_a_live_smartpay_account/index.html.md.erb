@@ -1,5 +1,5 @@
 ---
-title: Switching to live 
+title: Switching to live
 weight: 100
 ---
 
@@ -13,19 +13,19 @@ You should follow these instructions in order.
 
 You can also read about setting up live
 [ePDQ](/switching_to_live/set_up_a_live_epdq_account) and
-[Worldpay](/switching_to_live/set_up_a_live_worldpay_account) accounts. 
+[Worldpay](/switching_to_live/set_up_a_live_worldpay_account) accounts.
 
 ## Configure your user profile on Smartpay
 
 Sign in to Smartpay and select the correct merchant account. You can select
-the organisation name at the top of the page to view all merchant accounts. 
+the organisation name at the top of the page to view all merchant accounts.
 
 ### Add new user
 
 1. Select __Settings__ and then __Users__.
 1. Select __Add new user__.
 1. Select __Web Service__ as the user type.
-1. Complete both the __Password__ fields. 
+1. Complete both the __Password__ fields.
 1. Leave the __Client Certificate (DN)__ field blank.
 
 >  You will use this username and password on the GOV.UK Pay admin site to
@@ -46,14 +46,14 @@ Select __Accounts__ and enable your merchant account, then select __Save__.
 
 ### Generate client encryption key
 
-Under __Easy Encryption__, select __Generate__. Leave the other options 
+Under __Easy Encryption__, select __Generate__. Leave the other options
 as their defaults.
 
 ### Edit allowed user IP range
 
-Set the __IP address__ to `0.0.0.1`. Leave the other options 
+Set the __IP address__ to `0.0.0.1`. Leave the other options
 as their defaults.
-    
+
 ## Configure server communication on Smartpay
 
 Select __Settings__ and then __Server Communication__.
@@ -63,17 +63,17 @@ __Standard Notification__ row.
 
 Complete all the fields on the __Standard Notification settings__ page.
 
-### Set up “Transport” 
+### Set up “Transport”
 
 Complete the fields in the __Transport__ page as follows:
 
 - __URL__: `https://notifications.payments.service.gov.uk/v1/api/notifications/smartpay`
-- __SSL Version__: TLSv1.2 
-- __Active__: Checked 
-- __Accept expired__:  Leave unchecked 
-- __Accept self-signed__:  Leave unchecked 
-- __Accept untrusted Root certificates__:  Leave unchecked 
-- __Service version__: 1 
+- __SSL Version__: TLSv1.2
+- __Active__: Checked
+- __Accept expired__:  Leave unchecked
+- __Accept self-signed__:  Leave unchecked
+- __Accept untrusted Root certificates__:  Leave unchecked
+- __Service version__: 1
 - __Method__: JSON
 - __Populate SOAP Action header__: Leave unchecked
 
@@ -111,7 +111,7 @@ Complete the following fields on this page:
 ### Set up notification credentials
 
 1. Under __Your Smartpay notification credentials__, select __Edit
-   notification credentials__. 
+   notification credentials__.
 1. Complete the __Username__ and __Password__ fields on this page using the
    username and password described in [the Authentication section](#authentication).
 1. Select __Save credentials__ to go back to the __Account credentials__ page.
@@ -122,7 +122,7 @@ Complete the following fields on this page:
    accept are set up.
 2. Make a test transaction on your live account. You can use [the GOV.UK Pay
    API](/api_reference) to do this, or use [payment
-   links](/payment_links) if your service is not yet connected to GOV.UK Pay. 
+   links](/payment_links) if your service is not yet connected to GOV.UK Pay.
 3. Sign in to your [GOV.UK Pay
    account](https://selfservice.payments.service.gov.uk/).
 4. Go to the [__Transactions__
@@ -132,13 +132,13 @@ Complete the following fields on this page:
 
 > The refund option may take up to 20 minutes to appear after submitting the transaction.
 
-## Set up 3D Secure 
+## Set up 3D Secure
 
 To enable 3D Secure payment authentication, sign in to the [GOV.UK Pay
-self-service admin site](https://selfservice.payments.service.gov.uk/). 
+self-service admin site](https://selfservice.payments.service.gov.uk/).
 
-Go to __My services__ to select the live service you want to set up. 
-Select __Settings__, then __3D Secure__ and then __Turn on 3D Secure__. 
+Go to __My services__ to select the live service you want to set up.
+Select __Settings__, then __3D Secure__ and then __Turn on 3D Secure__.
 
 Barclaycard is responsible for setting up 3D Secure payment authentication
 for your Smartpay account. You do not need to set anything manually.
