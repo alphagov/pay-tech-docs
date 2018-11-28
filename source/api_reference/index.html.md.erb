@@ -23,7 +23,7 @@ You can also use the interactive <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//"
 target="blank">API explorer</a> [external link] to try API calls and view responses.
 
-See the ["Quick start guide"](/quick_start_guide/#quick-start-guide) section
+See the [__Quick start guide__](/quick_start_guide/#quick-start-guide) section
 to read how to set up the API explorer. Make sure you enter your test API
 key to avoid generating real payments.
 
@@ -33,8 +33,8 @@ GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer
 tokens](http://tools.ietf.org/html/rfc6750) [external link]. These are easy to
 use and contain only your API key. 
 
-When you make an API call, you need to use an "Authorization" HTTP header to
-provide your API key, with a "Bearer" prefix. For example:
+When you make an API call, you need to use an “Authorization” HTTP header to
+provide your API key, with a “Bearer” prefix. For example:
 
 ```text
 Authorization: Bearer <YOUR-API-KEY-HERE>
@@ -202,11 +202,11 @@ Pay admin tool or directly using the API.
 1. Sign in to the [GOV.UK Pay admin
 site](https://selfservice.payments.service.gov.uk/) (link opens in new window).
 2. Select _Transactions_.
-3. Select a payment with a "failed", "cancelled" or "error" status.
+3. Select a payment with a `"failed"`, `"cancelled"` or `"error"` status.
 
 #### Use the API
 
-You can use the API to examine the `state` object in a payment's API response.
+You can use the API to examine the `state` object in a payment’s API response.
 
 For example:
 
@@ -248,8 +248,8 @@ second, for each government service.
 GET requests are also rate-limited, but at a very high level. In the future,
 we will publish an official rate limit for GET requests.
 
-If you exceed the rate limit, this will return HTTP status code "429" (Too
-many requests) and error code P0900. After a second, you'll be able to retry
+If you exceed the rate limit, this will return HTTP status code “429” (Too
+many requests) and error code P0900. After a second, you’ll be able to retry
 your attempt in a reasonable way. For example, using exponential backoff.
 
 Please [contact

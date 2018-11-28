@@ -27,7 +27,7 @@ To further secure your live developer keys:
  - avoid embedding your developer keys in any of your code - this only increases the risk that they will be discovered (instead store your keys inside your configuration files)
  - avoid storing your API keys in your application source tree (even when you’re not making your source code publicly available)
  - revoke your developer keys when they’re no longer required (this limits the number of entry points into your account)
- - have a leavers’ process, so that a developer's API key is revoked when they leave
+ - have a leavers’ process, so that a developer’s API key is revoked when they leave
 
 ## Securing your integration with GOV.UK Pay
 
@@ -52,7 +52,7 @@ If you have one MID that encompasses multiple payment channels, the compliance r
 
 ### Determine your PCI DSS compliance requirements
 
-Your requirements depend on the number of transactions that you process as a merchant per scheme (Visa, MasterCard) per year. For example, if you process 4 million transactions with Visa and 3 million with MasterCard, the "Fewer than 6 million transactions per year" category still applies despite the fact that the total number of transactions is larger than 6 million. Your merchant level should be confirmed with your acquiring bank.
+Your requirements depend on the number of transactions that you process as a merchant per scheme (Visa, MasterCard) per year. For example, if you process 4 million transactions with Visa and 3 million with MasterCard, the “Fewer than 6 million transactions per year” category still applies despite the fact that the total number of transactions is larger than 6 million. Your merchant level should be confirmed with your acquiring bank.
 
 ### Assessing your compliance requirements
 
