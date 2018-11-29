@@ -43,7 +43,7 @@ target="blank">Find payment by ID</a> or <a
 href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general/endpoints/search-payments"
 target="blank">Search payments</a> functions (links open in new window).
 
-The JSON response body will contain a `refund_summary` object. For example, 
+The JSON response body will contain a `refund_summary` object. For example,
 for a completed £50 payment with no previous refunds:
 
 ```javascript
@@ -69,7 +69,7 @@ target="blank">Get all refunds for a payment</a> (link opens in new window)
 API call to get information about partial refunds.
 
 As another example, this is the JSON response body for a completed £90 payment
-with a previous refund of £30: 
+with a previous refund of £30:
 
 ```javascript
   "refund_summary": {
@@ -112,7 +112,7 @@ the error code returned is P0604, with an HTTP status of 412.
 
 You must include any [corporate card
 surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges)
-in the ``refund_amount_available`` value. 
+in the ``refund_amount_available`` value.
 
 ## Refunding with the API
 
@@ -171,7 +171,7 @@ account with the PSP does not have enough funds to cover the refund.
 Each refund has a processing status indicated by a "status" value that is
 returned in response to a successful request to a ``/refunds/`` endpoint.
 
-For example, the response body for a refund would include: 
+For example, the response body for a refund would include:
 
 ```javascript
 {
@@ -203,7 +203,7 @@ target="blank">Find payment refund by ID</a> (link opens in new window) to
 check the processing status of the refund until it changes to either
 ``success`` or ``error``.
 
-It will typically take 30 minutes for the status to change. You should not  
+It will typically take 30 minutes for the status to change. You should not
 check the status more than once every 5 minutes.
 
 In the event of an error, GOV.UK Pay will not currently provide any more
@@ -223,7 +223,7 @@ transactions. For example:
 ![](images/transaction+list+image+4.png)
 
 In this list, you can select an individual payment to see details of that
-payment, including any previous refunds. 
+payment, including any previous refunds.
 
 For a successful payment with no previous refunds, you can use the red
 **Refund payment** button to carry out a full or partial payment.
@@ -247,7 +247,7 @@ new card with the refund. If this attempt fails, or the customer does not have
 a new card, the refund will have to be made using another channel (eg bank
 transfer or cheque).
 
-## Search refunds with the API  
+## Search refunds with the API
 
 You can use the GOV.UK Pay API to:
 

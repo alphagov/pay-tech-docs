@@ -1,16 +1,16 @@
 ---
-title: Delayed capture 
+title: Delayed capture
 weight: 133
 ---
 
-# Delayed capture 
+# Delayed capture
 
 GOV.UK Pay supports the delayed capture of payments.
 
 To use this feature, include `"delayed_capture": true` in the body of a
 [create new
 payment](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/create-new-payment)
-request (link opens in new window). 
+request (link opens in new window).
 
 The user experience matches the current payment flow. Once the user selects
 __Confirm__ on the __Confirm your details__ page, your service can call the
@@ -40,13 +40,13 @@ received and accepted.
 
 ## See the capture URL for a payment
 
-If a payment is available for capture, you can see its capture URL in 
+If a payment is available for capture, you can see its capture URL in
 GOV.UK Pay API responses such as:
 
-* `GET /v1/payments/<PAYMENT-ID>` 
+* `GET /v1/payments/<PAYMENT-ID>`
 * `GET /v1/payments`
 
-The `"__links"` object will contain:` 
+The `"__links"` object will contain:`
 
 ```
 "capture": {

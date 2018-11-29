@@ -1,41 +1,41 @@
 ---
-title: Account structure 
+title: Account structure
 weight: 95
 ---
 
-# Account structure 
+# Account structure
 
-Before you read this section, you may find it useful to read the [‘Reporting’ section](/reporting/#reporting). 
+Before you read this section, you may find it useful to read the [‘Reporting’ section](/reporting/#reporting).
 
-GOV.UK Pay does not limit how many services you can integrate with it. 
+GOV.UK Pay does not limit how many services you can integrate with it.
 
 If you do integrate multiple services, you can treat them separately or as a
 combined single service within GOV.UK and your payment service provider (PSP).
 This gives 3 possible account configurations. These configurations allow you
 to alter which bank accounts payments go to, and the names of services that
-appear on your end users’ bank statements. 
+appear on your end users’ bank statements.
 
-As an example, take 2 services called ‘parking permits’ and ‘parking fines’: 
+As an example, take 2 services called ‘parking permits’ and ‘parking fines’:
 
 ### Type 1 (GOV.UK Pay separate, PSP separate)
 
 ![``”``](images/accountstructure_1.png)
 
 ‘Parking permits’ and ‘Parking fines’ are considered separate services by
-both GOV.UK Pay and the PSP. 
+both GOV.UK Pay and the PSP.
 
 In this setup, payments to services can go to separate bank accounts because
-each service has a PSP account. 
+each service has a PSP account.
 
 ### Type 2 (GOV.UK Pay combined, PSP combined)
 
 ![``”``](images/accountstructure_2.png)
 
 ‘Parking permits’ and ‘Parking fines’ are considered a single combined
-service by GOV.UK Pay and the PSP. 
+service by GOV.UK Pay and the PSP.
 
 You may want to use this configuration if you want to simplify the
-administration of multiple services in GOV.UK Pay. For example, if you do not need reporting at an individual service level. The services will appear in the same transactions list and CSV file. You may find it useful to use unique reference numbers to separate payments clearly, for example “parkingfine_1234” and “parkingpermit_1234”. 
+administration of multiple services in GOV.UK Pay. For example, if you do not need reporting at an individual service level. The services will appear in the same transactions list and CSV file. You may find it useful to use unique reference numbers to separate payments clearly, for example “parkingfine_1234” and “parkingpermit_1234”.
 
 In this configuration, payments to services must go to the same bank account because
 they are a single service in the PSP. It is not possible to support multiple PSP accounts in a single GOV.UK Pay service.
@@ -45,38 +45,36 @@ they are a single service in the PSP. It is not possible to support multiple PSP
 ![``”``](images/accountstructure_3.png)
 
 ‘Parking permits’ and ‘Parking fines’ are considered separate services by
-GOV.UK Pay and as a single combined service in the PSP. 
+GOV.UK Pay and as a single combined service in the PSP.
 
 You may want to use this configuration if you want to administrate multiple
-services individually in GOV.UK Pay. For example, if you want separate reporting for each service, or different service names on the payment pages. 
+services individually in GOV.UK Pay. For example, if you want separate reporting for each service, or different service names on the payment pages.
 
 In this configuration, payments to services must go to the same bank account because
-they are a single service in the PSP. 
+they are a single service in the PSP.
 
-## Editing GOV.UK Pay services 
+## Editing GOV.UK Pay services
 
-Each service defined in GOV.UK Pay has its own API key. 
+Each service defined in GOV.UK Pay has its own API key.
 
 Sign in to [the GOV.UK Pay admin
 site](https://selfservice.payments.service.gov.uk/) and go to the __Settings__
-page to change: 
+page to change:
 
-* account credentials 
-* 3D Secure settings 
-* the card types you accept 
-* email notifications settings 
+* account credentials
+* 3D Secure settings
+* the card types you accept
+* email notifications settings
 
 You can also change the name of a service, including how it appears on payment
 pages. To do this, select __My services__ and then __Edit name__ for the
-service name you want to change.  
+service name you want to change.
 
-## Editing PSP services 
+## Editing PSP services
 
-Within each gateway account for the PSP, you can edit: 
+Within each gateway account for the PSP, you can edit:
 
-* what appears on the end user’s bank statement  
+* what appears on the end user’s bank statement
 * which of your bank accounts your revenue goes to
 
-You should contact your PSP to find out more. 
-
-
+You should contact your PSP to find out more.

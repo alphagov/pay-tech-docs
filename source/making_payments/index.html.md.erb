@@ -1,5 +1,5 @@
 ---
-title: Making payments 
+title: Making payments
 weight: 70
 ---
 
@@ -30,7 +30,7 @@ publicly, for example as a URL parameter or in an insecure cookie. You should
 store it as a secure cookie or in a database.
 
 You will receive the ``next_url``  to which you should direct the user to
-complete their payment. 
+complete their payment.
 
 ## Tracking the progress of a payment
 
@@ -67,7 +67,7 @@ datastore mapped to the payment ID just after you create a payment.
 ## Accepting returning users
 
  A user directed to the return URL could have:
- 
+
  - paid successfully
  - not paid because their card was rejected or they clicked cancel
  - not paid because your service (via the API) or service manager (via the self-service dashboard) cancelled the payment in progress
@@ -91,7 +91,7 @@ redirected, but just after a set time (eg, an hour).
 
 If a user does not have enough funds in their account to make a payment, the
 current GOV.UK Pay frontend will not let them try again with separate card
-details. They will have to return to the service to retry the payment. 
+details. They will have to return to the service to retry the payment.
 
 ## Cancel a payment that’s in progress
 
@@ -106,12 +106,12 @@ A `204` response indicates success. Any other response indicates an error.
 To test this with our API Explorer:
 
 * 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">the API Explorer</a> (link opens in new window).  
+   target="blank">the API Explorer</a> (link opens in new window).
 * 2. Under __Resource__, select __{Payment Id}__. Under __Action__, select <a
    href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
-   target="blank">__Search payments__</a> (link opens in new window). 
+   target="blank">__Search payments__</a> (link opens in new window).
 
-### Find out if you can cancel a payment 
+### Find out if you can cancel a payment
 
 Use a GET request against a single payment to find out if you can cancel it:
 

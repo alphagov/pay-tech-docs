@@ -1,5 +1,5 @@
 ---
-title: API reference 
+title: API reference
 weight: 60
 ---
 
@@ -16,7 +16,7 @@ standard HTTP error response codes.
 
 For full details of each API action, see the API browser:
 
-- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general" target="blank">General functions</a> [external link] 
+- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general" target="blank">General functions</a> [external link]
 - <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id" target="blank">Payment ID functions</a> [external link]
 
 You can also use the interactive <a
@@ -31,7 +31,7 @@ key to avoid generating real payments.
 
 GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer
 tokens](http://tools.ietf.org/html/rfc6750) [external link]. These are easy to
-use and contain only your API key. 
+use and contain only your API key.
 
 When you make an API call, you need to use an “Authorization” HTTP header to
 provide your API key, with a “Bearer” prefix. For example:
@@ -56,27 +56,27 @@ A successful response includes ``status`` and ``finished`` values:
 <table style="width:100%">
   <tr>
   <th><code>status</code></th>
-  <th>Meaning</th> 
+  <th>Meaning</th>
   <th nowrap><code>finished</code></th>
   </tr>
   <tr>
-    <td> created </td>     
+    <td> created </td>
     <td> Payment created. User has not yet visited <code>next_url</code>. </td>
-    <td> false </td> 
+    <td> false </td>
   </tr>
   <tr>
     <td> started </td>
-    <td> User has visited <code>next_url</code> and is entering payment details. </td> 
+    <td> User has visited <code>next_url</code> and is entering payment details. </td>
     <td> false </td>
   </tr>
   <tr>
     <td> submitted </td>
-    <td> User has submitted payment details but has not yet selected <b>Confirm</b>. Or, user has selected <b>Confirm</b> and the payment is a delayed capture.</td> 
+    <td> User has submitted payment details but has not yet selected <b>Confirm</b>. Or, user has selected <b>Confirm</b> and the payment is a delayed capture.</td>
     <td> false </td>
   </tr>
   <tr>
     <td> success </td>
-    <td> User successfully completed the payment. </td> 
+    <td> User successfully completed the payment. </td>
     <td> true </td>
   </tr>
   <tr>
@@ -195,7 +195,7 @@ Some errors may contain additional fields , such as `field`.
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
 You can see which payments have status-related error codes using the GOV.UK
-Pay admin tool or directly using the API. 
+Pay admin tool or directly using the API.
 
 #### Use the admin tool
 
@@ -240,7 +240,7 @@ For example:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-## Rate limits 
+## Rate limits
 
 POST requests to the GOV.UK Pay API are rate-limited to 15 requests per
 second, for each government service.

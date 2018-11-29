@@ -1,52 +1,52 @@
 ---
-title: Corporate card surcharges 
+title: Corporate card surcharges
 weight: 134
 ---
 
-# Corporate card surcharges  
+# Corporate card surcharges
 
 GOV.UK Pay supports adding a surcharge when a user pays with a corporate
 credit or debit card. You can [contact GOV.UK Pay
 support](/support_contact_and_more_information/#contact-us) to ask the team to
-set this up for you. 
+set this up for you.
 
 Each surcharge is a flat amount added to a payment. If you’d like to discuss
 adding surcharges as percentages, please [contact
 us](/support_contact_and_more_information/#contact-us).
 
 You can set a different surcharge for each of the following 4
-corporate card types: 
+corporate card types:
 
-* non-prepaid credit cards 
+* non-prepaid credit cards
 * non-prepaid debit cards
 * prepaid credit cards
-* prepaid debit cards 
+* prepaid debit cards
 
 In a payment journey, when a user enters a card number the GOV.UK Pay
 platform checks to determine if it’s one of the 4 corporate card types. If a
-surcharge is applicable, the platform will inform them that a surcharge of a 
-certain amount will be added to the total. 
+surcharge is applicable, the platform will inform them that a surcharge of a
+certain amount will be added to the total.
 
 If the platform cannot determine the exact type of a card being used, it
 will not apply a surcharge.
 
 You can sign in to the [GOV.UK Pay admin
 tool](https://selfservice.payments.service.gov.uk/login) (link opens in new
-window) to see the payment amount and the surcharge amount listed separately. 
+window) to see the payment amount and the surcharge amount listed separately.
 
 If a payment has a surcharge applied, the full amount available for refund
 includes the surcharge. You can also use the [partial refund
 feature](/refunding_payments/#payment-refund-status-and-partial-refunds) to
-only refund the total amount excluding the surcharge. 
+only refund the total amount excluding the surcharge.
 
 If a surcharge is applied to a particular payment, you can see this in API
-response fields:  
+response fields:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-| Response field                   | Meaning                                                                                        
+| Response field                   | Meaning
 |----------------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| `"amount"`                       | Contains the amount in pence, without any surcharge. </br> This field always appears, even if a surcharge is not applicable.|  
+| `"amount"`                       | Contains the amount in pence, without any surcharge. </br> This field always appears, even if a surcharge is not applicable.|
 | `"total_amount"`                 | Contains the total amount in pence, including any surcharge. </br> Only appears if a surcharge is applicable.               |
 | `"corporate_card_surcharge"`     | Contains only the surcharge amount, in pence. </br> Only appears if a surcharge is applicable.                              |
 
