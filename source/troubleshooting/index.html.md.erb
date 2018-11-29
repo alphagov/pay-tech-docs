@@ -27,18 +27,18 @@ Possible reasons why your call may be rejected include:
 + the ``return_url`` you provide is not ``https://``
 + there are URLs inside the ``reference`` or ``description`` you provide
 + you have not included a ``Content-Type: application/json`` header
-+ you've included an ``Accept`` header but with something other than ``application/json``
++ you’ve included an ``Accept`` header but with something other than ``application/json``
 
 ## The code examples in the documentation do not work
 
-**Problem**: The "Example Request" code snippets in the API documentation always cause the request to fail with a "401 unauthorized" error.
+**Problem**: The “Example Request” code snippets in the API documentation always cause the request to fail with a `"401 unauthorized"` error.
 
-**Fix**: Remember that you must send the API key with "Bearer " in front of it (not including the quotation marks.) This is not made clear in the code examples due to a technical limitation.
+**Fix**: You must send the API key with `"Bearer " in front of it (not including the quotation marks.) This is not made clear in the code examples due to a technical limitation.
 
 If the code example includes a line like this:
 
 ```ruby
-request["authorization"] = 'YOUR API KEY HERE'
+request["authorization"] = '<YOUR-API-KEY-HERE>'
 ```
 
-remember that you must actually use "Bearer <YOUR API KEY>" as the value.
+You must use `"Bearer <YOUR-API-KEY-HERE>"` as the value.

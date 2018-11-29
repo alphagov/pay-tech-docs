@@ -19,7 +19,7 @@ Each payment has a refund status which can take one of the following values:
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | pending               | The payment is potentially refundable, but is not ready to be refunded yet.                                                                                                        |
 | unavailable           | It is not possible to refund the payment: for example, the payment failed.                                                                                                         |
-| available             | It's possible to initiate a refund. Note that this does not mean that the full original value of the payment is available to refund: there may have been previous partial refunds. |
+| available             | It’s possible to initiate a refund. Note that this does not mean that the full original value of the payment is available to refund: there may have been previous partial refunds. |
 | full                  | The original value of the payment has been fully refunded, so it is not possible to refund any more.                                                                               |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
@@ -88,7 +88,7 @@ be available for refund at the time your refund request is made.
 
 The purpose of this is to prevent accidentally processing a partial refund
 more than once, by rejecting requests where your `refund_amount_available`
-does not match the real amount that's available to be refunded.
+does not match the real amount that’s available to be refunded.
 
 For example, a payment is made for £5, but later the user requires a £2
 refund. Your system for processing refunds submits a request for a £2 refund
@@ -101,7 +101,7 @@ In the same scenario, if you had specified the ``refund_amount_available`` as
 £5. The first request still succeeds, leaving £3 available to be refunded.
 When the accidental duplicate request comes in, it has a
 ``refund_amount_available`` of £5, even though only £3 is available, so GOV.UK
-Pay can tell that it's a stale request, and it is rejected.
+Pay can tell that it’s a stale request, and it is rejected.
 
 We recommend that your service tracks the expected refund amount available and
 submits a ``refund_amount_available`` value whenever you request a refund via
@@ -262,8 +262,8 @@ The JSON response body to this API call contains a `"refunds"` object. If the
 refund exists, the `"status"` field will contain one of:
 
 * `"submitted"`
-* `”success”`
-* `”error”`
+* `"success"`
+* `"error"`
 
 ### Generate a list of refunds (search refunds)
 

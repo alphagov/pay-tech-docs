@@ -64,7 +64,7 @@ The following image represents a page on a service where the end user needs to m
 
 In your service, this page might be the end of a series of pages you host which allow the user to choose between a variety of possible payments. 
 
-This page should make it clear to the user that they are about to pay for your product or service with a clear call to action. For example, a button that says “Pay now” or “Continue to payment”. The user will then be taken to the GOV.UK Pay pages to complete their transaction. 
+This page should make it clear to the user that they are about to pay for your product or service with a clear call to action. For example, a button that says __Pay now__ or __Continue to payment__. The user will then be taken to the GOV.UK Pay pages to complete their transaction. 
 
 The page should include clear information on what is being purchased. You do not need to tell the user that they are being handed over to GOV.UK Pay’s pages to make their payment.
 
@@ -127,13 +127,13 @@ The start of the response confirms the properties of the attempted payment.
 
 The ``self`` URL (also provided in the Location header of the response) is a unique identifier for the payment. It can be used to retrieve its status details in future.
 
-The ``next_url`` is the URL where your service should direct the end user next. It points to a payment page hosted by GOV.UK Pay where the user can enter their payment details. This is a one-time URL - after it's been visited once, it will give an error message.
+The ``next_url`` is the URL where your service should direct the end user next. It points to a payment page hosted by GOV.UK Pay where the user can enter their payment details. This is a one-time URL - after it’s been visited once, it will give an error message.
 
-When your service redirects the user to ``next_url``, they'll see an __Enter card details__ page similar to the following: 
+When your service redirects the user to ``next_url``, they’ll see an __Enter card details__ page similar to the following: 
 
 ![](images/flow-payment-details-page.png)
 
-This page shows the ``description`` as well as the amount the end user has to pay, making it clear what they're paying for.
+This page shows the ``description`` as well as the amount the end user has to pay, making it clear what they’re paying for.
 
 The user enters their payment details and clicks **Continue**.
 
@@ -205,7 +205,7 @@ The `return_url` should specify a page on your service. When the user visits the
 - check the status of the payment using an API call
 - display an appropriate final page (hosted by your service)
 
-The "[Making payments](/making_payments/#making-payments)" section contains more details about how to match the user to the payment.
+The [__Making payments__](/making_payments/#making-payments) section contains more details about how to match the user to the payment.
 
 To check the status of the payment, you must make a <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id" target="blank">Find payment by ID</a> API call (link opens in new window), using the ``payment_id`` of the payment as the parameter.
 
@@ -231,11 +231,11 @@ The ``state`` array within the JSON lets you know the outcome of the payment:
 + The ``status`` value describes a stage of the payment journey.
 + The ``finished`` value indicates if the payment journey is complete or not - that is, if the ``status`` of this payment can change.
 
-See the ["Making payments"](/making_payments/#making-payments) section for more information about how you can integrate your service with GOV.UK Pay.
+See the [__Making payments__](/making_payments/#making-payments) section for more information about how you can integrate your service with GOV.UK Pay.
 
 ## Resume a payment
 
-If your user starts a payment but does not complete it, they can resume that incomplete payment. An example of this could be if they click the browser's back button during a payment, and then go forward by clicking the links on your website. 
+If your user starts a payment but does not complete it, they can resume that incomplete payment. An example of this could be if they click the browser’s back button during a payment, and then go forward by clicking the links on your website. 
 
 If your service uses the resume payment feature, you will:
 
@@ -254,6 +254,6 @@ An incomplete payment will have a status of `created`, `started` or `submitted`.
 
 ### Resuming a payment
 
-When a user resumes a payment, the `next_URL` will take them to a screen that is appropriate for their payment's current status. For example, a payment with a `started` status will resume at the card details input page. The `next_URL` is a one-time URL. If a payment has already resumed using a `next_URL`, that URL will not be usable again.
+When a user resumes a payment, the `next_URL` will take them to a screen that is appropriate for their payment’s current status. For example, a payment with a `started` status will resume at the card details input page. The `next_URL` is a one-time URL. If a payment has already resumed using a `next_URL`, that URL will not be usable again.
 
-A payment cannot resume if it has a status of `success`, `failed`, `cancelled` or `error`. If your service tries to resume a payment of this type, the user will be sent to your service's `return_url`. The `return_url` is the URL of a page on your service that we send the user to after they have completed their payment attempt.   
+A payment cannot resume if it has a status of `success`, `failed`, `cancelled` or `error`. If your service tries to resume a payment of this type, the user will be sent to your service’s `return_url`. The `return_url` is the URL of a page on your service that we send the user to after they have completed their payment attempt.   

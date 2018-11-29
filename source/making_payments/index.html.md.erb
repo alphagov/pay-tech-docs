@@ -54,14 +54,14 @@ methods:
 + use a secure cookie containing the Payment ID from GOV.UK Pay, issued by
 your service when the payment is created (before sending the user to
 ``next_url``). Users will not be able to decrypt a secure cookie, so a
-fraudster could not alter the payment ID and intercept other users' payments.
+fraudster could not alter the payment ID and intercept other users’ payments.
 
 + create a secure random ID (such as a UUID) and include this as part of the
 ``return_url``, using a different ``return_url`` for each payment. Since a
 securely generated UUID is not guessable, fraudsters will not be able to
 intercept users’ payments.
 
->Note: If you create an ID yourself, you'll likely need to store this in a
+>Note: If you create an ID yourself, you’ll likely need to store this in a
 datastore mapped to the payment ID just after you create a payment.
 
 ## Accepting returning users
@@ -93,9 +93,9 @@ If a user does not have enough funds in their account to make a payment, the
 current GOV.UK Pay frontend will not let them try again with separate card
 details. They will have to return to the service to retry the payment. 
 
-## Cancel a payment that's in progress
+## Cancel a payment that’s in progress
 
-Users can click a link on the payment page to cancel a payment that's in
+Users can click a link on the payment page to cancel a payment that’s in
 progress. Alternatively, a service can make the following API call for a given
 `paymentId`:
 
