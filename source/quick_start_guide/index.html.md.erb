@@ -5,25 +5,39 @@ weight: 40
 
 # Quick start guide
 
+<br>
+
+<style>
+.govuk-warning-text{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400;font-size:16px;font-size:1rem;line-height:1.25;color:#0b0c0c;position:relative;margin-bottom:20px;padding:10px 0}@media print{.govuk-warning-text{font-family:sans-serif}}@media (min-width:40.0625em){.govuk-warning-text{font-size:19px;font-size:1.1875rem;line-height:1.31579}}@media print{.govuk-warning-text{font-size:14pt;line-height:1.15;color:#000}}@media (min-width:40.0625em){.govuk-warning-text{margin-bottom:30px}}.govuk-warning-text__assistive{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;-webkit-clip-path:inset(50%)!important;clip-path:inset(50%)!important;border:0!important;white-space:nowrap!important}.govuk-warning-text__icon{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:700;display:inline-block;position:absolute;top:50%;left:0;min-width:32px;min-height:29px;margin-top:-20px;padding-top:3px;border:3px solid #0b0c0c;border-radius:50%;color:#fff;background:#0b0c0c;font-size:1.6em;line-height:29px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}@media print{.govuk-warning-text__icon{font-family:sans-serif}}.govuk-warning-text__text{display:block;margin-left:-15px;padding-left:65px}
+</style>
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    You must store your API keys securely. You must not share this key in publicly accessible documents or repositories. You must not share it with anyone who should not be using the GOV.UK Pay API directly.
+  </strong>
+</div>
+
 Read this section to learn about what to do to get started with GOV.UK Pay.
 
 ## Before you start
 
-Before you start testing GOV.UK Pay, you should:
+Before you start using GOV.UK Pay, you should:
 
 * read the [__Get started__
-guide](https://www.payments.service.gov.uk/getstarted/) (link opens in new
-window) to decide if GOV.UK Pay is right for your service
+guide](https://www.payments.service.gov.uk/getstarted/) to decide if GOV.UK
+Pay is right for your service
 
 * sign up for [the GOV.UK Pay admin
-tool](https://selfservice.payments.service.gov.uk/create-service/register)
+site](https://selfservice.payments.service.gov.uk/create-service/register)
 
-* read the government guidance on [deploying new
-software](https://www.gov.uk/service-manual/making-software/deployment.html).
+* read the GOV.UK Service Manual guidance on [deploying new
+software](https://www.gov.uk/service-manual/making-software/deployment.html)
 
 If you want to build a technical integration between your service and the
 GOV.UK Pay API, your service team should have the necessary skills. You can
-refer to the [Service
+refer to the [GOV.UK Service
 Manual](https://www.gov.uk/service-manual/the-team/what-each-role-does-in-service-team#roles-your-team-must-have)
 for more information. This does not apply if you only use [payment
 links](/payment_links/#payment-links).
@@ -39,9 +53,8 @@ allows you to:
 * view transactions within a specified time period
 * issue full or partial refunds
 
-Once you [have a test account](/before_you_start/#before-you-start), follow
-these instructions to get started with our API Explorer and make a test API
-call.
+When you've received a test account, follow these instructions to get started
+with our API Explorer and make a test API call.
 
 ## Generate API Key for API Explorer
 
@@ -54,14 +67,8 @@ call.
 ![](images/pay_9.png)
  <br /><br />Enter a description for your API key: <br /><br />
 
-
 ![](images/DescribeAPIKey+image2.png)
 <br /><br />Your API key will be shown for you to copy:<br /><br /> ![](images/NewKeygenerate+image+3.png)
-
-
-<blockquote>You must store your API keys securely. You must not share
-this key in publicly accessible documents or repositories. You must not share
-it with anyone who should not be using the GOV.UK Pay API directly.</blockquote>
 
 [Read the __Security__ section](/security/#security) for more information on how
 to keep your API key safe.
@@ -70,18 +77,25 @@ to keep your API key safe.
 
 The quickest way to get started with the API is to use the <a
 href="https://gds-payments.gelato.io/api-explorer/" target="blank">API
-Explorer</a> (link opens in new window) with your API key.
+Explorer</a> [external link] with your API key.
 
 1. Sign in to the API Explorer and select __Add API Key__.<br/><br/>
    ![](images/pay-add-api-key.png) <br/><br/>
 2.  In the pop-up, enter the following values:
 
   * For __API Key__, enter your test API key. You do not need to add the
-  "Bearer: " prefix, because the API Explorer adds that automatically.
+  `"Bearer:"` prefix, because the API Explorer adds that automatically.
   * For __Label__, enter `Authorization`.
 
-> Do not use an API key from a live account on the GOV.UK Pay admin site. Only
-> use a test API key
+<br>
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    Do not use an API key from a live account on the GOV.UK Pay admin site. Only use a test API key
+  </strong>
+</div>
 
 ## Make a test API call
 
@@ -90,10 +104,10 @@ a new payment.  This is the same call your service will make when beginning a
 payment using GOV.UK Pay.
 
 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">the API Explorer</a> (link opens in new window).
+   target="blank">the API Explorer</a> [external link]
 2. Under __Resource__, select __General__. Under __Action__, select <a
    href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/create-new-payment"
-   target="blank">__Create new payment__</a> (link opens in new window) Select
+   target="blank">__Create new payment__</a> [external link]. Select
    the __Body__ tab down to see an example JSON body that you would send when
    creating a payment.
 
