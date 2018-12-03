@@ -5,97 +5,121 @@ weight: 70
 
 # Making payments
 
-When you make a payment, you will need to supply a ``reference``. If possible,
-this should be a unique identifier for the payment. If your organisation
-already has an existing identifier for payments, you can use it here.
+When a user makes a payment, your service should supply a `reference`. If
+possible, this should be a unique identifier for the payment. If your
+organisation already has an existing identifier for payments, you can use it
+as this `reference`.
 
-You will also need to supply a ``return_url``, a URL hosted by your service
-for the user to return to after they have completed payment on GOV.UK Pay. See
-the section below on **Choosing the return URL** for more information.
+The call to create a payment with the GOV.UK Pay API is:
 
-You will need to store the URL from the Location header or in the ``self``
-section of ``_links`` in the JSON body (the same URL is shown in both places).
-This URL contains the GOV.UK Pay ``payment_id`` which identifies the
-payment. An authenticated GET request to the URL will return information about
-the payment and its status.
+`POST  /v1/payments`
 
-You can read more about this in the [Reporting](/reporting) section of the
-documentation.
+You can test this with [our API
+explorer](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//)
+[external link]. Your service will need to store the URL from the response to
+the create payment API call. It can get this from either:
+
+* the `Location` response header
+* the `self` section of `_links` in the JSON body
+
+This URL contains the GOV.UK Pay `paymentId`, which is automatically
+generated and identifies the payment. A GET request to this URL
+will return information about the payment and its status.
+
+You can read more in the [“Reporting”](/reporting) and [“Payment
+flow”](/payment_flow) sections of this documentation.
 
 An example URL:
 `https://publicapi.payments.service.gov.uk/v1/payments/{paymentId}`
 
->It is important that you do not expose the URL with the ``payment_id``
-publicly, for example as a URL parameter or in an insecure cookie. You should
-store it as a secure cookie or in a database.
+Your service will also need to supply a
+[`return_url`](/#choosing-the-return-url-and-matching-user-to-payment). This
+is a URL that your service hosts for the user to return to, after their
+payment journey on GOV.UK Pay ends.
 
-You will receive the ``next_url``  to which you should direct the user to
-complete their payment.
+<style>
+.govuk-warning-text{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400;font-size:16px;font-size:1rem;line-height:1.25;color:#0b0c0c;position:relative;margin-bottom:20px;padding:10px 0}@media print{.govuk-warning-text{font-family:sans-serif}}@media (min-width:40.0625em){.govuk-warning-text{font-size:19px;font-size:1.1875rem;line-height:1.31579}}@media print{.govuk-warning-text{font-size:14pt;line-height:1.15;color:#000}}@media (min-width:40.0625em){.govuk-warning-text{margin-bottom:30px}}.govuk-warning-text__assistive{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;-webkit-clip-path:inset(50%)!important;clip-path:inset(50%)!important;border:0!important;white-space:nowrap!important}.govuk-warning-text__icon{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:700;display:inline-block;position:absolute;top:50%;left:0;min-width:32px;min-height:29px;margin-top:-20px;padding-top:3px;border:3px solid #0b0c0c;border-radius:50%;color:#fff;background:#0b0c0c;font-size:1.6em;line-height:29px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}@media print{.govuk-warning-text__icon{font-family:sans-serif}}.govuk-warning-text__text{display:block;margin-left:-15px;padding-left:65px}
+</style>
 
-## Tracking the progress of a payment
+<br>
 
-You can track the progress of a payment while the user is on GOV.UK Pay using
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+You must not expose the URL with the `paymentId` or the `next_url` publicly, for example as a URL parameter or in an unencrypted cookie. You should store these values in encrypted cookies or in a database.
+  </strong>
+</div>
+
+## Track the progress of a payment
+
+You can track the progress of a payment while a user is on GOV.UK Pay using
 the <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
-target="blank">Find payment by ID</a> call (link opens in new window).
+target="blank">Find payment by ID</a> call [external link]
 
-NOTE: The status of the payment will go through several phases until it either
-succeeds or fails. See the [API reference
-section](/api_reference/#api-reference) for more details.
+The status of the payment will pass through several states until it either
+succeeds or fails. See the [“API reference”
+section](/api_reference/#api-reference) of this documentation for more
+details.
 
-## Choosing the return URL and matching user to payment
+## Choose the return URL and match users to payments
 
-For security reasons, GOV.UK Pay does not add the payment ID or outcome to
-your ``return_url`` as parameters.
+For security reasons, GOV.UK Pay does not add the `paymentId` or outcome to
+your `return_url` as parameters.
 
-To match up a returning user with their payment, there are two recommended
-methods:
+You can match users with payments with an encrypted cookie, or by creating a
+secure random ID:
 
-+ use a secure cookie containing the Payment ID from GOV.UK Pay, issued by
-your service when the payment is created (before sending the user to
-``next_url``). Users will not be able to decrypt a secure cookie, so a
-fraudster could not alter the payment ID and intercept other users’ payments.
+### Use an encrypted cookie
 
-+ create a secure random ID (such as a UUID) and include this as part of the
-``return_url``, using a different ``return_url`` for each payment. Since a
-securely generated UUID is not guessable, fraudsters will not be able to
-intercept users’ payments.
+You can use a secure cookie containing the `paymentId` from GOV.UK Pay. Your
+service should issue this when a payment is created, before sending the user
+to `next_url`. Users will not be able to decrypt a secure cookie, so a
+malicious user could not alter the payment ID and intercept other users’
+payments.
 
->Note: If you create an ID yourself, you’ll likely need to store this in a
-datastore mapped to the payment ID just after you create a payment.
+### Create a secure random ID
+
+You can create a secure random ID, such as a UUID, and include this as part of
+the `return_url`. You should use a different `return_url` for each payment.
+Malicious users will be unable to guess securely generated UUIDs,
+
+If you use this method, you should store your IDs safely. For example, in a
+datastore mapped to the payment ID just after a payment is created.
 
 ## Accepting returning users
 
- A user directed to the return URL could have:
+ A user directed to the `return_url` could have:
 
  - paid successfully
- - not paid because their card was rejected or they clicked cancel
- - not paid because your service (via the API) or service manager (via the self-service dashboard) cancelled the payment in progress
+ - not paid because their card was rejected or they selected __Cancel__
+ - not paid because your service cancelled the payment in progress via the GOV.UK Pay API
  - not paid because of a technical error
 
 Your service should use the API to check the payment status when the user
-reaches the return URL, and provide an appropriate response based on the final
+reaches the `return_url`, and provide an appropriate response based on the final
 status of the payment attempt.
 
 ## When a user does not complete their payment journey
 
-The user may close their browser or lose internet connection in the middle of
-the payment flow on GOV.UK Pay. These users will not be redirected back to
-your service.
+Users may close their browser or lose internet connection in the middle of
+their payment journey on GOV.UK Pay. In this event, users will not be
+redirected back to your service.
 
-You can still check on the status of these payments by making a GET request
-using the Location Header or Self Link, the same way you would if they were
-redirected, but just after a set time (eg, an hour).
+You can still [check the status of these
+payments](/payment_flow/#check-the-status-of-a-payment), but GOV.UK Pay will
+expire incomplete payments after 90 minutes so you should only check after
+this amount of time.
 
->Note: GOV.UK Pay will expire incomplete payments after 90 minutes, but you should expect an occasional success or failure if the user experienced problems right at the moment of the redirect.
-
-If a user does not have enough funds in their account to make a payment, the
-current GOV.UK Pay frontend will not let them try again with separate card
-details. They will have to return to the service to retry the payment.
+If a [payment fails](/payment_flow/#payment-failure), GOV.UK Pay will not
+allow the user to attempt the payment again with alternative card details. In
+this situation the user would need to return to the service to retry the
+payment.
 
 ## Cancel a payment that’s in progress
 
-Users can click a link on the payment page to cancel a payment that’s in
+Users can select a link on the payment page to cancel a payment that’s in
 progress. Alternatively, a service can make the following API call for a given
 `paymentId`:
 
@@ -103,13 +127,13 @@ progress. Alternatively, a service can make the following API call for a given
 
 A `204` response indicates success. Any other response indicates an error.
 
-To test this with our API Explorer:
+To test this with the GOV.UK Pay API Explorer [external links]:
 
 * 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">the API Explorer</a> (link opens in new window).
+   target="blank">the API Explorer</a>
 * 2. Under __Resource__, select __{Payment Id}__. Under __Action__, select <a
    href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
-   target="blank">__Search payments__</a> (link opens in new window).
+   target="blank">__Search payments__</a>
 
 ### Find out if you can cancel a payment
 
@@ -117,8 +141,8 @@ Use a GET request against a single payment to find out if you can cancel it:
 
 `GET /v1/payments/paymentId`
 
-If the JSON response body contains a `"cancel"` field in the `_links` object that is not `null`, you
-can cancel the payment. For example:
+If the JSON response body contains a `"cancel"` field in the `_links` object
+that is not `null`, you can cancel the payment. For example:
 
 ```
     "cancel": {
