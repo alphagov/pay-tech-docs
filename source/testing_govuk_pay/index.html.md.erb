@@ -5,18 +5,27 @@ weight: 90
 
 # Testing GOV.UK Pay
 
-You will receive a test account for testing in addition to your live credentials.
+When your GOV.UK Pay account is [switched to
+live](/switching_to_live/#switching-to-live), you will still have a ‘test’
+account for general testing and experimenting with different settings and
+features.
 
-When testing, you’ll need to ensure:
+When you test, you should make sure that you’ve tested with [mock card
+numbers](/#mock-card-numbers-for-testing-purposes) to simulate both successful
+and unsuccessful transactions. You must use test cards with your test account.
+Real card numbers will not work.
 
- - you’ve tested with mock card numbers (see below) to simulate both successful and unsuccessful transactions - never use real card numbers for testing purposes, as this breaks PCI rules
- - you test with your test account, not your live account
- - REST calls succeed with 200 API codes
- - you’ve tested the user journey from your service to the payments platform using end-to-end/smoke tests
+You should also:
 
-Services testing with test accounts can optionally use HTTP (rather than HTTPS)
+ - only use your test account, not your live account
+ - make sure that test calls to the GOV.UK Pay API succeed with [200 codes](/api_reference/#http-status-codes)
+ - [test the whole user journey](/#test-your-service-with-your-users) from your service to the payment service provider
+
+#### HTTP with test accounts
+
+Services using test accounts can optionally use HTTP (rather than HTTPS)
 for return URLs. You can read more about this in [the __Security__
-section](/security/#https). 
+section](/security/#https).
 
 ### Make a demo payment
 
@@ -32,21 +41,39 @@ integrate your service prototype with GOV.UK Pay, and test with your users.
 
 ## Integration testing
 
-To check your integration with GOV.UK Pay is working as expected, you’ll need to run a series of tests.
+To check your integration with GOV.UK Pay is working as expected, you should
+run a series of tests. You can read more about [software
+testing](https://www.gov.uk/service-manual/technology#testing-your-service)
+and [smoke
+testing](https://www.gov.uk/service-manual/making-software/deployment.html) in
+the GOV.UK Service Manual.
 
-We recommend that you build tests to include both the GOV.UK Pay API and its front end user journey. We are constantly iterating our interface, so you should not rely on any specific page layout, but you can build tests that address form elements (such as buttons) using their IDs. Alternatively, you can build stubs that will emulate GOV.UK Pay functionality.
+Ideally you should build tests to include both the GOV.UK Pay API and its
+frontend user journey. The GOV.UK Pay interface is continuously iterated, so
+you should not rely on any specific page layout. You can still build tests
+that address form elements such as buttons, using their IDs. Alternatively,
+you can build stubs that will emulate GOV.UK Pay functionality.
 
-Our APIs will evolve over time. We will always let you know in advance if we intend to make any breaking, or backwards-incompatible API changes so you can ensure your service works with the new version. Please see our section on versioning for more information.
+You can read [the __Versioning__ section](/versioning/#versioning) to find out
+about the evolution of the GOV.UK Pay API.
 
-There is guidance in the GOV.UK Service Manual on [smoke testing](https://www.gov.uk/service-manual/making-software/deployment.html). At the Government Digital Service, we tend to use Cucumber for testing (regardless of the core code language), as you can easily describe the behaviour you expect at the appropriate level.
+If you experience any problems when testing, please email us at
+[govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
 
-If you experience any problems when testing, please email us at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
+## Performance testing
 
-## Mock card numbers for testing purposes
+If you’d like to carry out any kind of performance testing, including in a
+rate-limiting environment, please contact us at
+[govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
 
-When you’re testing your integration, you must not use real card numbers. Use the below test numbers.
+## Mock card numbers for testing
 
-When you’re using these card numbers, you can enter any valid value for the other details (name, expiry date, card security code etc). For example, it does not matter what expiry date you enter, but it must be in the future.
+When you’re testing your integration, you must not use real card numbers. Use
+the below test numbers.
+
+When you’re using these card numbers, you can enter any valid value for the
+other details (name, expiry date, card security code etc). For example, it
+expiry dates must be in the future.
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
@@ -69,16 +96,13 @@ When you’re using these card numbers, you can enter any valid value for the ot
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-### For _Worldpay_ accounts
+### Worldpay test card numbers
 
-Please refer to [Worldpay test card numbers](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/testvalues.htm#Test)
+Please refer to [Worldpay's documentation](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/testvalues.htm#Test)
 
-### For _Barclays ePDQ_ accounts
-Please go to [ePDQ Get Started](https://support.epdq.co.uk/en/products/onboarding) and click on __What credit cards can I use for testing?__
+### Barclays ePDQ test card numbers
+Please refer to [the ePDQ __Get Started__ guide](https://support.epdq.co.uk/en/products/onboarding) and click on __What credit cards can I use for testing?__
 
-### For _Barclays SmartPay_ accounts
-Please go to [SmartPay TestCards](https://docs.adyen.com/developers/test-cards/test-card-numbers).
+### Barclays SmartPay test card numbers
+Please refer to [the SmartPay TestCards page](https://docs.adyen.com/developers/test-cards/test-card-numbers).
 
-##  Performance testing
-
-If you’d like to carry out any kind of performance testing, including in a rate-limiting environment, please contact us at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
