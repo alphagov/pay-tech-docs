@@ -81,14 +81,14 @@ __Configuration__.
 1. Go to __e-Commerce__ and the __Direct HTTP server-to-server request__
    section.
 1. Leave __Timing of the request__ on the default __No request__ setting.
-1. Leave the following fields blank: 
-<br>__If the payment’s status is “accepted”, “on hold” or “uncertain”__</br> 
+1. Leave the following fields blank:
+<br>__If the payment’s status is “accepted”, “on hold” or “uncertain”__</br>
 <br>__If the payment’s status is “cancelled by the client” or “too many rejections by the acquirer”__ </br>
 
 1. Set the __Request method__ to __POST__.
 1. Go to the __e-Commerce__ then __Dynamic e-Commerce parameters__ section.
 1. Check if “PAYIDSUB” is included in the __Selected__ box. If it is not, find it
-   in the __Available__ box and select __>__ to add it. 
+   in the __Available__ box and select __>__ to add it.
 
 ### Set up security for request parameters
 
@@ -142,7 +142,7 @@ In your [GOV.UK Pay
 1. Complete the following fields:
   <br> __PSP ID__ - enter your PSP ID for ePDQ</br>
   <br> __Username__ enter the API user’s username</br>
-  <br> __Password__ - enter the API user’s password</br> 
+  <br> __Password__ - enter the API user’s password</br>
   <br> __SHA-IN passphrase__ - described in [__Set up account security parameters__](#set-up-account-security-parameters)</br>
   <br> __SHA-OUT passphrase__ - described in [__Set up notification settings__](#set-up-notification-settings)</br>
 
@@ -153,8 +153,9 @@ In your [GOV.UK Pay
 1. Contact your ePDQ account manager to confirm the cards you want to
    accept are set up.
 2. Make a test transaction on your live account. You can use [the GOV.UK Pay
-   API](/api_reference) to do this, or use [payment
-   links](/payment_links) if your service is not yet connected to GOV.UK Pay.
+   API](/api_reference) to do this. Make sure you use a live API key, not a test
+   one. Use [payment links](/payment_links) if your service is not yet connected
+   to GOV.UK Pay.
 3. Sign in to your [GOV.UK Pay
    account](https://selfservice.payments.service.gov.uk/).
 4. Go to the [__Transactions__
@@ -163,6 +164,9 @@ In your [GOV.UK Pay
 5. Select the test transaction and check if you can refund it.
 
 > The refund option may take up to 20 minutes to appear after submitting the transaction.
+
+If you are testing your integration with a [payment link](/payment_links), you
+should open it in a separate browser tab to avoid confusion.
 
 ## Set up 3D Secure
 

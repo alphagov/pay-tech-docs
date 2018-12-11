@@ -47,7 +47,7 @@ service you want to set up. Select __Settings__, then __Account credentials__,
 then __Edit credentials__.
 
 1. In Worldpay, copy the Worldpay __Merchant Code__ from __Identification__ into
-the GOV.UK Pay __Merchant ID__ field.
+the GOV.UK Pay __Merchant code__ field.
 
 1. Copy the Worldpay __New Username__ into the GOV.UK Pay __Username__ field.
 
@@ -57,7 +57,12 @@ the GOV.UK Pay __Merchant ID__ field.
     <br> change the password and select __Add new Password__ </br>
     <br> select __OK__ to go back to the __Profile__ page </br>
     <br> select the pencil icon again, then __Complete__ then __OK__ </br>
-    <br><br>
+    <br>
+
+    > If you're setting up another GOV.UK Pay service using the same Worldpay
+    merchant code, you should not need to change your XML password again. If
+    you do change it in this situation, you will need to update your other
+    services with the new XML password.  <br></br>
 
 1. Copy the Worldpay XML password into the GOV.UK Pay __Password__ field.
 
@@ -73,13 +78,13 @@ In the left-hand menu of [your Worldpay
 account](https://secure.worldpay.com/sso/public/auth/login.html), select
 __Merchant Channel__.
 
-You must edit the content in the _http_ row, under __Protocol__. 
+You must edit the content in the _http_ row, under __Protocol__.
 
 For __Merchant Channels (Production)__ and __Merchant Channels (Test)__, check
 the following:
 
 1. Under __Active__, select __yes__.
-1. Set __Content__ to __xml__ 
+1. Set __Content__ to __xml__
 1. Set __Address__ to
    `https://notifications.payments.service.gov.uk/v1/api/notifications/worldpay`.
 1. Set __Method__ to __POST__.
@@ -143,8 +148,9 @@ __REVOKED__
 1. Contact your Worldpay account manager to confirm the cards you want to
    accept are set up.
 2. Make a test transaction on your live account. You can use [the GOV.UK Pay
-   API](/api_reference) to do this, or use [payment
-   links](/payment_links) if your service is not yet connected to GOV.UK Pay.
+   API](/api_reference) to do this. Make sure you use a live API key, not a test
+   one. Use [payment links](/payment_links) if your service is not yet connected
+   to GOV.UK Pay.
 3. Sign in to your [GOV.UK Pay
    account](https://selfservice.payments.service.gov.uk/).
 4. Go to the [__Transactions__
@@ -153,6 +159,9 @@ __REVOKED__
 5. Select the test transaction and check if you can refund it.
 
 > The refund option may take up to 20 minutes to appear after submitting the transaction.
+
+If you are testing your integration with a [payment link](/payment_links), you
+should open it in a separate browser tab to avoid confusion.
 
 ## Set up 3D Secure
 
