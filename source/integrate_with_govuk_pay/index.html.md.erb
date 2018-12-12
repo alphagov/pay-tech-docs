@@ -1,99 +1,85 @@
 ---
-title: Integrate with GOV.UK Pay
+title: How to integrate with the GOV.UK Pay API
 weight: 65
 ---
 
-# Integrate with GOV.UK Pay
+# How to integrate with the GOV.UK Pay API
 
-<style>
-.govuk-warning-text{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400;font-size:16px;font-size:1rem;line-height:1.25;color:#0b0c0c;position:relative;margin-bottom:20px;padding:10px 0}@media print{.govuk-warning-text{font-family:sans-serif}}@media (min-width:40.0625em){.govuk-warning-text{font-size:19px;font-size:1.1875rem;line-height:1.31579}}@media print{.govuk-warning-text{font-size:14pt;line-height:1.15;color:#000}}@media (min-width:40.0625em){.govuk-warning-text{margin-bottom:30px}}.govuk-warning-text__assistive{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;-webkit-clip-path:inset(50%)!important;clip-path:inset(50%)!important;border:0!important;white-space:nowrap!important}.govuk-warning-text__icon{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:700;display:inline-block;position:absolute;top:50%;left:0;min-width:32px;min-height:29px;margin-top:-20px;padding-top:3px;border:3px solid #0b0c0c;border-radius:50%;color:#fff;background:#0b0c0c;font-size:1.6em;line-height:29px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}@media print{.govuk-warning-text__icon{font-family:sans-serif}}.govuk-warning-text__text{display:block;margin-left:-15px;padding-left:65px}
-</style>
+Before you build an integration, your service team should have the necessary skills. You can refer to the [GOV.UK Service Manual](https://www.gov.uk/service-manual/the-team/what-each-role-does-in-service-team#roles-your-team-must-have) for more information.
 
 This guidance is for technical architects or developers planning to integrate
-their service with GOV.UK Pay. 
+their service with the GOV.UK Pay API. It describes:
 
-It covers:
-
-* the requirements for your service backend
+* the requirements for your service’s backend
 * what data you need to store and why
 * typical data flows for using the GOV.UK Pay API in an integration
-* when to release your service to users
-* mop-up jobs
+* when to release payments to users
+* making sure that all payments are processed
 * integrating with finance and accounting systems (see also [__Reporting__](/reporting))
 
-The following diagram shows a typical high-level architecture:
+The following diagram shows a typical high-level architecture with a GOV.UK
+Pay integration:
 
-![](/images/typical-architecture.png)
+![A typical high-level GOV.UK Pay architecture](/images/typical-architecture.png)
 
-### Service backend
+## Service backend
 
-Your service backend is server-side software which should:
+Your service backend is server-side software. You should build this to:
 
-* make API calls to GOV.UK Pay to start users’ payment journeys
+* make a call to the GOV.UK Pay API to start the payment journey
 * store information about user payment journeys in your datastore
 * redirect the user to the `next_url` provided by GOV.UK Pay, where the user
-will enter their payment information and confirm their payment
+will [enter their payment information and confirm their payment](/payment_flow/#making-a-payment)
 * receive users’ requests when they are redirected back to your service via
-the `return_url`
+the `return_url`, where the user will return [after completing payment](/payment_flow/#making-a-payment)
 * identify the returning user via the session
 * make a call to the GOV.UK Pay API to determine the outcome of the payment
-* display any information about the outcome of the payment and next steps to
+* display information about the outcome of the payment and next steps to
 the user
 
-### Datastore
+## Datastore
 
-Most service will need some kind of server-side data store or database. 
-
-Typically you will record the following information for each payment journey
-performed by a user:
+You will likely need some kind of server-side datastore to record payment information for each payment journey. You should store the:
 
 * an ID or primary key
-* the service requested by the user
+* the service the user requested
 * the GOV.UK Pay `paymentId`
 * the status of the payment
-* the date and time when the payment was initiated
+* the date and time the payment was started
 
-### Finance and accounting systems
+## Finance and accounting systems
 
-You may wish to integrate your finance and accounting systems with GOV.UK Pay
-using the API. For example you could:
+You may want to integrate your finance and accounting systems with GOV.UK Pay
+using the API.
 
-* automatically fetch data about the outcome of payment journeys, and import
-that into your finance system so that payments can be reconciled against bank
-transaction information
-* connect a customer-relationship management (CRM) or case-management system
-to GOV.UK Pay, so that staff can issue refunds from within your system.
+For example, you could automatically fetch data about the outcome of payment journeys. You could import that into your finance system so payments can be reconciled against bank transaction information.
 
-You may want to read more in the sections on [__Reporting__](/reporting) and
-[__Refunding payments__](/refunding_payments).
+You could also connect a customer-relationship management (CRM) or case management system to GOV.UK Pay, so your staff can issue refunds from within your system.
 
-### The GOV.UK Pay API
+You can read more in the [__Reporting__](/reporting) and
+[__Refunding payments__](/refunding_payments) sections of this documentation.
 
-The GOV.UK Pay API offers a set of simple operations to conduct and
-report on payments. You can read about the API in the [__API
-reference__](/api_reference) section of this documentation and use the
-interactive [API explorer](https://gds-payments.gelato.io/api-explorer/)
-[external link]. 
+## The GOV.UK Pay API
+
+The GOV.UK Pay API offers a set of operations to conduct and report on
+payments. See the [__API reference__](/api_reference) section
+of this documentation for more information or use the interactive [API
+explorer](https://gds-payments.gelato.io/api-explorer/) [external link].
 
 ## When to release your service to users
 
-It's your responsibility to decide when you want to release your service to
-users. This will depend on the nature of your service. 
+It's your responsibility to decide when to release your service to
+users. This will depend on the nature of your service.
 
-In some cases you may be comfortable with releasing a service before payment
-has been confirmed (for example if you are taking payments in advance on
-account). 
+In some cases you may be comfortable releasing a service before a payment
+has been confirmed. For example, if you’re taking payments in advance because a user has an account with you.
 
-In most cases however, you will want to have confirmation that a payment has
-been completed before releasing the service to users. Typically you will do
-this when the user visits the `return_url` on your service.
+In most cases, you’ll want to confirm that a payment has been completed before releasing the service to users. Typically you’ll do this
+when the user visits the `return_url` on your service.
 
-The following diagram gives a detailed overview of a typical happy path
-sequence:
+The following example UML sequence diagram shows a typical happy-path payment journey:
 
-![](/images/keep-track-of-incomplete-payment-journeys.png)
-
-[source](https://www.websequencediagrams.com/?lz=cGFydGljaXBhbnQgdXNlcgoABQwieW91ciBzZXJ2aWNlIiBhcwAECAAYDmRhdGEgc3RvcgAeBmRiADcOR09WLlVLIFBheQA-BXBheQoKdXNlci0-AFMHOiB2aXNpdABUCW5vdGUgb3ZlcgCBDQU6IGNsaWNrICJCdXkgZmlzaGluZyBsaWNlbnNlIgA5EFBPU1QgL2J1eQoAgS8HAFoLc3RhcnQgc2Vzc2lvbgBaCwB9CWNhbGwgAIEkClxudG8gY3JlYXRlIGEgcGF5bWVudABQCCAtPiBwYXkAagh2MS8AGgdzIHtcbiAgZGVzY3JpcHRpb24sXG4gIGFtb3VudAAGBXJldHVybl91cmwACAZmZXJlbmNlXG59CnBheSAtLT4AgQkKMjAxIENSRUFURUQgey4uLgCAfwhfaWQ6IG5leHRfdXJsOiAuLi4gfQCBPxRleHRyYWN0IHRoZQAwCyBhbmQANQkgZnJvbQAcBXJlc3BvbnNlAIIyCmRiOgCDUwYAMQxpblxubGlzdCBvZiBpbmNvbXBsZXRlIGpvdXJuZXlzCmRiLQCDUAsAEAdfaWQAgwATcmVjb3JkABkLIGluAIUCBQCDHgkAgz8ILT4AhAYGMzAyIHJlZGlyZWN0IHRvAIE8CihodHRwIGhlYWQAg04FdHMAg2IIIGNvb2tpZSkAhEYRdXNlcidzIGJyb3dzZXIgYXV0b21hdGljYWxseVxuZm9sbG93cwCCEgcAawYAhTAHAINzBWVudGVyIGNhcmQgZGV0YWlscwASDGNvbmZpcm0AhC0JAIVJCgCEMAV3aGVuAIMPBQCBZwVoYXMgZmluaXNoZWQsXG53AGcKIHRoZW0gYmFjayB0byB0aGVcbgCENAogc3BlY2lmaWVkIGJ5AINdBQCHFAp5AIIoCQCCIQwAhHAKAIZTEQCBBQgAggYLd2lsbCBzdGlsbFxuaGF2ZQBcBwCCSQwAhzgQR0VUAIVUCyAod2l0aACCdxEAhwgSAIUeCACDfQsAhRAFAIN1FQCFEAVmaW5kAIRqEyB1c2luZwCEaAwAhH8OAIY0CgCHbBRDAIdyDiB0byBlbnF1aXJlIGFib3V0AId8CCBvdXRjb20Ahh0LAIgFBUdFAId7Di88AIcjCj4Agw0HAIdOCzAgT0sge3N0YXR1czogU1VDQ0VTUy9GQUlMfQCGcw5tYXJrAIYXDGFzIACGbQgAiVwKAIokBmRpc3BsYXkAhHcIYXRpb24gc2NyZWVuIChzdWNjZXNzL2ZhaWwpCgoK&s=modern-blue)
+![Typical happy-path user payment sequence](/images/happy-path-sequence.svg)
 
 ## Identifying the user when they return to your service
 
@@ -108,62 +94,58 @@ If you do, an attacker may be able to guess the reference in your
 `return_url` and gain access to another user's personal information displayed
 on your confirmation screen.
 
-|      | Example |  
+|      | Example |
 |------|---------|
 | Good | `https://my.service.gov.uk/return` |
 | Bad  | `https://my.service.gov.uk/return/payment_12345` |
 
-You must use `https` for your `return_url`.
+You must use [HTTPS](/security/#https) for your `return_url`.
 
 ## Make sure that all payments are processed
 
-There are two failure cases which affect the design of your integration with GOV.UK Pay:
+There are 2 failure cases which affect the design of your integration with
+GOV.UK Pay:
 
 * user abandons their payment journey before completing it
 * user completes their payment successfully, but their network connection is
 interrupted before they return to your service
 
-In the happy path scenario you want to release your service as quickly as possible to your user, so you would check the payment outcome when your `return_url` is visited.
+In the happy-path scenario you want to release your service as quickly as
+possible to your user, so you would check the payment outcome when your
+`return_url` is visited.
 
-However, in the failure cases, users will never visit the `return_url` so
-you cannot rely on this. Instead, you can either:
+However, in the failure cases, users will never visit the `return_url. Instead, you should either:
 
-* have your service team manually check the payment outcome by looking in the GOV.UK Pay admin tool
+* make sure your service team can manually check payment outcomes in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login)
 * use an automatic mop-up job (recommended)
 
 ### Have your service team manually check the payment outcome
 
-If you have a very low-volume service then this may be a feasible option. This
-would always be the case if you are using payment links. 
+If your team manually checks payment outcomes before releasing payments to users, you may have a low-volume service. This
+would always be the case if you are using [payment links](/payment_links).
 
-In this case, you should make sure your service staff check the outcomes of
-payments in the GOV.UK Pay admin tool before releasing the service to the end
-user.
+You should make sure your service staff check the outcomes of
+payments in the GOV.UK Pay admin tool before releasing the service to the user.
 
 ### Use an automatic mop-up job (recommended)
 
-A mop-up job provides the best guarantee that the failure cases are handled properly
-and automatically. This is a background process which checks the outcome of incomplete
-payment journeys.
+A ‘mop-up job’ provides the best guarantee that the failure cases are handled properly
+and automatically. A mop-up job is a background process which checks the outcome of incomplete payment journeys.
 
 In order to use a mop-up job, you need:
 
 * a datastore which keeps track of incomplete payment journeys
-* a server side process which periodically checks the datastore for incomplete payment journeys, and queries the GOV.UK Pay API to determine the outcome
+* a server-side process which periodically checks the datastore for incomplete payment journeys, and queries the GOV.UK Pay API to determine the outcome
 
-The following diagram shows an example of an incomplete payment journey, and
-how a mop-up job would clean it up:
+The following UML sequence diagram shows an example of an incomplete payment journey, and how a mop-up job would clean it up:
 
-![](images/incomplete-payment-journeys-mop-up-jobs.png)
+![A mop-up job acting on an incomplete payment journey](/images/incomplete-payment-journey-sequence.svg)
 
-Your mop-up job may run frequently, for example every half an hour. 
-
-It should ignore payments made in the past 3 hours to avoid interfering with
-in-flight payments. If it finds ‘stale’ incomplete payment journeys then it’s
-likely that payment journey has been abandoned. The mop-up job should call the
-GOV.UK Pay API to determine the status of the payment.
+Your mop-up job should run frequently, for example every half an hour. It should ignore payments made in the past 3 hours to avoid interfering with payments that are still being processed. If it finds ‘stale’ incomplete payment journeys then it’s likely users have abandoned those payments. The mop-up job should call the GOV.UK Pay API to determine the [status of the payment](/api_reference/#payment-status-lifecycle).
 
 ## Existing integrations with GOV.UK Pay
 
 The Ministry of Justice has a citizen-facing public site for [sending money to
 prisoners](https://github.com/ministryofjustice/money-to-prisoners-send-money).
+
+
