@@ -5,12 +5,12 @@ weight: 90
 
 # Testing GOV.UK Pay
 
-When your GOV.UK Pay account is [switched to
-live](/switching_to_live/#switching-to-live), you will still have a ‘test’
+When your GOV.UK Pay account is made live, you will still have a ‘test’
 account for general testing and experimenting with different settings and
-features.
+features. You can read more in the [__Switching to
+live__](/switching_to_live/#switching-to-live) section.
 
-When you test, you should make sure that you’ve tested with [mock card
+When you test, you should make sure that you use [mock card
 numbers](/#mock-card-numbers-for-testing-purposes) to simulate both successful
 and unsuccessful transactions. You must use test cards with your test account.
 Real card numbers will not work.
@@ -24,7 +24,7 @@ You should also:
 #### HTTP with test accounts
 
 Services using test accounts can optionally use HTTP (rather than HTTPS)
-for return URLs. You can read more about this in [the __Security__
+for return URLs. You can read more in [the __Security__
 section](/security/#https).
 
 ### Make a demo payment
@@ -54,8 +54,10 @@ you should not rely on any specific page layout. You can still build tests
 that address form elements such as buttons, using their IDs. Alternatively,
 you can build stubs that will emulate GOV.UK Pay functionality.
 
-You can read [the __Versioning__ section](/versioning/#versioning) to find out
-about the evolution of the GOV.UK Pay API.
+You can read the section on [__How to integrate with the GOV.UK Pay
+API__](/integrate_with_govuk_pay/#how-to-integrate-with-the-gov-uk-pay-api).
+You can also read [the __Versioning__ section](/versioning/#versioning) to
+find out about the evolution of the GOV.UK Pay API.
 
 If you experience any problems when testing, please email us at
 [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
@@ -68,12 +70,9 @@ rate-limiting environment, please contact us at
 
 ## Mock card numbers for testing
 
-When you’re testing your integration, you must not use real card numbers. Use
-the below test numbers.
+When you test your integration, you must not use real card numbers.
 
-When you’re using these card numbers, you can enter any valid value for the
-other details (name, expiry date, card security code etc). For example, it
-expiry dates must be in the future.
+You should use mock card numbers. For example:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
@@ -96,13 +95,15 @@ expiry dates must be in the future.
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
+When you use mock card numbers, you can enter any valid value for the
+other details. For example, expiry dates must be in the future.
+
 ### Worldpay test card numbers
 
-Please refer to [Worldpay's documentation](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/testvalues.htm#Test)
+Refer to the [Worldpay documentation](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/testvalues.htm#Test) [external link].
 
 ### Barclays ePDQ test card numbers
-Please refer to [the ePDQ __Get Started__ guide](https://support.epdq.co.uk/en/products/onboarding) and click on __What credit cards can I use for testing?__
+Refer to the [ePDQ __Get Started__ guide](https://support.epdq.co.uk/en/products/onboarding) [external link] and select __What credit cards can I use for testing?__.
 
 ### Barclays SmartPay test card numbers
-Please refer to [the SmartPay TestCards page](https://docs.adyen.com/developers/test-cards/test-card-numbers).
-
+Refer to the [SmartPay TestCards page](https://docs.adyen.com/developers/test-cards/test-card-numbers) [external link].
