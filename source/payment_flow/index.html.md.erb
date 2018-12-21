@@ -104,7 +104,7 @@ variable: if you have an existing format, you can keep using it with GOV.UK
 Pay (maximum 255 characters, and must not contain URLs).
 
 `description`: A human-readable description of the payment. This will be shown to the end
-user on the payment pages and to your staff on the GOV.UK Pay admin site
+user on the payment pages and to your staff on the GOV.UK Pay admin tool
 (maximum 255 characters, and must not contain URLs).
 
 `return_url`: A HTTPS URL on your site that the user will be sent back to once they have
@@ -200,7 +200,7 @@ confirmation email containing:
 You can add a custom paragraph to a payment confirmation email at the [email
 notifications
 page](https://selfservice.payments.service.gov.uk/email-notifications) on the
-GOV.UK Pay admin site.
+GOV.UK Pay admin tool.
 
 You can further customise using [GOV.UK
 Notify](https://www.notifications.service.gov.uk/) to set up custom
@@ -263,7 +263,7 @@ more details about how to match users to payments.
 
 To check the status of a payment, you must make a <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
-target="blank">Find payment by ID</a> API call (link opens in new window),
+target="blank">Find payment by ID</a> API call [external link],
 using the `payment_id` of the payment as the parameter.
 
 The URL to do this is the same as the `self` URL provided in the response

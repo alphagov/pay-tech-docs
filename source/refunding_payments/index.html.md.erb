@@ -38,7 +38,7 @@ You can find out the refund status of a payment with the GOV.UK Pay API using th
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
 target="blank">Find payment by ID</a> or <a
 href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general/endpoints/search-payments"
-target="blank">Search payments</a> functions (links open in new window).
+target="blank">Search payments</a> functions [external link].
 
 The JSON response body will contain a `refund_summary` object. For example,
 for a completed £50 payment with no previous refunds:
@@ -64,7 +64,7 @@ be greater than the original payment.
 
 You can use the <a
 href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id/endpoints/get-all-refunds-for-a-payment"
-target="blank">Get all refunds for a payment</a> (link opens in new window)
+target="blank">Get all refunds for a payment</a> [external link].
 API call to get information about partial refunds.
 
 As another example, this is the JSON response body for a completed £90 payment
@@ -160,7 +160,7 @@ window) will return an error code and a description of what it means. (A
 refund attempt that fails like this with an error code is not assigned a
 `refundId` and is not available using <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id"
-target="blank">Find payment refund by ID</a> (link opens in new window)).
+target="blank">Find payment refund by ID</a> [external link].
 
 If a refund is accepted by GOV.UK Pay, it may still go on to fail at the PSP.
 This may happen if the card involved is cancelled or has expired, or if your
@@ -196,7 +196,7 @@ go directly to `success`.
 
 To manage refunds in live environments, you must use <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id"
-target="blank">Find payment refund by ID</a> (link opens in new window) to
+target="blank">Find payment refund by ID</a> [external link] to
 check the processing status of the refund, until it changes to either
 `success` or `error`.
 
@@ -211,7 +211,7 @@ information required about why a refund failed.
 ## Refunding from the GOV.UK Pay admin tool
 
 You can use the [GOV.UK Pay admin
-site](https://selfservice.payments.service.gov.uk) to view transactions and
+tool](https://selfservice.payments.service.gov.uk) to view transactions and
 issue refunds.
 
 Go to the __Transactions__ section to see a list of transactions. For example,
@@ -274,7 +274,7 @@ You can use the following query parameters to filter refunds by date:
 
 These take inputs based on a subset of [ISO
 8601](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard)
-(link opens in new window).  For example, a valid input would be
+[external link].  For example, a valid input would be
 `2015-08-13T12:35:00Z`.
 
 #### Pagination
