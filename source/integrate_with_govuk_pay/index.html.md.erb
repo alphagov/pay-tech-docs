@@ -13,7 +13,7 @@ their service with the GOV.UK Pay API. It describes:
 * the requirements for your service’s backend
 * what data you need to store and why
 * typical data flows for using the GOV.UK Pay API in an integration
-* when to release payments to users
+* when to release services to users
 * making sure that all payments are processed
 * integrating with finance and accounting systems (see also [__Reporting__](/reporting))
 
@@ -39,7 +39,7 @@ the user
 
 ## Datastore
 
-You will likely need some kind of server-side datastore to record payment information for each payment journey. You should store the:
+You will likely need some kind of server-side datastore to record payment information for each payment journey. You should store:
 
 * an ID or primary key
 * the service the user requested
@@ -99,7 +99,7 @@ on your confirmation screen.
 | Good | `https://my.service.gov.uk/return` |
 | Bad  | `https://my.service.gov.uk/return/payment_12345` |
 
-You must use [HTTPS](/security/#https) for your `return_url`.
+You must use [HTTPS](/security/#https) for your `return_url`. (you can use HTTP in test accounts)
 
 ## Make sure that all payments are processed
 
