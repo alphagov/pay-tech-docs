@@ -101,7 +101,7 @@ For example:
 
 `reference`: The reference number you wish to associate with this payment. The format is
 variable: if you have an existing format, you can keep using it with GOV.UK
-Pay (maximum 255 characters, and must not contain URLs).
+Pay (maximum 255 characters, and must not contain URLs). We don't enforce uniqueness of the reference number. 
 
 `description`: A human-readable description of the payment. This will be shown to the end
 user on the payment pages and to your staff on the GOV.UK Pay admin site
@@ -109,7 +109,7 @@ user on the payment pages and to your staff on the GOV.UK Pay admin site
 
 `return_url`: A HTTPS URL on your site that the user will be sent back to once they have
 completed their payment attempt on GOV.UK Pay. This should not be JSON-encoded,
-because backslashes are invalid characters.
+because backslashes are invalid characters. (In our test accounts you can use HTTP instead of HTTPS)
 
 In the example, responses to the __Create new payment__ API call would have
 headers of the form:
