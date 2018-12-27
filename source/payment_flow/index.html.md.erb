@@ -65,7 +65,7 @@ reaching a final state:
 In your service, you may host a series of pages which allow users to choose
 between a variety of possible payments. At the end of this, you may have a
 page where the end user needs to make a payment. The following image shows an
-example: 
+example:
 
 ![](/images/flow-service-pay-page.png)
 
@@ -215,7 +215,7 @@ The confirmation page is hosted by your service and should:
 - contain a reference number, which should be short
 - have a clear payment summary, showing the amount and description
 - clearly state what is going to happen next - this will be different for each service
-- if applicable, let the user know they will receive a receipt email (using GOV.UK Notify or GOV.UK Pay) 
+- if applicable, let the user know they will receive a receipt email (using GOV.UK Notify or GOV.UK Pay)
 
 Users have different ways of recording this confirmation information. This can
 include screenshots, prints, PDF receipts to download, and writing down the
@@ -229,23 +229,23 @@ System](https://www.gov.uk/service-manual/design/confirmation-pages).
 
 The payment can fail at any point in the process due to:
 
-+ the user cancelling the payment 
-+ the payment being declined 
-+ your service cancelling the payment 
++ the user cancelling the payment
++ the payment being declined
++ your service cancelling the payment
 + a technical error
 
 If the payment fails, the user will see a GOV.UK Pay error page, which
 includes a __Continue__ button. When a user selects this, your service
 should show them a page that confirms that the payment failed. This should either:
 
-- offer the user a chance to try the payment again by starting a new payment with GOV.UK Pay, or using another method that your service provides 
+- offer the user a chance to try the payment again by starting a new payment with GOV.UK Pay, or using another method that your service provides
 - advise the user of an alternative course of action
 
 The following image is an example failure page:
 
 ![](/images/flow-payment-declined.png)
 
-You can also choose to [Use your own payment failure pages](https://docs.payments.service.gov.uk/optional_features/use_your_own_error_pages/#use-your-own-payment-failure-pages)
+You can also choose to [use your own payment failure pages](https://docs.payments.service.gov.uk/optional_features/use_your_own_error_pages/#use-your-own-payment-failure-pages)
 
 ## Check the status of a payment
 
