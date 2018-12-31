@@ -37,7 +37,7 @@ complete their payment.
 You can track the progress of a payment while the user is on GOV.UK Pay using
 the <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
-target="blank">Find payment by ID</a> call (link opens in new window).
+target="blank">Find payment by ID</a> call [external link].
 
 NOTE: The status of the payment will go through several phases until it either
 succeeds or fails. See the [API reference
@@ -70,7 +70,7 @@ datastore mapped to the payment ID just after you create a payment.
 
  - paid successfully
  - not paid because their card was rejected or they clicked cancel
- - not paid because your service (via the API) or service manager (via the self-service dashboard) cancelled the payment in progress
+ - not paid because your service (via the API) cancelled the payment in progress
  - not paid because of a technical error
 
 Your service should use the API to check the payment status when the user
@@ -85,13 +85,14 @@ your service.
 
 You can still check on the status of these payments by making a GET request
 using the Location Header or Self Link, the same way you would if they were
-redirected, but just after a set time (eg, an hour).
+redirected, but just after a set time (eg, two hours).
 
 >Note: GOV.UK Pay will expire incomplete payments after 90 minutes, but you should expect an occasional success or failure if the user experienced problems right at the moment of the redirect.
 
 If a user does not have enough funds in their account to make a payment, the
 current GOV.UK Pay frontend will not let them try again with separate card
-details. They will have to return to the service to retry the payment.
+details. They will be redirected to your service but you can offer them the option to try again. 
+That option would require your service to start a new payment. 
 
 ## Cancel a payment that’s in progress
 
@@ -107,9 +108,8 @@ To test this with our API Explorer:
 
 * 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
    target="blank">the API Explorer</a> (link opens in new window).
-* 2. Under __Resource__, select __{Payment Id}__. Under __Action__, select <a
-   href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
-   target="blank">__Search payments__</a> (link opens in new window).
+* 2. Under __Resource__, select __{Payment Id}__. Under __Action__, select
+__Search payments__.
 
 ### Find out if you can cancel a payment
 

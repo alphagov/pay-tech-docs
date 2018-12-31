@@ -142,7 +142,7 @@ Common status codes are:
 | Create payment | P0199 | Account error | There is a problem with your service account. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | Find payment by ID | P0200 | `paymentId` not found | No payment matched the `paymentId` you provided. |
 | Find payment by ID | P0298 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
-| Return payment events by ID | P0300 | `paymentId` not found | No payment matched the `paymentId you` provided. |
+| Return payment events by ID | P0300 | `paymentId` not found | No payment matched the `paymentId` you provided. |
 | Return payment events by ID | P0398 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | Search payments | P0401 | Invalid parameters | The parameters you sent are invalid. |
 | Search payments | P0402 | Page not found | The requested page of search results does not exist. |
@@ -200,7 +200,7 @@ Pay admin tool or directly using the API.
 #### Use the admin tool
 
 1. Sign in to the [GOV.UK Pay admin
-site](https://selfservice.payments.service.gov.uk/) (link opens in new window).
+tool](https://selfservice.payments.service.gov.uk/).
 2. Select _Transactions_.
 3. Select a payment with a `"failed"`, `"cancelled"` or `"error"` status.
 
@@ -232,6 +232,7 @@ For example:
 | visa             | CREDIT | Visa             |
 | master-card      | DEBIT  | Mastercard       |
 | master-card      | CREDIT | Mastercard       |
+| maestro          | DEBIT  | Maestro          |
 | american-express | CREDIT | American Express |
 | diners-club      | CREDIT | Diners Club      |
 | discover         | CREDIT | Discover         |

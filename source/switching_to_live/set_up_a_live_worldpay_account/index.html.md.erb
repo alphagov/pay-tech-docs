@@ -19,7 +19,9 @@ You can also read about setting up live
 
 ## Prerequisites
 
-Before you begin, make sure you have an admin account with both Worldpay and GOV.UK Pay.
+Before you begin, make sure you have an admin account with both Worldpay and
+GOV.UK Pay. You need an account with the Worldpay Corporate Gateway. GOV.UK
+Pay does not support the Worldpay Business Gateway.
 
 ## Set up your merchant code
 
@@ -50,6 +52,9 @@ then __Edit credentials__.
 the GOV.UK Pay __Merchant code__ field.
 
 1. Copy the Worldpay __New Username__ into the GOV.UK Pay __Username__ field.
+You should see the option __Enable Original XML Username__. If you see the
+option __Disable Original XML Username__, you must select the checkbox and then
+the __Save Profile__ button at the bottom of the page)
 
 1. Change the Worldpay XML password:
 
@@ -64,7 +69,7 @@ the GOV.UK Pay __Merchant code__ field.
     you do change it in this situation, you will need to update your other
     services with the new XML password.  <br></br>
 
-1. Copy the Worldpay XML password into the GOV.UK Pay __Password__ field.
+1. Enter the Worldpay XML password into the GOV.UK Pay __Password__ field.
 
 1. In your GOV.UK Pay browser tab, select __Save credentials__ to go back to the
 __Account credentials__ page.
@@ -89,7 +94,7 @@ the following:
    `https://notifications.payments.service.gov.uk/v1/api/notifications/worldpay`.
 1. Set __Method__ to __POST__.
 1. Set __Client certificate__ to __no__.
-1. Under __Merchant Channels (Production)__ and __Active__, set the __email__ and __shopper
+1. Set the __email__ and __shopper
    email__ protocols to __no__.
 
 For __Merchant Channel Events (Production)__ and __Merchant Channel Events
@@ -146,7 +151,7 @@ __REVOKED__
 ## Test your configuration
 
 1. Contact your Worldpay account manager to confirm the cards you want to
-   accept are set up.
+   accept are set up. Make sure you only select [card types](https://selfservice.payments.service.gov.uk/card-types/summary) within GOV.UK Pay that are also enabled in your Worldpay account.
 2. Make a test transaction on your live account. You can use [the GOV.UK Pay
    API](/api_reference) to do this. Make sure you use a live API key, not a test
    one. Use [payment links](/payment_links) if your service is not yet connected
@@ -157,6 +162,7 @@ __REVOKED__
    page](https://selfservice.payments.service.gov.uk/transactions) and check
    your test transaction is in the list of transactions.
 5. Select the test transaction and check if you can refund it.
+6. Delete the payments link you created to make the test payment.
 
 > The refund option may take up to 20 minutes to appear after submitting the transaction.
 
