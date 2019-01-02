@@ -17,20 +17,23 @@ You can use your [GOV.UK Pay admin
 account](https://selfservice.payments.service.gov.uk/login) to export
 transaction information in a CSV file.
 
-1. For the account you want reporting information for, select __Transactions__
-in the __Dashboard__ page.
+1. Select the account you want reporting information for in the [My Service](https://selfservice.payments.service.gov.uk/my-services) section
 
-2. Filter transactions using the available search criteria.
+2. Go to the [transactions](https://selfservice.payments.service.gov.uk/transactions) list
 
-3. Select __Download all transaction details as a CSV file__.
+3. Filter transactions using the available search criteria.
+
+4. Select __Download all transaction details as a CSV file__.
 
 The CSV file contains all transaction data, which is much more comprehensive than the information on the __Transactions__ page. You can process CSV files using
 spreadsheet software and edit the contents you do not need.
 
+You cannot download CSV for more than 10,000 transactions.
+
 ## Reporting via the GOV.UK Pay API
 
-Before reading this section, you should be familiar with the ‘[Making
-payments](/making_payments)’ section.
+Before reading this section, you should be familiar with the [__Making
+payments__](/making_payments) section.
 
 You can get data from the GOV.UK Pay API in a format suitable for automatic
 processing. For example, you could develop software to query the GOV.UK Pay
@@ -48,7 +51,7 @@ You can use the GOV.UK Pay API to:
 `GET /v1/payments/paymentId`
 
 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">the API Explorer</a> (link opens in new window).
+   target="blank">the API Explorer</a> [external link].
 2. Under __Resource__, select __{Payment Id}__.
 3. Under __Action__, select __Find payment by ID__.
 
@@ -93,7 +96,7 @@ have entered when making a payment:
 `GET /v1/payments`
 
 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">the API Explorer</a> (link opens in new window).
+   target="blank">the API Explorer</a> [external link].
 2. Under __Resource__, select __General__.
 3. Under __Action__, select __Search payments__.
 
@@ -127,9 +130,8 @@ You can use the following query parameters to filter payments by date:
 * `to_date` - the end date for payments to be searched, exclusive
 
 These take inputs based on a subset of [ISO
-8601](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard)
-(link opens in new window).  For example, a valid input would be
-`2015-08-13T12:35:00Z`.
+8601](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard).
+For example, a valid input would be `2015-08-13T12:35:00Z`.
 
 #### Pagination
 
