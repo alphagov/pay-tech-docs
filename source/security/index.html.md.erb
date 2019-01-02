@@ -32,8 +32,11 @@ source code repositories.
 Follow these steps to revoke your API key immediately if you believe it has been accidentally shared or compromised:
 
 1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login)
+
 2. Select the correct services in the [My services](https://selfservice.payments.service.gov.uk/my-services) section
+
 3. Navigate to the [API keys](https://selfservice.payments.service.gov.uk/api-keys) page in the Settings section.
+
 4. Revoke all compromised API keys
 
 <br>
@@ -50,12 +53,17 @@ service manager.
 
 To further secure your live developer keys:
 
- - periodically rotate the keys that are used for live payments
- - you should consider rotating keys that are used for live payments after staff members leave that had access to those keys
- - avoid embedding your developer keys in any of your code - this only increases the risk that they will be discovered (instead store your keys inside your configuration files)
- - avoid storing your API keys in your application source tree (even when you’re not making your source code publicly available)
- - revoke your developer keys when they’re no longer required (this limits the number of entry points into your account)
- - have a leavers’ process, so that a developer’s API key is revoked when they leave
+ * periodically rotate the keys that are used for live payments
+
+ * you should consider rotating keys that are used for live payments after staff members leave that had access to those keys
+
+ * avoid embedding your developer keys in any of your code - this only increases the risk that they will be discovered (instead store your keys inside your configuration files)
+
+ * avoid storing your API keys in your application source tree (even when you’re not making your source code publicly available)
+
+ * revoke your developer keys when they’re no longer required (this limits the number of entry points into your account)
+
+ * have a leavers’ process, so that a developer’s API key is revoked when they leave
 
 ## Securing your integration with GOV.UK Pay
 
@@ -84,6 +92,7 @@ by MID by:
 
 * agreeing with your acquiring bank to allocate an unique MID for each
 separate payment channel you have in place
+
 * reporting your PCI DSS compliance status for each of these unique MIDs to
 your acquiring bank
 

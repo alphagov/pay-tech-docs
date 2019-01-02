@@ -51,12 +51,12 @@ your ``return_url`` as parameters.
 To match up a returning user with their payment, there are two recommended
 methods:
 
-+ use a secure cookie containing the Payment ID from GOV.UK Pay, issued by
+* use a secure cookie containing the Payment ID from GOV.UK Pay, issued by
 your service when the payment is created (before sending the user to
 ``next_url``). Users will not be able to decrypt a secure cookie, so a
 fraudster could not alter the payment ID and intercept other users’ payments.
 
-+ create a secure random ID (such as a UUID) and include this as part of the
+* create a secure random ID (such as a UUID) and include this as part of the
 ``return_url``, using a different ``return_url`` for each payment. Since a
 securely generated UUID is not guessable, fraudsters will not be able to
 intercept users’ payments.
@@ -68,10 +68,13 @@ datastore mapped to the payment ID just after you create a payment.
 
  A user directed to the return URL could have:
 
- - paid successfully
- - not paid because their card was rejected or they clicked cancel
- - not paid because your service (via the API) cancelled the payment in progress
- - not paid because of a technical error
+ * paid successfully
+
+ * not paid because their card was rejected or they clicked cancel
+
+ * not paid because your service (via the API) cancelled the payment in progress
+
+ * not paid because of a technical error
 
 Your service should use the API to check the payment status when the user
 reaches the return URL, and provide an appropriate response based on the final
@@ -106,9 +109,10 @@ A `204` response indicates success. Any other response indicates an error.
 
 To test this with our API Explorer:
 
-* 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
+1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
    target="blank">the API Explorer</a> (link opens in new window).
-* 2. Under __Resource__, select __{Payment Id}__. Under __Action__, select
+
+2. Under __Resource__, select __{Payment Id}__. Under __Action__, select
 __Search payments__.
 
 ### Find out if you can cancel a payment

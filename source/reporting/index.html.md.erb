@@ -44,6 +44,7 @@ lead to significant cost savings for your organisation.
 You can use the GOV.UK Pay API to:
 
 * get information about a single payment
+
 * generate a list of payments matching search criteria
 
 ## Get information about a single payment
@@ -52,7 +53,9 @@ You can use the GOV.UK Pay API to:
 
 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
    target="blank">the API Explorer</a> [external link].
+
 2. Under __Resource__, select __{Payment Id}__.
+
 3. Under __Action__, select __Find payment by ID__.
 
 If the payment exists, the JSON response body to this
@@ -97,7 +100,9 @@ have entered when making a payment:
 
 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
    target="blank">the API Explorer</a> [external link].
+
 2. Under __Resource__, select __General__.
+
 3. Under __Action__, select __Search payments__.
 
 ### Search criteria
@@ -110,11 +115,17 @@ An example search request:
 Some of the query parameters you can use to search for payments are:
 
 * `reference`
+
 * `email`
+
 * `state`
+
 * `card_brand`
+
 * `first_digits_card_number`
+
 * `last_digits_card_number`
+
 * `cardholder_name`
 
 If you search for a specific payment, all criteria you use must match.
@@ -127,6 +138,7 @@ If your request has no query parameters, the API will return all payments.
 You can use the following query parameters to filter payments by date:
 
 * `from_date` - the start date for payments to be searched, inclusive
+
 * `to_date` - the end date for payments to be searched, exclusive
 
 These take inputs based on a subset of [ISO
@@ -138,6 +150,7 @@ For example, a valid input would be `2015-08-13T12:35:00Z`.
 You can use the following query parameters for pagination:
 
 * `display-size` - default, and maximum, is `500`
+
 * `page` - default is `1`
 
 These must be a positive integer. For example, for the following search:
@@ -151,9 +164,3 @@ If there were 1543 payments in the response, you could paginate this as follows:
 /v1/payments?from_date=2018-10-01T13:30:00Z&to_date=2018-10-14T15:00:00Z&display-size=500&page=2`
 
 This would return payments 501-1000.
-
-
-
-
-
-

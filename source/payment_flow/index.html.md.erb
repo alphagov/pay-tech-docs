@@ -45,12 +45,17 @@ back to your service.
 
 A final state means that the payment:
 
-+ succeeds
-+ fails because it is declined
-+ fails because the user chooses to cancel
-+ fails due to a technical error
-+ fails because it is cancelled by your service
-+ expires - users have 90 minutes to complete a payment once it is created
+* succeeds
+
+* fails because it is declined
+
+* fails because the user chooses to cancel
+
+* fails due to a technical error
+
+* fails because it is cancelled by your service
+ 
+* expires - users have 90 minutes to complete a payment once it is created
 
 When the user arrives back at your service, you can use the API to check the
 status of the transaction and show them an appropriate message.
@@ -186,18 +191,22 @@ user then decides whether or not to complete their payment:
 If the user decides to complete the payment, they select __Confirm__. They
 will then:
 
-- receive a confirmation email, if you have chosen to send these using GOV.UK Pay
-- be redirected to your `return_url`, page which will then send the user to your payment confirmation page
+* receive a confirmation email, if you have chosen to send these using GOV.UK Pay
+
+* be redirected to your `return_url`, page which will then send the user to your payment confirmation page
 
 ### Confirmation email
 
 If you have set up confirmation emails, the user will receive a payment
 confirmation email containing:
 
-- a payment reference number
-- the date of payment
-- who the payment was to
-- the total payment amount
+* a payment reference number
+
+* the date of payment
+
+* who the payment was made to
+
+* the total payment amount
 
 You can add a custom paragraph to a payment confirmation email at the [email
 notifications
@@ -213,11 +222,15 @@ notifications.
 
 The confirmation page is hosted by your service and should:
 
-- confirm that payments have been received successfully
-- contain a reference number, which should be short
-- have a clear payment summary, showing the amount and description
-- clearly state what is going to happen next - this will be different for each service
-- if applicable, let the user know they will receive a receipt email (using GOV.UK Notify or GOV.UK Pay)
+* confirm that payments have been received successfully
+
+* contain a reference number, which should be short
+
+* have a clear payment summary, showing the amount and description
+
+* clearly state what is going to happen next - this will be different for each service
+
+* if applicable, let the user know they will receive a receipt email (using GOV.UK Notify or GOV.UK Pay)
 
 Users have different ways of recording this confirmation information. This can
 include screenshots, prints, PDF receipts to download, and writing down the
@@ -231,17 +244,21 @@ System](https://www.gov.uk/service-manual/design/confirmation-pages).
 
 The payment can fail at any point in the process due to:
 
-+ the user cancelling the payment
-+ the payment being declined
-+ your service cancelling the payment
-+ a technical error
+* the user cancelling the payment
+
+* the payment being declined
+
+* your service cancelling the payment
+
+* a technical error
 
 If the payment fails, the user will see a GOV.UK Pay error page, which
-includes a __Continue__ button. When a user selects this, your service
-should show them a page that confirms that the payment failed. This should either:
+includes a __Continue__ button. When a user selects this, your service should
+show them a page that confirms that the payment failed. This should either:
 
-- offer the user a chance to try the payment again by starting a new payment with GOV.UK Pay, or using another method that your service provides
-- advise the user of an alternative course of action
+* offer the user a chance to try the payment again by starting a new payment with GOV.UK Pay, or using another method that your service provides
+
+* advise the user of an alternative course of action
 
 The following image is an example failure page:
 
@@ -258,9 +275,11 @@ initial request.
 The `return_url` should specify a page on your service. When the user visits
 the `return_url`, your service should:
 
-- match the returning user with their payment (with a secure cookie, or a secure random ID string included in the `return_url`)
-- check the status of the payment using an API call
-- display an appropriate final page, hosted by your service
+* match the returning user with their payment (with a secure cookie, or a secure random ID string included in the `return_url`)
+
+* check the status of the payment using an API call
+
+* display an appropriate final page, hosted by your service
 
 The [__Making payments__](/making_payments/#making-payments) section contains
 more details about how to match users to payments.
@@ -291,8 +310,9 @@ format. The following is the start of a typical response:
 
 The `state` array within the JSON lets you know the outcome of the payment:
 
-+ The `status` value describes a stage of the payment journey.
-+ The `finished` value indicates if the payment journey is complete or not - that is, if the ``status`` of this payment can change.
+* `status` describes a stage of the payment journey
+
+* `finished` indicates if the payment journey is complete or not - that is, if the `status` of this payment can change
 
 See the [__Making payments__](/making_payments/#making-payments) section for
 more information about how you can integrate your service with GOV.UK Pay.
@@ -306,8 +326,9 @@ links on your website.
 
 If your service uses the resume payment feature, you will:
 
-- minimise the number of expired payments
-- reduce the number of unnecessary new payments
+* minimise the number of expired payments
+
+* reduce the number of unnecessary new payments
 
 When a user resumes a payment, the `next_url` will take them to a screen that
 is appropriate for their payment’s current status. For example, a payment with
