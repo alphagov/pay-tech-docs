@@ -16,15 +16,21 @@ The call to create a payment with the GOV.UK Pay API is:
 
 You can test this with [our API
 explorer](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//)
-[external link]. Your service will need to store the URL from the response to
-the create payment API call. It can get this from either:
+[external link].
+
+The response to the ‘Create new payment’ API call will include the URL for the
+payment. You can get this from either:
 
 * the `Location` response header
 * the `self` section of `_links` in the JSON body
 
-This URL contains the GOV.UK Pay `paymentId`, which is automatically
+The URL contains the GOV.UK Pay `paymentId`, which is automatically
 generated and identifies the payment. A GET request to this URL
 will return information about the payment and its status.
+
+Your service will need to store the `paymentId` (or the full URL) for each new
+payment you create. This is so you can check the status of these payments
+later.
 
 You can read more in the [“Reporting”](/reporting) and [“Payment
 flow”](/payment_flow) sections of this documentation.
@@ -53,9 +59,8 @@ You must not expose the URL with the `paymentId` or the `next_url` publicly, for
 
 ## Track the progress of a payment
 
-You can track the progress of a payment while a user is on GOV.UK Pay using
-the <a
-href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
+You can track the progress of a payment using
+the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
 target="blank">Find payment by ID</a> call [external link]
 
 The status of the payment will pass through several states until it either
@@ -73,9 +78,9 @@ secure random ID:
 
 ### Use an encrypted cookie
 
-You can use a secure cookie containing the `paymentId` from GOV.UK Pay. Your
+You can use an encryped cookie containing the `paymentId` from GOV.UK Pay. Your
 service should issue this when a payment is created, before sending the user
-to `next_url`. Users will not be able to decrypt a secure cookie, so a
+to `next_url`. Users will not be able to decrypt an encrypted cookie, so a
 malicious user could not alter the payment ID and intercept other users’
 payments.
 
@@ -92,10 +97,13 @@ datastore mapped to the payment ID just after a payment is created.
 
  A user directed to the `return_url` could have:
 
- - paid successfully
- - not paid because their card was rejected or they selected __Cancel__
- - not paid because your service cancelled the payment in progress via the GOV.UK Pay API
- - not paid because of a technical error
+ * paid successfully
+
+ * not paid because their card was rejected or they selected cancel
+
+ * not paid because your service (via the API) cancelled the payment in progress
+
+ * not paid because of a technical error
 
 Your service should use the API to check the payment status when the user
 reaches the `return_url`, and provide an appropriate response based on the final
@@ -103,19 +111,19 @@ status of the payment attempt.
 
 ## When a user does not complete their payment journey
 
-Users may close their browser or lose internet connection in the middle of
+Users may close their browser or lose internet connectivity in the middle of
 their payment journey on GOV.UK Pay. In this event, users will not be
 redirected back to your service.
 
 You can still [check the status of these
-payments](/payment_flow/#check-the-status-of-a-payment), but GOV.UK Pay will
-expire incomplete payments after 90 minutes so you should only check after
-this amount of time.
+payments](/payment_flow/#check-the-status-of-a-payment), but you should be
+aware GOV.UK Pay will allow a user 90 minutes to complete their payment before
+it expires. You can only be certain of the payment’s status after this time.
 
 If a [payment fails](/payment_flow/#payment-failure), GOV.UK Pay will not
 allow the user to attempt the payment again with alternative card details. In
 this situation the user would need to return to the service to retry the
-payment.
+payment. Your service should account for this.
 
 ## Cancel a payment that’s in progress
 
@@ -129,11 +137,11 @@ A `204` response indicates success. Any other response indicates an error.
 
 To test this with the GOV.UK Pay API Explorer [external links]:
 
-* 1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">the API Explorer</a>
-* 2. Under __Resource__, select __{Payment Id}__. Under __Action__, select <a
-   href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/"
-   target="blank">__Search payments__</a>
+1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
+   target="blank">the API Explorer</a> (link opens in new window).
+
+2. Under __Resource__, select __{Payment Id}__. Under __Action__, select
+__Search payments__.
 
 ### Find out if you can cancel a payment
 
@@ -141,8 +149,8 @@ Use a GET request against a single payment to find out if you can cancel it:
 
 `GET /v1/payments/paymentId`
 
-If the JSON response body contains a `"cancel"` field in the `_links` object
-that is not `null`, you can cancel the payment. For example:
+If the JSON response body contains a `"cancel"` field (in the `_links` object)
+that’s not `null`, you can cancel the payment. For example:
 
 ```
     "cancel": {

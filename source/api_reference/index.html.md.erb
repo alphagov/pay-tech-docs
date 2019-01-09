@@ -16,8 +16,9 @@ standard HTTP error response codes.
 
 For full details of each API action, see the API browser:
 
-- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general" target="blank">General functions</a> [external link]
-- <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id" target="blank">Payment ID functions</a> [external link]
+* <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general" target="blank">General functions</a> [external link]
+
+* <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id" target="blank">Payment ID functions</a> [external link]
 
 You can also use the interactive <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//"
@@ -45,7 +46,7 @@ Authorization: Bearer <YOUR-API-KEY-HERE>
 The following diagram gives an overview of the payment status lifecycle and the
 possible outcomes, excluding for delayed capture payments:
 
-![](images/payment-states.svg)
+![](/images/payment-states.svg)
 
 You can check the status of a payment using the <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
@@ -102,11 +103,15 @@ A successful response includes ``status`` and ``finished`` values:
 
 The GOV.UK Pay uses standard HTTP response code conventions:
 
-- 100 codes are informational
-- 200 codes indicate success
-- 300 codes indicate a redirection
-- 400 codes indicate a client-side error
-- 500 codes indicate a server-side error
+* 100 codes are informational
+
+* 200 codes indicate success
+
+* 300 codes indicate a redirection
+
+* 400 codes indicate a client-side error
+
+* 500 codes indicate a server-side error
 
 Common status codes are:
 
@@ -142,7 +147,7 @@ Common status codes are:
 | Create payment | P0199 | Account error | There is a problem with your service account. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | Find payment by ID | P0200 | `paymentId` not found | No payment matched the `paymentId` you provided. |
 | Find payment by ID | P0298 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
-| Return payment events by ID | P0300 | `paymentId` not found | No payment matched the `paymentId you` provided. |
+| Return payment events by ID | P0300 | `paymentId` not found | No payment matched the `paymentId` you provided. |
 | Return payment events by ID | P0398 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | Search payments | P0401 | Invalid parameters | The parameters you sent are invalid. |
 | Search payments | P0402 | Page not found | The requested page of search results does not exist. |
@@ -199,10 +204,11 @@ Pay admin tool or directly using the API.
 
 #### Use the admin tool
 
-1. Sign in to the [GOV.UK Pay admin
-site](https://selfservice.payments.service.gov.uk/) (link opens in new window).
-2. Select _Transactions_.
-3. Select a payment with a `"failed"`, `"cancelled"` or `"error"` status.
+1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
+
+2. Select __Transactions__.
+
+3. Use the __Payment status__ dropdown to find payments with error statuses. For example, “Declined”.
 
 #### Use the API
 
@@ -232,6 +238,7 @@ For example:
 | visa             | CREDIT | Visa             |
 | master-card      | DEBIT  | Mastercard       |
 | master-card      | CREDIT | Mastercard       |
+| maestro          | DEBIT  | Maestro          |
 | american-express | CREDIT | American Express |
 | diners-club      | CREDIT | Diners Club      |
 | discover         | CREDIT | Discover         |

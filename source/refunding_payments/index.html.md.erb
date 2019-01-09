@@ -8,18 +8,15 @@ weight: 80
 GOV.UK Pay supports refunding payments. You can choose to refund part of a
 payment, or the full amount.
 
-After issuing a partial refund of a payment, you can issue further partial
-refunds, until the full amount of the original payment has been refunded.
-
-Each payment has a refund status which can take one of the following values:
+Each payment has a refund status:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
 | Payment refund status | Meaning                                                                                                                                                                            |
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | pending               | The payment is potentially refundable, but is not ready to be refunded yet.                                                                                                        |
-| unavailable           | It is not possible to refund the payment: for example, the payment failed.                                                                                                         |
-| available             | It’s possible to initiate a refund. Note that this does not mean that the full original value of the payment is available to refund: there may have been previous partial refunds. |
+| unavailable           | It is not possible to refund the payment. For example, the payment failed.                                                                                                         |
+| available             | It’s possible to start a refund. Alone, this does not mean that the full original value of the payment is available to refund. For example, there may have been previous partial refunds. |
 | full                  | The original value of the payment has been fully refunded, so it is not possible to refund any more.                                                                               |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
@@ -29,19 +26,21 @@ no delay in processing a payment when testing. For live accounts, successful
 payments spend some time in `pending` state before a refund becomes
 possible.
 
-Each refund will have one of the following states:
+Refunds can have 3 states:
 
-`"submitted"`
-`"success"`
-`"error"`
+* `"submitted"`
 
-## Payment refund status and partial refunds
+* `"success"`
 
-You can find out the refund status of a payment with the API using the <a
+* `"error"`
+
+## Payment refund status
+
+You can find out the refund status of a payment with the GOV.UK Pay API using the <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
 target="blank">Find payment by ID</a> or <a
 href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general/endpoints/search-payments"
-target="blank">Search payments</a> functions (links open in new window).
+target="blank">Search payments</a> functions [external link].
 
 The JSON response body will contain a `refund_summary` object. For example,
 for a completed £50 payment with no previous refunds:
@@ -57,15 +56,17 @@ for a completed £50 payment with no previous refunds:
 The `amount_available` value includes [any corporate card
 surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges).
 
-The `amount_submitted` is 0, showing that there have been no previous refunds.
+The `amount_submitted` is `0`, showing that there have been no previous refunds.
 
-Partial refunds are possible, and you can make multiple partial refunds
+### Partial refunds
+
+GOV.UK Pay supports partial refunds, and you can make multiple partial refunds
 against the same payment. The total refunds for a single payment cannot
 be greater than the original payment.
 
 You can use the <a
 href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id/endpoints/get-all-refunds-for-a-payment"
-target="blank">Get all refunds for a payment</a> (link opens in new window)
+target="blank">Get all refunds for a payment</a> [external link].
 API call to get information about partial refunds.
 
 As another example, this is the JSON response body for a completed £90 payment
@@ -79,54 +80,53 @@ with a previous refund of £30:
   },
 ```
 
-## Specifying the expected refund available
+## Find out the expected refund available
 
-When you submit a refund request for a payment via the API, you can optionally
-specify a `refund_amount_available` value in the body of the request. This
-is so you can provide the total amount of the original payment you expect to
-be available for refund at the time your refund request is made.
+Your service should track the expected refund amount available. When you
+submit a refund request via the API, you can optionally include a
+`refund_amount_available` value in the request body. This is so you can
+provide the total amount of the original payment you expect to be available
+for refund, at the time your refund request is made.
 
 The purpose of this is to prevent accidentally processing a partial refund
 more than once, by rejecting requests where your `refund_amount_available`
-does not match the real amount that’s available to be refunded.
+does not match the real amount that’s available for refund.
 
-For example, a payment is made for £5, but later the user requires a £2
+For example, a user makes a payment of £5, and later the user requires a £2
 refund. Your system for processing refunds submits a request for a £2 refund
-to the GOV.UK Pay API, but it accidentally gets sent twice. Without a
-`refund_amount_available` specified, GOV.UK Pay would have no way to tell
-the second request was a mistake. It would process both requests,
-generating two refunds of £2 each.
+to the GOV.UK Pay API, but the request accidentally gets sent twice. Without
+finding out `refund_amount_available`, GOV.UK Pay would have no way to tell
+the second request was a mistake. It would process both requests, generating
+two refunds of £2 each.
 
-In the same scenario, if you had specified the ``refund_amount_available`` as
-£5. The first request still succeeds, leaving £3 available to be refunded.
-When the accidental duplicate request comes in, it has a
-``refund_amount_available`` of £5, even though only £3 is available, so GOV.UK
-Pay can tell that it’s a stale request, and it is rejected.
-
-We recommend that your service tracks the expected refund amount available and
-submits a ``refund_amount_available`` value whenever you request a refund via
-the API.
-
-When a refund request is rejected due to a refund amount available mismatch,
-the error code returned is P0604, with an HTTP status of 412.
+As another example, you may have specified the `refund_amount_available` as
+£5. The first refund request for £2 still succeeds, leaving £3 available for
+refund. When the accidental second request arrives, the payment has a
+``refund_amount_available`` of £5 even though only £3 is available. GOV.UK
+Pay determines that it’s a stale request, and rejects the refund request.
 
 You must include any [corporate card
 surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges)
-in the ``refund_amount_available`` value.
+in the `refund_amount_available` value.
 
-## Refunding with the API
+### Refund amount available mismatch
+
+Refund requests rejected due to a “refund amount available mismatch” will
+return an error code `P0604` with a `412` HTTP status.
+
+## Refunding with the GOV.UK Pay API
 
 You can start a refund with the <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/submit-a-refund-for-a-payment"
 target="blank">Submit a refund for a payment</a> function (link opens in new
 window).
 
-You need to specify the ``paymentId`` of the original payment, and provide the
-amount to refund (in pence).
+You need to specify the `paymentId` of the original payment, and provide the
+amount to refund, in pence.
 
 You should check that the amount you attempt to refund does not exceed the
-``amount_available`` value; otherwise you will receive a P0603 error like
-this:
+`amount_available` value. Otherwise, you will receive a `P0603` error
+such as:
 
 ```
 {
@@ -135,13 +135,13 @@ this:
 }
 ```
 
-Each refund has a unique ``refund_id``.
+Each refund has a unique `refund_id`.
 
 You can use the <a
 href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id/endpoints/get-all-refunds-for-a-payment"
 target="blank">Get all refunds for a payment</a> function (link opens in new
 window) to get information all the refunds for a payment (including their
-``refund_id``s).
+`refund_id` values).
 
 You can retrieve information about an individual refund using the <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id"
@@ -151,10 +151,10 @@ window).
 A `204` response from the API indicates that a refund was successful. Any
 other response indicates an error.
 
-## Handling refund errors
+## Refund errors
 
-When you try to create a refund with the API, it may fail immediately - for
-example if you try to refund more than the amount available. In that case, the
+When you try to create a refund with the API, it may fail immediately. For
+example, if you try to refund more than the amount available. In that case, the
 original <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/submit-a-refund-for-a-payment"
 target="blank">Submit a refund for a payment</a> request (link opens in new
@@ -162,14 +162,13 @@ window) will return an error code and a description of what it means. (A
 refund attempt that fails like this with an error code is not assigned a
 `refundId` and is not available using <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id"
-target="blank">Find payment refund by ID</a> (link opens in new window)).
+target="blank">Find payment refund by ID</a> [external link].
 
-If accepted by GOV.UK Pay, a refund may still go on to fail at the PSP. This
-may happen if the card involved is cancelled or has expired, or if your
-account with the PSP does not have enough funds to cover the refund.
+If a refund is accepted by GOV.UK Pay, it may still go on to fail at the PSP.
+This may happen if the card involved is cancelled or has expired, or if your
+account with the PSP does not have enough funds to process the refund.
 
-Each refund has a processing status indicated by a "status" value that is
-returned in response to a successful request to a ``/refunds/`` endpoint.
+Each successful request to a `/refunds/` endpoint has a `"status"` value.
 
 For example, the response body for a refund would include:
 
@@ -182,76 +181,71 @@ For example, the response body for a refund would include:
 ...
 ```
 
-Initially, in a live environment, the status returned will be `submitted`.
+In a live environment, the status returned will initially be `submitted`.
 After the PSP has processed the refund, the status returned will be
-`success` or `error`. (In the test environment, the status will always
-go straight to `success`).
+`success` or `error`. In a test environment, the status will always
+go directly to `success`.
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
 | Refund processing status | Meaning                                                                                                            |
 |--------------------------|--------------------------------------------------------------------------------------------------------------------|
-| submitted                | The refund request is valid as far as GOV.UK Pay can tell and has been passed to the underlying payment processor. |
+| submitted                | The refund request is valid as far as GOV.UK Pay can determine. It has been passed to the underlying payment service provider. |
 | success                  | The refund has been successfully processed.                                                                        |
-| error                    | It was not possible for the payment processor to make the refund.                                                  |
+| error                    | It was not possible for the payment service provider to make the refund.                                                  |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-To manage this, you must use <a
+To manage refunds in live environments, you must use <a
 href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id"
-target="blank">Find payment refund by ID</a> (link opens in new window) to
-check the processing status of the refund until it changes to either
-``success`` or ``error``.
+target="blank">Find payment refund by ID</a> [external link] to
+check the processing status of the refund, until it changes to either
+`success` or `error`.
 
 It will typically take 30 minutes for the status to change. You should not
 check the status more than once every 5 minutes.
 
 In the event of an error, GOV.UK Pay will not currently provide any more
 information. Please [contact
-us](/support_contact_and_more_information/#contact-us) if more information is
-required about why a refund failed.
+us](/support_contact_and_more_information/#contact-us) if you need more
+information required about why a refund failed.
 
-## Refunding from the GOV.UK Pay admin site
+## Refunding from the GOV.UK Pay admin tool
 
 You can use the [GOV.UK Pay admin
-site](https://selfservice.payments.service.gov.uk) to view transactions and
+tool](https://selfservice.payments.service.gov.uk) to view transactions and
 issue refunds.
 
-Go to the __Transactions__ section of your accoun page to see a list of
-transactions. For example:
+Go to the __Transactions__ section to see a list of transactions. For example,
+in the following image::
 
-![](images/transaction+list+image+4.png)
+![](/images/transaction+list+image+4.png)
 
 In this list, you can select an individual payment to see details of that
 payment, including any previous refunds.
 
 For a successful payment with no previous refunds, you can use the red
-**Refund payment** button to carry out a full or partial payment.
+__Refund payment__ button to make a full or partial payment.
 
-![](images/refund-payment-button.png)
+![](/images/refund-payment-button.png)
 
-## Refund notifications
+## Refund email notifications
 
-End users are automatically notified by email about successful payments.  This
-depends on settings you have entered in the self-service admin site. Users are
-not notified when a payment has either failed or is refunded - either manually
-or via the API. You should arrange to notify end users about payment failures
-and refunds as appropriate for your service.
+You can use the GOV.UK Pay admin tool to [send email notifications to
+users](https://selfservice.payments.service.gov.uk/email-notifications).
 
 ## Refund destination
 
 Refunds are sent back to the source account of the original payment. It is not
-possible to refund a payment to another card or bank account. If the original
-card expired or was canceled, the bank will attempt to credit the customer’s
-new card with the refund. If this attempt fails, or the customer does not have
-a new card, the refund will have to be made using another channel (eg bank
-transfer or cheque).
+possible to refund a payment to another card or bank account. It is the
+responsibility of the service to provide an alternative refund method.
 
 ## Search refunds with the API
 
 You can use the GOV.UK Pay API to:
 
 * get information about a single refund
+
 * generate a list of refunds matching search criteria
 
 ### Get information about a single refund
@@ -262,7 +256,9 @@ The JSON response body to this API call contains a `"refunds"` object. If the
 refund exists, the `"status"` field will contain one of:
 
 * `"submitted"`
+
 * `"success"`
+
 * `"error"`
 
 ### Generate a list of refunds (search refunds)
@@ -279,18 +275,20 @@ An example search request:
 You can use the following query parameters to filter refunds by date:
 
 * `from_date` - the start date for payments to be searched, inclusive
+
 * `to_date` - the end date for payments to be searched, exclusive
 
 These take inputs based on a subset of [ISO
 8601](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard)
-(link opens in new window).  For example, a valid input would be
+[external link].  For example, a valid input would be
 `2015-08-13T12:35:00Z`.
 
 #### Pagination
 
 You can use the following query parameters for pagination:
 
-* `display-size` - default, and maximum, is `500`
+* `display_size` - default, and maximum, is `500`
+
 * `page` - default is `1`
 
 These must be a positive integer. For example, for the following search:
@@ -301,8 +299,6 @@ These must be a positive integer. For example, for the following search:
 If there were 1543 refunds in the response, you could paginate this as follows:
 
 `GET
-/v1/refunds?from_date=2018-10-01T13:30:00Z&to_date=2018-10-14T15:00:00Z&display-size=500&page=2`
+/v1/refunds?from_date=2018-10-01T13:30:00Z&to_date=2018-10-14T15:00:00Z&display_size=500&page=2`
 
 This would return refunds 501-1000.
-
-
