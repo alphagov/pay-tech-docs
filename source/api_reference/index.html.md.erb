@@ -14,19 +14,13 @@ determines if actions are treated as test payments, or processed as real payment
 The API is based on REST principles. It returns data in JSON format, and uses
 standard HTTP error response codes.
 
-For full details of each API action, see the API browser:
-
-* <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general" target="blank">General functions</a> [external link]
-
-* <a href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id" target="blank">Payment ID functions</a> [external link]
-
-You can also use the interactive <a
-href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//"
-target="blank">API explorer</a> [external link] to try API calls and view responses.
+For full details of each API action, see the <a
+href="https://govukpay-api-browser.cloudapps.digital/" target="blank">API
+browser</a> [external link].
 
 See the [__Quick start guide__](/quick_start_guide/#quick-start-guide) section
-to read how to set up the API explorer. Make sure you enter your test API
-key to avoid generating real payments.
+to read how to get started with the API quickly. Make sure you enter your test
+API key to avoid generating real payments.
 
 ## Authentication
 
@@ -49,7 +43,7 @@ possible outcomes, excluding for delayed capture payments:
 ![](/images/payment-states.svg)
 
 You can check the status of a payment using the <a
-href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
+href="https://govukpay-api-browser.cloudapps.digital/#getpayment"
 target="blank">Find payment by ID</a> API call [external link].
 
 A successful response includes ``status`` and ``finished`` values:
