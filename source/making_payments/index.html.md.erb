@@ -14,9 +14,10 @@ The call to create a payment with the GOV.UK Pay API is:
 
 `POST  /v1/payments`
 
-You can test this with [our API
-explorer](https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2//)
-[external link].
+Refer to the <a
+href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
+target="blank">GOV.UK Pay API browser</a> [external link] for more
+information.
 
 The response to the ‘Create new payment’ API call will include the URL for the
 payment. You can get this from either:
@@ -59,9 +60,9 @@ You must not expose the URL with the `paymentId` or the `next_url` publicly, for
 
 ## Track the progress of a payment
 
-You can track the progress of a payment using
-the <a href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
-target="blank">Find payment by ID</a> call [external link]
+You can track the progress of a payment using the <a
+href="https://govukpay-api-browser.cloudapps.digital/#getpayment"
+target="blank">Find payment by ID</a> call [external link].
 
 The status of the payment will pass through several states until it either
 succeeds or fails. See the [“API reference”
@@ -135,13 +136,8 @@ progress. Alternatively, a service can make the following API call for a given
 
 A `204` response indicates success. Any other response indicates an error.
 
-To test this with the GOV.UK Pay API Explorer [external links]:
-
-1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">the API Explorer</a> (link opens in new window).
-
-2. Under __Resource__, select __{Payment Id}__. Under __Action__, select
-__Search payments__.
+See <a href="https://govukpay-api-browser.cloudapps.digital/#cancelpayment"
+target="blank">API browser</a> [external link] for more details.
 
 ### Find out if you can cancel a payment
 

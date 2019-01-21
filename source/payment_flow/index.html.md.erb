@@ -54,7 +54,7 @@ A final state means that the payment:
 * fails due to a technical error
 
 * fails because it is cancelled by your service
- 
+
 * expires - users have 90 minutes to complete a payment once it is created
 
 When the user arrives back at your service, you can use the API to check the
@@ -87,7 +87,7 @@ pages to make their payment.
 
 In the example page, when the user selects __Continue__, the service makes a
 <a
-href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/create-new-payment"
+href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
 target="blank">Create new payment</a> call to the GOV.UK Pay API [external
 link]. The body of the call is returned in JSON.
 
@@ -285,7 +285,7 @@ The [__Making payments__](/making_payments/#making-payments) section contains
 more details about how to match users to payments.
 
 To check the status of a payment, you must make a <a
-href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
+href="https://govukpay-api-browser.cloudapps.digital/#getpayment"
 target="blank">Find payment by ID</a> API call [external link],
 using the `payment_id` of the payment as the parameter.
 
@@ -321,7 +321,7 @@ more information about how you can integrate your service with GOV.UK Pay.
 
 If your user starts a payment but does not complete it, they can resume that
 incomplete payment. An example of this could be if they use an internet
-browser’s ‘back’ button during a payment, and then go forward by selecting 
+browser’s ‘back’ button during a payment, and then go forward by selecting
 links on your website.
 
 If your service uses the resume payment feature, you will:

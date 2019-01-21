@@ -34,8 +34,7 @@ Pay is right for your service
 * read the GOV.UK Service Manual guidance on [deploying new
 software](https://www.gov.uk/service-manual/making-software/deployment.html)
 
-* sign up to the [API
-explorer](https://gds-payments.gelato.io/) [external link] if you want to use it to test the API
+* visit our <a href="https://govukpay-api-browser.cloudapps.digital/" target="blank">API browser</a> [external link]
 
 If you want to build a technical integration between your service and the
 GOV.UK Pay API, your service team should have the necessary skills. You can
@@ -59,9 +58,11 @@ allows you to:
 * issue full or partial refunds
 
 When you've received a test account, follow these instructions to get started
-with our API Explorer and make a test API call.
+with our API and make a test API call.
 
-## Generate API Key for API Explorer
+## Test the API 
+
+### Generate a test API key
 
 1. Sign in to the [GOV.UK Pay admin
    tool](https://selfservice.payments.service.gov.uk/) with the test
@@ -78,21 +79,6 @@ with our API Explorer and make a test API call.
 [Read the __Security__ section](/security/#security) for more information on how
 to keep your API key safe.
 
-## API Explorer setup
-
-The quickest way to get started with the API is to use the <a
-href="https://gds-payments.gelato.io/api-explorer/" target="blank">API
-Explorer</a> [external link] with your API key.
-
-1. Sign in to the API Explorer and select __Add API Key__.<br/><br/>
-   ![](/images/pay-add-api-key.png) <br/><br/>
-
-2.  In the pop-up, enter the following values:
-
-  * For __API Key__, enter your test API key. You do not need to add the
-  `"Bearer:"` prefix, because the API Explorer adds that automatically.
-  * For __Label__, enter `Authorization`.
-
 <br>
 
 <div class="govuk-warning-text">
@@ -103,20 +89,16 @@ Explorer</a> [external link] with your API key.
   </strong>
 </div>
 
-## Make a test API call
+### Make a test API call
 
-This section describes how to make a test API call to GOV.UK Pay, by creating
-a new payment.  This is the same call your service will make when beginning a
-payment using GOV.UK Pay.
+You can make test API calls to GOV.UK Pay with your test API key. 
 
-1. Sign in to <a href="https://gds-payments.gelato.io/api-explorer/"
-   target="blank">the API Explorer</a> [external link]
+You can use API testing tools such as <a href="https://www.getpostman.com/" target="_blank">Postman</a> [external link] or <a href="https://insomnia.rest/" target="_blank">Insomnia REST</a> [external link] to make test API calls.
 
-2. Under __Resource__, select __General__. Under __Action__, select <a
-   href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/general/create-new-payment"
-   target="blank">__Create new payment__</a> [external link]. Select
-   the __Body__ tab down to see an example JSON body that you would send when
-   creating a payment.
+This section shows an example API call and request body, to make a new payment
+for a passport application:
+
+```POST /v1/payments```
 
 ```javascript
 {
@@ -127,28 +109,21 @@ payment using GOV.UK Pay.
 }
 ```
 
-You also need to send a ``return_url`` when you create a payment. This is
-because users go to pages hosted by GOV.UK Pay to actually
-make payments.  The ``return_url`` is the URL of a page on your service
-that the user will be redirected to after they have completed their payment
-(or payment has failed).  <br/><br/>
-![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-api-explorer-createpay.png)
 
 Services that use test accounts can optionally use HTTP, rather than HTTPS,
 for return URLs. You can read more about this in [the __Security__
 section](/security/#https).
 
-1. Select the green __Send Request__ button.
+If the test call is successful, you will receive a `201 Created` response with
+a JSON body.
 
-2. If the API Explorer is set up correctly, you will receive a `201 Created`
-   response with a JSON body, confirming that the payment was created:
+The JSON includes a ``next_url`` link. This URL is where your service should
+redirect the user for them to make their payment. 
 
-   ![](https://s3-eu-west-1.amazonaws.com/pay-govuk-documentation/pay-api-explorer-response.png)
+You can refer to the [“Making payments” section](/making_payments) for more
+detailed information.
 
-   The JSON includes a ``next_url`` link. This URL is where your service
-   should redirect the user for them to make their payment.  <br/><br/>
-
-## Simulate an end-user payment journey
+### Simulate an end-user payment journey
 
 Go to the ``next_url`` with a browser, and you’ll see the payment screen.
 Choose a mock card number from the [__Testing GOV.UK
@@ -162,7 +137,7 @@ details, enter some test information which should have:
 
 Submit the payment.
 
-## View transactions at GOV.UK Pay admin tool
+### View transactions at GOV.UK Pay admin tool
 
 Go to the [GOV.UK Pay admin
 tool](https://selfservice.payments.service.gov.uk/). From the landing page,

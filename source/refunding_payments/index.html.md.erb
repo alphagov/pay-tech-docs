@@ -37,10 +37,10 @@ Refunds can have 3 states:
 ## Payment refund status
 
 You can find out the refund status of a payment with the GOV.UK Pay API using the <a
-href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/v1/find-payment-by-id"
+href="https://govukpay-api-browser.cloudapps.digital/#getpayment"
 target="blank">Find payment by ID</a> or <a
-href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/general/endpoints/search-payments"
-target="blank">Search payments</a> functions [external link].
+href="https://govukpay-api-browser.cloudapps.digital/#searchpayments"
+target="blank">Search payments</a> functions [external links].
 
 The JSON response body will contain a `refund_summary` object. For example,
 for a completed £50 payment with no previous refunds:
@@ -65,9 +65,9 @@ against the same payment. The total refunds for a single payment cannot
 be greater than the original payment.
 
 You can use the <a
-href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id/endpoints/get-all-refunds-for-a-payment"
-target="blank">Get all refunds for a payment</a> [external link].
-API call to get information about partial refunds.
+href="https://govukpay-api-browser.cloudapps.digital/#getrefunds"
+target="blank">Get all refunds for a payment</a> [external link] API call to
+get information about partial refunds.
 
 As another example, this is the JSON response body for a completed £90 payment
 with a previous refund of £30:
@@ -117,9 +117,8 @@ return an error code `P0604` with a `412` HTTP status.
 ## Refunding with the GOV.UK Pay API
 
 You can start a refund with the <a
-href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/submit-a-refund-for-a-payment"
-target="blank">Submit a refund for a payment</a> function (link opens in new
-window).
+href="https://govukpay-api-browser.cloudapps.digital/#submitrefund"
+target="blank">Submit a refund for a payment</a> function [external link].
 
 You need to specify the `paymentId` of the original payment, and provide the
 amount to refund, in pence.
@@ -138,15 +137,14 @@ such as:
 Each refund has a unique `refund_id`.
 
 You can use the <a
-href="https://gds-payments.gelato.io/docs/versions/1.0.2/resources/payment-id/endpoints/get-all-refunds-for-a-payment"
-target="blank">Get all refunds for a payment</a> function (link opens in new
-window) to get information all the refunds for a payment (including their
-`refund_id` values).
+href="https://govukpay-api-browser.cloudapps.digital/#getrefunds"
+target="blank">Get all refunds for a payment</a> function [external link] to
+get information all the refunds for a payment (including their `refund_id`
+values).
 
 You can retrieve information about an individual refund using the <a
-href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id"
-target="blank">Find payment refund by ID</a> function (link opens in new
-window).
+href="https://govukpay-api-browser.cloudapps.digital/#getrefundbyid"
+target="blank">Find payment refund by ID</a> function [external link].
 
 A `204` response from the API indicates that a refund was successful. Any
 other response indicates an error.
@@ -154,14 +152,14 @@ other response indicates an error.
 ## Refund errors
 
 When you try to create a refund with the API, it may fail immediately. For
-example, if you try to refund more than the amount available. In that case, the
-original <a
-href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/submit-a-refund-for-a-payment"
-target="blank">Submit a refund for a payment</a> request (link opens in new
-window) will return an error code and a description of what it means. (A
-refund attempt that fails like this with an error code is not assigned a
-`refundId` and is not available using <a
-href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id"
+example, if you try to refund more than the amount available. In that case,
+the original <a
+href="https://govukpay-api-browser.cloudapps.digital/#submitrefund"
+target="blank">Submit a refund for a payment</a> request [external link] will
+return an error code and a description of what it means. A refund attempt
+that fails like this with an error code is not assigned a `refundId` and is
+not available using <a
+href="https://govukpay-api-browser.cloudapps.digital/#getrefundbyid"
 target="blank">Find payment refund by ID</a> [external link].
 
 If a refund is accepted by GOV.UK Pay, it may still go on to fail at the PSP.
@@ -197,7 +195,7 @@ go directly to `success`.
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
 To manage refunds in live environments, you must use <a
-href="https://gds-payments.gelato.io/api-explorer/gov-uk-pay-api/versions/1.0.2/payment-id/find-payment-refund-by-id"
+href="https://govukpay-api-browser.cloudapps.digital/#getrefundbyid"
 target="blank">Find payment refund by ID</a> [external link] to
 check the processing status of the refund, until it changes to either
 `success` or `error`.
