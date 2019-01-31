@@ -163,6 +163,28 @@ The following UML sequence diagram shows an example of an incomplete payment jou
 
 Your mop-up job should run frequently, for example every half an hour. It should ignore payments made in the past 3 hours to avoid interfering with payments that are still being processed. If it finds ‘stale’ incomplete payment journeys then it’s likely users have abandoned those payments. The mop-up job should call the GOV.UK Pay API to determine the [status of the payment](/api_reference/#payment-status-lifecycle).
 
+## Collecting your users' billing addresses
+
+You can enable or disable collecting your users’ billing addresses in your [GOV.UK Pay account](https://selfservice.payments.service.gov.uk/login) __Settings__ screen.
+
+This change can take up to 15 minutes to take effect.
+
+<br>
+
+<style>
+.govuk-warning-text{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400;font-size:16px;font-size:1rem;line-height:1.25;color:#0b0c0c;position:relative;margin-bottom:20px;padding:10px 0}@media print{.govuk-warning-text{font-family:sans-serif}}@media (min-width:40.0625em){.govuk-warning-text{font-size:19px;font-size:1.1875rem;line-height:1.31579}}@media print{.govuk-warning-text{font-size:14pt;line-height:1.15;color:#000}}@media (min-width:40.0625em){.govuk-warning-text{margin-bottom:30px}}.govuk-warning-text__assistive{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;-webkit-clip-path:inset(50%)!important;clip-path:inset(50%)!important;border:0!important;white-space:nowrap!important}.govuk-warning-text__icon{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:700;display:inline-block;position:absolute;top:50%;left:0;min-width:32px;min-height:29px;margin-top:-20px;padding-top:3px;border:3px solid #0b0c0c;border-radius:50%;color:#fff;background:#0b0c0c;font-size:1.6em;line-height:29px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}@media print{.govuk-warning-text__icon{font-family:sans-serif}}.govuk-warning-text__text{display:block;margin-left:-15px;padding-left:65px}
+</style>
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    If you disable billing address collection, your service will receive a `null` `billing_address` object in API responses. The `billing_address` object is inside the `card_details` object.
+
+    You should check if disabling billing address collection will affect your service‘s integration with GOV.UK Pay.
+  </strong>
+</div>
+
 ## Existing integrations with GOV.UK Pay
 
 The Ministry of Justice has a citizen-facing public site for [sending money to
