@@ -2,3 +2,11 @@ $is-ie: true;
 $ie-version: 8;
 
 @import "govuk_tech_docs";
+
+.has-sidebar .technical-documentation {
+  h1,
+  h2,
+  h3 {
+    margin-top: 0px !important;
+  }
+}
