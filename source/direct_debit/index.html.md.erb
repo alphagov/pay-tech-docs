@@ -7,46 +7,42 @@ weight: 75
 
 Before reading this section, you should be familiar with [making
 payments](/making_payments). You should also
-have [integrated your service with the GOV.UK Pay
-API](/integrate_with_govuk_pay/#how-to-integrate-with-the-gov-uk-pay-api).
+have [integrated your service](/integrate_with_govuk_pay/#how-to-integrate-with-the-gov-uk-pay-api) with the GOV.UK Pay API.
 
-### Synchronous and asynchronous payment methods
+## Synchronous and asynchronous payment methods
 
 Card payments are a synchronous payment method. When a user
 completes a card payment using GOV.UK Pay, the platform immediately confirms
-to your service whether the payment has succeeded or failed. If a user
-pays by card, you can immediately release your service to the user .
+to your service whether the payment has succeeded or failed. If a user pays by card, you can immediately provide the purchased service to the user.
 
 Direct Debit payments are an asynchronous payment method. When a user
 completes a Direct Debit payment process using GOV.UK Pay, the platform makes
-a request to their bank to set up the Direct Debit mandate and transfer the
-funds. It takes 3-4 working days to confirm the success of the payment.
+a request to the user’s bank to set up a Direct Debit mandate and transfer the
+funds. It takes 3 to 4 working days to confirm the success of the payment.
 
 ## Get started
 
-To use the GOV.UK Pay Direct Debit feature, you must request a GOV.UK Pay
-Direct Debit test account [from our support
-team](/support_contact_and_more_information/#contact-us).
+To use the Direct Debit feature, you [must request a GOV.UK Pay
+Direct Debit test account](support_contact_and_more_information/#contact-us) from our support team.
 
-If you want to add Direct Debit to an existing integration, you should
-[contact us](/support_contact_and_more_information/#contact-us) to discuss
-this.
+[Contact us](/support_contact_and_more_information/#contact-us) if you want to add Direct Debit to an existing integration.
 
 ### Set up an account with the Direct Debit supplier
 
-Select your account in the __My services__ page of your GOV.UK Pay Direct
-Debit account then follow the on-screen instructions.
+1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
 
-### Control the payment method
+1. Select your account in the __My services__ page and follow the on-screen instructions.
 
-When you create an API key, you link your GOV.UK Pay account with the payment
-method you want to use. For example “testing”, “Worldpay”, or
-“Direct Debit”.
+### Set the payment method
 
-You can use different API keys to direct paying users to
-different payment methods.
+When you [create an API key](quick_start_guide/#generate-a-test-api-key), you link your GOV.UK Pay account with the payment
+method you want to use. For example “testing” or “Worldpay”.
 
-## GOV.UK Pay ‘agreements’
+You can use different API keys to direct paying users to different payment methods.
+
+To use Direct Debit, select the corresponding payment method. 
+
+## GOV.UK Pay agreements
 
 In order to support Direct Debit, GOV.UK Pay uses ‘agreements’. An
 agreement represents an individual payer’s consent for future payments using a
@@ -57,16 +53,29 @@ a Direct Debit mandate with the payer’s bank.
 
 ### Agreement lifecycle
 
-1. `CREATED` - Your service made an API call to create the agreement
-
-2. `STARTED` - Payer has visited the `next_url` and landed on the GOV.UK Pay
-page to enter their account details
-
-3. `PENDING` - Indicates that account details have been submitted to the
+<br>
+<div style = "overflow-x:auto;">
+  <table style = "width:100%">
+    <tr>
+    <th nowrap>State</th>
+    <th>Description</th>
+    </tr>
+    <tr>
+    <td nowrap><code>CREATED</code></td>
+    <td>Your service made an API call to create the agreement.</td>
+    </tr>
+    <td><code>STARTED</code></td>
+    <td>Payer has visited the <code>next_url</code> and landed on the GOV.UK Pay
+page to enter their account details.</td>
+    </tr>
+    <td><code>PENDING</code></td>
+    <td>Indicates that account details have been submitted to the
 payment service provider (PSP), but the PSP is not yet able to confirm whether
-the mandate has been successfully set up
+the mandate has been successfully set up.</td>
+  </table>
+</div>
 
-4. The agreement then reaches 1 of 5 different finished states
+The agreement then reaches 1 of 5 different finished states.
 
 #### Possible agreement finished states
 
@@ -78,25 +87,27 @@ the mandate has been successfully set up
     <th>Description</th>
     </tr>
     <tr>
-    <td nowrap><code>SUCCESS</code></td>
-    <td nowrap>Mandate successfully set up.</td>
+    <td><code>SUCCESS</code></td>
+    <td>Mandate successfully set up.</td>
     </tr>
-    <td nowrap><code>FAILED</code></td>
-    <td nowrap>User attempted to make a payment but the mandate was not set up successfully.</td>
+    <td><code>FAILED</code></td>
+    <td>User attempted to make a payment but the mandate was not set up successfully.</td>
     </tr>
-    <td nowrap><code>CANCELLED</code></td>
-    <td nowrap>The user has cancelled their mandate.</td>
+    <td><code>CANCELLED</code></td>
+    <td>The user has cancelled their mandate.</td>
     </tr>
-    <td nowrap><code>CANCELLED - USER NOT ELIGIBLE</code></td>
-    <td nowrap>The user indicated that they are not the sole signatory on the bank account, so the mandate setup could not be completed.</td>
+    <td><code>CANCELLED - USER NOT ELIGIBLE</code></td>
+    <td>The user indicated that they are not the sole signatory on the bank account, so the mandate setup could not be completed.</td>
     </tr>
-    <td nowrap><code>ERROR</code></td>
-    <td nowrap>Something went wrong with GOV.UK Pay or the underlying Payment Service Provider.</td>
+    <td><code>ERROR</code></td>
+    <td>Something went wrong with GOV.UK Pay or the underlying Payment Service Provider.</td>
     </tr>
   </table>
 </div>
 
 #### Possible agreement state transitions
+
+A payment changes states as it moves through its lifecycle.
 
 <br>
 
@@ -115,12 +126,12 @@ the mandate has been successfully set up
     <tr>
     <td nowrap><code> STARTED </code></td>
     <td nowrap><code> PENDING </code></td>
-    <td> Payer has provided their account details , and confirms their consent to the agreement. <code>PENDING</code> is only used with delayed payment types such as Direct Debit. This indicates that payer consent has been given but the agreement has not yet been confirmed with the issuing bank. </td>
+    <td> Payer has provided their account details, and confirms their consent to the agreement. <code>PENDING</code> is only used with delayed payment types such as Direct Debit. This indicates that payer consent has been given but the agreement has not yet been confirmed with the issuing bank. </td>
     </tr>
     <tr>
     <td nowrap><code> STARTED </code></td>
     <td nowrap><code> CANCELLED - USER NOT ELIGIBLE </code></td>
-    <td> Payer has indicated that they are not the sole signatory for their bank account, and selects the link to go back and try a different payment method. </td>
+    <td> Payer has indicated that they are not the sole signatory for their bank account, and has selected the link to go back and try a different payment method. </td>
     </tr>
     <tr>
     <td nowrap><code> PENDING </code></td>
@@ -147,21 +158,24 @@ the mandate has been successfully set up
 
 ## One-off payments using Direct Debit
 
-To set up a Direct Debit mandate to take a single payment:
+To take a single payment using Direct Debit, you must set up a Direct Debit mandate.
 
-* create an API key linked to your Direct Debit service
+1. Create an API key linked to your Direct Debit service.
 
-* follow the instructions in the [“Payment flow” section](/payment_flow)
+1. Follow the instructions in the [“Payment flow” section](/payment_flow) of this documentation.
 
 The same API call is used for single payments in all contexts, including
-Direct Debit.
+Direct Debit:
+
+POST /v1/payments
+
 
 You cannot take further payments from users using this method without creating
 a new payment. This requires users to re-enter their account details.
 
 ## Variable payments using Direct Debit
 
-A variable agreement allows you to collect payments of any amount at any time.
+You can collect payments of variable amounts at any time by using a variable agreement.
 For example you may want to collect:
 
 * money each time a service is provided
@@ -170,7 +184,7 @@ For example you may want to collect:
 
 * regular payments where you do not know in advance how much each payment will be
 
-You could also use the variable functionality to simulate a recurring or
+You could also use this functionality to simulate a recurring or
 scheduled Direct Debit payment, by sending an API call on a set schedule.
 Users would be emailed each time a payment is collected against their mandate.
 
@@ -178,7 +192,7 @@ Users would be emailed each time a payment is collected against their mandate.
 
 These steps happen in order.
 
-#### 1. Agreement is created
+#### 1. GOV.UK Pay creates the agreement 
 
 API call:  `POST /v1/agreements/`
 
@@ -196,14 +210,14 @@ The response contains a `next_url`.
 
 #### 3. The user provides their account details
 
-For example, account number and sort code for Direct Debit
+For example, account number and sort code for Direct Debit.
 
 GOV.UK Pay makes an API call to our Direct Debit supplier to verify account
 details.
 
 #### 4. GOV.UK Pay presents the user with a confirmation screen
 
-The screen presents the user's account details. The user grants their consent
+The screen presents the user’s account details. The user grants their consent
 by selecting __Confirm__.  GOV.UK Pay sends an email to the user to confirm
 that their mandate has been set up. If the mandate subsequently fails, the
 GOV.UK Pay team will send an email to update the user that their mandate could
@@ -223,12 +237,12 @@ API call: `GET /v1/agreements/<AGREEMENT-ID>`
 
 This is to display an appropriate screen to the user. For a Direct Debit
 payment, this will initially be in a ‘pending’ state until the bank confirms
-the mandate. The mandate confirmation process takes 2 working days.
+the mandate. You can confirm this state by signing into the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/). The mandate confirmation process takes 2 working days.
 
 #### 8. The GOV.UK Pay admin tool updates the transaction status
 
 When GOV.UK Pay receives confirmation that the mandate is
-confirmed, the GOV.UK Pay admin tool will update the transaction status.
+confirmed, the GOV.UK Pay admin tool will show an updated transaction status.
 
 ### Collecting payments against a mandate
 
@@ -252,39 +266,70 @@ You do not need to wait until the mandate is confirmed to send a collection
 request to GOV.UK Pay.
 
 When collecting a payment against a mandate, you must [supply a
-reference](#reference-numbers) and description. 
+Reference number](#reference-numbers) and description. 
 
 If a mandate does not exist prior to a payment request, it takes 4 working
 days to collect a payment.
 
 If a mandate has already been set up, it takes 3 working days to collect a
 payment each time a subsequent one is requested. It then takes a further 2
-working days before the payment reaches the service's bank account.
+working days before the payment reaches the service’s bank account.
 
 GOV.UK Pay will send an email to the user giving them 3 working days' advance
-notification that payment will be collected against their mandate. The mandate
-reference number will be supplied in this email.
+notification that payment will be collected against their mandate. The email will contain the mandate reference number.
 
 You can collect at any time interval. You may collect between £1 and £5000 each
 time.
 
-## Payment statuses
+## Direct Debit payment statuses
 
-1. `STARTED` - Your service sent an API request to GOV.UK Pay.
+These apply to both one-off and variable Direct Debit payments.
 
-2. `PENDING` - Indicates that account details have been submitted to the
-payment provider but they are not yet able to confirm whether the payment was
-successful.
+<br>
+<div style = "overflow-x:auto;">
+  <table style = "width:100%">
+    <tr>
+    <th nowrap>State</th>
+    <th>Description</th>
+    </tr>
+    <tr>
+    <td nowrap><code>CREATED</code></td>
+    <td>Your service made an API call to create the agreement.</td>
+    </tr>
+    <td nowrap><code>STARTED</code></td>
+    <td>Your service sent an API request to GOV.UK Pay.</td>
+    </tr>
+    <td nowrap><code>PENDING</code></td>
+    <td>Indicates that account details have been submitted to the
+payment service provider (PSP), but the PSP is not yet able to confirm whether
+the mandate has been successfully set up.</td>
+  </table>
+</div>
 
-3. The payment reaches one of several finished states:
+The payment reaches one of several finished states.
 
-  * `SUCCESS` - Payment succeeded
-
-  * `FAILED` - Payment failed
-
-  * `CANCELLED` - The service cancelled the payment
-
-  * `ERROR` - Something went wrong with GOV.UK Pay or the underlying Payment Service Provider
+<br>
+<div style = "overflow-x:auto;">
+  <table style = "width:100%">
+    <tr>
+    <th nowrap>Finished state</th>
+    <th>Description</th>
+    </tr>
+    <tr>
+    <td><code>SUCCESS</code></td>
+    <td>Payment succeeded.</td>
+    </tr>
+    <td><code>FAILED</code></td>
+    <td>Payment failed.</td>
+    </tr>
+    <td><code>CANCELLED</code></td>
+    <td>The service cancelled the payment.</td>
+    </tr>
+    <td><code>ERROR</code></td>
+    <td>Something went wrong with GOV.UK Pay or the underlying Payment Service Provider.</td>
+    </tr>
+  </table>
+</div>
 
 ### Differences compared to card payment statuses
 
@@ -295,30 +340,29 @@ Direct Debit payments can have the non-terminal state `PENDING`.
 
 ## Reference numbers
 
-You can control what appears on the paying user's bank account statement -
-you'll enter this when setting up your account with the Drect Debit supplier.
+You can control what appears on paying users’ bank account statements.  You'll
+enter this when you set up your account with the Direct Debit supplier. This
+applies to both one-off and variable Direct Debit payments.
 
-Our Direct Debit supplier will generate a mandate reference number, which is
+The  Direct Debit supplier will generate a mandate reference number, which is
 given to the user in the confirmation email. The first part of the reference
-will be generated from the account name that you enter with the Direct Debit
-supplier. This is limited to 12 letters.
+will be generated from the account name you enter with the Direct Debit
+supplier. This is limited to 12 characters.
 
 When you create a mandate for a variable Direct Debit, you can also create
-your own reference. You may want to do this so you can link up an existing
+your own reference. You may want to do this so you can link an existing
 case record with the Direct Debit transaction. References that your service
-supplies with mandates will not be exposed to the user, but will be available
-on the GOV.UK Pay admin tool and through the GOV.UK Pay API.
+supplies with mandates will not be shown to the user, but will be available
+on the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/) and through the GOV.UK Pay API.
 
-Users will only receive the mandate reference number, generated by the Direct
-Debit supplier. It is a mandatory requirement of the Direct Debit scheme that
+Users will only receive the mandate reference number generated by the Direct
+Debit supplier. It’s a mandatory requirement of the Direct Debit scheme that
 paying users receive their mandate reference number.
 
 ## Refunds
 
-If you need to issue refunds with Direct Debit, You should [contact
-us](/support_contact_and_more_information/#contact-us) to discuss this.
+[Contact us](/support_contact_and_more_information/#contact-us) if you need to issue refunds for any kind of Direct Debit payment.
 
 ## Indemnity claims
 
-If you need to handle indemnity claims with Direct Debit, You should [contact
-us](/support_contact_and_more_information/#contact-us) to discuss this.
+[Contact us](/support_contact_and_more_information/#contact-us) if you need to handle indemnity claims for any kind of Direct Debit payment.
