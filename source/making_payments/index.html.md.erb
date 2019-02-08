@@ -10,6 +10,11 @@ possible, this should be a unique identifier for the payment. If your
 organisation already has an existing identifier for payments, you can use it
 as this `reference`.
 
+Your service will also need to supply a
+[`return_url`](/#choosing-the-return-url-and-matching-user-to-payment). This
+is a URL that your service hosts for the user to return to, after their
+payment journey on GOV.UK Pay ends.
+
 The call to create a payment with the GOV.UK Pay API is:
 
 `POST  /v1/payments`
@@ -41,10 +46,8 @@ flow”](/payment_flow) sections of this documentation.
 An example URL:
 `https://publicapi.payments.service.gov.uk/v1/payments/{paymentId}`
 
-Your service will also need to supply a
-[`return_url`](/#choosing-the-return-url-and-matching-user-to-payment). This
-is a URL that your service hosts for the user to return to, after their
-payment journey on GOV.UK Pay ends.
+The response will also include the ``next_url`` to which you should direct the
+user to complete their payment.
 
 <style>
 .govuk-warning-text{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400;font-size:16px;font-size:1rem;line-height:1.25;color:#0b0c0c;position:relative;margin-bottom:20px;padding:10px 0}@media print{.govuk-warning-text{font-family:sans-serif}}@media (min-width:40.0625em){.govuk-warning-text{font-size:19px;font-size:1.1875rem;line-height:1.31579}}@media print{.govuk-warning-text{font-size:14pt;line-height:1.15;color:#000}}@media (min-width:40.0625em){.govuk-warning-text{margin-bottom:30px}}.govuk-warning-text__assistive{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;-webkit-clip-path:inset(50%)!important;clip-path:inset(50%)!important;border:0!important;white-space:nowrap!important}.govuk-warning-text__icon{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:700;display:inline-block;position:absolute;top:50%;left:0;min-width:32px;min-height:29px;margin-top:-20px;padding-top:3px;border:3px solid #0b0c0c;border-radius:50%;color:#fff;background:#0b0c0c;font-size:1.6em;line-height:29px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}@media print{.govuk-warning-text__icon{font-family:sans-serif}}.govuk-warning-text__text{display:block;margin-left:-15px;padding-left:65px}
@@ -56,7 +59,8 @@ payment journey on GOV.UK Pay ends.
   <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
   <strong class="govuk-warning-text__text">
     <span class="govuk-warning-text__assistive">Warning</span>
-You must not expose the URL with the `paymentId` or the `next_url` publicly, for example as a URL parameter or in an unencrypted cookie. You should store these values in encrypted cookies or in a database.
+Don’t expose the `next_url` to anyone other than the paying user. Anyone in
+possession of the `next_url` could hijack the user’s payment.
   </strong>
 </div>
 
@@ -81,7 +85,7 @@ secure random ID:
 
 ### Use an encrypted cookie
 
-You can use an encryped cookie containing the `paymentId` from GOV.UK Pay. Your
+You can use an encrypted cookie containing the payment ID from GOV.UK Pay. Your
 service should issue this when a payment is created, before sending the user
 to `next_url`. Users will not be able to decrypt an encrypted cookie, so a
 malicious user could not alter the payment ID and intercept other users’
@@ -91,10 +95,20 @@ payments.
 
 You can create a secure random ID, such as a UUID, and include this as part of
 the `return_url`. You should use a different `return_url` for each payment.
-Malicious users will be unable to guess securely generated UUIDs,
+Malicious users will be unable to guess securely generated UUIDs.
 
 If you use this method, you should store your IDs safely. For example, in a
 datastore mapped to the payment ID just after a payment is created.
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+Make sure the way you match returning users to payments is tamper-proof.
+For example, don’t store the payment ID in an unencrypted cookie or rely on a
+`return_url` parameter that isn’t secret (like the payment ID or reference).
+  </strong>
+</div>
 
 ## Accepting returning users
 
