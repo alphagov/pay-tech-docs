@@ -1,6 +1,6 @@
 ---
 title: Direct Debit
-weight: 75
+weight: 80
 ---
 
 # Direct Debit
@@ -40,7 +40,7 @@ method you want to use. For example “testing” or “Worldpay”.
 
 You can use different API keys to direct paying users to different payment methods.
 
-To use Direct Debit, select the corresponding payment method. 
+To use Direct Debit, select the corresponding payment method.
 
 ## GOV.UK Pay agreements
 
@@ -107,7 +107,7 @@ The agreement then reaches 1 of 5 different finished states.
 
 #### Possible agreement state transitions
 
-A payment changes states as it moves through its lifecycle.
+An agreement changes states as it moves through its lifecycle.
 
 <br>
 
@@ -192,7 +192,7 @@ Users would be emailed each time a payment is collected against their mandate.
 
 These steps happen in order.
 
-#### 1. GOV.UK Pay creates the agreement 
+#### 1. GOV.UK Pay creates the agreement
 
 API call:  `POST /v1/agreements/`
 
@@ -266,7 +266,7 @@ You do not need to wait until the mandate is confirmed to send a collection
 request to GOV.UK Pay.
 
 When collecting a payment against a mandate, you must [supply a
-Reference number](#reference-numbers) and description. 
+Reference number](#reference-numbers) and description.
 
 If a mandate does not exist prior to a payment request, it takes 4 working
 days to collect a payment.
