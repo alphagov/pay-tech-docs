@@ -21,7 +21,13 @@ GOV.UK Pay currently supports live gateways for the PSPs
 [Smartpay](/switching_to_live/set_up_a_live_smartpay_account) and
 [Worldpay](/switching_to_live/set_up_a_live_worldpay_account).
 
-## Provide organisation information
+GOV.UK also supports a live gateway for GOV.UK Stripe users.
+
+How you switch to live differs depending on whether you use Stripe or another PSP.
+
+## Provide organisation name and address
+
+You provide the same organisation information regardless of whether you are a Stripe or non-Stripe user.
 
 Card networks require organisation information to be displayed on payment
 pages. Before you make an account live, you need to provide this information
@@ -42,26 +48,47 @@ to GOV.UK Pay.
 > Make sure the organisation is the entity that has a contract with the
 > payment service provider.
 
-## Request a live GOV.UK Pay account
+## Request a live account
 
-1. Sign in to your [GOV.UK Pay
-   account](https://selfservice.payments.service.gov.uk/login).
+Requesting a live account is the same regardless of whether you are a Stripe or non-Stripe user.
 
-1. Select __My services__.
+1. Go to the [Request a live account](https://pay-admin.cloudapps.digital/request-to-go-live) page on GOV.UK Pay and select __Start now__.
 
-1. For the test account you want to make live, select __Manage team members__
-   on the dashboard.
+1. Enter the name of your organisation and select __Continue__.
 
-1. Copy the full page URL, for example   `https://selfservice.payments.service.gov.uk/service/23f0eb425a9569988b99b5bb641a541d`.
+1. On the __How will you process payments?__ page, select either __GOV.UK Pay’s Stripe__ or __Other payment service provider__ and then select __Continue__.
 
-Send the GOV.UK Pay team the page URL, your service name, and what type of PSP
-account you want to make live. You can email the team at
-[govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk).
+1. Select the __Accept legal terms__ checkbox and select __Continue__.
 
-The GOV.UK Pay team will change your account to live within one business day.
+1. You will see the __Request submitted__ page.
 
-When your account is live, it will appear in the __My services__ page
-labelled as a __Live card account__.
+GOV.UK Pay will email you a link to your live account within one working day.
+
+When your account is live, it will appear in the __My services__ page labelled as a __Live card account__.
+
+## Complete your information
+
+The information you provide differs depending on whether you use Stripe or another PSP.
+
+### Stripe
+
+GOV.UK Pay will contact you to verify your identity. You must provide GOV.UK Pay with your:
+
+- bank sort code and account number
+- responsible person's name, date of birth and home address
+- organisation's address and telephone number (if you have not already provided this information)
+- VAT number
+- [company registration number](https://www.gov.uk/government/organisations/companies-house) (CRN)
+
+GOV.UK does not store this information, but instead passes it straight to Stripe.
+
+### Non-Stripe PSP
+
+Refer to the following GOV.UK Pay documentation to see what information you must provide to your PSP:
+
+- [ePDQ](/switching_to_live/set_up_a_live_epdq_account/#set-up-live-gov-uk-pay-credentials)
+- [Smartpay](/switching_to_live/set_up_a_live_smartpay_account/#set-up-credentials-on-gov-uk-pay)
+- [Worldpay](/switching_to_live/set_up_a_live_worldpay_account/#set-up-your-profile)
 
 ## Support
 
