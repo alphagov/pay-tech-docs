@@ -1,0 +1,64 @@
+---
+title: Digital wallets
+weight: 136
+---
+
+# Digital wallets
+
+You can enable [Google Pay](https://pay.google.com) and [Apple Pay](https://www.apple.com/uk/apple-pay/) [external links] to take payments from your users.
+
+You can only enable Google Pay and Apple Pay if you use [Worldpay](/switching_to_live/set_up_a_live_worldpay_account/#set-up-a-live-worldpay-account) as your payment service provider (PSP).
+
+If you use Stripe, [ePDQ](/switching_to_live/set_up_a_live_epdq_account/#set-up-a-live-epdq-account) or [Smartpay](/switching_to_live/set_up_a_live_smartpay_account/#set-up-a-live-smartpay-account) as your PSP, you cannot enable Apple Pay or Google Pay.
+
+## Enable Apple Pay
+
+Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
+
+1. Go to __Settings__ and select __Card types__.
+
+1. Select the __Digital wallet__ tab.
+
+1. Select __Enable__ next to Apple Pay.
+
+1. On the __Enable Apple Pay__ screen, select __Yes, turn on Apple Pay__.
+
+## Enable Google Pay
+
+To enable Google Pay, you must enter a unique Google Pay merchant ID into your GOV.UK Pay account.
+
+You get your Google Pay merchant ID from your Worldpay merchant admin interface.
+
+1. If required, speak to your Worldpay account manager to upgrade your Worldpay merchant admin interface, so that the interface has Google Pay functionality.
+
+1. Sign in to your [Worldpay merchant admin interface](https://secure.worldpay.com/sso/public/auth/login.html) [external link].
+
+1. Go to __Integration__ and select the __Pay with Google__ tab.
+
+1. Under __Generate unique merchant ID__, select __Generate__.
+
+1. Copy the generated merchant ID.
+
+Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
+
+1. Go to __Settings__ and select __Card types__.
+
+1. Select the __Digital wallet__ tab.
+
+1. Select __Enable__ next to Google Pay.
+
+1. On the __Enable Google Pay__ screen, select __Yes, turn on Google Pay__.
+
+1. Enter the generated merchant ID and select __Submit__.
+
+## 3D Secure
+
+If a digital wallet transaction requires 3D Secure authentication, your users must complete 3D Secure authentication in the same way as non-digital wallet transactions.
+
+## Restrictions
+
+The GOV.UK Pay platform cannot apply [corporate card surcharges](/optional_features/corporate_card_surcharges/#corporate_card_surcharges) to digital wallet transactions made with a corporate card.
+
+You cannot restrict digital wallet transactions by card type. For example, you cannot only accept digital wallet transactions made with a debit card.
+
+When you look at individual digital wallet transactions in your GOV.UK Pay account transactions list, you will only see the last 4 digits of the card number.
