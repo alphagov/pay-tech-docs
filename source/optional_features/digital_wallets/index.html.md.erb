@@ -5,9 +5,9 @@ weight: 136
 
 # Digital wallets
 
-You can enable [Google Pay](https://pay.google.com) and [Apple Pay](https://www.apple.com/uk/apple-pay/) [external links] to take payments from your users.
+You can enable [Google Pay](https://pay.google.com/intl/en_uk/about/) and [Apple Pay](https://www.apple.com/uk/apple-pay/) [external links] to take payments from your users.
 
-You can only enable Google Pay and Apple Pay if you use [Worldpay](/switching_to_live/set_up_a_live_worldpay_account/#set-up-a-live-worldpay-account) as your payment service provider (PSP).
+You can only enable Google Pay and Apple Pay if you have a [live Worldpay account](/switching_to_live/set_up_a_live_worldpay_account/#set-up-a-live-worldpay-account) as your payment service provider (PSP).
 
 If you use Stripe, [ePDQ](/switching_to_live/set_up_a_live_epdq_account/#set-up-a-live-epdq-account) or [Smartpay](/switching_to_live/set_up_a_live_smartpay_account/#set-up-a-live-smartpay-account) as your PSP, you cannot enable Apple Pay or Google Pay.
 
@@ -59,6 +59,12 @@ If a digital wallet transaction requires 3D Secure authentication, your users mu
 
 The GOV.UK Pay platform cannot apply [corporate card surcharges](/optional_features/corporate_card_surcharges/#corporate_card_surcharges) to digital wallet transactions made with a corporate card.
 
-You cannot restrict digital wallet transactions by card type. For example, you cannot only accept digital wallet transactions made with a debit card.
-
 When you look at individual digital wallet transactions in your GOV.UK Pay account transactions list, you will only see the last 4 digits of the card number.
+
+The expiry date for individual digital wallet transactions in your GOV.UK Pay account transactions list is the expiry date of the XYZ certificate rather than the payment expiry date.
+
+### Google Pay
+
+You cannot restrict Google Pay digital wallet transactions by card type. For example, you cannot only accept digital wallet transactions made with a debit card.
+
+When you look at individual digital wallet transactions in your GOV.UK Pay account transactions list, you will only see the cardholder name if you have enabled [billing address collection](/integrate_with_govuk_pay/#collecting-your-users-39-billing-addresses).
