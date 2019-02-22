@@ -72,18 +72,18 @@ If you’d like to carry out any kind of performance testing, including in a
 rate-limiting environment, please contact us at
 [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
 
-## Mock card numbers for testing
+## Submit a test transaction using mock card numbers
 
-When you test your integration, you must use mock card numbers.
+When you test your integration with GOV.UK Pay by submitting a test transaction, you must use mock card numbers.
 
-When you use mock card numbers, you can enter any valid value for the other required information. For example, card expiry dates can be any date in the future.
+You can enter any valid value for the other required information for that test transaction. For example, card expiry dates can be any date in the future.
 
 The following example mock card numbers only work with a test account. If you use mock card numbers after you have [switched to a live account](/switching_to_live/#switching-to-live), your payment service provider will not authorise the payment.
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
 |Testing action |Card numbers to use | Card type | Debit/Credit |
-| --------  | ------- | ------- | ------- |
+| -------- | ------- | ------- | ------- |
 |Simulate a successful transaction | 4444333322221111 | Visa | Credit |
 ||4242424242424242| Visa | Credit |
 ||4000056655665556| Visa | Debit |
@@ -104,3 +104,4 @@ The following example mock card numbers only work with a test account. If you us
 |Simulate a general processing error|4000000000000119|Visa| N/A |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
+
