@@ -72,25 +72,31 @@ If you’d like to carry out any kind of performance testing, including in a
 rate-limiting environment, please contact us at
 [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
 
-## Mock card numbers for testing
+## Submit a test transaction using mock card numbers
 
-When you test your integration, you must not use real card numbers.
+When you test your integration with GOV.UK Pay by submitting a test transaction, you must use mock card numbers.
 
-You should use mock card numbers. For example:
+You can enter any valid value for the other required information for that test transaction. For example, card expiry dates can be any date in the future.
+
+The following example mock card numbers only work with a test account. If you use mock card numbers after you have [switched to a live account](/switching_to_live/#switching-to-live), your payment service provider will not authorise the payment.
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
 |Testing action |Card numbers to use | Card type | Debit/Credit |
-| --------  | ------- | ------- | ------- |
+| -------- | ------- | ------- | ------- |
 |Simulate a successful transaction | 4444333322221111 | Visa | Credit |
 ||4242424242424242| Visa | Credit |
 ||4000056655665556| Visa | Debit |
+||4988080000000000| Visa | Debit Corporate |
+||4000160000000004| Visa | Debit Prepaid |
+||4131840000000003| Visa | Debit Corporate Prepaid |
+||5101180000000007| Mastercard | Credit Corporate |
 ||5105105105105100| Mastercard | Debit |
 ||5200828282828210| Mastercard | Debit |
 ||371449635398431| American Express | Credit |
 ||3566002020360505| JCB | Credit |
-||6011000990139424|Discover| Credit |
-||36148900647913|Diners Club| Credit |
+||6011000990139424| Discover | Credit |
+||36148900647913| Diners Club | Credit |
 |Simulate card type not accepted |6759649826438453|Maestro| Debit |
 |Simulate a declined card|4000000000000002|Visa| N/A |
 |Simulate an invalid CVC security code|4000000000000127|Visa| N/A |
@@ -99,17 +105,3 @@ You should use mock card numbers. For example:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-When you use mock card numbers, you can enter any valid value for the
-other details. For example, expiry dates must be in the future.
-
-### Worldpay test card numbers
-
-Refer to the [Worldpay documentation](http://support.worldpay.com/support/kb/gg/corporate-gateway-guide/content/reference/testvalues.htm#Test) [external link].
-
-### Barclays ePDQ test card numbers
-
-Refer to the [ePDQ __Get Started__ guide](https://support.epdq.co.uk/en/products/onboarding) [external link] and select __What credit cards can I use for testing?__
-
-### Barclays SmartPay test card numbers
-
-Refer to the [SmartPay TestCards page](https://docs.adyen.com/developers/test-cards/test-card-numbers) [external link].
