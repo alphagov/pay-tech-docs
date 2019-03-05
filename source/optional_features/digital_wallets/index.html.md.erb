@@ -7,7 +7,7 @@ weight: 136
 
 You can enable [Google Pay](https://pay.google.com/intl/en_uk/about/) and [Apple Pay](https://www.apple.com/uk/apple-pay/) [external links] to take payments from your users.
 
-This is an invitation-only feature currently in private beta. [Contact the GOV.UK Pay team](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us) to request this feature for your service. After GOV.UK Pay has approved your request to participate in this private beta, GOV.UK Pay will email you a link to enable this feature. 
+This is an invitation-only feature currently in private beta. [Contact the GOV.UK Pay team](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us) to request this feature for your service. After GOV.UK Pay has approved your request, GOV.UK Pay will email you a link to enable this feature. 
 
 You can only enable Google Pay and Apple Pay if you have a [live Worldpay account](/switching_to_live/set_up_a_live_worldpay_account/#set-up-a-live-worldpay-account).
 
@@ -51,14 +51,14 @@ Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.
 
 Apple Pay requires that users authenticate digital wallet transactions using a secure method such as a fingerprint scan. Apple Pay users do not need to complete 3D Secure authentication separately.
 
-Google Pay supports users authenticating digital wallet transactions using a secure method such as a fingerprint scan, but does not require it. Google Pay users who do not use Google Pay’s secure authentication may have to complete 3D Secure authentication separately.
+Google Pay supports but does not require that users authenticate digital wallet transactions using a secure method. Users who do not use Google Pay’s secure authentication may have to complete 3D Secure authentication separately.
 
 ## Restrictions
 
 The GOV.UK Pay platform cannot apply [corporate card surcharges](/optional_features/corporate_card_surcharges/#corporate_card_surcharges) to digital wallet transactions made with a corporate card.
 
-When you look at individual non-digital wallet transactions in your GOV.UK Pay account transactions list, you see the first 6 digits and last 4 digits of the card number. When you look at individual digital wallet transactions in your GOV.UK Pay account transactions list, you will only see the last 4 digits of the card number or digital wallet account number.
+When you look at a non-digital wallet transaction in your GOV.UK Pay account transactions list, you see the first 6 digits and last 4 digits of the card number. When you look at a digital wallet transaction in your GOV.UK Pay account transactions list, you only see the last 4 digits of the card number or digital wallet account number.
 
 ### Google Pay
 
-You can restrict Google Pay digital wallet transactions by card scheme, but not by card type. For example, you can state that you only accept digital wallet transactions made with Visa cards, but you cannot only accept these transactions made with a debit card.
+You can restrict Google Pay digital wallet transactions by card scheme, but not by card type. For example, you can only accept transactions made with Visa cards, but you cannot only accept transactions made with debit cards.
