@@ -9,10 +9,10 @@ If you collect a user's details in your service before you redirect them to GOV.
 
 Users can still edit the details before they complete their payment.
 
-To prefill fields, include the following when you [create a new payment](/making_payments/#making-payments):
+To prefill fields, you can include the following optional parameters when you [create a new payment](/making_payments/#making-payments):
 
-- an `email` parameter
-- a `prefilled_cardholder_details` object with `cardholder_name` and `billing_address` parameters
+- `email`
+- `prefilled_cardholder_details` - with optional `cardholder_name` and `billing_address` parameters
 
 For example:
 
@@ -29,9 +29,9 @@ For example:
  }
 ```
 
-You can leave out any of the parameters.
+All of the parameters in `billing_address` are optional.
 
-The `country` parameter must be a valid <a href="https://www.iso.org/iso-3166-country-codes.html" target="blank">ISO 3166 code</a>. If the parameter is invalid or missing, the __Country or territory__ field will default to 'GB'.
+If you include the `country` parameter, it must be a valid <a href="https://www.iso.org/iso-3166-country-codes.html" target="blank">ISO 3166 code</a>. If the parameter is invalid or missing, the __Country or territory__ field will default to 'Great Britain'.
 
 Refer to the <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
