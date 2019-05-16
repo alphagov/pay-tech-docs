@@ -1,21 +1,21 @@
 ---
-title: Custom metadata
+title: Adding custom metadata
 weight: 135
 ---
 
-# Custom metadata
+# Adding custom metadata
 
-You can add custom metadata to a new payment. For example, you can add a reference number from your finance or accounting system, so you can reconcile the payment against bank transaction information.
+You can add custom metadata to a new payment. For example, you can add a reference number from your finance or accounting system, so you can reconcile the payment later.
 
-You can add metadata when you make an API call to create a new payment. You cannot add metadata to Direct Debit transactions or payment links.
+You add metadata when you make an API call to create a new payment. You cannot add metadata to [Direct Debit transactions](/direct_debit/#direct-debit) or [payment links](/payment_links/#payment-links).
 
 End users cannot see metadata while they're making a payment.
 
 ## Add metadata to a payment
 
-Include a `metadata` object in the body of your [Create new payment](/making_payments/#making-payments) request. For example:
+Include a `metadata` object in the body of your [Create new payment](/making_payments/#making-payments) request, for example:
 
-```
+```javascript
 "metadata": {
    "ledger_code": "AB100",
    "an_internal_reference_number": 200,
@@ -25,26 +25,27 @@ Include a `metadata` object in the body of your [Create new payment](/making_pay
 
 The `metadata` object must contain between 1 and 10 parameters.
 
-Each parameter key must be between 1 and 30 characters long.
+Each parameter key must be a unique string between 1 and 30 characters long. If a key is not unique, the API will remove all but one of the duplicate keys from the `metadata` object.
 
-Each parameter value must be both:
+The data type of each parameter value must be either a:
 
-- no longer than 50 characters
-- a string, number or boolean data type
+- string of no more than 50 characters
+- number
+- boolean
 
-Your metadata will be included in the API response.
+Parameter values can be empty.
 
-You cannot add or change the metadata after you've created the payment request.
+The API response will include your metadata.
+
+You cannot add or change metadata keys or values after you've created the payment request.
 
 Refer to the <a
-href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
-target="blank">API browser</a> or the <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">Swagger file</a> for more information.
+href="https://govukpay-api-browser.cloudapps.digital/#newpayment" target="blank">API browser</a> or the <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">Swagger file</a> for more information.
 
-## See a payment's metadata
+## Getting a payment's metadata
 
-When you [make an API call to get information about a payment](/reporting/#reporting-via-the-gov-uk-pay-api), the `metadata` object will be included in the API response.
+When you [get information about a single payment](/reporting/#get-information-about-a-single-payment) or [generate a list of payments](/reporting/#generate-a-list-of-payments-search-payments), the API response will include the `metadata` object.
 
 The order of the parameters in the `metadata` object may be different to your original object.
 
-You can also sign in to the [GOV.UK Pay admin
-tool](https://selfservice.payments.service.gov.uk/login) to see or download a payment's metadata.
+You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see or download a payment's metadata.
