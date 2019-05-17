@@ -1,22 +1,22 @@
 ---
-title: Prefill fields on the payment page
+title: Prefilling fields on the payment page
 weight: 137
 ---
 
-# Prefill fields on the payment page
+# Prefilling fields on the payment page
 
-If you collect a user's details in your service before you redirect them to GOV.UK Pay, you can prefill some of the fields on the __Enter card details__ page. This means users should not need to enter their details twice.
+If you collect a user's details in your service before you redirect them to GOV.UK Pay, you can prefill some of the fields on the __Enter card details__ page. If you prefill fields, users should not need to enter their details twice.
 
-Users can still edit the details before they complete their payment.
+Users can still edit these details before they complete their payment.
 
-To prefill fields, you can include the following optional parameters when you [create a new payment](/making_payments/#making-payments):
+To prefill fields, include the following optional parameters in the <a href="https://govukpay-api-browser.cloudapps.digital/#newpayment" target="blank">API request</a> when you [create a new payment](/payment_flow/#making-a-payment):
 
 - `email`
 - `prefilled_cardholder_details` - with optional `cardholder_name` and `billing_address` parameters
 
 For example:
 
-```json
+```javascript
 "email": "sherlock.holmes@example.com",
 "prefilled_cardholder_details": {
     "cardholder_name": "Sherlock Holmes",
@@ -29,7 +29,7 @@ For example:
  }
 ```
 
-All of the parameters in `billing_address` are optional.
+All the parameters in `billing_address` are optional.
 
 If you include the `country` parameter, it must be an <a href="https://www.iso.org/iso-3166-country-codes.html" target="blank">ISO 3166 code</a>. If the parameter is invalid or missing, the __Country or territory__ field on the payment page will default to 'Great Britain'.
 
@@ -37,7 +37,7 @@ Refer to the <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
 target="blank">API browser</a> or the <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">Swagger file</a> for more information.
 
-## Which data is collected
+## Data collected by your GOV.UK Pay admin account
 
 After the user completes their payment, your [GOV.UK Pay admin
 account](https://selfservice.payments.service.gov.uk/login) will collect the user's:
