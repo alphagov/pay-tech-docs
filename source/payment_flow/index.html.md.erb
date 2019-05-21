@@ -120,6 +120,11 @@ they have completed their payment attempt on GOV.UK Pay. This should not be
 JSON-encoded, because backslashes are invalid characters. With test accounts,
 you can [use HTTP for return URLs instead of HTTPS](/security/#https).
 
+You can [prefill the fields on the payment page](/optional_features/prefill_user_details) with the user's details if you collected that information:
+
+- earlier in your service
+- when your user previously used your service
+
 In the example, responses to the __Create new payment__ API call would have
 headers of the form:
 
