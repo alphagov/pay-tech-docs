@@ -53,8 +53,7 @@ for a completed £50 payment with no previous refunds:
   },
 ```
 
-The `amount_available` value includes [any corporate card
-surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges).
+The `amount_available` value includes any [transaction fees](/reporting/#payment-service-provider-psp-fees) or [corporate card surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges).
 
 The `amount_submitted` is `0`, showing that there have been no previous refunds.
 
@@ -105,7 +104,7 @@ refund. When the accidental second request arrives, the payment has a
 ``refund_amount_available`` of £5 even though only £3 is available. GOV.UK
 Pay determines that it’s a stale request, and rejects the refund request.
 
-You must include any [corporate card
+You must include any [transaction fees](/reporting/#payment-service-provider-psp-fees) and [corporate card
 surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges)
 in the `refund_amount_available` value.
 
