@@ -93,16 +93,14 @@ have entered when making a payment:
 
 ### Payment service provider (PSP) fees
 
-If you use GOV.UK's Payment Service Provider (PSP), we'll automatically deduct the PSP's transaction fee from each user payment. You can see how much the fee was when you make the API call to get information about a payment.
+If you use GOV.UK's Payment Service Provider (PSP), we'll automatically deduct the PSP's transaction fee from each payment. You can see how much the fee was when you make the API call to get information about a payment.
 
-The JSON response body will contain for example:
+Example response:
 
-```javascript
-{
-  "total_amount": 4000,
-  "fee": 200,
-  "net_amount": 3800
-}
+```
+"total_amount": 4000,
+"fee": 200,
+"net_amount": 3800
 ```
 
 Where:
@@ -111,10 +109,10 @@ Where:
 - `fee` is the PSP transaction fee that we took from the amount the user paid, in pence
 - `net_amount` is the amount that will be paid into your account, in pence
 
-The JSON response body will not contain a `fee` or `net_amount` parameter if either:
+The response will not contain a `fee` or `net_amount` parameter if either:
 
-- your PSP is SmartPay, WorldPay or ePDQ - we don't deduct these PSPs' transaction fees
-- you're [using a test API key](/quick_start_guide/#test-the-api) - we don't deduct fees from test payments
+- your PSP is SmartPay, WorldPay or ePDQ - we do not deduct these PSPs' transaction fees
+- you're [using a test API key](/quick_start_guide/#test-the-api) - we do not deduct fees from test payments
 
 You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see or export transaction fee information.
 
