@@ -5,7 +5,12 @@ weight: 133
 
 # Delayed capture
 
-GOV.UK Pay supports the delayed capture of payments.
+You can control how long it takes for GOV.UK Pay to transfer ('capture') a payment from a user's bank account.
+
+You may want to use delayed capture if you need time to:
+
+- do your own anti-fraud checks
+- check the user is eligible for your service
 
 To use this feature, include `"delayed_capture": true` in the body of a <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
