@@ -97,28 +97,17 @@ For example:
 {
   "amount": 14500,
   "reference" : "12345",
-  "description": "Payment description",
+  "description": "Pay your council tax",
   "return_url": "https://your.service.gov.uk/completed"
 }
 ```
 
-`amount`: The amount in pence - in the example, the payment is for £145. This value must be a number data type rather than a string.
+Where:
 
-The minimum payment amount is one pence.
-
-`reference`: The reference number you wish to associate with this payment. The
-format is variable: if you have an existing format, you can keep using it with
-GOV.UK Pay (maximum 255 characters, and must not contain URLs). The reference
-number does not need to be unique.
-
-`description`: A human-readable description of the payment. This will be shown to the end
-user on the payment pages and to your staff on the GOV.UK Pay admin tool
-(maximum 255 characters, and must not contain URLs).
-
-`return_url`: A HTTPS URL on your site that the user will be sent back to once
-they have completed their payment attempt on GOV.UK Pay. This should not be
-JSON-encoded, because backslashes are invalid characters. With test accounts,
-you can [use HTTP for return URLs instead of HTTPS](/security/#https).
+- `amount` is the amount in pence - in the example, the payment is for £145
+- `reference` is the reference number you wish to associate with this payment
+- `description` is a human-readable description of the payment - this will be shown to the end user
+- `return_url` is a HTTPS URL on your site that the user will be sent back to once they have completed their payment attempt on GOV.UK Pay
 
 You can [prefill the fields on the payment page](/optional_features/prefill_user_details) with the user's details if you collected that information:
 
