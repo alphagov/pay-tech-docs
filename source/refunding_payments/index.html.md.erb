@@ -226,16 +226,21 @@ __Refund payment__ button to make a full or partial payment.
 
 ![](/images/refund-payment-button.png)
 
-## Refund email notifications
+## What happens next
 
-You can use the GOV.UK Pay admin tool to [send email notifications to
+Refunds are sent back to the source account of the original payment.
+
+You cannot refund a payment to another card or bank account. It's the responsibility of the service to provide an alternative refund method.
+
+If you're using GOV.UK Pay's Payment Service Provider (PSP), they will not take the refund amount directly from your bank account. They'll either:
+
+- cancel the payment - if it didn't reach your bank account
+- take the refund amount from the next payment or payments you receive from any user
+
+### Refund email notifications
+
+You can use the GOV.UK Pay admin tool to turn on [sending refund email notifications to
 users](https://selfservice.payments.service.gov.uk/email-notifications).
-
-## Refund destination
-
-Refunds are sent back to the source account of the original payment. It is not
-possible to refund a payment to another card or bank account. It is the
-responsibility of the service to provide an alternative refund method.
 
 ## Search refunds with the API
 
