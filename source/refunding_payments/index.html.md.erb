@@ -40,7 +40,7 @@ You can find out the refund status of a payment with the GOV.UK Pay API using th
 href="https://govukpay-api-browser.cloudapps.digital/#getpayment"
 target="blank">Find payment by ID</a> or <a
 href="https://govukpay-api-browser.cloudapps.digital/#searchpayments"
-target="blank">Search payments</a> functions [external links].
+target="blank">Search payments</a> functions.
 
 The JSON response body will contain a `refund_summary` object. For example,
 for a completed £50 payment with no previous refunds:
@@ -65,7 +65,7 @@ be greater than the original payment.
 
 You can use the <a
 href="https://govukpay-api-browser.cloudapps.digital/#getrefunds"
-target="blank">Get all refunds for a payment</a> [external link] API call to
+target="blank">Get all refunds for a payment</a> API call to
 get information about partial refunds.
 
 As another example, this is the JSON response body for a completed £90 payment
@@ -117,7 +117,7 @@ return an error code `P0604` with a `412` HTTP status.
 
 You can start a refund with the <a
 href="https://govukpay-api-browser.cloudapps.digital/#submitrefund"
-target="blank">Submit a refund for a payment</a> function [external link].
+target="blank">Submit a refund for a payment</a> function.
 
 You need to specify the `paymentId` of the original payment, and provide the
 amount to refund, in pence.
@@ -137,13 +137,13 @@ Each refund has a unique `refund_id`.
 
 You can use the <a
 href="https://govukpay-api-browser.cloudapps.digital/#getrefunds"
-target="blank">Get all refunds for a payment</a> function [external link] to
+target="blank">Get all refunds for a payment</a> function to
 get information all the refunds for a payment (including their `refund_id`
 values).
 
 You can retrieve information about an individual refund using the <a
 href="https://govukpay-api-browser.cloudapps.digital/#getrefundbyid"
-target="blank">Find payment refund by ID</a> function [external link].
+target="blank">Find payment refund by ID</a> function.
 
 A `204` response from the API indicates that a refund was successful. Any
 other response indicates an error.
@@ -154,12 +154,12 @@ When you try to create a refund with the API, it may fail immediately. For
 example, if you try to refund more than the amount available. In that case,
 the original <a
 href="https://govukpay-api-browser.cloudapps.digital/#submitrefund"
-target="blank">Submit a refund for a payment</a> request [external link] will
+target="blank">Submit a refund for a payment</a> request will
 return an error code and a description of what it means. A refund attempt
 that fails like this with an error code is not assigned a `refundId` and is
 not available using <a
 href="https://govukpay-api-browser.cloudapps.digital/#getrefundbyid"
-target="blank">Find payment refund by ID</a> [external link].
+target="blank">Find payment refund by ID</a>.
 
 If a refund is accepted by GOV.UK Pay, it may still go on to fail at the PSP.
 This may happen if the card involved is cancelled or has expired, or if your
@@ -195,7 +195,7 @@ go directly to `success`.
 
 To manage refunds in live environments, you must use <a
 href="https://govukpay-api-browser.cloudapps.digital/#getrefundbyid"
-target="blank">Find payment refund by ID</a> [external link] to
+target="blank">Find payment refund by ID</a> to
 check the processing status of the refund, until it changes to either
 `success` or `error`.
 
@@ -276,8 +276,7 @@ You can use the following query parameters to filter refunds by date:
 * `to_date` - the end date for payments to be searched, exclusive
 
 These take inputs based on a subset of [ISO
-8601](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard)
-[external link].  For example, a valid input would be
+8601](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard).  For example, a valid input would be
 `2015-08-13T12:35:00Z`.
 
 #### Pagination
