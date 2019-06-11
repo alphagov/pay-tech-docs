@@ -161,7 +161,7 @@ not available using <a
 href="https://govukpay-api-browser.cloudapps.digital/#getrefundbyid"
 target="blank">Find payment refund by ID</a>.
 
-If a refund is accepted by GOV.UK Pay, it may still go on to fail at the PSP.
+If a refund is accepted by GOV.UK Pay, it may still go on to fail at the payment service provider (PSP).
 This may happen if the card involved is cancelled or has expired, or if your
 account with the PSP does not have enough funds to process the refund.
 
@@ -176,6 +176,7 @@ For example, the response body for a refund would include:
 "refund_id": "j6se0f2o427g28g8yg3u3i",
 "status": "submitted",
 ...
+}
 ```
 
 In a live environment, the status returned will initially be `submitted`.
@@ -228,12 +229,17 @@ __Refund payment__ button to make a full or partial payment.
 
 ## What happens next
 
-Refunds are sent back to the source account of the original payment. You cannot refund a payment to another card or bank account.
+If the payment did not reach your bank account yet, your PSP will:
 
-If you're using GOV.UK Pay's Payment Service Provider (PSP), it will not take the refund amount from your bank account. It will either:
+- cancel the payment, if your PSP is Stripe, ePDQ or SmartPay
+- take the refund amount after the payment has reached your bank account, if your PSP is Worldpay
 
-- cancel the payment if it did not reach your bank account
-- take the refund amount from the next payment or payments you receive from any user
+If the payment has reached your bank account, your PSP will take the refund amount from:
+
+- the next payment or payments you receive from any user, if your PSP is Stripe or ePDQ
+- your bank account, if your PSP is SmartPay or Worldpay
+
+Your PSP will send refunds back to the source account of the original payment. You cannot refund a payment to another card or bank account.
 
 ### Send email notifications about refunds
 
