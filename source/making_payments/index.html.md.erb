@@ -32,23 +32,42 @@ For example:
 }
 ```
 
-`amount`: The amount in pence - in the example, the payment is for £145. This value must be a number data type rather than a string.
+### amount
 
-The minimum payment amount is one pence. The maximum amount is 10,000,000 pence (£100,000). [Contact us](/support_contact_and_more_information/#contact-us) if you need to take payments above the maximum amount.
+`amount` is the amount in pence. In the example, the payment is for £145.
 
-`reference`: The reference number you wish to associate with this payment. The
-format is variable: if you have an existing format, you can keep using it with
-GOV.UK Pay (maximum 255 characters, and must not contain URLs). The reference
-number does not need to be unique.
+The amount must be a number data type rather than a string.
 
-`description`: A human-readable description of the payment. This will be shown to the end
-user on the payment pages and to your staff on the GOV.UK Pay admin tool
-(maximum 255 characters, and must not contain URLs).
+The minimum amount is one pence. The maximum amount is 10,000,000 pence (£100,000). [Contact us](/support_contact_and_more_information/#contact-us) if you need to take payments above the maximum amount.
 
-`return_url`: A HTTPS URL on your site that the user will be sent back to once
-they have completed their payment attempt on GOV.UK Pay. This should not be
-JSON-encoded, because backslashes are invalid characters. With test accounts,
-you can [use HTTP for return URLs instead of HTTPS](/security/#https).
+
+### reference
+
+`reference` is the reference number you wish to associate with this payment.
+
+The reference number does not need to be unique, and must not:
+
+- be longer than 255 characters
+- contain URLs
+
+The format is variable. If you have an existing format, you can keep using it if your values are no longer than 255 characters.
+
+
+### description
+
+`description` is a human-readable description of the payment. This is shown to the end user on the payment pages and to your staff on the GOV.UK Pay admin tool.
+
+The description must be no longer than 255 characters, and must not contain URLs.
+
+
+### return_url
+
+This is a URL that your service hosts for the user to return to, after their payment journey on GOV.UK Pay ends.
+
+The URL should not be JSON-encoded, because backslashes are invalid characters in the API.
+
+If you're making a test payment using a test account, you can [use HTTP for return URLs instead of HTTPS](/security/#https).
+
 
 Refer to the <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
