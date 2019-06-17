@@ -161,7 +161,7 @@ not available using <a
 href="https://govukpay-api-browser.cloudapps.digital/#getrefundbyid"
 target="blank">Find payment refund by ID</a>.
 
-If a refund is accepted by GOV.UK Pay, it may still go on to fail at the PSP.
+If a refund is accepted by GOV.UK Pay, it may still go on to fail at the payment service provider (PSP).
 This may happen if the card involved is cancelled or has expired, or if your
 account with the PSP does not have enough funds to process the refund.
 
@@ -176,6 +176,7 @@ For example, the response body for a refund would include:
 "refund_id": "j6se0f2o427g28g8yg3u3i",
 "status": "submitted",
 ...
+}
 ```
 
 In a live environment, the status returned will initially be `submitted`.
@@ -226,16 +227,24 @@ __Refund payment__ button to make a full or partial payment.
 
 ![](/images/refund-payment-button.png)
 
-## Refund email notifications
+## What happens next
 
-You can use the GOV.UK Pay admin tool to [send email notifications to
+If the payment did not reach your bank account yet, your PSP will:
+
+- cancel the payment, if your PSP is Stripe, ePDQ or SmartPay
+- take the refund amount after the payment has reached your bank account, if your PSP is Worldpay
+
+If the payment has reached your bank account, your PSP will take the refund amount from:
+
+- the next payment or payments you receive from any user, if your PSP is Stripe or ePDQ
+- your bank account, if your PSP is SmartPay or Worldpay
+
+Your PSP will send refunds back to the source account of the original payment. You cannot refund a payment to another card or bank account.
+
+### Send email notifications about refunds
+
+You can use the GOV.UK Pay admin tool to turn on [sending refund email notifications to
 users](https://selfservice.payments.service.gov.uk/email-notifications).
-
-## Refund destination
-
-Refunds are sent back to the source account of the original payment. It is not
-possible to refund a payment to another card or bank account. It is the
-responsibility of the service to provide an alternative refund method.
 
 ## Search refunds with the API
 
