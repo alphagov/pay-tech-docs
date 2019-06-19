@@ -15,16 +15,66 @@ Your service will also need to supply a
 is a URL that your service hosts for the user to return to, after their
 payment journey on GOV.UK Pay ends.
 
+## Creating a payment
+
 The call to create a payment with the GOV.UK Pay API is:
 
 `POST  /v1/payments`
 
-The minimum payment amount is one pence.
+For example:
+
+```javascript
+{
+  "amount": 14500,
+  "reference" : "12345",
+  "description": "Pay your council tax",
+  "return_url": "https://your.service.gov.uk/completed"
+}
+```
+
+### amount
+
+`amount` is the amount in pence. In the example, the payment is for £145.
+
+The amount must be a number data type rather than a string.
+
+The minimum amount is one pence. The maximum amount is 10,000,000 pence (£100,000). [Contact us](/support_contact_and_more_information/#contact-us) if you need to take payments above the maximum amount.
+
+
+### reference
+
+`reference` is the reference number you wish to associate with this payment.
+
+The reference number does not need to be unique, and must not:
+
+- be longer than 255 characters
+- contain URLs
+
+The format is variable. If you have an existing format, you can keep using it if your values are no longer than 255 characters.
+
+
+### description
+
+`description` is a human-readable description of the payment. This is shown to the end user on the payment pages and to your staff on the GOV.UK Pay admin tool.
+
+The description must be no longer than 255 characters, and must not contain URLs.
+
+
+### return_url
+
+This is a URL that your service hosts for the user to return to, after their payment journey on GOV.UK Pay ends.
+
+The URL should not be JSON-encoded, because backslashes are invalid characters in the API.
+
+If you're making a test payment using a test account, you can [use HTTP for return URLs instead of HTTPS](/security/#https).
+
 
 Refer to the <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
 target="blank">GOV.UK Pay API browser</a> or the <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">Swagger file</a> for more
 information.
+
+## Receiving the API response
 
 The response to the ‘Create new payment’ API call will include the URL for the
 payment. You can get this from either:
