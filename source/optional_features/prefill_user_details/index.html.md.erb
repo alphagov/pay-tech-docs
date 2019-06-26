@@ -31,14 +31,14 @@ For example:
 
 All the parameters in `billing_address` are optional.
 
-Each value must be no longer than:
+The values must be no longer than:
 
 - 254 characters for `email`
 - 255 characters for `cardholder_name`
-- 255 characters for `line1`, `line2` and `city` in `billing_address`
+- 255 characters each for `line1`, `line2` and `city` in `billing_address`
 - 25 characters for `postcode` in `billing_address`
 
-If you include the `country` parameter, it must be an <a href="https://www.iso.org/iso-3166-country-codes.html" target="blank">ISO 3166 code</a>. If the parameter is invalid or missing, the __Country or territory__ field on the payment page will default to 'Great Britain'.
+If you include the `country` parameter, it must be an <a href="https://www.iso.org/obp/ui/#search/code/" target="blank">ISO 3166-1 Alpha-2 code</a>. If the parameter is invalid or missing, the __Country or territory__ field on the payment page will default to 'Great Britain'.
 
 Refer to the <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
