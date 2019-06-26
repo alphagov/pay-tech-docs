@@ -5,7 +5,9 @@ weight: 80
 
 # Direct Debit
 
-You can use Direct Debit if you want to take recurring payments. You can take the same amount or a different amount each time.
+You can use Direct Debit if you want to take recurring payments.
+
+You can take payments whenever you need to. You can take the same amount or a different amount each time.
 
 You cannot automatically schedule payments. If you need to take regular payments, you could create your own scheduler to send API calls on a set schedule.
 
@@ -18,17 +20,15 @@ You must also set up an account with our Direct Debit supplier, GoCardless.
 
 1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
 
-1. Select your account in the __My services__ page.
-
-1. Select **Settings**.
-
-1. Select **Link GoCardless Merchant Account** and follow the on-screen instructions.
+1. Select your account in the __My services__ page and follow the on-screen instructions.
 
 You must [contact us](/support_contact_and_more_information/#contact-us) to sign your GoCardless contract before you switch to live.
 
 ## Set up a mandate
 
-You need to set up a Direct Debit 'mandate' before you can take payments. A mandate is your user's agreement that you can take payments from their bank account.
+Before you can take payments, your user needs to set up a Direct Debit mandate ('instruction') by entering their bank account details on a GOV.UK Pay page.
+
+The mandate is your user's agreement that you can take payments from their bank account.
 
 These steps happen in order.
 
@@ -44,7 +44,7 @@ Include the following parameters in your API call:
 
 #### description
 
-`description` is a human-readable description of the mandate.
+`description` is an optional human-readable description of the mandate.
 
 The description must be no longer than 255 characters, and must not contain URLs.
 
@@ -82,8 +82,7 @@ information on the API response.
 
 When your service redirects the user to `next_url`, they’ll see a **Set up a Direct Debit** page. The user enters their bank account details and selects **Continue**.
 
-GOV.UK Pay makes an API call to GoCardless to verify the user's account
-details.
+GOV.UK Pay checks with GoCardless that the user's account details are valid.
 
 ### 4. GOV.UK Pay presents the user with a confirmation screen
 
@@ -96,7 +95,7 @@ not be set up.
 ### 5. GOV.UK Pay securely passes the user's details on to the Direct Debit provider
 
 The Direct Debit provider submits a request to BACS to set up a mandate, and
-sends a mandate ID to GOV.UK Pay. At this point, services can send a payment
+sends a mandate ID to GOV.UK Pay. At this point, you can send a payment
 request.
 
 ### 6. GOV.UK Pay returns the user to your service using the `return_url`
@@ -105,14 +104,14 @@ request.
 
 API call: `GET /v1/directdebit/mandates/<mandateid>`
 
-This is to display an appropriate screen to the user.
-
 The API response includes a `state` object. This includes the following parameters:
 
 - [`status`](#mandate-statuses)
 - [`details`](https://developer.gocardless.com/api-reference/#events-mandate-causes), which explains the reason for the `status`
 
-The `status` will initially be in a `pending` state until the bank confirms the mandate. The mandate confirmation process takes 2 working days.
+You should use the `status` and `details` to display an appropriate final page to your user.
+
+The `status` will be `pending` until the bank confirms the mandate. The mandate confirmation process takes 2 working days.
 
 Refer to the <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
@@ -131,28 +130,25 @@ Required arguments:
 ```
 {
  "amount"
- "description"
+ "description" # optional
  "reference"
  "mandate_id"
 }
 ```
 
-Once a mandate has been set up and a mandate ID is available, you can make an
-API call to collect a payment against the mandate.
+Once a mandate has a `status` of `pending`, you can make an API call to collect a payment against the mandate.
 
-You do not need to wait until the mandate is confirmed to send a collection request to GOV.UK Pay.
+The payment will be taken from your user's bank account in:
 
-If a mandate does not exist prior to a payment request, it takes 3 working
-days to collect a payment.
+- 3 working days if the mandate's `status` is `pending`
+- 2 working days if the mandate's `status` is `active`
 
-If a mandate has already been set up, it takes 2 working days to collect a
-payment each time a subsequent one is requested. It then takes a further 1
-working day before the payment reaches the service’s bank account.
+It then takes a further 1 working day before the payment reaches the service’s bank account.
 
 GOV.UK Pay will send an email to the user giving them 2 working days' advance
 notification that payment will be collected against their mandate. The email will contain the mandate reference number.
 
-You can collect at any time interval. You may collect between £1 and £5000 each
+You can collect whenever you need to. You may collect between £1 and £5000 each
 time. [Contact us](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us) if you need to collect more than £5000.
 
 ### Get information about a payment
@@ -218,7 +214,7 @@ Some of the `queryparameters` you can use to search are:
 - `status`
 - `mandate_id`
 
-All the parameters are case insensitive.
+All the parameters are case insensitive. You can search for partial values of `reference`.
 
 If you search for a specific payment, all criteria you use must match. Otherwise that payment will not be returned in the results.
 
@@ -257,6 +253,7 @@ This would return payments 501 to 1000.
 
 ## Mandate statuses
 
+<br>
 <div style = "overflow-x:auto;">
   <table style = "width:100%">
     <tr>
@@ -286,7 +283,7 @@ the mandate has been successfully set up.</td>
     </tr>    
     <tr>
     <td><code>cancelled</code></td>
-    <td>When the user entered their bank account information, they answered <b>No</b> to <b>Are you allowed to authorise Direct Debits on this account?</b>.</td>
+    <td>The mandate was not successfully set up, because the user did not finish entering their bank account details.</td>
     </tr>   
   </table>
 </div>
@@ -301,8 +298,7 @@ the mandate has been successfully set up.</td>
     <th>Description</th>
     </tr>
     <td nowrap><code>pending</code></td>
-    <td>The payment has been requested, but the PSP is not yet able to confirm whether
-the payment is complete.</td>
+    <td>The payment has been requested.</td>
     </tr>
     <tr>
     <td><code>success</code></td>
@@ -310,10 +306,6 @@ the payment is complete.</td>
     </tr>
     <td><code>failed</code></td>
     <td>The payment failed.</td>
-    </tr>
-    <tr>
-    <td><code>cancelled</code></td>
-    <td>The service cancelled the payment.</td>
     </tr>
   </table>
 </div>
