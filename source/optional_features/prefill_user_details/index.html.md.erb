@@ -29,9 +29,14 @@ For example:
 }
 ```
 
-All the parameters in `billing_address` are optional.
+All the parameters in `billing_address` are optional, and these parameters' values must be no longer than:
 
-If you include the `country` parameter, it must be an <a href="https://www.iso.org/iso-3166-country-codes.html" target="blank">ISO 3166 code</a>. If the parameter is invalid or missing, the __Country or territory__ field on the payment page will default to 'Great Britain'.
+- 254 characters for `email`
+- 255 characters for `cardholder_name`
+- 255 characters each for `line1`, `line2` and `city` in `billing_address`
+- 25 characters for `postcode` in `billing_address`
+
+If you include the `country` parameter, it must be an <a href="https://www.iso.org/obp/ui/#search/code/" target="_blank">ISO 3166-1 alpha-2 code</a>. If the parameter is invalid or missing, the __Country or territory__ field on the payment page will default to 'United Kingdom'.
 
 Refer to the <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
