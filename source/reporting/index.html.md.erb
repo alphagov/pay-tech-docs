@@ -89,6 +89,26 @@ have entered when making a payment:
     },
 ```
 
+### Checking when your PSP took a payment
+
+If your PSP is Worldpay, you can see when Worldpay took a payment from your user's bank account.
+
+The response contains:
+
+- `capture_submit_time` if we've asked Worldpay to take the payment from your user's bank account
+- `captured_date` if Worldpay have taken the payment
+
+For example:
+
+```
+  "settlement_summary": {
+    "capture_submit_time": "2016-01-21T17:15:000Z",
+    "captured_date": "2016-01-21"
+  }
+```
+
+You should receive the payment in your bank account within 2 business days of `captured_date`.
+
 ### Payment service provider (PSP) fees
 
 If you use GOV.UK's Payment Service Provider (PSP), we'll automatically deduct the PSP's transaction fee from each payment. You can see how much the fee was when you make the API call to get information about a payment.
@@ -96,9 +116,9 @@ If you use GOV.UK's Payment Service Provider (PSP), we'll automatically deduct t
 Example response:
 
 ```
-"total_amount": 4000,
-"fee": 200,
-"net_amount": 3800
+  "total_amount": 4000,
+  "fee": 200,
+  "net_amount": 3800
 ```
 
 Where:
@@ -109,7 +129,7 @@ Where:
 
 The response will not contain a `fee` or `net_amount` parameter if either:
 
-- your PSP is SmartPay, WorldPay or ePDQ - we do not deduct these PSPs' transaction fees
+- your PSP is SmartPay, Worldpay or ePDQ - we do not deduct these PSPs' transaction fees
 - you're [using a test API key](/quick_start_guide/#test-the-api) - we do not deduct fees from test payments
 
 You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see or export transaction fee information.
