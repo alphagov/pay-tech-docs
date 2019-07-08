@@ -5,7 +5,7 @@ weight: 80
 
 # Direct Debit
 
-You can use Direct Debit if you want to take recurring payments.
+From August 2019, you can use Direct Debit if you want to take recurring payments.
 
 You can take payments whenever you need to. You can take the same amount or a different amount each time.
 
@@ -71,11 +71,6 @@ When the API responds, you need to:
 - direct the user to the `next_url` from the API response
 - store the `mandate_id` from the API response, so you can use that ID to collect payments against the mandate later
 
-Refer to the <a
-href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
-target="blank">GOV.UK Pay API browser</a> or the <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">Swagger file</a> for more
-information on the API response.
-
 ### 3. The user provides their bank account details
 
 When your service redirects the user to `next_url`, the user will see a **Set up a Direct Debit** page. The user enters their bank account details and selects **Continue**.
@@ -86,15 +81,17 @@ GOV.UK Pay checks with GoCardless that the user’s account number and sort code
 
 The screen presents the user’s account details. The user grants their consent
 by selecting __Confirm__.  GOV.UK Pay sends an email to the user to confirm
-that their mandate has been set up. If the mandate then fails, the
-GOV.UK Pay team will send an email to update the user that their mandate could
-not be set up.
+that their mandate is being set up.
 
 ### 5. GOV.UK Pay securely passes the user's details on to GoCardless
 
 GoCardless submits a request to BACS to set up a mandate, and
 sends a mandate ID to GOV.UK Pay. At this point, you can send a payment
 request.
+
+If the mandate then fails, the
+GOV.UK Pay team will send an email to update the user that their mandate could
+not be set up.
 
 ### 6. GOV.UK Pay returns the user to your service using the `return_url`
 
@@ -111,13 +108,7 @@ You should use these `status` and `details` parameters to display an appropriate
 
 The `status` will be `pending` until the user's bank confirms the mandate. The mandate confirmation process takes 2 working days.
 
-Refer to the <a
-href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
-target="blank">GOV.UK Pay API browser</a> or the <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">Swagger file</a> for more
-information on the API response.
-
 You can also check the status of a mandate by signing into your GoCardless account through the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
-
 
 ## Collecting payments against a mandate
 
@@ -167,11 +158,6 @@ If the payment exists, the API response will include a `state` object. This incl
 - [`status`](#payment-statuses)
 - [`details`](https://developer.gocardless.com/api-reference/#events-payment-causes), which explains the reason for the `status`
 - `finished`, which will be `true` if GOV.UK Pay has successfully collected the payment
-
-Refer to the <a
-href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
-target="blank">GOV.UK Pay API browser</a> or the <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">Swagger file</a> for more
-information on the API response
 
 You can also check the status of a payment by signing into your GoCardless account through the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
 
