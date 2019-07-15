@@ -89,14 +89,14 @@ have entered when making a payment:
     },
 ```
 
-### Checking when your PSP took a payment
+### Checking when your Payment Service Provider (PSP) took a payment
 
-If your PSP is Worldpay, you can see when Worldpay took a payment from your user's bank account.
+If your PSP is Worldpay, you can see when Worldpay took a payment from your user's account.
 
 The response contains:
 
-- `capture_submit_time` if we've asked Worldpay to take the payment from your user's bank account
-- `captured_date` if Worldpay have taken the payment
+- `capture_submit_time` if we've asked Worldpay to take the payment from your user's account
+- `captured_date` if Worldpay has taken the payment
 
 For example:
 
@@ -109,7 +109,7 @@ For example:
 
 You should receive the payment in your bank account within 2 business days of `captured_date`.
 
-### Payment service provider (PSP) fees
+### PSP fees
 
 If you use GOV.UK's Payment Service Provider (PSP), we'll automatically deduct the PSP's transaction fee from each payment. You can see how much the fee was when you make the API call to get information about a payment.
 
