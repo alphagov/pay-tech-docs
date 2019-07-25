@@ -71,7 +71,12 @@ A successful response includes ``status`` and ``finished`` values:
   </tr>
   <tr>
     <td> submitted </td>
-    <td> User has submitted payment details but has not yet selected <b>Confirm</b>. Or, user has selected <b>Confirm</b> and the payment is a delayed capture.</td>
+    <td> User has submitted payment details but has not yet selected <b>Confirm</b>. </td>
+    <td> false </td>
+  </tr>
+  <tr>
+    <td> capturable </td>
+    <td> The payment is a <a href="/optional_features/delayed_capture/">delayed capture</a>, and your user has submitted payment details and selected <b>Confirm</b>. </td>
     <td> false </td>
   </tr>
   <tr>
