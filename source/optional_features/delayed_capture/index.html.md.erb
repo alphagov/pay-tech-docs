@@ -16,9 +16,12 @@ href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
 target="blank">Create new payment</a> request.
 
 The user experience matches the current payment flow. Once the user selects
-__Confirm__ on the __Confirm your details__ page, your service can call the
+__Confirm__ on the __Confirm your details__ page:
+
+- the [payment status](/api_reference/#payment-status-lifecycle) will change to `capturable`
+- your service can call the
 `POST /v1/payments/{paymentId}/capture` endpoint to send a delayed capture
-request.
+request
 
 Refer to the <a
 href="https://govukpay-api-browser.cloudapps.digital/#capturepayment"
