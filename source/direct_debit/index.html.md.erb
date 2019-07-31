@@ -260,11 +260,11 @@ This would return payments 501 to 1000.
     </tr>
     <tr>
     <td nowrap><code>abandoned</code></td>
-    <td>GOV.UK Pay did not set up the mandate, because your user took longer than 90 minutes to finish entering their account information.</td>
+    <td>GOV.UK Pay did not set up the mandate, because your user cancelled or took longer than 90 minutes to finish entering their account information.</td>
     </tr>
     <tr>
     <td nowrap><code>failed</code></td>
-    <td>GOV.UK Pay could not set up the mandate, for example because your user's account information was incorrect or your user's bank account does not support Direct Debit.</td>
+    <td>GoCardless could not set up the mandate, for example because your user's account information was incorrect or your user's bank account does not support Direct Debit.</td>
     </tr>
     <tr>
     <td nowrap><code>pending</code></td>
@@ -315,7 +315,7 @@ This would return payments 501 to 1000.
     </tr>
     <tr>
     <td nowrap><code>indemnityclaim</code></td>
-    <td>After the payment succeeded, your user asked their bank for a refund ('indemnity claim') under the Direct Debit guarantee. <a href="/support_contact_and_more_information/#contact-us">Contact us</a> if you need to handle this type of refund.</td>
+    <td>After the payment succeeded, your user asked their bank for a refund ('indemnity claim') under the Direct Debit guarantee.</td>
     </tr>
   </table>
 </div>
@@ -341,4 +341,4 @@ paying users receive their mandate reference number.
 
 ## Refunds
 
-[Contact us](/support_contact_and_more_information/#contact-us) if you need to issue refunds for any kind of Direct Debit payment.
+If a payment's status is `indemnityclaim` or a user asks you for a refund, you can process the refund by signing into your GoCardless account through the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
