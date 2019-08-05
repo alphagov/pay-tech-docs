@@ -264,7 +264,7 @@ This would return payments 501 to 1000.
     </tr>
     <tr>
     <td nowrap><code>failed</code></td>
-    <td>GoCardless could not set up the mandate, for example because your user's account information was incorrect or your user's bank account does not support Direct Debit.</td>
+    <td>GoCardless could not set up the mandate, for example because your user's bank account does not support Direct Debit.</td>
     </tr>
     <tr>
     <td nowrap><code>pending</code></td>
@@ -280,7 +280,11 @@ This would return payments 501 to 1000.
     </tr>   
     <tr>
     <td nowrap><code>inactive</code></td>
-    <td>You can no longer collect payments because the mandate expired. A mandate usually expires if you do not collect payments against it for 12 months.</td>
+    <td>You can no longer collect payments because the mandate expired. A mandate usually expires if you do not collect payments against it for 13 months.</td>
+    </tr>    
+    <tr>
+    <td nowrap><code>error</code></td>
+    <td>There was an internal error. <a href="/support_contact_and_more_information/#contact-us">Contact us</a> for help.</td>
     </tr>    
   </table>
 </div>
@@ -315,7 +319,11 @@ This would return payments 501 to 1000.
     </tr>
     <tr>
     <td nowrap><code>indemnityclaim</code></td>
-    <td>After the payment succeeded, your user asked their bank for a refund ('indemnity claim') under the Direct Debit Guarantee.</td>
+    <td>Your user's bank has refunded the payment because your user claimed they did not authorise it.</td>
+    </tr>
+    <tr>
+    <td nowrap><code>error</code></td>
+    <td>There was an internal error. <a href="/support_contact_and_more_information/#contact-us">Contact us</a> for help.</td>
     </tr>
   </table>
 </div>
@@ -343,4 +351,4 @@ paying users receive their mandate reference number.
 
 If a user asks you for a refund, you can process the refund by signing into your GoCardless account through the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
 
-If the payment's status is `indemnityclaim`, you do not need to do anything. Your user's bank will refund the payment.
+If the payment's status is `indemnityclaim`, you do not need to do anything because your user's bank will have refunded the payment. If you disagree with the refund, read about [how to dispute the claim](https://support.gocardless.com/hc/en-gb/articles/115002875285-Chargebacks-Customer-Claims#disputing_a_chargeback) on the GoCardless website.
