@@ -7,13 +7,13 @@ weight: 137
 
 You can enable [Google Pay](https://pay.google.com/intl/en_uk/about/) and [Apple Pay](https://www.apple.com/uk/apple-pay/) to take payments from your users.
 
-This is an invitation-only feature currently in private beta and is only available to services with a [live Worldpay account](/switching_to_live/set_up_a_live_worldpay_account/#set-up-a-live-worldpay-account). [Contact the GOV.UK Pay team](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us) to request this feature for your service. After GOV.UK Pay has approved your request, GOV.UK Pay will email you a link to enable this feature. 
+This is an invitation-only feature currently in private beta and is only available to services with a [live Worldpay account](/switching_to_live/set_up_a_live_worldpay_account/#set-up-a-live-worldpay-account). [Contact the GOV.UK Pay team](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us) to request this feature for your service. After GOV.UK Pay has approved your request, GOV.UK Pay will email you a link to enable this feature.
 
 ## Enable Apple Pay
 
 Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
 
-In your __Settings__, select the __Digital wallet__ tab in __Card types__. In the next screen, enable Apple Pay. 
+In your __Settings__, select the __Digital wallet__ tab in __Card types__. In the next screen, enable Apple Pay.
 
 ## Enable Google Pay
 
@@ -41,7 +41,7 @@ Enter the generated merchant ID and select __Submit__.
 
 Apple Pay requires users to authenticate digital wallet transactions using a secure method such as a fingerprint scan. Apple Pay users do not need to complete 3D Secure authentication separately.
 
-Google Pay supports, but does not require, users to authenticate digital wallet transactions using a secure method. Users who do not use Google Pay’s secure authentication may have to complete 3D Secure authentication separately. 
+Google Pay supports, but does not require, users to authenticate digital wallet transactions using a secure method. Users who do not use Google Pay’s secure authentication may have to complete 3D Secure authentication separately.
 
 ## Restrictions
 
@@ -51,4 +51,9 @@ When you look at a non-digital wallet transaction in your GOV.UK Pay account tra
 
 ### Google Pay
 
-You can restrict Google Pay digital wallet transactions by card scheme, but not by card type. For example, you can only accept transactions made with Visa cards, but you cannot only accept transactions made with debit cards.
+If a user makes a payment with Google Pay, we cannot tell if they used a credit card or a debit card. This means:
+
+- the `card_type` is `null` when you [get information about a payment](/reporting)
+- you cannot restrict transactions to one type of card
+
+You can still restrict transactions to one card scheme, like Visa.

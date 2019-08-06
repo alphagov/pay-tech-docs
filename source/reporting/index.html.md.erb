@@ -76,6 +76,8 @@ have entered when making a payment:
 
 ```
   "card_details": {
+    "card_type": "debit",
+    "card_brand": "visa",
     "last_digits_card_number": "1111",
     "first_digits_card_number": "100002",
     "cardholder_name": "Sherlock Holmes",
@@ -88,6 +90,8 @@ have entered when making a payment:
       "country": "GB"
     },
 ```
+
+The `card_type` is `null` if we did not recognise which type of card your user made the payment with.
 
 ### Checking when your Payment Service Provider (PSP) took a payment
 
