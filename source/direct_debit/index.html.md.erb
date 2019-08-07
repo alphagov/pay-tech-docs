@@ -157,7 +157,6 @@ If the payment exists, the API response will include a `state` object. This incl
 
 - [`status`](#payment-statuses)
 - [`details`](https://developer.gocardless.com/api-reference/#events-payment-causes), which explains the reason for the `status`
-- `finished`, which will be `true` if GOV.UK Pay has successfully collected the payment
 
 You can also check the status of a payment by signing into your GoCardless account through the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
 
@@ -257,23 +256,35 @@ This would return payments 501 to 1000.
     </tr>
     <tr>
     <td nowrap><code>started</code></td>
-    <td>The user has visited the <code>next_url</code> and landed on the GOV.UK Pay page to enter their account information.</td>
+    <td>Your user has visited the <code>next_url</code> and landed on the GOV.UK Pay page to enter their account information.</td>
+    </tr>
+    <tr>
+    <td nowrap><code>abandoned</code></td>
+    <td>GOV.UK Pay did not set up the mandate, because your user cancelled or took longer than 90 minutes to finish entering their account information.</td>
+    </tr>
+    <tr>
+    <td nowrap><code>failed</code></td>
+    <td>GoCardless could not set up the mandate, for example because your user's bank account does not support Direct Debit.</td>
     </tr>
     <tr>
     <td nowrap><code>pending</code></td>
-    <td>GOV.UK Pay has sent account details to the payment service provider (PSP), but the PSP has not yet confirmed if the mandate has been successfully set up.</td>
+    <td>GOV.UK Pay has sent your user's account information to GoCardless, but GoCardless has not yet confirmed if the mandate has been successfully set up.</td>
     </tr>
     <tr>
     <td nowrap><code>active</code></td>
-    <td>The PSP has confirmed that the mandate has been successfully set up.</td>
+    <td>GoCardless has confirmed that the mandate was successfully set up.</td>
     </tr>    
     <tr>
     <td nowrap><code>cancelled</code></td>
-    <td>The user did not finish entering their bank account details, so the mandate was not set up.</td>
+    <td>The mandate was cancelled, for example because your user asked their bank to cancel the mandate.</td>
     </tr>   
     <tr>
     <td nowrap><code>inactive</code></td>
-    <td>You can no longer collect payments from the mandate, for example because the user cancelled it.</td>
+    <td>You can no longer collect payments because the mandate expired. A mandate usually expires if you do not collect payments against it for 13 months.</td>
+    </tr>    
+    <tr>
+    <td nowrap><code>error</code></td>
+    <td>There was an internal error. <a href="/support_contact_and_more_information/#contact-us">Contact us</a> for help.</td>
     </tr>    
   </table>
 </div>
@@ -292,11 +303,27 @@ This would return payments 501 to 1000.
     </tr>
     <tr>
     <td nowrap><code>success</code></td>
-    <td>The payment succeeded.</td>
+    <td>GoCardless has taken the payment from your user’s bank account.</td>
+    </tr>
+    <tr>
+    <td nowrap><code>paidout</code></td>
+    <td>GoCardless has sent the money to your bank account.</td>
+    </tr>    
+    <tr>
+    <td nowrap><code>cancelled</code></td>
+    <td>The payment was cancelled, for example because your user asked their bank to cancel the mandate.</td>
     </tr>
     <tr>
     <td nowrap><code>failed</code></td>
-    <td>The payment failed.</td>
+    <td>The payment failed, for example because your user did not have enough money in their bank account.</td>
+    </tr>
+    <tr>
+    <td nowrap><code>indemnityclaim</code></td>
+    <td>Your user's bank refunded the payment because your user claimed they did not authorise it.</td>
+    </tr>
+    <tr>
+    <td nowrap><code>error</code></td>
+    <td>There was an internal error. <a href="/support_contact_and_more_information/#contact-us">Contact us</a> for help.</td>
     </tr>
   </table>
 </div>
@@ -322,8 +349,6 @@ paying users receive their mandate reference number.
 
 ## Refunds
 
-[Contact us](/support_contact_and_more_information/#contact-us) if you need to issue refunds for any kind of Direct Debit payment.
+If a user asks you for a refund, you can process the refund by signing into your GoCardless account through the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
 
-## Indemnity claims
-
-[Contact us](/support_contact_and_more_information/#contact-us) if you need to handle indemnity claims for any kind of Direct Debit payment.
+If the payment's status is `indemnityclaim`, you do not need to do anything because your user's bank will have refunded the payment. If you disagree with the refund, read about [how to dispute the claim](https://support.gocardless.com/hc/en-gb/articles/115002875285-Chargebacks-Customer-Claims#disputing_a_chargeback) on the GoCardless website.
