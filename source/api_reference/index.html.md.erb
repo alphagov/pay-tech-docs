@@ -27,6 +27,12 @@ For more detailed information on each API action, you can:
 
 You can also generate a client library from the Swagger file using the <a href="http://editor.swagger.io/" target="blank">Swagger editor</a>. This may be an easier way for you to integrate your service with GOV.UK Pay than writing a client library from scratch.
 
+## Allowing traffic to our API
+
+If you're connecting to the GOV.UK Pay API from a secure network, we recommend using a web proxy like [Squid](http://www.squid-cache.org/) to allow traffic to our base URL.
+
+Do not add a whitelist of IP addresses to your firewall, because GOV.UK Pay’s IP addresses will change regularly. Read more about [why GOV.UK does not support whitelists of IP addresses](https://technology.blog.gov.uk/2017/01/03/a-whitelisting-approach-for-cloud-apis/).
+
 ## Authentication
 
 GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer
