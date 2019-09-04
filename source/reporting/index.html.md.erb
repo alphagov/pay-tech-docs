@@ -149,22 +149,15 @@ An example search request:
 
 Some of the query parameters you can use to search for payments are:
 
-* `reference`
-
-* `email`
-
-* `state`
-
-* `card_brand`
-
+* `reference` - case insensitive, exact match only
+* `email` - case insensitive
+* `card_brand` - case insensitive, exact match only
+* `cardholder_name` - case insensitive
+* `state` - case sensitive, exact match only
 * `first_digits_card_number`
-
 * `last_digits_card_number`
 
-* `cardholder_name`
-
-If you search for a specific payment, all criteria you use must match.
-Otherwise, that payment will not be returned in the results.
+If you search for a specific payment, all criteria you use must match. Otherwise, that payment will not be returned in the results.
 
 If your request has no query parameters, the API will return all payments.
 
