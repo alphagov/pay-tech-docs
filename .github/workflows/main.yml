@@ -1,0 +1,40 @@
+---
+name: Continuous Delivery
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-ruby@v1
+        with:
+          version: '2.6'
+
+      - name: Install the CF CLI
+        run: |
+          wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+          echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+          sudo apt-get update
+          sudo apt-get install -y cf-cli
+
+      - uses: actions/checkout@master
+      - name: Build
+        run: |
+          bundle install
+          bundle exec middleman build
+
+      - name: Deploy
+        env:
+          CF_USERNAME: ${{ secrets.CF_USERNAME }}
+          CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
+        run: |
+          cf api https://api.cloud.service.gov.uk
+          cf auth
+          cf target -o govuk-pay -s build
+          cf v3-create-app pay-tech-docs
+          cf v3-apply-manifest -f manifest.yml
+          cf v3-zdt-push pay-tech-docs -p build --wait-for-deploy-complete

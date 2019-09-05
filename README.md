@@ -91,3 +91,7 @@ Read [the changelog for the gem][gem-changelog] for the latest changes.
 [rvm]: https://www.ruby-lang.org/en/documentation/installation/#managers
 [bundler]: http://bundler.io/
 [tdt-documentation]: https://tdt-documentation.london.cloudapps.digital
+
+# Release
+
+New versions are deployed to PaaS on master builds using Github Actions you can see how it works by looking within the `.github/workflows` directory.
