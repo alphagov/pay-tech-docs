@@ -34,7 +34,7 @@ jobs:
         run: |
           cf api https://api.cloud.service.gov.uk
           cf auth
-          cf target -o govuk-pay -s build
-          cf v3-create-app pay-tech-docs
+          cf target -o govuk-pay -s docs
+          cf v3-create-app govuk-pay-tech-docs
           cf v3-apply-manifest -f manifest.yml
-          cf v3-zdt-push pay-tech-docs -p build --wait-for-deploy-complete
+          cf v3-zdt-push govuk-pay-tech-docs -p build --wait-for-deploy-complete

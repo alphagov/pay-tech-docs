@@ -1,7 +1,11 @@
 ---
 applications:
-- name: govukpay-docs
+- name: govuk-pay-tech-docs
   memory: 64M
   path: ./build
-  buildpack: staticfile_buildpack
+  buildpacks:
+    - staticfile_buildpack
   instances: 2
+  routes:
+  - route: govuk-pay-tech-docs.cloudapps.digital
+  - route: docs.payments.service.gov.uk
