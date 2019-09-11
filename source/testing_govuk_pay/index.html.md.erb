@@ -7,17 +7,12 @@ weight: 90
 
 ### Testing your service
 
-You should:
+You can use your test account to:
 
-- run regular [smoke tests](https://www.gov.uk/service-manual/technology/deploying-software-regularly#using-smoke-tests-after-you-deploy) using your test account to check your service is always connected to GOV.UK Pay
-- build a stub of GOV.UK Pay's API, and use it to run frequent integration tests to check your service is making API requests correctly
+- explore how the GOV.UK Pay API works
+- run automated [smoke tests](https://www.gov.uk/service-manual/technology/deploying-software-regularly#using-smoke-tests-after-you-deploy)
 
-You can use a library like [WireMock](https://github.com/WireMock-Net/WireMock.Net) to build a stub of GOV.UK Pay's API.
-
-Do not use your:
-
-- test account for integration tests that run every time you change your code
-- live account for any code testing
+Do not use your test account for automated integration tests that run every time you change your code. Build a stub of GOV.UK Pay's API instead, using a tool like [WireMock](https://github.com/WireMock-Net/WireMock.Net) or [mountebank](http://www.mbtest.org/).
 
 ### Testing the whole user journey
 
