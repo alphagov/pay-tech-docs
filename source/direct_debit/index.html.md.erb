@@ -176,13 +176,11 @@ For example:
 
 The query parameters you can use to search are:
 
-- `reference`
-- `status`
-- `bank_statement_reference`
-- `email`
-- `name`
-
-All the parameters are case insensitive. You can search for partial values of `reference`, `email` and `name`.
+- `reference` - case insensitive, exact match only
+- `bank_statement_reference` - case insensitive, exact match only
+- `email` - case insensitive
+- `name` - case insensitive
+- `state` - case sensitive, exact match only
 
 If you search for a specific mandate, all criteria you use must match. Otherwise your search will not return that mandate in the results.
 
@@ -200,11 +198,11 @@ For example:
 
 The query parameters you can use to search are:
 
-- `reference`
-- `status`
-- `mandate_id`
+- `reference` - case insensitive
+- `mandate_id` - case insensitive
+- `state` - case sensitive
 
-All the parameters are case insensitive. You can search for partial values of `reference`.
+All the parameters must be an exact match.
 
 If you search for a specific payment, all criteria you use must match. Otherwise your search will not return that payment in the results.
 
