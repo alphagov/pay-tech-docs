@@ -66,11 +66,11 @@ For example, the response for a successful payment contains:
     },
 ```
 
-With a successful payment, you know that the user can continue their journey
+With a successful payment, you know that your user can continue their journey
 through your service.
 
 For a valid request, the JSON response body to this API call also contains
-other useful information. For example, if a user has gone far enough in their
+other useful information. For example, if your user has gone far enough in their
 payment journey, the `"card_details"` section contains information that they
 have entered when making a payment:
 
@@ -123,8 +123,8 @@ Example response:
 
 Where:
 
-- `total_amount` is the amount the user paid in pence, including a [corporate card surcharge](/optional_features/corporate_card_surcharges/#corporate_card_surcharges) if you added one
-- `fee` is the PSP transaction fee that we took from the amount the user paid, in pence
+- `total_amount` is the amount your user paid in pence, including a [corporate card surcharge](/optional_features/corporate_card_surcharges/#corporate_card_surcharges) if you added one
+- `fee` is the PSP transaction fee that we took from the amount your user paid, in pence
 - `net_amount` is the amount that will be paid into your account, in pence
 
 The response will not contain a `fee` or `net_amount` parameter if either:

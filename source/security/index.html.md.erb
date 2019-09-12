@@ -71,7 +71,7 @@ Make sure you’ve fully tested your integration with GOV.UK Pay. When doing so,
 take care not to use any real card numbers. Read the
 [__Testing__](/testing_govuk_pay) section for more details.
 
-## Securing user information
+## Securing your users' information
 
 GOV.UK Pay does not store full card numbers or CVV data for security reasons. This means you will not be able to search for transactions using card numbers. You can, however, search for the first six digits and the last four digits of a card.
 
@@ -139,7 +139,7 @@ eligibility criteria in the following table:
 | The merchant does not electronically store, process, or transmit any CHD for that MID on your systems or premises, but relies entirely on a third party(s) to handle all these functions | This applies where your MID is exclusive to transactions processed via GOV.UK Pay |
 | The merchant has confirmed that all third party(s) handling storage, processing, and/or transmission of CHD for that MID are PCI DSS compliant | GOV.UK Pay is PCI DSS certified; we can provide an Attestation of Compliance (AoC) on request |
 | Any CHD the merchant retains is on paper (for example, printed reports or receipts), and these documents are not received electronically | Chargebacks received from your bank would fall into this category |
-| All elements of the payment page(s) delivered to the consumer’s browser originate only and directly from a PCI DSS validated third-party service provider(s) | The payment page will be delivered to the end user directly from a PCI DSS validated service provider, GOV.UK Pay |
+| All elements of the payment page(s) delivered to the consumer’s browser originate only and directly from a PCI DSS validated third-party service provider(s) | The payment page will be delivered to your user directly from a PCI DSS validated service provider, GOV.UK Pay |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
