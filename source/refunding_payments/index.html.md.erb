@@ -46,11 +46,11 @@ The JSON response body will contain a `refund_summary` object. For example,
 for a completed £50 payment with no previous refunds:
 
 ```javascript
-  "refund_summary": {
-    "status": "available",
-    "amount_available": 5000,
-    "amount_submitted": 0
-  },
+"refund_summary": {
+  "status": "available",
+  "amount_available": 5000,
+  "amount_submitted": 0
+},
 ```
 
 The `amount_available` value includes any [transaction fees](/reporting/#payment-service-provider-psp-fees) or [corporate card surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges).
@@ -72,11 +72,11 @@ As another example, this is the JSON response body for a completed £90 payment
 with a previous refund of £30:
 
 ```javascript
-  "refund_summary": {
-    "status": "available",
-    "amount_available": 6000,
-    "amount_submitted": 3000
-  },
+"refund_summary": {
+  "status": "available",
+  "amount_available": 6000,
+  "amount_submitted": 3000
+},
 ```
 
 ## Find out the expected refund available
