@@ -1,20 +1,20 @@
 ---
-title: Testing GOV.UK Pay
+title: Testing your integration
 weight: 90
 ---
 
 # Testing your integration
 
-### Testing your service
+## Testing your service
 
 You can use your test account to:
 
 - explore how the GOV.UK Pay API works
 - run automated [smoke tests](https://www.gov.uk/service-manual/technology/deploying-software-regularly#using-smoke-tests-after-you-deploy)
 
-Do not use your test account for automated integration tests that run every time you change your code. Build a stub of GOV.UK Pay's API instead, using a tool like [WireMock](https://github.com/WireMock-Net/WireMock.Net) or [mountebank](http://www.mbtest.org/).
+Do not use your test account for automated integration tests that run every time you change your code. Build a ‘stub’ to simulate the GOV.UK Pay API instead, using a tool like [WireMock](http://wiremock.org/) or [mountebank](http://www.mbtest.org/).
 
-### Testing the whole user journey
+## Testing the whole user journey
 
 You should test the whole user journey from your service to your payment service provider (PSP).
 
@@ -22,11 +22,11 @@ To help you test, you can:
 
 - [create a link to GOV.UK Pay payment pages](https://selfservice.payments.service.gov.uk/test-with-your-users) and add it to your service's prototype page
 - use [mock card numbers](#mock-card-numbers) to test both successful and unsuccessful payments
-- use HTTP instead of HTTPs for the `return_url` with your test account
+- use HTTP instead of HTTPs for the `return_url` with your test account, so you do not need to set up a secure url for testing
 
 ## Performance testing
 
-You must [contact us](support_contact_and_more_information) to get written approval before you do any performance testing, even if you limit the rate that you’re making API requests.
+You must [contact us](support_contact_and_more_information) to get written approval before you do any performance testing.
 
 ## Mock card numbers
 
