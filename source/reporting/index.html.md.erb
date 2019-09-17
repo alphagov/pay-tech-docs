@@ -17,9 +17,9 @@ You can use your [GOV.UK Pay admin
 account](https://selfservice.payments.service.gov.uk/login) to export
 transaction information in a CSV file.
 
-1. Select the account you want reporting information for in the [My Service](https://selfservice.payments.service.gov.uk/my-services) section
+1. Select the account you want reporting information for in the [My Service](https://selfservice.payments.service.gov.uk/my-services) section.
 
-2. Go to the [transactions](https://selfservice.payments.service.gov.uk/transactions) list
+2. Go to the [transactions](https://selfservice.payments.service.gov.uk/transactions) list.
 
 3. Filter transactions using the available search criteria.
 
@@ -60,10 +60,10 @@ designing a service.
 For example, the response for a successful payment contains:
 
 ```
-  "state": {
-    "status": "success",
-    "finished": true
-    },
+"state": {
+  "status": "success",
+  "finished": true
+},
 ```
 
 With a successful payment, you know that the user can continue their journey
@@ -75,20 +75,21 @@ payment journey, the `"card_details"` section contains information that they
 have entered when making a payment:
 
 ```
-  "card_details": {
-    "card_type": "debit",
-    "card_brand": "visa",
-    "last_digits_card_number": "1111",
-    "first_digits_card_number": "100002",
-    "cardholder_name": "Sherlock Holmes",
-    "expiry_date": "12/21",
-    "billing_address": {
-      "line1": "221 Baker Street",
-      "line2": "Flat b",
-      "postcode": "NW16XE",
-      "city": "London",
-      "country": "GB"
-    },
+"card_details": {
+  "card_type": "debit",
+  "card_brand": "visa",
+  "last_digits_card_number": "1111",
+  "first_digits_card_number": "100002",
+  "cardholder_name": "Sherlock Holmes",
+  "expiry_date": "12/21",
+  "billing_address": {
+    "line1": "221 Baker Street",
+    "line2": "Flat b",
+    "postcode": "NW16XE",
+    "city": "London",
+    "country": "GB"
+  }
+}
 ```
 
 The `card_type` is `null` if we did not recognise which type of card your user made the payment with.
@@ -105,10 +106,10 @@ The response contains:
 For example:
 
 ```
-  "settlement_summary": {
-    "capture_submit_time": "2016-01-21T17:15:000Z",
-    "captured_date": "2016-01-21"
-  }
+"settlement_summary": {
+  "capture_submit_time": "2016-01-21T17:15:000Z",
+  "captured_date": "2016-01-21"
+}
 ```
 
 You should receive the payment in your bank account within 2 business days of `captured_date`.
@@ -120,9 +121,9 @@ If you use GOV.UK's Payment Service Provider (PSP), we'll automatically deduct t
 Example response:
 
 ```
-  "total_amount": 4000,
-  "fee": 200,
-  "net_amount": 3800
+"total_amount": 4000,
+"fee": 200,
+"net_amount": 3800
 ```
 
 Where:
@@ -153,22 +154,15 @@ An example search request:
 
 Some of the query parameters you can use to search for payments are:
 
-* `reference`
+* `reference` - case insensitive, exact match only
+* `email` - case insensitive
+* `card_brand` - case insensitive, exact match only
+* `cardholder_name` - case insensitive
+* `state` - case sensitive, exact match only
+* `first_digits_card_number` - exact match only
+* `last_digits_card_number` - exact match only
 
-* `email`
-
-* `state`
-
-* `card_brand`
-
-* `first_digits_card_number`
-
-* `last_digits_card_number`
-
-* `cardholder_name`
-
-If you search for a specific payment, all criteria you use must match.
-Otherwise, that payment will not be returned in the results.
+If you search for a specific payment, all criteria you use must match. Otherwise, that payment will not be returned in the results.
 
 If your request has no query parameters, the API will return all payments.
 

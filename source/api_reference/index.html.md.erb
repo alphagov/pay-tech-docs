@@ -27,6 +27,12 @@ For more detailed information on each API action, you can:
 
 You can also generate a client library from the Swagger file using the <a href="http://editor.swagger.io/" target="blank">Swagger editor</a>. This may be an easier way for you to integrate your service with GOV.UK Pay than writing a client library from scratch.
 
+## Allowing traffic to our API
+
+If you're connecting to the GOV.UK Pay API from a secure network, we recommend using a web proxy like [Squid](http://www.squid-cache.org/) to allow traffic to our base URL.
+
+Do not add a whitelist of IP addresses to your firewall, because GOV.UK Pay’s IP addresses will change regularly. Read more about [why GOV.UK does not support whitelists of IP addresses](https://technology.blog.gov.uk/2017/01/03/a-whitelisting-approach-for-cloud-apis/).
+
 ## Authentication
 
 GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer
@@ -156,24 +162,26 @@ Common status codes are:
 | Search payments | P0401 | Invalid parameters | The parameters you sent are invalid. |
 | Search payments | P0402 | Page not found | The requested page of search results does not exist. |
 | Search payments | P0498 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
-| Cancel payment | P0500 | paymentId not found | No payment matched the `paymentId` you provided. |
+| Cancel payment | P0500 | `paymentId` not found | No payment matched the `paymentId` you provided. |
 | Cancel payment | P0501 | Cancellation failed | Cancelling the payment failed. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | Cancel payment | P0598 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
-| Create refund | P0600 | paymentId not found | No payment matched the `paymentId` you provided. |
+| Create refund | P0600 | `paymentId` not found | No payment matched the `paymentId` you provided. |
 | Create refund | P0601 | Missing mandatory attribute | The request you sent is missing a required attribute. |
 | Create refund | P0602 | Invalid attribute value | The value of an attribute you sent is invalid. |
 | Create refund | P0603 | Refund not available | The payment is not available for refund. |
 | Create refund | P0604 | Refund amount available mismatch | The `refund_amount_available` value you provided does not match the true amount available to refund. |
 | Create refund | P0697 | Unable to parse JSON | The JSON you sent in the request body is invalid. |
 | Create refund | P0698 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
-| Get refund | P0700 | refundId not found | No refund matched the `refundId` you provided. |
+| Get refund | P0700 | `refundId` not found | No refund matched the `refundId` you provided. |
 | Get refund | P0798 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
-| Get refunds | P0800 | refundId not found | No refund match the `refundId` you provided. |
+| Get refunds | P0800 | `refundId` not found | No refund match the `refundId` you provided. |
 | Get refunds | P0898 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | General | P0900 | Too many requests | Your service account is sending requests above the allowed rate. Please try the request again in a few seconds. |
 | General | P0920 | Request blocked by security rules | Our firewall blocked your request. See the [“Troubleshooting”](/troubleshooting) section for details. |
 | General | P0999 | GOV.UK Pay is unavailable | The GOV.UK Pay service is temporarily down. |
-| Direct Debit | P1103 | Invalid agreement state | You can only take payments from an agreement in `pending` or `active` states. |
+| Delayed capture | P1000 | No match for `paymentId` | No payment matched the `paymentId` you provided. |
+| Direct Debit | P1200 | No match for `mandate_id` | No mandate matched the `mandate_id` you provided. |
+| Direct Debit | P1203 | Mandate not ready | You can only collect payments against a mandate if the mandate has a `status` of `pending` or `active`. |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
@@ -221,17 +229,17 @@ You can use the API to examine the `state` object in a payment’s API response.
 
 For example:
 
-    ```
-    {
-        "amount": 2000,
-        "state": {
-            "status": "failed",
-            "finished": true,
-            "message": "Payment expired",
-            "code": "P0020"
-        },
-    }
-    ```
+```
+{
+  "amount": 2000,
+  "state": {
+      "status": "failed",
+      "finished": true,
+      "message": "Payment expired",
+      "code": "P0020"
+  },
+}
+```
 
 ## Rate limits
 
