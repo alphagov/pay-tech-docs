@@ -60,10 +60,10 @@ designing a service.
 For example, the response for a successful payment contains:
 
 ```
-  "state": {
-    "status": "success",
-    "finished": true
-    },
+"state": {
+  "status": "success",
+  "finished": true
+},
 ```
 
 With a successful payment, you know that your user can continue their journey
@@ -75,18 +75,19 @@ payment journey, the `"card_details"` section contains information that they
 have entered when making a payment:
 
 ```
-  "card_details": {
-    "last_digits_card_number": "1111",
-    "first_digits_card_number": "100002",
-    "cardholder_name": "Sherlock Holmes",
-    "expiry_date": "12/21",
-    "billing_address": {
-      "line1": "221 Baker Street",
-      "line2": "Flat b",
-      "postcode": "NW16XE",
-      "city": "London",
-      "country": "GB"
-    },
+"card_details": {
+  "last_digits_card_number": "1111",
+  "first_digits_card_number": "100002",
+  "cardholder_name": "Sherlock Holmes",
+  "expiry_date": "12/21",
+  "billing_address": {
+    "line1": "221 Baker Street",
+    "line2": "Flat b",
+    "postcode": "NW16XE",
+    "city": "London",
+    "country": "GB"
+  }
+},
 ```
 
 ### Checking when your Payment Service Provider (PSP) took a payment
@@ -101,10 +102,10 @@ The response contains:
 For example:
 
 ```
-  "settlement_summary": {
-    "capture_submit_time": "2016-01-21T17:15:000Z",
-    "captured_date": "2016-01-21"
-  }
+"settlement_summary": {
+  "capture_submit_time": "2016-01-21T17:15:000Z",
+  "captured_date": "2016-01-21"
+}
 ```
 
 You should receive the payment in your bank account within 2 business days of `captured_date`.
@@ -116,9 +117,9 @@ If you use GOV.UK's Payment Service Provider (PSP), we'll automatically deduct t
 Example response:
 
 ```
-  "total_amount": 4000,
-  "fee": 200,
-  "net_amount": 3800
+"total_amount": 4000,
+"fee": 200,
+"net_amount": 3800
 ```
 
 Where:

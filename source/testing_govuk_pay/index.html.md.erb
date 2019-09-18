@@ -1,105 +1,62 @@
 ---
-title: Testing GOV.UK Pay
+title: Testing your integration
 weight: 90
 ---
 
-# Testing GOV.UK Pay
+# Testing your integration
 
-When your GOV.UK Pay account is made live, you will still have a ‘test’
-account for general testing and experimenting with different settings and
-features. You can read more in the [__Switching to
-live__](/switching_to_live/#switching-to-live) section.
+## Testing your service
 
-When you test, you should make sure that you use [mock card
-numbers](#submit-a-test-transaction-using-mock-card-numbers) to simulate both successful
-and unsuccessful transactions. You must use test cards with your test account.
-Real card numbers will not work.
+You can use your test account to:
 
-You should also:
+- explore how the GOV.UK Pay API works
+- run automated [smoke tests](https://www.gov.uk/service-manual/technology/deploying-software-regularly#using-smoke-tests-after-you-deploy)
 
- * only use your test account, not your live account
+Do not use your test account for automated integration tests that run every time you change your code. Build a ‘stub’ to simulate the GOV.UK Pay API instead, using a tool like [WireMock](http://wiremock.org/) or [mountebank](http://www.mbtest.org/).
 
- * make sure that test calls to the GOV.UK Pay API succeed with [200 codes](/api_reference/#http-status-codes)
+## Testing the whole user journey
 
- * [test the whole user journey](/#test-your-service-with-your-users) from your service to the payment service provider
+You should test the whole user journey from your service to your payment service provider (PSP).
 
-## HTTP with test accounts
+To help you test, you can:
 
-Services using test accounts can optionally use HTTP (rather than HTTPS)
-for return URLs. You can read more in [the __Security__
-section](/security/#https).
-
-## Make a demo payment
-
-You can [try your users' payment experience](https://selfservice.payments.service.gov.uk/make-a-demo-payment), and
-then view the completed payment in the GOV.UK Pay [transactions](https://selfservice.payments.service.gov.uk/transactions) list.
-
-## Test your service with your users
-
-You can [create a reusable
-link](https://selfservice.payments.service.gov.uk/test-with-your-users) to
-integrate your service prototype with GOV.UK Pay, and test with your users.
-This feature only works in test accounts, and not in live accounts.
-
-## Integration testing
-
-To check your integration with GOV.UK Pay is working as expected, you should
-run a series of tests. You can read more about [software
-testing](https://www.gov.uk/service-manual/technology#testing-your-service)
-and [smoke
-testing](https://www.gov.uk/service-manual/making-software/deployment.html) in
-the GOV.UK Service Manual.
-
-Ideally you should build tests to include both the GOV.UK Pay API and its
-frontend user journey. The GOV.UK Pay interface is continuously iterated, so
-you should not rely on any specific page layout. You can still build tests
-that address form elements such as buttons, using their IDs. Alternatively,
-you can build stubs that will emulate GOV.UK Pay functionality.
-
-You can read the section on [__How to integrate with the GOV.UK Pay
-API__](/integrate_with_govuk_pay/#how-to-integrate-with-the-gov-uk-pay-api).
-You can also read [the __Versioning__ section](/versioning/#versioning) to
-find out about the evolution of the GOV.UK Pay API.
-
-If you experience any problems when testing, please email us at
-[govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
+- [create a link to GOV.UK Pay payment pages](https://selfservice.payments.service.gov.uk/test-with-your-users) and add it to your service's prototype page
+- use [mock card numbers](#mock-card-numbers) to test both successful and unsuccessful payments
+- use HTTP instead of HTTPs for the `return_url` with your test account, so you do not need to set up a secure url for testing
 
 ## Performance testing
 
-The contract you have with GOV.UK Pay requires you to seek written approval from GOV.UK Pay before you conduct any performance testing.
-If you’d like to carry out any kind of performance testing, including in a
-rate-limiting environment, please contact us at
-[govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
+You must [contact us](/support_contact_and_more_information) to get written approval before you do any performance testing.
 
-## Submit a test transaction using mock card numbers
+## Mock card numbers
 
-When you test your integration with GOV.UK Pay by submitting a test transaction, you must use mock card numbers.
+Use mock card numbers with your test account when you try payments as a user.
 
-You can enter any valid value for the other required information for that test transaction. For example, card expiry dates can be any date in the future.
+You can enter any valid value for other payment fields. For example, the card expiry date can be any date in the future.
 
-The following example mock card numbers only work with a test account. If you use mock card numbers after you have [switched to a live account](/switching_to_live/#switching-to-live), your payment service provider will not authorise the payment.
+Mock card numbers do not work with your live account.
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-|Testing action |Card numbers to use | Card type | Debit/Credit |
+|Testing action |Card number | Card brand | Card type |
 | -------- | ------- | ------- | ------- |
-|Simulate a successful transaction | 4444333322221111 | Visa | Credit |
+|Successful payment | 4444333322221111 | Visa | Credit |
 ||4242424242424242| Visa | Credit |
 ||4000056655665556| Visa | Debit |
-||4988080000000000| Visa | Debit Corporate |
-||4000160000000004| Visa | Debit Prepaid |
-||4131840000000003| Visa | Debit Corporate Prepaid |
-||4000620000000007| Visa | Credit Corporate |
+||4988080000000000| Visa | Debit - corporate |
+||4000160000000004| Visa | Debit - prepaid |
+||4131840000000003| Visa | Debit - corporate prepaid |
+||4000620000000007| Visa | Credit - corporate |
 ||5105105105105100| Mastercard | Debit |
 ||5200828282828210| Mastercard | Debit |
 ||371449635398431| American Express | Credit |
 ||3566002020360505| JCB | Credit |
 ||6011000990139424| Discover | Credit |
 ||36148900647913| Diners Club | Credit |
-|Simulate card type not accepted |6759649826438453|Maestro| Debit |
-|Simulate a declined card|4000000000000002|Visa| N/A |
-|Simulate an invalid CVC security code|4000000000000127|Visa| N/A |
-|Simulate an expired card|4000000000000069|Visa| N/A |
-|Simulate a general processing error|4000000000000119|Visa| N/A |
+|Card type not accepted |6759649826438453|Maestro| Debit |
+|Card declined|4000000000000002|Visa| null |
+|Card expired|4000000000000069|Visa| null |
+|Invalid CVC code|4000000000000127|Visa| null |
+|General error|4000000000000119|Visa| null |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
