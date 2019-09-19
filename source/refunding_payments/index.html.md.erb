@@ -5,231 +5,106 @@ weight: 75
 
 # Refunding payments
 
-GOV.UK Pay supports refunding payments. You can choose to refund part of a
-payment, or the full amount.
+You can refund all or part of a payment using the GOV.UK Pay API.
 
-Each payment has a refund status:
+You can also refund a payment by signing into the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
+Your payment service provider (PSP) will send refunds back to the source account of the original payment. You cannot refund a payment to another card or bank account.
 
-| Payment refund status | Meaning                                                                                                                                                                            |
-|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| pending               | The payment is potentially refundable, but is not ready to be refunded yet.                                                                                                        |
-| unavailable           | It is not possible to refund the payment. For example, the payment failed.                                                                                                         |
-| available             | It’s possible to start a refund. Alone, this does not mean that the full original value of the payment is available to refund. For example, there may have been previous partial refunds. |
-| full                  | The original value of the payment has been fully refunded, so it is not possible to refund any more.                                                                               |
+## Check if you can refund a payment
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
+Check if you can refund a payment by using the API to [get information about the payment](/reporting/#get-information-about-a-single-payment).
 
-For test accounts, you will not see the `pending` state because there is
-no delay in processing a payment when testing. For live accounts, successful
-payments spend some time in `pending` state before a refund becomes
-possible.
-
-Refunds can have 3 states:
-
-* `"submitted"`
-
-* `"success"`
-
-* `"error"`
-
-## Payment refund status
-
-You can find out the refund status of a payment with the GOV.UK Pay API using the <a
-href="https://govukpay-api-browser.cloudapps.digital/#getpayment"
-target="blank">Find payment by ID</a> or <a
-href="https://govukpay-api-browser.cloudapps.digital/#searchpayments"
-target="blank">Search payments</a> functions.
-
-The JSON response body will contain a `refund_summary` object. For example,
-for a completed £50 payment with no previous refunds:
+The API response includes a `refund_summary` object. For example, for a completed £50 payment with no previous refunds:
 
 ```javascript
 "refund_summary": {
   "status": "available",
   "amount_available": 5000,
   "amount_submitted": 0
-},
+}
 ```
 
-The `amount_available` value includes any [transaction fees](/reporting/#payment-service-provider-psp-fees) or [corporate card surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges).
-
-The `amount_submitted` is `0`, showing that there have been no previous refunds.
-
-### Partial refunds
-
-GOV.UK Pay supports partial refunds, and you can make multiple partial refunds
-against the same payment. The total refunds for a single payment cannot
-be greater than the original payment.
-
-You can use the <a
-href="https://govukpay-api-browser.cloudapps.digital/#getrefunds"
-target="blank">Get all refunds for a payment</a> API call to
-get information about partial refunds.
-
-As another example, this is the JSON response body for a completed £90 payment
-with a previous refund of £30:
+For a completed £90 payment where £30 has already been refunded:
 
 ```javascript
 "refund_summary": {
   "status": "available",
   "amount_available": 6000,
   "amount_submitted": 3000
-},
-```
-
-## Find out the expected refund available
-
-Your service should track the expected refund amount available. When you
-submit a refund request via the API, you can optionally include a
-`refund_amount_available` value in the request body. This is so you can
-provide the total amount of the original payment you expect to be available
-for refund, at the time your refund request is made.
-
-The purpose of this is to prevent accidentally processing a partial refund
-more than once, by rejecting requests where your `refund_amount_available`
-does not match the real amount that’s available for refund.
-
-For example, a user makes a payment of £5, and later the user requires a £2
-refund. Your system for processing refunds submits a request for a £2 refund
-to the GOV.UK Pay API, but the request accidentally gets sent twice. Without
-finding out `refund_amount_available`, GOV.UK Pay would have no way to tell
-the second request was a mistake. It would process both requests, generating
-two refunds of £2 each.
-
-As another example, you may have specified the `refund_amount_available` as
-£5. The first refund request for £2 still succeeds, leaving £3 available for
-refund. When the accidental second request arrives, the payment has a
-``refund_amount_available`` of £5 even though only £3 is available. GOV.UK
-Pay determines that it’s a stale request, and rejects the refund request.
-
-You must include any [transaction fees](/reporting/#payment-service-provider-psp-fees) and [corporate card
-surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges)
-in the `refund_amount_available` value.
-
-### Refund amount available mismatch
-
-Refund requests rejected due to a “refund amount available mismatch” will
-return an error code `P0604` with a `412` HTTP status.
-
-## Refunding with the GOV.UK Pay API
-
-You can start a refund with the <a
-href="https://govukpay-api-browser.cloudapps.digital/#submitrefund"
-target="blank">Submit a refund for a payment</a> function.
-
-You need to specify the `paymentId` of the original payment, and provide the
-amount to refund, in pence.
-
-You should check that the amount you attempt to refund does not exceed the
-`amount_available` value. Otherwise, you will receive a `P0603` error
-such as:
-
-```
-{
-"code": "P0603",
-"description": "The payment is not available for refund. Payment refund status: amount_not_available"
 }
 ```
 
-Each refund has a unique `refund_id`.
+### status
 
-You can use the <a
-href="https://govukpay-api-browser.cloudapps.digital/#getrefunds"
-target="blank">Get all refunds for a payment</a> function to
-get information all the refunds for a payment (including their `refund_id`
-values).
+|Status|Meaning|
+|---|---|
+|pending|You cannot refund the payment yet because your user hasn't completed the payment.|
+|unavailable|You cannot refund the payment, usually because the payment failed.|
+|available|You can refund the payment. Check how much you can refund in `amount_available`.|
+|full|You cannot refund the payment because you've already refunded the full amount.|
 
-You can retrieve information about an individual refund using the <a
-href="https://govukpay-api-browser.cloudapps.digital/#getrefundbyid"
-target="blank">Find payment refund by ID</a> function.
+### amount_available
 
-A `204` response from the API indicates that a refund was successful. Any
-other response indicates an error.
+`amount_available` is how much you can refund in pence. The amount includes any [transaction fees](/reporting/#payment-service-provider-psp-fees) and [corporate card surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges).
 
-## Refund errors
+### amount_submitted
 
-When you try to create a refund with the API, it may fail immediately. For
-example, if you try to refund more than the amount available. In that case,
-the original <a
-href="https://govukpay-api-browser.cloudapps.digital/#submitrefund"
-target="blank">Submit a refund for a payment</a> request will
-return an error code and a description of what it means. A refund attempt
-that fails like this with an error code is not assigned a `refundId` and is
-not available using <a
-href="https://govukpay-api-browser.cloudapps.digital/#getrefundbyid"
-target="blank">Find payment refund by ID</a>.
+`amount_submitted` is how much you've already refunded.
 
-If a refund is accepted by GOV.UK Pay, it may still go on to fail at the payment service provider (PSP).
-This may happen if the card involved is cancelled or has expired, or if your
-account with the PSP does not have enough funds to process the refund.
+## Creating a refund
 
-Each successful request to a `/refunds/` endpoint has a `"status"` value.
+If the `status` in the `refund_summary` object is `available`, you can create a refund with the GOV.UK Pay API.
 
-For example, the response body for a refund would include:
+`POST /v1/payments/PAYMENT-ID/refunds`
+
+For example:
 
 ```javascript
 {
-"amount": 1500,
-"created_date": "2016-10-17T16:53:03.213Z",
-"refund_id": "j6se0f2o427g28g8yg3u3i",
-"status": "submitted",
-...
+  "amount": 2000,
+  "refund_amount_available": 5000
 }
 ```
 
-In a live environment, the status returned will initially be `submitted`.
-After the PSP has processed the refund, the status returned will be
-`success` or `error`. In a test environment, the status will always
-go directly to `success`.
+Where:
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
+- `amount` is how much to refund in pence. You can refund all or part of the payment.
+- `refund_amount_available` is the `amount_available` you received when you got information about the payment. GOV.UK Pay will reject your refund request if `refund_amount_available` does not match the amount that's available to refund. This stops you accidentally refunding your user twice.
 
-| Refund processing status | Meaning                                                                                                            |
-|--------------------------|--------------------------------------------------------------------------------------------------------------------|
-| submitted                | The refund request is valid as far as GOV.UK Pay can determine. It has been passed to the underlying payment service provider. |
-| success                  | The refund has been successfully processed.                                                                        |
-| error                    | It was not possible for the payment service provider to make the refund.                                                  |
+`refund_amount_available` is optional.
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
+Example response:
 
-To manage refunds in live environments, you must use <a
-href="https://govukpay-api-browser.cloudapps.digital/#getrefundbyid"
-target="blank">Find payment refund by ID</a> to
-check the processing status of the refund, until it changes to either
-`success` or `error`.
+```javascript
+{
+  "amount": 2000,
+  "created_date": "2019-09-19T16:53:03.213Z",
+  "refund_id": "j6se0f2o427g28g8yg3u3i",
+  "status": "submitted",
+  ...
+}
+```
 
-It will typically take 30 minutes for the status to change. You should not
-check the status more than once every 5 minutes.
+If GOV.UK Pay could not successfully create the refund, the JSON response will contain an [API error code](https://docs.payments.service.gov.uk/api_reference/#errors-caused-by-an-api-call) and a description of the error.
 
-In the event of an error, GOV.UK Pay will not currently provide any more
-information. Please [contact
-us](/support_contact_and_more_information/#contact-us) if you need more
-information required about why a refund failed.
+## Checking the status of a refund
 
-## Refunding from the GOV.UK Pay admin tool
+`GET /v1/refunds/PAYMENT-ID`
 
-You can use the [GOV.UK Pay admin
-tool](https://selfservice.payments.service.gov.uk) to view transactions and
-issue refunds.
+The JSON response will include a `status` field.
 
-Go to the __Transactions__ section to see a list of transactions. For example,
-in the following image::
+The `status` usually changes every 30 minutes. Do not check the status more than once every 5 minutes.  
 
-![](/images/transaction+list+image+4.png)
+|status|Meaning|
+|---|---|
+|submitted|We've submitted your refund request to your PSP. Payments do not have a `submitted` status if you're using your test account.|
+|success|Your PSP has successfully processed the refund.|
+|error|Your PSP could not process the refund, usually because your user's payment card is cancelled or expired, or you do not have enough money in your account to refund your user.|
 
-In this list, you can select an individual payment to see details of that
-payment, including any previous refunds.
+## Where your PSP takes the refund amount from
 
-For a successful payment with no previous refunds, you can use the red
-__Refund payment__ button to make a full or partial payment.
-
-![](/images/refund-payment-button.png)
-
-## What happens next
-
-If the payment did not reach your bank account yet, your PSP will:
+If your user's payment did not reach your bank account yet, your PSP will:
 
 - cancel the payment, if your PSP is Stripe, ePDQ or SmartPay
 - take the refund amount after the payment has reached your bank account, if your PSP is Worldpay
@@ -239,71 +114,83 @@ If the payment has reached your bank account, your PSP will take the refund amou
 - the next payment or payments you receive from any user, if your PSP is Stripe or ePDQ
 - your bank account, if your PSP is SmartPay or Worldpay
 
-Your PSP will send refunds back to the source account of the original payment. You cannot refund a payment to another card or bank account.
-
 ### Send email notifications about refunds
 
 You can use the GOV.UK Pay admin tool to turn on [sending refund email notifications to
 users](https://selfservice.payments.service.gov.uk/email-notifications).
 
-## Search refunds with the API
+## Getting a list of refunds
 
-You can use the GOV.UK Pay API to:
+You can use the GOV.UK API to:
 
-* get information about a single refund
+- get all refunds for a single payment
+- search refunds
 
-* generate a list of refunds matching search criteria
+## Get all refunds for a single payment
 
-### Get information about a single refund
+`GET /v1/payments/PAYMENT-ID/refunds`
 
-`GET /v1/refunds/paymentId`
+Example response:
 
-The JSON response body to this API call contains a `"refunds"` object. If the
-refund exists, the `"status"` field will contain one of:
+```javascript
+{
+  "payment_id": "hu20sqlact5260q2nanm0q8u93",
+  ...
+  "_embedded": {
+    "refunds": [
+      {
+        "refund_id": "act4c33g40j3edfmi8jknab84x",
+        "created_date": "2019-09-19T16:52:07.855Z",
+        "amount": 120,
+        "status": "success"
+      },
+      {
+        "refund_id": "9rwjbdcpjd54ol1btog2a8zowh",
+        "created_date": "2019-09-20T20:46:01.121Z",
+        "amount": 60,
+        "status": "success"
+      }      
+    ]
+  }
+}
+```
 
-* `"submitted"`
+## Search refunds
 
-* `"success"`
-
-* `"error"`
-
-### Generate a list of refunds (search refunds)
-
-`GET /v1/refunds`
+`GET /v1/refunds?<queryparameters>`
 
 An example search request:
 
 `GET
-/v1/refunds?from_date=2018-10-01T13:30:00Z&to_date=2018-10-14T15:00:00Z`
+/v1/refunds?from_date=2019-09-20T13:30:00Z&to_date=2019-09-22T15:00:00Z`
 
-#### Filter by date
+### Filtering by date
 
 You can use the following query parameters to filter refunds by date:
 
-* `from_date` - the start date for payments to be searched, inclusive
+* `from_date`, which is the start date to search, inclusive
+* `to_date`, which is the end date to search, exclusive
 
-* `to_date` - the end date for payments to be searched, exclusive
+Dates must be in [ISO
+8601](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard) format. For example `2019-09-20T13:30:00Z`.
 
-These take inputs based on a subset of [ISO
-8601](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard).  For example, a valid input would be
-`2015-08-13T12:35:00Z`.
+### Splitting results into pages
 
-#### Pagination
+You can use the following query parameters to split results into pages:
 
-You can use the following query parameters for pagination:
+* `display-size`, which has a default of `500`, and must be between `1` and `500`
+* `page`, which has a default of `1`
 
-* `display_size` - default, and maximum, is `500`
+These must be a positive integer.
 
-* `page` - default is `1`
-
-These must be a positive integer. For example, for the following search:
-
-`GET
-/v1/refunds?from_date=2018-10-01T13:30:00Z&to_date=2018-10-14T15:00:00Z`
-
-If there were 1543 refunds in the response, you could paginate this as follows:
+For example, you run the following search and get 1500 refunds in the response:
 
 `GET
-/v1/refunds?from_date=2018-10-01T13:30:00Z&to_date=2018-10-14T15:00:00Z&display_size=500&page=2`
+/v1/refunds?from_date=2019-09-20T13:30:00Z&to_date=2019-09-22T15:00:00Z`
 
-This would return refunds 501-1000.
+You could then get a single page of these refunds by running:
+
+`GET
+/v1/refunds?from_date=2019-09-20T13:30:00Z&to_date=2019-09-22T15:00:00Z&display-size=500&page=2`
+
+This would return refunds 501 to 1000.
