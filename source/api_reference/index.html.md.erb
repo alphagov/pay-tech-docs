@@ -262,11 +262,11 @@ For example:
 
 ## Rate limits
 
-You can make each of the following `POST` requests up to 15 times per second:
+Per second, you can make:
 
-- [Create a payment](/making_payments/#creating-a-payment)
-- [Capture a delayed payment](/optional_features/delayed_capture/)
-- all other `POST` requests
+- up to 15 `POST` requests to [Create a payment](/making_payments/#creating-a-payment)
+- up to 15 `POST `requests to [Capture a delayed payment](/optional_features/delayed_capture/)
+- up to 15 other `POST` requests
 
 GET requests are also rate-limited, but at a very high level. In the future,
 we will publish an official rate limit for GET requests.
