@@ -16,7 +16,7 @@ their service with the GOV.UK Pay API. It describes:
 
 * typical data flows for using the GOV.UK Pay API in an integration
 
-* when to release services to users
+* when to release services to your users
 
 * making sure that all payments are processed
 
@@ -35,18 +35,16 @@ Your service backend is server-side software. You should build this to:
 
 * store information about user payment journeys in your datastore
 
-* redirect the user to the `next_url` provided by GOV.UK Pay, where the user
+* redirect your user to the `next_url` provided by GOV.UK Pay, where your user
 will [enter their payment information and confirm their payment](/payment_flow/#making-a-payment)
 
-* receive users’ requests when they are redirected back to your service via
-the `return_url`, where the user will return [after completing payment](/payment_flow/#making-a-payment)
+* receive your user's request when they are redirected back to your service via the `return_url`, where your user will return [after completing payment](/payment_flow/#making-a-payment)
 
-* identify the returning user via the session
+* identify your returning user via the session
 
 * make a call to the GOV.UK Pay API to determine the outcome of the payment
 
-* display information about the outcome of the payment and next steps to
-the user
+* display information about the outcome of the payment and next steps to your user
 
 ## Datastore
 
@@ -54,7 +52,7 @@ You will likely need some kind of server-side datastore to record payment inform
 
 * an ID or primary key
 
-* the service the user requested
+* the service your user requested
 
 * the GOV.UK Pay `paymentId`
 
@@ -85,24 +83,21 @@ payments. For more information:
 - use the <a href="https://govukpay-api-browser.cloudapps.digital/" target="blank">API browser</a>
 - look at the <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">Swagger file</a>
 
-## When to release your service to users
+## When to release your service to your users
 
-It's your responsibility to decide when to release your service to
-users. This will depend on the nature of your service.
+It's your responsibility to decide when to release your service to your users. This will depend on the nature of your service.
 
-In some cases you may be comfortable releasing a service before a payment
-has been confirmed. For example, if you’re taking payments in advance because a user has an account with you.
+In some cases you may be comfortable releasing a service before a payment has been confirmed. For example, if you’re taking payments in advance because a user has an account with you.
 
-In most cases, you’ll want to confirm that a payment has been completed before releasing the service to users. Typically you’ll do this
-when the user visits the `return_url` on your service.
+In most cases, you’ll want to confirm that a payment has been completed before releasing the service to your users. Typically you’ll do this when your user visits the `return_url` on your service.
 
 The following example UML sequence diagram shows a typical happy-path payment journey:
 
 ![Typical happy-path user payment sequence](/images/happy-path-sequence.svg)
 
-## Identifying the user when they return to your service
+## Identifying your user when they return to your service
 
-We recommend using a cookie-based session to identify the user when they
+We recommend using a cookie-based session to identify your user when they
 return to your service. You could use either encrypted client side sessions,
 or server-side sessions using session store.
 
@@ -126,16 +121,16 @@ HTTP with test accounts.
 There are 2 failure cases which affect the design of your integration with
 GOV.UK Pay:
 
-* user abandons their payment journey before completing it
+* your user abandons their payment journey before completing it
 
-* user completes their payment successfully, but their network connection is
+* your user completes their payment successfully, but their network connection is
 interrupted before they return to your service
 
 In the happy-path scenario you want to release your service as quickly as
 possible to your user, so you would check the payment outcome when your
 `return_url` is visited.
 
-However, in the failure cases, users will never visit the `return_url`. Instead, you should either:
+However, in the failure cases, your user will never visit the `return_url`. Instead, you should either:
 
 * make sure your service team can manually check payment outcomes in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login)
 
@@ -143,11 +138,10 @@ However, in the failure cases, users will never visit the `return_url`. Instead,
 
 ### Have your service team manually check the payment outcome
 
-If your team manually checks payment outcomes before releasing payments to users, you may have a low-volume service. This
+If your team manually checks payment outcomes before releasing payments to your users, you may have a low-volume service. This
 would always be the case if you are using [payment links](/payment_links).
 
-You should make sure your service staff check the outcomes of
-payments in the GOV.UK Pay admin tool before releasing the service to the user.
+You should make sure your service staff check the outcomes of payments in the GOV.UK Pay admin tool before releasing the service to your users.
 
 ### Use an automatic mop-up job (recommended)
 
@@ -164,7 +158,7 @@ The following UML sequence diagram shows an example of an incomplete payment jou
 
 ![A mop-up job acting on an incomplete payment journey](/images/incomplete-payment-journey-sequence.svg)
 
-Your mop-up job should run frequently, for example every half an hour. It should ignore payments made in the past 3 hours to avoid interfering with payments that are still being processed. If it finds ‘stale’ incomplete payment journeys then it’s likely users have abandoned those payments. The mop-up job should call the GOV.UK Pay API to determine the [status of the payment](/api_reference/#payment-status-lifecycle).
+Your mop-up job should run frequently, for example every half an hour. It should ignore payments made in the past 3 hours to avoid interfering with payments that are still being processed. If it finds ‘stale’ incomplete payment journeys then it’s likely your users have abandoned those payments. The mop-up job should call the GOV.UK Pay API to determine the [status of the payment](/api_reference/#payment-status-lifecycle).
 
 ## Collecting your users' billing addresses
 
@@ -172,7 +166,7 @@ You can enable or disable collecting your users’ billing addresses in your [GO
 
 This change can take up to 15 minutes to take effect.
 
-If you collect a user’s billing address in your service before you redirect them to GOV.UK Pay, you can [prefill the billing address field](/optional_features/prefill_user_details) on the __Enter card details__ page.
+If you collect your users' billing addresses in your service before you redirect them to GOV.UK Pay, you can [prefill the billing address field](/optional_features/prefill_user_details) on the __Enter card details__ page.
 
 <br>
 

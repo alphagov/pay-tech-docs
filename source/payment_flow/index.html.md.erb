@@ -19,7 +19,7 @@ There's a different process for [taking Direct Debit payments](/direct_debit/#di
   <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
   <strong class="govuk-warning-text__text">
     <span class="govuk-warning-text__assistive">Warning</span>
-    This does not apply to users who use the <a href="/payment_links/#payment-links">payment links</a> functionality.
+    This does not apply to your users who use the <a href="/payment_links/#payment-links">payment links</a> functionality.
   </strong>
 </div>
 
@@ -33,15 +33,15 @@ integration:
 The diagram shows the relationship between GOV.UK Pay, payment service providers
 (PSPs) and issuing banks.
 
-When an end user needs to make a payment, your service makes an API call to
-create a new payment, then redirects the user to the payment pages hosted on
+When your user needs to make a payment, your service makes an API call to
+create a new payment, then redirects your user to the payment pages hosted on
 GOV.UK Pay.
 
-The end user enters their payment details (for example payment card
+Your user enters their payment details (for example payment card
 details and billing address) on the GOV.UK Pay pages. GOV.UK Pay verifies the
 payment with the underlying PSP.
 
-After the transaction reaches a final state, the end user is then redirected
+After the transaction reaches a final state, your user is then redirected
 back to your service.
 
 A final state means that the payment:
@@ -50,15 +50,15 @@ A final state means that the payment:
 
 * fails because it is declined
 
-* fails because the user chooses to cancel
+* fails because your user chooses to cancel
 
 * fails due to a technical error
 
 * fails because it is cancelled by your service
 
-* expires - users have 90 minutes to complete a payment once it is created
+* expires - your user has 90 minutes to complete a payment once it's created
 
-When the user arrives back at your service, you can use the API to check the
+When your user arrives back at your service, you can use the API to check the
 status of the transaction and show them an appropriate message.
 
 The following diagram illustrates the states a payment can pass through before
@@ -68,25 +68,25 @@ reaching a final state:
 
 ## Making a payment
 
-In your service, you may host a series of pages which allow users to choose
+In your service, you may host a series of pages which allows your user to choose
 between a variety of possible payments. At the end of this, you may have a
-page where the end user needs to make a payment. The following image shows an
+page where your user needs to make a payment. The following image shows an
 example:
 
 ![](/images/flow-service-pay-page.png)
 
-This page should make it clear to the user that they are about to pay for your
+This page should make it clear to your user that they are about to pay for your
 product or service, with a clear call to action. For example a button that
-says __Pay now__ or __Continue to payment__. The user will then be taken to
+says __Pay now__ or __Continue to payment__. Your user will then be taken to
 the GOV.UK Pay pages to complete their transaction.
 
 The page should include clear information on what is being purchased. You do
-not need to tell the user that they are being taken to GOV.UK Pay’s
+not need to tell your user that they are being taken to GOV.UK Pay’s
 pages to make their payment.
 
 > GOV.UK Pay payment pages are responsive and work on both desktop and mobile.
 
-In the example page, when the user selects __Continue__, the service makes a
+In the example page, when your user selects __Continue__, the service makes a
 <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
 target="blank">Create new payment</a> call to the GOV.UK Pay API. The body of the call is returned in JSON.
@@ -106,12 +106,12 @@ where:
 
 - `amount` is the amount in pence - in the example, the payment is for £145
 - `reference` is the reference number you want to associate with this payment
-- `description` is a human-readable description of the payment shown to the end user
-- `return_url` is an HTTPS URL on your site that the end user will be sent back to once they have completed their payment attempt on GOV.UK Pay
+- `description` is a human-readable description of the payment shown to your user
+- `return_url` is an HTTPS URL on your site that your user will be sent back to once they have completed their payment attempt on GOV.UK Pay
 
 Read more about [making payments](/making_payments/).
 
-You can [prefill the fields on the payment page](/optional_features/prefill_user_details) with the user's details if you collected that information:
+You can [prefill the fields on the payment page](/optional_features/prefill_user_details) with your user's details if you collected that information:
 
 - earlier in your service
 - when your user previously used your service
@@ -159,20 +159,20 @@ The `self` URL (also provided in the Location header of the response) is a
 unique identifier for the payment. It can be used to retrieve the payment status
 details in future.
 
-The `next_url` is the URL where your service should direct the end user next.
-It points to a payment page hosted by GOV.UK Pay where the user can enter
+The `next_url` is the URL where your service should direct your user next.
+It points to a payment page hosted by GOV.UK Pay where your user can enter
 their payment details. This is a one-time URL. If more than one visit is attempted,
 it will give an error message.
 
-When your service redirects the user to `next_url`, they’ll see an __Enter
+When your service redirects your user to `next_url`, they’ll see an __Enter
 card details__ page similar to the following image:
 
 ![](/images/flow-payment-details-page.png)
 
-This page shows the `description` as well as the amount the end user has to
+This page shows the `description` as well as the amount your user has to
 pay, making it clear what they’re paying for.
 
-The user enters their payment details and selects __Continue__.
+Your user enters their payment details and selects __Continue__.
 
 GOV.UK Pay will then attempt a payment authorisation through the PSP. This
 checks with the card issuer whether there are sufficient funds available to
@@ -180,25 +180,25 @@ make this payment. It also conducts anti-fraud checks.
 
 ## Payment successful
 
-If the details are valid and the payment is approved by the PSP, the user is
-then taken to a payment confirmation page, still hosted by GOV.UK Pay. The
+If the details are valid and the payment is approved by the PSP, your user is
+then taken to a payment confirmation page, still hosted by GOV.UK Pay. Your
 user then decides whether or not to complete their payment:
 
 ![](/images/flow-payment-confirm-page.png)
 
-If the user decides to complete the payment, they select __Confirm__. They
+If your user decides to complete the payment, they select __Confirm__. They
 will then:
 
 * receive a confirmation email, if you have chosen to send these using GOV.UK Pay
-* be redirected to your `return_url` page which will then send the user to your payment confirmation page
+* be redirected to your `return_url` page which will then send your user to your payment confirmation page
 
-You'll receive the payment in your bank account within 2 business days. It may take 3 business days if the user completed their payment after 11pm.
+You'll receive the payment in your bank account within 2 business days. It may take 3 business days if your user completed their payment after 11pm.
 
 If you're using GOV.UK's PSP, payments will show on your bank statement as 'STRIPE PAYMENTS UKGOV.UKPAY'.
 
 ### Confirmation email
 
-If you have set up confirmation emails, the user will receive a payment
+If you have set up confirmation emails, your user will receive a payment
 confirmation email containing:
 
 * a payment reference number
@@ -231,9 +231,9 @@ The confirmation page is hosted by your service and should:
 
 * clearly state what is going to happen next - this will be different for each service
 
-* if applicable, let the user know they will receive a receipt email (using GOV.UK Notify or GOV.UK Pay)
+* if applicable, let your user know they will receive a receipt email (using GOV.UK Notify or GOV.UK Pay)
 
-Users have different ways of recording this confirmation information. This can
+Your users have different ways of recording this confirmation information. This can
 include screenshots, prints, PDF receipts to download, and writing down the
 reference number and other relevant information. Teams building services
 should be aware of all these behaviours, and plan accordingly.
@@ -245,7 +245,7 @@ System](https://www.gov.uk/service-manual/design/confirmation-pages).
 
 The payment can fail at any point in the process due to:
 
-* the user cancelling the payment
+* your user cancelling the payment
 
 * the payment being declined
 
@@ -253,13 +253,13 @@ The payment can fail at any point in the process due to:
 
 * a technical error
 
-If the payment fails, the user will see a GOV.UK Pay error page, which
-includes a __Continue__ button. When a user selects this, your service should
+If the payment fails, your user will see a GOV.UK Pay error page, which
+includes a __Continue__ button. When your user selects this, your service should
 show them a page that confirms that the payment failed. This should either:
 
-* offer the user a chance to try the payment again by starting a new payment with GOV.UK Pay, or using another method that your service provides
+* offer your user a chance to try the payment again by starting a new payment with GOV.UK Pay, or using another method that your service provides
 
-* advise the user of an alternative course of action
+* advise your user of an alternative course of action
 
 The following image is an example failure page:
 
@@ -270,20 +270,20 @@ You can also choose to [use your own payment failure pages](https://docs.payment
 ## Check the status of a payment
 
 Regardless of the payment outcome, when a payment journey has reached a final
-state, GOV.UK Pay will return the user to the `return_url` provided in the
+state, GOV.UK Pay will return your user to the `return_url` provided in the
 initial request.
 
-The `return_url` should specify a page on your service. When the user visits
+The `return_url` should specify a page on your service. When your user visits
 the `return_url`, your service should:
 
-* match the returning user with their payment (with a secure cookie, or a secure random ID string included in the `return_url`)
+* match your returning user with their payment (with a secure cookie, or a secure random ID string included in the `return_url`)
 
 * check the status of the payment using an API call
 
 * display an appropriate final page, hosted by your service
 
 The [__Making payments__](/making_payments/#making-payments) section contains
-more details about how to match users to payments.
+more details about how to match your users to payments.
 
 To check the status of a payment, you must make a <a
 href="https://govukpay-api-browser.cloudapps.digital/#getpayment"
@@ -331,16 +331,16 @@ If your service uses the resume payment feature, you will:
 
 * reduce the number of unnecessary new payments
 
-When a user resumes a payment, the `next_url` will take them to a screen that
+When your user resumes a payment, the `next_url` will take them to a screen that
 is appropriate for their payment’s current status. For example, a payment with
 a `started` status will resume at the card details input page. The `next_url`
 is a one-time URL. If a payment has already resumed using a `next_URL`, that
 URL will not be usable again.
 
 A payment cannot resume if it has a status of `success`, `failed`, `cancelled`
-or `error`. If your service tries to resume a payment of this type, the user
+or `error`. If your service tries to resume a payment of this type, your user
 will be sent to your service’s `return_url`. The `return_url` is the URL of a
-page on your service that GOV.UK Pay sends the user to after they have
+page on your service that GOV.UK Pay sends your user to after they have
 completed their payment attempt.
 
 ## Payment expires
@@ -356,5 +356,5 @@ error](/api_reference/#api-errors-caused-by-payment-statuses).
 
 An incomplete payment will have a status of `created`, `started` or
 `submitted`. These payment types have a `next_url`. The `next_url` is where
-you should direct the user next in the payment process. You will receive a
+you should direct your user next in the payment process. You will receive a
 `next_url` every time you query the status of a payment using the API.
