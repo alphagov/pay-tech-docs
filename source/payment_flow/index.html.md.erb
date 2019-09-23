@@ -320,19 +320,19 @@ more information about how you can integrate your service with GOV.UK Pay.
 
 ### Resuming an incomplete payment
 
-You can send your user back to GOV.UK Pay if they arrive at your `return_url` before they've finished their payment. For example, your user selected their web browser’s **Back** button while making a payment, then selected **Forward**.
+You can send your user back to GOV.UK Pay if they return to your service before they've finished their payment.
 
-You can only resume a payment if the `status` is one of the following:
+[Get information about the payment](/reporting/#get-information-about-a-single-payment) to check the payment's `status`.  the payment is incomplete if the `status` is one of the following:
 
 - `created`
 - `started`
 - `submitted`
 
-Resume the payment by [calling the GOV.UK API to find the payment](/reporting/#get-information-about-a-single-payment), then redirecting your user to the new `next_url` from the API response.
+Resume the payment by redirecting your user to the `next_url` in the API response.
 
 You should not reuse the `next_url` you received when you first created the payment. Each `next_url` has a unique token so you can only use it once.
 
-We'll take your user to a screen that's appropriate for their payment’s current status. For example, if the `status` of the payment is `started`, we'll show the **Enter card details** page.
+We'll take your user to a screen that's appropriate for their payment’s current status. For example, if the `status` of the payment is `submitted`, we'll show the **Confirm your payment** page.
 
 You cannot resume a payment if the `status` is `failed`, `cancelled` or `error`. [Create a new payment](/making_payments/#creating-a-payment) instead.
 
