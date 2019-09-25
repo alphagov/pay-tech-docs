@@ -318,30 +318,23 @@ The `state` array within the JSON lets you know the outcome of the payment:
 See the [__Making payments__](/making_payments/#making-payments) section for
 more information about how you can integrate your service with GOV.UK Pay.
 
-## Resume a payment
+### Resuming an incomplete payment
 
-If your user starts a payment but does not complete it, they can resume that
-incomplete payment. An example of this could be if they use an internet
-browser’s ‘back’ button during a payment, and then go forward by selecting
-links on your website.
+You can send your user back to GOV.UK Pay if they return to your service before they've finished their payment.
 
-If your service uses the resume payment feature, you will:
+[Get information about the payment](/reporting/#get-information-about-a-single-payment) to check the payment's `status`. The payment is incomplete if the `status` is one of the following:
 
-* minimise the number of expired payments
+- `created`
+- `started`
+- `submitted`
 
-* reduce the number of unnecessary new payments
+Resume the payment by redirecting your user to the `next_url` in the API response.
 
-When your user resumes a payment, the `next_url` will take them to a screen that
-is appropriate for their payment’s current status. For example, a payment with
-a `started` status will resume at the card details input page. The `next_url`
-is a one-time URL. If a payment has already resumed using a `next_URL`, that
-URL will not be usable again.
+You should not reuse the `next_url` you received in the original API response when you first created the payment. Each `next_url` has a unique token so you can only use that `next_url` once.
 
-A payment cannot resume if it has a status of `success`, `failed`, `cancelled`
-or `error`. If your service tries to resume a payment of this type, your user
-will be sent to your service’s `return_url`. The `return_url` is the URL of a
-page on your service that GOV.UK Pay sends your user to after they have
-completed their payment attempt.
+We'll take your user to a screen that's appropriate for the status of the payment. For example, if the `status` of the payment is `submitted`, we'll show the **Confirm your payment** page.
+
+You cannot resume a payment if the `status` is `failed`, `cancelled` or `error`. [Create a new payment](/making_payments/#creating-a-payment) instead.
 
 ## Payment expires
 
@@ -351,10 +344,3 @@ automatically.
 If the payment was authorised but incomplete, GOV.UK Pay will send a
 cancellation to the payment provider. This will raise a [P0020 API
 error](/api_reference/#api-errors-caused-by-payment-statuses).
-
-### Incomplete payments
-
-An incomplete payment will have a status of `created`, `started` or
-`submitted`. These payment types have a `next_url`. The `next_url` is where
-you should direct your user next in the payment process. You will receive a
-`next_url` every time you query the status of a payment using the API.
