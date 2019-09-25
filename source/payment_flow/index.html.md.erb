@@ -330,7 +330,7 @@ You can send your user back to GOV.UK Pay if they return to your service before 
 
 Resume the payment by redirecting your user to the `next_url` in the API response.
 
-You should not reuse the `next_url` you received when you first created the payment. Each `next_url` has a unique token so you can only use it once.
+You should not reuse the `next_url` you received when you first created the payment. Each `next_url` has a unique token so you can only use that `next_url` once.
 
 We'll take your user to a screen that's appropriate for their payment’s current status. For example, if the `status` of the payment is `submitted`, we'll show the **Confirm your payment** page.
 
