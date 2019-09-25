@@ -262,8 +262,11 @@ For example:
 
 ## Rate limits
 
-POST requests to the GOV.UK Pay API are rate-limited to 15 requests per
-second, for each government service.
+Per second, you can make:
+
+- up to 15 `POST` requests to [Create a payment](/making_payments/#creating-a-payment)
+- up to 15 `POST `requests to [Capture a delayed payment](/optional_features/delayed_capture/)
+- up to 15 other `POST` requests
 
 GET requests are also rate-limited, but at a very high level. In the future,
 we will publish an official rate limit for GET requests.
