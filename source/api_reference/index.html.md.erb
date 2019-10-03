@@ -174,12 +174,13 @@ Common status codes are:
 | Create refund | P0698 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | Get refund | P0700 | `refundId` not found | No refund matched the `refundId` you provided. |
 | Get refund | P0798 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
-| Get refunds | P0800 | `refundId` not found | No refund match the `refundId` you provided. |
+| Get refunds | P0800 | `refundId` not found | No refund matched the `refundId` you provided. |
 | Get refunds | P0898 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | General | P0900 | Too many requests | Your service account is sending requests above the allowed rate. Please try the request again in a few seconds. |
 | General | P0920 | Request blocked by security rules | Our firewall blocked your request. See the [“Troubleshooting”](/troubleshooting) section for details. |
 | General | P0999 | GOV.UK Pay is unavailable | The GOV.UK Pay service is temporarily down. |
 | Delayed capture | P1000 | No match for `paymentId` | No payment matched the `paymentId` you provided. |
+| Delayed capture | P1003 | Payment cannot be captured | You can only capture a payment if the payment has a `status` of `capturable`. |
 | Direct Debit | P1200 | No match for `mandate_id` | No mandate matched the `mandate_id` you provided. |
 | Direct Debit | P1203 | Mandate not ready | You can only collect payments against a mandate if the mandate has a `status` of `pending` or `active`. |
 
