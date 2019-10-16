@@ -20,6 +20,10 @@ footer_links:
 # Tracking ID from Google Analytics (e.g. UA-XXXX-Y)
 ga_tracking_id: UA-72121642-9
 
+# Show a block at the bottom of the page that links to the page source, so readers can easily contribute back to the documentation.
+show_contribution_banner: true
+github_repo: alphagov/pay-tech-docs/
+
 # Table of contents depth – how many levels to include in the table of contents.
 # If your ToC is too long, reduce this number and we'll only show higher-level
 # headings.
