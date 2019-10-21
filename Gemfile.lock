@@ -53,7 +53,7 @@ GEM
     fast_blank (1.0.0)
     fastimage (2.1.7)
     ffi (1.11.1)
-    govuk_tech_docs (2.0.5)
+    govuk_tech_docs (2.0.6)
       activesupport
       chronic (~> 0.10.2)
       middleman (~> 4.0)
@@ -138,7 +138,7 @@ GEM
       rouge (~> 2.0)
     mini_portile2 (2.4.0)
     minitest (5.12.2)
-    multi_json (1.13.1)
+    multi_json (1.14.1)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     openapi3_parser (0.5.2)
@@ -188,7 +188,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  govuk_tech_docs (~> 2.0.5)
+  govuk_tech_docs (~> 2.0.6)
   middleman-search!
   therubyracer
   tzinfo-data
