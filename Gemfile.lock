@@ -53,7 +53,7 @@ GEM
     fast_blank (1.0.0)
     fastimage (2.1.7)
     ffi (1.11.1)
-    govuk_tech_docs (2.0.6)
+    govuk_tech_docs (2.0.7)
       activesupport
       chronic (~> 0.10.2)
       middleman (~> 4.0)
@@ -188,7 +188,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  govuk_tech_docs (~> 2.0.6)
+  govuk_tech_docs (~> 2.0.7)
   middleman-search!
   therubyracer
   tzinfo-data
