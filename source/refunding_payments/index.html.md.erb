@@ -9,7 +9,7 @@ You can refund all or part of a payment using the GOV.UK Pay API.
 
 You can also refund a payment by signing into the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
 
-Your payment service provider (PSP) will send refunds back to the source account of the original payment. You cannot refund a payment to another card or bank account.
+Your user will receive the refund in the same account they originally paid from. You cannot refund a payment to another card or bank account.
 
 ## Check if you can refund a payment
 
@@ -39,7 +39,7 @@ For a completed £90 payment where £30 has already been refunded:
 
 |Status|Meaning|
 |---|---|
-|pending|You cannot refund the payment yet because your user hasn't completed the payment.|
+|pending|You cannot refund the payment yet because your user has not completed the payment.|
 |unavailable|You cannot refund the payment, usually because the payment failed.|
 |available|You can refund the payment. Check how much you can refund in `amount_available`.|
 |full|You cannot refund the payment because you've already refunded the full amount.|
@@ -54,11 +54,11 @@ For a completed £90 payment where £30 has already been refunded:
 
 ## Creating a refund
 
-If the `status` in the `refund_summary` object is `available`, you can create a refund with the GOV.UK Pay API.
-
 `POST /v1/payments/PAYMENT-ID/refunds`
 
-For example:
+If the `status` in the `refund_summary` object is `available`, you can create a refund with the GOV.UK Pay API.
+
+Example refund request:
 
 ```javascript
 {
@@ -67,12 +67,17 @@ For example:
 }
 ```
 
-Where:
+### amount
 
-- `amount` is how much to refund in pence. You can refund all or part of the payment.
-- `refund_amount_available` is the `amount_available` you received when you got information about the payment. GOV.UK Pay will reject your refund request if `refund_amount_available` does not match the amount that's available to refund. This stops you accidentally refunding your user twice.
+`amount` is how much to refund your user in pence. You can refund all or part of the payment.
 
-`refund_amount_available` is optional.
+### refund_amount_available (optional)
+
+`refund_amount_available` is the `amount_available` you received when you [checked if you can refund the payment](#check-if-you-can-refund-the-payment).
+
+GOV.UK Pay will reject your refund request if `refund_amount_available` does not match the amount that's available to refund. This stops you accidentally refunding your user twice.
+
+### Response
 
 Example response:
 
@@ -94,7 +99,7 @@ If GOV.UK Pay could not successfully create the refund, the JSON response will c
 
 The JSON response will include a `status` field.
 
-The `status` usually changes every 30 minutes. Do not check the status more than once every 5 minutes.  
+It may take up to 30 minutes for the status to change. Do not check the status more than once every 5 minutes.  
 
 |status|Meaning|
 |---|---|
@@ -111,13 +116,12 @@ If your user's payment did not reach your bank account yet, your PSP will:
 
 If the payment has reached your bank account, your PSP will take the refund amount from:
 
-- the next payment or payments you receive from any user, if your PSP is Stripe or ePDQ
+- the next payment or payments you receive from any of your users, if your PSP is Stripe or ePDQ
 - your bank account, if your PSP is SmartPay or Worldpay
 
 ### Send email notifications about refunds
 
-You can use the GOV.UK Pay admin tool to turn on [sending refund email notifications to
-users](https://selfservice.payments.service.gov.uk/email-notifications).
+You can use the GOV.UK Pay admin tool to turn on [sending refund email notifications to your users](https://selfservice.payments.service.gov.uk/email-notifications).
 
 ## Getting a list of refunds
 
@@ -155,7 +159,7 @@ Example response:
 }
 ```
 
-## Search refunds
+## Searching refunds
 
 `GET /v1/refunds?<queryparameters>`
 
@@ -181,7 +185,7 @@ You can use the following query parameters to split results into pages:
 * `display-size`, which has a default of `500`, and must be between `1` and `500`
 * `page`, which has a default of `1`
 
-These must be a positive integer.
+These must be positive integers.
 
 For example, you run the following search and get 1500 refunds in the response:
 
