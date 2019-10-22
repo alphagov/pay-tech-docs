@@ -5,14 +5,14 @@ weight: 70
 
 # Making payments
 
-When a user makes a payment, your service should supply a `reference`. If
+When your user makes a payment, your service should supply a `reference`. If
 possible, this should be a unique identifier for the payment. If your
 organisation already has an existing identifier for payments, you can use it
 as this `reference`.
 
 Your service will also need to supply a
 [`return_url`](/#choosing-the-return-url-and-matching-user-to-payment). This
-is a URL that your service hosts for the user to return to, after their
+is a URL that your service hosts for your user to return to, after their
 payment journey on GOV.UK Pay ends.
 
 ## Creating a payment
@@ -55,14 +55,14 @@ The format is variable. If you have an existing format, you can keep using it if
 
 ### description
 
-`description` is a human-readable description of the payment. This is shown to the end user on the payment pages and to your staff on the GOV.UK Pay admin tool.
+`description` is a human-readable description of the payment. This is shown to your user on the payment pages and to your staff on the GOV.UK Pay admin tool.
 
 The description must be no longer than 255 characters, and must not contain URLs.
 
 
 ### return_url
 
-This is a URL that your service hosts for the user to return to, after their payment journey on GOV.UK Pay ends.
+This is a URL that your service hosts for your user to return to, after their payment journey on GOV.UK Pay ends.
 
 The URL should not be JSON-encoded, because backslashes are invalid characters in the API.
 
@@ -96,7 +96,7 @@ flow”](/payment_flow) sections of this documentation.
 An example URL:
 `https://publicapi.payments.service.gov.uk/v1/payments/{paymentId}`
 
-The response will also include the ``next_url`` to which you should direct the
+The response will also include the ``next_url`` to which you should direct your
 user to complete their payment.
 
 <style>
@@ -109,8 +109,8 @@ user to complete their payment.
   <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
   <strong class="govuk-warning-text__text">
     <span class="govuk-warning-text__assistive">Warning</span>
-Don’t expose the `next_url` to anyone other than the paying user. Anyone in
-possession of the `next_url` could hijack the user’s payment.
+Don’t expose the `next_url` to anyone other than your paying user. Anyone in
+possession of the `next_url` could hijack your user’s payment.
   </strong>
 </div>
 
@@ -125,19 +125,19 @@ succeeds or fails. See the [“API reference”
 section](/api_reference/#api-reference) of this documentation for more
 details.
 
-## Choose the return URL and match users to payments
+## Choose the return URL and match your users to payments
 
 For security reasons, GOV.UK Pay does not add the `paymentId` or outcome to
 your `return_url` as parameters.
 
-You can match users with payments with an encrypted cookie, or by creating a
+You can match your users with payments with an encrypted cookie, or by creating a
 secure random ID:
 
 ### Use an encrypted cookie
 
 You can use an encrypted cookie containing the payment ID from GOV.UK Pay. Your
-service should issue this when a payment is created, before sending the user
-to `next_url`. Users will not be able to decrypt an encrypted cookie, so a
+service should issue this when a payment is created, before sending your user
+to `next_url`. Your users will not be able to decrypt an encrypted cookie, so a
 malicious user could not alter the payment ID and intercept other users’
 payments.
 
@@ -154,15 +154,15 @@ datastore mapped to the payment ID just after a payment is created.
   <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
   <strong class="govuk-warning-text__text">
     <span class="govuk-warning-text__assistive">Warning</span>
-Make sure the way you match returning users to payments is tamper-proof.
+Make sure the way you match your returning users to payments is tamper-proof.
 For example, don’t store the payment ID in an unencrypted cookie or rely on a
 `return_url` parameter that isn’t secret (like the payment ID or reference).
   </strong>
 </div>
 
-## Accepting returning users
+## Accepting your users when they return
 
- A user directed to the `return_url` could have:
+If your user is directed to the `return_url`, they could have:
 
  * paid successfully
 
@@ -172,29 +172,29 @@ For example, don’t store the payment ID in an unencrypted cookie or rely on a
 
  * not paid because of a technical error
 
-Your service should use the API to check the payment status when the user
+Your service should use the API to check the payment status when your user
 reaches the `return_url`, and provide an appropriate response based on the final
 status of the payment attempt.
 
-## When a user does not complete their payment journey
+## When your user does not complete their payment journey
 
-Users may close their browser or lose internet connectivity in the middle of
-their payment journey on GOV.UK Pay. In this event, users will not be
+Your user may close their browser or lose internet connectivity in the middle of
+their payment journey on GOV.UK Pay. In this event, your user will not be
 redirected back to your service.
 
 You can still [check the status of these
 payments](/payment_flow/#check-the-status-of-a-payment), but you should be
-aware GOV.UK Pay will allow a user 90 minutes to complete their payment before
+aware GOV.UK Pay will allow your user 90 minutes to complete their payment before
 it expires. You can only be certain of the payment’s status after this time.
 
 If a [payment fails](/payment_flow/#payment-failure), GOV.UK Pay will not
-allow the user to attempt the payment again with alternative card details. In
-this situation the user would need to return to the service to retry the
+allow your user to attempt the payment again with alternative card details. In
+this situation your user would need to return to the service to retry the
 payment. Your service should account for this.
 
 ## Cancel a payment that’s in progress
 
-Users can select a link on the payment page to cancel a payment that’s in
+Your user can select a link on the payment page to cancel a payment that’s in
 progress. Alternatively, a service can make the following API call for a given
 `paymentId`:
 

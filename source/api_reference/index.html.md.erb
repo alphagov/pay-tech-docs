@@ -67,17 +67,17 @@ A successful response includes ``status`` and ``finished`` values:
   </tr>
   <tr>
     <td> created </td>
-    <td> Payment created. User has not yet visited <code>next_url</code>. </td>
+    <td> Payment created. Your user has not yet visited <code>next_url</code>. </td>
     <td> false </td>
   </tr>
   <tr>
     <td> started </td>
-    <td> User has visited <code>next_url</code> and is entering payment details. </td>
+    <td> Your user has visited <code>next_url</code> and is entering payment details. </td>
     <td> false </td>
   </tr>
   <tr>
     <td> submitted </td>
-    <td> User has submitted payment details but has not yet selected <b>Confirm</b>. </td>
+    <td> Your user has submitted payment details but has not yet selected <b>Confirm</b>. </td>
     <td> false </td>
   </tr>
   <tr>
@@ -87,12 +87,12 @@ A successful response includes ``status`` and ``finished`` values:
   </tr>
   <tr>
     <td> success </td>
-    <td> User successfully completed the payment. </td>
+    <td> Your user successfully completed the payment. </td>
     <td> true </td>
   </tr>
   <tr>
     <td> failed </td>
-    <td> User attempted to make a payment but the payment did not complete. </td>
+    <td> Your user attempted to make a payment but the payment did not complete. </td>
     <td> true </td>
   </tr>
   <tr>
@@ -194,7 +194,7 @@ The general format of JSON error response bodies is:
 }
 ```
 
-These error descriptions are intended for developers, not end users.
+These error descriptions are intended for developers, not your users.
 
 Some errors may contain additional fields , such as `field`.
 
@@ -204,9 +204,9 @@ Some errors may contain additional fields , such as `field`.
 
 | Error code | Meaning | Cause |
 |------------|---------|-------|
-| P0010 | Payment method rejected | Payment rejected due to payment method selected, or payment information entered. For example, failed fraud check, a 3D Secure authentication failure, or the user has insufficient funds in account. |
+| P0010 | Payment method rejected | Payment rejected due to payment method selected, or payment information entered. For example, failed fraud check, a 3D Secure authentication failure, or your user has insufficient funds in account. |
 | P0020 | Payment expired | Payment was not confirmed and completed within 90 minutes of being created. If the payment was already authorised, GOV.UK Pay will send a cancellation to the payment provider. |
-| P0030 | Payment cancelled by user | User selected **Cancel payment** during the payment journey. If the payment was already authorised, GOV.UK Pay will send a cancellation to the payment provider. |
+| P0030 | Payment cancelled by your user | Your user selected **Cancel payment** during the payment journey. If the payment was already authorised, GOV.UK Pay will send a cancellation to the payment provider. |
 | P0040 | Payment was cancelled by your service | Your service cancelled the payment. |
 | P0050 | Payment provider returned an error | Multiple possible causes, for example a configuration problem with the payment provider, or incorrect credentials. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 

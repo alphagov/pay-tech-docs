@@ -53,7 +53,7 @@ GEM
     fast_blank (1.0.0)
     fastimage (2.1.7)
     ffi (1.11.1)
-    govuk_tech_docs (2.0.3)
+    govuk_tech_docs (2.0.4)
       activesupport
       chronic (~> 0.10.2)
       middleman (~> 4.0)
@@ -166,13 +166,13 @@ GEM
     ruby-enum (0.7.2)
       i18n
     sass (3.4.25)
-    sassc (2.2.0)
+    sassc (2.2.1)
       ffi (~> 1.9)
     servolux (0.13.0)
     sprockets (4.0.0.beta10)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    temple (0.8.1)
+    temple (0.8.2)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
@@ -188,7 +188,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  govuk_tech_docs (~> 2.0.3)
+  govuk_tech_docs (~> 2.0.4)
   middleman-search!
   therubyracer
   tzinfo-data
