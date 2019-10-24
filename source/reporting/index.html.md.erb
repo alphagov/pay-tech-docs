@@ -156,7 +156,6 @@ Some of the query parameters you can use to search for payments are:
 
 * `reference` - case insensitive, exact match only
 * `email` - case insensitive
-* `card_brand` - case insensitive, exact match only
 * `cardholder_name` - case insensitive
 * `state` - case sensitive, exact match only
 * `first_digits_card_number` - exact match only
@@ -165,6 +164,24 @@ Some of the query parameters you can use to search for payments are:
 If you search for a specific payment, all criteria you use must match. Otherwise, that payment will not be returned in the results.
 
 If your request has no query parameters, the API will return all payments.
+
+#### Search by card brand
+
+If you search for payments by `card_brand`, the value you need to use is:
+
+- case insensitive and exact match only
+- different to the value in the API response for some card brands
+
+|`card_brand` to search for|`card_brand` in API response|
+|-|-|
+|`visa`|`Visa`|
+|`master-card`|`Mastercard`|
+|`maestro`|`Maestro`|
+|`american-express`|`AmericanExpress`|
+|`diners-club`|`DinersClub`|
+|`discover`|`Discover`|
+|`jcb`|`JCB`|
+|`unionpay`|`UnionPay`|
 
 #### Filter by date
 
