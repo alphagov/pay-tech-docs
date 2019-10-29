@@ -167,21 +167,18 @@ If your request has no query parameters, the API will return all payments.
 
 #### Search by card brand
 
-If you search for payments by `card_brand`, the value you need to use is:
-
-- case insensitive and exact match only
-- different to the value in the API response for some card brands
-
 |`card_brand` to search for|`card_brand` in API response|
 |-|-|
 |`visa`|`Visa`|
 |`master-card`|`Mastercard`|
 |`maestro`|`Maestro`|
-|`american-express`|`AmericanExpress`|
-|`diners-club`|`DinersClub`|
+|`american-express`|`American Express`|
+|`diners-club`|`Diners Club`|
 |`discover`|`Discover`|
-|`jcb`|`JCB`|
-|`unionpay`|`UnionPay`|
+|`jcb`|`Jcb`|
+|`unionpay`|`Union Pay`|
+
+`card_brand` is case insensitive. You cannot search for partial values of `card_brand`.
 
 #### Filter by date
 
