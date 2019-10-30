@@ -64,7 +64,7 @@ The description must be no longer than 255 characters, and must not contain URLs
 
 This is a URL that your service hosts for your user to return to, after their payment journey on GOV.UK Pay ends.
 
-The URL should not be JSON-encoded, because backslashes are invalid characters in the API.
+The URL must be no longer than 2,000 characters, and must not be JSON-encoded because backslashes are invalid characters in the API.
 
 If you're making a test payment using a test account, you can [use HTTP for return URLs instead of HTTPS](/security/#https).
 
