@@ -1,187 +1,95 @@
 ---
-title: Switching to live
-weight: 100
+title: Connect your live account to Worldpay
+weight: 200
 ---
 
-# Set up a live Worldpay account
+# Connect your live account to Worldpay
 
-Please read the guidance on what to do [before you switch to
-live](/switching_to_live/before_you_switch_to_live/#before-you-switch-to-live)
-first.
+Before you start, you must:
 
-Worldpay uses the term “production” for live accounts.
+- read about [what to do first](/switching_to_live/#before-you-start)
+- [request a live GOV.UK Pay account](/switching_to_live/#1-request-a-live-gov-uk-pay-account)
 
-You should follow these instructions in order.
+You must also be an admin on your GOV.UK Pay account.
 
-You can also read about setting up live
-[ePDQ](/switching_to_live/set_up_a_live_epdq_account) and
-[Smartpay](/switching_to_live/set_up_a_live_smartpay_account) accounts.
+## Check your Worldpay account
 
-## Prerequisites
+Make sure your Worldpay account is both:
 
-Before you begin, make sure you have an admin account with both Worldpay and
-GOV.UK Pay. You need an account with the Worldpay Corporate Gateway. GOV.UK
-Pay does not support the Worldpay Business Gateway.
+- an admin account
+- using the Worldpay Corporate Gateway - not the Worldpay Business Gateway
 
-## Set up your merchant code
+## Switch to Production Mode for your merchant code
 
 Sign in to your [Worldpay
-account](https://secure.worldpay.com/sso/public/auth/login.html) and use
-__Select MerchantCode__ to find your merchant code.
+account](https://secure.worldpay.com/sso/public/auth/login.html) and select your merchant code.
 
-If __Switch to Production__ is at the bottom of the left-hand menu, toggle it on.
+If __Test Mode__ is at the bottom of the left-hand menu, switch to __Production Mode__. Worldpay uses the term 'production' for live accounts.
 
-## Set up your profile
+## Copy your details into GOV.UK Pay
 
-To set up your profile, you need to copy credentials from your Worldpay account
-into your GOV.UK Pay account.
+You must copy your details from your Worldpay account to your GOV.UK Pay live account.
 
-You must separately sign in to both your [Worldpay
-account](https://secure.worldpay.com/sso/public/auth/login.html) and your
-[GOV.UK Pay account](https://selfservice.payments.service.gov.uk/login). You
-should have both accounts open, in different web browser tabs.
+1. Sign in to the [__Your PSP - Worldpay__](https://selfservice.payments.service.gov.uk/your-psp) screen of the GOV.UK admin tool. Make sure you've selected your live account, not your test account.
 
-1. In your Worldpay browser tab, select __Profile__ in the left-hand menu. If you
-are prompted to choose a merchant code, select the appropriate one.
+2. In your Worldpay account, select __Account__, then the __Profile__ tab. Select your merchant code if you're asked for one.
 
-1. In your GOV.UK Pay browser tab, go to __My services__ to select the live
-service you want to set up. Select __Settings__, then __Your PSP - Worldpay__,
-then __Change__ under __Account credentials__.
+3. Copy the __Merchant Code__ value from the __Identification__ section of your Worldpay account into the __Merchant code__ field in your GOV.UK Pay account.
 
-1. In Worldpay, copy the Worldpay __Merchant Code__ from __Identification__ into
-the GOV.UK Pay __Merchant code__ field.
+4. Copy the __New Username__ value into the __Username__ field.
 
-1. Copy the Worldpay __New Username__ into the GOV.UK Pay __Username__ field.
-You should see the option __Enable Original XML Username__. If you see the
-option __Disable Original XML Username__, you must select the checkbox and then
-the __Save Profile__ button at the bottom of the page)
+5. If you see a checkbox labelled __Disable Original XML Username__, select the checkbox then
+select __Save Profile__ at the bottom.
 
-1. Change the Worldpay XML password:
+6. If you have not set your XML password for this merchant code before, set it by selecting the pencil icon next to __XML Password__ and choosing a password. Confirm by selecting __Add new password__, then __OK__. Save the password by selecting the pencil icon again, then __Complete__, then __OK__.
 
-    <br> select the pencil icon next to __XML Password__ </br>
-    <br> change the password and select __Add new Password__ </br>
-    <br> select __OK__ to go back to the __Profile__ page </br>
-    <br> select the pencil icon again, then __Complete__ then __OK__ </br>
-    <br>
+    > If you've set your XML password before but you cannot remember it, you can set a new password. But you must add the new password to your other GOV.UK Pay services or they'll stop working.
 
-    > If you're setting up another GOV.UK Pay service using the same Worldpay
-    merchant code, you should not need to change your XML password again. If
-    you do change it in this situation, you will need to update your other
-    services with the new XML password. <br></br>
+7. Enter your XML password into the __Password__ field in your GOV.UK Pay account.
 
-    <br>
+8. In the __Payment service__ section of your Worldpay account, set __Capture delay (days)__ to __Off__ (not __0__). If you do not do this, you may take money from your users before they've confirmed their payment.
 
-1. Enter the Worldpay XML password into the GOV.UK Pay __Password__ field.
+9. In your GOV.UK Pay account, select __Save credentials__.
 
-1. In your GOV.UK Pay browser tab, select __Save credentials__ to go back to the
-__Your PSP - Worldpay__ page.
+## Set up your Worldpay 'Merchant Channels'
 
-1. In your Worldpay browser tab, go to the __Profile__ page. Go to the __Payment service__
-section and set __Capture delay (days)__ to __0ff__ (not `0`).
+You must set up your Worldpay 'Merchant Channels' so Worldpay can notify GOV.UK Pay about payment events.
 
-## Set up “Merchant Channel”
+In your Worldpay account, select __Integration__ then the __Merchant Channel__ tab.
 
-In the left-hand menu of [your Worldpay
-account](https://secure.worldpay.com/sso/public/auth/login.html), select
-__Merchant Channel__.
+### Merchant Channels
 
-You must edit the content in the _http_ row, under __Protocol__.
+You must make the following changes in both the __Merchant Channels (Production)__ and __Merchant Channels (Test)__ sections.
 
-For __Merchant Channels (Production)__ and __Merchant Channels (Test)__, check
-the following:
+Set __Active__ to:
 
-1. Under __Active__, select __yes__.
+- __no__ in the __email__ row
+- __yes__ in the __http__ row
+- __no__ in the __shopper email__ row
 
-1. Set __Content__ to __xml__
+In the __http__ row, set:
 
-1. Set __Address__ to
-   `https://notifications.payments.service.gov.uk/v1/api/notifications/worldpay`.
+- __Content__ to __xml__
+- __Address__ to `https://notifications.payments.service.gov.uk/v1/api/notifications/worldpay`
+- __Method__ to __POST__
+- __Client certificate__ to __no__
 
-1. Set __Method__ to __POST__.
+### Merchant Channel Events
 
-1. Set __Client certificate__ to __no__.
+In both the __Merchant Channel Events (Production)__ and __Merchant Channel Events (Test)__ sections, select the following:
 
-1. Set the __email__ and __shopper
-   email__ protocols to __no__.
-
-For __Merchant Channel Events (Production)__ and __Merchant Channel Events
-(Test)__, check the following in the __http__ row only:
-
-<br>
-
-__SHOPPER_REDIRECTED__
-
-__SENT_FOR_AUTHORISATION__
-
-__AUTHORISED__
-
-__ERROR__
-
-__CANCELLED__
-
-__CAPTURED__
-
-__CAPTURE_FAILED__
-
-__SETTLED__
-
-__SETTLED_BY_MERCHANT__
-
-__SENT_FOR_REFUND__
-
-__REFUNDED__
-
-__REFUNDED_BY_MERCHANT__
-
-__REFUSED__
-
-__REFUSED_BY_BANK__
-
-__REFUND_FAILED__
-
-## Test your configuration
-
-
-1. Sign into the GOV.UK Pay admin tool and confirm that the [payment cards](https://selfservice.payments.service.gov.uk/card-types/summary) you want to accept are enabled.
-
-    Non-American Express cards are enabled on your Worldpay account by default.  If you want to accept American Express cards, you must also contact:
-      - the Government Banking Service (GBS) if your Worldpay contract is through the GBS
-      - your Worldpay account manager if your Worldpay contract is not through the GBS
-
-      You must send your American Express merchant ID to GBS or Worldpay if you’re a non-Crown merchant.
-
-2. Make a test transaction on your live account. You can use [the GOV.UK Pay
-   API](/api_reference) to do this.
-
-    Make sure you use a live API key, not a test one. Use [payment links](/payment_links) if your service is not yet connected to GOV.UK Pay.
-
-    If the test transaction fails, check that you have entered the correct credentials into the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
-
-3. Sign in to your [GOV.UK Pay
-   account](https://selfservice.payments.service.gov.uk/).
-
-4. Go to the [__Transactions__
-   page](https://selfservice.payments.service.gov.uk/transactions) and check
-   your test transaction is in the list of transactions.
-
-5. Select the test transaction and check if you can refund it.
-
-6. Delete the payments link you created to make the test payment.
-
-    The refund option may take up to 20 minutes to appear after submitting the transaction.
-
-    If the refund option does not appear, check you have [set up notifications correctly](#set-up-merchant-channel).
-
-If you are testing your integration with a [payment link](/payment_links), you
-should open it in a separate browser tab to avoid confusion.
-
-## Set up 3D Secure
-
-Ask your Worldpay account manager to configure your merchant code to enable 3D
-Secure for all payments.
-
-When this is available, sign in to your [GOV.UK Pay
-account](https://selfservice.payments.service.gov.uk/login).
-
-Go to __My services__ to select the live service you want to set up.
-Select __Settings__, then the __View__ link under __3D Secure__. Then select __On__.
+- __SHOPPER_REDIRECTED__
+- __SENT_FOR_AUTHORISATION__
+- __AUTHORISED__
+- __ERROR__
+- __CANCELLED__
+- __CAPTURED__
+- __CAPTURE_FAILED__
+- __SETTLED__
+- __SETTLED_BY_MERCHANT__
+- __SENT_FOR_REFUND__
+- __REFUNDED__
+- __REFUNDED_BY_MERCHANT__
+- __REFUSED__
+- __REFUSED_BY_BANK__
+- __REFUND_FAILED__

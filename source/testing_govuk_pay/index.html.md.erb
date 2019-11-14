@@ -16,13 +16,15 @@ Do not use your test account for automated integration tests that run every time
 
 ## Testing the whole user journey
 
-You should test the whole user journey from your service to your payment service provider (PSP).
+You should test the whole user journey.
 
 To help you test, you can:
 
 - [create a link to GOV.UK Pay payment pages](https://selfservice.payments.service.gov.uk/test-with-your-users) and add it to your service's prototype page
 - use [mock card numbers](#mock-card-numbers) to test both successful and unsuccessful payments
 - use HTTP instead of HTTPs for the `return_url` with your test account, so you do not need to set up a secure url for testing
+
+You cannot use 3D Secure with test accounts.
 
 ## Performance testing
 
