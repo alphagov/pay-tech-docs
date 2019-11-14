@@ -1,37 +1,93 @@
 ---
-title: Switching to live
+title: Go live
 weight: 100
 ---
 
-# Switching to live
+# Go live
 
-Please read this information carefully.
+You must follow this guidance to go live if you're either:
 
-Please read the guidance on what to do [before you switch to live](/switching_to_live/before_you_switch_to_live/#before-you-switch-to-live) first.
+- integrating with the GOV.UK Pay API
+- using [payment links](/payment_links/#payment-links)
 
-Follow these steps to switch your account from ‘test’ to ‘live’. You should
-only do this when you’ve finished [testing with your test
-account](/testing_govuk_pay/), and you’re confident that
-[you can make payments successfully](/making_payments/#making-payments).
+[Contact us](/support_contact_and_more_information/) if you need help.
 
-This guidance is for services that have integrated
-with the GOV.UK Pay API or which use the [payment
-link](/payment_links/#payment-links) functionality.
+## Before you start
 
-You can then read about switching to live for:
+You must:
 
-* [ePDQ](/switching_to_live/set_up_a_live_epdq_account) accounts
+- subscribe to updates on the [GOV.UK Pay status page](https://payments.statuspage.io), so you get a notification when there's an incident
+- know how to [contact us](/support_contact_and_more_information/) to report an emergency
+- have successfully finished [testing your integration using your test account](/testing_govuk_pay/#testing-your-integration)
+- have a secure domain for your service, because you must use HTTPS for the `return_url` when you [create a payment](/making_payments/#creating-a-payment) for a live service
 
-* [Smartpay](/switching_to_live/set_up_a_live_smartpay_account) accounts
+Live accounts have a slower response time than test accounts, because GOV.UK Pay must wait for responses from your payment service provider (PSP).
 
-* [Worldpay](/switching_to_live/set_up_a_live_worldpay_account) accounts
+## 1. Request a live GOV.UK Pay account
 
-## The differences between test and live accounts
+You will need to tell us:
 
-The key differences are:
+- your organisation's name and address
+- if you’ll be using GOV.UK Pay’s PSP Stripe, or your own
 
-* return URLs for live services using GOV.UK Pay must use HTTPS, but you [can use HTTP for return URLs with test accounts](https://docs.payments.service.gov.uk/security/#https)
+Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/) and select __Request a live account__.
 
-* 3D Secure is not part of the payment journey on test accounts
+Within one working day, we'll email you with:
 
-* response times of test accounts do not match live accounts, because live accounts are subject to response times of payment service providers
+- a link to your new live account
+- emergency contact details so you can tell us if there's an urgent problem, for example fraudulent payments on your account
+
+Your live account will appear on your [__My services__ page](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool, labelled __Live card account__.
+
+You can still use your test account.
+
+## 2. Connect your live account to your PSP
+
+Once you have a GOV.UK Pay account live account, connect it to:
+
+- [Stripe](/switching_to_live/set_up_a_live_stripe_account/#set-up-a-live-stripe-account)
+- [ePDQ](/switching_to_live/set_up_a_live_epdq_account/#set-up-your-live-epdq-account)
+- [Smartpay](/switching_to_live/set_up_a_live_smartpay_account/#set-up-your-live-smartpay-account)
+- [Worldpay](/switching_to_live/set_up_a_live_worldpay_account/#connect-your-live-account-to-worldpay)
+
+## 3. Choose which card types to accept
+
+Choose which card types to accept by:
+
+- [signing in to the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/payment-types) if you use Stripe or Worldpay
+- contacting your Smartpay or ePDQ account manager if you use SmartPay or ePDQ
+
+### If you use Worldpay
+
+If you use Worldpay and you want to accept American Express cards, you must contact either:
+
+- Government Banking - if your Worldpay contract is through Government Banking
+- your Worldpay account manager
+
+You must send your American Express merchant ID to Government Banking or Worldpay if you’re a non-Crown merchant.
+
+## 4. Set up 3D Secure (3DS)
+
+1. If you use Worldpay, ask your Worldpay account manager to enable 3D Secure for your merchant code.
+
+2. Sign in to your [GOV.UK Pay account settings](https://selfservice.payments.service.gov.uk/settings/) and turn on 3D Secure.
+3. If you use ePDQ, sign in [your ePDQ account](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index) and select __Configuration__, then  __Payment methods__, then check __3D Secure__ is on.
+
+## 5. Check your live account works
+
+1. Select your live service from your [__My services__ page](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK pay admin tool.
+
+2. Select __Settings__, then __API keys__. Generate an API key.
+
+3. Use the new live API key to test making a real payment on your live account, using the [GOV.UK Pay API](/making-a-payment) or a [payment link](/payment_links). You must use a real card. Use a small amount, because GOV.UK Pay will take the payment from the card you use.
+
+4. After you've confirmed the payment, check you received a [confirmation email](/payment_flow/#confirmation-email).
+
+5. Check the payment appears in [your transactions](https://selfservice.payments.service.gov.uk/transactions) in the GOV.UK admin tool.
+
+6. Select the payment and check you can refund it. It may take up to 20 minutes for the __Refund payment__ button to appear.
+
+If your payment or refund fails, check:
+
+- [your PSP settings](https://selfservice.payments.service.gov.uk/your-psp) are correct
+- you [connected your live account to your PSP](#2-connect-your-live-account-to-your-psp) correctly
