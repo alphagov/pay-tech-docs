@@ -10,21 +10,21 @@ Before you start, you must:
 - read about [what to do first](/switching_to_live/#before-you-start)
 - [request a live GOV.UK Pay account](/switching_to_live/#1-request-a-live-gov-uk-pay-account)
 
-You must also be an admin on your GOV.UK Pay account.
+You must also be an admin on your GOV.UK Pay account, or you will not see some of the following settings.
 
 ## Add payment methods to your account
 
 1. Sign in to your [ePDQ account](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index).
 
-2. Select the __Configuration__ tab, then __Payment methods__.
+2. Select the __Configuration__ tab, then __Payment methods__. Check that Visa and Mastercard have already been added by default.
 
 3. Select __Choose new payment methods__.
 
 4. Select __Add__ next to the card types you want to accept.
 
-5. When you reach the __PM Activation__ tab, select __Yes__ for __Activation__.
+5. Complete the fields on the __Contract data__ tab.
 
-6. Select __Submit__.
+6. When you reach the __PM Activation__ tab, select __Yes__ for __Activation__. Then select __Submit__.
 
 ## Set up security parameters
 
@@ -32,19 +32,19 @@ You must also be an admin on your GOV.UK Pay account.
 
 1. Select the __Configuration__ tab.
 
-1. On the __Technical Information__ tab, select the __Global security parameters__ tab.
+2. On the __Technical Information__ tab, select the __Global security parameters__ tab.
 
-2. Set __Hash algorithm__ to __SHA-512__.
+3. Set __Hash algorithm__ to __SHA-512__.
 
-3. Set __Character encoding__ to __UTF-8__.
+4. Set __Character encoding__ to __UTF-8__.
 
-4. Select __Save__.
+5. Select __Save__.
 
 ### Set a SHA-IN passphrase
 
 1. Select the __Data and origin verification__ tab.
 
-2. Select the __Checks for e-Commerce & Alias Gateway__ section.
+2. Go to the __Checks for e-Commerce & Alias Gateway__ section.
 
 3. Leave the following field blank: __URL of the merchant page containing the payment form that will call the page: orderstandard.asp__.
 
@@ -52,11 +52,11 @@ You must also be an admin on your GOV.UK Pay account.
 
     > A strong passphrase has at least 16 characters,  at least 4 different characters, at least one letter (a to z) and at least one number (0 to 9) or symbol (for example &, @, # or !). You cannot use ^, {, }, [, ], “, ‘, |, <, or >.
 
-1. Select the __Checks for Barclaycard Direct Link__ section.
+5. Go to the __Checks for Barclaycard Direct Link__ section.
 
-1. Leave the __IP address__ blank.
+6. Leave the __IP address__ blank.
 
-1. Enter the same SHA-IN passphrase you entered in step 4, then select __Save__.
+7. Enter the same SHA-IN passphrase you entered in step 4, then select __Save__.
 
 ## Set up notification settings
 
@@ -64,7 +64,7 @@ You must also be an admin on your GOV.UK Pay account.
 
 1. Select the __Transaction feedback__ tab.
 
-2. Select the __e-Commerce__ section, then the __Direct HTTP server-to-server request__ section.
+2. Go to the __e-Commerce__ section, then the __Direct HTTP server-to-server request__ section.
 
 3. Leave __Timing of the request__ as the default __No request__ setting.
 
@@ -76,7 +76,7 @@ You must also be an admin on your GOV.UK Pay account.
 
 7. Go to the __Dynamic e-Commerce parameters__ section.
 
-8. Check if __PAYIDSUB__ is in the __Selected__ box. If it's not, find __PAYIDSUB__ in the __Available__ box and select __>__ to add it to the __Selected__ box.
+8. Check if __PAYIDSUB__ is in the __Selected__ box. If it's not, find __PAYIDSUB__ in the __Available__ box,  select it, then select __>__ to add it to the __Selected__ box.
 
 ### Set up security for request parameters
 
@@ -84,14 +84,12 @@ You must also be an admin on your GOV.UK Pay account.
 
 2. Enter a strong SHA-OUT passphrase in plain text. Do not use a hash. You'll need to copy this passphrase into the GOV.UK Pay account credentials page later.
 
-3. Leave the __Basic Authentication Credentials__ field blank.
+3. Go to the __HTTP request for status change__ section, then set __Timing of the request__ to __For each offline status change (payment, cancellation, etc.)__
 
-4. Go to the __HTTP request for status change__ section, then set __Timing of the request__ to __For each offline status change (payment, ff, etc.)__
-
-5. In the __URL on which the merchant wishes to receive a deferred HTTP request,
+4. In the __URL on which the merchant wishes to receive a deferred HTTP request,
 should the status of a transaction change offline__ field, enter `https://notifications.payments.service.gov.uk/v1/api/notifications/epdq`
 
-6. Select __Save__.
+5. Select __Save__.
 
 ## Set up an API user
 
@@ -121,22 +119,24 @@ should the status of a transaction change offline__ field, enter `https://notifi
 
 6. Enter your own ePDQ password and select __Create__.
 
-7. Set a password for the API user, then select __Submit__. You'll need to copy this password into your GOV.UK Pay account later.
+7. Set a strong unique password for the API user, then select __Submit__. You'll need to copy this password into your GOV.UK Pay account later.
 
 ## Copy your details into your GOV.UK Pay account
 
 You must copy your details from your ePDQ account to your GOV.UK Pay live account.
 
-1. Sign in to the [__Your PSP - ePDQ__](https://selfservice.payments.service.gov.uk/your-psp) page of the GOV.UK admin tool. Make sure you've selected your live account, not your test account.
+1. Select your live account from the [__My services__ page](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
 
-1. In the __PSP ID__ field, enter your PSP ID for ePDQ.
+2. Select [__Your PSP - ePDQ__].
 
-2. In the __Username__ field, enter the __UserID__ of the [API user you created](#create-an-api-user).
+3. In the __PSP ID__ field, enter your PSP ID for ePDQ.
 
-3. In the __Password__ field, enter the password of the [API user you created](#create-an-api-user).
+4. In the __Username__ field, enter the __UserID__ of the [API user you created](#create-an-api-user).
 
-4. In the __SHA-IN passphrase__ field, enter the [SHA-IN passphrase you created](#set-a-sha-in-passphrase).
+5. In the __Password__ field, enter the password of the [API user you created](#create-an-api-user).
 
-5. In the __SHA-OUT passphrase__ field, enter the [SHA-OUT passphrase you created](#set-up-security-for-request-parameters).
+6. In the __SHA-IN passphrase__ field, enter the [SHA-IN passphrase you created](#set-a-sha-in-passphrase).
 
-6. Select __Save credentials__.
+7. In the __SHA-OUT passphrase__ field, enter the [SHA-OUT passphrase you created](#set-up-security-for-request-parameters).
+
+8. Select __Save credentials__.

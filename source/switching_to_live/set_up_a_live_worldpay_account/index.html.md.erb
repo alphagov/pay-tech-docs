@@ -26,30 +26,30 @@ account](https://secure.worldpay.com/sso/public/auth/login.html) and select your
 
 If __Test Mode__ is at the bottom of the left-hand menu, switch to __Production Mode__. Worldpay uses the term 'production' for live accounts.
 
-## Copy your details into GOV.UK Pay
+## Connect your Worldpay account to GOV.UK Pay
 
-You must copy your details from your Worldpay account to your GOV.UK Pay live account.
+1. Select your live account from the [__My services__ page](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
 
-1. Sign in to the [__Your PSP - Worldpay__](https://selfservice.payments.service.gov.uk/your-psp) screen of the GOV.UK admin tool. Make sure you've selected your live account, not your test account.
+2. Select [__Your PSP - Worldpay__].
 
-2. In your Worldpay account, select __Account__, then the __Profile__ tab. Select your merchant code if you're asked for one.
+3. In your Worldpay account, select __Account__, then the __Profile__ tab. Select your merchant code if you're asked for one.
 
-3. Copy the __Merchant Code__ value from the __Identification__ section of your Worldpay account into the __Merchant code__ field in your GOV.UK Pay account.
+4. Copy the __Merchant Code__ value from the __Identification__ section of your Worldpay account into the __Merchant code__ field in your GOV.UK Pay account.
 
-4. Copy the __New Username__ value into the __Username__ field.
+5. Copy the __New Username__ value from your Worldpay account into the __Username__ field in your GOV.UK Pay account.
 
-5. If you see a checkbox labelled __Disable Original XML Username__, select the checkbox then
+6. If you see a checkbox labelled __Disable Original XML Username__, select the checkbox then
 select __Save Profile__ at the bottom.
 
-6. If you have not set your XML password for this merchant code before, set it by selecting the pencil icon next to __XML Password__ and choosing a password. Confirm by selecting __Add new password__, then __OK__. Save the password by selecting the pencil icon again, then __Complete__, then __OK__.
+7. If you have not set your XML password for this merchant code before, set it by selecting the pencil icon next to __XML Password__ and choosing a password. Confirm by selecting __Add new password__, then __OK__. Save the password by selecting the pencil icon again, then __Complete__, then __OK__.
 
-    > If you've set your XML password before but you cannot remember it, you can set a new password. But you must add the new password to your other GOV.UK Pay services or they'll stop working.
+    > If you've set your XML password before but you cannot remember it, you can set a new password. But you must add the new password to your other services that use Worldpay or they'll stop working.
 
-7. Enter your XML password into the __Password__ field in your GOV.UK Pay account.
+8. Enter your XML password into the __Password__ field in your GOV.UK Pay account.
 
-8. In the __Payment service__ section of your Worldpay account, set __Capture delay (days)__ to __Off__ (not __0__). If you do not do this, you may take money from your users before they've confirmed their payment.
+9. In the __Payment service__ section of your Worldpay account, set __Capture delay (days)__ to __Off__ (not __0__). If you do not do this, you may take money from your users before they've confirmed their payment.
 
-9. In your GOV.UK Pay account, select __Save credentials__.
+10. In your GOV.UK Pay account, select __Save credentials__.
 
 ## Set up your Worldpay 'Merchant Channels'
 
@@ -76,7 +76,7 @@ In the __http__ row, set:
 
 ### Merchant Channel Events
 
-In both the __Merchant Channel Events (Production)__ and __Merchant Channel Events (Test)__ sections, select the following:
+In both the __Merchant Channel Events (Production)__ and __Merchant Channel Events (Test)__ sections, select the following in the __http__ row.
 
 - __SHOPPER_REDIRECTED__
 - __SENT_FOR_AUTHORISATION__
