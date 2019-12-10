@@ -282,8 +282,7 @@ the `return_url`, your service should:
 
 * display an appropriate final page, hosted by your service
 
-The [__Making payments__](/making_payments/#making-payments) section contains
-more details about how to match your users to payments.
+Read more about [matching your users to payments](/making_payments/#choose-the-return-url-and-match-your-users-to-payments).
 
 To check the status of a payment, you must make a <a
 href="https://govukpay-api-browser.cloudapps.digital/#getpayment"
@@ -315,9 +314,6 @@ The `state` array within the JSON lets you know the outcome of the payment:
 
 * `finished` indicates if the payment journey is complete or not - that is, if the `status` of this payment can change
 
-See the [__Making payments__](/making_payments/#making-payments) section for
-more information about how you can integrate your service with GOV.UK Pay.
-
 ### Resuming an incomplete payment
 
 You can send your user back to GOV.UK Pay if they return to your service before they've finished their payment.
@@ -342,5 +338,4 @@ Payments that are not confirmed and completed after 90 minutes will expire
 automatically.
 
 If the payment was authorised but incomplete, GOV.UK Pay will send a
-cancellation to the payment provider. This will raise a [P0020 API
-error](/api_reference/#api-errors-caused-by-payment-statuses).
+cancellation to the payment provider and you will receive a [P0020 API error](/api_reference/#api-errors-caused-by-payment-statuses).
