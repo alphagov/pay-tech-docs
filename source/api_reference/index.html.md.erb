@@ -14,9 +14,7 @@ determines if actions are treated as test payments, or processed as real payment
 The API is based on REST principles. It returns data in JSON format, and uses
 standard HTTP error response codes.
 
-See the [__Quick start guide__](/quick_start_guide/#quick-start-guide) section
-to read how to get started with the API quickly. Make sure you enter your test
-API key to avoid generating real payments.
+You can [get started with the API quickly](/quick_start_guide/#quick-start-guide). Make sure you enter your test API key to avoid generating real payments.
 
 ## API browser and Swagger file
 
@@ -177,7 +175,7 @@ Common status codes are:
 | Get refunds | P0800 | `refundId` not found | No refund matched the `refundId` you provided. |
 | Get refunds | P0898 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | General | P0900 | Too many requests | Your service account is sending requests above the allowed rate. Please try the request again in a few seconds. |
-| General | P0920 | Request blocked by security rules | Our firewall blocked your request. See the [“Troubleshooting”](/troubleshooting) section for details. |
+| General | P0920 | Request blocked by security rules | Our firewall blocked your request. [Check your API request](/troubleshooting/#troubleshooting). |
 | General | P0999 | GOV.UK Pay is unavailable | The GOV.UK Pay service is temporarily down. |
 | Delayed capture | P1000 | No match for `paymentId` | No payment matched the `paymentId` you provided. |
 | Delayed capture | P1003 | Payment cannot be captured | You can only capture a payment if the payment has a `status` of `capturable`. |
@@ -246,8 +244,8 @@ For example:
 
 Per second, you can make:
 
-- up to 15 `POST` requests to [Create a payment](/making_payments/#creating-a-payment)
-- up to 15 `POST `requests to [Capture a delayed payment](/optional_features/delayed_capture/)
+- up to 15 `POST` requests to [create a payment](/making_payments/#creating-a-payment)
+- up to 15 `POST `requests to [capture a delayed payment](/optional_features/delayed_capture/)
 - up to 15 other `POST` requests
 
 GET requests are also rate-limited, but at a very high level. In the future,
@@ -258,6 +256,6 @@ many requests) and error code P0900. After a second, you’ll be able to retry
 your attempt in a reasonable way. For example, using exponential backoff.
 
 Please [contact
-us](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us)
+us](/support_contact_and_more_information/#contact-us)
 if you would like to discuss rate limiting applied to your service account, or
 give us feedback.

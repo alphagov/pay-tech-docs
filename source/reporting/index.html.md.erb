@@ -9,7 +9,7 @@ You can extract reporting information from GOV.UK Pay manually or via the
 API, for each service you have set up in GOV.UK Pay.
 
 You can also read about [refunding payments](/refunding_payments/), including
-how to [search for refunds using the GOV.UK Pay API](/refunding_payments/#search-refunds).
+how to [search for refunds using the GOV.UK Pay API](/refunding_payments/#searching-refunds).
 
 ## Manual reporting
 
@@ -128,7 +128,7 @@ Example response:
 
 Where:
 
-- `total_amount` is the amount your user paid in pence, including a [corporate card surcharge](/optional_features/corporate_card_surcharges/#corporate_card_surcharges) if you added one
+- `total_amount` is the amount your user paid in pence, including a [corporate card surcharge](/optional_features/corporate_card_surcharges/#corporate-card-surcharges) if you added one
 - `fee` is the PSP transaction fee that we took from the amount your user paid, in pence
 - `net_amount` is the amount that will be paid into your account, in pence
 
@@ -137,7 +137,7 @@ The response will not contain a `fee` or `net_amount` parameter if either:
 - your PSP is SmartPay, Worldpay or ePDQ - we do not deduct these PSPs' transaction fees
 - you're [using a test API key](/quick_start_guide/#test-the-api) - we do not deduct fees from test payments
 
-You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see or export transaction fee information.
+You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see transaction fee information or export the information in a CSV file.
 
 ## Generate a list of payments (search payments)
 
