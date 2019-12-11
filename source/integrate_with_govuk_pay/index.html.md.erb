@@ -20,7 +20,7 @@ their service with the GOV.UK Pay API. It describes:
 
 * making sure that all payments are processed
 
-* integrating with finance and accounting systems (see also [__Reporting__](/reporting))
+* integrating with finance and accounting systems
 
 The following diagram shows a typical high-level architecture with a GOV.UK
 Pay integration:
@@ -38,7 +38,7 @@ Your service backend is server-side software. You should build this to:
 * redirect your user to the `next_url` provided by GOV.UK Pay, where your user
 will [enter their payment information and confirm their payment](/payment_flow/#making-a-payment)
 
-* receive your user's request when they are redirected back to your service via the `return_url`, where your user will return [after completing payment](/payment_flow/#making-a-payment)
+* receive your user's request when they are redirected back to your service via the `return_url`, where your user will return [after they complete their payment](/payment_flow/#making-a-payment)
 
 * identify your returning user via the session
 
@@ -71,8 +71,7 @@ You can also [add custom metadata to payments](/optional_features/custom_metadat
 
 You could also connect a customer-relationship management (CRM) or case management system to GOV.UK Pay, so your staff can issue refunds from within your system.
 
-You can read more in the [__Reporting__](/reporting) and
-[__Refunding payments__](/refunding_payments) sections of this documentation.
+Read more about [reporting](/reporting/#reporting) and [refunding payments](/refunding_payments/#refunding_payments).
 
 ## The GOV.UK Pay API
 
@@ -138,8 +137,7 @@ However, in the failure cases, your user will never visit the `return_url`. Inst
 
 ### Have your service team manually check the payment outcome
 
-If your team manually checks payment outcomes before releasing payments to your users, you may have a low-volume service. This
-would always be the case if you are using [payment links](/payment_links).
+If your team manually checks payment outcomes before releasing payments to your users, you may have a low-volume service. This would always be the case if you are using [payment links](/payment_links/#payment_links).
 
 You should make sure your service staff check the outcomes of payments in the GOV.UK Pay admin tool before releasing the service to your users.
 
