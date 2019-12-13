@@ -186,13 +186,17 @@ user then decides whether or not to complete their payment:
 
 ![](/images/flow-payment-confirm-page.png)
 
-If your user decides to complete the payment, they select __Confirm__. They
-will then:
+If your user decides to complete the payment, they select __Confirm__. They will then:
 
 * receive a confirmation email, if you have chosen to send these using GOV.UK Pay
 * be redirected to your `return_url` page which will then send your user to your payment confirmation page
 
-You'll receive the payment in your bank account within 2 business days. It may take 3 business days if your user completed their payment after 11pm.
+You'll receive the payment in your bank account within either:
+
+- 2 business days
+- 3 business days if your user completed their payment after 11pm
+
+It may take longer if the payment is below the minimum 'payout', which is the total amount you must receive from your users before your PSP will transfer payments to you. If you're using GOV.UK's PSP, the minimum payout is £1.
 
 If you're using GOV.UK's PSP, payments will show on your bank statement as 'STRIPE PAYMENTS UKGOV.UKPAY'.
 
