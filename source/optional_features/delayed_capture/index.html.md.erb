@@ -31,18 +31,16 @@ There are 4 possible responses:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-| Response Code  | Meaning                    |
-| -------------- | -------------------------- |
-|204             | Capture request accepted   |
-|404             | `paymentId` does not exist |
-|409             | Capture request rejected   |
-|500             | Downstream error           |
+|Response code | Meaning |
+|--|--|
+|204| Your capture request succeeded. |
+|404| No payment matched the `paymentId` you provided. |
+|409| You cannot capture the payment because its `status` is not `capturable`. |
+|500| Something is wrong with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us). |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-Your service must send the delayed capture request within 120 hours (5 days) of the
-payment creation, regardless of how long your user takes to complete the
-payment flow. Otherwise, it will expire.
+Your service must send the delayed capture request within 120 hours (5 days) of creating the payment, regardless of how long your user takes to complete the payment flow. If you do not, [the payment will expire](/payment_flow/#payment-expires).
 
 If your service has enabled payment receipt emails, GOV.UK Pay will send a
 payment receipt email to your user once your service’s capture request is
