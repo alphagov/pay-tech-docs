@@ -5,29 +5,30 @@ weight: 300
 
 # Connect your live account to ePDQ
 
-Before you start, you must:
+This is part of [going live](/switching_to_live/#go-live).
 
-- read about [what to do first](/switching_to_live/#before-you-start)
-- [request a live GOV.UK Pay account](/switching_to_live/#1-request-a-live-gov-uk-pay-account)
-
-You must also be an admin on both your:
+You must be an admin on both your:
 
 - GOV.UK Pay account
 - ePDQ account
 
 ## Add payment methods to your account
 
+If you only want to accept Visa and Mastercard, you do not need to follow these steps, because ePDQ will have already added them by default.
+
 1. Sign in to your [ePDQ account](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index).
 
-2. Select the __Configuration__ tab, then __Payment methods__. Check that Visa and Mastercard have already been added by default.
+2. Select the __Configuration__ tab, then __Payment methods__.
 
 3. Select __Choose new payment methods__.
 
 4. Select __Add__ next to the card types you want to accept.
 
-5. Complete the fields on the __Contract data__ tab, then click __Submit__.
+5. Complete the fields on the __Contract data__ tab, then select __Submit__.
 
-6. Select the __PM activation__ tab, then select __Yes__ for __Activation__. Select __Submit__.
+6. Select the __PM activation__ tab, then select __Yes__ for __Activation__.
+
+7. Select __Submit__.
 
 ## Set up security parameters
 
@@ -51,9 +52,11 @@ You must also be an admin on both your:
 
 3. Leave the following field blank: __URL of the merchant page containing the payment form that will call the page: orderstandard.asp__.
 
-4. Enter a strong SHA-IN passphrase in plaintext. Do not use a hash. You'll need to copy this passphrase into your GOV.UK Pay account later.
+4. Enter a SHA-IN passphrase in plain text - do not use a hash.
 
-    > A strong passphrase has at least 16 characters,  at least 4 different characters, at least one letter (a to z) and at least one number (0 to 9) or symbol (for example &, @, # or !). You cannot use ^, {, }, [, ], “, ‘, |, <, or >.
+    You should follow the guidance about [choosing and storing passwords](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers) from the National Cyber Security Centre (NCSC). You cannot use ^, {, }, [, ], “, ‘, |, <, or >.
+
+    You'll need to copy this passphrase into your GOV.UK Pay account later.
 
 5. Go to the __Checks for Barclaycard Direct Link__ section.
 
@@ -63,7 +66,7 @@ You must also be an admin on both your:
 
 ## Set up notification settings
 
-### Set up server to server request parameters
+### Set up server-to-server request parameters
 
 1. Select the __Transaction feedback__ tab.
 
@@ -85,7 +88,11 @@ You must also be an admin on both your:
 
 1. Go to __All transaction submission modes__, then the __Security for request parameters__ section.
 
-2. Enter a strong SHA-OUT passphrase in plain text. Do not use a hash. You'll need to copy this passphrase into the GOV.UK Pay account credentials page later.
+2. Enter a SHA-OUT passphrase in plain text - do not use a hash.
+
+    You should follow the guidance about [choosing and storing passwords](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers) from the National Cyber Security Centre (NCSC). You cannot use ^, {, }, [, ], “, ‘, |, <, or >.
+
+    You'll need to copy this passphrase into your GOV.UK Pay account later.
 
 3. Go to the __HTTP request for status change__ section, then set __Timing of the request__ to __For each offline status change (payment, cancellation, etc.)__
 
@@ -94,9 +101,13 @@ should the status of a transaction change offline__ field, enter `https://notifi
 
 5. Select __Save__.
 
-## Set up an API user
+## Set up an ‘API user’
 
-### Add a user manager
+You must set up the username and password that ePDQ will use to connect to the GOV.UK Pay API.
+
+### Add user management to your account
+
+To create an ‘API user’, you need to add user management to your account first.
 
 1. Select the __Account__ tab.
 
@@ -112,9 +123,15 @@ should the status of a transaction change offline__ field, enter `https://notifi
 
 1. Select the __Users__ tab, then __New User__.
 
-2. Complete the __UserID__ and __User’s name__ fields. You'll need to copy the __UserID__ into your GOV.UK Pay account later.
+    If you cannot see the __New User__ button, check that you added user management to your account in the step above
 
-3. Complete the __E-mail address__ field. ePDQ will send notifications about your account to this email address.
+2. Complete the __UserID__ and __User’s name__ fields.
+
+    You'll need to copy the __UserID__ into your GOV.UK Pay account later.
+
+3. Complete the __E-mail address__ field.
+
+    ePDQ will send notifications about your account to this email address.
 
 4. In the __Profile__ field, select __Admin__.
 
@@ -122,7 +139,11 @@ should the status of a transaction change offline__ field, enter `https://notifi
 
 6. Enter your own ePDQ password and select __Create__.
 
-7. Set a strong unique password for the API user, then select __Submit__. You'll need to copy this password into your GOV.UK Pay account later.
+7. Set a password for the API user, then select __Submit__.
+
+    You should follow the guidance about [choosing and storing passwords](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers) from the National Cyber Security Centre (NCSC).
+
+    You'll need to copy this password into your GOV.UK Pay account later.
 
 ## Copy your details into your GOV.UK Pay account
 
@@ -146,7 +167,10 @@ You must copy your details from your ePDQ account to your GOV.UK Pay live accoun
 
 ## Set up 3D Secure
 
-Sign in to your:
+1. Sign in to your [ePDQ account](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index) and select __Configuration__, then __Payment methods__.
 
-1. [GOV.UK Pay account settings](https://selfservice.payments.service.gov.uk/settings/) and check 3D Secure is turned on.
-2. [ePDQ account](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index) and select __Configuration__ then __Payment methods__. Check __3D Secure__ is on.
+2. Turn on  __3D Secure__.
+
+3. Sign in to your [GOV.UK Pay account settings](https://selfservice.payments.service.gov.uk/settings/) and turn on 3D Secure.
+
+Your live account is now connected to ePDQ. Continue with the next steps to [going live](/switching_to_live/#3-choose-which-card-types-to-accept).
