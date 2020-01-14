@@ -5,18 +5,17 @@ weight: 400
 
 # Connect your live account to SmartPay
 
-Before you start, you must:
+This is part of [going live](/switching_to_live/#go-live).
 
-- read about [what to do first](/switching_to_live/#before-you-start)
-- [request a live GOV.UK Pay account](/switching_to_live/#1-request-a-live-gov-uk-pay-account)
-
-You must also be an admin on your GOV.UK Pay account.
+You must be an admin on your GOV.UK Pay account to connect to SmartPay.
 
 ## Configure your user profile on SmartPay
 
 Sign in to your [SmartPay account](https://ca-live.barclaycardSmartPay.com/ca/ca/login.shtml). Select your organisation name at the top of the page, then the correct merchant account.
 
-### Add a new user
+### Set up an ‘API user’
+
+You must set up a username and password that SmartPay will use to connect to the GOV.UK Pay API.
 
 1. Select __Settings__ then __Users__.
 
@@ -25,6 +24,8 @@ Sign in to your [SmartPay account](https://ca-live.barclaycardSmartPay.com/ca/ca
 3. Select __Web Service__ as the user type.
 
 4. Complete both the __Password__ fields.
+
+    You should follow the guidance about [choosing and storing passwords](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers) from the National Cyber Security Centre (NCSC).
 
 5. Leave the __Client Certificate (DN)__ field blank.
 
@@ -40,11 +41,11 @@ Under __Roles and Associated Accounts__, select __Roles__.
 
 Enable the following roles:
 
-* API PCI Payments role
-* Merchant PAL Webservice role
-* Merchant Recurring role
+- API PCI Payments role
+- Merchant PAL Webservice role
+- Merchant Recurring role
 
-Contact Smartpay if any of these roles are not in the list.
+Contact SmartPay if any of these roles are not in the list.
 
 Select __Accounts__. Enable your merchant account, then select __Save__.
 
@@ -56,9 +57,11 @@ Leave the other options as their defaults.
 
 ## Set up notification settings
 
-Select __Settings__ then __Server Communication__. Select __Add__ in the __Standard Notification__ row.
+1. Select __Settings__ then __Server Communication__.
 
-### Transport section
+2. Select __Add__ in the __Standard Notification__ row.
+
+### Set up ‘Transport’ settings
 
 In the __Transport__ section, set:
 
@@ -75,9 +78,9 @@ Leave the following fields unchecked:
 * __Accept untrusted Root certificates__
 * __Populate SOAP Action header__
 
-### Authentication section
+### Set up ‘Authentication’ settings
 
-Enter a unique username and password. The password must be at least 10 characters long.
+Enter a username and password. You should follow the guidance about [choosing and storing passwords](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers) from the National Cyber Security Centre (NCSC).
 
 You'll need to copy this username and password into your GOV.UK Pay account later.
 
@@ -92,18 +95,20 @@ Select your live account from the [__My services__ page](https://selfservice.pay
 Under __Account credentials__, complete the following fields:
 
 * __Merchant account code__
-* __Username__ - use the username of the [new user you created](#add-new-user)
-* __Password__ - use the password of the [new user you created](#add-new-user)
+* __Username__ - use the username of the [new user you created](#set-up-an-api-user)
+* __Password__ - use the password of the [new user you created](#set-up-an-api-user)
 
 ### Add your notification credentials
 
 Under __Your SmartPay notification credentials__, complete the following fields:
 
-* __Username__ - use the username from the [Authentication section](#authentication)
-* __Password__ - use the password from the [Authentication section](#authentication)
+* __Username__ - use the username from the [Authentication section](#set-up-authentication-settings)
+* __Password__ - use the password from the [Authentication section](#set-up-authentication-settings)
 
 Select __Save credentials__.
 
-### Set up 3D Secure
+## Set up 3D Secure
 
-Sign in to your [GOV.UK Pay account settings](https://selfservice.payments.service.gov.uk/settings/) and check 3D Secure is turned on.
+Sign in to your [GOV.UK Pay account settings](https://selfservice.payments.service.gov.uk/settings/) and turn 3D Secure on.
+
+Your live account is now connected to SmartPay. Continue with the next steps to [going live](/switching_to_live/#3-choose-which-card-types-to-accept).
