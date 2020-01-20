@@ -104,16 +104,12 @@ return to your service. You could use either encrypted client side sessions,
 or server-side sessions using session store.
 
 We recommend that you do not encode any reference number or user-
-specific information in the `return_url`.
+specific information  in the `return_url`. For example, do not use
+`/payment_12345` at the end of your `return_url`.
 
 If you do, an attacker may be able to guess the reference in your
 `return_url` and gain access to another user's personal information displayed
 on your confirmation screen.
-
-|      | Example |
-|------|---------|
-| Good | `https://my.service.gov.uk/return` |
-| Bad  | `https://my.service.gov.uk/return/payment_12345` |
 
 You must [use HTTPS for your `return_url`](/security/#https), but you can use
 HTTP with test accounts.
