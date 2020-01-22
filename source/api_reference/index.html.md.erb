@@ -175,7 +175,7 @@ Common status codes are:
 | Get refunds | P0800 | `refundId` not found | No refund matched the `refundId` you provided. |
 | Get refunds | P0898 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | General | P0900 | Too many requests | Your service account is sending requests above the allowed rate. Please try the request again in a few seconds. |
-| General | P0920 | Request blocked by security rules | Our firewall blocked your request. [Check your API request](/troubleshooting/#troubleshooting). |
+| General | P0920 | Request blocked by security rules | Our firewall blocked your request. Find out [how to fix a P0920 error](#fix-a-p0920-api-error). |
 | General | P0999 | GOV.UK Pay is unavailable | The GOV.UK Pay service is temporarily down. |
 | Delayed capture | P1000 | No match for `paymentId` | No payment matched the `paymentId` you provided. |
 | Delayed capture | P1003 | Payment cannot be captured | You can only capture a payment if the payment has a `status` of `capturable`. |
@@ -196,6 +196,18 @@ The general format of JSON error response bodies is:
 These error descriptions are intended for developers, not your users.
 
 Some errors may contain additional fields , such as `field`.
+
+#### Fix a P0920 API error
+
+If you receive a P0920 API error code, our firewall blocked your request.
+
+To fix a P0920 API error, make sure your API request:
+
+- has a `Content-Type: application/json` header
+- uses `application/json` in the `Accept` header if you're using an `Accept` header
+- uses `https` in the `return_url`, not `http`
+- does not use invalid characters like `<`, `>`, `|`, `"` or `\`
+- does not have an empty request body if you're making a `POST` request
 
 ### Errors caused by payment statuses
 
