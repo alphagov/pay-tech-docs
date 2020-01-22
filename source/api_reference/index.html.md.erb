@@ -197,14 +197,14 @@ These error descriptions are intended for developers, not your users.
 
 Some errors may contain additional fields , such as `field`.
 
-#### Fix a P0920 error
+#### Fix a P0920 API error
 
-If you receive a P0920 API error code, your API request was blocked by our security rules.
+If you receive a P0920 API error code, our firewall blocked your request.
 
-Check that your API request:
+To fix a P0920 API error, make sure your API request:
 
 - has a `Content-Type: application/json` header
-- uses `application/json` in the `Accept` header if you're including one
+- uses `application/json` in the `Accept` header if you're using an `Accept` header
 - uses `https` in the `return_url`, not `http`
 - does not use invalid characters like `<`, `>`, `|`, `"` or `\`
 - does not have an empty request body if you're making a `POST` request

@@ -35,6 +35,7 @@ google_site_verification: "IJ5HOXpZrISM6la-YO_iX0rBUC5YFftpexygcKLsNs4"
 
 redirects:
   /switching_to_live/before_you_switch_to_live/index.html: /switching_to_live/index.html
+  /troubleshooting/index.html: /api_reference/index.html
 
 multipage_nav: true
 collapsible_nav: true
