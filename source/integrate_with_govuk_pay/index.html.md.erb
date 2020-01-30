@@ -78,14 +78,17 @@ Read more about [reporting](/reporting/#reporting) and [refunding payments](/ref
 
 ### When you'll receive payments
 
-You'll receive a payment in your bank account within 2 business days of your user completing their payment.
+You'll receive the money in your bank account within 2 business days of your user completing their payment.
 
-It may take 3 business days if:
+It will take 3 business days if your user completed their payment:
 
-- your user completed their payment after 11pm
-- you use Stripe and your user completed their payment after midnight UTC
+- after midnight UTC on a weekday
+- at the weekend
+- during a bank holiday
 
-It may take longer if the payment is below the minimum 'payout', which is the total amount you must receive from your users before your payment service provider (PSP) will transfer payments to you. If you're using GOV.UK's PSP, the minimum payout is £1.
+It may take longer if the payment is below the ‘minimum payout’. For example, if you use GOV.UK Pay’s payment service provider (PSP), the minimum payout is £1. If your user completes a payment of 20p, you will not receive the money until you’ve received 80p more to reach the minimum payout.
+
+If your PSP is Worldpay, SmartPay or ePDQ, ask your PSP if you need to know your exact minimum payout or payment times.
 
 ## The GOV.UK Pay API
 
