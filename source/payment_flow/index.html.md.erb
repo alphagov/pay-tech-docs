@@ -70,7 +70,7 @@ reaching a final state:
 
 When your user reaches a page in your service where they need to make a payment, you should make clear to your user:
 
-- what product or service they're purchasing
+- what product or service they're paying for
 - how much they'll pay
 
 You should also have a clear call to action that tells your user they're about to pay. For example, a button that says __Pay now__ or __Continue to payment__.
@@ -79,12 +79,12 @@ You do not need to tell your user that they'll be taken to GOV.UK Pay’s pages 
 
 ![](/images/flow-service-payment-page.png)
 
-When your user decides to pay, the service makes a
+When your user decides to pay, your service should make a
 <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
-target="blank">Create new payment</a> call to the GOV.UK Pay API. The body of the call is returned in JSON.
+target="blank">Create new payment</a> call to the GOV.UK Pay API.
 
-For example:
+The API response is in JSON format. For example:
 
 ```javascript
 {
@@ -162,7 +162,7 @@ card details__ page where they can enter their:
 
 - card number
 - card expiry date
-- name on their card
+- name from their card
 - card security code
 - billing address
 - email address
@@ -189,7 +189,7 @@ The payment confirmation page shows what your user entered for their:
 
 - card number - last 4 digits only
 - card expiry date
-- name on their card
+- name from their card
 - billing address
 - email address
 
@@ -198,7 +198,7 @@ pay.
 
 ![](/images/flow-payment-confirm-page.png)
 
-Your user then decides whether or not to complete their payment.
+Your user then decides whether to complete their payment.
 
 If your user decides to complete the payment, they select __Confirm__. They
 will then:
