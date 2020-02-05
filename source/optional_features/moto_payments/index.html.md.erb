@@ -1,0 +1,44 @@
+---
+title: Take payments over the phone ('MOTO' payments)
+weight: 200
+---
+
+# Take payments over the phone (‘MOTO’ payments)
+
+We can set up your service so you can fill in GOV.UK Pay payment pages with your users’ details.
+
+This means you can take payments:
+
+- over the phone
+- by post
+
+These payments are also known as Mail Order Telephone Order (MOTO) payments.
+
+After we set up your service, you'll no longer be able to create payments where users fill in their details themselves. [Create a separate service](https://selfservice.payments.service.gov.uk/my-services/create) if you need to do this.
+
+You cannot take MOTO payments if your payment service provider (PSP) is SmartPay.
+
+## Set up your account
+
+[Contact us](/support_contact_and_more_information/#general-feedback) and we’ll:
+
+- review your [Payment Card Industry Data Security Standards (PCI DSS) assessment](https://docs.payments.service.gov.uk/security/#payment-card-industry-pci-compliance) to check you can take payments over the phone and by post
+- enable MOTO payments in your service
+
+## Creating MOTO payments
+
+To complete a MOTO payment, you must collect the following from your user:
+
+- card number
+- card expiry date
+- card security code
+- name from their card
+- email address - if you’ve [enabled collecting your users’ email addresses](/integrate_with_govuk_pay/#collecting-your-users-39-billing-addresses)
+
+1. [Create a payment](/making_payments/#making-payments) with the GOV.UK Pay API, and include `moto: true` in the request body.
+
+2. Go to the `next_url` included in the body of the response to your API call.
+
+3. Fill in your user’s information on the **Enter card details** page.
+
+4. Confirm the payment on the **Confirm your payment** page.

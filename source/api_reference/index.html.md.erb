@@ -150,7 +150,7 @@ Common status codes are:
 |--------------|------------|---------|-------|
 | Create payment | P0101 | Missing mandatory attribute | The request you sent is missing a required attribute. |
 | Create payment | P0102 | Invalid attribute value | The value of an attribute you sent is invalid. |
-| Create payment | P0197 | Unable to parse JSON | The JSON you sent in the request body is invalid. |
+| Create payment | P0197 | Unable to parse JSON | The JSON you sent in the request body is invalid. Check the JSON in your request body, or [contact us about Mail Order Telephone Order (MOTO) payments](/optional_features/moto_payments/) if you've used `moto: true` in your request.|
 | Create payment | P0198 | Downstream system error | Internal error with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | Create payment | P0199 | Account error | There is a problem with your service account. Please [contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
 | Find payment by ID | P0200 | `paymentId` not found | No payment matched the `paymentId` you provided. |
