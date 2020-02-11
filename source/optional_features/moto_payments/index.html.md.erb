@@ -12,13 +12,13 @@ This means you can take payments:
 - over the phone
 - by post
 
-These payments are also known as Mail Order Telephone Order (MOTO) payments.
+These payments are also known as Mail Order / Telephone Order (MOTO) payments.
 
 You cannot take MOTO payments if your payment service provider (PSP) is SmartPay.
 
 ## Set up your account
 
-[Contact us](/support_contact_and_more_information/#general-feedback) and we’ll:
+Email [govuk-pay-support@digital.cabinet-office.gov.uk](govuk-pay-support@digital.cabinet-office.gov.uk) and we’ll:
 
 - review your [Payment Card Industry Data Security Standards (PCI DSS) assessment](https://docs.payments.service.gov.uk/security/#payment-card-industry-pci-compliance) to check you can take payments over the phone and by post
 - enable MOTO payments in your account
@@ -33,7 +33,7 @@ Make sure you've collected your user's:
 - name from their card
 - email address - if you’ve [enabled collecting your users’ email addresses](/integrate_with_govuk_pay/#collecting-your-users-39-billing-addresses)
 
-Do the following to create and complete the MOTO payment.
+Follow these steps to create and complete the MOTO payment.
 
 1. If your PSP is Worldpay or ePDQ, make sure you're using an API key from your MOTO account in [your services](https://selfservice.payments.service.gov.uk/my-services).
 
@@ -51,7 +51,9 @@ Do the following to create and complete the MOTO payment.
 
 ## Create an online payment
 
-To create a payment where your user fills in their details themselves, [create a payment](/making_payments/#making-payments) with the GOV.UK Pay API using:
+After we enable MOTO payments in your account, you can still create payments where your user fills in their details themselves.
+
+[Create a payment](/making_payments/#making-payments) with the GOV.UK Pay API using:
 
 - `moto: false` in the request body
 - an API key from your normal account in [your services](https://selfservice.payments.service.gov.uk/my-services), if your PSP is Worldpay or ePDQ
