@@ -27,11 +27,11 @@ Include a `metadata` object in the body of your request to [create a new payment
 
 The `metadata` object must contain between 1 and 10 parameters.
 
-Each parameter key must be a unique string between 1 and 30 characters long. If 2 or more keys are identical, the API will remove all but one of the identical keys from the `metadata` object.
+Each parameter key must be a unique case-insensitive string between 1 and 30 characters long. If 2 or more keys are identical, the API will remove all but one of the identical keys from the `metadata` object.
 
 The data type of each parameter value must be either a:
 
-- case-insensitive string of no more than 50 characters
+- string of no more than 50 characters
 - number
 - boolean
 
