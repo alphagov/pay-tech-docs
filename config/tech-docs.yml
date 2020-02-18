@@ -41,3 +41,8 @@ multipage_nav: true
 collapsible_nav: true
 
 enable_search: true
+
+owner_slack_workspace: gds
+default_owner_slack: '#govuk-pay-support'
+show_review_banner: false
+show_expiry: false
