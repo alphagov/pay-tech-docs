@@ -1,6 +1,8 @@
 ---
 title: Adding custom metadata
 weight: 135
+last_reviewed_on: 2020-02-18
+review_in: 2 months
 ---
 
 # Adding custom metadata
@@ -25,7 +27,7 @@ Include a `metadata` object in the body of your request to [create a new payment
 
 The `metadata` object must contain between 1 and 10 parameters.
 
-Each parameter key must be a unique string between 1 and 30 characters long. If a key is not unique, the API will remove all but one of the duplicate keys from the `metadata` object.
+Each parameter key must be a unique case-insensitive string between 1 and 30 characters long. If 2 or more keys are identical, the API will remove all but one of the identical keys from the `metadata` object.
 
 The data type of each parameter value must be either a:
 
