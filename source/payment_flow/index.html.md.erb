@@ -307,9 +307,6 @@ To check the status of a payment, you must make an API call to either:
 
 You must not [search payments](/reporting/#generate-a-list-of-payments-search-payments) to check the status of a payment. Search results are asynchronous so the payment status may not be up-to-date.
 
-The URL to do this is the same as the `self` URL provided in the response
-when the payment was first created.
-
 The response body contains information about the payment in JSON
 format. The following is the start of a typical response:
 
