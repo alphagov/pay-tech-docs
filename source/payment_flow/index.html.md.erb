@@ -300,10 +300,12 @@ the `return_url`, your service should:
 
 Read more about [matching your users to payments](/making_payments/#choose-the-return-url-and-match-your-users-to-payments).
 
-To check the status of a payment, you must make a <a
-href="https://govukpay-api-browser.cloudapps.digital/#getpayment"
-target="blank">Find payment by ID</a> API call,
-using the `payment_id` of the payment as the parameter.
+To check the status of a payment, you must make an API call to either:
+
+- [get information about a single payment](/reporting/#get-information-about-a-single-payment)
+- [get events for a payment](https://govukpay-api-browser.cloudapps.digital/#get-events-for-a-payment)
+
+You must not [search payments](/reporting/#generate-a-list-of-payments-search-payments) to check the status of a payment. Search results are asynchronous so the payment status may not be up-to-date.
 
 The URL to do this is the same as the `self` URL provided in the response
 when the payment was first created.
