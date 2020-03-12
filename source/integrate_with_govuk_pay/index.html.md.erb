@@ -67,7 +67,7 @@ using the API.
 
 For example, you could automatically fetch data about the outcome of payment journeys. You could import that into your finance system so payments can be reconciled against bank transaction information.
 
-If you [generate a list of payments](/reporting/#generate-a-list-of-payments-search-payments) at the end of each day, you should use a `to_date` of at least one hour before you generate the list. This is because the API may not return up-to-date information about payment events from the last hour.
+If you [generate a list of payments](/reporting/#generate-a-list-of-payments-search-payments) at the end of each day, you should run it at least one hour after your `to_date`. This is because the API may not return up-to-date information about payment events from the last hour.
 
 To help you reconcile payments, you can:
 
