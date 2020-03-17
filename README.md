@@ -76,6 +76,9 @@ bundle exec middleman build
 This will create a `build` subfolder in the application folder which contains
 the HTML and asset files ready to be published.
 
+During the build, [`html-proofer`](https://github.com/gjtorikian/html-proofer)
+will check the HTML files for broken internal links.
+
 ## Updating the template
 
 You can update to the latest version of [tech-docs-template][] by running:
