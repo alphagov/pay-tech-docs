@@ -54,7 +54,7 @@ GEM
     execjs (2.7.0)
     fast_blank (1.0.0)
     fastimage (2.1.7)
-    ffi (1.12.1)
+    ffi (1.12.2)
     govuk_tech_docs (2.0.11)
       activesupport
       chronic (~> 0.10.2)
@@ -77,7 +77,7 @@ GEM
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
     hashie (3.6.0)
-    html-proofer (3.15.1)
+    html-proofer (3.15.2)
       addressable (~> 2.3)
       mercenary (~> 0.3)
       nokogumbo (~> 2.0)
@@ -150,7 +150,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.13.0)
     multi_json (1.14.1)
-    nokogiri (1.10.8)
+    nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
@@ -199,7 +199,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
-    yell (2.2.1)
+    yell (2.2.2)
 
 PLATFORMS
   ruby
