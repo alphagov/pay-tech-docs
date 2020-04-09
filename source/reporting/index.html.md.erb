@@ -59,7 +59,7 @@ designing a service.
 
 For example, the response for a successful payment contains:
 
-```
+```JSON
 "state": {
   "status": "success",
   "finished": true
@@ -74,7 +74,7 @@ other useful information. For example, if your user has gone far enough in their
 payment journey, the `"card_details"` section contains information that they
 have entered when making a payment:
 
-```
+```JSON
 "card_details": {
   "card_type": "debit",
   "card_brand": "visa",
@@ -105,7 +105,7 @@ The response contains:
 
 For example:
 
-```
+```JSON
 "settlement_summary": {
   "capture_submit_time": "2016-01-21T17:15:000Z",
   "captured_date": "2016-01-21"
@@ -120,7 +120,7 @@ If you use GOV.UK's Payment Service Provider (PSP), we'll automatically deduct t
 
 Example response:
 
-```
+```JSON
 "total_amount": 4000,
 "fee": 200,
 "net_amount": 3800
@@ -138,6 +138,46 @@ The response will not contain a `fee` or `net_amount` parameter if either:
 - you're [using a test API key](/quick_start_guide/#test-the-api) - we do not deduct fees from test payments
 
 You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see transaction fee information or export the information in a CSV file.
+
+## Get a payment’s events
+
+Use the following API call to get a list of a payment’s events:
+
+`GET /v1/payments/paymentId/events`
+
+The API will respond with an `events` object. For each change to the payment's state, the `events` object includes:
+
+- when the `state` changed
+- what the `state` was updated to
+
+The response starts with the oldest `state`.
+
+For example:
+
+```JSON
+{
+    "events": [
+        {
+            "payment_id": "9co6rdsak0btz4wuxac0a29i4a",
+            "state": {
+                "status": "created",
+                "finished": false
+            },
+            "updated": "2019-07-11T10:36:26.988Z",
+        },
+        {
+            "payment_id": "9co6rdsak0btz4wuxac0a29i4a",
+            "state": {
+                "status": "failed",
+                "finished": true,
+                "message": "Payment expired",
+                "code": "P0020"
+            },
+            "updated": "2019-07-11T12:11:35.849Z",
+        }
+    ],
+}
+```
 
 ## Generate a list of payments (search payments)
 
