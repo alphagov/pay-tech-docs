@@ -139,11 +139,11 @@ The response will not contain a `fee` or `net_amount` parameter if either:
 
 You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see transaction fee information or export the information in a CSV file.
 
-## Get the events that have happened to a payment
+## Get a payment’s events
+
+Use the following API call to get a list of a payment’s events:
 
 `GET /v1/payments/paymentId/events`
-
-Use this API call to get a list of the changes a payment's `state` has been through ('payment events').
 
 The API will respond with an `events` object. For each change to the payment's state, the `events` object includes:
 
