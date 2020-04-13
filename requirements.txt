@@ -1,1 +1,1 @@
-credstash==1.16.2
+credstash==1.17.1
