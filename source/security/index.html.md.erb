@@ -1,6 +1,8 @@
 ---
 title: Security
 weight: 140
+last_reviewed_on: 2020-02-21
+review_in: 3 months
 ---
 
 # Security
@@ -73,6 +75,16 @@ take care not to use any real card numbers. Read more about [testing](/testing_g
 ## Securing your users' information
 
 GOV.UK Pay does not store full card numbers or CVV data for security reasons. This means you will not be able to search for transactions using card numbers. You can, however, search for the first six digits and the last four digits of a card.
+
+## Preventing fraudulent payments
+
+If you think you’re receiving fraudulent payments, you can:
+
+- [block users from paying with prepaid cards](https://docs.payments.service.gov.uk/optional_features/block_prepaid_cards/#block-prepaid-cards)
+- [delay capture of payments](https://docs.payments.service.gov.uk/optional_features/delayed_capture/#delayed-capture-of-payments) if you need time to do your own anti-fraud checks
+- check your payment service provider's (PSP's) security settings, or [contact us](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us) if your PSP is Stripe
+
+If your PSP is Worldpay, you can also set up your account to [make 'risk management' fraud checks](http://support.worldpay.com/support/kb/gg/merchantadmininterface/Merchant%20Interface%20Guide.htm#5risk/risk_management.htm%3FTocPath%3DRisk%7C_____2). If you do this, you must [contact us](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us) and ask us to send your user's IP address to Worldpay during each payment, or your payments may stop working.
 
 ## Cloud security principles
 
