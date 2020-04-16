@@ -30,15 +30,17 @@ You cannot use 3D Secure with test accounts.
 
 You must [contact us](/support_contact_and_more_information) to get written approval before you do any performance testing.
 
-## Mock card numbers
+## Mock card numbers and email addresses
 
-Use mock card numbers with your test account when you try payments as a user. Do not use real card numbers with your test account.
+Use mock card numbers and email addresses with your test account when you try payments as a user.
+
+Do not use real card numbers or fake email addresses with your test account.
 
 You can enter any valid value for other payment fields. For example, the card expiry date can be any date in the future.
 
-Mock card numbers do not work with your live account.
+### Mock card numbers
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
+Mock card numbers do not work with your live account.
 
 |Testing action |Card number | Card brand | Card type |
 | -------- | ------- | ------- | ------- |
@@ -63,4 +65,10 @@ Mock card numbers do not work with your live account.
 |Invalid CVC code|4000000000000127|Visa| Credit or debit |
 |General error|4000000000000119|Visa| Credit or debit |
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
+### Mock email addresses
+
+Use one of the following:
+
+- simulate-delivered@notifications.service.gov.uk
+- simulate-delivered-2@notifications.service.gov.uk
+- simulate-delivered-3@notifications.service.gov.uk
