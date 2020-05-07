@@ -47,15 +47,10 @@ back to your service.
 A final state means that the payment:
 
 * succeeds
-
 * fails because it is declined
-
 * fails because your user chooses to cancel
-
 * fails due to a technical error
-
 * fails because it is cancelled by your service
-
 * expires - your user has 90 minutes to complete a payment once it's created
 
 When your user arrives back at your service, you can use the API to check the
@@ -219,11 +214,8 @@ If you have set up confirmation emails, your user will receive a payment
 confirmation email containing:
 
 * a payment reference number
-
 * the date of payment
-
 * who the payment was made to
-
 * the total payment amount
 
 You can add a custom paragraph to a payment confirmation email at the [email
@@ -241,13 +233,9 @@ notifications.
 The confirmation page is hosted by your service and should:
 
 * confirm that payments have been received successfully
-
 * contain a reference number, which should be short
-
 * have a clear payment summary, showing the amount and description
-
 * clearly state what is going to happen next - this will be different for each service
-
 * if applicable, let your user know they will receive a receipt email (using GOV.UK Notify or GOV.UK Pay)
 
 Your users have different ways of recording this confirmation information. This can
@@ -263,11 +251,8 @@ System](https://www.gov.uk/service-manual/design/confirmation-pages).
 The payment can fail at any point in the process due to:
 
 * your user selecting __Cancel payment__ on the __Enter card details__ or __Confirm your payment__ pages
-
 * the payment being declined
-
 * your service cancelling the payment
-
 * a technical error
 
 If the payment fails, your user will see a GOV.UK Pay error page, which
@@ -293,9 +278,7 @@ The `return_url` should specify a page on your service. When your user visits
 the `return_url`, your service should:
 
 * match your returning user with their payment (with a secure cookie, or a secure random ID string included in the `return_url`)
-
 * check the status of the payment using an API call
-
 * display an appropriate final page, hosted by your service
 
 Read more about [matching your users to payments](/making_payments/#choose-the-return-url-and-match-your-users-to-payments).
@@ -327,7 +310,6 @@ format. The following is the start of a typical response:
 The `state` array within the JSON lets you know the outcome of the payment:
 
 * `status` describes a stage of the payment journey
-
 * `finished` indicates if the payment journey is complete or not - that is, if the `status` of this payment can change
 
 ### Resuming an incomplete payment
