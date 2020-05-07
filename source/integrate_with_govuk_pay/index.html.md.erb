@@ -11,15 +11,10 @@ This guidance is for technical architects or developers planning to integrate
 their service with the GOV.UK Pay API. It describes:
 
 * the requirements for your service’s backend
-
 * what data you need to store and why
-
 * typical data flows for using the GOV.UK Pay API in an integration
-
 * when to release services to your users
-
 * making sure that all payments are processed
-
 * integrating with finance and accounting systems
 
 The following diagram shows a typical high-level architecture with a GOV.UK
@@ -32,18 +27,12 @@ Pay integration:
 Your service backend is server-side software. You should build this to:
 
 * make a call to the GOV.UK Pay API to start the payment journey
-
 * store information about user payment journeys in your datastore
-
 * redirect your user to the `next_url` provided by GOV.UK Pay, where your user
 will [enter their payment information and confirm their payment](/payment_flow/#making-a-payment)
-
 * receive your user's request when they are redirected back to your service via the `return_url`, where your user will return [after they complete their payment](/payment_flow/#making-a-payment)
-
 * identify your returning user via the session
-
 * make a call to the GOV.UK Pay API to determine the outcome of the payment
-
 * display information about the outcome of the payment and next steps to your user
 
 ## Datastore
@@ -51,13 +40,9 @@ will [enter their payment information and confirm their payment](/payment_flow/#
 You will likely need some kind of server-side datastore to record payment information for each payment journey. You should store:
 
 * an ID or primary key
-
 * the service your user requested
-
 * the GOV.UK Pay `paymentId`
-
 * the status of the payment
-
 * the date and time the payment was started
 
 ## Finance and accounting systems
@@ -132,7 +117,6 @@ There are 2 failure cases which affect the design of your integration with
 GOV.UK Pay:
 
 * your user abandons their payment journey before completing it
-
 * your user completes their payment successfully, but their network connection is
 interrupted before they return to your service
 
@@ -143,7 +127,6 @@ possible to your user, so you would check the payment outcome when your
 However, in the failure cases, your user will never visit the `return_url`. Instead, you should either:
 
 * make sure your service team can manually check payment outcomes in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login)
-
 * use an automatic mop-up job (recommended)
 
 ### Have your service team manually check the payment outcome
@@ -160,7 +143,6 @@ and automatically. A mop-up job is a background process which checks the outcome
 In order to use a mop-up job, you need:
 
 * a datastore which keeps track of incomplete payment journeys
-
 * a server-side process which periodically checks the datastore for incomplete payment journeys, and queries the GOV.UK Pay API to determine the outcome
 
 The following UML sequence diagram shows an example of an incomplete payment journey, and how a mop-up job would clean it up:
