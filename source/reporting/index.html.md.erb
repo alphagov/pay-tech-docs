@@ -184,6 +184,8 @@ For example:
 
 See the <a href="https://govukpay-api-browser.cloudapps.digital/#searchpayments" target="blank">GOV.UK Pay API browser</a> for more details
 
+Do not search payments using the API to check a payment's status during [payment flow](/payment_flow). Search results are asynchronous so the payment status may not be up-to-date.
+
 ### Search criteria
 
 An example search request:
