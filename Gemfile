@@ -9,6 +9,4 @@ gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby]
 gem 'govuk_tech_docs', '~> 2.0.11'
 gem 'middleman-search', git: 'git://github.com/alphagov/middleman-search.git'
 
-gem 'therubyracer'
-
 gem 'html-proofer'
