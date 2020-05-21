@@ -28,7 +28,7 @@ There's a different process for [taking Direct Debit payments](/direct_debit/#di
 The following diagram outlines the payment process for a service that has a GOV.UK Pay
 integration:
 
-<%= image_tag "/images/card-payment-process.png", { :alt => '' } %>
+![](/images/card-payment-process.png)
 
 The diagram shows the relationship between GOV.UK Pay, payment service providers
 (PSPs) and issuing banks.
@@ -59,7 +59,7 @@ status of the transaction and show them an appropriate message.
 The following diagram illustrates the states a payment can pass through before
 reaching a final state:
 
-<%= image_tag "/images/payment-states.svg", { :alt => '' } %>
+![](/images/payment-states.svg)
 
 ## Making a payment
 
@@ -72,7 +72,7 @@ You should also have a clear call to action that tells your user they're about t
 
 You do not need to tell your user that they'll be taken to GOV.UK Pay’s pages to make their payment.
 
-<%= image_tag "/images/flow-service-payment-page.png", { :alt => '' } %>
+![](/images/flow-service-payment-page.png)
 
 When your user decides to pay, your service should make a
 <a
@@ -165,7 +165,7 @@ card details__ page where they can enter their:
 This page also shows the `description` and the amount your user has to
 pay, making it clear what they’re paying for.
 
-<%= image_tag "/images/flow-payment-details-page.png", { :alt => '' } %>
+![](/images/flow-payment-details-page.png)
 
 > GOV.UK Pay payment pages are responsive and work on both desktop and mobile.
 
@@ -191,7 +191,7 @@ The payment confirmation page shows what your user entered for their:
 This page also shows the `description` and the amount your user has to
 pay.
 
-<%= image_tag "/images/flow-payment-confirm-page.png", { :alt => '' } %>
+![](/images/flow-payment-confirm-page.png)
 
 Your user then decides whether to complete their payment.
 
@@ -264,7 +264,7 @@ show them a page that confirms that the payment failed. This should either:
 
 Your page should also tell your user that no money has been taken from their account.
 
-<%= image_tag "/images/flow-payment-declined.png", { :alt => '' } %>
+![](/images/flow-payment-declined.png)
 
 You can also choose to [use your own payment failure pages](/optional_features/use_your_own_error_pages/#use-your-own-payment-failure-pages).
 
