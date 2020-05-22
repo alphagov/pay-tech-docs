@@ -1,5 +1,7 @@
 ---
 title: Making payments
+last_reviewed_on: 2020-05-21
+review_in: 3 months
 weight: 68
 ---
 
@@ -64,10 +66,10 @@ The description must be no longer than 255 characters, and must not contain URLs
 
 This is a URL that your service hosts for your user to return to, after their payment journey on GOV.UK Pay ends.
 
+You must [use HTTPS for your `return_url`](/security/#https), but you can use
+HTTP with test accounts.
+
 The URL must be no longer than 2,000 characters, and must not be JSON-encoded because backslashes are invalid characters in the API.
-
-If you're making a test payment using a test account, you can [use HTTP for return URLs instead of HTTPS](/security/#https).
-
 
 Refer to the <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
@@ -116,7 +118,7 @@ possession of the `next_url` could hijack your user’s payment.
 ## Track the progress of a payment
 
 You can track the progress of a payment using the <a
-href="https://govukpay-api-browser.cloudapps.digital/#getpayment"
+href="https://govukpay-api-browser.cloudapps.digital/#get-a-payment"
 target="blank">Find payment by ID</a> call.
 
 The status of the payment will pass through several states until it either
@@ -199,7 +201,7 @@ progress. Alternatively, a service can make the following API call for a given
 
 A `204` response indicates success. Any other response indicates an error.
 
-See the <a href="https://govukpay-api-browser.cloudapps.digital/#cancelpayment" target="blank">GOV.UK Pay API browser</a> for more details.
+See the <a href="https://govukpay-api-browser.cloudapps.digital/#cancel-a-payment" target="blank">GOV.UK Pay API browser</a> for more details.
 
 ### Find out if you can cancel a payment
 
