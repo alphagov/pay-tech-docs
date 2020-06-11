@@ -1,0 +1,56 @@
+---
+title: Set up 3D Secure
+last_reviewed_on: 2020-06-10
+review_in: 3 months
+weight: 110
+---
+
+# Set up 3D Secure (3DS)
+
+How you set up 3DS payment authentication depends on:
+
+- which Payment Service Provider (PSP) you're using
+- if you want to set up 3D Secure 2 (3DS2), which adds an extra layer of identity confirmation before your user pays
+
+## Stripe
+
+You do not need to do anything, because we set up 3DS2 on your service by default.
+
+## ePDQ
+
+1. Sign in to your [ePDQ account](https://payments.epdq.co.uk/Ncol/Prod/BackOffice/login/index).
+2. Go to __Configuration__ then  __Payment methods__.
+3. Select __3D Secure__.
+4. Check that 3DS is on.
+5. In the GOV.UK Pay admin tool, go to your [__My services__](https://selfservice.payments.service.gov.uk/my-services) page, then select the account you want to set up
+6. In the settings, select the __View__ link under __3D Secure__.
+7. Select __On__.
+
+## SmartPay
+
+1. Select the account you want to set up on the [__My services__](https://selfservice.payments.service.gov.uk/my-services) page in the GOV.UK Pay admin tool.
+2. In the settings, select the __View__ link under __3D Secure__.
+3. Select __On__.
+
+You do not need to do anything in your Smartpay account.
+
+## Worldpay
+
+### Set up 3DS
+
+1. Ask your Worldpay account manager to set up 3DS on your merchant code for all payments.
+2. Once Worldpay have set up your merchant code, select the account you want to set up on the [__My services__](https://selfservice.payments.service.gov.uk/my-services) page in the GOV.UK Pay admin tool.
+3. In the settings, select the __View__ link under __3D Secure__.
+4. Select __On__.
+
+### Set up 3DS2 (3DS Flex)
+
+You must pay a fee to Worldpay to use 3DS Flex.
+
+You'll need your 3DS Flex details to set up your account. Ask your Worldpay account manager if you do not have your details.
+
+1. Select the account you want to set up on the [__My services__](https://selfservice.payments.service.gov.uk/my-services) page in the GOV.UK Pay admin tool.
+2. In the settings, select the __View__ link under __3D Secure__.
+3. Select __On__.
+4. Copy your 3DS Flex details into the [PSP settings in your GOV.UK Pay account](https://selfservice.payments.service.gov.uk/your-psp).
+5. Check your account still works by [making a payment with a real payment card](/switching_to_live/#6-check-your-live-account-works).
