@@ -1,0 +1,113 @@
+---
+resource_types:
+  - name: cf-cli
+    type: docker-image
+    source:
+      repository: nulldriver/cf-cli-resource
+
+  - name: pull-request
+    type: docker-image
+    source:
+      repository: teliaoss/github-pr-resource
+
+resources:
+  - name: pay-tech-docs
+    type: git
+    icon: github-circle
+    source:
+      uri: https://github.com/alphagov/pay-tech-docs
+      branch: master
+
+  - name: pull-request
+    type: pull-request
+    source:
+      repository: alphagov/pay-tech-docs
+      access_token: ((github-access-token))
+
+  - name: paas
+    type: cf-cli
+    icon: cloud-upload-outline
+    source:
+      api: https://api.cloud.service.gov.uk
+      org: govuk-pay
+      space: docs
+      username: ((paas-ireland-username))
+      password: ((paas-ireland-password))
+
+jobs:
+  - name: deploy
+    serial: true
+    plan:
+      - get: pay-tech-docs
+        trigger: true
+      - task: build
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source:
+              repository: ruby
+          inputs:
+            - name: pay-tech-docs
+          outputs:
+            - name: pay-tech-docs/build
+          caches:
+            - path: pay-tech-docs/vendor
+          run:
+            dir: pay-tech-docs/docs
+            path: bash
+            args:
+              - -c
+              - |
+                set -o errexit -o nounset -o pipefail
+                apt-get update && apt-get install -y nodejs npm
+                gem install bundler
+                bundle install --deployment
+                bundle exec middleman build
+      - put: paas
+        params:
+          command: push
+          app_name: govuk-pay-tech-docs
+          path: pay-tech-docs/build
+          manifest: pay-tech-docs/manifest.yml
+  - name: build-pr
+    serial: true
+    plan:
+      - get: pull-request
+        trigger: true
+      - put: pull-request
+        params:
+          path: pull-request
+          status: pending
+      - task: build
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source:
+              repository: ruby
+          inputs:
+            - name: pull-request
+          caches:
+            - path: pull-request/vendor
+          run:
+            dir: pull-request/docs
+            path: bash
+            args:
+              - -c
+              - |
+                set -o errexit -o nounset -o pipefail
+                apt-get update && apt-get install -y nodejs npm
+                gem install bundler
+                bundle install --deployment
+                bundle exec middleman build
+        on_failure:
+          put: pull-request
+          params:
+            description: "Build failed on PR"
+            path: pull-request
+            status: failure
+      - put: pull-request
+        params:
+          path: pull-request
+          status: success
