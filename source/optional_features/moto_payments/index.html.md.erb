@@ -25,19 +25,19 @@ You cannot take MOTO payments:
 
 If your PSP is Worldpay or ePDQ, you must first:
 
-- [create a new GOV.UK Pay account](https://selfservice.payments.service.gov.uk/create-service/register) for MOTO payments 
+- [create a new GOV.UK Pay service](https://selfservice.payments.service.gov.uk/create-service/register) for MOTO payments
 - contact your PSP and ask for a new merchant code for MOTO payments
 
 [Contact Government Banking](https://www.gov.uk/government/groups/government-banking-service-gbs) instead if you use them.
 
-You cannot use an existing GOV.UK Pay account or an existing merchant code.
+You cannot use an existing GOV.UK Pay service or an existing merchant code.
 
 ## Set up your account
 
 Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) and we'll:
 
 - review your [Payment Card Industry Data Security Standards (PCI DSS) assessment](/security/#payment-card-industry-pci-compliance) to check you can take payments over the phone and by post
-- enable MOTO payments in your account
+- enable MOTO payments in your service
 
 ## Create a MOTO payment
 
@@ -51,7 +51,7 @@ Make sure you've collected your user's:
 
 Follow these steps to create and complete the MOTO payment.
 
-1. If your PSP is Worldpay or ePDQ, make sure you're using an API key from your MOTO account in [your services](https://selfservice.payments.service.gov.uk/my-services).
+1. If your PSP is Worldpay or ePDQ, make sure you're using an API key from your MOTO service in [your services](https://selfservice.payments.service.gov.uk/my-services).
 
 2. [Create a payment](/making_payments/#making-payments) with the GOV.UK Pay API, and include `moto: true` in the request body.
 
@@ -67,9 +67,9 @@ Follow these steps to create and complete the MOTO payment.
 
 ## Create an online payment
 
-After we enable MOTO payments in your MOTO account, you can still create payments where your user fills in their details themselves.
+After we enable MOTO payments in your account, you can still create payments where your user fills in their details themselves.
 
 [Create a payment](/making_payments/#making-payments) with the GOV.UK Pay API using:
 
 - `moto: false` in the request body
-- an API key from your normal account in [your services](https://selfservice.payments.service.gov.uk/my-services), if your PSP is Worldpay or ePDQ
+- an API key from your normal service in [your services](https://selfservice.payments.service.gov.uk/my-services), if your PSP is Worldpay or ePDQ
