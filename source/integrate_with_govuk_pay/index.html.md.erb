@@ -65,18 +65,31 @@ Read more about [reporting](/reporting/#reporting) and [refunding payments](/ref
 
 ### When you'll receive payments
 
-You'll receive the money in your bank account within 2 working days of your user completing their payment.
+You'll receive the money in your bank account within 2 working days of your user completing their payment. It will take 3 working days if your user completed their payment at the weekend or on a bank holiday.
 
-It will take 3 working days if your user completed their payment at the weekend or on a bank holiday.
-
-If your PSP is Stripe, you can sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see:
-
-- payments ('payouts') that Stripe has made to your bank account
-- which of your users' payments are in each payout
-
-Your payment service provider (PSP) will only transfer money to you when the total of your users' payments is above your PSP's ‘minimum payout’. For example, if you use GOV.UK Pay’s PSP, the minimum payout is £1.
+Your payment service provider (PSP) will only transfer money to you when the total of your users' payments is above your PSP's ‘minimum payout’. For example if your PSP is Stripe, the minimum payout is £1.
 
 If your PSP is Worldpay, SmartPay or ePDQ, ask your PSP if you need to know your exact minimum payout or payment times.
+
+#### Checking when your PSP sent a payment
+
+If your PSP is Stripe, you can check when Stripe sent a payment to your bank account by making an API call to [get information about a payment](/reporting/#reporting-via-the-gov-uk-pay-api).
+
+Example response:
+
+```json
+"settlement_summary": {
+  ...
+  "psp_settled_date": "2016-01-22",
+}
+```
+
+`psp_settled_date` is either:
+
+- the date that Stripe sent the payment to your bank account as part of a group of payments (‘payout’)
+- missing if Stripe has not yet sent the payment to your bank account
+
+You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see your payout for each day, and which of your users’ payments are in each payout.
 
 ## The GOV.UK Pay API
 
