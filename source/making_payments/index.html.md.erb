@@ -1,11 +1,11 @@
 ---
-title: Making payments
+title: Take a payment
 last_reviewed_on: 2020-05-21
 review_in: 3 months
-weight: 68
+weight: 50
 ---
 
-# Making payments
+# Take a payment
 
 When your user makes a payment, your service should supply a `reference`. If
 possible, this should be a unique identifier for the payment. If your
@@ -48,7 +48,7 @@ The minimum amount is one pence plus your Payment Service Provider's (PSP's) tra
 The maximum amount is either:
 
 - 10,000,000 pence (£100,000)
-- 500,000 pence (£5,000) if you use Government Banking 
+- 500,000 pence (£5,000) if you use Government Banking
 
 Your PSP may set a lower maximum amount. Check with your PSP if you cannot make payments up to the maximum amount.
 
@@ -114,20 +114,7 @@ An example URL:
 The response will also include the ``next_url`` to which you should direct your
 user to complete their payment.
 
-<style>
-.govuk-warning-text{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400;font-size:16px;font-size:1rem;line-height:1.25;color:#0b0c0c;position:relative;margin-bottom:20px;padding:10px 0}@media print{.govuk-warning-text{font-family:sans-serif}}@media (min-width:40.0625em){.govuk-warning-text{font-size:19px;font-size:1.1875rem;line-height:1.31579}}@media print{.govuk-warning-text{font-size:14pt;line-height:1.15;color:#000}}@media (min-width:40.0625em){.govuk-warning-text{margin-bottom:30px}}.govuk-warning-text__assistive{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;-webkit-clip-path:inset(50%)!important;clip-path:inset(50%)!important;border:0!important;white-space:nowrap!important}.govuk-warning-text__icon{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:700;display:inline-block;position:absolute;top:50%;left:0;min-width:32px;min-height:29px;margin-top:-20px;padding-top:3px;border:3px solid #0b0c0c;border-radius:50%;color:#fff;background:#0b0c0c;font-size:1.6em;line-height:29px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}@media print{.govuk-warning-text__icon{font-family:sans-serif}}.govuk-warning-text__text{display:block;margin-left:-15px;padding-left:65px}
-</style>
-
-<br>
-
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-warning-text__assistive">Warning</span>
-Don’t expose the `next_url` to anyone other than your paying user. Anyone in
-possession of the `next_url` could hijack your user’s payment.
-  </strong>
-</div>
+<%= warning_text('Do not expose the `next_url` to anyone other than your paying user. Anyone in possession of the `next_url` could hijack your user’s payment.') %>
 
 ## Track the progress of a payment
 
@@ -163,15 +150,7 @@ Malicious users will be unable to guess securely generated UUIDs.
 If you use this method, you should store your IDs safely. For example, in a
 datastore mapped to the payment ID just after a payment is created.
 
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-warning-text__assistive">Warning</span>
-Make sure the way you match your returning users to payments is tamper-proof.
-For example, don’t store the payment ID in an unencrypted cookie or rely on a
-`return_url` parameter that isn’t secret (like the payment ID or reference).
-  </strong>
-</div>
+<%= warning_text('Make sure the way you match your returning users to payments is tamper-proof. <br><br> For example, don’t store the payment ID in an unencrypted cookie or rely on a `return_url` parameter that isn’t secret (like the payment ID or reference).') %>
 
 ## Accepting your users when they return
 
