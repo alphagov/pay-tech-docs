@@ -50,7 +50,7 @@ Follow these steps to create and complete the MOTO payment.
 
 1. If your PSP is Worldpay or ePDQ, make sure you're using an API key from your MOTO service in [your services](https://selfservice.payments.service.gov.uk/my-services).
 
-2. [Create a payment](/making_payments/#making-payments) with the GOV.UK Pay API, and include `moto: true` in the request body.
+2. [Create a payment](/making_payments/#creating-a-payment) with the GOV.UK Pay API, and include `moto: true` in the request body.
 
 3. Go to the `next_url` included in the body of the response to your API call.
 
@@ -66,7 +66,7 @@ Follow these steps to create and complete the MOTO payment.
 
 After we enable MOTO payments in your account, you can still create payments where your user fills in their details themselves.
 
-[Create a payment](/making_payments/#making-payments) with the GOV.UK Pay API using:
+[Create a payment](/making_payments/#creating-a-payment) with the GOV.UK Pay API using:
 
 - `moto: false` in the request body
 - an API key from your normal service in [your services](https://selfservice.payments.service.gov.uk/my-services), if your PSP is Worldpay or ePDQ
