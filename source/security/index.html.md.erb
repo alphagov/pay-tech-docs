@@ -1,15 +1,11 @@
 ---
 title: Security
-weight: 140
+weight: 200
 last_reviewed_on: 2020-06-02
 review_in: 3 months
 ---
 
 # Security
-
-<style>
-.govuk-warning-text{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:400;font-size:16px;font-size:1rem;line-height:1.25;color:#0b0c0c;position:relative;margin-bottom:20px;padding:10px 0}@media print{.govuk-warning-text{font-family:sans-serif}}@media (min-width:40.0625em){.govuk-warning-text{font-size:19px;font-size:1.1875rem;line-height:1.31579}}@media print{.govuk-warning-text{font-size:14pt;line-height:1.15;color:#000}}@media (min-width:40.0625em){.govuk-warning-text{margin-bottom:30px}}.govuk-warning-text__assistive{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;-webkit-clip-path:inset(50%)!important;clip-path:inset(50%)!important;border:0!important;white-space:nowrap!important}.govuk-warning-text__icon{font-family:nta,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:700;display:inline-block;position:absolute;top:50%;left:0;min-width:32px;min-height:29px;margin-top:-20px;padding-top:3px;border:3px solid #0b0c0c;border-radius:50%;color:#fff;background:#0b0c0c;font-size:1.6em;line-height:29px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}@media print{.govuk-warning-text__icon{font-family:sans-serif}}.govuk-warning-text__text{display:block;margin-left:-15px;padding-left:65px}
-</style>
 
 ## Reporting vulnerabilities
 
@@ -41,17 +37,7 @@ Follow these steps to revoke your API key immediately if you believe it has been
 
 4. Revoke all compromised API keys
 
-<br>
-
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-warning-text__assistive">Warning</span>
-If you believe your key has been used to make fraudulent payments, contact
-the GOV.UK support team using the urgent contact methods provided to your
-service manager.
-  </strong>
-</div>
+<%= warning_text('If you believe your key has been used to make fraudulent payments, contact the GOV.UK support team using the urgent contact methods provided to your service manager') %>
 
 To further secure your live developer keys:
 
@@ -70,7 +56,7 @@ To further secure your live developer keys:
 ## Securing your integration with GOV.UK Pay
 
 Make sure you’ve fully tested your integration with GOV.UK Pay. When doing so,
-take care not to use any real card numbers. Read more about [testing](/testing_govuk_pay/#testing-your-integration).
+take care not to use any real card numbers. Read more about [testing](/testing_govuk_pay/#test-your-integration).
 
 ## Securing your users' information
 
@@ -80,9 +66,9 @@ GOV.UK Pay does not store full card numbers or CVV data for security reasons. Th
 
 If you think you’re receiving fraudulent payments, you can:
 
-- [block users from paying with prepaid cards](https://docs.payments.service.gov.uk/optional_features/block_prepaid_cards/#block-prepaid-cards)
-- [delay capture of payments](https://docs.payments.service.gov.uk/optional_features/delayed_capture/#delayed-capture-of-payments) if you need time to do your own anti-fraud checks
-- check your payment service provider's (PSP's) security settings, or [contact us](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us) if your PSP is Stripe
+- [block users from paying with prepaid cards](/block_prepaid_cards/#block-prepaid-cards)
+- [delay capture of payments](/delayed_capture/#delay-taking-a-payment) if you need time to do your own anti-fraud checks
+- check your payment service provider's (PSP's) security settings, or [contact us](/support_contact_and_more_information/#support) if your PSP is Stripe
 
 If your PSP is Worldpay, you can also set up your account to [make 'risk management' fraud checks](http://support.worldpay.com/support/kb/gg/merchantadmininterface/Merchant%20Interface%20Guide.htm#5risk/risk_management.htm%3FTocPath%3DRisk%7C_____2). If you do this, you must [contact us](https://docs.payments.service.gov.uk/support_contact_and_more_information/#contact-us) and ask us to send your user's IP address to Worldpay during each payment, or your payments may stop working.
 
