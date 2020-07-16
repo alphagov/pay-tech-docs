@@ -1,9 +1,9 @@
 ---
-title: Reporting
-weight: 70
+title: Report on a payment
+weight: 60
 ---
 
-# Reporting
+# Report on a payment
 
 You can extract reporting information from GOV.UK Pay manually or via the
 API, for each service you have set up in GOV.UK Pay.
@@ -127,7 +127,7 @@ Example response:
 
 Where:
 
-- `total_amount` is the amount your user paid in pence, including a [corporate card surcharge](/optional_features/corporate_card_surcharges/#corporate-card-surcharges) if you added one
+- `total_amount` is the amount your user paid in pence, including a [corporate card surcharge](/corporate_card_surcharges/#add-corporate-card-fees) if you added one
 - `fee` is the PSP transaction fee that we took from the amount your user paid, in pence
 - `net_amount` is the amount that will be paid into your account, in pence
 

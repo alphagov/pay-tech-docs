@@ -1,11 +1,11 @@
 ---
-title: Refunding payments
+title: Refund a payment
 last_reviewed_on: 2020-06-29
 review_in: 6 months
-weight: 75
+weight: 70
 ---
 
-# Refunding payments
+# Refund a payment
 
 You can refund all or part of a payment using the GOV.UK Pay API.
 
@@ -48,7 +48,7 @@ For a completed £90 payment where £30 has already been refunded:
 
 ### amount_available
 
-`amount_available` is how much you can refund in pence. The amount includes any [transaction fees](/reporting/#psp-fees) and [corporate card surcharges](/optional_features/corporate_card_surcharges/#corporate-card-surcharges).
+`amount_available` is how much you can refund in pence. The amount includes any [transaction fees](/reporting/#psp-fees) and [corporate card fees](/corporate_card_surcharges/#add-corporate-card-fees).
 
 ### amount_submitted
 
@@ -101,7 +101,7 @@ If GOV.UK Pay could not successfully create the refund, the JSON response will c
 
 The JSON response will include a `status` field.
 
-It may take up to 30 minutes for the status to change. Do not check the status more than once every 5 minutes.  
+It may take up to 30 minutes for the status to change. Do not check the status more than once every 5 minutes.
 
 |status|Meaning|
 |---|---|
@@ -155,7 +155,7 @@ Example response:
         "created_date": "2019-09-20T20:46:01.121Z",
         "amount": 60,
         "status": "success"
-      }      
+      }
     ]
   }
 }
