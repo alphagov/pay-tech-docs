@@ -20,7 +20,7 @@ As an example, take 2 services called ‘parking permits’ and ‘parking fines
 
 ### Type 1 (GOV.UK Pay separate, PSP separate)
 
-<%= image_tag "/images/accountstructure_1.svg", { :alt => '' } %>
+<%= image_tag "/images/accountstructure_1.svg", { :alt => 'A flow diagram showing two GOV.UK Pay services that are completely separated within GOV.UK Pay and the Payment Service Provider' } %>
 
 ‘Parking permits’ and ‘Parking fines’ are considered separate services by
 both GOV.UK Pay and the PSP.
@@ -34,20 +34,21 @@ If you use this account structure, you can:
 
 ### Type 2 (GOV.UK Pay combined, PSP combined)
 
-<%= image_tag "/images/accountstructure_2.svg", { :alt => '' } %>
+<%= image_tag "/images/accountstructure_2.svg", { :alt => 'A flow diagram showing two GOV.UK Pay services that are treated as a single combined service by GOV.UK Pay and the Payment Service Provider' } %>
 
 ‘Parking permits’ and ‘Parking fines’ are considered a single combined
 service by GOV.UK Pay and the PSP.
 
-You may want to use this configuration if you want to simplify the
-administration of multiple services in GOV.UK Pay. For example, if you do not need reporting at an individual service level. The transactions from both services will appear in the same transactions list and CSV file. You may find it useful to use reference numbers to separate payments clearly, for example “parking_fine_1234” and “parking_permit_1234”.
+You may want to use this configuration if you want to simplify the administration of multiple services in GOV.UK Pay. For example, if you do not need reporting at an individual service level.
+
+The transactions from both services will appear in the same transactions list and CSV file. You may find it useful to use reference numbers to separate payments clearly, for example “parking_fine_1234” and “parking_permit_1234”.
 
 In this configuration, payments to services must go to the same bank account because
 they are a single service in the PSP. It is not possible to support multiple PSP accounts in a single GOV.UK Pay service.
 
 ### Type 3 (GOV.UK Pay separate, PSP combined)
 
-<%= image_tag "/images/accountstructure_3.svg", { :alt => '' } %>
+<%= image_tag "/images/accountstructure_3.svg", { :alt => 'A flow diagram showing two GOV.UK Pay services that are treated as separate services by GOV.UK Pay and a single combined service by the Payment Service Provider' } %>
 
 ‘Parking permits’ and ‘Parking fines’ are considered separate services by
 GOV.UK Pay and as a single combined service in the PSP.

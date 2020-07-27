@@ -154,7 +154,9 @@ The following UML sequence diagram shows an example of an incomplete payment jou
 
 ![A mop-up job acting on an incomplete payment journey](/images/incomplete-payment-journey-sequence.svg)
 
-Your mop-up job should run frequently, for example every half an hour. It should ignore payments made in the past 3 hours to avoid interfering with payments that are still being processed. If it finds ‘stale’ incomplete payment journeys then it’s likely your users have abandoned those payments. The mop-up job should call the GOV.UK Pay API to determine the [status of the payment](/api_reference/#payment-status-lifecycle).
+Your mop-up job should run frequently, for example every half an hour. The mop-up job should ignore payments made in the past 3 hours to avoid interfering with payments that are still being processed.
+
+If the mop-up job finds ‘stale’ incomplete payment journeys then it’s likely your users have abandoned those payments. The mop-up job should call the GOV.UK Pay API to determine the [status of the payment](/api_reference/#payment-status-lifecycle).
 
 ## Collecting your users' billing addresses
 
@@ -164,7 +166,7 @@ This change can take up to 15 minutes to take effect.
 
 If you collect your users' billing addresses in your service before you redirect them to GOV.UK Pay, you can [prefill the billing address field](/optional_features/prefill_user_details) on the __Enter card details__ page.
 
-<%= warning_text('If you disable billing address collection, your service will receive a `null` `billing_address` object in API responses. The `billing_address` object is inside the `card_details` object. <br><br> You should check if disabling billing address collection will affect your service‘s integration with GOV.UK Pay.') %>
+<%= warning_text('If you disable billing address collection, your service will receive a `null` `billing_address` object in API responses. <br><br> The `billing_address` object is inside the `card_details` object. <br><br> You should check if disabling billing address collection will affect your service‘s integration with GOV.UK Pay.') %>
 
 ## Existing integrations with GOV.UK Pay
 
