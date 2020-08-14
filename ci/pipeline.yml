@@ -13,13 +13,23 @@ resource_types:
 resources:
   - name: pay-tech-docs
     type: git
-    icon: github-circle
+    icon: github
     source:
       uri: https://github.com/alphagov/pay-tech-docs
       branch: master
 
+  - name: pipeline
+    type: git
+    icon: github
+    source:
+      uri: https://github.com/alphagov/pay-tech-docs
+      branch: master
+      paths:
+        - ci/pipeline.yml
+
   - name: pull-request
     type: pull-request
+    icon: github
     source:
       repository: alphagov/pay-tech-docs
       access_token: ((github-access-token))
@@ -111,3 +121,10 @@ jobs:
         params:
           path: pull-request
           status: success
+
+  - name: update-pipeline
+    plan:
+      - get: pipeline
+        trigger: true
+      - set_pipeline: pay-tech-docs
+        file: pipeline/ci/pipeline.yml
