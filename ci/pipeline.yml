@@ -13,13 +13,14 @@ resource_types:
 resources:
   - name: pay-tech-docs
     type: git
-    icon: github-circle
+    icon: github
     source:
       uri: https://github.com/alphagov/pay-tech-docs
       branch: master
 
   - name: pull-request
     type: pull-request
+    icon: github
     source:
       repository: alphagov/pay-tech-docs
       access_token: ((github-access-token))
