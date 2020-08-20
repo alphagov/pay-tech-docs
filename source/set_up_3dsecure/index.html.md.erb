@@ -10,94 +10,62 @@ weight: 170
 Strong Customer Authentication (SCA) makes online payments more secure for users and reduces fraud. SCA is part of the Payment Service Directive (PSD2).
 
 You must implement SCA by:
-- XX December 2020 if you take payments from the European Economic Area (EEA), defined as the European Union, Norway, Iceland and Liechtenstein
-- XX September 2021 if you only take payments from within the UK
+- 31 December 2020 if you take payments from the European Economic Area (EEA), defined as the European Union, Norway, Iceland and Liechtenstein
+- 14 September 2021 if you only take payments from within the UK
 
-To implement SCA, you must set up 3D Secure 2 (3DS2) or 3D Secure (3DS) payment authentication.
+To implement SCA, you must set up 3D Secure 2 (3DS2) or 3D Secure 1 (3DS1) payment authentication.
 
-3D Secure 2 (3DS2) adds an extra layer of identity confirmation before your user pays. You should implement 3DS2 if possible.
-
-How you set up 3DS2 or 3DS payment authentication depends on which Payment Service Provider (PSP) you’re using.
+How you set up 3DS2 or 3DS1 payment authentication depends on which Payment Service Provider (PSP) you’re using.
 
 ## Set up SCA with Stripe
 
 You do not need to do anything because we set up 3DS2 on your service by default.
 
+Stripe automatically applies exemptions.
+
 ## Set up SCA with Worldpay
 
-Worldpay sends all transactions using 3DS2 or 3DS and does not apply any exemptions (LINK). Contact GOV.UK Pay to apply for exemptions for your transactions.
+Worldpay sends all transactions using 3DS2 or 3DS1. 3DS Flex is the Worldpay product that enables 3DS2 payment authentication. You must pay a fee to Worldpay to use 3DS Flex.
+
+If you are a Government Banking customer, Government Banking sends you your 3DS Flex credentials and tells you to enable 3DS Flex on your account.
+
+If you have a direct contract with Worldpay, Worldpay sends you your 3DS Flex credentials.
+
+Worldpay does not apply any exemptions. Contact GOV.UK Pay to apply for exemptions for your transactions.
 
 ### Set up 3DS2 (3DS Flex)
 
-You need your 3DS Flex credentials to set up your account.
+1. Select the account you want to set up on the __My services__ page in the GOV.UK Pay admin tool.
+1. In __Settings__, make sure that 3D Secure is __On__.
+1. In __Your PSP__, enter your 3DS Flex credentials.
 
-Government Banking's contracted PSP is currently Worldpay. If you are a Government Banking customer, Government Banking will contact you to let you know when to enable 3DS Flex on your account.
+<%= warning_text('If your credentials are wrong, you are not able to take payments.') %>
 
-If you have a direct contract with Worldpay that does not use Government Banking, Worldpay will send you your 3DS Flex credentials. Ask your Worldpay account manager if you do not have your credentials.
-
-You must pay a fee to Worldpay to use 3DS Flex.
-
-1. Select the account you want to set up on the My services page in the GOV.UK Pay admin tool.
-1. In the settings, select the View link under 3D Secure.
-1. Select On.
-1. Copy your 3DS Flex details into the PSP settings in your GOV.UK Pay account.
-1. Check your account still works by making a payment with a real payment card.
-
-### Set up 3DS
+### Set up 3DS1
 
 1. Ask your Worldpay account manager to set up 3DS on your merchant code for all payments.
-1. Once Worldpay have set up your merchant code, select the account you want to set up on the My services page in the GOV.UK Pay admin tool.
-1. In the settings, select the View link under 3D Secure.
-1. Select On.
+1. Once Worldpay have set up your merchant code, select the account you want to set up on the __My services__ page in the GOV.UK Pay admin tool.
+1. In the settings, select the __View__ link under 3D Secure.
+1. Select __On__.
 
 ## Set up SCA with ePDQ
 
-1. Sign in to your ePDQ account.
-1. Go to Configuration then Payment methods.
-1. Select 3D Secure.
-1. Check that 3DS is on.
-1. In the GOV.UK Pay admin tool, go to your My services page, then select the account you want to set up
-1. In the settings, select the View link under 3D Secure.
-1. Select On.
+You do not need to do anything because we set up 3DS2 on your service by default.
 
-___OR___
-
-GOV.UK Pay has built the integration with 3DS2 for ePDQ. You do not need to make any changes to your integration. ePDQ does not apply any exemptions (LINK).
+ePDQ does not apply any exemptions.
 
 ## Set up SCA with Smartpay
 
-Smartpay does not support 3DS2. You can only enable 3DS.
+Smartpay does not support 3DS2. You can only enable 3DS1.
 
-1. Select the account you want to set up on the My services page in the GOV.UK Pay admin tool.
-1. In the settings, select the View link under 3D Secure.
-1. Select On.
+1. Select the account you want to set up on the __My services__ page in the GOV.UK Pay admin tool.
+1. In the settings, select the __View__ link under 3D Secure.
+1. Select __On__.
 
 You do not need to do anything in your Smartpay account.
 
-## Exemptions to 3DS2
+Smartpay does not apply any exemptions.
 
-3DS2 does not apply to:
+## Further information
 
-- transactions where either the merchant or payer is outside the EEA
-- merchant initiated payments such as subscriptions
-- telephone (MOTO) payments
-
-The following payment types may be exempt from 3DS2 depending on your PSP:
-
-- low value transactions, for example for those under £30
-- low risk transactions when yout PSP has low fraud levels across its platform
-- corporate payments, unless the corporate card is in the name of an individual
-
-## Questions
-
-___QP: Are there any exemptions for Stripe___
-
-___QP: What are the exact dates that you need to set up SCA by?___
-
-___QP: Do you need to set anything up with ePDQ or not?___
-
-___QP: Are there any exemptions for ePDQ?___
-
-___QP: Any trnx that 3DS1 does not apply to?___
-
-___QP: If you're a service, do you have to set up 3DS2 or can you choose to set up 3DS instead? Does that count as SCA?___
+For more information on SCA including payment exemptions, see the [GOV.UK Pay page on SCA](https://www.payments.service.gov.uk/3d-secure-2/).
