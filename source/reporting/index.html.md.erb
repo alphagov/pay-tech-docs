@@ -17,7 +17,7 @@ You can use your [GOV.UK Pay admin
 account](https://selfservice.payments.service.gov.uk/login) to export
 transaction information in a CSV file.
 
-1. Select the account you want reporting information for in the [My Service](https://selfservice.payments.service.gov.uk/my-services) section.
+1. Select the account you want reporting information for in the [My Services](https://selfservice.payments.service.gov.uk/my-services) section.
 
 2. Go to the [transactions](https://selfservice.payments.service.gov.uk/transactions) list.
 
@@ -44,11 +44,12 @@ lead to significant cost savings for your organisation.
 You can use the GOV.UK Pay API to:
 
 * get information about a single payment
+* get a payment's events
 * generate a list of payments matching search criteria
 
 ## Get information about a single payment
 
-`GET /v1/payments/paymentId`
+`GET /v1/payments/{paymentId}`
 
 See the <a href="https://govukpay-api-browser.cloudapps.digital/#getpayment" target="blank">GOV.UK Pay API browser</a> for more details
 
@@ -142,7 +143,7 @@ You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments
 
 Use the following API call to get a list of a payment’s events:
 
-`GET /v1/payments/paymentId/events`
+`GET /v1/payments/{paymentId}/events`
 
 The API will respond with an `events` object. For each change to the payment's state, the `events` object includes:
 
@@ -178,13 +179,13 @@ For example:
 }
 ```
 
-## Generate a list of payments (search payments)
+## Search payments
 
 `GET /v1/payments`
 
 See the <a href="https://govukpay-api-browser.cloudapps.digital/#searchpayments" target="blank">GOV.UK Pay API browser</a> for more details
 
-Do not search payments using the API to check a payment's status during [payment flow](/payment_flow). Search results are asynchronous so the payment status may not be up-to-date.
+Do not search payments using the API to check a payment's status during [payment flow](/payment_flow). The payment status field in search results is not up to date may not be up-to-date.
 
 ### Search criteria
 
