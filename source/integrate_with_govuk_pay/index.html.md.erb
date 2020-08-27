@@ -82,6 +82,26 @@ If your PSP is Stripe, you can sign in to the [GOV.UK Pay admin tool](https://se
 
 If your PSP is Government Banking's contracted PSP (currently Worldpay), SmartPay or ePDQ, contact your PSP to find out your minimum payout and payment times.
 
+#### Checking when your PSP sent a payment
+
+If your PSP is Stripe, you can check when Stripe sent a payment to your bank account by making an API call to [get information about a payment](/reporting/#get-information-about-a-single-payment).
+
+Example response:
+
+```
+"settlement_summary": {
+  ...
+  "settled_date": "2016-01-22",
+}
+```
+
+where `settled_date` is either:
+
+- the date that Stripe sent the payment to your bank account as part of a group of payments (‘payout’)
+- missing if Stripe has not yet sent the payment to your bank account
+
+You can also sign in to the GOV.UK Pay admin tool to see your payout for each day, and which of your users’ payments are in each payout.
+
 ## The GOV.UK Pay API
 
 The GOV.UK Pay API offers a set of operations to conduct and report on

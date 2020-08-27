@@ -121,6 +121,22 @@ If the payment has reached your bank account, your PSP will take the refund amou
 - the next payment or payments you receive from any of your users, if your PSP is Stripe or ePDQ
 - your bank account, if your PSP is SmartPay or Worldpay
 
+If your PSP is Stripe, you can see when Stripe took the refund when you make an API call to check the status of a refund.
+
+Example response:
+
+```
+"settlement_summary": {
+  ...
+  "settled_date": "2016-01-22",
+}
+```
+
+settled_date will be either:
+
+- the date that Stripe took the refund from the payments they sent to your bank account
+- missing if Stripe has not yet taken the refund
+
 ### Send email notifications about refunds
 
 You can use the GOV.UK Pay admin tool to turn on [sending refund email notifications to your users](https://selfservice.payments.service.gov.uk/email-notifications).
@@ -179,6 +195,21 @@ You can use the following query parameters to filter refunds by date:
 
 Dates must be in [ISO
 8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard). For example `2019-09-20T13:30:00Z`.
+
+### Filter by when your PSP took refunds
+
+If your payment service provider (PSP) is Stripe, you can use the following query parameters to filter by when your PSP took refunds:
+
+- `from_settled_date` - the start date for payments to be searched, inclusive
+- `to_settled_date` - the end date for payments to be searched, exclusive
+
+For example, to list all the refunds your PSP took on 16 June 2020:
+
+```
+GET /v1/refunds?from_settled_date=2020-06-16T00:00:00Z&to_settled_date=2020-06-16T23:00:00Z
+```
+
+These take inputs based on a subset of the ISO 8601 standard. For example, a valid input would be `2015-08-13T12:35:00Z`.
 
 ### Splitting results into pages
 
