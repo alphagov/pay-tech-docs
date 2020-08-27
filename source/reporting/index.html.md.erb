@@ -246,7 +246,9 @@ For example, to list all the payments your PSP sent to you on 16 June 2020:
 GET /v1/payments?from_settled_date=2020-06-16T00:00:00Z&to_settled_date=2020-06-16T23:00:00Z
 ```
 
-These take inputs based on a subset of the ISO 8601 standard. For example, a valid input would be `2015-08-13T12:35:00Z`.
+These take inputs based on a subset of the [ISO 8601 standard](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard). For example, a valid input would be `2015-08-13T12:35:00Z`.
+
+If a payment has not happened yet, the payment will not be in the response.
 
 #### Pagination
 
