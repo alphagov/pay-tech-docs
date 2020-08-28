@@ -1,7 +1,7 @@
 ---
 title: Set up Strong Customer Authentication (3DS1 and 3DS2)
-last_reviewed_on: 2020-06-10
-review_in: 3 months
+last_reviewed_on: 2020-08-28
+review_in: 6 months
 weight: 170
 ---
 
@@ -9,11 +9,9 @@ weight: 170
 
 Strong Customer Authentication (SCA) makes online payments more secure for users and reduces fraud. SCA is part of the Payment Service Directive 2 (PSD2).
 
-You must implement SCA by:
+If you take payments from the European Economic Area (EEA), defined as the European Union, Norway, Iceland and Liechtenstein, you must implement SCA by 31 December 2020.
 
-- 31 December 2020 if you take payments from the European Economic Area (EEA), defined as the European Union, Norway, Iceland and Liechtenstein
-- 14 September 2021 if you only take payments from within the UK
-
+If you only take payments within the UK, you must implement SCA by 14 September 2020.
 To implement SCA, you must set up 3D Secure 2 (3DS2) or 3D Secure 1 (3DS1) payment authentication.
 
 How you set up 3DS2 or 3DS1 payment authentication depends on which Payment Service Provider (PSP) you’re using.
@@ -22,50 +20,50 @@ How you set up 3DS2 or 3DS1 payment authentication depends on which Payment Serv
 
 You do not need to do anything because we set up 3DS2 on your service by default.
 
-Stripe automatically applies exemptions.
+Stripe automatically applies SCA exemptions to transactions where appropriate.
 
 ## Set up SCA with Worldpay
 
 Worldpay sends all transactions using 3DS2 or 3DS1. 3DS Flex is the Worldpay product that enables 3DS2 payment authentication. You must pay a fee to Worldpay to use 3DS Flex.
 
-Worldpay sends you your 3DS Flex credentials when you [go live](/switching_to_live/set_up_a_live_worldpay_account/#connect-your-live-account-to-worldpay).
+Worldpay sends you your 3DS Flex credentials when you [connect your live account to Worldpay](/switching_to_live/set_up_a_live_worldpay_account/#connect-your-live-account-to-worldpay).
 
-Worldpay does not apply any exemptions.
+Worldpay does not apply any SCA exemptions to transactions.
 
 ### Set up 3DS2 (3DS Flex)
 
-1. Select the account you want to set up on the __My services__ page in the GOV.UK Pay admin tool.
-1. In __Settings__, make sure that 3D Secure is __On__.
+1. In the GOV.UK Pay admin tool, select the account you want to set up on the __My services__ page.
+1. In __Settings__, make sure 3D Secure is set to __On__.
 1. In __Your PSP__, enter your 3DS Flex credentials.
 
 <%= warning_text('If your credentials are wrong, you are not able to take payments.') %>
 
-### Check that 3DS1 is enabled
+### Check 3DS1 is enabled
 
-3DS1 is enabled by default on services that use Worldpay. You can check that 3DS1 is enabled on your service.
+Worldpay enables 3DS1 on transactions by default. You can check if 3DS1 is enabled on your service.
 
 1. Select the relevant account on the __My services__ page in the GOV.UK Pay admin tool.
-1. In the settings, select the __View__ link under 3D Secure.
-1. Check that 3D Secure is set to __On__.
+1. In __Settings__, select the __View__ link under 3D Secure.
+1. Check 3D Secure is set to __On__.
 
 ## Set up SCA with ePDQ
 
 You do not need to do anything because we set up 3DS2 on your service by default.
 
-ePDQ does not apply any exemptions.
+ePDQ does not apply any SCA exemptions to transactions.
 
 ## Set up SCA with Smartpay
 
 3DS2 is not available for Smartpay. You can only enable 3DS1.
 
-1. Select the account you want to set up on the __My services__ page in the GOV.UK Pay admin tool.
-1. In the settings, select the __View__ link under 3D Secure.
+1. In the GOV.UK admin tool, select the account you want to set up on the __My services__ page
+1. In __Settings__, select the __View__ link under 3D Secure.
 1. Select __On__.
 
 You do not need to do anything in your Smartpay account.
 
-Smartpay does not apply any exemptions.
+Smartpay does not apply any SCA exemptions to transactions.
 
 ## Further information
 
-For more information on SCA including payment exemptions, see the [GOV.UK Pay page on SCA](https://www.payments.service.gov.uk/3d-secure-2/).
+For more information on SCA including payment exemptions, [see the GOV.UK Pay page on SCA](https://www.payments.service.gov.uk/3d-secure-2/).
