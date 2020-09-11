@@ -15,7 +15,8 @@ header_links:
   Support: https://www.payments.service.gov.uk/support/
   Sign In: https://selfservice.payments.service.gov.uk/login
 footer_links:
-  Accessibility: https://www.payments.service.gov.uk/accessibility-statement/
+  GOV.UK Pay Website Accessibility: https://www.payments.service.gov.uk/accessibility-statement/
+  Technical Documentation Accessibility: /accessibility.html
 
 # Tracking ID from Google Analytics (e.g. UA-XXXX-Y)
 # Removed GA Tracking ID because of ICO compliance. Re-enable when opt-in is enabled ga_tracking_id: UA-72121642-9
