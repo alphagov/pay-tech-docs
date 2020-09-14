@@ -134,7 +134,7 @@ Example response:
 
 settled_date will be either:
 
-- the date that Stripe took the refund from the payments they sent to your bank account
+- the date Stripe took the refund from the payments that Stripe sent to your bank account
 - missing if Stripe has not yet taken the refund
 
 ### Send email notifications about refunds
@@ -196,7 +196,7 @@ You can use the following query parameters to filter refunds by date:
 Dates must be in [ISO
 8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard). For example `2019-09-20T13:30:00Z`.
 
-### Filter by when your PSP took refunds
+### Filter refunds by when your PSP took refunds
 
 If your payment service provider (PSP) is Stripe, you can use the following query parameters to filter by [when your PSP took refunds](/refunding_payments/#where-your-psp-takes-the-refund-amount-from):
 
@@ -209,7 +209,7 @@ For example, to list all the refunds your PSP took on 16 June 2020:
 GET /v1/refunds?from_settled_date=2020-06-16T00:00:00Z&to_settled_date=2020-06-16T23:00:00Z
 ```
 
-These take inputs based on a subset of the [ISO 8601 standard](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard). For example, a valid input would be `2015-08-13T12:35:00Z`.
+These query parameters take inputs based on a subset of the [ISO 8601 standard](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard). For example, a valid input would be `2015-08-13T12:35:00Z`.
 
 ### Splitting results into pages
 
