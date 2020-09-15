@@ -238,17 +238,19 @@ For example, a valid input would be `2015-08-13T12:35:00Z`.
 If your PSP is Stripe, you can use the following query parameters to filter by [when your PSP sent payments to your bank account](/reporting/#checking-when-your-payment-service-provider-psp-took-a-payment):
 
 - `from_settled_date` - the start date for payments to be searched, inclusive
-- `to_settled_date` - the end date for payments to be searched, exclusive
+- `to_settled_date` - the end date for payments to be searched, inclusive
+
+All dates are in Coordinated Universal Time (UTC).
 
 For example, to list all the payments your PSP sent to you on 16 June 2020:
 
 ```
-GET /v1/payments?from_settled_date=2020-06-16T00:00:00Z&to_settled_date=2020-06-16T23:00:00Z
+GET /v1/payments?from_settled_date=2020-06-16&to_settled_date=2020-06-16
 ```
 
-These query parameters take inputs based on a subset of the [ISO 8601 standard](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard). For example, a valid input would be `2015-08-13T12:35:00Z`.
+These query parameters take inputs based on a subset of the [ISO 8601 standard](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard). For example, a valid input would be `2015-08-13`.
 
-If a payer has not yet sent a payment, the payment will not be in the response.
+If your PSP has not sent this payment to your bank account yet, the payment will not be in the response.
 
 #### Pagination
 
