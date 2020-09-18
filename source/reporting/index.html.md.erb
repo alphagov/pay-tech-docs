@@ -5,7 +5,7 @@ weight: 60
 
 # Report on a payment
 
-You can extract reporting information from GOV.UK Pay manually or via the
+You can extract reporting information from GOV.UK Pay manually or through the
 API, for each service you have set up in GOV.UK Pay.
 
 You can also read about [refunding payments](/refunding_payments/), including
@@ -29,6 +29,8 @@ The CSV file contains all transaction data, which is much more comprehensive tha
 spreadsheet software and edit the contents you do not need.
 
 You can export up to 100,000 transactions.
+
+You can export one file for one service's transactions, or one file for all your services' transactions.
 
 ## Reporting via the GOV.UK Pay API
 
@@ -96,12 +98,12 @@ The `card_type` is `null` if we did not recognise which type of card your user m
 
 ### Checking when your Payment Service Provider (PSP) took a payment
 
-If your PSP is Worldpay, you can see when Worldpay took a payment from your user's account.
+You can see when your PSP took a payment from your user's account.
 
 The response contains:
 
-- `capture_submit_time` if we've asked Worldpay to take the payment from your user's account
-- `captured_date` if Worldpay has taken the payment
+- `capture_submit_time` if we've asked your PSP to take the payment from your user's account
+- `captured_date` if your PSP has taken the payment
 
 For example:
 
@@ -112,7 +114,12 @@ For example:
 }
 ```
 
-You should receive the payment in your bank account within 2 business days of `captured_date`.
+If your PSP is Stripe, you should receive the payment in your bank account within:
+
+- 2 working days of `captured_date` if your user completed their payment during the week
+- 3 working days of `captured_date` if your user completed their payment at the weekend or on a bank holiday
+
+If your PSP is Government Banking’s contracted PSP (currently Worldpay), SmartPay or ePDQ, you should receive the payment in your bank account within 2 working days of `captured_date`.
 
 ### PSP fees
 
