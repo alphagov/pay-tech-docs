@@ -5,7 +5,7 @@ weight: 60
 
 # Report on a payment
 
-You can extract reporting information from GOV.UK Pay manually or via the
+You can extract reporting information from GOV.UK Pay manually or through the
 API, for each service you have set up in GOV.UK Pay.
 
 You can also read about [refunding payments](/refunding_payments/), including
@@ -17,18 +17,23 @@ You can use your [GOV.UK Pay admin
 account](https://selfservice.payments.service.gov.uk/login) to export
 transaction information in a CSV file.
 
-1. Select the account you want reporting information for in the [My Service](https://selfservice.payments.service.gov.uk/my-services) section.
+You can export one file for one service's transactions, or one file for all your services' transactions.
 
-2. Go to the [transactions](https://selfservice.payments.service.gov.uk/transactions) list.
+1. Go to [My Services](https://selfservice.payments.service.gov.uk/my-services).
 
-3. Filter transactions using the available search criteria.
+1. If you want to export one service's transactions, select the service account you want reporting information for and go to the [transactions](https://selfservice.payments.service.gov.uk/transactions) list.
 
-4. Select __Download all transaction details as a CSV file__.
+    Select __View transactions for all live services__ if you want to export all your services' transactions.
 
-The CSV file contains all transaction data, which is much more comprehensive than the information on the __Transactions__ page. You can process CSV files using
-spreadsheet software and edit the contents you do not need.
+1. Filter transactions using the available search criteria if needed.
 
-You can export up to 100,000 transactions.
+1. Select __Download all transaction details as a CSV file__.
+
+    If you have more than 5000 transactions, you must apply a filter before the CSV file download link appears.
+
+The CSV file contains all transaction data, which is much more comprehensive than the information on the __Transactions__ page.
+
+You can process CSV files using spreadsheet software and edit the contents you do not need.
 
 ## Reporting via the GOV.UK Pay API
 
@@ -44,11 +49,12 @@ lead to significant cost savings for your organisation.
 You can use the GOV.UK Pay API to:
 
 * get information about a single payment
+* get a payment's events
 * generate a list of payments matching search criteria
 
 ## Get information about a single payment
 
-`GET /v1/payments/paymentId`
+`GET /v1/payments/{paymentId}`
 
 See the <a href="https://govukpay-api-browser.cloudapps.digital/#getpayment" target="blank">GOV.UK Pay API browser</a> for more details
 
@@ -95,12 +101,12 @@ The `card_type` is `null` if we did not recognise which type of card your user m
 
 ### Checking when your Payment Service Provider (PSP) took a payment
 
-If your PSP is Worldpay, you can see when Worldpay took a payment from your user's account.
+You can see when your PSP took a payment from your user's account.
 
 The response contains:
 
-- `capture_submit_time` if we've asked Worldpay to take the payment from your user's account
-- `captured_date` if Worldpay has taken the payment
+- `capture_submit_time` if we've asked your PSP to take the payment from your user's account
+- `captured_date` if your PSP has taken the payment
 
 For example:
 
@@ -111,7 +117,14 @@ For example:
 }
 ```
 
-You should receive the payment in your bank account within 2 business days of `captured_date`.
+If your PSP is Stripe, you should receive the payment in your bank account within:
+
+- 2 working days of `captured_date` if your user completed their payment during the week
+- 3 working days of `captured_date` if your user completed their payment at the weekend or on a bank holiday
+
+You can confirm when payments are paid into your bank account by signing in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) and going to __My Services__ > __View payments to your bank account__.
+
+If your PSP is Government Banking’s contracted PSP (currently Worldpay), SmartPay or ePDQ, contact your PSP to find out your payment times.
 
 ### PSP fees
 
@@ -142,7 +155,7 @@ You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments
 
 Use the following API call to get a list of a payment’s events:
 
-`GET /v1/payments/paymentId/events`
+`GET /v1/payments/{paymentId}/events`
 
 The API will respond with an `events` object. For each change to the payment's state, the `events` object includes:
 
@@ -178,13 +191,13 @@ For example:
 }
 ```
 
-## Generate a list of payments (search payments)
+## Search payments
 
 `GET /v1/payments`
 
-See the <a href="https://govukpay-api-browser.cloudapps.digital/#searchpayments" target="blank">GOV.UK Pay API browser</a> for more details
+See the <a href="https://govukpay-api-browser.cloudapps.digital/#searchpayments" target="blank">GOV.UK Pay API browser</a> for more details.
 
-Do not search payments using the API to check a payment's status during [payment flow](/payment_flow). Search results are asynchronous so the payment status may not be up-to-date.
+Do not search payments using the API to check a payment's status during [payment flow](/payment_flow). The payment status field in the search results does not immediately update and so may not be up to date.
 
 ### Search criteria
 
