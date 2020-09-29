@@ -48,3 +48,8 @@ owner_slack_workspace: gds
 default_owner_slack: '#govuk-pay-support'
 show_review_banner: false
 show_expiry: false
+
+# Define redirects
+
+redirects:
+  https://docs.payments.service.gov.uk/optional_features/moto_payments/#take-payments-over-the-phone-moto-payments: https://docs.payments.service.gov.uk/moto_payments/#take-a-payment-over-the-phone-moto-payments
