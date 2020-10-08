@@ -23,9 +23,9 @@ GOV.UK Pay’s main application code is public and freely available under an MIT
 | [pay-publicauth](https://github.com/alphagov/pay-publicauth) | GOV.UK Pay API authentication service. | Used by pay-publicapi to validate API tokens and by pay-selfservice to manage API tokens. |
 | [pay-selfservice](https://github.com/alphagov/pay-selfservice) | GOV.UK Pay self service application. | Used by authenticated users of our partner services to administer their accounts. |
 | [pay-products](https://github.com/alphagov/pay-products) | Products integrating with GOV.UK Pay in Java(Dropwizard). | Manages products that a Government Service would like to take payments for. These products are integrated with GOV.UK Pay so that a user can make payments using a provided URL. |
-| [pay-products-ui](https://github.com/alphagov/pay-products-ui) | User interface app for product payments integrated with GOVUK Pay. | TBC. |
-| [pay-direct-debit-connector](https://github.com/alphagov/pay-direct-debit-connector) | The GOVUK Pay direct debit connector. | TBC |
-| [pay-direct-debit-frontend](https://github.com/alphagov/pay-direct-debit-frontend) | The GOVUK Pay direct debit frontend. | This code builds a user interface for GOV.UK Pay direct debit |
-| [pay-ledger](https://github.com/alphagov/pay-ledger) | A Dropwizard app for the Pay Ledger microservice. | TBC |
+| [pay-products-ui](https://github.com/alphagov/pay-products-ui) | User interface app for product payments integrated with GOVUK Pay. | Used to start payment journeys for payment links. Optionally allows users to enter payment amount and reference. |
+| [pay-direct-debit-connector](https://github.com/alphagov/pay-direct-debit-connector) | The GOVUK Pay direct debit connector. | Used to interface with Direct Debit providers. |
+| [pay-direct-debit-frontend](https://github.com/alphagov/pay-direct-debit-frontend) | The GOVUK Pay direct debit frontend. | Used to collect Direct Debit information from our users. |
+| [pay-ledger](https://github.com/alphagov/pay-ledger) | A Dropwizard app for the Pay Ledger microservice. | Used to store all historic payments and refunds after they have been processed by Card Connector. |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
