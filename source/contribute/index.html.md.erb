@@ -18,14 +18,14 @@ GOV.UK Pay’s main application code is public and freely available under an MIT
 | [pay-adminusers](https://github.com/alphagov/pay-adminusers) | GOV.UK Pay identity and service management component. | Used by pay-selfservice to allow users to authenticate and configure GOV.UK Pay. |
 | [pay-cardid](https://github.com/alphagov/pay-cardid) | GOV.UK Pay card type identification Service. | Used by pay-frontend to validate card details and autocomplete card brand. |
 | [pay-connector](https://github.com/alphagov/pay-connector) | GOV.UK Pay payments connector. | Used by other services to configure payment gateways and handle transactions. |
-| [pay-frontend](https://github.com/alphagov/pay-frontend) | GOV.UK Pay frontend payments application. | Used to collect payment details from our users. |
+| [pay-frontend](https://github.com/alphagov/pay-frontend) | GOV.UK Pay frontend payments application. | Collects payment details from our users. |
 | [pay-publicapi](https://github.com/alphagov/pay-publicapi) | GOV.UK Pay public API endpoint. | Used by partner services to manage payments, generate reporting and configure their accounts. |
 | [pay-publicauth](https://github.com/alphagov/pay-publicauth) | GOV.UK Pay API authentication service. | Used by pay-publicapi to validate API tokens and by pay-selfservice to manage API tokens. |
 | [pay-selfservice](https://github.com/alphagov/pay-selfservice) | GOV.UK Pay self service application. | Used by authenticated users of our partner services to administer their accounts. |
-| [pay-products](https://github.com/alphagov/pay-products) | Products integrating with GOV.UK Pay in Java(Dropwizard). | Manages products that a Government Service would like to take payments for. These products are integrated with GOV.UK Pay so that a user can make payments using a provided URL. |
-| [pay-products-ui](https://github.com/alphagov/pay-products-ui) | User interface app for product payments integrated with GOVUK Pay. | Used to start payment journeys for payment links. Optionally allows users to enter payment amount and reference. |
-| [pay-direct-debit-connector](https://github.com/alphagov/pay-direct-debit-connector) | The GOVUK Pay direct debit connector. | Used to interface with Direct Debit providers. |
-| [pay-direct-debit-frontend](https://github.com/alphagov/pay-direct-debit-frontend) | The GOVUK Pay direct debit frontend. | Used to collect Direct Debit information from our users. |
-| [pay-ledger](https://github.com/alphagov/pay-ledger) | A Dropwizard app for the Pay Ledger microservice. | Used to store all historic payments and refunds after they have been processed by Card Connector. |
+| [pay-products](https://github.com/alphagov/pay-products) | Application that manages products that integrate with GOV.UK Pay using Java (Dropwizard). | Manages products that a Government Service would like to take payments for. These products are integrated with GOV.UK Pay so that a user can make payments using a provided URL. |
+| [pay-products-ui](https://github.com/alphagov/pay-products-ui) | User interface app for product payments integrated with GOVUK Pay. | Starts payment journeys for payment links. Optionally allows users to enter payment amount and reference. |
+| [pay-direct-debit-connector](https://github.com/alphagov/pay-direct-debit-connector) | The GOVUK Pay direct debit connector. | Interfaces with Direct Debit providers. |
+| [pay-direct-debit-frontend](https://github.com/alphagov/pay-direct-debit-frontend) | The GOVUK Pay direct debit frontend. | Collects Direct Debit information from our users. |
+| [pay-ledger](https://github.com/alphagov/pay-ledger) | A Dropwizard app for the Pay Ledger microservice. | Stores all historic payments and refunds after this information has been processed by Card Connector. |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
