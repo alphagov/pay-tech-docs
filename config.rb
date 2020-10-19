@@ -1,5 +1,6 @@
 require 'govuk_tech_docs'
 require 'html-proofer'
+require 'fileutils'
 
 GovukTechDocs::SourceUrls.class_eval do
   def report_issue_url
@@ -41,3 +42,17 @@ after_build do |builder|
 end
 
 redirect "payment_flow_overview/index.html", to: "payment_flow/index.html"
+
+# Expose external assets (common analytics files) to to sprockets loader
+sprockets.append_path File.join root, "node_modules"
+
+# All linked assets referenced by sprockets have to exist or they will throw
+# LoadFile errors during the build process. In order to allow developers to work
+# on the project without installing additional (npm) shared client side JavaScripts
+# ensure all of the directories required for the common analytics code exists at
+# build time
+after_configuration do
+  FileUtils.mkdir_p 'node_modules/@govuk-pay/pay-js-commons/lib/analytics/dist'
+  FileUtils.mkdir_p 'node_modules/govuk-frontend/govuk/components/button'
+  FileUtils.touch 'node_modules/govuk-frontend/govuk/components/button/_button.scss'
+end

@@ -73,6 +73,7 @@ jobs:
                 apt-get update && apt-get install -y nodejs npm
                 gem install bundler
                 bundle install --deployment
+                npm install --only=production
                 bundle exec middleman build
       - put: paas
         params:
