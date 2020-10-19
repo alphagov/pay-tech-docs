@@ -1,5 +1,6 @@
 require 'govuk_tech_docs'
 require 'html-proofer'
+require 'fileutils'
 
 GovukTechDocs::SourceUrls.class_eval do
   def report_issue_url
@@ -10,3 +11,8 @@ end
 GovukTechDocs.configure(self)
 
 redirect "payment_flow_overview/index.html", to: "payment_flow/index.html"
+
+sprockets.append_path File.join root, "node_modules"
+after_configuration do
+  FileUtils.mkdir_p 'node_modules/pay-js-commons/lib/analytics/dist'
+end
