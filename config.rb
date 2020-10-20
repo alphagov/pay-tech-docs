@@ -15,4 +15,6 @@ redirect "payment_flow_overview/index.html", to: "payment_flow/index.html"
 sprockets.append_path File.join root, "node_modules"
 after_configuration do
   FileUtils.mkdir_p 'node_modules/pay-js-commons/lib/analytics/dist'
+  FileUtils.mkdir_p 'node_modules/govuk-frontend/govuk/components/button'
+  FileUtils.touch 'node_modules/govuk-frontend/govuk/components/button/_button.scss'
 end
