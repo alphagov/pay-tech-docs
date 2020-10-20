@@ -1,0 +1,24 @@
+{
+  "name": "pay-tech-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@govuk-pay/pay-js-commons": "^2.42.0",
+    "govuk-frontend": "^3.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alphagov/pay-tech-docs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alphagov/pay-tech-docs/issues"
+  },
+  "homepage": "https://github.com/alphagov/pay-tech-docs#readme"
+}
