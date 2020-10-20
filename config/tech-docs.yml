@@ -17,9 +17,6 @@ header_links:
 footer_links:
   Accessibility: https://www.payments.service.gov.uk/accessibility-statement/
 
-# Tracking ID from Google Analytics (e.g. UA-XXXX-Y)
-# Removed GA Tracking ID because of ICO compliance. Re-enable when opt-in is enabled ga_tracking_id: UA-72121642-9
-
 # Show a block at the bottom of the page that links to the page source, so readers can easily contribute back to the documentation.
 show_contribution_banner: true
 github_repo: alphagov/pay-tech-docs/
