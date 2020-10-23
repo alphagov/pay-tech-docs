@@ -17,6 +17,7 @@ header_links:
 footer_links:
   GOV.UK Pay Website Accessibility: https://www.payments.service.gov.uk/accessibility-statement/
   Technical Documentation Accessibility: /accessibility.html
+  Cookies: https://www.payments.service.gov.uk/cookies/
 
 # Show a block at the bottom of the page that links to the page source, so readers can easily contribute back to the documentation.
 show_contribution_banner: true

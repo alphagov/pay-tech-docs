@@ -4,10 +4,7 @@
 
 window.addEventListener('DOMContentLoaded', function() {
   if (window.GovUkPay) {
-    //TODO - Disabling the banner for now, will reinstate in later
-    //once the code for checking the consent cookie and executing the analytics
-    // has been deployed. 
-    // window.GovUkPay.cookies.showBannerIfConsentNotSet(loadGoogleAnalytics)
+    window.GovUkPay.cookies.showBannerIfConsentNotSet(window.initialiseGoogleAnalytics)
 
     if (window.GovUkPay.cookies.hasAnalyticsConsent()) {
       window.initialiseGoogleAnalytics()

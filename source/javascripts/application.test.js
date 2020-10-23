@@ -10,6 +10,7 @@ describe("Application JS", () => {
     // expire analytics cookie explictly, as cookies are not cleared in jest environment during the tests
     document.cookie = "govuk_pay_cookie_policy=;expires=Thu, 01 Jan 1970 00:00:00 UTC;domain=.example.org";
 
+    window.GovUkPay.cookies.showBannerIfConsentNotSet = jest.fn()
     window.initialiseGoogleAnalytics = jest.fn()
 
     // Override Document ready function in the test
@@ -19,6 +20,14 @@ describe("Application JS", () => {
 
     jest.resetModules();
   }); 
+
+  it("should always call the showBannerIfConsentNotSet", () => {
+    require("./application")
+
+    expect(
+      window.GovUkPay.cookies.showBannerIfConsentNotSet.mock.calls.length
+      ).toBe(1);
+  });
 
   it("does not load Google analytics when there is no cokie consent cookie", () => {
     require("./application")
