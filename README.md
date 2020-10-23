@@ -16,6 +16,15 @@ In the application folder type the following to install the required gems:
 bundle install
 ```
 
+### Optional analytics assets
+
+In the application folder type the following to install optional client side
+Javascripts to enable the Google Analytics consent banner:
+
+```
+npm install
+```
+
 ## Making changes
 
 To make changes edit the source files in the `source` folder.
