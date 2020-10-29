@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@govuk-pay/pay-js-commons": "^3.0.3",
+    "@govuk-pay/pay-js-commons": "^3.0.4",
     "govuk-frontend": "^3.9.1"
   },
   "scripts": {
