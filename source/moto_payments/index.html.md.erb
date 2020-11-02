@@ -5,45 +5,6 @@ review_in: 4 months
 weight: 52
 ---
 
-
-Worldpay / epdq process
-
-- you must have a moto merchant id, there is a 121 relationshipfor merchant id to service,
-so you need a separate moto service in pay attached to a moto merchant id
-- you must also attach the moto true flag in the api create payment call to signify that it is a moto payment
-- worldpay = current govt banking contracted psp
-
-
-
-
-STRIPE process
-
-- can take moto payments and online payments using the same merchant id
-- don't need to set up separate service for moto payments if using STRIPE
-- so stripe treats payments in right way, you need to tell gov.uk pay in the api call whether it is a moto or online payment - moto true flag
-
-
-if you want to test out moto, you don't need pci dss compliance for test account, but we will need to see it before enabling it on a live account
-
-you do not need the merchant ID on the test account - applies for govt banking psp or epdq, could say worldpay for simplicity
-
-link to going live content for info on psps
-
-you must email pay to enable moto payments, if test then we just enable it, if live then we need pci dss compliance and merchant id if worldpay or ePDQ
-
-
-
-test - all you need to do is request that the feature is enabled,
-live - more requirements, and split worldpay/epdq vs stripe
-
-moto payment screens are the same as online payment screeen, however moto screens do not have a section for billing address,
-and SCA does not apply to moto
-
-
-
-
-
-
 # Take a payment over the phone (‘MOTO’ payments)
 
 We can set up your GOV.UK Pay account so you can fill in GOV.UK Pay payment pages with your users’ details.
@@ -55,89 +16,65 @@ This means you can take payments:
 
 These payments are also known as Mail Order / Telephone Order (MOTO) payments.
 
-You cannot take MOTO payments if your payment service provider (PSP) is Smartpay.
+You cannot take MOTO payments:
 
-You cannot take MOTO payments through a [payment link](https://www.payments.service.gov.uk/govuk-payment-pages/). Our product roadmap is based on feedback. [Contact us](/support_contact_and_more_information/#contact-us) if you'd like us to develop this feature.
+- if your payment service provider (PSP) is Smartpay
+- through a [payment link](https://www.payments.service.gov.uk/govuk-payment-pages/)
 
-
-
+Our product roadmap is based on feedback. [Contact us](/support_contact_and_more_information/#contact-us) if you'd like us to investigate taking MOTO payments through payment links.
 
 ## Set up MOTO payments
 
 You can set up MOTO payments on either a test account or a live account.
 
-### Add a new service to your account
+MOTO payment screens are the same as online payment screens, excluding the following:
 
-Add a new service for MOTO payments to your account.
+- MOTO payments screens do not have a section for billing address
+- [Strong Customer Authentication](/set_up_3dsecure/#set-up-strong-customer-authentication-3ds1-and-3ds2) does not apply to MOTO payments
 
-worldpay/ePDQ vs stripe
+## Set up MOTO payments on a test account
 
-1. Sign in to your [GOV.UK Pay account](https://selfservice.payments.service.gov.uk/).
-1. Go to __My services__ and select __Add a new service__.
+[Contact GOV.UK Pay support](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) to ask us to enable MOTO payments on your test account.
 
-### Get a MOTO payments merchant ID
+You do not need any provide us with any supporting information.
 
-worldpay/ePDQ vs stripe
+## Set up MOTO payments on a live account
 
-Contact your PSP and ask for a new merchant ID for MOTO payments.
+How you set up MOTO payments on a live account differs depending on what payment service provider (PSP) you use.
 
-[Contact Government Banking](https://www.gov.uk/government/groups/government-banking-service-gbs) instead if you use them.
+### Set up MOTO payments on a live account with Worldpay or ePDQ
 
-__DOES THIS NEED AMENDING???__
-__WHAT DO YOU DO WITH THE MERCHANT ID???__ same as go live process - connect service to psp and enter merchant id as part of that process
+The current Government Banking PSP is Worldpay.
 
-### Enable MOTO payments
+1. Sign in to your [GOV.UK Pay account](https://selfservice.payments.service.gov.uk/) and go to __My services__.
 
-send us self assessment questionnaire and service name, and then we'll review your pci dss compliance. Your compliance responsibilities are different with moto payments compared to online payments.
+1. Select __Add a new service__ to add a new service for MOTO payments to your account.
 
-[Contact GOV.UK Pay support](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) and we'll:
+1. Contact your PSP and ask for a new merchant ID for MOTO payments.
 
-- review your [Payment Card Industry Data Security Standards (PCI DSS) assessment](/security/#payment-card-industry-pci-compliance) to check you can take MOTO payments
-- enable MOTO payments in your service
+    You will use this ID when you [connect your new service to your PSP](/switching_to_live/#go-live).
 
-__IS THE ACTION TO SEND INFORMATION ON PCI DSS COMPLIANCE OR DOES THE PAY TEAM DO THIS JUST BECAUSE OF THE EMAIL?__
+1. Send your [PCI DSS Self Assessment Questionnaire](https://www.pcisecuritystandards.org/document_library?category=saqs) and service name to [GOV.UK Pay support](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
 
-When we've enabled MOTO payments in your service, you can take a MOTO payment.
+We will review your PCI DSS compliance. Your PCI DSS compliance requirements are different for MOTO payments compared to online payments.
 
+When we are sure that you have met your PCI DSS compliance requirements, we enable MOTO payments in your service. You can then take MOTO payments.
 
+### Set up MOTO payments on a live account with Stripe
 
+Stripe is GOV.UK Pay’s current PSP.
 
+When using Stripe, you do not need to:
 
+- set up a new service for MOTO payments
 
+- ask Stripe for a merchant ID for MOTO payments because you can take MOTO and online payments using the same ID
 
+You only need to send your [PCI DSS Self Assessment Questionnaire](https://www.pcisecuritystandards.org/document_library?category=saqs) and service name to [GOV.UK Pay support](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
 
+We will review your PCI DSS compliance. Your PCI DSS compliance requirements are different for MOTO payments compared to online payments.
 
-
-# Take a payment over the phone (‘MOTO’ payments)
-
-We can set up your GOV.UK Pay account so you can fill in GOV.UK Pay payment pages with your users’ details.
-
-This means you can take payments:
-
-- over the phone
-- by post
-
-These payments are also known as Mail Order / Telephone Order (MOTO) payments.
-
-You cannot take MOTO payments if your payment service provider (PSP) is SmartPay.
-
-You also cannot take MOTO payments through a [payment link](https://www.payments.service.gov.uk/govuk-payment-pages/) - [contact us](/support_contact_and_more_information/#contact-us) if you'd like us to develop this feature.
-
-## If your PSP is Worldpay or ePDQ
-
-If your PSP is Worldpay or ePDQ, you must first:
-
-- [create a new GOV.UK Pay service](https://selfservice.payments.service.gov.uk/create-service/register) for MOTO payments
-- contact your PSP and ask for a new merchant code for MOTO payments
-
-[Contact Government Banking](https://www.gov.uk/government/groups/government-banking-service-gbs) instead if you use them.
-
-## Set up your account
-
-Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) and we'll:
-
-- review your [Payment Card Industry Data Security Standards (PCI DSS) assessment](/security/#payment-card-industry-pci-compliance) to check you can take payments over the phone and by post
-- enable MOTO payments in your service
+When we are sure that you have met your PCI DSS compliance requirements, we enable MOTO payments in your service. You can then take MOTO payments.
 
 ## Create a MOTO payment
 
