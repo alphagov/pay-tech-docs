@@ -316,7 +316,11 @@ You cannot resume a payment if the `status` is `failed`, `cancelled` or `error`.
 
 ## Payment expires
 
-Payments that are not confirmed and completed after 90 minutes will expire
-automatically.
+When your user enters their payment information and selects __Continue__, we contact your PSP to check whether there is enough money in the user's account for the payment.
 
-If your PSP authorised the payment but your user did not finish paying, GOV.UK Pay will send a cancellation to the payment provider. If you [check the status of the payment](/reporting/#get-information-about-a-single-payment), its `status` will be `failed` and you'll receive a [P0020 API error](/api_reference/#api-error-codes).
+If your PSP authorises the payment but your user does not select the __Confirm payment__ button and finish the payment:
+
+- the payment expires automatically after 90 minutes
+- GOV.UK Pay sends a cancellation to the PSP
+
+If you [check the status of the payment](/reporting/#get-information-about-a-single-payment), its `status` will be `failed` and you'll receive a [P0020 API error](/api_reference/#api-error-codes).
