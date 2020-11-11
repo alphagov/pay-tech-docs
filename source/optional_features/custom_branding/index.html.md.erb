@@ -19,7 +19,11 @@ customisation for the following features:
 * the background and border colour of the top banner
 * the branding of your payment confirmation email
 
-You must tell us which service you want to apply custom branding to. Custom branding applies to both the test and live environments for a service.
+You must tell us which service you want to apply custom branding to. Custom branding applies to the test and live environments for a service.
+
+We recommend that you only enable custom branding once you have [gone live and started taking payments from real users](/switching_to_live/#go-live).
+
+You cannot have different custom branding for payment pages and emails.
 
 ## Banner logo
 
@@ -37,10 +41,14 @@ directly](/support_contact_and_more_information/#contact-us).
 
 Colours are customised using hexadecimal representations.
 
-## Reply-to email address
+## Tell your users how to contact you
 
-When you ask GOV.UK Pay to set up custom branding on your [payment confirmation emails](/payment_flow/#confirmation-email), you must specify a reply-to email address so your users can contact you.
+When you ask GOV.UK Pay to set up custom branding on your [payment confirmation emails](/payment_flow/#confirmation-email), you must tell your users how to contact you.
 
-This reply-to email address can be an email inbox for your service, or an automated response.
+You can do this using a reply-to email address or another way such as a contact form.
 
-If you do not use custom branding on your payment confirmation emails, you cannot specify a reply-to email address.
+If you use a reply-to email address, this email address can be a monitored email inbox for your service, or an unmonitored automated email response.
+
+You can customise your monitored and unmonitored email responses in the GOV.UK Pay admin tool using the `customParagraph` field in the payment receipt email template.
+
+You cannot customise your refund email.
