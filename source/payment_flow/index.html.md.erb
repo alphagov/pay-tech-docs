@@ -13,25 +13,13 @@ There's a different process for [taking Direct Debit payments](/direct_debit/#ta
 
 ## Overview
 
-The following diagram outlines the payment process for a service that has a GOV.UK Pay
-integration:
+The following payment process is for a service that is integrated with the GOV.UK Pay API.
 
-<%= image_tag "/images/card-payment-process.png", { :alt => 'Diagram showing the payment process for a service that has a GOV.UK Pay
-integration' } %>
-
-The diagram shows the relationship between GOV.UK Pay, payment service providers
-(PSPs) and issuing banks.
-
-When your user needs to make a payment, your service makes an API call to
-create a new payment, then redirects your user to the payment pages hosted on
-GOV.UK Pay.
-
-Your user enters their payment details (for example payment card
-details and billing address) on the GOV.UK Pay pages. GOV.UK Pay verifies the
-payment with the underlying PSP.
-
-After the transaction reaches a final state, your user is then redirected
-back to your service.
+1. When your user needs to make a payment, your service makes an API call to create a new payment.
+1. Your service then redirect your use to the payment pages hosted on GOV.UK Pay.
+1. Your user enters their payment information (for example, payment card details and billing address) on the GOV.UK Pay pages.
+1. GOV.UK Pay verifies the payment with the underlying payment service provider (PSP).
+1. After the transaction reaches a final state, GOV.UK Pay redirects your user back to your service.
 
 A final state means that the payment:
 
@@ -42,8 +30,7 @@ A final state means that the payment:
 * fails because it is cancelled by your service
 * expires - your user has 90 minutes to complete a payment once it's created
 
-When your user arrives back at your service, you can use the API to check the
-status of the transaction and show them an appropriate message.
+When your user arrives back at your service, you can use the API to check the status of the transaction and show them an appropriate message.
 
 ## Making a payment
 
