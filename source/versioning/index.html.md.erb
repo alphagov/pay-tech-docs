@@ -1,12 +1,17 @@
 ---
 title: Stay up to date
+last_reviewed_on: 2020-10-21
+review_in: 6 months
 weight: 190
 ---
 
 # Stay up to date
 
-If you want to update to our latest API, make sure you test your code before
-committing to the change.
+The GOV.UK Pay API follows the [Semantic Versioning 2.0.0 system](https://semver.org/).
+
+The number in the URL reflects the major version number. For example `/v1/payments/`.
+
+The version number in the [API browser](https://govukpay-api-browser.cloudapps.digital/) and the [API Swagger file](https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json) has the full MAJOR.MINOR.PATCH version number. For example `v1.0.3`.
 
 When we add new properties to the JSON responses, the GOV.UK Pay API version
 number will not change. You should develop your service to ignore properties
@@ -17,6 +22,9 @@ values in a backwards-incompatible manner.
 
 Our version number will be updated in the URL when there is a release. All
 releases will be marked with full version numbers.
+
+If you want to update to our latest API, make sure you test your code before
+committing to the change.
 
 We’ll support each version of the early beta GOV.UK Pay API for at least 1
 month after we issue an upgrade notice. As the API matures, we may increase
