@@ -77,7 +77,7 @@ A successful response includes ``status`` and ``finished`` values:
   </tr>
   <tr>
     <td> submitted </td>
-    <td> Your user has submitted payment details, and gone through 3D Secure.<br>The PSP has authorised the payment, but the user has not yet selected <b>Confirm</b>. </td>
+    <td> Your user has submitted payment details, and gone through authentication if required.<br>The PSP has authorised the payment, but the user has not yet selected <b>Confirm</b>. </td>
     <td> false </td>
   </tr>
   <tr>
@@ -87,7 +87,7 @@ A successful response includes ``status`` and ``finished`` values:
   </tr>
   <tr>
     <td> success </td>
-    <td> Your user successfully completed the payment by selecting <b>Confirm</b>. <br>The user is redirected to an appropriate payment confirmation page on your service.</td>
+    <td> Your user successfully completed the payment by selecting <b>Confirm</b>. <br>The user is redirected to an appropriate payment confirmation page.</td>
     <td> true </td>
   </tr>
   <tr>
