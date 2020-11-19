@@ -50,10 +50,8 @@ Authorization: Bearer <YOUR-API-KEY-HERE>
 
 ## Payment status lifecycle
 
-The following diagram gives an overview of the payment status lifecycle and the
-possible outcomes, excluding for delayed capture payments:
+The following table summarises the payment status lifecycle and the possible outcomes, excluding for delayed capture payments.
 
-<%= image_tag "/images/payment-states.svg", { :alt => '' } %>
 
 You can check the status of a payment using the <a
 href="https://govukpay-api-browser.cloudapps.digital/#get-a-payment"
@@ -69,7 +67,7 @@ A successful response includes ``status`` and ``finished`` values:
   </tr>
   <tr>
     <td> created </td>
-    <td> Payment created. Your user has not yet visited <code>next_url</code>. </td>
+    <td> Payment created using the API. Your user has not yet visited <code>next_url</code>. </td>
     <td> false </td>
   </tr>
   <tr>
@@ -79,22 +77,22 @@ A successful response includes ``status`` and ``finished`` values:
   </tr>
   <tr>
     <td> submitted </td>
-    <td> Your user has submitted payment details but has not yet selected <b>Confirm</b>. </td>
+    <td> Your user has submitted payment details, and gone through authentication if required.<br>The PSP has authorised the payment, but the user has not yet selected <b>Confirm</b>. </td>
     <td> false </td>
   </tr>
   <tr>
     <td> capturable </td>
-    <td> The payment is a [delayed capture](/delayed_capture/#delay-taking-a-payment), and your user has submitted payment details and selected <b>Confirm</b>. </td>
+    <td> The payment is a <a href="/delayed_capture/#delay-taking-a-payment" target="blank">delayed capture</a>, and your user has submitted payment details and selected <b>Confirm</b>. </td>
     <td> false </td>
   </tr>
   <tr>
     <td> success </td>
-    <td> Your user successfully completed the payment. </td>
+    <td> Your user successfully completed the payment by selecting <b>Confirm</b>. <br>The user is redirected to an appropriate payment confirmation page.</td>
     <td> true </td>
   </tr>
   <tr>
     <td> failed </td>
-    <td> Your user attempted to make a payment but the payment did not complete. </td>
+    <td> Your user attempted to make a payment but the payment did not complete. <br>GOV.UK Pay shows an appropriate screen for the failure.<br>Check the <a href="#errors-caused-by-payment-statuses">payment status error code</a> for more information.</td>
     <td> true </td>
   </tr>
   <tr>
@@ -104,7 +102,8 @@ A successful response includes ``status`` and ``finished`` values:
   </tr>
   <tr>
     <td> error </td>
-    <td> Something went wrong with GOV.UK Pay or the underlying payment service provider. <a href="/support_contact_and_more_information/#contact-us">Contact us.</a> </td>
+    <td> Something went wrong with GOV.UK Pay or the underlying payment service provider. Payment fails safely with no money taken. <br><br>
+      The user will see a screen stating "We're experiencing technical problems. No money has been taken from your account. Cancel and go back to try the payment again."
     <td> true </td>
   </tr>
 </table>
