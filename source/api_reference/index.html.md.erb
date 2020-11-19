@@ -151,37 +151,37 @@ Common status codes are:
 | Create payment | P0102 | Invalid attribute value | The value of an attribute you sent is invalid. |
 | Create payment | P0196 | MOTO payments not allowed | Contact us about [setting up your service for Mail Order / Telephone Order (MOTO) payments](/moto_payments/#take-a-payment-over-the-phone-moto-payments).|
 | Create payment | P0197 | Unable to parse JSON | The JSON you sent in the request body is invalid.|
-| Create payment | P0198 | Downstream system error | Internal error with GOV.UK Pay. [Contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
-| Create payment | P0199 | Account error | There is a problem with your service account. [Contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Create payment | P0198 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
+| Create payment | P0199 | Account error | There is a problem with your service account. Contact us, quoting the error code. |
 | Find payment by ID | P0200 | `paymentId` not found | No payment matched the `paymentId` you provided. |
-| Find payment by ID | P0298 | Downstream system error | Internal error with GOV.UK Pay. [Contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Find payment by ID | P0298 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
 | Return payment events by ID | P0300 | `paymentId` not found | No payment matched the `paymentId` you provided. |
-| Return payment events by ID | P0398 | Downstream system error | Internal error with GOV.UK Pay. [Contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Return payment events by ID | P0398 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
 | Search payments | P0401 | Invalid parameters | The parameters you sent are invalid. |
 | Search payments | P0402 | Page not found | The requested page of search results does not exist. |
-| Search payments | P0498 | Downstream system error | Internal error with GOV.UK Pay. [Contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Search payments | P0498 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
 | Cancel payment | P0500 | `paymentId` not found | No payment matched the `paymentId` you provided. |
-| Cancel payment | P0501 | Cancellation failed | Cancelling the payment failed. [Contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Cancel payment | P0501 | Cancellation failed | Cancelling the payment failed. Contact us, quoting the error code. |
 | Cancel payment | P0502 | Payment cannot be cancelled | You can only cancel a payment if [the payment has a `cancel` field](/making_payments/#find-out-if-you-can-cancel-a-payment). |
-| Cancel payment | P0598 | Downstream system error | Internal error with GOV.UK Pay. [Contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Cancel payment | P0598 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
 | Create refund | P0600 | `paymentId` not found | No payment matched the `paymentId` you provided. |
 | Create refund | P0601 | Missing mandatory attribute | The request you sent is missing a required attribute. |
 | Create refund | P0602 | Invalid attribute value | The value of an attribute you sent is invalid. |
 | Create refund | P0603 | Refund not available | The payment is not available for refund. |
 | Create refund | P0604 | Refund amount available mismatch | The `refund_amount_available` value you provided does not match the true amount available to refund. |
 | Create refund | P0697 | Unable to parse JSON | The JSON you sent in the request body is invalid. |
-| Create refund | P0698 | Downstream system error | Internal error with GOV.UK Pay. [Contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Create refund | P0698 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
 | Get refund | P0700 | `refundId` not found | No refund matched the `refundId` you provided. |
-| Get refund | P0798 | Downstream system error | Internal error with GOV.UK Pay. [Contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Get refund | P0798 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
 | Get refunds | P0800 | `refundId` not found | No refund matched the `refundId` you provided. |
-| Get refunds | P0898 | Downstream system error | Internal error with GOV.UK Pay. [Contact us](/support_contact_and_more_information/#contact-us), quoting the error code. |
+| Get refunds | P0898 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
 | General | P0900 | Too many requests | Your service account is sending requests above the allowed rate. Try the request again in a few seconds. |
 | General | P0920 | Request blocked by security rules | Our firewall blocked your request. Find out [how to fix a P0920 error](#fix-a-p0920-api-error). |
 | General | P0999 | GOV.UK Pay is unavailable | The GOV.UK Pay service is temporarily down. |
 | Delayed capture | P1000 | No match for `paymentId` | No payment matched the `paymentId` you provided. |
-| Delayed capture | P1001 | Capturing failed | Capturing the payment failed. [Contact us](/support_contact_and_more_information/#contact-us). |
+| Delayed capture | P1001 | Capturing failed | Capturing the payment failed. Contact us, quoting the error code. |
 | Delayed capture | P1003 | Payment cannot be captured | You can only capture a payment if the payment has a `status` of `capturable`. |
-| Delayed capture | P1098 | GOV.UK Pay error | Something is wrong with GOV.UK Pay. [Contact us](/support_contact_and_more_information/#contact-us). |
+| Delayed capture | P1098 | GOV.UK Pay error | Something is wrong with GOV.UK Pay. Contact us, quoting the error code. |
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
