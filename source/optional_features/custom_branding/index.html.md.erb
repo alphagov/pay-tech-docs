@@ -11,9 +11,11 @@ GOV.UK Pay supports custom branding on your payment journey.
 
 You can use custom branding regardless of whether you [integrate your service](/integrate_with_govuk_pay/#how-to-integrate-with-the-gov-uk-pay-api) with GOV.UK Pay, or use [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/).
 
+Custom branding applies to the test and live environments for a service. You must tell us which service you want to apply custom branding to.
+
 You can apply custom branding to your [payment pages](/payment_flow/#making-a-payment) and your [payment confirmation emails](/payment_flow/#confirmation-email).
 
-You cannot have different custom branding for payment pages and emails.
+You cannot use different custom branding for payment pages and emails.
 
 For the payment pages and emails, you can customise:
 
@@ -22,20 +24,23 @@ For the payment pages and emails, you can customise:
 
 For payment pages only, you can also customise the border colour of the top banner.
 
-The following images of the payment page and confirmation email show:
-
-* where these customisable features are on the screen
-* an example of how these features would look
-
 <%= image_tag "/images/custom-branding-diagram-large.svg", { :alt => '' } %>
 
-[Contact the GOV.UK Pay team](/support_contact_and_more_information/#contact-us) to request customisation of these features.
+To set up custom branding, do the following.
 
-You must tell us which service you want to apply custom branding to. Custom branding applies to the test and live environments for a service.
+1. Send us your customised banner logo and banner colours.
+2. Include contact information on your payment confirmation emails.
 
-## Customise your banner logo
+## Send us your banner logo and banner colours
 
-To customise your banner logo, email us an image of your desired custom banner logo. Your image should be:
+[Send the GOV.UK Pay team](/support_contact_and_more_information/#contact-us):
+
+  - an image of your banner logo
+  - the colours of your banner background and border
+
+### Customise your banner logo
+
+To customise your banner logo, email us an image of your banner logo. Your image should be:
 
 * in PNG or SVG format
 * 300 pixels or less in height
@@ -44,28 +49,28 @@ To customise your banner logo, email us an image of your desired custom banner l
 * cropped to leave minimal whitespace around the logo
 * compressed (optimised for web)
 
-If you follow these requirements, your image will look clear on both mobile and non-mobile displays.
+If you follow these requirements, your banner logo will look clear on both mobile and non-mobile displays.
 
-## Customise your banner background and border colour
+### Customise your banner colours
 
 For payment pages, you can customise both the background and border colours of the top banner.
 
 For payment confirmation emails, you can only customise the background colour of the top banner.
 
-To customise these features, email us the appropriate [hexadecimal colour codes](https://www.w3schools.com/colors/colors_picker.asp).
+To customise these features, email us your [hexadecimal colour codes](https://www.w3schools.com/colors/colors_picker.asp).
 
-## Tell your users how to contact you
+## Include contact information on your payment emails
 
-When you ask GOV.UK Pay to set up custom branding on your [payment confirmation emails](/payment_flow/#confirmation-email), you must tell your users how to contact you.
+When you have custom branding on your [payment confirmation emails](/payment_flow/#confirmation-email), those emails must tell your users how to contact you.
 
-You can do this using a reply-to email address or another way such as a contact form.
+You can include this information on your emails by using, for example, a reply-to email address or a contact form.
 
 If you use a reply-to email address, this email address can be a monitored email inbox for your service, or an unmonitored email address with an automated response.
 
 If you use an unmonitored automated email response, you should tell your users:
 
 - that the email address is unmonitored
-- how your users can contact your service
+- how they can contact your service
 
 You can customise your email responses in the GOV.UK Pay admin tool using the `customParagraph` field in the payment receipt email template.
 
