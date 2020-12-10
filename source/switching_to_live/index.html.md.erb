@@ -94,21 +94,46 @@ You need to make the following changes to your live account if you made them to 
 
 ## 6. Check your live account works
 
+To check your live account works, you must make a real payment and then check if that payment was successful.
+
+You make a real payment using either:
+
+- the GOV.UK Pay API if you have [integrated with the API](/integrate_with_govuk_pay/#integrate-with-the-gov-uk-pay-api)
+- a payment link if you are [using payment links](https://www.payments.service.gov.uk/govuk-payment-pages/)
+
+### Make a payment using the GOV.UK Pay API
+
 1. Select your live account from the [__My services__ page](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
 
-2. Select __Settings__, then __API keys__.
+1. Select __Settings__, then __API keys__.
 
-3. Generate a new live API key.
+1. Generate a new live API key.
 
-4. Use the new live API key to test making a real payment on your live account, using the [GOV.UK Pay API](/making_payments/#take-a-payment) or a [payment link](https://www.payments.service.gov.uk/govuk-payment-pages/).
+1. [Make a real payment](/making_payments/#take-a-payment) using the new live API key.
 
     You must use a real payment card. Use a small amount, because GOV.UK Pay will take the payment from the card you use.
 
-5. After you've confirmed the payment, check you received a [confirmation email](/payment_flow/#confirmation-email).
+    If you want to see the payment in your bank account, make sure the payment amount is [above the minimum payout](/integrate_with_govuk_pay/#receiving-payments).
 
-6. Check the payment appears in [your transactions](https://selfservice.payments.service.gov.uk/transactions) in the GOV.UK Pay admin tool.
+### Make a payment using a payment link
 
-7. Select the payment and check you can refund it - it may take up to 20 minutes for the __Refund payment__ button to appear.
+1. Select your live account from the [__My services__ page](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
+
+1. Create a payment link on your live account.
+
+1. Make a real payment using the live payment link.
+
+    You must use a real payment card. Use a small amount, because GOV.UK Pay will take the payment from the card you use.
+
+    If you want to see the payment in your bank account, make sure the payment amount is [above the minimum payout](/integrate_with_govuk_pay/#receiving-payments).
+
+### Check that the payment was successful
+
+1. After you've confirmed the payment, check you received a [confirmation email](/payment_flow/#confirmation-email).
+
+1. Check the payment appears in [your transactions](https://selfservice.payments.service.gov.uk/transactions) in the GOV.UK Pay admin tool.
+
+1. Select the payment and check you can refund it. It may take up to 20 minutes for the __Refund payment__ button to appear.
 
 If your payment or refund fails, check:
 
