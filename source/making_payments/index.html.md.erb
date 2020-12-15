@@ -7,6 +7,8 @@ weight: 50
 
 # Take a payment
 
+This section tells you how to take a payment using the GOV.UK Pay API.
+
 When your user makes a payment, your service should supply a `reference`. If
 possible, this should be a unique identifier for the payment. If your
 organisation already has an existing identifier for payments, you can use it
@@ -16,8 +18,6 @@ Your service will also need to supply a
 [`return_url`](#choose-the-return-url-and-match-your-users-to-payments). This
 is a URL that your service hosts for your user to return to, after their
 payment journey on GOV.UK Pay ends.
-
-<%= warning_text('This does not apply if you only use <a href="https://www.payments.service.gov.uk/govuk-payment-pages/" target="_blank">payment links</a>.') %>
 
 ## Creating a payment
 
