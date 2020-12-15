@@ -13,6 +13,8 @@ You may want to use delayed capture if you need time to do your own anti-fraud c
 
 During the delay, your user's available bank balance is reduced by the payment amount.
 
+You cannot use delayed capture if you only use [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/).
+
 To use this feature, include `"delayed_capture": true` in the body of a <a
 href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
 target="blank">Create new payment</a> request.
