@@ -9,14 +9,12 @@ weight: 30
 
 This section outlines how your service will interact with GOV.UK Pay after you integrate with the API.
 
-There's a different process for [taking Direct Debit payments](/direct_debit/#take-a-direct-debit-payment).
-
 ## Overview
 
 The following payment process is for a service that is integrated with the GOV.UK Pay API.
 
 1. When your user needs to make a payment, your service makes an API call to create a new payment.
-1. Your service then redirects your use to the payment pages hosted on GOV.UK Pay.
+1. Your service then redirects your user to the payment pages hosted on GOV.UK Pay.
 1. Your user enters their payment information (for example, payment card details and billing address) on the GOV.UK Pay pages.
 1. GOV.UK Pay verifies the payment with the underlying payment service provider (PSP).
 1. After the transaction reaches a final state, GOV.UK Pay redirects your user back to your service.
