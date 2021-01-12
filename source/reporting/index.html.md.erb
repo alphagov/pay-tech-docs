@@ -61,7 +61,7 @@ You can use the GOV.UK Pay API to:
 See the <a href="https://govukpay-api-browser.cloudapps.digital/#getpayment" target="blank">GOV.UK Pay API browser</a> for more details
 
 If the payment exists, the JSON response body to this
-API call contains a `"state"` field. You can use this information when
+API call contains a `state` field. You can use this information when
 designing a service.
 
 For example, the response for a successful payment contains:
@@ -78,7 +78,7 @@ through your service.
 
 For a valid request, the JSON response body to this API call also contains
 other useful information. For example, if your user has gone far enough in their
-payment journey, the `"card_details"` section contains information that they
+payment journey, the `card_details` section contains information that they
 have entered when making a payment:
 
 ```JSON
