@@ -112,12 +112,10 @@ And response bodies would be of the form:
 
 The start of the response confirms the properties of the attempted payment.
 
-The `self` URL (also provided in the Location header of the response) is a
-unique identifier for the payment. It can be used to retrieve the payment status
-details in future.
+The `href` field in the `self` object is a URL with a unique identifier for the payment, for example `icus7b4umg4b4g5fat4831es5f`. You can [make an API request](/reporting/#get-information-about-a-single-payment) to the URL to get the payment's status in future. The URL is also in the location header of the API response. 
 
-The `next_url` is the URL where your service should direct your user next.
-It points to a payment page hosted by GOV.UK Pay where your user can enter
+The `href` field in the `next_url` object is the URL where your service should direct your user next.
+The URL points to a payment page hosted by GOV.UK Pay where your user can enter
 their payment details. This is a one-time URL. If more than one visit is attempted,
 it will give an error message.
 
