@@ -20,9 +20,13 @@ Do not use your test account for automated integration tests that run every time
 
 You should test the whole user journey.
 
-To help you test, you can:
+If you're using the API integration, you can create a link to GOV.UK Pay payment pages and add it to your service's prototype page. 
 
-- if you are using the API integration, [create a link to GOV.UK Pay payment pages](https://selfservice.payments.service.gov.uk/test-with-your-users) and add it to your service's prototype page
+1. [Select the account you want to test in the GOV.UK admin tool](https://selfservice.payments.service.gov.uk/).
+2. Select **Test with your users** to create the link.
+
+You can also:
+
 - use [mock card numbers](#mock-card-numbers) to test both successful and unsuccessful payments
 - use HTTP instead of HTTPs for the `return_url` with your test account, so you do not need to set up a secure url for testing
 - test any [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/) you have set up
