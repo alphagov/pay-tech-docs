@@ -1,6 +1,6 @@
 ---
 title: Set up Strong Customer Authentication (3DS1 and 3DS2)
-last_reviewed_on: 2020-08-28
+last_reviewed_on: 2021-01-29
 review_in: 6 months
 weight: 170
 ---
@@ -9,11 +9,13 @@ weight: 170
 
 Strong Customer Authentication (SCA) makes online payments more secure for users and reduces fraud. SCA is part of the Payment Service Directive 2 (PSD2).
 
-If you take payments from the European Economic Area (EEA), defined as the European Union, Norway, Iceland and Liechtenstein, you must implement SCA by 31 December 2020.
+If you take payments from the European Economic Area (EEA), defined as the European Union, Norway, Iceland and Liechtenstein, you must implement SCA when you [go live](/switching_to_live/#go-live).
 
 If you only take payments within the UK, you must implement SCA by 14 September 2021.
 
 To implement SCA, you must set up 3D Secure 2 (3DS2) or 3D Secure 1 (3DS1) payment authentication.
+
+Payment service providers (PSPs) recommend setting up 3DS2, because 3DS1 will be retired in 2022.
 
 How you set up 3DS2 or 3DS1 payment authentication depends on which Payment Service Provider (PSP) you’re using.
 
@@ -36,9 +38,10 @@ Worldpay does not apply any SCA exemptions to transactions.
 1. In the GOV.UK Pay admin tool, select the account you want to set up on the __My services__ page.
 1. In __Settings__, make sure 3D Secure is set to __On__.
 1. In __Your PSP__, enter your 3DS Flex credentials.
+1. Select __Save credentials__.
 1. Select __Turn on 3DS Flex__.
 
-<%= warning_text('If your credentials are wrong, you are not able to take payments.') %>
+If you turn off 3DS Flex later, your account will use 3DS1 by default.
 
 ### Check 3DS1 is enabled
 
