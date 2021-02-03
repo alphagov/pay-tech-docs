@@ -1,92 +1,63 @@
 ---
-title: How accounts work
-last_reviewed_on: 2021-01-08
+title: Structuring your accounts
+last_reviewed_on: 2021-02-03
 review_in: 6 months
 weight: 40
 ---
 
-# How accounts work
+# Deciding whether to combine accounts and payments
+  
+You should set up your GOV.UK Pay services and payment service provider (PSP) accounts so you can more easily report on and reconcile your payments, and manage your services. 
 
-GOV.UK Pay does not limit how many services you can integrate with it and how many accounts you can have with us.
-GOV.UK Pay test and live accounts are free to create and maintain but your payment service provider may charge you for the underlying accounts.
+GOV.UK Pay services are free, and there's no limit to how many you can create. Your PSP may charge you for each PSP account you have.
 
-## Account structure examples
+## Decide whether to combine your users' payments 
 
-If you do integrate multiple services, you can treat them separately or as a
-combined single service within GOV.UK Pay and your payment service provider (PSP).
-This gives 3 possible account configurations.
+Each GOV.UK Pay service you create can take payments for either:
 
-As an example, take 2 services called ‘parking permits’ and ‘parking fines’:
+- one of your services
+- 2 or more of your services combined
 
-### Type 1 (GOV.UK Pay separate, PSP separate)
+### Take payments for one service
 
-<%= image_tag "/images/accountstructure_1.svg", { :alt => '' } %>
+If a GOV.UK Pay service takes payments for only one of your services, you can:
 
-The diagram show two services, ‘Parking permits’ and ‘Parking fines’, that are considered separate services by
-both GOV.UK Pay and the PSP.
+- give your service its own name on GOV.UK Pay's payment pages
+- report on your service's payments separately
+- send your service's payments to a dedicated bank account
+- give your staff members access to your service separately in the GOV.UK Pay admin tool
 
-If you use this account structure, you can:
+To change a service's name, go to the [**My services** page in the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
 
-- give access for each service to different staff members
-- optionally use different service names on the GOV.UK Pay payment pages
-- send each service's payments to a different bank account
-- report separately on each of your services
+### Take payments for 2 or more services combined
 
-### Type 2 (GOV.UK Pay combined, PSP combined)
+If a GOV.UK Pay service takes payments for 2 or more of your services combined:
 
-<%= image_tag "/images/accountstructure_2.svg", { :alt => '' } %>
+- you can more easily report on all the services' payments together
+- you can more easily change a setting across all the services, for example which card types you accept
+- you may need to use a different [reference number](/making_payments/#reference) or add [custom metadata](/custom_metadata/#add-custom-metadata) for each of your services, so you can tell which service each payment comes from
+- you cannot give the services different names
+- you cannot send payments to different bank accounts
 
-The diagram shows two services, ‘Parking permits’ and ‘Parking fines’, that are considered a single combined
-service by GOV.UK Pay and the PSP.
+To set up your services like this, use the same API key to create a payment in all of your services that you want to combine.
 
-You may want to use this configuration if you want to simplify the administration of multiple services in GOV.UK Pay. For example, if you do not need reporting at an individual service level.
+## Decide whether to combine your bank payments
 
-The transactions from both services will appear in the same transactions list and CSV file. You may find it useful to use reference numbers to separate payments clearly, for example “parking_fine_1234” and “parking_permit_1234”.
+To help you reconcile payments, each PSP account you create can receive money from either:
 
-In this configuration, payments to services must go to the same bank account because
-they are a single service in the PSP. It is not possible to support multiple PSP accounts in a single GOV.UK Pay service.
+- one GOV.UK Pay service
+- 2 or more GOV.UK Pay services combined - unless you use Stripe
 
-### Type 3 (GOV.UK Pay separate, PSP combined)
+If you want one PSP account to recieve money from 2 or more GOV.UK Pay services, add the same merchant code to each GOV.UK Pay service when you [go live](/switching_to_live/#go-live).
 
-<%= image_tag "/images/accountstructure_3.svg", { :alt => '' } %>
+You cannot send money from one GOV.UK Pay service to different PSP accounts.
 
-The diagram shows two services, ‘Parking permits’ and ‘Parking fines’, that are considered separate services by
-GOV.UK Pay and as a single combined service in the PSP.
+Find out more about [reconciling payments](/integrate_with_govuk_pay/#finance-and-accounting-systems).
 
-You may want to use this configuration if you want to administrate multiple
-services individually in GOV.UK Pay. For example, if you want separate reporting for each service, or different service names on the payment pages.
-This option also allows you to give access for each service to different staff members.
+### Change which bank accounts your PSP sends money to
 
-In this configuration, payments for both services are settled to the same bank account because
-they go into a single account in the PSP.
+You can change which bank accounts your PSP sends money to by:
 
-## Managing settings in GOV.UK Pay services
-
-Each service defined in GOV.UK Pay has its own API key.
-
-Sign in to the [GOV.UK Pay admin
-tool](https://selfservice.payments.service.gov.uk/) and go to the __Settings__
-page to change:
-
-* 3D Secure settings
-* the card types you accept
-* email notifications settings
-* billing address settings
-* account credentials
-
-You can also change the name of a service, including how it appears on payment
-pages. To do this, select __My services__ and then __Edit name__ for the
-service name you want to change.
-
-## Managing settings in PSP services
-
-Within each gateway account for the PSP, you can edit:
-
-* what appears on your users' bank statements
-* which of your bank accounts your revenue goes to
-
-You can either:
-
-- [contact us](/support_contact_and_more_information/#support) if your PSP is Stripe
-- [contact Government Banking](mailto:serviceteam.gbs@hmrc.gov.uk) if you are using Government Banking's contracted PSP, which is currently Worldpay
-- contact your PSP directly
+- [contacting us](/support_contact_and_more_information/#support) if your PSP is Stripe
+- [contacting Government Banking](mailto:serviceteam.gbs@hmrc.gov.uk) if you're using Government Banking's contracted PSP
+- contacting your PSP directly
