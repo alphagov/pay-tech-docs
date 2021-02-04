@@ -149,7 +149,9 @@ Where:
 The response will not contain a `fee` or `net_amount` parameter if either:
 
 - your PSP is SmartPay, Worldpay or ePDQ - we do not deduct these PSPs' transaction fees
-- you're [using a test API key](/quick_start_guide/#test-the-api) - we do not deduct fees from test payments
+- you're using an API key from your test ('sandbox') account - we do not deduct fees from payments in this account
+
+To test transaction fees, you can request a test Stripe account by selecting your account in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
 
 You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see transaction fee information or export the information in a CSV file.
 
