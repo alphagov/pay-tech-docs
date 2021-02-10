@@ -1,68 +1,17 @@
 ---
 title: Setting up multiple services
-last_reviewed_on: 2021-02-03
+last_reviewed_on: 2021-02-10
 review_in: 6 months
-weight: 40
+weight: 145
 ---
 
 # Setting up multiple services
-  
-If you have more than one online service, you can set up your GOV.UK Pay account and payment service provider (PSP) accounts so it's easier to manage your payments and services.
 
-## Decide where to send users
+If you have more than one online service, you can set up your GOV.UK Pay accounts and payment service provider (PSP) accounts so it's easier to manage your payments and services.
 
-You can send your users to make payments with either:
+You can set up:
 
-- a different GOV.UK Pay service for each of your services
-- a combined GOV.UK Pay service
-
-### Send your users to different GOV.UK Pay services
-
-Send your users to a different GOV.UK Pay service for each of your services if you need to do any of the following:
-
-- give each service its own name on the GOV.UK Pay payment pages
-- report on each service's payments separately
-- send each service's payments to different bank accounts
-- give your staff members access to each service separately in the GOV.UK Pay admin tool
-
-To set up your services like this, [create a new GOV.UK Pay service](https://selfservice.payments.service.gov.uk/my-services/create) for each of your online services.
-
-GOV.UK Pay services are free, and there's no limit to how many you can create.
-
-To change a service's name, go to the [**My services** page in the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
-
-### Send your users to a combined GOV.UK Pay service
-
-Send your users to a combined GOV.UK Pay service if you need to:
-
-- report on all the services' payments together
-- change settings easily across all the services, for example which card types you accept
-
-You will not be able to give the services different names or send payments to different bank accounts.
-
-You may need to use a different [reference number](/making_payments/#reference) or add [custom metadata](/custom_metadata/#add-custom-metadata) for each of your services, so you can tell which service each payment comes from.
-
-To set up a group of your services like this, use the same API key or payment link for all the services in the group.
-
-## Decide where to send payments
-
-To help you reconcile payments, each GOV.UK Pay service can send payments to a:
-
-- separate PSP account and bank account
-- combined PSP account and back account - unless you use Stripe
-
-To set up a combined PSP account, add the same PSP merchant code to each GOV.UK Pay service when you [go live](/switching_to_live/#go-live).
-
-If you send payments to separate PSP accounts, your PSP may charge you for each PSP account you have.
-
-You cannot send money from one GOV.UK Pay service to different PSP accounts.
+- [which bank accounts your payments go to](set_up_where_payments_go)
+- [how your services link to GOV.UK Pay services](set_up_where_services_link_to)
 
 Find out more about [reconciling payments](/integrate_with_govuk_pay/#finance-and-accounting-systems).
-
-### Change which bank accounts your PSP sends money to
-
-You can change which bank accounts your PSP sends money to by:
-
-- [contacting us](/support_contact_and_more_information/#support) if your PSP is Stripe
-- [contacting Government Banking](mailto:serviceteam.gbs@hmrc.gov.uk) if you're using Government Banking's contracted PSP
-- contacting your PSP directly

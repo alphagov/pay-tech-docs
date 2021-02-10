@@ -1,0 +1,56 @@
+---
+title: Set up which bank accounts your payments go to
+last_reviewed_on: 2021-02-10
+review_in: 6 months
+weight: 141
+---
+
+# Set up which bank accounts your payments go to
+
+To help you reconcile payments, you can send payments from your services to:
+
+- a combined bank account
+- different bank accounts
+
+GOV.UK Pay services are free, and there's no limit to how many you can create. Your payment service provider (PSP) may charge you for each PSP account you have.
+
+## Send payments to a combined bank account
+
+You can send payments from a group of your services to a combined bank account.
+
+1. [Create a GOV.UK Pay service](https://selfservice.payments.service.gov.uk/my-services/create) for each of your services.
+
+2. When you [go live](/switching_to_live/#go-live), in each GOV.UK Pay service add either:
+
+- the same bank account number - if you use Stripe
+- the same PSP merchant code
+
+You can also [create a single GOV.UK Pay service instead](/account_structure/set_up_where_services_link_to#link-your-services-to-a-combined-gov-uk-pay-service) if you need to easily manage the following across the whole group:
+
+- your staff members' access in the GOV.UK Pay admin tool
+- your account settings, for example which card types you accept
+
+If you need to know which service each payment came from when you [report on payments](/reporting), you can:
+
+- add different [reference numbers](/making_payments/#reference)
+- add different [descriptions](/making_payments/#description)
+- use [custom metadata](/custom_metadata/#add-custom-metadata)
+
+## Send payments to different bank accounts
+
+If you need to send payments from your services to different bank accounts, you must create separate GOV.UK Pay services.
+
+You cannot send payments from one GOV.UK Pay service to more than one bank account.
+
+### If you use Stripe
+
+1. [Create a GOV.UK Pay service](https://selfservice.payments.service.gov.uk/my-services/create) for each bank account you want to use.
+2. Decide whether to [link one or more of your services to each GOV.UK Pay service](/account_structure/set_up_where_services_link_to) you created.
+3. When you [go live](/switching_to_live/#go-live), add the bank account number you want to use to each GOV.UK Pay service.
+
+### If you use Worldpay, ePDQ or SmartPay
+
+1. Create a new PSP merchant code for each bank account you want to use.
+2. [Create a GOV.UK Pay service](https://selfservice.payments.service.gov.uk/my-services/create) for each PSP merchant code.
+3. Decide whether to [link one or more of your services to each GOV.UK Pay service](/account_structure/set_up_where_services_link_to) you created.
+4. When you [go live](/switching_to_live/#go-live), add the PSP merchant code you want to use to each GOV.UK Pay service.
