@@ -1,6 +1,6 @@
 ---
 title: Delay taking a payment
-last_reviewed_on: 2020-03-04
+last_reviewed_on: 2021-02-18
 review_in: 6 months
 weight: 80
 ---
@@ -31,18 +31,17 @@ Refer to the <a
 href="https://govukpay-api-browser.cloudapps.digital/#capturepayment"
 target="blank">API browser</a> or the <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">Swagger file</a> for more information.
 
-There are 4 possible responses:
+There are 7 possible responses:
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
-
-|Response code | Meaning |
+|Status code | Meaning |
 |:---|:---|
 |204| Your capture request succeeded. |
+|400| The server cannot process the request due to a client error, for example missing details in the request or a failed payment cancellation. |
+|401|	Required authentication has failed or has not been provided. |
 |404| No payment matched the `paymentId` you provided. |
 |409| You cannot capture the payment because its `status` is not `capturable`. |
+|429|	Too many requests. Request rate is above the rate limit. |
 |500| Something is wrong with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/). |
-
-<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 Your service must send the delayed capture request within 120 hours (5 days) of creating the payment, regardless of how long your user takes to complete the payment flow. If you do not, [the payment will expire](/payment_flow/#payment-expires).
 
@@ -66,9 +65,4 @@ The `"__links"` object will contain:`
     }
 ```
 
-If the payment is not available for capture, the `"__links"` object will
-contain:
-
-```
-"capture": null
-```
+If the payment is not available for capture, the `"__links"` object will not contain a `capture` object.
