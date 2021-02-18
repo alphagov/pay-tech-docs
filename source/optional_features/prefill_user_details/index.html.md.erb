@@ -1,6 +1,6 @@
 ---
 title: Prefill payment fields
-last_reviewed_on: 2020-05-21
+last_reviewed_on: 2021-02-18
 review_in: 6 months
 weight: 104
 ---
@@ -47,11 +47,10 @@ target="blank">API browser</a> or the <a href="https://github.com/alphagov/pay-p
 
 ## Data collected by your GOV.UK Pay admin account
 
-After your user completes their payment, your [GOV.UK Pay admin
-account](https://selfservice.payments.service.gov.uk/login) will collect your user's:
+After your user completes their payment, your GOV.UK Pay account will collect your user's:
 
 - email address - even if you've disabled collecting your users' email addresses
 - cardholder name
-- billing address
+- billing address - you can only see this by [using the API to get information about a payment](/reporting/#get-information-about-a-single-payment)
 
-If your user does not complete their payment, your GOV.UK Pay admin account will still collect the `billing_address` value. This will happen even if you've chosen not to collect your users' billing addresses.
+If your user does not complete their payment, your GOV.UK Pay account will still collect the `billing_address` value. This will happen even if you've chosen not to collect your users' billing addresses.
