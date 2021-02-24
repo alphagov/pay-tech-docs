@@ -33,6 +33,11 @@ You can also:
 
 You cannot use 3D Secure with test accounts.
 
+If your payment service provider (PSP) is Stripe, you can request a test Stripe account from your account in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services). You can use a test Stripe account to see how the following work:
+
+- [transaction fees](/reporting/#psp-fees)
+- payments to your bank account
+
 ## Performance testing
 
 You must [contact us](/support_contact_and_more_information) to get written approval before you do any performance testing.
@@ -47,28 +52,44 @@ You must use mock email addresses when doing automated testing. If you are testi
 
 You can enter any valid value for other payment fields. For example, the card expiry date can be any date in the future.
 
-### Mock card numbers
+### Mock card numbers
 
 Mock card numbers do not work with your live account.
+
+#### If you're using a test ('sandbox') account
 
 |Testing action |Card number | Card brand | Card type |
 | -------- | ------- | ------- | ------- |
 |Successful payment | 4444333322221111 | Visa | Credit |
-||4242424242424242| Visa | Credit |
-||4000056655665556| Visa | Debit |
-||4988080000000000| Visa | Debit - corporate |
-||4000160000000004| Visa | Debit - prepaid |
-||4131840000000003| Visa | Debit - corporate prepaid |
-||4000620000000007| Visa | Credit - corporate |
-||4000000000000010| Visa | Credit or debit |
-||5101110000000004| Mastercard | Credit |
-||5105105105105100| Mastercard | Debit |
-||5200828282828210| Mastercard | Debit |
-||371449635398431| American Express | Credit |
-||3566002020360505| JCB | Credit |
-||6011000990139424| Discover | Credit |
-||36148900647913| Diners Club | Credit |
+|Successful payment |4242424242424242| Visa | Credit |
+|Successful payment |4000056655665556| Visa | Debit |
+|Successful payment |4988080000000000| Visa | Debit - corporate |
+|Successful payment |4000160000000004| Visa | Debit - prepaid |
+|Successful payment |4131840000000003| Visa | Debit - corporate prepaid |
+|Successful payment |4000620000000007| Visa | Credit - corporate |
+|Successful payment |4000000000000010| Visa | Credit or debit |
+|Successful payment |5101110000000004| Mastercard | Credit |
+|Successful payment |5105105105105100| Mastercard | Debit |
+|Successful payment |5200828282828210| Mastercard | Debit |
+|Successful payment |371449635398431| American Express | Credit |
+|Successful payment |3566002020360505| JCB | Credit |
+|Successful payment |6011000990139424| Discover | Credit |
+|Successful payment |36148900647913| Diners Club | Credit |
 |Card type not accepted |6759649826438453|Maestro| Debit |
+|Card declined|4000000000000002|Visa| Credit or debit |
+|Card expired|4000000000000069|Visa| Credit or debit |
+|Invalid CVC code|4000000000000127|Visa| Credit or debit |
+|General error|4000000000000119|Visa| Credit or debit |
+
+#### If you're using a test Stripe account
+
+|Testing action |Card number | Card brand | Card type |
+| -------- | ------- | ------- | ------- |
+|Successful payment |4242424242424242| Visa | Credit |
+|Successful payment |4000056655665556| Visa | Debit |
+|Successful payment |5105105105105100| Mastercard | Debit |
+|Successful payment |5200828282828210| Mastercard | Debit |
+|Successful payment |371449635398431| American Express | Credit |
 |Card declined|4000000000000002|Visa| Credit or debit |
 |Card expired|4000000000000069|Visa| Credit or debit |
 |Invalid CVC code|4000000000000127|Visa| Credit or debit |
