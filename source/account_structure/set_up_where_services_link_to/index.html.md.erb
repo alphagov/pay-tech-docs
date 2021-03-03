@@ -1,0 +1,46 @@
+---
+title: Set up how your services link to GOV.UK Pay services
+last_reviewed_on: 2021-02-10
+review_in: 6 months
+weight: 142
+---
+
+# Set up how your services link to GOV.UK Pay services
+
+Each GOV.UK Pay service can take payments from one or more of your services.
+
+GOV.UK Pay services are free, and there's no limit to how many you can create.
+
+## Link your services to a single GOV.UK Pay service
+
+You can use one GOV.UK Pay service to take payments for a group of your services, if you need to:
+
+- easily manage your staff members' access to the whole group in the GOV.UK Pay admin tool
+- easily manage your account settings for the whole group, for example which card types you accept
+- receive payments from the whole group in one [payout](/integrate_with_govuk_pay/#receiving-payments) - if your PSP is Stripe
+
+1. [Create one GOV.UK Pay service](https://selfservice.payments.service.gov.uk/my-services/create).
+2. Use API keys or payment links from the GOV.UK Pay service in all of the services in your group.
+
+You will not be able to:
+
+- give your services different names - but you can still show your users a different [description](/making_payments/#description) for each service
+- send payments to different bank accounts
+
+If you need to know which service each payment came from when you [report on payments](/reporting), you can:
+
+- add different [reference numbers](/making_payments/#reference)
+- add different [descriptions](/making_payments/#description)
+- use [custom metadata](/custom_metadata/#add-custom-metadata)
+- use different [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/)
+
+## Link your services to different GOV.UK Pay services
+
+You should [create a separate GOV.UK Pay service](https://selfservice.payments.service.gov.uk/my-services/create) for each of your services if you need to do any of the following:
+
+- give each service its own name on the GOV.UK Pay payment pages
+- [send each service's payments to different bank accounts](/account_structure/set_up_where_payments_go/#send-payments-to-different-bank-accounts)
+- give your staff members access to each service separately in the GOV.UK Pay admin tool
+- manage the settings for each service separately, for example which card types you accept
+
+You can still [view transactions for all your live services](https://selfservice.payments.service.gov.uk/all-service-transactions) together.
