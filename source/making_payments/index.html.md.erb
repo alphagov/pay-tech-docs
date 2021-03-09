@@ -33,10 +33,30 @@ For example:
   "reference" : "12345",
   "description": "Pay your council tax",
   "return_url": "https://your.service.gov.uk/completed"
+  "delayed_capture": false,
+  "metadata": { 
+    "ledger_code": "AB100",
+    "an_internal_reference_number": 200
+  },
+  "email": "sherlock.holmes@example.com",
+  "prefilled_cardholder_details": {
+    "cardholder_name": "Sherlock Holmes",
+    "billing_address": {
+        "line1": "221 Baker Street",
+        "line2": "Flat b",
+        "postcode": "NW1 6XE",
+        "city": "London",
+        "country": "GB"
+    }
+  }
+  "language": "en",
+  ...
 }
 ```
 
-### amount
+### API call parameters
+
+#### amount
 
 `amount` is the amount in pence. In the example, the payment is for £145.
 
@@ -60,7 +80,29 @@ If you need to take payments above the maximum amount, either:
 - [contact us](/support_contact_and_more_information/)
 - [contact Government Banking](mailto:serviceteam.gbs@hmrc.gov.uk) if you are using Government Banking's contracted PSP, which is currently Worldpay
 
-### reference
+#### delayed_capture
+
+You can use the `delayed_capture` parameter to [control how long it takes GOV.UK Pay to take ('capture') a payment](/delayed_capture/#delay-taking-a-payment).
+
+#### description
+
+`description` is a human-readable description of the payment. This is shown to your user on the payment pages and to your staff on the GOV.UK Pay admin tool.
+
+The description must be no longer than 255 characters, and must not contain URLs.
+
+#### email and prefilled_cardholder_details
+
+You can use the `email` and `prefilled_cardholder_details` parameters to [prefill some of the fields on the **Enter card details** page](/optional_features/prefill_user_details/#prefill-payment-fields).
+
+#### language
+
+You can use the `language` field to [use Welsh on your payment pages](/optional_features/welsh_language/#use-welsh-on-your-payment-pages).
+
+#### metadata
+
+You can use the `metadata` parameter to [add custom metadata](/custom_metadata/#add-custom-metadata).
+
+#### reference
 
 `reference` is the reference number you wish to associate with this payment.
 
@@ -71,14 +113,7 @@ The reference number does not need to be unique, and must not:
 
 The format is variable. If you have an existing format, you can keep using it if your values are no longer than 255 characters.
 
-
-### description
-
-`description` is a human-readable description of the payment. This is shown to your user on the payment pages and to your staff on the GOV.UK Pay admin tool.
-
-The description must be no longer than 255 characters, and must not contain URLs.
-
-### return_url
+#### return_url
 
 This is a URL that your service hosts for your user to return to, after their payment journey on GOV.UK Pay ends.
 
@@ -87,36 +122,95 @@ HTTP with test accounts.
 
 The URL must be no longer than 2,000 characters, and must not be JSON-encoded because backslashes are invalid characters in the API.
 
-Refer to the <a
-href="https://govukpay-api-browser.cloudapps.digital/#newpayment"
-target="blank">GOV.UK Pay API browser</a> or the <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">Swagger file</a> for more
-information.
-
 ## Receiving the API response
 
-The response to the ‘Create new payment’ API call will include the URL for the
-payment. You can get this from either:
+Example response:
+
+```json
+{
+  "created_date": "2020-03-03T16:17:19.554Z",
+  "state": {
+    "status": "created",
+    "finished": false,
+  },
+  "_links": {
+    "self": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
+      "method": "GET"
+   },
+    "next_url": {
+      "href": "https://publicapi.payments.service.gov.uk/secure/bb0a272c-8eaf-468d-b3xf-ae5e000d2231",
+      "method": "GET"
+    },
+    ...
+  },
+  "amount": 14500,
+  "reference" : "12345",
+  "description": "Pay your council tax",
+  "return_url": "https://your.service.gov.uk/completed",
+  "payment_id": "hu20sqlact5260q2nanm0q8u93",
+  "payment_provider": "worldpay",
+  "provider_id": "10987654321",
+  ...
+}
+```
+
+The response to the ‘Create new payment’ API call will include the URL for the payment. You can get this from either:
 
 * the `Location` response header
 * the `self` section of `_links` in the JSON body
 
-The URL contains the GOV.UK Pay `paymentId`, which is automatically
-generated and identifies the payment. A GET request to this URL
-will return information about the payment and its status.
+The URL contains the GOV.UK Pay `paymentId`, which is automatically generated and identifies the payment. A GET request to this URL will return information about the payment and its status.
 
-Your service will need to store the `paymentId` (or the full URL) for each new
-payment you create. This is so you can check the status of these payments
-later.
+Your service will need to store the `paymentId` (or the full URL) for each new payment you create. This is so you can check the status of these payments later.
 
 Read more about [reporting](/reporting/#report-on-a-payment) and [payment flow](/payment_flow/#how-gov-uk-pay-works).
-
-An example URL:
-`https://publicapi.payments.service.gov.uk/v1/payments/{paymentId}`
 
 The response will also include the ``next_url`` to which you should direct your
 user to complete their payment.
 
 <%= warning_text('Do not expose the `next_url` to anyone other than your paying user. Anyone in possession of the `next_url` could hijack your user’s payment.') %>
+
+### API response fields
+
+#### \_links
+
+The `_links` object includes `href` and `method` fields that you can use to make API requests related to the payment. Use the fields in:
+
+- `self` to [get information about the payment](/reporting/)
+- `events` to [get the payment's events](/reporting/#get-a-payment-s-events)
+- `refunds` to [get all refunds for the payment](/refunding_payments/#get-all-refunds-for-a-single-payment)
+- `cancel` to [cancel the payment](/making_payments/#cancel-a-payment-that-s-in-progress)
+
+The `_links` object also includes a `next_url_post` URL, for example:
+
+```json
+"next_url_post": {
+  "type": "application/x-www-form-urlencoded",
+  "params": "\"description\":\"This is a value for a parameter called description\"",
+  "href": "https://publicapi.payments.service.gov.uk/secure/bb0a272c-8eaf-468d-b3xf-ae5e000d2231",
+  "method": "POST"
+},
+```
+
+To help you test your integration, you can automatically complete the **Enter card details** payment page by making a `POST` API request to the `next_url_post` URL with a `params` object.
+ 
+#### created_date
+
+`created_date` is when you created the payment, in [ISO
+8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard).
+
+#### payment_provider
+
+`payment_provider` is the name of your payment service provider (PSP), or `sandbox` if you're using a test ('sandbox') account.
+
+#### provider_id
+
+`provider_id` is the unique id that your PSP generated for this payment. 
+
+#### state
+
+Use `state` to see the [status of the payment](/api_reference/#payment-status-lifecycle).
 
 ## Track the progress of a payment
 
@@ -195,8 +289,6 @@ progress. Alternatively, a service can make the following API call for a given
 `POST /v1/payments/paymentId/cancel`
 
 A `204` response indicates success. Any other response indicates an error.
-
-See the <a href="https://govukpay-api-browser.cloudapps.digital/#cancel-a-payment" target="blank">GOV.UK Pay API browser</a> for more details.
 
 ### Find out if you can cancel a payment
 

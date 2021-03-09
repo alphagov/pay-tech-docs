@@ -37,6 +37,14 @@ For a completed £90 payment where £30 has already been refunded:
 }
 ```
 
+### amount_available
+
+`amount_available` is how much you can refund in pence. The amount includes any [transaction fees](/reporting/#psp-fees) and [corporate card fees](/corporate_card_surcharges/#add-corporate-card-fees).
+
+### amount_submitted
+
+`amount_submitted` is how much you've already refunded.
+
 ### status
 
 |Status|Meaning|
@@ -45,14 +53,6 @@ For a completed £90 payment where £30 has already been refunded:
 |unavailable|You cannot refund the payment, usually because the payment failed.|
 |available|You can refund the payment. Check how much you can refund in `amount_available`.|
 |full|You cannot refund the payment because you've already refunded the full amount.|
-
-### amount_available
-
-`amount_available` is how much you can refund in pence. The amount includes any [transaction fees](/reporting/#psp-fees) and [corporate card fees](/corporate_card_surcharges/#add-corporate-card-fees).
-
-### amount_submitted
-
-`amount_submitted` is how much you've already refunded.
 
 ## Creating a refund
 
@@ -95,13 +95,44 @@ Example response:
 
 If GOV.UK Pay could not successfully create the refund, the JSON response will contain an [API error code](/api_reference/#api-error-codes) and a description of the error.
 
+### created_date
+
+`created_date` is when you created the refund, in [ISO
+8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard).
+
+### refund_id
+
+`refund_id` is the unique id that GOV.UK Pay generated for this refund.
+
+### status
+
+Use the `status` field to [check the status of a refund](#checking-the-status-of-a-refund).
+
 ## Checking the status of a refund
 
 `GET /v1/payments/PAYMENT-ID/refunds/REFUND-ID`
 
-The JSON response will include a `status` field.
+Example response:
 
-It may take up to 30 minutes for the status to change. Do not check the status more than once every 5 minutes.
+```json
+{
+  "amount": 2000,
+  "created_date": "2019-09-19T16:53:03.213Z",
+  "refund_id": "j6se0f2o427g28g8yg3u3i",
+  "status": "success",
+  "settlement_summary": {
+    "settled_date": "2019-09-21"
+  }
+}
+```
+
+### settlement_summary
+
+If your payment service provider (PSP) is Stripe, you can use the `settlement_summary` object to [check when Stripe took the refund](#where-your-psp-takes-the-refund-amount-from).
+
+### status
+
+It may take up to 30 minutes for the `status` field to change. Do not check the status more than once every 5 minutes.
 
 |status|Meaning|
 |---|---|
@@ -125,14 +156,14 @@ If your PSP is Stripe, you can see when Stripe took the refund when you make an 
 
 Example response:
 
-```
+```json
 "settlement_summary": {
   ...
-  "settled_date": "2016-01-22",
+  "settled_date": "2019-09-21",
 }
 ```
 
-settled_date will be either:
+`settled_date` will be either:
 
 - the date Stripe took the refund from the payments that Stripe sent to your bank account
 - missing if Stripe has not yet taken the refund
@@ -167,12 +198,18 @@ Example response:
         "created_date": "2019-09-19T16:52:07.855Z",
         "amount": 120,
         "status": "success"
+        "settlement_summary": {
+          "settled_date": "2019-09-21"
+        }
       },
       {
         "refund_id": "9rwjbdcpjd54ol1btog2a8zowh",
         "created_date": "2019-09-20T20:46:01.121Z",
         "amount": 60,
         "status": "success"
+        "settlement_summary": {
+          "settled_date": "2019-09-21"
+        }
       }
     ]
   }
@@ -187,6 +224,52 @@ An example search request:
 
 `GET
 /v1/refunds?from_date=2019-09-20T13:30:00Z&to_date=2019-09-22T15:00:00Z`
+
+Example search response:
+
+```json
+{
+  "total": 100,
+  "count": 20,
+  "page": 2,
+  "results": [
+    {
+      "refund_id": "act4c33g40j3edfmi8jknab84x",
+      "created_date": "2017-01-10T16:52:07.855Z",
+      "amount": 120,
+      "status": "success",
+      "settlement_summary": {
+        "settled_date": "2017-01-11"
+      }
+      "_links": {
+        "payment": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/5chu1yzxglqajfv97ous23s22i",
+            "method": "GET"
+        }
+      ...
+      }
+    },
+    {
+      "refund_id": "efj6834secviyyxe8vs861pg3j",
+      ...
+    }    
+  ],
+  "_links": {
+    "prev_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/refunds?display_size=20&page=1",
+      "method": "GET"
+    },
+    "next_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/refunds?display_size=20&page=3",
+      "method": "GET"
+    }
+    ...
+  }
+  ...
+}
+```
+
+The `_links` object includes a `payment` URL and method that you can use to get information about the payment the refund is for.
 
 ### Filtering by date
 
@@ -235,3 +318,11 @@ You could then get a single page of these refunds by running:
 /v1/refunds?from_date=2019-09-20T13:30:00Z&to_date=2019-09-22T15:00:00Z&display_size=500&page=2`
 
 This would return refunds 501 to 1000.
+
+The API response includes a `_links` object, which includes `href` and `method` fields you can use to move between pages. Use the fields in:
+
+- `self` to run the same search again
+- `first_page` to get the first page of results
+- `last_page` to get the last page
+- `prev_page` to get the previous page
+- `next_page` to get the next page
