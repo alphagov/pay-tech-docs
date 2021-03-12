@@ -83,17 +83,22 @@ Mock card numbers do not work with your live account.
 
 #### If you're using a test Stripe account
 
-|Testing action |Card number | Card brand | Card type |
-| -------- | ------- | ------- | ------- |
-|Successful payment |4242424242424242| Visa | Credit |
-|Successful payment |4000056655665556| Visa | Debit |
-|Successful payment |5105105105105100| Mastercard | Debit |
-|Successful payment |5200828282828210| Mastercard | Debit |
-|Successful payment |371449635398431| American Express | Credit |
-|Card declined|4000000000000002|Visa| Credit or debit |
-|Card expired|4000000000000069|Visa| Credit or debit |
-|Invalid CVC code|4000000000000127|Visa| Credit or debit |
-|General error|4000000000000119|Visa| Credit or debit |
+The [PSP transaction fee](/reporting/#psp-fees) depends on which country the test card is from.
+
+|Testing action |Card number |Card brand |Card type | Country |
+|--|--|--|--|--|--|
+|Successful payment |4000008260000000| Visa | Credit | UK |
+|Successful payment |4000058260000005| Visa | Debit | UK |
+|Successful payment |4000002500000003| Visa | Credit | France |
+|Successful payment |4242424242424242| Visa | Credit | US |
+|Successful payment |4000056655665556| Visa | Debit | US |
+|Successful payment |5105105105105100| Mastercard | Debit | US |
+|Successful payment |5200828282828210| Mastercard | Debit | US |
+|Successful payment |371449635398431| American Express | Credit | US |
+|Card declined|4000000000000002|Visa| Credit or debit | US |
+|Card expired|4000000000000069|Visa| Credit or debit | US |
+|Invalid CVC code|4000000000000127|Visa| Credit or debit | US |
+|General error|4000000000000119|Visa| Credit or debit | US |
 
 ### Mock email addresses
 
