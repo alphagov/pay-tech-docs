@@ -53,9 +53,9 @@ GEM
     eventmachine (1.2.7)
     execjs (2.7.0)
     fast_blank (1.0.0)
-    fastimage (2.2.3)
-    ffi (1.15.0)
-    govuk_tech_docs (2.2.0)
+    fastimage (2.2.2)
+    ffi (1.14.2)
+    govuk_tech_docs (2.1.1)
       activesupport
       chronic (~> 0.10.2)
       middleman (~> 4.0)
@@ -148,9 +148,9 @@ GEM
       middleman-core (>= 3.2)
       rouge (~> 3.2)
     mini_portile2 (2.5.0)
-    minitest (5.14.4)
+    minitest (5.14.3)
     multi_json (1.15.0)
-    nokogiri (1.11.2)
+    nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     nokogumbo (2.0.4)
@@ -204,7 +204,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  govuk_tech_docs (~> 2.2.0)
+  govuk_tech_docs (~> 2.1.1)
   html-proofer
   middleman-search!
   tzinfo-data
