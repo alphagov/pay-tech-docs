@@ -5,7 +5,6 @@ host: https://docs.payments.service.gov.uk
 show_govuk_logo: true
 service_name: Pay
 service_link: https://www.payments.service.gov.uk/
-phase: Beta
 
 # Links to show on right-hand-side of header
 header_links:
