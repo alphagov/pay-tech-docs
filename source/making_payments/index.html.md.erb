@@ -182,18 +182,20 @@ The `_links` object includes `href` and `method` fields that you can use to make
 - `refunds` to [get all refunds for the payment](/refunding_payments/#get-all-refunds-for-a-single-payment)
 - `cancel` to [cancel the payment](/making_payments/#cancel-a-payment-that-s-in-progress)
 
-The `_links` object also includes a `next_url_post` URL, for example:
+The `_links` object also includes a `next_url_post` object,  For example:
 
 ```json
 "next_url_post": {
-  "type": "application/x-www-form-urlencoded",
-  "params": "\"description\":\"This is a value for a parameter called description\"",
-  "href": "https://publicapi.payments.service.gov.uk/secure/bb0a272c-8eaf-468d-b3xf-ae5e000d2231",
-  "method": "POST"
+   "type": "application/x-www-form-urlencoded",
+   "params": {
+       "chargeTokenId": "bb0a272c-8eaf-468d-b3xf-ae5e000d2231"
+   },
+   "href": "https://www.pymnt.uk/secure",
+   "method": "POST"
 },
 ```
 
-To help you test your integration, you can automatically complete the **Enter card details** payment page by making a `POST` API request to the `next_url_post` URL with a `params` object.
+You can use the `href` and `chargeTokenId` to make a `POST` API request to `next_url`, instead of a `GET` API request.
  
 #### created_date
 
