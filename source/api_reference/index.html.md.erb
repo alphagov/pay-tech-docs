@@ -20,14 +20,11 @@ You can [get started with the API quickly](/quick_start_guide/#quick-start). Mak
 
 When we add new properties to the JSON responses, the GOV.UK Pay API version number will not change. You should develop your service to ignore properties it does not understand.
 
-## API browser and Swagger file
+## Swagger file
 
-For more detailed information on each API action, you can:
+For more detailed information on each API action, you can look at our <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">API Swagger file</a>.
 
-- open the <a href="https://govukpay-api-browser.cloudapps.digital/" target="blank">API browser</a>
-- look at the <a href="https://github.com/alphagov/pay-publicapi/blob/master/swagger/swagger.json" target="blank">API Swagger file</a>
-
-You can also generate a client library from the Swagger file using the <a href="http://editor.swagger.io/" target="blank">Swagger editor</a>. This may be an easier way for you to integrate your service with GOV.UK Pay than writing a client library from scratch.
+You can also generate a client library from the Swagger file using [Swagger editor](http://editor.swagger.io/). This may be an easier way for you to integrate your service with GOV.UK Pay than writing a client library from scratch.
 
 ## Allowing traffic to our API
 
@@ -50,14 +47,39 @@ Authorization: Bearer <YOUR-API-KEY-HERE>
 
 ## Payment status lifecycle
 
-The following table summarises the payment status lifecycle and the possible outcomes, excluding for delayed capture payments.
+You can [get information about a payment](/reporting/#get-information-about-a-single-payment) using the API and see the payment's `state` in the API response.
 
+For example:
 
-You can check the status of a payment using the <a
-href="https://govukpay-api-browser.cloudapps.digital/#get-a-payment"
-target="blank">Find payment by ID</a> API call.
+```json
+{
+  "amount": 2000,
+  "state": {
+      "status": "failed",
+      "finished": true,
+      "message": "Payment expired",
+      "code": "P0020"
+  }
+  ...
+}
+```
 
-A successful response includes ``status`` and ``finished`` values:
+You can also use the GOV.UK Pay admin tool.
+
+1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
+2. Select an account.
+3. Select __Transactions__.
+4. Use the __Payment status__ dropdown to find payments with error statuses. For example, “Declined”.
+
+### code
+
+If something went wrong, `code` is an [API error code](/api_reference/#api-error-codes).
+
+### message
+
+If something went wrong, `message` is a description of what went wrong.
+
+### status and finished
 
 <table style="width:100%">
   <tr>
@@ -108,11 +130,11 @@ A successful response includes ``status`` and ``finished`` values:
   </tr>
 </table>
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
+## Error codes
 
-## HTTP status codes
+### HTTP status codes
 
-The GOV.UK Pay uses standard HTTP response code conventions:
+GOV.UK Pay uses standard HTTP response code conventions:
 
 * 100 codes are informational
 * 200 codes indicate success
@@ -121,8 +143,6 @@ The GOV.UK Pay uses standard HTTP response code conventions:
 * 500 codes indicate a server-side error
 
 Common status codes are:
-
-<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 | Common status code| Meaning|
 |-------------------|--------|
@@ -137,9 +157,19 @@ Common status codes are:
 | 429 | Too many requests. Request rate is above the rate limit. |
 | Any 500 error | Something is wrong with GOV.UK Pay. [Contact us](/support_contact_and_more_information/). |
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
+### API error codes
 
-## API error codes
+Example error response:
+
+```json
+{
+  "field": "amount",
+  "code": "P0102",
+  "description": "Invalid attribute value: amount. Must be less than or equal to 10000000"
+}
+```
+
+These error descriptions are intended for developers, not your users.
 
 ### Errors caused by an API call
 
@@ -185,19 +215,6 @@ Common status codes are:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-The general format of JSON error response bodies is:
-
-```javascript
-{
-  "code": "PXXXX",
-  "description": "Message explaining the error"
-}
-```
-
-These error descriptions are intended for developers, not your users.
-
-Some errors may contain additional fields , such as `field`.
-
 #### Fix a P0920 API error
 
 If you receive a P0920 API error code, our firewall blocked your request.
@@ -212,8 +229,6 @@ To fix a P0920 API error, make sure your API request:
 
 ### Errors caused by payment statuses
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
-
 | Error code | Meaning | Cause |
 |------------|---------|-------|
 | P0010 | Payment method rejected | Payment rejected due to payment method selected, or payment information entered. For example, failed fraud check, a 3D Secure authentication failure, or your user has insufficient funds in account. |
@@ -221,39 +236,6 @@ To fix a P0920 API error, make sure your API request:
 | P0030 | Payment cancelled by your user | Your user selected **Cancel payment** during the payment journey. If the payment was already authorised, GOV.UK Pay will send a cancellation to the payment provider. |
 | P0040 | Payment was cancelled by your service | Your service cancelled the payment. |
 | P0050 | Payment provider returned an error | Multiple possible causes, for example a configuration problem with the payment provider, or incorrect credentials. [Contact us](/support_contact_and_more_information/), quoting the error code. |
-
-<div style="height:1px;font-size:1px;">&nbsp;</div>
-
-You can see which payments have status-related error codes using the GOV.UK
-Pay admin tool or directly using the API.
-
-#### Use the admin tool
-
-1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
-
-2. Select an account.
-
-3. Select __Transactions__.
-
-4. Use the __Payment status__ dropdown to find payments with error statuses. For example, “Declined”.
-
-#### Use the API
-
-You can [get information about a payment](/reporting/#get-information-about-a-single-payment) using the API and see the payment's `state` in the API response.
-
-For example:
-
-```
-{
-  "amount": 2000,
-  "state": {
-      "status": "failed",
-      "finished": true,
-      "message": "Payment expired",
-      "code": "P0020"
-  },
-}
-```
 
 ## Rate limits
 

@@ -58,48 +58,154 @@ You can use the GOV.UK Pay API to:
 
 `GET /v1/payments/{paymentId}`
 
-See the <a href="https://govukpay-api-browser.cloudapps.digital/#getpayment" target="blank">GOV.UK Pay API browser</a> for more details
+Example response:
 
-If the payment exists, the JSON response body to this
-API call contains a `state` field. You can use this information when
-designing a service.
-
-For example, the response for a successful payment contains:
-
-```JSON
-"state": {
-  "status": "success",
-  "finished": true
-},
-```
-
-With a successful payment, you know that your user can continue their journey
-through your service.
-
-For a valid request, the JSON response body to this API call also contains
-other useful information. For example, if your user has gone far enough in their
-payment journey, the `card_details` section contains information that they
-have entered when making a payment:
-
-```JSON
-"card_details": {
-  "card_type": "debit",
-  "card_brand": "visa",
-  "last_digits_card_number": "1111",
-  "first_digits_card_number": "100002",
-  "cardholder_name": "Sherlock Holmes",
-  "expiry_date": "12/21",
-  "billing_address": {
-    "line1": "221 Baker Street",
-    "line2": "Flat b",
-    "postcode": "NW16XE",
-    "city": "London",
-    "country": "GB"
-  }
+```json
+{
+  "created_date": "2019-07-11T10:36:26.988Z",
+  "amount": 3750,
+  "state": {
+    "status": "success",
+    "finished": true,
+  },
+  "description": "Pay your council tax",
+  "reference": "12345",
+  "language": "en",
+  "metadata": { 
+    "ledger_code": "AB100",
+    "an_internal_reference_number": 200
+  },
+  "email": "sherlock.holmes@example.com",
+  "card_details": {
+    "card_brand": "Visa",
+    "card_type": "debit",
+    "last_digits_card_number": "1234",
+    "first_digits_card_number": "123456",
+    "expiry_date": "04/24",
+    "cardholder_name": "Sherlock Holmes",
+    "billing_address": {
+        "line1": "221 Baker Street",
+        "line2": "Flat b",
+        "postcode": "NW1 6XE",
+        "city": "London",
+        "country": "GB"
+    }
+  },  
+  "payment_id": "hu20sqlact5260q2nanm0q8u93",
+  "refund_summary": {
+    "status": "available",
+    "amount_available": 4000,
+    "amount_submitted": 0
+  },
+  "settlement_summary": {
+    "capture_submit_time": "2019-07-12T17:15:000Z",
+    "captured_date": "2019-07-12",
+    "settled_date": "2019-07-12"
+  },
+  "delayed_capture": false,
+  "moto": false,
+  "corporate_card_surcharge": 250,
+  "total_amount": 4000,
+  "fee": 200,
+  "net_amount": 3800,
+  "payment_provider": "worldpay",
+  "provider_id": "10987654321",
+  "return_url": "https://your.service.gov.uk/completed"
 }
 ```
 
-The `card_type` is `null` if we did not recognise which type of card your user made the payment with.
+Your user can continue their journey through your service if, in the `state` object, the:
+
+- `status` field is `success`
+- `finished` field is `true`
+
+### API response parameters
+
+#### \_links
+  
+The `_links` object includes `href` and `method` fields that you can use to make API requests related to the payment. Use:
+
+- `events` to [get the payment's events](/reporting/#get-a-payment-s-events)
+- `refunds` to [get all refunds for the payment](/refunding_payments/#get-all-refunds-for-a-single-payment)
+- `cancel` to [cancel the payment](/making_payments/#cancel-a-payment-that-s-in-progress)
+
+#### card_details
+
+If your user has gone far enough in their
+payment journey, the `card_details` section contains the information they entered when they made the payment. All the fields are strings.
+
+`billing_address` will be `null` if you've [disabled collecting your users’ billing addresses](/integrate_with_govuk_pay/#collecting-your-users-39-billing-addresses).
+
+`expiry_date` is in `MM/YY` format, for example `04/24`.
+
+`card_brand` is one of the following:
+
+- `American Express`
+- `Diners Club`
+- `Discover`
+- `Jcb`
+- `Maestro`
+- `Mastercard`
+- `Union Pay`
+- `Visa`
+
+`card_type` is one of the following:
+
+- `credit`
+- `debit`
+- `null` - if we did not recognise which type of card your user made the payment with, or your user used [Google Pay](/digital_wallets/#restrictions).
+
+#### corporate_card_surcharge
+
+`corporate_card_surcharge` shows the surcharge amount in pence if you've [set up adding corporate card fees](/corporate_card_surcharges/#add-corporate-card-fees).
+
+#### created_date
+
+`created_date` is when you created the payment, in [ISO
+8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard).
+
+#### delayed_capture
+
+`delayed_capture` is `true` if you're [controlling how long it takes GOV.UK Pay to take ('capture') a payment](/delayed_capture/#delay-taking-a-payment).
+
+#### fee
+
+If you use GOV.UK’s Payment Service Provider (PSP), `fee` is the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees) that we took from the amount your user paid.
+
+#### moto
+
+`moto` is `true` if you [took the payment over the phone](/moto_payments/#take-a-payment-over-the-phone-moto-payments).
+
+#### net_amount
+
+If you use GOV.UK’s Payment Service Provider (PSP), `net_amount` is the amount that will be paid into your account after we take the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees). 
+
+#### payment_id
+
+`payment_id` is the unique ID that GOV.UK Pay automatically generated for this payment.
+
+#### payment_provider
+
+`payment_provider` is the name of your payment service provider (PSP), or `sandbox` if you're using a test ('sandbox') account.
+
+#### refund_summary
+
+You can use `refund_summary` to [check if you can refund a payment](/refunding_payments/#check-if-you-can-refund-a-payment).
+
+#### return_url 
+
+`return_url` is the URL that your service hosts for your user to return to, after their payment journey on GOV.UK Pay ended.
+
+#### settlement_summary
+
+Use `settlement_summary` to check when your payment service provider (PSP):
+
+- [took the payment from your user's account](#checking-when-your-payment-service-provider-psp-took-a-payment)
+- [sent a payment to your bank account](/integrate_with_govuk_pay/#checking-when-your-psp-sent-a-payment), if your PSP is Stripe
+  
+#### state
+
+Use `state` to see the [status of the payment](/api_reference/#payment-status-lifecycle).
 
 ### Checking when your Payment Service Provider (PSP) took a payment
 
@@ -112,7 +218,7 @@ The response contains:
 
 For example:
 
-```JSON
+```json
 "settlement_summary": {
   "capture_submit_time": "2016-01-21T17:15:000Z",
   "captured_date": "2016-01-21"
@@ -163,43 +269,43 @@ Use the following API call to get a list of a payment’s events:
 
 The API will respond with an `events` object. For each change to the payment's state, the `events` object includes:
 
-- when the `state` changed
+- an `updated` field that shows when the [`state`](/api_reference/#payment-status-lifecycle) changed, in [ISO
+8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard)
 - what the `state` was updated to
 
 The response starts with the oldest `state`.
 
 For example:
 
-```JSON
+```json
 {
-    "events": [
-        {
-            "payment_id": "9co6rdsak0btz4wuxac0a29i4a",
-            "state": {
-                "status": "created",
-                "finished": false
-            },
-            "updated": "2019-07-11T10:36:26.988Z",
-        },
-        {
-            "payment_id": "9co6rdsak0btz4wuxac0a29i4a",
-            "state": {
-                "status": "failed",
-                "finished": true,
-                "message": "Payment expired",
-                "code": "P0020"
-            },
-            "updated": "2019-07-11T12:11:35.849Z",
-        }
-    ],
+  "payment_id": "9co6rdsak0btz4wuxac0a29i4a",
+  "events": [
+      {
+          "payment_id": "9co6rdsak0btz4wuxac0a29i4a",
+          "updated": "2019-07-11T10:36:26.988Z",
+          "state": {
+              "status": "created",
+              "finished": false
+          },
+      },
+      {
+          "payment_id": "9co6rdsak0btz4wuxac0a29i4a",
+          "updated": "2019-07-11T12:11:35.849Z",
+          "state": {
+              "status": "failed",
+              "finished": true,
+              "message": "Payment expired",
+              "code": "P0020"
+          },
+      }
+  ],
 }
 ```
 
 ## Search payments
 
 `GET /v1/payments`
-
-See the <a href="https://govukpay-api-browser.cloudapps.digital/#searchpayments" target="blank">GOV.UK Pay API browser</a> for more details.
 
 Do not search payments using the API to check a payment's status during [payment flow](/payment_flow). The payment status field in the search results does not immediately update and so may not be up to date.
 
@@ -219,23 +325,58 @@ Some of the query parameters you can use to search for payments are:
 * `first_digits_card_number` - exact match only
 * `last_digits_card_number` - exact match only
 
+Example search response:
+
+```json
+{
+  "total": 100,
+  "count": 20,
+  "page": 2,
+  "results": [
+    {
+      "amount": 1200,
+      "description": "Pay your council tax",
+      "reference": "12345",
+      ...
+    },
+    {
+      "amount": 600,
+      "description": "Pay your council tax",
+      "reference": "678910",
+      ...
+    },
+  ],
+  "_links": {
+    "prev_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/payments?display_size=20&page=1",
+      "method": "GET"
+    },
+    "next_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/payments?display_size=20&page=3",
+      "method": "GET"
+    }
+    ...
+  }
+  ...
+}
+```
+
 If you search for a specific payment, all criteria you use must match. Otherwise, that payment will not be returned in the results.
 
 If your request has no query parameters, the API will return all payments.
 
 #### Search by card brand
 
-
 |`card_brand` to search for|`card_brand` in API response|
 |---|---|
-|`visa`|`Visa`|
-|`master-card`|`Mastercard`|
-|`maestro`|`Maestro`|
 |`american-express`|`American Express`|
 |`diners-club`|`Diners Club`|
 |`discover`|`Discover`|
 |`jcb`|`Jcb`|
+|`maestro`|`Maestro`|
+|`master-card`|`Mastercard`|
 |`unionpay`|`Union Pay`|
+|`visa`|`Visa`|
 
 `card_brand` is case insensitive. You cannot search for partial values of `card_brand`.
 
@@ -287,3 +428,11 @@ If there were 1543 payments in the response, you could paginate this as follows:
 /v1/payments?from_date=2018-10-01T13:30:00Z&to_date=2018-10-14T15:00:00Z&display_size=500&page=2`
 
 This would return payments 501-1000.
+
+The API response includes a `_links` object, which includes `href` and `method` fields you can use to move between pages. Use the fields in:
+
+- `self` to run the same search again
+- `first_page` to get the first page of results
+- `last_page` to get the last page
+- `prev_page` to get the previous page
+- `next_page` to get the next page
