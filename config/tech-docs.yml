@@ -8,7 +8,6 @@ service_link: https://www.payments.service.gov.uk/
 
 # Links to show on right-hand-side of header
 header_links:
-  About: https://www.payments.service.gov.uk/#main
   Get started: https://www.payments.service.gov.uk/getstarted/
   Features: https://www.payments.service.gov.uk/using-govuk-pay/
   Documentation: /
