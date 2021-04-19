@@ -71,7 +71,7 @@ Example response:
   "description": "Pay your council tax",
   "reference": "12345",
   "language": "en",
-  "metadata": { 
+  "metadata": {
     "ledger_code": "AB100",
     "an_internal_reference_number": 200
   },
@@ -90,7 +90,7 @@ Example response:
         "city": "London",
         "country": "GB"
     }
-  },  
+  },
   "payment_id": "hu20sqlact5260q2nanm0q8u93",
   "refund_summary": {
     "status": "available",
@@ -122,7 +122,7 @@ Your user can continue their journey through your service if, in the `state` obj
 ### API response parameters
 
 #### \_links
-  
+
 The `_links` object includes `href` and `method` fields that you can use to make API requests related to the payment. Use:
 
 - `events` to [get the payment's events](/reporting/#get-a-payment-s-events)
@@ -172,13 +172,17 @@ payment journey, the `card_details` section contains the information they entere
 
 If you use GOV.UK’s Payment Service Provider (PSP), `fee` is the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees) that we took from the amount your user paid.
 
+#### metadata
+
+The `metadata` object includes any metadata keys and values you added when creating a payment. You can [add custom metadata to new payments](https://docs.payments.service.gov.uk/custom_metadata/#add-custom-metadata) to help with reconciliation and reporting.
+
 #### moto
 
 `moto` is `true` if you [took the payment over the phone](/moto_payments/#take-a-payment-over-the-phone-moto-payments).
 
 #### net_amount
 
-If you use GOV.UK’s Payment Service Provider (PSP), `net_amount` is the amount that will be paid into your account after we take the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees). 
+If you use GOV.UK’s Payment Service Provider (PSP), `net_amount` is the amount that will be paid into your account after we take the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees).
 
 #### payment_id
 
@@ -192,7 +196,7 @@ If you use GOV.UK’s Payment Service Provider (PSP), `net_amount` is the amount
 
 You can use `refund_summary` to [check if you can refund a payment](/refunding_payments/#check-if-you-can-refund-a-payment).
 
-#### return_url 
+#### return_url
 
 `return_url` is the URL that your service hosts for your user to return to, after their payment journey on GOV.UK Pay ended.
 
@@ -202,7 +206,7 @@ Use `settlement_summary` to check when your payment service provider (PSP):
 
 - [took the payment from your user's account](#checking-when-your-payment-service-provider-psp-took-a-payment)
 - [sent a payment to your bank account](/integrate_with_govuk_pay/#checking-when-your-psp-sent-a-payment), if your PSP is Stripe
-  
+
 #### state
 
 Use `state` to see the [status of the payment](/api_reference/#payment-status-lifecycle).
