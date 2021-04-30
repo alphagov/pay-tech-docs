@@ -41,12 +41,28 @@ All the parameters in `billing_address` are optional, and these parameters' valu
 
 If you include the `country` parameter, it must be an <a href="https://www.iso.org/obp/ui/#search/code/" target="_blank">ISO 3166-1 alpha-2 code</a>. If the parameter is invalid or missing, the __Country or territory__ field on the payment page will default to 'United Kingdom'.
 
-## Data collected by your GOV.UK Pay admin account
+## Data collected by GOV.UK Pay
 
-After your user completes their payment, your GOV.UK Pay account will collect your user's:
+The data collected by GOV.UK Pay depends on your service settings in the
+[GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
 
-- email address - even if you've disabled collecting your users' email addresses
+By default, after your user completes a payment, GOV.UK Pay collects your user's:
+
+- email address
 - cardholder name
-- billing address - you can only see this by [using the API to get information about a payment](/reporting/#get-information-about-a-single-payment)
+- billing address
 
-If your user does not complete their payment, your GOV.UK Pay account will still collect the `billing_address` value. This will happen even if you've chosen not to collect your users' billing addresses.
+Cardholder name is always collected.
+
+If **Collect billing address** is disabled in your service settings, the
+billing address you used to prefill the payment fields is not collected after
+the user completes their payment.
+
+If **Enter an email address** is disabled in your service settings, the email
+address you used to prefill the payment fields is still collected after the
+user completes their payment. If you do not want to collect a
+user's email address, do not use the `email` parameter when prefilling fields.
+
+If your user does not complete their payment, GOV.UK Pay still collects the
+`billing_address`, `email`, and `cardholder_name` values you sent through the
+API when prefilling the payment fields.
