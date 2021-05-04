@@ -41,9 +41,9 @@ All the parameters in `billing_address` are optional, and these parameters' valu
 
 If you include the `country` parameter, it must be an <a href="https://www.iso.org/obp/ui/#search/code/" target="_blank">ISO 3166-1 alpha-2 code</a>. If the parameter is invalid or missing, the __Country or territory__ field on the payment page will default to 'United Kingdom'.
 
-## Data collected by GOV.UK Pay when using prefilled fields
+## Data collected by GOV.UK Pay
 
-The data collected by GOV.UK Pay depends on your service settings in the
+If you prefill fields, the data collected by GOV.UK Pay depends on your service settings in the
 [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
 
 By default, after your user completes a payment that has prefilled fields, GOV.UK Pay collects your user's:
@@ -52,17 +52,15 @@ By default, after your user completes a payment that has prefilled fields, GOV.U
 - email address
 - cardholder name
 
-If **Collect billing address** is disabled in your service settings, the
-billing address you used to prefill the payment fields is not collected after
-your user completes their payment.
+GOV.UK Pay does not collect the prefilled billing address if you have changed
+**Collect billing addresses** to **Off** in the GOV.UK Pay admin tool.
 
-If **Enter an email address** is disabled in your service settings, the email
-address you used to prefill the payment fields is still collected after your
-user completes their payment. If you do not want to collect a
-user's email address, do not use the `email` parameter when prefilling fields.
+GOV.UK Pay always collects the prefilled email address,
+even if you have changed **Enter an email address** to **Off** in the GOV.UK Pay admin tool.
+If you do not want to collect a user's email address, do not use the `email`
+parameter when prefilling payment fields.
 
-Cardholder name is always collected.
+GOV.UK Pay always collects your user's cardholder name.
 
 If your user does not complete their payment, GOV.UK Pay still collects the
-`billing_address`, `email`, and `cardholder_name` values you sent through the
-API when prefilling the payment fields.
+`billing_address`, `email`, and `cardholder_name` values you included in your API request.
