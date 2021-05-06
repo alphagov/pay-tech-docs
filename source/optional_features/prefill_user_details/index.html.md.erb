@@ -55,15 +55,10 @@ but does not complete their payment, GOV.UK Pay collects your user's:
 - email address
 - cardholder name
 
-GOV.UK Pay does not collect the billing address if you have set
+GOV.UK Pay does not collect the billing address or use it to carry out fraud checks if you have set
 **Collect billing addresses** to **Off** in the GOV.UK Pay admin tool.
 
 GOV.UK Pay always collects the email address,
 even if you have set **Enter an email address** to **Off** in the GOV.UK Pay admin tool.
 
 GOV.UK Pay always collects the cardholder name.
-
-If your user does not complete the **Enter card details** page, GOV.UK Pay still collects the
-`billing_address`, `email`, and `cardholder_name` values you included in your API request.
-GOV.UK Pay collects this data regardless of the **Collect billing address** and **Enter an email address**
-settings in the GOV.UK Pay admin tool.
