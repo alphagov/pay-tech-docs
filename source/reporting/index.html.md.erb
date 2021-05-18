@@ -56,7 +56,9 @@ You can use the GOV.UK Pay API to:
 
 ## Get information about a single payment
 
-`GET /v1/payments/{paymentId}`
+`GET /v1/payments/{PAYMENT_ID}`
+
+Replace `{PAYMENT_ID}` with the ID of the payment you are getting information about.
 
 Example response:
 
@@ -269,7 +271,9 @@ You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments
 
 Use the following API call to get a list of a payment’s events:
 
-`GET /v1/payments/{paymentId}/events`
+`GET /v1/payments/{PAYMENT_ID}/events`
+
+Replace `{PAYMENT_ID}` with the ID of the payment you are getting the events of.
 
 The API will respond with an `events` object. For each change to the payment's state, the `events` object includes:
 

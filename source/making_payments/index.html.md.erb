@@ -34,7 +34,7 @@ For example:
   "description": "Pay your council tax",
   "return_url": "https://your.service.gov.uk/completed",
   "delayed_capture": false,
-  "metadata": { 
+  "metadata": {
     "ledger_code": "AB100",
     "an_internal_reference_number": 200
   },
@@ -196,7 +196,7 @@ The `_links` object also includes a `next_url_post` object,  For example:
 ```
 
 You can use the `href` and `chargeTokenId` to make a `POST` API request to `next_url`, instead of a `GET` API request.
- 
+
 #### created_date
 
 `created_date` is when you created the payment, in [ISO
@@ -208,7 +208,7 @@ You can use the `href` and `chargeTokenId` to make a `POST` API request to `next
 
 #### provider_id
 
-`provider_id` is the unique ID that your PSP generated for this payment. 
+`provider_id` is the unique ID your PSP generated for this payment.
 
 #### state
 
@@ -286,15 +286,19 @@ Your user can select a link on the payment page to cancel a payment that’s in
 progress. Alternatively, a service can make the following API call for a given
 `paymentId`:
 
-`POST /v1/payments/paymentId/cancel`
+`POST /v1/payments/{PAYMENT_ID}/cancel`
+
+Replace `{PAYMENT_ID}` with the ID of the payment you are cancelling.
 
 A `204` response indicates success. Any other response indicates an error.
 
-### Find out if you can cancel a payment
+### Check if you can cancel a payment
 
-Use a GET request against a single payment to find out if you can cancel it:
+Use a `GET` request against a single payment to check if you can cancel that payment:
 
-`GET /v1/payments/paymentId`
+`GET /v1/payments/{PAYMENT_ID}`
+
+Replace `{PAYMENT_ID}` with the ID of the payment you are checking.
 
 If the JSON response body contains a `"cancel"` field (in the `_links` object)
 that’s not `null`, you can cancel the payment. For example:

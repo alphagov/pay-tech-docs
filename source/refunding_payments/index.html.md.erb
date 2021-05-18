@@ -56,7 +56,9 @@ For a completed £90 payment where £30 has already been refunded:
 
 ## Creating a refund
 
-`POST /v1/payments/PAYMENT-ID/refunds`
+`POST /v1/payments/{PAYMENT_ID}/refunds`
+
+Replace `{PAYMENT_ID}` with the ID of the payment you are refunding.
 
 If the `status` in the `refund_summary` object is `available`, you can create a refund with the GOV.UK Pay API.
 
@@ -110,7 +112,12 @@ Use the `status` field to [check the status of a refund](#checking-the-status-of
 
 ## Checking the status of a refund
 
-`GET /v1/payments/PAYMENT-ID/refunds/REFUND-ID`
+`GET /v1/payments/{PAYMENT_ID}/refunds/{REFUND_ID}`
+
+Replace:
+
+* `{PAYMENT_ID}` with the ID of the payment you are checking
+* `{REFUND_ID}` with the ID of the refund you are checking
 
 Example response:
 
@@ -183,7 +190,9 @@ You can use the GOV.UK API to:
 
 ## Get all refunds for a single payment
 
-`GET /v1/payments/PAYMENT-ID/refunds`
+`GET /v1/payments/{PAYMENT_ID}/refunds`
+
+Replace `{PAYMENT_ID}` with the ID of the payment you are getting the refunds for.
 
 Example response:
 
@@ -218,7 +227,7 @@ Example response:
 
 ## Searching refunds
 
-`GET /v1/refunds?<QUERYPARAMETERS>`
+`GET /v1/refunds?{QUERY_PARAMETERS}`
 
 An example search request:
 
@@ -252,7 +261,7 @@ Example search response:
     {
       "refund_id": "efj6834secviyyxe8vs861pg3j",
       ...
-    }    
+    }
   ],
   "_links": {
     "prev_page": {
