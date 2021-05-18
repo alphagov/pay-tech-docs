@@ -298,7 +298,7 @@ Use a `GET` request against a single payment to check if you can cancel that pay
 
 `GET /v1/payments/{PAYMENT_ID}`
 
-Replace `{PAYMENT_ID}` with the ID of the payment that you are checking.
+Replace `{PAYMENT_ID}` with the ID of the payment you are checking.
 
 If the JSON response body contains a `"cancel"` field (in the `_links` object)
 that’s not `null`, you can cancel the payment. For example:
