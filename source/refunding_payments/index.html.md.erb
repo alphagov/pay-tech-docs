@@ -287,8 +287,16 @@ You can use the following query parameters to filter refunds by date:
 * `from_date`, which is the start date to search, inclusive
 * `to_date`, which is the end date to search, exclusive
 
+All dates are in Coordinated Universal Time (UTC).
+
 Dates must be in [ISO
-8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard). For example `2019-09-20T13:30:00Z`.
+8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard) and include a:
+
+* date
+* time in hours and minutes - seconds are optional
+* time zone designation
+
+For example, `2019-09-20T13:30Z`.
 
 ### Filter refunds by when your PSP took refunds
 
@@ -301,11 +309,10 @@ All dates are in Coordinated Universal Time (UTC).
 
 For example, to list all the refunds your PSP took on 16 June 2020:
 
-```
-GET /v1/refunds?from_settled_date=2020-06-16&to_settled_date=2020-06-16
-```
+`GET /v1/refunds?from_settled_date=2020-06-16&to_settled_date=2020-06-16`
 
-These query parameters take inputs based on a subset of the [ISO 8601 standard](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard). For example, a valid input would be `2015-08-13`.
+Dates must be in [ISO 8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard)
+and include a date value only. For example, `2015-08-13`.
 
 ### Splitting results into pages
 
