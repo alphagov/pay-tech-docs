@@ -160,9 +160,9 @@ The response to the ‘Create new payment’ API call will include the URL for t
 * the `Location` response header
 * the `self` section of `_links` in the JSON body
 
-The URL contains the GOV.UK Pay `paymentId`, which is automatically generated and identifies the payment. A GET request to this URL will return information about the payment and its status.
+The URL contains the GOV.UK Pay `payment_id`, which is automatically generated and identifies the payment. A GET request to this URL will return information about the payment and its status.
 
-Your service will need to store the `paymentId` (or the full URL) for each new payment you create. This is so you can check the status of these payments later.
+Your service will need to store the `payment_id` (or the full URL) for each new payment you create. This is so you can check the status of these payments later.
 
 Read more about [reporting](/reporting/#report-on-a-payment) and [payment flow](/payment_flow/#how-gov-uk-pay-works).
 
@@ -223,7 +223,7 @@ succeeds or fails. Read more about the [payment status lifecycle](https://docs.p
 
 ## Choose the return URL and match your users to payments
 
-For security reasons, GOV.UK Pay does not add the `paymentId` or outcome to
+For security reasons, GOV.UK Pay does not add the `payment_id` or outcome to
 your `return_url` as parameters.
 
 You can match your users with payments with an encrypted cookie, or by creating a
@@ -284,7 +284,7 @@ payment. Your service should account for this.
 
 Your user can select a link on the payment page to cancel a payment that’s in
 progress. Alternatively, a service can make the following API call for a given
-`paymentId`:
+`payment_id`:
 
 `POST /v1/payments/{PAYMENT_ID}/cancel`
 
