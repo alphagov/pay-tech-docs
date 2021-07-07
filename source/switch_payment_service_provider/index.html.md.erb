@@ -1,0 +1,36 @@
+---
+title: Switch payment service provider (PSP)
+last_reviewed_on: 2021-07-07
+review_in: 6 months
+weight: 165
+---
+
+#Switch payment service provider (PSP)
+
+You can switch payment service provider (PSP) through the GOV.UK Pay admin tool. Read our [guidance about choosing a PSP](https://www.payments.service.gov.uk/payment-service-provider/).
+
+You can switch to:
+
+* Stripe, GOV.UK Pay's PSP
+* Worldpay, Government Banking's PSP — this option is only for central government or health sector organisations
+
+GOV.UK Pay has created:
+
+* [guidance for switching to Stripe](switch_psp_to_stripe/#switch-payment-service-provider-to-stripe)
+* [guidance for switching to Worldpay](switch_psp_to_worldpay/#switch-payment-service-provider-to-worldpay)
+
+Admin users can switch a service to Stripe in the GOV.UK Pay admin tool. Email GOV.UK Pay support at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) if you have questions about using Stripe.
+
+Switching to Worldpay can take up to 6 weeks, whilst Government Banking creates your Worldpay account. After this, admin users can switch services to Worldpay in the GOV.UK Pay admin tool. Email Government Banking at [serviceteam.gbs@hmrc.gov.uk](mailto:serviceteam.gbs@hmrc.gov.uk) if you have questions about using Worldpay.
+
+You do not need any technical knowledge to switch PSP.
+
+##Understand what the switch affects
+
+The switch is just a change of PSP. Your users will not be made aware of any changes in your service.
+
+Users making payments during the switching period are not affected. Your existing PSP will still process active payments.
+
+The switching process is the same whether your service integrates with GOV.UK Pay’s API or uses payment links. Switching does not need any code changes. Your existing API keys remain valid.
+
+You may need to make changes to your financial reporting if you switch from Stripe to Worldpay as [Stripe offers additional reporting data](https://docs.payments.service.gov.uk/reporting/#report-on-a-payment).

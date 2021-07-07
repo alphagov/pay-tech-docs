@@ -1,0 +1,186 @@
+---
+title: Switch payment service provider to Worldpay
+last_reviewed_on: 2021-07-07
+review_in: 6 months
+weight: 166
+---
+
+# Switch payment service provider to Worldpay
+
+This guidance explains how to switch your payment service provider (PSP) to Worldpay.
+
+You must be a GOV.UK Pay admin user to switch PSP. To check if you are an admin user for a service:
+
+1. Select **View team members** or **Manage team members** next to the service on the **Overview** page.
+
+2. If your email address is listed under **Administrators**, you are an admin user.
+
+## Set up a Worldpay account
+
+To set up a Worldpay account, email Government Banking at [serviceteam.gbs@hmrc.gov.uk](mailto:serviceteam.gbs@hmrc.gov.uk).
+
+<%= warning_text('It can take up to 6 weeks for Government Banking to set up your Worldpay account. You should complete this step as soon as possible.')%>
+
+## Configure your Worldpay account
+
+You need to configure your Worldpay account to use it with GOV.UK Pay. You only need to configure your Worldpay account once.
+
+### Switch to Production Mode for your merchant code
+
+Worldpay uses the term ‘production’ for live accounts.
+
+Sign in to your [Worldpay account](https://secure.worldpay.com/sso/public/auth/login.html) and select your merchant code.
+
+If **Test Mode** is at the bottom of the left-hand menu, select **Test Mode** to switch to **Production Mode**.
+
+### Set your XML password
+
+1. In your Worldpay account, select Account.
+
+2. Choose the Profile tab.
+
+3. If you’re asked for your merchant code, enter it.
+
+4. If you see a checkbox called Disabled Original XML Username, check the checkbox.
+
+5. Select Save Profile.
+
+6. If you have not set your XML password for this merchant code before, select the pencil icon next to XML Password and enter a password.
+
+7. Confirm your password by selecting Add new password, then OK.
+
+8. Save the new password by selecting the pencil icon again, then Complete, then OK.
+
+If you’ve set your XML password before but cannot remember it, you can set a new password. If you set a new password, you must add it to your other services that use this Worldpay account, or they’ll stop working.
+
+You’ll need your XML password to switch PSP.
+
+### Disable Capture delay
+
+1. In your Worldpay account, select **Account**.
+
+2. Choose the **Profile** tab.
+
+3. Go to the **Payment service**.
+
+4. Set **Capture delay (days)** to **Off** (not **0**).
+
+### Set up Worldpay 'Merchant Channels'
+
+You must set up your Worldpay ‘Merchant Channels’ so Worldpay can notify GOV.UK Pay about payment events.
+
+#### Set up ‘Merchant Channels’
+
+In your Worldpay account, select **Integration** then the **Merchant Channel** tab.
+
+Make the following changes in both the **Merchant Channels (Production)** and **Merchant Channels (Test)** sections.
+
+Set **Active** to:
+
+* **no** in the **email** row
+* **yes** in the **http** row
+* **no** in the **shopper email** row
+
+In the **http** row, set:
+
+* **Content** to **xml**
+* **Address** to `https://notifications.payments.service.gov.uk/v1/api/notifications/worldpay`
+* **Method** to **POST**
+* **Client certificate** to **no**
+
+#### Set up 'Merchant Channel Events'
+
+In your Worldpay account, select **Integration** then the **Merchant Channel** tab.
+
+In both the **Merchant Channel Events (Production)** and **Merchant Channel Events (Test)** sections, select the following in the http row.
+
+* **SHOPPER_REDIRECTED**
+* **SENT_FOR_AUTHORISATION**
+* **AUTHORISED**
+* **ERROR**
+* **CANCELLED**
+* **CAPTURED**
+* **CAPTURE_FAILED**
+* **SETTLED**
+* **SETTLED_BY_MERCHANT**
+* **SENT_FOR_REFUND**
+* **REFUNDED**
+* **REFUNDED_BY_MERCHANT**
+* **REFUSED**
+* **REFUSED_BY_BANK** (production only)
+* **REFUND_FAILED**
+
+## Prepare to switch to Worldpay
+
+Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:mailto:govuk-pay-support@digital.cabinet-office.gov.uk) asking to switch PSP to Worldpay on all services for your organisation, or list out specific services.
+
+The GOV.UK Pay support team will confirm when we’ve enabled the switch PSP feature for your service.
+
+To switch to Worldpay, you’ll need:
+
+* your **Merchant Code** - found in your Worldpay account in the left-side navigation
+* your **New Username** - found in your Worldpay account under **Account**, then **Profile**
+* your **XML password** - found in your Worldpay account under **Account**, then **Profile**
+* a debit or credit card - to make a refundable payment to test your service
+
+<%= warning_text('For security reasons, copy and paste your details directly from the Worldpay admin tool into GOV.UK Pay. Do not store these details in an unsecure way, such as in plain text documents or written on paper.') %>
+
+To get to the **Switch payment service provider** page:
+
+1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
+
+2. Select the service you want to switch from the **Overview** page - services you can switch are labelled **LIVE - SWITCH PSP**.
+
+3. On your service dashboard, select the ‘**...how to switch to Worldpay link**’ in the banner, or select **Settings** in the navigation.
+
+4. In **Settings**, select **Switch PSP** from the side navigation.
+
+## Switch to Worldpay
+
+You need to repeat the following process for each service you want to switch to Worldpay.
+
+### Link your Worldpay account to GOV.UK Pay and test it
+
+To test the integration between Worldpay and GOV.UK Pay, you need to make a live payment. This step makes sure you have integrated your GOV.UK Pay and Worldpay accounts correctly.
+
+The live payment is £2.00 and is refundable (minus the transaction fee).
+
+1. Select **Link your Worldpay account with GOV.UK Pay**.
+
+2. Using your [Worldplay credentials you configured earlier](#configure-your-worldpay-account), enter your **Merchant Code**, **New Username** and **XML Password**.
+
+3. Select **Save credentials**. If your credentials are correct, GOV.UK Pay will return you to the **Switch Payment Service Provider** page. If your credentials are not correct, you’ll need to re-enter them.
+
+4. Select **Make a live payment to test your Worldpay PSP** - you need a debit or credit card for this step.
+
+5. Select **Continue to live payment**.
+
+6. Enter your card details.
+
+7. Select **Continue**. You'll be returned to the **Switch Payment Service Provider** page.
+
+A **Success** banner confirms the payment and you can also find it in the **Transactions** list.
+
+If your service uses the GOV.UK Pay API for reporting, you may want to check the test transaction appears correctly in your systems.
+
+<%= warning_text('Your existing PSP is still processing this service’s payments. You have not switched your PSP yet.') %>
+
+### Switch PSP to Worldpay
+
+Once you’ve successfully linked your Worldpay account with GOV.UK Pay and made a live payment to test the integration, you’re ready to switch your PSP to Worldpay.
+
+To switch, select **Switch to Worldpay** on the **Switch payment service provider (PSP)** page. A **Success** banner confirms the switch.
+
+You have now switched PSP to Worldpay. Worldpay will process any new payments.
+
+Users making payments as you switch are unaffected. Your old PSP will process their payments.
+
+## Refund payments after switching to Worldpay
+
+After you switch to Worldpay, you can still refund old payments through your old PSP.
+
+GOV.UK Pay will maintain the old PSP integration for 3 months after taking the last payment to allow your service to process refunds through your old PSP.
+
+If you cannot refund a payment through your old PSP, use an alternative like a cheque or bank transfer.
+
+Refund payments by signing into the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login), selecting your service, and choosing the **Transactions** tab. Alternatively, you can use the [GOV.UK Pay API](https://docs.payments.service.gov.uk/refunding_payments/#refund-a-payment).
