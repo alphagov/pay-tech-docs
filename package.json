@@ -12,6 +12,6 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^27.0.6",
-    "js-cookie": "^2.2.1"
+    "js-cookie": "^3.0.0"
   }
 }
