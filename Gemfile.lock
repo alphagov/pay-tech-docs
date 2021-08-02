@@ -54,7 +54,7 @@ GEM
     fast_blank (1.0.0)
     fastimage (2.2.4)
     ffi (1.15.3)
-    govuk_tech_docs (2.4.1)
+    govuk_tech_docs (2.4.2)
       autoprefixer-rails (~> 10.2)
       chronic (~> 0.10.2)
       middleman (~> 4.0)
@@ -201,7 +201,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  govuk_tech_docs (~> 2.4.1)
+  govuk_tech_docs (~> 2.4.2)
   html-proofer
   middleman-search!
   tzinfo-data
