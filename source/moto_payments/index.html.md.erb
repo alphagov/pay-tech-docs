@@ -53,7 +53,7 @@ You'll be using one of the following PSPs:
 
 1. You need to process MOTO payments on a separate MOTO merchant code (if your PSP is Worldpay) or PSPID (if your PSP is ePDQ) to the one you use for online payments. If you do not already have a merchant code for MOTO payments, ask for one by contacting ePDQ, or Government Banking if you use Worldpay. You’ll use this merchant code when you [connect your new service to your PSP](https://docs.payments.service.gov.uk/switching_to_live/#go-live).
 
-1. Complete your [Payment Card Industry Data Security Standards (PCI DSS) Self Assessment Questionnaire](https://docs.payments.service.gov.uk/security/#payment-card-industry-pci-compliance)
+1. Complete your [Payment Card Industry Data Security Standards (PCI DSS) Self Assessment Questionnaire](https://docs.payments.service.gov.uk/security/#payment-card-industry-pci-compliance).
 
 1. Send your completed PCI DSS questionnaire and your service name to [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
 
@@ -67,7 +67,7 @@ You can still [take online payments](https://docs.payments.service.gov.uk/making
 
 #### Set up MOTO payments on a live account with Stripe
 
-1. Complete your [PCI DSS Self-Assessment Questionnaire](https://docs.payments.service.gov.uk/security/#payment-card-industry-pci-compliance)
+1. Complete your [PCI DSS Self-Assessment Questionnaire](https://docs.payments.service.gov.uk/security/#payment-card-industry-pci-compliance).
 
 1. Send your completed PCI DSS questionnaire and your service name to [govuk-pay-support@digital.cabinet-office.gov.uk] (mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
 
@@ -128,7 +128,7 @@ These optional details can help to guide your call centre agent through the tele
 
 For example, ‘Remind the paying user that we are recording this call for quality and training purposes.’
 
-Call centre agents see these extra details at the start of the telephone payment process.
+Call centre agents can see these extra details at the start of the telephone payment process.
 
 Paying users will not be able to see this ‘Details’ description.
 
@@ -138,7 +138,7 @@ The name of the reference is the name your service uses for unique payment refer
 
 For example, the name of the reference could be ‘Invoice number’ or ‘Customer ID’.
 
-Call centre agents see this name next to the input field when they are entering the user’s reference.
+Call centre agents can see this name next to the input field when they are entering the user’s reference.
 
 ##### Reference hint text (optional)
 
@@ -189,7 +189,7 @@ Before you create a MOTO payment, you must have [set up MOTO payments](#set-up-m
 
 Follow these steps to create and complete the MOTO payment using the GOV.UK Pay API.
 
-1. If your PSP is Worldpay or ePDQ, make sure you're using an API key from your MOTO service in **Services** in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
+1. If your PSP is Worldpay or ePDQ, go to **Services** in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) to make sure you're using an API key from your MOTO service.
 
 2. [Create a payment](/making_payments/#creating-a-payment) with the GOV.UK Pay API, and include `“moto”: true` in the request body.
 
