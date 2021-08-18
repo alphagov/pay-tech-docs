@@ -159,7 +159,7 @@ There are two URLs in the `_links` object -- one in the `self` section and one i
 
 The URL in `self` is the unique URL for the new payment. You can also find this URL in the `Location` response header. A `GET` request to this URL returns information about the new payment and its status.
 
-`next_url` is the URL that the paying user will visit to make their payment. You should direct your users to this URL.
+The `next_url` is the URL that the paying user will visit to make their payment. You should direct your users to this URL.
 
 Your service needs to store the `self` URL or the `payment_id` for each new payment you create. This is so you can check on the status of these payments later.
 
