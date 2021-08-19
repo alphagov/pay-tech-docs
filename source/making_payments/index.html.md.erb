@@ -155,19 +155,15 @@ Example response:
 }
 ```
 
-The response to the ‘Create new payment’ API call will include the URL for the payment. You can get this from either:
+There are two URLs in the `_links` object -- one in the `self` section and one in the `next_url` section.
 
-* the `Location` response header
-* the `self` section of `_links` in the JSON body
+The URL in `self` is the unique URL for the new payment. You can also find this URL in the `Location` response header. A `GET` request to this URL returns information about the new payment and its status.
 
-The URL contains the GOV.UK Pay `payment_id`, which is automatically generated and identifies the payment. A GET request to this URL will return information about the payment and its status.
+The `next_url` is the URL the paying user will visit to make their payment. You should direct your users to this URL.
 
-Your service will need to store the `payment_id` (or the full URL) for each new payment you create. This is so you can check the status of these payments later.
+Your service needs to store the `self` URL or the `payment_id` for each new payment you create. This is so you can check on the status of these payments later.
 
 Read more about [reporting](/reporting/#report-on-a-payment) and [payment flow](/payment_flow/#how-gov-uk-pay-works).
-
-The response will also include the ``next_url`` to which you should direct your
-user to complete their payment.
 
 <%= warning_text('Do not expose the `next_url` to anyone other than your paying user. Anyone in possession of the `next_url` could hijack your user’s payment.') %>
 
