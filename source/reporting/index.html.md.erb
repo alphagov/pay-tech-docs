@@ -15,13 +15,13 @@ how to [search for refunds using the GOV.UK Pay API](/refunding_payments/#search
 
 ## Manual reporting
 
-You can use your [GOV.UK Pay admin
-account](https://selfservice.payments.service.gov.uk/login) to export
+You can use the [GOV.UK Pay admin
+tool](https://selfservice.payments.service.gov.uk/login) to export
 transaction information in a CSV file.
 
 You can export one file for one service's transactions, or one file for all your services' transactions.
 
-1. Go to [My Services](https://selfservice.payments.service.gov.uk/my-services).
+1. Go to [the **Overview** page](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
 
 1. If you want to export one service's transactions, select the service account you want reporting information for, then select **Transactions**.
 
@@ -172,7 +172,7 @@ payment journey, the `card_details` section contains the information they entere
 
 #### fee
 
-If you use GOV.UK’s Payment Service Provider (PSP), `fee` is the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees) that we took from the amount your user paid.
+If you use GOV.UK’s payment service provider (PSP), `fee` is the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees) that we took from the amount your user paid.
 
 #### metadata
 
@@ -184,7 +184,7 @@ The `metadata` object includes any metadata keys and values you added when creat
 
 #### net_amount
 
-If you use GOV.UK’s Payment Service Provider (PSP), `net_amount` is the amount that will be paid into your account after we take the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees).
+If you use GOV.UK’s payment service provider (PSP), `net_amount` is the amount that will be paid into your account after we take the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees).
 
 #### payment_id
 
@@ -213,7 +213,7 @@ Use `settlement_summary` to check when your payment service provider (PSP):
 
 Use `state` to see the [status of the payment](/api_reference/#payment-status-lifecycle).
 
-### Checking when your Payment Service Provider (PSP) took a payment
+### Checking when your payment service provider (PSP) took a payment
 
 You can see when your PSP took a payment from your user's account.
 
@@ -242,7 +242,7 @@ If your PSP is Government Banking’s contracted PSP (currently Worldpay), Smart
 
 ### PSP fees
 
-If you use GOV.UK's Payment Service Provider (PSP), we'll automatically deduct the PSP's transaction fee from each payment. You can see how much the fee was when you make the API call to get information about a payment.
+If you use GOV.UK's payment service provider (PSP), we'll automatically deduct the PSP's transaction fee from each payment. You can see how much the fee was when you make the API call to get information about a payment.
 
 Example response:
 
