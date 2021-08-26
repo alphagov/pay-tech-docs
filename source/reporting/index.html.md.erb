@@ -184,7 +184,7 @@ The `metadata` object includes any metadata keys and values you added when creat
 
 #### net_amount
 
-If you use GOV.UK’s payment service provider (PSP), `net_amount` is the amount that will be paid into your account after we take the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees).
+If you use GOV.UK’s PSP, `net_amount` is the amount that will be paid into your account after we take the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees).
 
 #### payment_id
 
@@ -192,7 +192,7 @@ If you use GOV.UK’s payment service provider (PSP), `net_amount` is the amount
 
 #### payment_provider
 
-`payment_provider` is the name of your payment service provider (PSP), or `sandbox` if you're using a test ('sandbox') account.
+`payment_provider` is the name of your PSP, or `sandbox` if you're using a test ('sandbox') account.
 
 #### refund_summary
 
@@ -204,7 +204,7 @@ You can use `refund_summary` to [check if you can refund a payment](/refunding_p
 
 #### settlement_summary
 
-Use `settlement_summary` to check when your payment service provider (PSP):
+Use `settlement_summary` to check when your PSP:
 
 - [took the payment from your user's account](#checking-when-your-payment-service-provider-psp-took-a-payment)
 - [sent a payment to your bank account](/integrate_with_govuk_pay/#checking-when-your-psp-sent-a-payment), if your PSP is Stripe
@@ -213,7 +213,7 @@ Use `settlement_summary` to check when your payment service provider (PSP):
 
 Use `state` to see the [status of the payment](/api_reference/#payment-status-lifecycle).
 
-### Checking when your payment service provider (PSP) took a payment
+### Checking when your PSP took a payment
 
 You can see when your PSP took a payment from your user's account.
 
@@ -242,7 +242,7 @@ If your PSP is Government Banking’s contracted PSP (currently Worldpay), Smart
 
 ### PSP fees
 
-If you use GOV.UK's payment service provider (PSP), we'll automatically deduct the PSP's transaction fee from each payment. You can see how much the fee was when you make the API call to get information about a payment.
+If you use GOV.UK's PSP, we'll automatically deduct the PSP's transaction fee from each payment. You can see how much the fee was when you make the API call to get information about a payment.
 
 Example response:
 
