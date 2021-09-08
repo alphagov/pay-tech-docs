@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@govuk-pay/pay-js-commons": "^3.2.3",
-    "govuk-frontend": "^3.13.0"
+    "govuk-frontend": "^3.13.1"
   },
   "scripts": {
     "test": "jest"
