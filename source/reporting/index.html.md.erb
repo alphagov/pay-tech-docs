@@ -94,6 +94,12 @@ Example response:
     }
   },
   "payment_id": "hu20sqlact5260q2nanm0q8u93",
+  "authorisation_summary": {
+    "three_d_secure": {
+      "required": true,
+      "version": "2.2.0"
+    }
+  }
   "refund_summary": {
     "status": "available",
     "amount_available": 4000,
@@ -130,6 +136,18 @@ The `_links` object includes `href` and `method` fields that you can use to make
 - `events` to [get the payment's events](/reporting/#get-a-payment-s-events)
 - `refunds` to [get all refunds for the payment](/refunding_payments/#get-all-refunds-for-a-single-payment)
 - `cancel` to [cancel the payment](/making_payments/#cancel-a-payment-that-s-in-progress)
+
+#### authorisation_summary
+
+If the [payment was authenticated with 3D Secure (3DS)](https://docs.payments.service.gov.uk/set_up_3dsecure), `authorisation_summary` contains information about the authentication.
+
+`required` is `true` if the payment was authenticated using 3DS.
+
+`version` is the version of 3DS that was used to authenticate the payment. It can be:
+
+* `2.2.0`
+* `2.1.0`
+* `1.0.2`
 
 #### card_details
 
