@@ -97,7 +97,6 @@ Example response:
   "authorisation_summary": {
     "three_d_secure": {
       "required": true,
-      "version": "2.2.0"
     }
   }
   "refund_summary": {
@@ -143,11 +142,7 @@ If the [payment was authenticated with 3D Secure (3DS)](https://docs.payments.se
 
 `required` is `true` if the payment was authenticated using 3DS.
 
-`version` is the version of 3DS that was used to authenticate the payment. It can be:
-
-* `2.2.0`
-* `2.1.0`
-* `1.0.2`
+`authorisation_summary` is only available for payments created on or after 1 September 2021.
 
 #### card_details
 
