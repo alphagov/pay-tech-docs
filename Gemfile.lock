@@ -27,7 +27,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    commonmarker (0.23.1)
+    commonmarker (0.23.2)
     compass (1.0.3)
       chunky_png (~> 1.2)
       compass-core (~> 1.0.2)
@@ -54,7 +54,7 @@ GEM
     fast_blank (1.0.1)
     fastimage (2.2.5)
     ffi (1.15.4)
-    govuk_tech_docs (2.4.3)
+    govuk_tech_docs (3.0.0)
       autoprefixer-rails (~> 10.2)
       chronic (~> 0.10.2)
       middleman (~> 4.0)
@@ -174,7 +174,7 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.5.1)
     rexml (3.2.5)
-    rouge (3.26.0)
+    rouge (3.26.1)
     sass (3.4.25)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -201,7 +201,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  govuk_tech_docs (~> 2.4.3)
+  govuk_tech_docs (~> 3.0.0)
   html-proofer
   middleman-search!
   tzinfo-data
