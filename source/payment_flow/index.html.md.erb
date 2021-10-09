@@ -30,7 +30,7 @@ You should also have a clear call to action that tells your user they’re about
 
 You do not need to tell your user that they’ll be taken to GOV.UK Pay’s pages to make their payment.
 
-<%= image_tag "/images/flow-service-payment-page.png", { :alt => 'A page from a service that outlines what the user is paying for. The page title is "How long do you need a parking permit for?" The user has two options to choose from: "6 months" or "12 months". A green button has the text "Continue to payment".' } %>
+<%= image_tag "/images/flow-service-payment-page.png", { :alt => 'Screenshot of a page from a service that outlines what the user is paying for. The page title is "How long do you need a parking permit for?" The user has two options to choose from: "6 months" or "12 months". A green button has the text "Continue to payment".' } %>
 
 ## 2. Create a new GOV.UK Pay payment
 
@@ -58,7 +58,7 @@ When your service redirects your user to `next_url`, they’ll see an **Enter ca
 
 This page also shows the `description` and the amount your user has to pay, making it clear what they’re paying for.
 
-<%= image_tag "/images/flow-payment-details-page.png", { :alt => 'A payment details entry page. The page title is "Enter card details". There is the amount the user has to pay and fields for the paying users card details, such as card number, expiry date, and billing address.' } %>
+<%= image_tag "/images/flow-payment-details-page.png", { :alt => 'Screenshot of a payment details entry page. The page title is "Enter card details". There is the amount the user has to pay and fields for the paying users card details, such as card number, expiry date, and billing address.' } %>
 
 Your user enters their payment details and selects **Continue**. You can also [prefill some of the fields](/optional_features/prefill_user_details).
 
@@ -84,7 +84,7 @@ The payment confirmation page shows what your user entered for their:
 
 This page also shows the `description` and the amount your user has to pay.
 
-<%= image_tag "/images/flow-payment-confirm-page.png", { :alt => 'A payment confirmation page example. The page title is "Confirm your payment". There is the amount the user is paying and a description that a service user has entered. There is a summary of the paying users payment details, such as part of their card number, expiry date, and billing address.' } %>
+<%= image_tag "/images/flow-payment-confirm-page.png", { :alt => 'Screenshot of a payment confirmation page. The page title is "Confirm your payment". There is the amount the user is paying and a description that a service user has entered. There is a summary of the paying users payment details, such as part of their card number, expiry date, and billing address.' } %>
 
 If your user decides to complete the payment, they select Confirm. They will then:
 
@@ -133,6 +133,6 @@ If your user’s payment failed - for example because they cancelled or their pa
 
 For example:
 
-<%= image_tag "/images/flow-payment-declined.png", { :alt => 'A payment failure page example. The page title is "Your payment has been declined". The body text reads "Contact our bank for more details. No money has been taken from your account."" At the bottom of the page is link text that reads "Go back to try the payment again."' } %>
+<%= image_tag "/images/flow-payment-declined.png", { :alt => 'Screenshot of a payment failure page. The page title is "Your payment has been declined". The body text reads "Contact our bank for more details. No money has been taken from your account."" At the bottom of the page is link text that reads "Go back to try the payment again."' } %>
 
 If you do not use your own payment failure pages, you can configure GOV.UK Pay to display [standard GOV.UK Pay payment failure pages](/optional_features/use_your_own_error_pages/#use-your-own-payment-failure-pages).
