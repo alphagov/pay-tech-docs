@@ -25,8 +25,8 @@ Your service backend is server-side software. You should build this to:
 
 * make a call to the GOV.UK Pay API to start the payment journey
 * store information about user payment journeys in your datastore
-* redirect your user to the `next_url` provided by GOV.UK Pay, where your user will [enter their payment information and confirm their payment](/payment_flow/#making-a-payment)
-* receive your user's request when they are redirected back to your service via the `return_url`, where your user will return [after they complete their payment](/payment_flow/#payment-successful)
+* redirect your user to the `next_url` provided by GOV.UK Pay, where your user will [enter their payment information and confirm their payment](/payment_flow/#4-your-user-enters-their-payment-details)
+* receive your user's request when they are redirected back to your service via the `return_url`, where your user will return [after they complete their payment](/payment_flow/#7-show-a-final-page)
 * identify your returning user via the session
 * make a call to the GOV.UK Pay API to determine the outcome of the payment
 * display information about the outcome of the payment and next steps to your user
