@@ -7,6 +7,10 @@ function initialiseGoogleAnalytics() {
   loadGoogleAnalytics()
 }
 
+function getCookieDomain () {
+  return window.location.hostname.replace(/^(www.){0,1}(docs.){0,1}/, '.')
+}
+
 /**
  * Allow only fetching files from Google if consent has been provided by the
  * user.
@@ -18,7 +22,7 @@ function loadGoogleAnalytics() {
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-72121642-9', 'auto');
+  ga('create', 'UA-72121642-9', getCookieDomain());
   ga('set', 'anonymizeIp', true);
   ga('set', 'displayFeaturesTask', null);
   ga('set', 'transport', 'beacon');
