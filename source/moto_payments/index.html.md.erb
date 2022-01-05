@@ -21,8 +21,6 @@ There are 2 ways to take MOTO payments through GOV.UK Pay. You can:
 - integrate with the GOV.UK Pay API
 - use telphone payment links
 
-You cannot take MOTO payments if your payment service provider (PSP) is Smartpay.
-
 ## Set up MOTO payments
 
 Before you can take payments over the phone, you need to set up MOTO payments.
@@ -44,14 +42,13 @@ How you set up MOTO payments on a live account differs depending on what PSP you
 You'll be using one of the following PSPs:
 
 - Worldpay
-- ePDQ
 - Stripe
 
-#### Set up MOTO payments on a live account with Worldpay or ePDQ
+#### Set up MOTO payments on a live account with Worldpay
 
 1. Create a new MOTO service that is separate from your online payments service - to do this, sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk) and select **Add a new service**.
 
-1. You need to process MOTO payments on a separate MOTO merchant code (if your PSP is Worldpay) or PSPID (if your PSP is ePDQ) to the one you use for online payments. If you do not already have a merchant code for MOTO payments, ask for one by contacting ePDQ, or Government Banking if you use Worldpay. You’ll use this merchant code when you [connect your new service to your PSP](https://docs.payments.service.gov.uk/switching_to_live/#go-live).
+1. You need to process MOTO payments on a separate MOTO merchant code to the one you use for online payments. If you do not already have a merchant code for MOTO payments, ask for one by contacting Government Banking. You’ll use this merchant code when you [connect your new service to your PSP](https://docs.payments.service.gov.uk/switching_to_live/#go-live).
 
 1. Complete the appropriate [Payment Card Industry Data Security Standards (PCI DSS) Self Assessment Questionnaire](https://docs.payments.service.gov.uk/security/#payment-card-industry-pci-compliance).
 
@@ -189,7 +186,7 @@ Before you create a MOTO payment, you must have [set up MOTO payments](#set-up-m
 
 Follow these steps to create and complete the MOTO payment using the GOV.UK Pay API.
 
-1. If your PSP is Worldpay or ePDQ, go to **Services** in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) to make sure you're using an API key from your MOTO service.
+1. If your PSP is Worldpay, go to **Services** in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) to make sure you're using an API key from your MOTO service.
 
 2. [Create a payment](/making_payments/#creating-a-payment) with the GOV.UK Pay API, and include `“moto”: true` in the request body.
 
