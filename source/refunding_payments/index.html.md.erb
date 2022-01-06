@@ -151,13 +151,13 @@ It may take up to 30 minutes for the `status` field to change. Do not check the 
 
 If your user's payment did not reach your bank account yet, your PSP will:
 
-- cancel the payment, if your PSP is Stripe, ePDQ or SmartPay
+- cancel the payment, if your PSP is Stripe
 - take the refund amount after the payment has reached your bank account, if your PSP is Worldpay
 
 If the payment has reached your bank account, your PSP will take the refund amount from:
 
-- the next payment or payments you receive from any of your users, if your PSP is Stripe or ePDQ
-- your bank account, if your PSP is SmartPay or Worldpay
+- the next payment or payments you receive from any of your users, if your PSP is Stripe
+- your bank account, if your PSP is Worldpay
 
 If your PSP is Stripe, you can see when Stripe took the refund when you make an API call to [check the status of a refund](/refunding_payments/#checking-the-status-of-a-refund).
 
