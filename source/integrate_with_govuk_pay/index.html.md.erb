@@ -77,6 +77,8 @@ If your PSP is Stripe, you can sign in to the [GOV.UK Pay admin tool](https://se
 - payments ('payouts') that Stripe has made to your bank account
 - which of your users' payments are in each payout
 
+From 1 April 2022, [if Stripe charges fees on a failed payment](/reporting/#net-amount) they will deduct the fees from your Stripe balance. The failed payments are bundled into your regular payouts.
+
 If your PSP is Worldpay, contact them to find out your minimum payout and payment times. You'll receive a separate payout for each merchant code you use.
 
 #### Checking when your PSP sent a payment
@@ -92,7 +94,7 @@ Example response:
 }
 ```
 
-where `settled_date` is either:
+Where `settled_date` is either:
 
 - the date Stripe sent the payment to your bank account as part of a group of payments (‘payout’)
 - missing if Stripe has not yet sent the payment to your bank account

@@ -197,7 +197,9 @@ The `metadata` object includes any metadata keys and values you added when creat
 
 #### net_amount
 
-If you use GOV.UK’s PSP, `net_amount` is the amount that will be paid into your account after we take the [PSP transaction fee](https://docs.payments.service.gov.uk/reporting/#psp-fees).
+If your PSP is Stripe, `net_amount` is the amount that will be paid into your account after we take the [PSP transaction fees](https://docs.payments.service.gov.uk/reporting/#psp-fees).
+
+`net_amount` can be a negative number if [Stripe charges fees on a failed payment](/reporting/#psp-fees).
 
 #### payment_id
 
@@ -267,14 +269,16 @@ Example response:
 
 Where:
 
-- `total_amount` is the amount your user paid in pence, including a [corporate card surcharge](/corporate_card_surcharges/#add-corporate-card-fees) if you added one
+- `total_amount` is the amount your user paid in pence and only appears if a [corporate card surcharge](/corporate_card_surcharges/#add-corporate-card-fees) was added to the payment
 - `fee` is the PSP transaction fee that we took from the amount your user paid, in pence
 - `net_amount` is the amount that will be paid into your account, in pence
 
-The response will not contain a `fee` or `net_amount` parameter if either:
+The response will not contain `fee` or `net_amount` if either:
 
 - your PSP is Worldpay - we do not deduct these PSPs' transaction fees
 - you're using an API key from your test ('sandbox') account - we do not deduct fees from payments in this account
+
+Stripe may charge transaction fees on failed payments. If this happens, `net_amount` will be a negative number. Starting 1 April 2022, this negative amount will be taken from your Stripe account balance. For example, a `net_amount` of `-200` will take £2.00 from your Stripe account.
 
 To test transaction fees, you can request a test Stripe account from your account in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
 
