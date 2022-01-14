@@ -278,7 +278,9 @@ The response will not contain `fee` or `net_amount` if either:
 - your PSP is Worldpay - we do not deduct these PSPs' transaction fees
 - you're using an API key from your test ('sandbox') account - we do not deduct fees from payments in this account
 
-Stripe may charge transaction fees on failed payments. If this happens, `net_amount` will be a negative number. From 1 April 2022, this negative amount will be taken from your Stripe account balance. For example, a `net_amount` of `-200` will take £2.00 from your Stripe account.
+Stripe may charge transaction fees on failed payments. Until 1 April 2022, GOV.UK Pay will cover the cost of transaction fees on failed payments and these fees will not appear in a `GET /v1/payments/{PAYMENT_ID}` response.
+
+If Stripe charge transaction fees on a failed payment on or after 1 April 2022, `net_amount` will be a negative number. From 1 April 2022, this negative amount will be taken from your Stripe account balance. For example, a `net_amount` of `-200` will take £2.00 from your Stripe account.
 
 To test transaction fees, you can request a test Stripe account from your account in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
 
