@@ -31,7 +31,7 @@ You can also:
 - use HTTP instead of HTTPs for the `return_url` with your test account, so you do not need to set up a secure url for testing
 - test any [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/) you have set up
 
-You cannot use 3D Secure with test accounts.
+You cannot use 3D Secure (3DS) with test accounts.
 
 If your payment service provider (PSP) is Stripe, you can request a test Stripe account from your account in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services). You can use a test Stripe account to see how the following work:
 
@@ -95,6 +95,7 @@ The [PSP transaction fee](/reporting/#psp-fees) depends on which country the tes
 |Successful payment |5105105105105100| Mastercard | Debit | US |
 |Successful payment |5200828282828210| Mastercard | Debit | US |
 |Successful payment |371449635398431| American Express | Credit | US |
+|Requires 3DS check |4000002500003155| Visa | Credit | France |
 |Card declined|4000000000000002|Visa| Credit or debit | US |
 |Card expired|4000000000000069|Visa| Credit or debit | US |
 |Invalid CVC code|4000000000000127|Visa| Credit or debit | US |
