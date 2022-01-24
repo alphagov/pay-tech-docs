@@ -256,9 +256,10 @@ If your user is directed to the `return_url`, they could have:
 
  * not paid because of a technical error
 
-Your service should use the API to check the payment status when your user
-reaches the `return_url`, and provide an appropriate response based on the final
-status of the payment attempt.
+ Your service should use a `GET /v1/payments/{PAYMENT_ID}` call to [check the payment's status](https://docs.payments.service.gov.uk/reporting/#get-information-about-a-single-payment) when your user
+ reaches the `return_url`. You should provide an appropriate response based on the `state` the payment attempt.
+
+ Do not use other API calls to check the payment’s status. Other calls, such as [search payments](/reporting/#search-payments), do not update immediately and so may not be up to date.
 
 ## When your user does not complete their payment journey
 
