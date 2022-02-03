@@ -45,7 +45,7 @@ resources:
       password: ((paas-ireland-password))
 
 jobs:
-  - name: deploy
+  - name: build-and-deploy
     serial: true
     plan:
       - get: pay-tech-docs
