@@ -187,6 +187,8 @@ payment journey, the `card_details` section contains the information they entere
 
 If you use GOV.UK’s payment service provider (PSP), `fee` is the [PSP transaction fee](/reporting/#psp-fees) we took from the amount your user paid.
 
+`fee` only appears after the user has submitted their details and we have taken ('captured') the payment from the user's bank account. 
+
 #### metadata
 
 The `metadata` object includes any metadata keys and values you added when creating a payment. You can [add custom metadata to new payments](https://docs.payments.service.gov.uk/custom_metadata/#add-custom-metadata) to help with reconciliation and reporting.
