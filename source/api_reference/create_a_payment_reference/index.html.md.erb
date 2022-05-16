@@ -1,0 +1,171 @@
+---
+title: Create a payment API reference
+last_reviewed_on: 2022-05-10
+review_in: 6 months
+weight: 10
+---
+
+# Create a payment API reference
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following you’ll use when creating payments:
+
+* parameters
+* example requests
+* example responses
+* attributes you’ll get in your response
+
+You can also [read more about the end-to-end process of taking payments using GOV.UK Pay in our task-based guidance](https://docs.payments.service.gov.uk/making_payments/).
+
+The URL for this endpoint is:
+
+```
+POST https://publicapi.payments.service.gov.uk/v1/payments
+```
+
+You can use this endpoint to create a new payment.
+
+The data from this endpoint is ‘strongly consistent’, meaning it is updated immediately after you make any changes. You can [read more about data consistency in our API](/api_reference/#data-consistency).
+
+## Endpoint URL
+
+```
+POST https://publicapi.payments.service.gov.uk/v1/payments
+```
+
+## JSON body parameters for 'Create a payment'
+
+| Name | Type | Description |
+|-----|-----|-----|
+| `amount` (required) | number | Sets the amount the user will pay, in pence.<br><br>Maximum value is `10000000` (£100,000).<br><br> You can [read more about `amount`](/making_payments/#amount). |
+| `reference` (required) | string | Associate a reference with this payment. <br><br>`reference` is not unique - multiple payments can have identical `reference` values.<br><br>Limited to 255 characters and must not contain URLs. |
+| `return_url` (required) | string | The URL the paying user is directed to after their payment journey on GOV.UK Pay ends.<br><br>Limited to 2,000 characters and must not be JSON-encoded.<br><br>You can [read more about choosing your return URL and matching paying users to payments](/making_payments/#choose-the-return-url-and-match-your-users-to-payments). |
+| `description` (required) | string | A human-readable description of the payment you're creating. Paying users see this description on the payment pages. Service staff see the description in the GOV.UK Pay admin tool.<br><br>Limited to 255 characters and should not contain URLs. |
+| `delayed_capture` (optional) | boolean | You can use this parameter to delay taking a payment from the paying user's bank account. For example, you might want to do your own anti-fraud checks on payments, or check that users are eligible for your service. <br><br>You can [read more about delaying taking a payment from the paying user's bank account](/delayed_capture/#delay-taking-a-payment).<br><br>Defaults to `false`. |
+| `email` (optional) | string | Prefills the paying user's email address field when they make their payment. <br><br>Limited to 254 characters.<br><br>You can [read more about prefilling fields](/optional_features/prefill_user_details) on the **Enter card details** page. |
+| `prefilled_cardholder_details` (optional) | object | An object that prefills the paying user's address and cardholder name fields when they make their payment.<br><br>`prefilled_cardholder_details` can contain 2 optional parameters: <br><br><li>`cardholder_name`</li><li>`billing_address`</li><br>You can [read more about using this object to prefill payment fields](/optional_features/prefill_user_details). |
+| `prefilled_cardholder_details.cardholder_name` (optional) | string | Prefills the paying user's cardholder name field when they make their payment.<br><br>Limited to 255 characters. |
+| `prefilled_cardholder_details.billing_address` (optional) | object | An object that prefills the paying user's billing address.<br><br>`billing_address` can contain:<br><br><li>`line1` (the first line of the paying user’s address)<li>`line2` (the second line of the paying user’s address)<li>`postcode` (the paying user’s postcode)<li>`city` (the paying user’s city)<li>`country` (the paying user’s country, displayed as a 2-character [ISO-3166-1-alpha-2 code](https://www.iso.org/obp/ui/#search/code/))<br><br>Every parameter is optional.<br><br>If the `country` value is invalid or missing, the __Country/territory__ field on the user's payment page defaults to United Kingdom.<br><br>You can [read more about how to prefill cardholder details](/optional_features/prefill_user_details). |
+| `language` (optional) | string | Sets the language of the user's payment page.<br><br>Available values are: <br><br><li>`en` (English)</li><li>`cy` (Welsh)</li> <br>`language` defaults to `en` if you do not include it in your request body.<br><br>You can [read more about using Welsh on your payment pages](/optional_features/welsh_language). |
+| `metadata` (optional) | object | An object that adds custom metadata to a payment using parameter key-value pairs.<br><br>The `metadata` object must contain between 1 and 10 parameter keys. <br><br>Parameter keys are limited to 30 characters. Parameter values are limited to 100 characters. Parameter values can be empty.<br><br>You cannot add or change metadata keys or values after you've created the payment.<br><br>You can [read more about adding custom metadata to payments](/custom_metadata). |
+| `moto` (optional) | boolean | You can use this parameter to designate a payment as a Mail Order / Telephone Order (MOTO) payment.<br><br>`moto` defaults to `false` if you do not include it in your request.<br><br>You must have MOTO payments enabled on your GOV.UK Pay account to use the `moto` parameter.<br><br>You can [read more about enabling taking payments over the phone](/moto_payments). |
+
+
+## Example request for 'Create a payment'
+
+```json
+POST “https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds”
+-H 'Authorization: Bearer api_test_123abc456def'
+-H 'Content-Type: application/json' --data-raw
+
+{
+  "amount": 14500,
+  "reference" : "12345",
+  "description": "Pay your council tax",
+  "return_url": "https://your.service.gov.uk/completed",
+  "delayed_capture": false,
+  "metadata": {
+        "ledger_code": "AB100",
+        "an_internal_reference_number": 200
+  },
+  "email": "sherlock.holmes@example.com",
+  "prefilled_cardholder_details": {
+    "cardholder_name": "Sherlock Holmes",
+    "billing_address": {
+        "line1": "221 Baker Street",
+        "line2": "Flat b",
+        "postcode": "NW1 6XE",
+        "city": "London",
+        "country": "GB"
+    }
+  },
+  "language": "en",
+}
+```
+
+## Example response for 'Create a payment'
+
+```json
+{
+    "amount": 14500,
+    "description": "Pay your council tax.",
+    "reference": "12345",
+    "language": "en",
+    "state": {
+        "status": "created",
+        "finished": false
+    },
+    "payment_id": "hu20sqlact5260q2nanm0q8u93",
+    "payment_provider": "stripe",
+    "created_date": "2022-03-25T13:11:29.019Z",
+    "refund_summary": {
+        "status": "pending",
+        "amount_available": 14500,
+        "amount_submitted": 0
+    },
+    "settlement_summary": {},
+    "delayed_capture": false,
+    "moto": false,
+    "return_url": "https://your.service.gov.uk/completed",
+    "_links": {
+        "self": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
+            "method": "GET"
+        },
+        "next_url": {
+            "href": "https://www.payments.service.gov.uk/secure/ef1b6ff1-db34-4c62-b854-3ed4ba3c4049",
+            "method": "GET"
+        },
+        "next_url_post": {
+            "type": "application/x-www-form-urlencoded",
+            "params": {
+                "chargeTokenId": "ef1b6ff1-db34-4c62-b854-3ed4ba3c4049"
+            },
+            "href": "https://www.payments.service.gov.uk/secure",
+            "method": "POST"
+        },
+        "events": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events",
+            "method": "GET"
+        },
+        "refunds": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds",
+            "method": "GET"
+        },
+        "cancel": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/cancel",
+            "method": "POST"
+        }
+    }
+}
+```
+
+## Atrributes you'll get in a 'Create a payment' response
+
+| Name | Type | Description |
+|-----|-----|-----|
+| `amount` | number | The amount, in pence, the user has paid or will pay. `amount` will match the value you sent in the request body. |
+| `description` | string | The description you sent in the request body when creating this payment. |
+| `reference` | string | The reference you sent when creating this payment.<br><br>`reference` is not unique - multiple payments can have the same `reference` value. |
+| `language` | string | The language of the user's payment page. <br><br>Possible values are:<br><br><li>`en` (English)</li><li>`cy` (Welsh)</li>|
+| `metadata` | object | Contains any custom metadata you sent when creating this payment. <br><br>The `metadata` object does not appear if you did not send any custom metadata in the request body.<br><br>You can [read more about adding custom metadata to payments](/custom_metadata). |
+| `email` | string | The paying user's email address. The paying user's email field will be prefilled with this value when they make their payment.<br><br>`email` does not appear if you did not include it in the request body. |
+| `state` | object | Contains information about where the payment is in its journey.<br><br>You can [read more about the payment status lifecycle](/api_reference/#payment-status-lifecycle). |
+| `state.status` | string | The status of this payment.<br><br>`status` value will automatically be set to `created` because you've just created this payment.<br><br>You can [read more about the meanings of each payment status](/api_reference/#payment-status-lifecycle). |
+| `state.finished` | boolean | Indicates whether a payment journey is finished. <br><br>`finished` will automatically be set to `false` because you've just created this payment.<br><br>A `finished` payment journey does not always mean the user has made a payment. For example, a user may submit payment details but their bank rejects the payment - the payment journey would be `finished` but the payment has not been made. |
+| `payment_id` | string | The unique ID GOV.UK Pay automatically associated with this payment when you created it. |
+| `payment_provider` | string | The payment service provider that will process this payment. |
+| `created_date` | date (ISO 8601) | The date and time you created this payment.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`. |
+| `refund_summary` | object | Contains information about refunds on this payment, such as refund availability.<br><br>You can [read more about refunding payments](/refunding_payments). |
+| `refund_summary.status` | string | Whether you can refund the payment.<br><br>`status` value will be `pending` because your user has not yet made this payment.<br><br>You can [read about the meanings of each refund `status` value](/refunding_payments/#status). |
+| `refund_summary.amount_available` | number | How much you can refund to the user, in pence, once they have completed the payment. |
+| `refund_summary.amount_submitted` | number | How much you've already refunded to the user in pence. |
+| `settlement_summary` | object | Contains information about when this payment was settled.<br><br>Payments are settled when your payment service provider sends funds to your bank account. You can read further [guidance on when your payment service provider sends fund to your bank account](/reporting/#filter-payments-by-when-your-psp-sent-payments-to-your-bank-account).<br><br>`settlement_summary` will be empty because you've just created this payment. |
+| `delayed_capture` | boolean | `delayed_capture` is `true` if you're controlling when GOV.UK Pay takes ('captures') the payment from the paying user's bank account.<br><br>You can [read more about delaying taking a payment](/delayed_capture). |
+| `moto` | boolean | Indicates if this payment is a Mail Order / Telephone Order (MOTO) payment.<br><br>You can [read more about taking payments over the phone](/moto_payments). |
+| `return_url` | string | The URL you direct the paying user to after their payment journey on GOV.UK Pay ends.<br><br>You can [read more about choosing your return URL and matching the paying user to a payment](/making_payments/#choose-the-return-url-and-match-your-users-to-payments). |
+| `_links` | object | Contains URLs and methods for actions related to this payment. |
+| `_links.self` | object | Contains an API method and URL to get information about this payment.<br><br>A `GET` request (`method`) to this URL (`href`) returns information about this payment. You can [read more about getting information for a single payment](/api_reference/single_payment_reference). |
+| `_links.next_url` | object |  Contains the URL the paying user will visit to complete this payment.|
+| `_links.events` | object | Contains an API method and endpoint to get this payment's events.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns [information about this payment's events](/reporting/#get-a-payment-s-events). |
+| `_links.refunds` | object | Contains an API method and endpoint to get refund information about this payment.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns [refund information for this payment](/refunding_payments/#get-all-refunds-for-a-single-payment). |
+| `_links.cancel` | object | Contains an API method and endpoint to cancel this payment.<br><br>A `POST` request (`method`) to this endpoint (`href`) [cancels this payment](/making_payments/#cancel-a-payment-that-s-in-progress).<br><br>`cancel` value is `null` if the payment cannot be cancelled. |

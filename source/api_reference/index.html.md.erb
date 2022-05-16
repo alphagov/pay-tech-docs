@@ -1,53 +1,194 @@
 ---
 title: API reference
-last_reviewed_on: 2021-07-20
+last_reviewed_on: 2022-05-10
 review_in: 6 months
 weight: 180
 ---
 
 # API reference
 
+GOV.UK Pay is a payment platform for government. If you work in the public sector, [read more about using GOV.UK Pay to take payments](https://www.payments.service.gov.uk/).
+
 The base URL for the GOV.UK Pay API is
 `https://publicapi.payments.service.gov.uk/`.
 
-The same base URL is used for test and live accounts. The API key you use
-determines if actions are treated as test payments, or processed as real payments.
+We use the same base URL for test and live accounts. You can create a test account from the [GOV.UK Pay homepage](https://www.payments.service.gov.uk/) and use it to test our API and your integration with it. You receive your live account when you [make your service live for your users](/switching_to_live/).
+
+The API key you use determines which GOV.UK Pay service you use, and whether actions are treated as test payments, or processed as real payments. You can create test and live API keys through the GOV.UK Pay admin tool.
+
+<%= warning_text('If you’re testing our API, make sure you enter an API key from a test account to avoid generating real payments.') %>
 
 The API is based on REST principles. It returns data in JSON format, and uses
 standard HTTP error response codes.
 
-You can [get started with the API quickly](/quick_start_guide/#quick-start). Make sure you enter an API key from a test account to avoid generating real payments.
+You can [get started with the GOV.UK Pay API quickly](https://docs.payments.service.gov.uk/quick_start_guide/#quick-start).
 
-When we add new properties to the JSON responses, the GOV.UK Pay API version number will not change. You should develop your service to ignore properties it does not understand.
+## Endpoints
 
-## OpenAPI file
+### Payments
 
-For more detailed information on each API action, you can look at our <a href="https://github.com/alphagov/pay-publicapi/blob/master/openapi/publicapi_spec.json" target="blank">OpenAPI file</a>.
+| Endpoint                                      | URL                                                 | Data consistency                   |
+|-----------------------------------------------|-----------------------------------------------------|------------------------------------|
+| [Create a payment](/api_reference/create_a_payment_reference)                          | `POST /v1/payments`                                 | Strongly consistent |
+| [Get information about a single payment](/api_reference/single_payment_reference)    | `GET /v1/payments/{PAYMENT_ID}`                     | Strongly consistent |
+| [Get a payment's events](/api_reference/payment_event_reference)                    | `GET /v1/payments/{PAYMENT_ID}/events`              | Strongly consistent |
+| [Cancel a payment](/api_reference/cancel_payment_reference/)                          | `POST /v1/payments/{PAYMENT_ID}/cancel`              | Strongly consistent |
+| [Take ('capture') a delayed payment](/api_reference/capture_payment_reference)        | `POST /v1/payments/{PAYMENT_ID}/capture`            | Strongly consistent |
+| [Search payments](/api_reference/search_payments_reference/)                           | `GET /v1/payments`                                  | Eventually consistent |
 
-You can also generate a client library from our OpenAPI file using [Swagger Editor](http://editor.swagger.io/). This may be an easier way for you to integrate your service with GOV.UK Pay than writing a client library from scratch.
+
+### Refunds
+
+| Endpoint                                      | URL                                                 | Data consistency                   |
+|-----------------------------------------------|-----------------------------------------------------|------------------------------------|
+| [Refund a payment](/api_reference/refund_payment_reference)                          | `POST /v1/payments/{PAYMENT_ID}/refunds`            | Strongly consistent |
+| [Get the status of a refund](/api_reference/refund_status_reference)                | `GET /v1/payments/{PAYMENT_ID}/refunds/{REFUND_ID}` | Strongly consistent |
+| [Get information about a payment's refunds](/api_reference/payment_refunds_reference) | `GET /v1/payments/{PAYMENT_ID}/refunds`             | Eventually consistent |
+| [Search refunds](/api_reference/search_refunds_reference)                            | `GET /v1/refunds`                                   |  Eventually consistent |
+
+## Data consistency
+
+GOV.UK Pay API endpoints have different levels of data consistency. Endpoints are either:
+
+* eventually consistent or
+* strongly consistent
+
+Data from eventually consistent endpoints is updated on a delay. You should not rely on eventually consistent endpoints for operations that require real-time data accuracy, such as checking the outcome of a payment at the end of a user journey.
+
+Data from strongly consistent endpoints is updated immediately. If you perform a read operation on a strongly consistent endpoint immediately after a write operation, the data accurately reflects the outcome of the write operation. For example, if you check the status of a payment (`GET /v1/payments/{PAYMENT_ID}`) immediately after a user completes the payment, the data will show that the payment is complete.
 
 ## Allowing traffic to our API
 
-If you're connecting to the GOV.UK Pay API from a secure network, we recommend using a web proxy like [Squid](http://www.squid-cache.org/) to allow traffic to our base URL.
+If you’re connecting to our API from a secure network, we recommend using [a web proxy like Squid](http://www.squid-cache.org/) to allow traffic to our base URL.
 
 Do not add an allow list of IP addresses to your firewall, because GOV.UK Pay’s IP addresses will change regularly. Read more about [why GOV.UK does not support allow lists of IP addresses](https://technology.blog.gov.uk/2017/01/03/a-whitelisting-approach-for-cloud-apis/).
 
 ## Authentication
 
-GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer
-tokens](http://tools.ietf.org/html/rfc6750). These are easy to
-use and contain only your API key.
+GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer tokens](http://tools.ietf.org/html/rfc6750).
 
-When you make an API call, you need to use an “Authorization” HTTP header to
-provide your API key, with a “Bearer” prefix. For example:
+When you make an API call, you need to use an “Authorization” HTTP header to provide your API key, with a “Bearer” prefix. For example:
 
 ```text
 Authorization: Bearer {YOUR_API_KEY}
 ```
 
+## Rate limits
+
+Per second, you can make:
+
+- up to 15 `POST` requests to [create a payment](/api_reference/create_a_payment_reference)
+- up to 15 `POST `requests to [capture a delayed payment](/api_reference/capture_payment_reference)
+- up to 15 other `POST` requests
+
+`GET` requests are also rate-limited, but at a very high level. In the future, we will publish an official rate limit for `GET` requests.
+
+If you exceed the rate limit, this will return a `429` HTTP response code (Too many requests) and error code `P0900`. After a second, you’ll be able to retry your attempt in a reasonable way. For example, using [exponential backoff](https://en.wikipedia.org/wiki/Exponential_backoff).
+
+[Contact us](/support_contact_and_more_information/) if you would like to discuss rate limiting applied to your service account, or give us feedback.
+
+## OpenAPI file
+
+You can also generate a client library from [our OpenAPI file](https://github.com/alphagov/pay-publicapi/blob/master/openapi/publicapi_spec.json) using [Swagger Editor](http://editor.swagger.io/). This may be an easier way for you to integrate your service with GOV.UK Pay than writing a client library from scratch.
+
+## Responses
+
+The GOV.UK Pay API uses HTTP response codes to show the outcome of a request. `4xx` and `5xx` responses give more detail in the `code` and `description` attributes of the response.
+
+### HTTP status codes
+
+| HTTP status code | Description |
+|-------------------|--------|
+| 200 - OK | Your request was successful. |
+| 201 - Created | You created a payment. |
+| 202 - Accepted | Refund request accepted. The refund will reach the paying user soon. |
+| 204 - No content | Your request was successful. |
+| 400 - Bad request | Your request is invalid.<br><br> Check the `code` and `description` response attributes to find out why the request failed. |
+| 401 - Unauthorised | Your API key is missing or invalid.<br><br>[Read more about authenticating GOV.UK Pay API requests](/api_reference/#authentication). |
+| 404 - Not found | The payment or refund you tried to access does not exist.<br><br>Check the `{PAYMENT_ID}` or `{REFUND_ID}`. |
+| 409 - Conflict | The payment you tried to access has already been captured or cancelled. |
+| 412 - Precondition failed | The `refund_amount_available` value you sent does not match the amount available to refund.<br><br>[Read more about refunding payments](/refunding_payments/#creating-a-refund). |
+| 422 - Unprocessable entity | One of the values you sent is formatted incorrectly. This could be an invalid value, or a value that exceeds a character limit.<br><br>Check the `field`, `code`, and `description` attributes in the response for more information. |
+| 429 - Too many requests | You've made too many requests using your API key.<br><br>[Read more about rate limits](/api_reference#rate-limits). |
+| Any 500 error - Internal server error | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
+
+### GOV.UK Pay API error codes
+
+If your request fails, you’ll also receive a response that contains `code`, `description`, and `field` attributes to help you find out why the request failed.
+
+For example:
+
+```json
+{
+  "field": "amount",
+  "code": "P0102",
+  "description": "Invalid attribute value: amount. Must be less than or equal to 10000000"
+}
+```
+
+These error descriptions are intended for developers, not your users.
+
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
+| Error code | Endpoint | Meaning |
+|--------------|------------|---------|
+| P0101 | Create a payment | The request you sent is missing a required parameter.<br><br>Check the `field` attribute in the response to see which parameter is missing. |
+| P0102 | Create a payment | The value of a parameter you sent is invalid. |
+| P0196 | Create a payment | You tried to create a Mail Order / Telephone Order (MOTO) payment but MOTO payments are not enabled on your service. <br><br>[Contact us about setting up your service for MOTO payments](/moto_payments/#take-a-payment-over-the-phone-moto-payments). |
+| P0197 | Create a payment | The JSON you sent in the request body is invalid.<br><br>Check the formatting of the request body. |
+| P0198 | Create a payment | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
+| P0199 | Create a payment | There's a problem with your service account.<br><br>[Contact us with your error code](/support_contact_and_more_information) and we'll investigate. |
+| P0200 | Get information about a single payment | No payment matched the `{PAYMENT_ID}` you provided.<br><br>Check the `{PAYMENT_ID}` parameter you sent. |
+| P0298 | Get information about a single payment | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
+| P0300 | Get a payment’s events | No payment matched the `{PAYMENT_ID}` you provided.<br><br>Check the `{PAYMENT_ID}` parameter you sent. |
+| P0398 | Get a payment’s events | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
+| P0401 | Search payments | The value of a parameter you sent is invalid. <br><br>Check the parameters listed in the `description` response attribute. |
+| P0402 | Search payments | The requested page of search results does not exist. |
+| P0498 | Search payments | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
+| P0500 | Cancel a payment | No payment matched the `{PAYMENT_ID}` you provided.<br><br>Check the `{PAYMENT_ID}` parameter you sent. |
+| P0501 | Cancel a payment | Cancelling the payment failed.<br><br>[Contact us with your error code](/support_contact_and_more_information/). |
+| P0502 | Cancel a payment | This payment cannot be cancelled. You can only cancel a payment if it has a `cancel` attribute when you check if you can cancel it. <br><br>There’s further [guidance on checking if you can cancel a payment](/making_payments/#check-if-you-can-cancel-a-payment). |
+| P0598 | Cancel a payment | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
+| P0600 | Refund a payment | No payment matched the `{PAYMENT_ID}` you provided.<br><br>Check the `{PAYMENT_ID}` parameter you sent. |
+| P0601 | Refund a payment | Your request is missing a required attribute. <br><br>You must submit `amount` and `refund_amount_available` values in the body of your request. |
+| P0602 | Refund a payment | The value of an attribute you sent is invalid.<br><br>Check the `amount` and `refund_amount_available` values you sent. |
+| P0603 | Refund a payment | This payment cannot be refunded. <br><br>You can [read more about checking if you can refund a payment](/refunding_payments/#check-if-you-can-refund-a-payment). |
+| P0604 | Refund a payment | The `refund_amount_available` value you sent does not match the amount available to refund. <br><br>`refund_amount_available` must match the `amount_available` value you receive when checking if you can refund a payment.<br><br>[Read more about checking if you can refund a payment](/refunding_payments/#check-if-you-can-refund-a-payment). |
+| P0697 | Refund a payment | The JSON you sent in the request body is invalid.<br><br>Check the formatting of the request body. |
+| P0698 | Refund a payment | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
+| P0700 | Check the status of a refund | Either no refund matched the `{REFUND_ID}` you sent, or no payment matched the `{PAYMENT_ID}` you sent.<br><br>Check the `{REFUND_ID}` and  `{PAYMENT_ID}` parameters you sent. |
+| P0798 | Check the status of a refund | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
+| P0800 | Get information about a payment’s refunds | No payment matched the `{PAYMENT_ID}` you sent.<br><br>Check the `{PAYMENT_ID}` parameter you sent. |
+| P0898 | Get information about a payment’s refunds | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
+| P0900 | All endpoints | You've made too many requests too quickly using your API key. <br><br>You can [read more about rate limits](/api_reference#rate-limits). |
+| P0920 | All endpoints | Our firewall blocked your request. <br><br>To fix a `P0920` API error, make sure your API request:<br><br><li>has a `Content-Type: application/json` header<li>uses `application/json` in the `Accept` header if you’re using an `Accept` header<li>uses `https` in the `return_url`, not `http`<li>does not use invalid characters like `<`, `>`, `"`, `\`, or <code>&#124;</code><li>does not have an empty request body if you’re making a `POST` request |
+| P0940 | All endpoints | Your payment service provider (PSP) account is not fully configured. <br><br>You can [read our Go live documentation to configure your PSP account](/switching_to_live/#go-live). |
+| P0999 | All endpoints | GOV.UK Pay is temporarily down. <br><br>Check [our status page](https://payments.statuspage.io) for more information. |
+| P1000 | Capture a delayed payment | No payment matched the `{PAYMENT_ID}` you provided.<br><br>Check the `{PAYMENT_ID}` parameter you sent. |
+| P1001 | Capture a delayed payment | GOV.UK Pay could not capture this payment. <br><br>[Contact us with your error code](/support_contact_and_more_information). |
+| P1003 | Capture a delayed payment | GOV.UK Pay could not capture this payment. The `status` of the payment must be `capturable`. <br><br>To check this, [run `GET /v1/payments/{PAYMENT_ID}`](/api_reference/single_payment_reference). |
+| P1098 | Capture a delayed payment | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
+| P1101 | Search refunds | The value of a parameter you sent is invalid.<br><Br>Check the parameters listed in the `description` response attribute. |
+| P1100 | Search refunds | The requested page of search results does not exist. |
+
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
+### Errors caused by payment statuses
+
+Failed payments return a `code` value in the `state` object when you use the API to get information about that payment. These error codes explain why the payment failed.
+
+| Error code | Meaning | Cause |
+|------------|---------|-------|
+| P0010 | Payment method rejected | The payment was rejected due to the payment method selected or the payment information entered by the user.<br><br>For example, the user may have failed a fraud check, a 3D Secure authentication check, or they may not have sufficient funds in their account. |
+| P0020 | Payment expired | The payment timed out because the paying user did not confirm and complete it within 90 minutes of the payment being created.<br><br>If the paying user's bank already authorised the payment, GOV.UK Pay will automatically send a cancellation to the payment service provider. |
+| P0030 | Payment cancelled by your user | The paying user selected **Cancel payment** during the payment journey.<br><br>If the paying user's bank already authorised the payment, GOV.UK Pay will automatically send a cancellation to the payment service provider. |
+| P0040 | Payment was cancelled by your service | Your service cancelled the payment.<br><br>You can [read more about cancelling payments](/making_payments/#cancel-a-payment-that-s-in-progress). |
+| P0050 | Payment provider returned an error | This error has multiple possible causes. For example, a configuration problem with the payment service provider, or incorrect credentials.<br><br>[Contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
+
+
 ## Payment status lifecycle
 
-You can [get information about a payment](/reporting/#get-information-about-a-single-payment) using the API and see the payment's `state` in the API response.
+You can [get information about a payment](/reporting/#get-information-about-a-single-payment) using the API and see where the payment is in the payment status lifecycle. You can see this in the `state` object in the response.
 
 For example:
 
@@ -64,196 +205,70 @@ For example:
 }
 ```
 
-You can also use the GOV.UK Pay admin tool.
+### Payment status meanings
 
-1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/).
-2. Select an account.
-3. Select __Transactions__.
-4. Use the __Payment status__ dropdown to find payments with error statuses. For example, “Declined”.
+The `status` value indicates where the payment is in the payment status lifecycle.
 
-### code
-
-If something went wrong, `code` is an [API error code](/api_reference/#api-error-codes).
-
-### message
-
-If something went wrong, `message` is a description of what went wrong.
-
-### status and finished
+`finished` indicates whether the payment journey is finished. A `finished` payment journey does not always mean the user has made a payment. For example, a user may submit their payment details but their bank rejects the payment - the payment journey is `finished` but no payment has actually been made.
 
 <table style="width:100%">
-  <tr>
+  <tbody><tr>
   <th><code>status</code></th>
   <th>Meaning</th>
-  <th nowrap><code>finished</code></th>
+  <th nowrap=""><code>finished</code></th>
   </tr>
   <tr>
-    <th scope="row"> created </td>
-    <td> Payment created using the API. Your user has not yet visited <code>next_url</code>. </td>
+    <th scope="row"> created
+    </th><td> Payment created using the API. Your user has not yet visited <code>next_url</code>. </td>
     <td> false </td>
   </tr>
   <tr>
-    <th scope="row"> started </td>
-    <td> Your user has visited <code>next_url</code> and is entering payment details. </td>
+    <th scope="row"> started
+    </th><td> Your user has visited <code>next_url</code> and is entering their payment details. </td>
     <td> false </td>
   </tr>
   <tr>
-    <th scope="row"> submitted </td>
-    <td> Your user has submitted payment details, and gone through authentication if required.<br>The PSP has authorised the payment, but the user has not yet selected <b>Confirm</b>. </td>
+    <th scope="row"> submitted
+    </th><td> Your user submitted payment details and went through authentication, if it was required.<br><br>The payment service provider has authorised the payment, but the user has not yet selected <b>Confirm</b>. </td>
     <td> false </td>
   </tr>
   <tr>
-    <th scope="row"> capturable </td>
-    <td> The payment is a <a href="/delayed_capture/#delay-taking-a-payment" target="blank">delayed capture</a>, and your user has submitted payment details and selected <b>Confirm</b>. </td>
+    <th scope="row"> capturable
+    </th><td> The payment is a delayed capture and your user has submitted their payment details and selected <b>Confirm</b>.<br><br> You can <a href="/delayed_capture/#delay-taking-a-payment" target="blank">read more about how to capture this payment</a>. </td>
     <td> false </td>
   </tr>
   <tr>
-    <th scope="row"> success </td>
-    <td> Your user successfully completed the payment by selecting <b>Confirm</b>. <br>The user is redirected to an appropriate payment confirmation page.</td>
+    <th scope="row"> success
+    </th><td> Your user successfully completed the payment by selecting <b>Confirm</b>.<br><br>We redirected your user to a payment confirmation page.</td>
     <td> true </td>
   </tr>
   <tr>
-    <th scope="row"> failed </td>
-    <td> Your user attempted to make a payment but the payment did not complete. <br>GOV.UK Pay shows an appropriate screen for the failure.<br>Check the <a href="#errors-caused-by-payment-statuses">payment status error code</a> for more information.</td>
+    <th scope="row"> failed
+    </th><td> Your user attempted to make a payment but the payment did not complete. <br><br>We showed the user a failure screen.<br><br>Check the <a href="#errors-caused-by-payment-statuses">payment status error code</a> for more information.</td>
     <td> true </td>
   </tr>
   <tr>
-    <th scope="row"> cancelled </td>
-    <td> Your service cancelled the payment using an API call or the GOV.UK Pay admin tool. </td>
+    <th scope="row"> cancelled
+    </th><td> Your service cancelled the payment using an API call or the GOV.UK Pay admin tool.<br><br>You can <a href="/making_payments/#cancel-a-payment-that-s-in-progress" target="blank">read more about how to cancel payments. </td>
     <td> true </td>
   </tr>
   <tr>
-    <th scope="row"> error </td>
-    <td> Something went wrong with GOV.UK Pay or the underlying payment service provider. Payment fails safely with no money taken. <br><br>
-      The user will see a screen stating "We're experiencing technical problems. No money has been taken from your account. Cancel and go back to try the payment again."
-    <td> true </td>
+    <th scope="row"> error
+    </th><td> Something went wrong with GOV.UK Pay or the underlying payment service provider. The payment failed safely with no money taken from the user.<br><br>We showed the paying user a screen stating "<b>We’re experiencing technical problems. No money has been taken from your account. Cancel and go back to try the payment again.</b>"
+    </td><td> true </td>
   </tr>
-</table>
+</tbody></table>
 
-##Error codes
+If something went wrong with a payment, the `code` and `message` attributes in the API response can help you find out what happened.
 
-### HTTP status codes
+`code` is [an API error code](/api_reference/#gov-uk-pay-api-error-codes).
 
-GOV.UK Pay uses standard HTTP response code conventions:
+`message` is a description of what went wrong.
 
-* 100 codes are informational
-* 200 codes indicate success
-* 300 codes indicate a redirection
-* 400 codes indicate a client-side error
-* 500 codes indicate a server-side error
+## API versioning
 
-Common status codes are:
+We work hard to make our API updates backwards compatible and avoid breaking changes.
 
-| Common status code| Meaning|
-|-------------------|--------|
-| 200 | Payment information request succeeded. |
-| 201 | Payment has been created. |
-| 204 | The server successfully processed the request, but is not returning any content. |
-| 400 | The server cannot process the request due to a client error, eg missing details in the request or a failed payment cancellation. |
-| 401 | Required authentication has failed or has not been provided. |
-| 404 | The resource you have requested cannot be found. |
-| 412 | Precondition failed, eg mismatch in expected refund amount available. |
-| 422 | Unprocessable entity obtained on a request validation. |
-| 429 | Too many requests. Request rate is above the rate limit. |
-| Any 500 error | Something is wrong with GOV.UK Pay. [Contact us](/support_contact_and_more_information/). |
+When we add new properties to the JSON responses, the GOV.UK Pay API version number will not change. You should develop your service to ignore properties it does not understand.
 
-### API error codes
-
-Example error response:
-
-```json
-{
-  "field": "amount",
-  "code": "P0102",
-  "description": "Invalid attribute value: amount. Must be less than or equal to 10000000"
-}
-```
-
-These error descriptions are intended for developers, not your users.
-
-### Errors caused by an API call
-
-<div style="height:1px;font-size:1px;">&nbsp;</div>
-
-| Request type | Error code | Meaning | Cause |
-|--------------|------------|---------|-------|
-| Create payment | P0101 | Missing mandatory attribute | The request you sent is missing a required attribute. |
-| Create payment | P0102 | Invalid attribute value | The value of an attribute you sent is invalid. |
-| Create payment | P0196 | MOTO payments not allowed | Contact us about [setting up your service for Mail Order / Telephone Order (MOTO) payments](/moto_payments/#take-a-payment-over-the-phone-moto-payments).|
-| Create payment | P0197 | Unable to parse JSON | The JSON you sent in the request body is invalid.|
-| Create payment | P0198 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
-| Create payment | P0199 | Account error | There is a problem with your service account. Contact us, quoting the error code. |
-| Find payment by ID | P0200 | `paymentId` not found | No payment matched the `paymentId` you provided. |
-| Find payment by ID | P0298 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
-| Return payment events by ID | P0300 | `paymentId` not found | No payment matched the `paymentId` you provided. |
-| Return payment events by ID | P0398 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
-| Search payments | P0401 | Invalid parameters | The parameters you sent are invalid. |
-| Search payments | P0402 | Page not found | The requested page of search results does not exist. |
-| Search payments | P0498 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
-| Cancel payment | P0500 | `paymentId` not found | No payment matched the `paymentId` you provided. |
-| Cancel payment | P0501 | Cancellation failed | Cancelling the payment failed. Contact us, quoting the error code. |
-| Cancel payment | P0502 | Payment cannot be cancelled | You can only cancel a payment if [the payment has a `cancel` field](/making_payments/#check-if-you-can-cancel-a-payment). |
-| Cancel payment | P0598 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
-| Create refund | P0600 | `paymentId` not found | No payment matched the `paymentId` you provided. |
-| Create refund | P0601 | Missing mandatory attribute | The request you sent is missing a required attribute. |
-| Create refund | P0602 | Invalid attribute value | The value of an attribute you sent is invalid. |
-| Create refund | P0603 | Refund not available | The payment is not available for refund. |
-| Create refund | P0604 | Refund amount available mismatch | The `refund_amount_available` value you provided does not match the true amount available to refund. |
-| Create refund | P0697 | Unable to parse JSON | The JSON you sent in the request body is invalid. |
-| Create refund | P0698 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
-| Get refund | P0700 | `refundId` not found | No refund matched the `refundId` you provided. |
-| Get refund | P0798 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
-| Get refunds | P0800 | `refundId` not found | No refund matched the `refundId` you provided. |
-| Get refunds | P0898 | Downstream system error | Internal error with GOV.UK Pay. Contact us, quoting the error code. |
-| General | P0900 | Too many requests | Your service account is sending requests above the allowed rate. Try the request again in a few seconds. |
-| General | P0920 | Request blocked by security rules | Our firewall blocked your request. Find out [how to fix a P0920 error](#fix-a-p0920-api-error). |
-| General | P0940 | PSP account error | Your payment service provider account is not fully configured. [Use GOV.UK Pay documentation](https://docs.payments.service.gov.uk/switching_to_live/#go-live) to configure your PSP or contact support. |
-| General | P0999 | GOV.UK Pay is unavailable | The GOV.UK Pay service is temporarily down. |
-| Delayed capture | P1000 | No match for `paymentId` | No payment matched the `paymentId` you provided. |
-| Delayed capture | P1001 | Capturing failed | Capturing the payment failed. Contact us, quoting the error code. |
-| Delayed capture | P1003 | Payment cannot be captured | You can only capture a payment if the payment has a `status` of `capturable`. |
-| Delayed capture | P1098 | GOV.UK Pay error | Something is wrong with GOV.UK Pay. Contact us, quoting the error code. |
-
-<div style="height:1px;font-size:1px;">&nbsp;</div>
-
-#### Fix a P0920 API error
-
-If you receive a P0920 API error code, our firewall blocked your request.
-
-To fix a P0920 API error, make sure your API request:
-
-- has a `Content-Type: application/json` header
-- uses `application/json` in the `Accept` header if you're using an `Accept` header
-- uses `https` in the `return_url`, not `http`
-- does not use invalid characters like `<`, `>`, `|`, `"` or `\`
-- does not have an empty request body if you're making a `POST` request
-
-### Errors caused by payment statuses
-
-| Error code | Meaning | Cause |
-|------------|---------|-------|
-| P0010 | Payment method rejected | Payment rejected due to payment method selected, or payment information entered. For example, failed fraud check, a 3D Secure authentication failure, or your user has insufficient funds in account. |
-| P0020 | Payment expired | Payment was not confirmed and completed within 90 minutes of being created. If the payment was already authorised, GOV.UK Pay will send a cancellation to the payment provider. |
-| P0030 | Payment cancelled by your user | Your user selected **Cancel payment** during the payment journey. If the payment was already authorised, GOV.UK Pay will send a cancellation to the payment provider. |
-| P0040 | Payment was cancelled by your service | Your service cancelled the payment. |
-| P0050 | Payment provider returned an error | Multiple possible causes, for example a configuration problem with the payment provider, or incorrect credentials. [Contact us](/support_contact_and_more_information/), quoting the error code. |
-
-## Rate limits
-
-Per second, you can make:
-
-- up to 15 `POST` requests to [create a payment](/making_payments/#creating-a-payment)
-- up to 15 `POST `requests to [capture a delayed payment](/delayed_capture/#delay-taking-a-payment)
-- up to 15 other `POST` requests
-
-GET requests are also rate-limited, but at a very high level. In the future,
-we will publish an official rate limit for GET requests.
-
-If you exceed the rate limit, this will return HTTP status code “429” (Too
-many requests) and error code P0900. After a second, you’ll be able to retry
-your attempt in a reasonable way. For example, using exponential backoff.
-
-[Contact
-us](/support_contact_and_more_information/)
-if you would like to discuss rate limiting applied to your service account, or
-give us feedback.
+[Read more about staying up to date with GOV.UK Pay API updates](https://docs.payments.service.gov.uk/versioning/).

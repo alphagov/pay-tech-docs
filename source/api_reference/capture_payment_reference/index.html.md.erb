@@ -1,0 +1,46 @@
+---
+title: Take ('capture') a delayed payment API reference
+last_reviewed_on: 2022-05-10
+review_in: 6 months
+weight: 37
+---
+
+# Take (‘capture’) a delayed payment API reference
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following you’ll use when capturing a delayed payment:
+
+* parameters
+* example requests
+* example responses
+
+You can also [read more about setting up and creating delayed payments, as well as possible use cases for delaying payments, in our task-based guidance](https://docs.payments.service.gov.uk/delayed_capture/).
+
+The URL for this endpoint is:
+
+```
+https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}/capture
+```
+
+You can use this endpoint to take ('capture') a delayed payment from the paying user's bank account.
+
+The data from this endpoint is strongly consistent, meaning it is updated immediately after you make any changes. You can [read more about data consistency in our API](/api_reference/#data-consistency).
+
+## Path parameters for ‘Take a delayed payment’
+
+| Name | Type | Description |
+|-----|-----|-----|
+| `{PAYMENT_ID}` (required) | string | The ID of the payment you're capturing.<br><br>GOV.UK Pay associates a unique `paymentId` with a payment [when you create that payment](/making_payments/#reference). |
+
+## Example request for ‘Take a delayed payment’
+
+This example request captures the delayed payment with the payment ID `hu20sqlact5260q2nanm0q8u93`:
+
+```
+curl POST “https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/capture” --H “Authorization: Bearer api_test_123abc456def”
+```
+
+## Example response for ‘Take a delayed payment’
+
+A successful payment capture returns a `204` HTTP status code without a response body.
+
+You can [read more about HTTP status codes and their meaning in the GOV.UK Pay API](/api_reference/#http-status-codes).

@@ -1,0 +1,116 @@
+---
+title: Get information about a payment's refunds API reference
+last_reviewed_on: 2022-05-10
+review_in: 6 months
+weight: 70
+---
+
+# Get information about a payment’s refunds API reference
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following you’ll use when getting information about the refunds for a payment:
+
+* parameters
+* example requests
+* example responses
+* attributes you’ll get in your response
+
+You can also [read more about the GOV.UK Pay refund process in our task-based guidance](https://docs.payments.service.gov.uk/refunding_payments/).
+
+The URL for this endpoint is:
+
+```
+https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}/refunds
+```
+
+You can use this endpoint to get a list of refunds for a payment.
+
+The data from this endpoint is eventually consistent, meaning it is updated on a delay. You can [read more about data consistency in our API](/api_reference/#data-consistency).
+
+## Path parameters for ‘Get information about a payment’s refunds’
+
+| Name | Type | Description |
+|-----|-----|-----|
+| `{PAYMENT_ID}` (required) | string | The unique ID of the payment you want a list of refunds for. <br><Br>GOV.UK Pay associates a unique `paymentId` with a payment [when you create that payment](/making_payments/#reference). |
+
+## Example request for ‘Get information about a payment’s refunds’
+
+This example request gets information about refunds of the payment with the payment ID `hu20sqlact5260q2nanm0q8u93`:
+
+```
+curl GET “https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds” -H “Authorization: Bearer api_test_123abc456def”
+```
+
+## Example response
+
+After you send your request to get information about a payment’s refunds, you’ll receive a response similar to this example:
+
+```json
+{
+    "payment_id": "01k7da2d0021m0pcbjov354et8",
+    "_links": {
+        "self": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds",
+            "method": "GET"
+        },
+        "payment": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8",
+            "method": "GET"
+        }
+    },
+    "_embedded": {
+        "refunds": [
+            {
+                "refund_id": "fvtj4naca8nstj2u0roq3t4p6r",
+                "created_date": "2022-02-17T12:42:55.510Z",
+                "amount": 5000,
+                "status": "success",
+                "settlement_summary": {},
+                "_links": {
+                    "self": {
+                        "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds/fvtj4naca8nstj2u0roq3t4p6r",
+                        "method": "GET"
+                    },
+                    "payment": {
+                        "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8",
+                        "method": "GET"
+                    }
+                }
+            },
+            {
+                "refund_id": "4jfabcee0ev36so050kooajabk",
+                "created_date": "2022-03-22T12:44:15.227Z",
+                "amount": 1000,
+                "status": "success",
+                "settlement_summary": {},
+                "_links": {
+                    "self": {
+                        "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds/4jfabcee0ev36so050kooajabk",
+                        "method": "GET"
+                    },
+                    "payment": {
+                        "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8",
+                        "method": "GET"
+                    }
+                }
+            }
+        ]
+    }
+}
+```
+
+In this example, the payment has been partially refunded twice for the amounts of £50 and £10.
+
+## Attributes you’ll get in a ‘Get information about a payment’s refunds’ response
+
+| Name                    | Type            | Description                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `_links`             | object          | Contains URLs and methods for actions related to this payment.                                                                                                                                                                                                                                                                              |
+| `_links.self`                | object          | Contains an API method and endpoint to repeat this request and get refund information about this payment.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns refund information for this payment.<br><br>You can [read more about refunding payments](/refunding_payments/#get-all-refunds-for-a-single-payment). |
+| `_links.payment`             | object          | Contains an API method and URL to get information about this payment.<br><br>A `GET` request (`method`) to this URL (`href`) returns information about this payment.<br><br>You can [read more about getting information about a single payment](/reporting/#get-information-about-a-single-payment)                               |
+| `refunds`             | object          | Contains a list of refunds for this payment.<br><br>Each refund is a separate object within `refunds`.                                                                                                                                                                                                                                    |
+| `refund_id`          | string          | The unique ID GOV.UK Pay automatically associated with this refund when you created it.<br><br>If one payment has multiple refunds, each refund has a different `refund_id`.                                                                                                                                                             |
+| `created_date`       | date (ISO 8601) | The date and time you created this refund.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`.                                                                                                                                                                                          |
+| `amount`              | number          | The amount refunded to the user in pence.                                                                                                                                                                                                                                                                                                   |
+| `status`              | string          | The status of this refund.<br><br>Possible values are:<br><br>* `submitted`<br>* `success`<br>* `error`<br><br>You can [read more about the meanings of refund `status` values](/refunding_payments/#checking-the-status-of-a-refund-status).                                                                                 |
+| `settlement_summary` | object          | Contains information about when this refund was settled.<br><br>A refund is settled when Stripe takes it from a payout to your bank account.<br><br>`settlement_summary` is only available if your payment service provider is Stripe.                                                                                                   |
+| `settlement_summary.settled_date`       | date (ISO 8601) | The date Stripe took the refund from a payout to your bank account.<br><br>`settled_date` only appears if Stripe has taken the refund.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DD`.                                                                                                     |

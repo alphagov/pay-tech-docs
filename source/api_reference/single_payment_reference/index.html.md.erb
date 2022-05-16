@@ -1,0 +1,165 @@
+---
+title: Get information about a single payment API reference
+last_reviewed_on: 2022-05-10
+review_in: 6 months
+weight: 20
+---
+
+# Get information about a single payment API reference
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following you’ll use when getting information about a single payment:
+
+* parameters
+* example requests
+* example responses
+* attributes you’ll get in your response
+
+You can also [read more about the GOV.UK Pay reporting process in our task-based guidance](https://docs.payments.service.gov.uk/reporting/).
+
+The URL for this endpoint is:
+
+```
+https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}
+```
+
+You can use this endpoint to get details about a single payment you've previously created.
+
+The data from this endpoint is strongly consistent, meaning it is updated immediately after you make any changes. You can [read more about data consistency in our API](/api_reference/#data-consistency).
+
+## Path parameters for ‘Get information about a single payment’
+
+| Name | Type | Description |
+|-----|-----|-----|
+| `{PAYMENT_ID}` (required) | string | Returns the payment with the matching `payment_id`.<br><br>GOV.UK Pay associated a `payment_id` with the payment [when you created the payment](/making_payments/#creating-a-payment). |
+
+## Example request for ‘Get information about a single payment’
+
+This example request gets information about the payment with payment ID `hu20sqlact5260q2nanm0q8u93`:
+
+```
+curl GET “https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/” --H “Authorization: Bearer api_test_123abc456def”
+```
+
+## Example response for ‘Get information about a single payment’
+
+After you send your request to get information about a payment, you’ll receive a response similar to this example:
+
+```javascript
+{
+  "created_date": "2019-07-11T10:36:26.988Z",
+  "amount": 3750,
+  "state": {
+    "status": "success",
+    "finished": true,
+  },
+  "description": "Pay your council tax",
+  "reference": "12345",
+  "language": "en",
+  "metadata": {
+    "ledger_code": "AB100",
+    "an_internal_reference_number": 200
+  },
+  "email": "sherlock.holmes@example.com",
+  "card_details": {
+    "card_brand": "Visa",
+    "card_type": "debit",
+    "last_digits_card_number": "1234",
+    "first_digits_card_number": "123456",
+    "expiry_date": "04/24",
+    "cardholder_name": "Sherlock Holmes",
+    "billing_address": {
+        "line1": "221 Baker Street",
+        "line2": "Flat b",
+        "postcode": "NW1 6XE",
+        "city": "London",
+        "country": "GB"
+    }
+  },
+  "payment_id": "hu20sqlact5260q2nanm0q8u93",
+  "authorisation_summary": {
+    "three_d_secure": {
+      "required": true,
+    }
+  }
+  "refund_summary": {
+    "status": "available",
+    "amount_available": 3500,
+    "amount_submitted": 500
+  },
+  "settlement_summary": {
+    "capture_submit_time": "2019-07-12T17:15:000Z",
+    "captured_date": "2019-07-12",
+    "settled_date": "2019-07-12"
+  },
+  "delayed_capture": false,
+  "moto": false,
+  "corporate_card_surcharge": 250,
+  "total_amount": 4000,
+  "fee": 200,
+  "net_amount": 3800,
+  "payment_provider": "worldpay",
+  "provider_id": "10987654321",
+  "return_url": "https://your.service.gov.uk/completed"
+  "_links": {
+     "self": {
+         "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
+         "method": "GET"
+        },
+     "events": {
+         "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events",
+         "method": "GET"
+        },
+     "refunds": {
+         "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds",
+         "method": "GET"
+     }
+  }
+```
+
+## Attributes you’ll get in a ‘Get information about a single payment’ response
+
+| Name                                                 | Type            | Description                                                                                                                                                                                                                                                                                                                                         |
+| ---------------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `amount`                                           | number          | The amount in pence the user has paid or will pay.                                                                                                                                                                                                                                                                                                  |
+| `description`                                      | string          | The description assigned to the payment when it was created.                                                                                                                                                                                                                                                                                        |
+| `reference`                                        | string          | The reference associated with the payment when it was created.<br><br>`reference` is not unique - multiple payments can have the same `reference` value.                                                                                                                                                                                        |
+| `language`                                         | string          | The language of the user's payment page.<br><br>Possible values are:<br><br><li>`en` (English)<br><li>`cy` (Welsh)</li>                                                                                                                                                                                                                                  |
+| `metadata`                                         | object          | Contains any custom metadata you added to the payment when it was created.<br><br>You can [read more about adding custom metadata to payments](/custom_metadata).                                                                                                                                                                                |
+| `state`                                            | object          | Contains information about where the payment is in its journey.<br><br>You can [read more about the payment status lifecycle](/api_reference/#payment-status-lifecycle).                                                                                                                                                                         |
+| `state.status`                                     | string          | Where the payment is in the payment status lifecycle.<br><br>Possible values are:<br><br><li>`created`<li>`started`<li>`submitted`<li>`capturable`<li>`success`<li> `failed`<li>`cancelled`<li>`error`</li><br>You can [read more about the meanings of each payment status](/api_reference/#payment-status-meanings). |
+| `state.finished`                                   | boolean         | Indicates whether a payment journey is finished.<br><br>A finished payment journey does not always mean the user has made a payment.                                                                                                                                                                                                                |
+| `state.message`                                    | string          | A description of what went wrong with this payment.<br><br>`message` only appears if the payment failed.                                                                                                                                                                                                                                          |
+| `state.code`                                       | string          | [An API error code](/api_reference/#gov-uk-pay-api-error-codes) that explains why the payment failed.<br><br>`code` only appears if the payment failed.                                                                                                                                                                                        |
+| `payment_id`                                      | string          | The unique ID GOV.UK Pay automatically associated with this payment when you created it.                                                                                                                                                                                                                                                            |
+| `payment_provider`                                | string          | The payment service provider that processed this payment.                                                                                                                                                                                                                                                                                           |
+| `created_date`                                    | date (ISO 8601) | The date and time you created this payment.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`.                                                                                                                                                                                                 |
+| `refund_summary`                                  | object          | Contains information about refunds on this payment, such as refund availability.<br><br>You can [read more about refunding payments](/refunding_payments).                                                                                                                                                                                       |
+| `refund_summary.status`                           | string          | Whether you can refund the payment.<br><br>Possible values are:<br><br><li>`pending`<li>`unavailable`<li>`available`<li>`full`</li><br>You can [read about the meanings of each refund `status` value](/refunding_payments/#status).                                                                                            |
+| `refund_summary.amount_available`                | number          | How much you can refund to the user, in pence.                                                                                                                                                                                                                                                                                                      |
+| `refund_summary.amount_submitted`                | number          | How much you've already refunded to the user, in pence.                                                                                                                                                                                                                                                                                             |
+| `settlement_summary`                              | object          | Contains information about when this payment was settled.<br><br>A payment is settled when your payment service provider transfers it to your bank account.                                                                                                                                                                                         |
+| `settlement_summary.capture_submit_time`        | date (ISO 8601) | The date and time GOV.UK Pay asked your payment service provider to take the payment from your user's account.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`.<br><br>`capture_submit_time` only appears if GOV.UK Pay has asked your payment service provider to take the payment.     |
+| `settlement_summary.captured_date`               | date (ISO 8601) | The date your payment service provider took the payment from your user.<br><br>This value will appear in ISO 8601 format - `YYYY-MM-DD`.<br><br>`captured_date` only appears if your payment service provider has taken the payment.                                                                                                           |
+| `settlement_summary.settled_date`                | date (ISO 8601) | The date your payment service provider sent the payment to your bank account as part of a payout.<br><br>This value will appear in ISO 8601 format - `YYYY-MM-DD`.<br><br>`settled_date` only appears if your payment service provider is Stripe and they have sent the payment to your bank account.                                          |
+| `card_details`                                    | object          | Contains details about the card the user paid with.<br><br>`card_details` does not appear if the paying user has not completed this payment.                                                                                                                                                                                                     |
+| `card_details.last_digits_card_number`         | number          | The last 4 digits of the card the user paid with.                                                                                                                                                                                                                                                                                                   |
+| `card_details.first_digits_card_number`        | number          | The first 6 digits of the card the user paid with.                                                                                                                                                                                                                                                                                                  |
+| `card_details.cardholder_name`                   | string          | The cardholder name the user entered when they paid.                                                                                                                                                                                                                                                                                                |
+| `card_details.expiry_date`                       | string          | The expiry date of the card the user paid with.                                                                                                                                                                                                                                                                                                     |
+| `card_details.billing_address` | object | Contains the billing address the paying user entered when they paid.<br><br>`billing_address` can contain:<br><br><li>`line1` (the first line of the paying user’s address)<li>`line2` (the second line of the paying user’s address)<li>`postcode` (the paying user’s postcode)<li>`city` (the paying user’s city)<li>`country` (the paying user’s country, displayed as a 2-character [ISO-3166-1-alpha-2 code](https://www.iso.org/obp/ui/#search/code/)) |
+| `card_details.card_brand`                        | string          | The brand of card the user paid with.<br><br>Possible `card_brand` values are:<br><br><li>`American Express`<li>`Diners Club`<li>`Discover`<li>`Jcb`<li>`Maestro`<li>`Mastercard`<li>`Union Pay`<li>`Visa`                                                                                                   |
+| `card_details.card_type`                         | string          | The type of card the user paid with.<br><br>Possible values:<br><br><li>`credit`<li>`debit`<li>`null`</li><br>`null` means your user paid with Google Pay or we did not recognise the type of card they paid with.                                                                                                                         |
+| `delayed_capture`                                 | boolean         | `delayed_capture` is `true` if you're controlling how long it takes GOV.UK Pay to take ('capture') a payment.<br><br>You can [read more about delaying taking a payment](/delayed_capture).                                                                                                                                                 |
+| `moto`                                             | boolean         | Indicates if this payment is a Mail Order / Telephone Order (MOTO) payment.<br><br>You can [read more about taking payments over the phone](/moto_payments).                                                                                                                                                                                     |
+| `total_amount`                                    | number          | Amount your user paid in pence, including corporate card fees.<br><br>`total_amount` only appears if you added a corporate card surcharge to the payment.<br><br>You can [read more about corporate card surcharges](/corporate_card_surcharges/#add-corporate-card-fees).                                                                   |
+| `fee`                                              | number          | The payment service provider's transaction fee, in pence.<br><br>`fee` only appears when we have taken ('captured') the payment from the user or if their payment fails after they submitted their card details.<br><br>You can [read more about PSP fees](/reporting/#psp-fees)                                                                |
+| `net_amount`                                      | number          | The amount, in pence, that'll be paid into your bank account after your payment service provider takes the `fee`.                                                                                                                                                                                                                                 |
+| `provider_id`                                     | string          | The unique ID your payment service provider generated for this payment.<br><br>This is not the same as the `payment_id`.                                                                                                                                                                                                                         |
+| `return_url`                                      | string          | The URL you directed the paying user to after their payment journey on GOV.UK Pay ended.<br><br>You can [read more about choosing your return URL and matching the paying user to a payment](/making_payments/#choose-the-return-url-and-match-your-users-to-payments).                                                                           |
+| `authorisation_summary`                           | object          | Contains information about 3D Secure (3DS) authentication.<br><br>`authorisation_summary` only appears if the payment was authenticated with 3DS.                                                                                                                                                                                                |
+| `authorisation_summary.three_d_secure`          | object          | Contains information about the 3D Secure authentication on this payment.                                                                                                                                                                                                                                                                            |
+| `authorisation_summary.three_d_secure.required` | boolean         | Indicates if this payment was authorised with 3D Secure authentication.<br><br>`required` is `true` if the payment required 3D Secure authentication.                                                                                                                                                                                           |
+| `_links`                                          | object          | Contains URLs and methods for actions related to this payment.                                                                                                                                                                                                                                                                                      |
+| `_links.self`                                     | object          | Contains an API method and URL to get information about this payment.<br><br>A `GET` request (`method`) to this URL (`href`) returns information about this payment.<br><br>You can [read more about getting information about a single payment](/reporting/#get-information-about-a-single-payment).                                      |
+| `_links.events`                                   | object          | Contains an API method and endpoint to get this payment's events.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns information about this payment's events.<br><br>You can [read more about getting a payment's events](/reporting/#get-a-payment-s-events).                                                             |
+| `_links.refunds`                                  | object          | Contains an API method and endpoint to get refund information about this payment.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns refund information for this payment.<br><br>You can [read more about refunding payments](/refunding_payments/#get-all-refunds-for-a-single-payment).                                 |
