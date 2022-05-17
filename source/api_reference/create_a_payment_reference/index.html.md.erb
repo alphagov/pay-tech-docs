@@ -47,9 +47,32 @@ The data from this endpoint is ‘strongly consistent’, meaning it is updated 
 ## Example request for 'Create a payment'
 
 ```json
-POST “https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds”
--H 'Authorization: Bearer api_test_123abc456def'
--H 'Content-Type: application/json' --data-raw
+curl "https://publicapi.payments.service.gov.uk/v1/payments" \
+-H 'Authorization: Bearer api_test_123abc456def' \
+-H 'Content-Type: application/json' \
+-d '{
+          "amount": 14500,
+          "reference" : "12345",
+          "description": "Pay your council tax",
+          "return_url": "https://your.service.gov.uk/completed",
+          "delayed_capture": false,
+          "metadata": {
+                "ledger_code": "AB100",
+                "an_internal_reference_number": 200
+          },
+          "email": "sherlock.holmes@example.com",
+          "prefilled_cardholder_details": {
+            "cardholder_name": "Sherlock Holmes",
+            "billing_address": {
+                "line1": "221 Baker Street",
+                "line2": "Flat b",
+                "postcode": "NW1 6XE",
+                "city": "London",
+                "country": "GB"
+            }
+          },
+          "language": "en"
+}'```
 
 {
   "amount": 14500,

@@ -38,14 +38,14 @@ The data from this endpoint is strongly consistent, meaning it is updated immedi
 This example request gets information about the refund with the refund ID `4jfabcee0ev36so050kooajabk` that is part of the payment with the payment ID `hu20sqlact5260q2nanm0q8u93`:
 
 ```
-curl GET “https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds/4jfabcee0ev36so050kooajabk” -H “Authorization: Bearer api_test_123abc456def”
+curl "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds/4jfabcee0ev36so050kooajabk" -H "Authorization: Bearer api_test_123abc456def"
 ```
 
 ## Example response for ‘Check the status of a refund’
 
 After you send your request to check the status of a refund, you’ll receive a response similar to this example:
 
-```javascript
+```json
 {
   "amount": 2000,
   "created_date": "2019-09-19T16:53:03.213Z",
