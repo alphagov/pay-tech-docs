@@ -1,0 +1,121 @@
+---
+title: Get a payment's events API reference
+last_reviewed_on: 2022-05-10
+review_in: 6 months
+weight: 30
+---
+
+# Get a payment’s events API reference
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following you’ll use when getting the events for a payment:
+
+* parameters
+* example requests
+* example responses
+* attributes you’ll get in your response
+
+You can also [read more about how getting a payment’s events fits into the GOV.UK Pay reporting process in our task-based guidance](https://docs.payments.service.gov.uk/reporting/).
+
+The URL for this endpoint is:
+
+```
+https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}/events
+```
+
+You can use this endpoint to get a list of a payment's events.
+
+A payment event is when the payment's `state` changes, such as when the payment is created, or when the paying user submits their details.
+
+The data from this endpoint is strongly consistent, meaning it is updated immediately after you make any changes. You can [read more about data consistency in our API](/api_reference/#data-consistency).
+
+## Path parameters for ‘Get a payment’s events’
+
+| Name | Type | Description |
+|-----|-----|-----|
+| `{PAYMENT_ID}` (required) | string | The unique ID of the payment you want a list of events for. <br><br>GOV.UK Pay associates a unique `paymentId` with a payment [when you create that payment](/making_payments/#reference). |
+
+
+## Example request for ‘Get a payment’s events’
+
+This example request gets the events for the payment with the payment ID `hu20sqlact5260q2nanm0q8u93`:
+
+```
+curl "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events" -H "Authorization: Bearer api_test_123abc456def"
+```
+
+## Example response for 'Get a payment's events'
+
+After you send your request to get a payment’s events, you’ll receive a response similar to this example:
+
+```json
+{
+  "events": [
+    {
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "state": {
+        "status": "created",
+        "finished": false
+      },
+      "updated": "2022-01-19T15:32:48.819Z",
+      "_links": {
+        "payment_url": {
+          "href": "https://publicapi.payments.service.gov.uk/v1/payments/aogf0qtmvnug0rr2oa4jobfmtn",
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "state": {
+        "status": "started",
+        "finished": false
+      },
+      "updated": "2022-01-19T15:33:36.633Z",
+      ...
+    },
+    {
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "state": {
+        "status": "submitted",
+        "finished": false
+      },
+      "updated": "2022-01-19T15:34:06.973Z",
+      ...
+    },
+    {
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "state": {
+        "status": "success",
+        "finished": true
+      },
+      "updated": "2022-01-19T15:34:13.550Z",
+      ...
+      }
+    }
+  ]
+  "payment_id": "hu20sqlact5260q2nanm0q8u93",
+  "_links": {
+    "self": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events",
+      "method": "GET"
+    }
+  }
+}
+```
+
+## Attributes you’ll get in a ‘Get a payment’s events’ response
+
+| Name               | Type            | Description                                                                                                                                                                                                                                                                                                                               |
+| ------------------ | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `payment_id`    | string          | The unique ID GOV.UK Pay automatically associated with this payment when you created it.                                                                                                                                                                                                                                                  |
+| `events`         | object          | Contains information about each payment event for this payment. This object starts with the oldest `state`.<br><br>A new event is created every time the payment's `state` changes.                                                                                                                                                   |
+| `updated`        | date (ISO 8601) | When this payment's `state` changed.<br><br>This value uses Coordinated Universal Time (UTC) and ISO-8601 format - `YYYY-MM-DDTHH:MM:SSZ`.                                                                                                                                                                                            |
+| `state`          | object          | Contains information about what the `status` was updated to and whether this payment's journey finished.                                                                                                                                                                                                                                |
+| `state.status`   | string          | What the payment's status was updated to.<br><br>Possible values are:<br><br><li>`created`<li>`started`<li>`submitted`<li>`capturable`<li>`success`<li>`failed`<li>`cancelled`<li>`error`</li><br>You can [read more about the payment status lifecycle](/api_reference/#payment-status-lifecycle). |
+| `state.finished` | boolean         | Indicates whether a payment journey finished with this event.<br><br>A finished payment journey does not always mean the user has made a payment.                                                                                                                                                                                         |
+| `state.message`  | string          | A description of what went wrong with this payment.<br><br>`message` only appears if the payment failed.                                                                                                                                                                                                                                |
+| `state.code`     | string          | An [API error code](/api_reference/#gov-uk-pay-api-error-codes) that explains why the payment failed.<br><br>`code` only appears if the payment failed.                                                                                                                                                                              |
+| `event._links`  | object          | Contains URLs and methods for actions related to this payment.                                                                                                                                                                                                                                                                            |
+| `payment_url`   | object          | Contains an API method and URL to get information about this payment.<br><br>A `GET` request (`method`) to this URL (`href`) returns information about this payment.                                                                                                                                                                |
+| `_links`        | object          | Contains URLs and methods for actions related to this payment.                                                                                                                                                                                                                                                                            |
+| `_links.self`   | object          | Contains an API method and endpoint to repeat this request and get this payment's events.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns information about this payment's events.                           |

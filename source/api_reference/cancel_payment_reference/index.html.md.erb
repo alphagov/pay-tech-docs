@@ -1,0 +1,46 @@
+---
+title: Cancel a payment API reference
+last_reviewed_on: 2022-05-10
+review_in: 6 months
+weight: 34
+---
+
+# Cancel a payment API reference
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following you’ll use when cancelling a payment:
+
+* parameters
+* example requests
+* example responses
+
+You can also [read more about how cancelling payments fits into the process for taking a payment in our task-based guidance](https://docs.payments.service.gov.uk/making_payments/#cancel-a-payment-that-s-in-progress).
+
+The URL for this endpoint is:
+
+```
+https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}/cancel
+```
+
+You can use this endpoint to cancel a payment.
+
+The data from this endpoint is strongly consistent, meaning it is updated immediately after you make any changes. You can [read more about data consistency in our API](/api_reference/#data-consistency).
+
+## Path parameters for ‘Cancel a payment’
+
+| Name | Type | Description |
+|----|----|----|
+| `{PAYMENT_ID}` (required) | string | The ID of the payment you're cancelling.<br><br>GOV.UK Pay associates a unique `paymentId` with a payment when you create that payment. |
+
+## Example request for ‘Cancel a payment’
+
+This example request cancels the payment with the payment ID `hu20sqlact5260q2nanm0q8u93`:
+
+```
+curl -X POST "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/cancel" -H "Authorization: Bearer api_test_123abc456def"
+```
+
+## Example response for ‘Cancel a payment’
+
+A successful payment cancellation returns a 204 HTTP status code without a response body.
+
+You can [read more about HTTP status codes and their meaning in the GOV.UK Pay API](/api_reference/#responses).

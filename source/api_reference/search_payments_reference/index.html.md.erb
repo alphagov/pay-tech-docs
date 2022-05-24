@@ -1,0 +1,205 @@
+---
+title: Search payments API reference
+last_reviewed_on: 2022-05-10
+review_in: 6 months
+weight: 40
+---
+
+# Search payments API reference
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following you’ll use when searching for payments:
+
+* parameters
+* example requests
+* example responses
+* attributes you'll get in your response
+
+You can also [read more about how searching for payments fits into the GOV.UK Pay reporting process in our task-based guidance](https://docs.payments.service.gov.uk/reporting/#search-payments).
+
+The URL for this endpoint is:
+
+```
+GET https://publicapi.payments.service.gov.uk/v1/payments
+```
+
+You can use this endpoint to search payments you've previously created. The payments are sorted by date, with the most recently-created payments appearing first.
+
+The data from this endpoint is ‘eventually consistent’, meaning it is updated on a delay. You can [read more about data consistency in our API](/api_reference/#data-consistency).
+
+## Query parameters for 'Search payments'
+
+Your request will return payments that match all of the criteria specified in your query parameters.
+
+If your request has no query parameters, this endpoint returns all payments.
+
+| Name | Type | Description |
+|-----|-----|-----|
+| `reference` | string | Returns payments with `reference` values exactly matching your specified value. <br><br>This parameter is not case sensitive.<br><br>A `reference` was associated with the payment when that payment was created. You can [read more about what happens when creating payments](/making_payments/#reference). |
+| `email` | string | Returns payments with matching `email` values. You can use full or partial email addresses.<br><br>The `email` value is the paying user's email address. It was entered either by the service when the payment was created or by the paying user when they completed their payment.<br><br>You can [read more about prefilling payment fields](/optional_features/prefill_user_details/#prefill-payment-fields). |
+| `state` | string | Returns payments in a matching `state`. <br><br>`state` reflects where a payment is in the payment status lifecycle. You can [read more about the payment status lifecycle and the meaning of different `state` values](https://docs.payments.service.gov.uk/api_reference/#payment-status-lifecycle).<br><br>Available `state` values are:<br><br><ul> <li>`created`</li><li>`started`</li><li>`submitted`</li><li>`capturable`</li><li>`success`</li><li>`failed`</li><li>`cancelled`</li><li>`error`</li> |
+| `card_brand` | string | Returns payments paid with a particular card brand.<br><br>Available `card_brand` values are: <br><br><ul> <li>`american-express`</li><li>`diners-club`</li><li>`discover`</li><li>`jcb`</li><li>`maestro`</li><li>`master-card`</li><li>`unionpay`</li><li>`visa`</li>|
+| `from_date` | date (ISO 8601) | Returns payments created on or after the `from_date`.<br><br>Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDTHH:MM:SSZ`.<br><br>You can [read more about filtering by date](/reporting/#filter-by-date). |
+| `to_date` | date (ISO 8601) | Returns payments created before the `to_date`.<br><br>Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDTHH:MM:SSZ`.<br><br>You can [read more about filtering by date](/reporting/#filter-by-date). |
+| `page` | number | Returns a specific page of results.<br><br>Defaults to `1`.<br><br>You can [read more about search pagination](/reporting/#pagination). |
+| `display_size` | number | The number of payments returned per results page. <br><br>Defaults to `500`. Maximum value is `500`.<br><br>You can [read more about search pagination](/reporting/#pagination). |
+| `cardholder_name` | string | Returns payments paid with cards under this cardholder name. |
+| `first_digits_card_number` | number | Returns payments paid by cards beginning with the `first_digits_card_number` value. <br><br>`first_digits_card_number` value must be 6 digits. |
+| `last_digits_card_number` | number | Returns payments paid by cards ending with the `last_digits_card_number` value.<br><br>`last_digits_card_number` value must be 4 digits. |
+| `from_settled_date` | date (ISO 8601) | Returns payments settled on or after the `from_settled_date` value.<br><br>You can only search by settled date if your payment service provider is Stripe.<br><br>Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`.<br><br>Payments are settled when [your payment service provider sends funds to your bank account](https://docs.payments.service.gov.uk/reporting/#filter-payments-by-when-your-psp-sent-payments-to-your-bank-account). |
+| `to_settled_date` | date (ISO 8601) | Returns payments settled before the `to_settled_date` value.<br><br>You can only search by settled date if your payment service provider is Stripe. <br><br>Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`.<br><br>Payments are settled when [your payment service provider sends funds to your bank account](/reporting/#filter-payments-by-when-your-psp-sent-payments-to-your-bank-account). |
+
+
+## Example request for ‘Search payments’
+
+This example request is a payment search filtered to return payments that were created on or after 8:30am on 15 January 2021:
+
+```
+curl GET "https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-15T08:30:00Z" -H "Authorization: Bearer api_test_123abc456def"
+```
+
+## Example response for ‘Search payments’
+
+After you send your request to search payments, you’ll receive a response similar to this example:
+
+```json
+{
+  "total": 100,
+  "count": 20,
+  "page": 1,
+  "results": [
+    {
+      "amount": 1200,
+      "description": "Pay your council tax.",
+      "reference": "12345",
+      "language": "en",
+      "email": "sherlock.holmes@example.com",
+      "state": {
+        "status": "success",
+        "finished": true
+      },
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "payment_provider": "sandbox",
+      "created_date": "2021-04-07T09:49:36.631Z",
+      "refund_summary": {
+        "status": "available",
+        "amount_available": 7000,
+        "amount_submitted": 5000
+      },
+      "settlement_summary": {
+        "capture_submit_time": "2021-04-07T09:53:46.084Z",
+        "captured_date": "2021-04-07"
+      },
+      "card_details": {
+        "last_digits_card_number": "1111",
+        "first_digits_card_number": "444433",
+        "cardholder_name": "MR RALPH ELLISON",
+        "expiry_date": "10/23",
+        "billing_address": {
+          "line1": "52 Invisible Street",
+          "line2": "Flat 581",
+          "postcode": "IN5 M4N",
+          "city": "London",
+          "country": "GB"
+        },
+        "card_brand": "Visa",
+        "card_type": "credit"
+      },
+      "delayed_capture": false,
+      "moto": false,
+      "total_amount": 12000,
+      "provider_id": "4718b3be-d765-4bcd-a7aa-4c2fcbb986cf",
+      "return_url": "https://stripe.com/docs/payments/checkout/custom-success-page",
+      "_links": {
+        "self": {
+          "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
+          "method": "GET"
+        },
+        "cancel": null,
+        "events": {
+          "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events",
+          "method": "GET"
+        },
+        "refunds": {
+          "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds",
+          "method": "GET"
+        },
+        "capture": null
+      },
+      "card_brand": "Visa"
+    }
+    {
+      "amount": 1200,
+      "description": "Pay your council tax.",
+      "reference": "12345",
+      . . .
+    }
+    ]
+  “_links”: {
+    "self": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-01T08%3A00%3A00Z&display_size=500&state=success&page=1"
+        },
+      "first_page": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-01T08%3A00%3A00Z&display_size=500&state=success&page=1"
+      },
+      "last_page": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-01T08%3A00%3A00Z&display_size=500&state=success&page=1"
+      }
+    }
+  }
+}
+```
+
+## Attributes you’ll get in a ‘Search payments’ response
+
+| Name | Type | Description |
+|-----|-----|-----|
+| `total` | number | Number of total payments matching your search criteria. |
+| `count` | number | Number of payments on the current page of search results. |
+| `page` | number | The page of results you're viewing. <br><br>To view other pages, make this request again using the `page` parameter.<br><br>You can [read more about search pagination](/reporting/#pagination). |
+| `results` | object | Contains payments matching your search criteria. |
+| `amount` | number | The amount, in pence, the user has paid or will pay. |
+| `description` | string | The description assigned to the payment when it was created. |
+| `reference` | string | The reference associated with the payment when it was created.<br><br>`reference` is not unique - multiple payments can have the same `reference` value. |
+| `language` | string | The language of the user's payment page.<br><br>Possible values are:<br><br><li>`en` (English)</li><li>`cy` (Welsh)</li> |
+| `metadata` | object | Contains any custom metadata you added to the payment when it was created.<br><br>Read more about [adding custom metadata to payments](/custom_metadata). |
+| `state` | object | Contains information about where the payment is in its journey.<br><br>Read more about [the payment status lifecycle](/api_reference/#payment-status-lifecycle). |
+| `state.status` | string | Where the payment is in the payment status lifecycle.<br><br>Possible values are:<br><br><li>`created`</li><li>`started`</li><li>`submitted`</li><li>`capturable`</li><li>`success`</li><li>`failed`</li><li>`cancelled`</li><li>`error`</li><br>You can [read more about the payment status lifecycle and the meanings of each payment status](/api_reference/#payment-status-lifecycle). |
+| `state.finished` | boolean | Indicates whether a payment journey is finished. <br><br>A finished payment journey does not always mean the user has made a payment. For example, a user may submit their payment details but their bank rejects the payment - the payment journey is `finished` but no payment has actually been made. |
+| `payment_id` | string | The unique ID GOV.UK Pay automatically associated with this payment when you created it. |
+| `payment_provider` | string | The payment service provider (PSP) that processed this payment. |
+| `created_date` | date (ISO 8601) | The date and time you created this payment.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`. |
+| `refund_summary` | object | Contains information about refunds on this payment, such as refund availability.<br><br>You can [read more about refunding payments](/refunding_payments). |
+| `refund_summary.status` | string | Whether you can refund the payment.<br><br>Possible values are:<br><br><li>`pending`</li><li>`unavailable`</li><li>`available`</li><li>`full`</li><br>You can [read about the meanings of each refund `status` value](/refunding_payments/#status). |
+| `refund_summary.amount_available` | number | The amount you can refund to the user, in pence. |
+| `refund_summary.amount_submitted` | number | The amount you've already refunded to the user, in pence. |
+| `settlement_summary` | object | Contains information about when this payment was settled.<br><br>A payment is settled when your payment service provider transfers it to your bank account. |
+| `settlement_summary.capture_submit_time` | date (ISO 8601) | The date and time GOV.UK Pay asked your payment service provider to take the payment from your user's account.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`.<br><br>`capture_submit_time` only appears if GOV.UK Pay has asked your PSP to take the payment. |
+| `settlement_summary.captured_date` | date (ISO 8601) | The date your payment service provider took the payment from your user. <br><br>This value appears in ISO 8601 format - `YYYY-MM-DD`.<br><br>`captured_date` only appears if your payment service provider has taken the payment. |
+| `settlement_summary.settled_date` | date (ISO 8601) | The date your payment service provider sent the payment to your bank account as part of a payout. <br><br>This value appears in ISO 8601 format - `YYYY-MM-DD`.<br><br>`settled_date` only appears if your payment service provider is Stripe and they have sent the payment to your bank account. |
+| `card_details` | object | Contains details about the card the user paid with.<br><br>`card_details` only appears if the paying user has completed this payment. |
+| `card_details.last_digits_card_number` | number | The last 4 digits of the card the user paid with. |
+| `card_details.first_digits_card_number` | number | The first 6 digits of the card the user paid with. |
+| `card_details.cardholder_name` | string | The cardholder name the user entered when they paid. |
+| `card_details.expiry_date` | string | The expiry date of the card the user paid with. |
+| `card_details.billing_address` | object | Contains the billing address the paying user entered when they paid.<br><br>`billing_address` can contain:<br><br><li>`line1` (the first line of the paying user’s address)<li>`line2` (the second line of the paying user’s address)<li>`postcode` (the paying user’s postcode)<li>`city` (the paying user’s city)<li>`country` (the paying user’s country, displayed as a 2-character [ISO-3166-1-alpha-2 code](https://www.iso.org/obp/ui/#search/code/)) |
+| `card_details.card_brand` | string | The brand of card the user paid with.<br><br>Available `card_brand` values are: <br><br><li>`american-express`</li><li>`diners-club`</li><li>`discover`</li><li>`Jcb`</li><li>`maestro`</li><li>`master-card`</li><li>`unionpay`</li><li>`visa` |</li>
+| `card_details.card_type` | string | The type of card the user paid with.<br><br>Possible values are:<br><br><li>`credit`</li><li>`debit`</li><li>`null`</li><br>`null` means your user paid with Google Pay or we did not recognise which type of card they paid with. |
+| `delayed_capture` | boolean | `delayed_capture` is `true` if you're controlling how long it takes GOV.UK Pay to take ('capture') a payment.<br><br>You can [read more about delaying taking a payment](/delayed_capture). |
+| `moto` | boolean | Indicates if this payment is a Mail Order / Telephone Order (MOTO) payment.<br><br>You can [read more about taking payments over the phone](/moto_payments). |
+| `total_amount` | number | Amount your user paid in pence, including corporate card fees.<br><br>`total_amount` only appears if you added a corporate card surcharge to the payment. <br><br>You can [read more about corporate card surcharges.](/corporate_card_surcharges/#add-corporate-card-fees). |
+| `fee` | number | The payment service provider's transaction fee, in pence.<br><br>`fee` only appears when we have taken ('captured') the payment from the user or if their payment fails after they submitted their card details.<br><br>You can [read more about PSP fees](/reporting/#psp-fees). |
+| `net_amount` | number | The amount, in pence, that'll be paid into your bank account after your payment service provider takes the `fee`. |
+| `provider_id` | string | The unique ID your payment service provider generated for this payment.<br><br>This is not the same as the `payment_id`. |
+| `return_url` | string | The URL you directed the paying user to after their payment journey on GOV.UK Pay ended.<br><br>You can [read more about choosing your return URL and matching the paying user to a payment](/making_payments/#choose-the-return-url-and-match-your-users-to-payments). |
+| `results._links` | object | Contains URLs and methods for actions related to this payment. |
+| `results._links.self` | object | Contains an API method and endpoint to get information about this payment.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns information about this payment. |
+| `results._links.cancel` | object | Contains an API method and endpoint to cancel this payment.<br><br>A `POST` request (`method`) to this endpoint (`href`) cancels this payment. <br><br>You can [read more about cancelling a payment that's in progress](/making_payments/#cancel-a-payment-that-s-in-progress).<br><br>`cancel` value is `null` if the payment cannot be cancelled. |
+| `results._links.events` | object | Contains an API method and endpoint to get this payment's events.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns information about this payment's events. <br><br>You can [read more about getting a payment's events](/reporting/#get-a-payment-s-events). |
+| `results._links.refunds` | object | Contains an API method and endpoint to get refund information about this payment.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns refund information for this payment. <br><br>You can [read more about refunding payments](/refunding_payments/#get-all-refunds-for-a-single-payment). |
+| `results._links.capture` | object | Contains an API method and endpoint to take ('capture') this payment from a user's bank account.<br><br>A `POST` request (`method`) to this endpoint (`href`) captures this payment. <br><br>You can [read more about capturing delayed payments](/delayed_capture/#see-the-capture-url-for-a-payment). |
+| `_links` | object | Contains links you can use to move between the pages of this search. |
+| `_links.self` | object | Use this URL (`href`) to run the same search again. |
+| `_links.first_page` | object | Use this URL (`href`) to get the first page of results. |
+| `_links.last_page` | object | Use this URL (`href`) to get the last page of results. |
+| `_links.next_page` | object | Use this URL (`href`) to get the next page of results. |
+| `_links.prev_page` | object | Use this URL (`href`) to get the previous page of results. |

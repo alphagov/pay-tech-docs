@@ -1,0 +1,121 @@
+---
+title: Search refunds API reference
+last_reviewed_on: 2022-05-10
+review_in: 6 months
+weight: 80
+---
+
+# Search refunds API reference
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following you’ll use when searching refunds:
+
+* parameters
+* example requests
+* example responses
+* attributes you’ll get in your response
+
+You can also [read more about the GOV.UK Pay refund process in our task-based guidance](https://docs.payments.service.gov.uk/reporting/).
+
+The URL for this endpoint is:
+
+```
+https://publicapi.payments.service.gov.uk/v1/refunds
+```
+
+You can use this endpoint to search refunds you've previously created. The refunds are sorted by date, with the most recently created refunds appearing first.
+
+The data from this endpoint is eventually consistent, meaning it is updated on a delay. You can [read more about data consistency in our API](/api_reference/#data-consistency).
+
+## Query parameters for ‘Search refunds’
+
+| Name                    | Type            | Description                                                                                                                                                                                                                                                                                                                                                                                                |
+| ----------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from_date`          | date (ISO 8601) | Returns refunds created on or after the `from_date`.<br><br>Date and time must use Coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDTHH:MM:SSZ`.<br><br>You can [read more about filtering refunds by date](/refunding_payments/#filtering-by-date).                                                                                                     |
+| `to_date`            | date (ISO 8601) | Returns refunds created before the `to_date`.<br><br>Date and time must use Coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDTHH:MM:SSZ`.<br><br>You can [read more about filtering refunds by date](/refunding_payments/#filtering-by-date).                                                                                                            |
+| `from_settled_date` | date (ISO 8601) | Returns refunds settled on or after the `from_settled_date` value.<br><br>You can only use `from_settled_date` if your payment service provider is Stripe.<br><br>Date must use ISO 8601 format to date-level accuracy - `YYYY-MM-DD`.<br><br>Refunds are settled when [Stripe takes the refund from your account balance](/refunding_payments/#filter-refunds-by-when-your-psp-took-refunds). |
+| `to_settled_date`   | date (ISO 8601) | Returns refunds settled before the `to_settled_date` value.<br><br>You can only use `to_settled_date` if your payment service provider is Stripe.<br><br>Date must use ISO 8601 format to date-level accuracy - `YYYY-MM-DD`.<br><br>Refunds are settled when [Stripe takes the refund from your account balance](/refunding_payments/#filter-refunds-by-when-your-psp-took-refunds).         |
+| `page`                | number          | Returns a specific page of results.<br><br>Defaults to `1`.<br><br>You can [read more about search pagination](/refunding_payments/#splitting-results-into-pages).                                                                                                                                                                                                                                    |
+| `display_size`       | number          | The number of refunds returned per results page.<br><br>Defaults to `500`. Maximum value is `500`.<br><br>You can [read more about search pagination](/refunding_payments/#splitting-results-into-pages).                                                                                                                                                                                           |
+
+## Example request for ‘Search refunds’
+
+This example request is a refund search filtered by the date that refunds were created, with a limit of 5 refunds per page of results:
+
+```
+curl GET "https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-04-01T08:00:00Z&display_size=5" -H 'Authorization: Bearer api_test_123abc456def'
+```
+
+## Example response for ‘Search refunds’
+
+After you send your request to search refunds, you’ll receive a response similar to this example:
+
+```json
+{
+    "total": 142,
+    "count": 5,
+    "page": 1,
+    "results": [
+        {
+            "refund_id": "4jfabcee0ev36so050kooajabk",
+            "created_date": "2022-03-22T12:44:15.227Z",
+            "payment_id": "01k7da2d0021m0pcbjov354et8",
+            "amount": 1000,
+            "_links": {
+                "self": {
+                    "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds/4jfabcee0ev36so050kooajabk",
+                    "method": "GET"
+                },
+                "payment": {
+                    "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8",
+                    "method": "GET"
+                }
+            },
+            "status": "success",
+            "settlement_summary": {}
+        },
+        {
+            "refund_id": "c8pmgvrklqip57k8665vjamb60",
+            "created_date": "2021-04-07T09:55:20.758Z",
+            ...
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-01-01T00%3A00%3A00Z&display_size=500&page=1"
+        },
+        "first_page": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-01-01T00%3A00%3A00Z&display_size=500&page=1"
+        },
+        "last_page": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-01-01T00%3A00%3A00Z&display_size=500&page=1"
+        },
+        "prev_page": {},
+        "next_page": {https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-04-01T08:00:00Z&display_size=5&page=2}
+    }
+}
+```
+
+## Attributes you’ll get in a ‘Search refunds’ response
+
+| Name                                  | Type            | Description                                                                                                                                                                                                                                                 |
+| ------------------------------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `total`                             | number          | Number of refunds matching your search criteria.                                                                                                                                                                                                            |
+| `count`                             | number          | Number of refunds on the current page of search results.                                                                                                                                                                                                    |
+| `page`                              | number          | The page of results you're viewing.<br><br>To view other pages, make this request again using the `page` parameter.<br><br>You can [read more about search pagination](/refunding_payments/#splitting-results-into-pages).                             |
+| `results`                           | object          | Contains the refunds matching your search criteria.                                                                                                                                                                                                         |
+| `refund_id`                        | string          | The unique ID GOV.UK Pay associated with this refund when you created it.<br><br>If one payment has multiple refunds, each refund has a different `refund_id`.                                                                                           |
+| `created_date`                     | date (ISO 8601) | The date the refund was created.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`.                                                                                                                    |
+| `payment_id`                       | string          | The unique ID GOV.UK Pay associated with this payment when you created it.                                                                                                                                                                                  |
+| `amount`                            | number          | The amount refunded to the user in pence.                                                                                                                                                                                                                   |
+| `results._links`                           | object          | Contains URLs and methods for actions related to this payment.                                                                                                                                                                                              |
+| `results._links.self`                      | object          | Contains an API method and URL to get information about this refund.<br><br>A `GET` request (`method`) to this URL (`href`) returns information about this refund.                                                                                    |
+| `results._links.payment`                   | object          | Contains an API method and URL to get information about this payment.<br><br>A `GET` request (`method`) to this URL (`href`) returns information about this payment.                                                                                  |
+| `status`                            | string          | The status of this refund.<br><br>Possible values are:<br><br><li>`submitted`<li>`success`<li>`error`</li><br>You can [read more about the meanings of refund `status` values](/refunding_payments/#checking-the-status-of-a-refund-status). |
+| `settlement_summary`               | object          | Contains information about when this refund was settled if your payment service provider is Stripe.<br><br>A refund is settled when Stripe takes it from a payout to your bank account.                                                                     |
+| `settlement_summary.settled_date` | date (ISO 8601) | The date Stripe took the refund from a payout to your bank account.<br><br>`settled_date` only appears if Stripe has taken the refund.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DD`.                     |
+| `_links` | object | Contains links you can use to move between the pages of this search. |
+| `_links.self` | object | Use this URL (`href`) to run the same search again. |
+| `_links.first_page` | object | Use this URL (`href`) to get the first page of results. |
+| `_links.last_page` | object | Use this URL (`href`) to get the last page of results. |
+| `_links.next_page` | object | Use this URL (`href`) to get the next page of results. |
+| `_links.prev_page` | object | Use this URL (`href`) to get the previous page of results. |

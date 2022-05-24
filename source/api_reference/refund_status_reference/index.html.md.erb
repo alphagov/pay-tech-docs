@@ -1,0 +1,69 @@
+---
+title: Check the status of a refund API reference
+last_reviewed_on: 2022-05-10
+review_in: 6 months
+weight: 60
+---
+
+# Check the status of a refund API reference
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following you’ll use when checking the status of a refund:
+
+* parameters
+* example requests
+* example responses
+* attributes you’ll get in your response
+
+You can also [read more about the GOV.UK Pay refund process in our task-based guidance](https://docs.payments.service.gov.uk/reporting/).
+
+The URL for this endpoint is:
+
+```
+https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}/refunds/{REFUND_ID}
+```
+
+You can use this endpoint to get details about an individual refund.
+
+The data from this endpoint is strongly consistent, meaning it is updated immediately after you make any changes. You can [read more about data consistency in our API](/api_reference/#data-consistency).
+
+## Path parameters for ‘Check the status of a refund’
+
+| Name | Type | Description |
+|-----|-----|-----|
+| `{PAYMENT_ID}` (required) | string | The unique ID of the payment you want to view a refund of.<br><br>GOV.UK Pay associates a unique `paymentId` with a payment [when you create that payment](/making_payments/#reference).  |
+| `{REFUND_ID}` (required) | string | The unique ID of the refund you want to view.<br><br>GOV.UK Pay associates a unique `refundId` with a refund [when you refund a payment](/refunding_payments).<br><br>If one payment has multiple refunds, each refund has a different `refund_id`. |
+
+## Example request for ‘Check the status of a refund’
+
+This example request gets information about the refund with the refund ID `4jfabcee0ev36so050kooajabk` that is part of the payment with the payment ID `hu20sqlact5260q2nanm0q8u93`:
+
+```
+curl "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds/4jfabcee0ev36so050kooajabk" -H "Authorization: Bearer api_test_123abc456def"
+```
+
+## Example response for ‘Check the status of a refund’
+
+After you send your request to check the status of a refund, you’ll receive a response similar to this example:
+
+```json
+{
+  "amount": 2000,
+  "created_date": "2019-09-19T16:53:03.213Z",
+  "refund_id": "4jfabcee0ev36so050kooajabk",
+  "status": "success",
+  "settlement_summary": {
+    "settled_date": "2019-09-21"
+  }
+}
+```
+
+## Attributes you’ll get in a ‘Check the status of a refund’ response
+
+| Name                              | Type            | Description                                                                                                                                                                                                                                                  |
+| --------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `amount`                            | number          | The amount refunded to the user in pence.                                                                                                                                                                                                                    |
+| `created_date`                     | date (ISO 8601) | The date and time you created this refund.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`.                                                                                                           |
+| `refund_id`                        | string          | The unique ID GOV.UK Pay automatically associated with this refund when you created it.<br><br>If one payment has multiple refunds, each refund has a different `refund_id`.                                                                              |
+| `status`                            | string          | The status of the refund.<br><br>Possible values are:<br><br><li>`submitted`<li>`success`<li>`error`</li><br>You can [read more about refund statuses](/refunding_payments/#checking-the-status-of-a-refund-status).                             |
+| `settlement_summary`               | object          | Contains information about when this refund was settled.<br><br>A refund is settled when Stripe takes the refund `amount` from a payout to your bank account.<br><br>`settlement_summary` is only available if your payment service provider is Stripe. |
+| `settlement_summary.settled_date` | date (ISO 8601) | The date Stripe took the refund from a payout to your bank account.<br><br>`settled_date` only appears if Stripe has taken the refund.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DD`.                      |
