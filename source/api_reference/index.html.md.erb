@@ -34,17 +34,17 @@ You can [get started with the GOV.UK Pay API quickly](https://docs.payments.serv
 | [Get a payment's events](/api_reference/payment_event_reference)                    | `GET /v1/payments/{PAYMENT_ID}/events`              | Strongly consistent |
 | [Cancel a payment](/api_reference/cancel_payment_reference/)                          | `POST /v1/payments/{PAYMENT_ID}/cancel`              | Strongly consistent |
 | [Take ('capture') a delayed payment](/api_reference/capture_payment_reference)        | `POST /v1/payments/{PAYMENT_ID}/capture`            | Strongly consistent |
-| [Search payments](/api_reference/search_payments_reference/)                           | `GET /v1/payments`                                  | Eventually consistent |
+| [Search payments](/api_reference/search_payments_reference/)                           | `GET /v1/payments`                                  | <nobr>Eventually consistent</nobr> |
 
 
 ### Refunds
 
 | Endpoint                                      | URL                                                 | Data consistency                   |
 |-----------------------------------------------|-----------------------------------------------------|------------------------------------|
-| [Refund a payment](/api_reference/refund_payment_reference)                          | `POST /v1/payments/{PAYMENT_ID}/refunds`            | Strongly consistent |
-| [Get the status of a refund](/api_reference/refund_status_reference)                | `GET /v1/payments/{PAYMENT_ID}/refunds/{REFUND_ID}` | Strongly consistent |
-| [Get information about a payment's refunds](/api_reference/payment_refunds_reference) | `GET /v1/payments/{PAYMENT_ID}/refunds`             | Eventually consistent |
-| [Search refunds](/api_reference/search_refunds_reference)                            | `GET /v1/refunds`                                   |  Eventually consistent |
+| [Refund a payment](/api_reference/refund_payment_reference)                          | `POST /v1/payments/{PAYMENT_ID}/refunds`            | <nobr>Strongly consistent</nobr> |
+| [Get the status of a refund](/api_reference/refund_status_reference)                | `GET /v1/payments/{PAYMENT_ID}/refunds/{REFUND_ID}` | <nobr>Strongly consistent</nobr> |
+| [Get information about a payment's refunds](/api_reference/payment_refunds_reference) | `GET /v1/payments/{PAYMENT_ID}/refunds`             | <nobr>Eventually consistent</nobr> |
+| [Search refunds](/api_reference/search_refunds_reference)                            | `GET /v1/refunds`                                   |  <nobr>Eventually consistent</nobr> |
 
 ## Data consistency
 
