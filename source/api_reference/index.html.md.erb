@@ -211,53 +211,16 @@ The `status` value indicates where the payment is in the payment status lifecycl
 
 `finished` indicates whether the payment journey is finished. A `finished` payment journey does not always mean the user has made a payment. For example, a user may submit their payment details but their bank rejects the payment - the payment journey is `finished` but no payment has actually been made.
 
-<table style="width:100%">
-  <tbody><tr>
-  <th><code>status</code></th>
-  <th>Meaning</th>
-  <th nowrap=""><code>finished</code></th>
-  </tr>
-  <tr>
-    <th scope="row"> created
-    </th><td> Payment created using the API. Your user has not yet visited <code>next_url</code>. </td>
-    <td> false </td>
-  </tr>
-  <tr>
-    <th scope="row"> started
-    </th><td> Your user has visited <code>next_url</code> and is entering their payment details. </td>
-    <td> false </td>
-  </tr>
-  <tr>
-    <th scope="row"> submitted
-    </th><td> Your user submitted payment details and went through authentication, if it was required.<br><br>The payment service provider has authorised the payment, but the user has not yet selected <b>Confirm</b>. </td>
-    <td> false </td>
-  </tr>
-  <tr>
-    <th scope="row"> capturable
-    </th><td> The payment is a delayed capture and your user has submitted their payment details and selected <b>Confirm</b>.<br><br> You can <a href="/delayed_capture/#delay-taking-a-payment" target="blank">read more about how to capture this payment</a>. </td>
-    <td> false </td>
-  </tr>
-  <tr>
-    <th scope="row"> success
-    </th><td> Your user successfully completed the payment by selecting <b>Confirm</b>.<br><br>We redirected your user to a payment confirmation page.</td>
-    <td> true </td>
-  </tr>
-  <tr>
-    <th scope="row"> failed
-    </th><td> Your user attempted to make a payment but the payment did not complete. <br><br>We showed the user a failure screen.<br><br>Check the <a href="#errors-caused-by-payment-statuses">payment status error code</a> for more information.</td>
-    <td> true </td>
-  </tr>
-  <tr>
-    <th scope="row"> cancelled
-    </th><td> Your service cancelled the payment using an API call or the GOV.UK Pay admin tool.<br><br>You can <a href="/making_payments/#cancel-a-payment-that-s-in-progress" target="blank">read more about how to cancel payments. </td>
-    <td> true </td>
-  </tr>
-  <tr>
-    <th scope="row"> error
-    </th><td> Something went wrong with GOV.UK Pay or the underlying payment service provider. The payment failed safely with no money taken from the user.<br><br>We showed the paying user a screen stating "<b>We’re experiencing technical problems. No money has been taken from your account. Cancel and go back to try the payment again.</b>"
-    </td><td> true </td>
-  </tr>
-</tbody></table>
+| `status`     | Meaning                                                                                                                                                                                                                                                                                                                                                                | <nobr>`finished`</nobr> |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| <nobr>`created`</nobr>    | Payment created using the API. Your user has not yet visited `next_url`.                                                                                                                                                                                                                                                                                                | <nobr>`false`</nobr>    |
+| <nobr>`started`</nobr>    | Your user has visited `next_url` and is entering their payment details.                                                                                                                                                                                                                                                                                                 | <nobr>`false`</nobr>    |
+| <nobr>`submitted`</nobr>  | Your user submitted payment details and went through authentication, if it was required.<br><br>The payment service provider has authorised the payment, but the user has not yet selected **Confirm**.                                                                                                                                                                    | <nobr>`false`</nobr>    |
+| <nobr>`capturable`</nobr> | The payment is a delayed capture and your user has submitted their payment details and selected **Confirm**.<br><br>You can [read more about how to capture this payment](https://docs.payments.service.gov.uk/delayed_capture/#delay-taking-a-payment).                                   | <nobr>`false`</nobr>    |
+| <nobr>`success`</nobr>    | Your user successfully completed the payment by selecting **Confirm**.<br><br>We redirected your user to a payment confirmation page.                                                                                                                                                                                                                                      | <nobr>`true`</nobr>     |
+| <nobr>`failed`</nobr>     | Your user attempted to make a payment but the payment did not complete.<br><br>We showed the user a failure screen.<br><br>Check the [payment status error code](https://docs.payments.service.gov.uk/api_reference/#errors-caused-by-payment-statuses) for more information. | <nobr>`true`</nobr>     |
+| <nobr>`cancelled`</nobr>  | Your service cancelled the payment using an API call or the GOV.UK Pay admin tool.<br><br>You can [read more about how to cancel payments.](https://docs.payments.service.gov.uk/making_payments/#cancel-a-payment-that-s-in-progress)                                    | <nobr>`true`</nobr>     |
+| <nobr>`error`</nobr>      | Something went wrong with GOV.UK Pay or the underlying payment service provider. The payment failed safely with no money taken from the user.<br><br>We showed the paying user a screen stating “**We’re experiencing technical problems. No money has been taken from your account. Cancel and go back to try the payment again.**”                                       | <nobr>`true`</nobr>     |
 
 If something went wrong with a payment, the `code` and `message` attributes in the API response can help you find out what happened.
 
