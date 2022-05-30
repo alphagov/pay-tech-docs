@@ -1,0 +1,61 @@
+---
+title: Send card details to authorise a MOTO payment API reference
+last_reviewed_on: 2022-06-01
+review_in: 6 months
+weight: 38
+---
+
+# Send card details to authorise a MOTO payment API reference
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following you’ll use when sending card details through the API:
+
+* parameters
+* example requests
+* example responses
+* attributes you’ll get in your response
+
+You can [read more about sending card details through our API in our task-based guidance](/send_card_details_api).
+
+The URL for this endpoint is:
+
+```
+POST https://publicapi.payments.service.gov.uk/v1/auth
+```
+
+You can use this endpoint to authorise payments you have created with the `authorisation_mode` set to `moto_api`.
+
+This endpoint does not need an [API bearer token](https://docs.payments.service.gov.uk/api_reference/#authentication). The request is instead secured with the `one_time_token` you received when you created this payment.
+
+The data from this endpoint is ‘strongly consistent’, meaning it is updated immediately after you make any changes. You can [read more about data consistency in our API](https://docs.payments.service.gov.uk/api_reference/#data-consistency).
+
+##JSON body parameters for ‘Send card details to authorise a MOTO payment’
+
+| Name                 | Type   | Description                                                                                                                                                                                                                                                                                                                                                                     |
+| -------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `one_time_token` | string | A single use token that identifies the payment to authorise and authenticates this request.<br><br>GOV.UK Pay returns a `one_time_token` when you create a payment with `authorisation_mode` set to `moto_api`.<br><br>You can [read more about creating and authorising MOTO payments by sending card details through the API](/send_card_details_api). |
+| `card_number`     | string | The full card number from the paying user’s card.                                                                                                                                                                                                                                                                                                                               |
+| `cvc`              | string | The card verification code (CVC) or card verification value (CVV) on the paying user’s card.                                                                                                                                                                                                                                                                                    |
+| `expiry_date`     | string | The expiry date of the card the user paid with.<br><br>This value must be in `MM/YY` format.                                                                                                                                                                                                                                                                                  |
+| <nobr>`cardholder_name` | string | The name on the paying user’s card.                                                                                                                                                                                                                                                                                                                                             |
+
+##Example request for ‘Send card details to authorise a MOTO payment’
+
+This example request sends card details to authorise the MOTO payment that returned the `one_time_token` of `9a084cca-2f23-4938-92ca-d7ebd1db537e` when that payment was created:
+
+```json
+curl "https://publicapi.payments.service.gov.uk/v1/auth" \
+-H 'Content-Type: application/json' \
+{
+  "one_time_token": "9a084cca-2f23-4938-92ca-d7ebd1db537e",
+  "card_number": "1111222233334444",
+  "cvc": "123",
+  "expiry_date": "02/24",
+  "cardholder_name": "Sherlock Holmes"
+}
+```
+
+## Example response for ‘Send card details to authorise a MOTO payment’
+
+A successful MOTO payment authorisation returns a `204` HTTP status code without a response body.
+
+You can [read more about HTTP status codes and their meaning in the GOV.UK Pay API](/api_reference/#responses).
