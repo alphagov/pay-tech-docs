@@ -41,8 +41,16 @@ How you set up MOTO payments on a live account differs depending on what PSP you
 
 You'll be using one of the following PSPs:
 
-- Worldpay
 - Stripe
+- Worldpay
+
+#### Set up MOTO payments on a live account with Stripe
+
+1. Make sure you comply with the [Payment Card Industry Data Security Standards (PCI DSS)](https://www.pcisecuritystandards.org/document_library?category=pcidss&document=pci_dss).
+
+1. Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) to confirm you are PCI DSS compliant and would like to take MOTO payments on your account. We’ll email you to let you know we’ve enabled MOTO payments.
+
+1. You can now [take MOTO payments through the GOV.UK Pay API](#create-a-moto-payment-using-the-gov-uk-pay-api). If you do not have a technical team to help you integrate with our API, you’ll need to [set up a telephone payment link instead](#set-up-a-telephone-payment-link-optional).
 
 #### Set up MOTO payments on a live account with Worldpay
 
@@ -50,27 +58,9 @@ You'll be using one of the following PSPs:
 
 1. You need to process MOTO payments on a separate MOTO merchant code to the one you use for online payments. If you do not already have a merchant code for MOTO payments, ask for one by contacting Government Banking. You’ll use this merchant code when you [connect your new service to your PSP](https://docs.payments.service.gov.uk/switching_to_live/#go-live).
 
-1. Complete the appropriate [Payment Card Industry Data Security Standards (PCI DSS) Self Assessment Questionnaire](https://docs.payments.service.gov.uk/security/#payment-card-industry-pci-compliance).
+1. Make sure you comply with the [Payment Card Industry Data Security Standards (PCI DSS)](https://www.pcisecuritystandards.org/document_library?category=pcidss&document=pci_dss).
 
-1. Send your completed PCI DSS questionnaire and your service name to [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
-
-1. GOV.UK Pay will review your PCI DSS compliance as you may have additional PCI compliance responsibilities for MOTO payments compared to online payments.
-
-1. When GOV.UK Pay is satisfied you’ve met your PCI DSS compliance responsibilities, we’ll enable MOTO payments in your service. We’ll email you to let you know we’ve enabled MOTO payments.
-
-1. You can now [take MOTO payments through the GOV.UK Pay API](#create-a-moto-payment-using-the-gov-uk-pay-api). If you do not have a technical team to help you integrate with our API, you’ll need to [set up a telephone payment link instead](#set-up-a-telephone-payment-link-optional).
-
-You can still [take online payments](https://docs.payments.service.gov.uk/making_payments/) through your non-MOTO service.
-
-#### Set up MOTO payments on a live account with Stripe
-
-1. Complete the appropriate [PCI DSS Self-Assessment Questionnaire](https://docs.payments.service.gov.uk/security/#payment-card-industry-pci-compliance).
-
-1. Send your completed PCI DSS questionnaire and your service name to [govuk-pay-support@digital.cabinet-office.gov.uk] (mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
-
-1. GOV.UK Pay will review your PCI DSS compliance as you may have additional PCI compliance responsibilities for MOTO payments compared to online payments.
-
-1. When GOV.UK Pay is satisfied you’ve met your PCI DSS compliance responsibilities, we’ll enable MOTO payments in your service. We’ll email you to let you know we’ve enabled MOTO payments.
+1. Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) to confirm you are PCI DSS compliant and would like to take MOTO payments on your account. We’ll email you to let you know we’ve enabled MOTO payments.
 
 1. You can now [take MOTO payments through the GOV.UK Pay API](#create-a-moto-payment-using-the-gov-uk-pay-api). If you do not have a technical team to help you integrate with our API, you’ll need to [set up a telephone payment link instead](#set-up-a-telephone-payment-link-optional).
 
