@@ -63,6 +63,22 @@ If __Test Mode__ is at the bottom of the left-hand menu, switch to __Production 
 
 14. In your GOV.UK Pay account, select __Save credentials__.
 
+## Enable 3DS2 (3DS Flex)
+
+Once you have connected your Worldpay account to GOV.UK Pay, Worldpay will send you your 3DS Flex credentials. You can also find your 3DS credentials in [Worldpay’s Merchant Admin Interface](https://secure.worldpay.com/sso/public/auth/login.html?serviceIdentifier=merchantadmin) by selecting **INTEGRATION** and then **3DS Flex**.
+
+3DS Flex is a Worldpay product that enables 3DS2 payment authentication. You must turn on 3DS Flex to take payments using GOV.UK Pay.
+
+1. In the GOV.UK Pay admin tool, select the account you want to set up on the **Overview** page.
+
+1. In **Settings**, make sure 3D Secure is set to **On**.
+
+1. In **Your PSP**, enter your 3DS Flex credentials.
+
+1. Select **Save credentials**.
+
+1. Select **Turn on 3DS Flex**.
+
 ## Set up your Worldpay 'Merchant Channels'
 
 You must set up your Worldpay 'Merchant Channels' so Worldpay can notify GOV.UK Pay about payment events.
@@ -105,3 +121,5 @@ In both the __Merchant Channel Events (Production)__ and __Merchant Channel Even
 - __REFUSED__
 - __REFUSED_BY_BANK__ (production only)
 - __REFUND_FAILED__
+
+Once you’ve set up your Worldpay 'Merchant Channels', your live account is connected to Worldpay. Continue with the next steps to [going live](/switching_to_live/#3-choose-which-card-types-to-accept).
