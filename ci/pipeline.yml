@@ -78,8 +78,8 @@ jobs:
                 bundle exec middleman build
       - put: paas
         params:
-          command: push
-          app_name: govuk-pay-tech-docs
+          command: zero-downtime-push
+          current_app_name: govuk-pay-tech-docs
           path: pay-tech-docs/build
           manifest: pay-tech-docs/manifest.yml
   - name: build-pr
