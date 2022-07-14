@@ -1,0 +1,40 @@
+---
+title: Prefill payment reference and amount when using a payment link
+last_reviewed_on: 2022-07-21
+review_in: 6 months
+weight: 104
+---
+
+# Prefill payment reference and amount when using a payment link
+
+You can prefill the payment reference and amount when you send a payment link to your users. When the user opens your payment link, the **Total to pay** and reference fields will already be completed.
+
+Prefill these details by adding `reference` and `amount` information to your payment link URL using query parameters. You can use one or both parameters.
+
+When the user opens this example payment link, the payment reference will be '0451' and the payment total will be £200:
+
+`https://www.gov.uk/payments/government-service/payment-link-title?reference=0451&amount=20000`
+
+## Create a prefilled payment link
+
+1. In the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services), find or create the payment link you want to share with a user.
+
+1. Add a question mark (`?`) to the end of the payment link.
+
+1. To prefill a reference, add `reference={PAYMENT_REFERENCE}` after the `?`. Replace `{PAYMENT_REFERENCE}` with the reference you want to prefill. You can use letters and numbers. Use an underscore (`_`) to add a space. For example, `reference=0451_ABCD`.
+
+1. To prefill a payment amount, add an ampersand (`&`) after the payment reference, followed by `amount={PAYMENT_AMOUNT}`. Replace `{PAYMENT_AMOUNT}` with the amount you want your user to pay in pence. For example, `amount=20000`.
+
+1. You should test this link by following it yourself before sending it to your users.
+
+### Generate a prefilled payment link with a spreadsheet
+
+We’ve created a tool to help you generate prefilled payment links.
+
+1. Make a copy of the [spreadsheet tool on Google Sheets ](https://docs.google.com/spreadsheets/d/1dkoql9ReHb_IAIpQiheYvJ551YNFSTJUtuC8b6UL6TU/copy) or [download the spreadsheet directly](https://docs.google.com/spreadsheets/d/1dkoql9ReHb_IAIpQiheYvJ551YNFSTJUtuC8b6UL6TU/export?format=ods&id=1dkoql9ReHb_IAIpQiheYvJ551YNFSTJUtuC8b6UL6TU).
+
+1. In the **Data** tab of the spreadsheet, paste the payment link you want to prefill.
+
+1. Add the information you want to prefill to the columns in the **Generate a link to share** tab.
+
+1. Send the URL from the **Payment link to give to your user** column to your user.
