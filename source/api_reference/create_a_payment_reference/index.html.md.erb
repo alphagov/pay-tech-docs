@@ -47,6 +47,8 @@ The data from this endpoint is ‘strongly consistent’, meaning it is updated 
 
 ## Example request for 'Create a payment'
 
+This example request creates a £145 council tax payment with a reference of `12345`. It also prefills some payment fields and uses metadata to add an internal ledger code and reference number:
+
 ```json
 curl "https://publicapi.payments.service.gov.uk/v1/payments" \
 -H 'Authorization: Bearer api_test_123abc456def' \
@@ -59,7 +61,7 @@ curl "https://publicapi.payments.service.gov.uk/v1/payments" \
           "delayed_capture": false,
           "metadata": {
                 "ledger_code": "AB100",
-                "an_internal_reference_number": 200
+                "internal_reference_number": 200
           },
           "email": "sherlock.holmes@example.com",
           "prefilled_cardholder_details": {
