@@ -171,9 +171,27 @@ Once you’ve successfully linked your Worldpay account with GOV.UK Pay and made
 
 To switch, select **Switch to Worldpay** on the **Switch payment service provider (PSP)** page. A **Success** banner confirms the switch.
 
-You have now switched PSP to Worldpay. Worldpay will process any new payments.
+You have now switched PSP to Worldpay but you must enable 3DS Flex to begin taking payments.
 
 Users making payments as you switch are unaffected. Your old PSP will process their payments.
+
+## Enable 3DS2 (3DS Flex)
+
+3DS Flex is a Worldpay product that enables 3DS2 payment authentication. You must turn on 3DS Flex to take payments using GOV.UK Pay.
+
+Once you've connected your Worldpay account to GOV.UK Pay, Worldpay will send you your 3DS Flex credentials. You can also find your 3DS credentials in [Worldpay’s Merchant Admin Interface](https://secure.worldpay.com/sso/public/auth/login.html?serviceIdentifier=merchantadmin) by selecting **INTEGRATION** and then **3DS Flex**.
+
+1. In [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/), select the account you want to set up on the **Overview** page.
+
+1. In **Settings**, make sure **3D Secure** is set to **On**.
+
+1. In **Your PSP**, enter your 3DS Flex credentials.
+
+1. Select **Save credentials**.
+
+1. Select **Turn on 3DS Flex**.
+
+Worldpay will now process any new payments.
 
 ## Refund payments after switching to Worldpay
 
