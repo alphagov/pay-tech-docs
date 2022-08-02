@@ -1,0 +1,132 @@
+---
+title: Search disputes API reference
+last_reviewed_on: 2022-07-22
+review_in: 6 months
+weight: 100
+---
+
+# Search disputes API reference
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following things you’ll use when searching disputes:
+
+* parameters
+* example requests
+* example responses
+* attributes you’ll get in your response
+
+The URL for this endpoint is:
+
+```
+GET https://publicapi.payments.service.gov.uk/v1/disputes
+```
+
+You can use this endpoint to search disputes.
+
+A dispute is when a paying user challenges a completed payment through their bank.
+
+The data from this endpoint is strongly consistent, meaning it is updated immediately after you make any changes. You can [read more about data consistency in our API reference](/api_reference/#data-consistency).
+
+## Query parameters for 'Search disputes'
+
+Your request will return disputes that match all of the criteria specified in your query parameters.
+
+If you do not include query parameters in your request, this endpoint returns all disputes.
+
+| Name                    | Type            | Description                                                                                                                                                                                                                                                                                                                                                                       |
+| ----------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from_date`          | date (ISO 8601) | Returns disputes raised on or after the `from_date`.<br><br>Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDTHH:MM:SSZ`.                                                                                                                                                                                    |
+| `to_date`            | date (ISO 8601) | Returns disputes raised before the `to_date`.<br><br>Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDTHH:MM:SSZ`.                                                                                                                                                                                           |
+| `status`              | string          | Returns disputes with a matching `status`.<br><br>`status` reflects what stage of the dispute process a dispute is at. <br><br>Available `status` values are:<br><br><li>`needs_response`<br><li>`won`<br><li>`lost`<br><li>`under_review`<br><br>[You can read more about the meanings of different `status` values](/disputes/#dispute-status).         |
+| <nobr>`from_settled_date` | date (ISO 8601) | Returns disputes settled on or after the `from_settled_date`.<br><br>Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`.<br><br>Disputes are settled when your payment service provider takes the disputed amount from a payout to your bank account.<br><br>You can only use `from_settled_date` to find disputes raised on or after 8 August 2022. |
+| `to_settled_date`   | date (ISO 8601) | Returns disputes settled before the `to_settled_date`.<br><br>Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`.<br><br>Disputes are settled when your payment service provider takes the disputed amount from a payout to your bank account.<br><br>You can only use `to_settled_date` to find disputes raised on or after 8 August 2022.          |
+| `page`                | number          | Returns a specific page of results.<br><br>Defaults to `1`.                                                                                                                                                                                                                                                                                                                     |
+| `display_size`       | number          | The number of disputes returned per results page.<br><br>Defaults to `500`. Maximum value is `500`.                                                                                                                                                                                                                                                                           |
+
+## Example request for 'Search disputes'
+
+This example request is a search for disputes that were raised between 6:00am on 1 July 2022 and 11:59pm on 31 July 2022, and are still being reviewed by the bank:
+
+```
+curl GET "https://publicapi.payments.service.gov.uk/v1/disputes?from_date=2022-07-01T06:00:00Z&to_date=2022-07-31T23:59:00&status=under_review" -H "Authorization: Bearer api_test_123abc456def"
+```
+
+## Example response for 'Search disputes'
+
+After you send your request to search disputes, you’ll receive a response similar to this example:
+
+```json
+{
+  "_links": {
+    "self": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/disputes?page=1",
+      "method": "GET"
+    },
+    "first_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/disputes?page=1",
+      "method": "GET"
+    },
+    "last_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/disputes?page=1",
+      "method": "GET"
+    },
+    "prev_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/disputes?page=1",
+      "method": "GET"
+    },
+    "next_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/disputes?page=1",
+      "method": "GET"
+    }
+  },
+  "page": 1,
+  "count": 20,
+  "total": 20,
+  "results:": [
+    {
+      "amount": 1200,
+      "created_date": "2022-01-21T17:15:000Z",
+      "dispute_id": "geCju5lhLGr0B2jfiT3jo5wDek",
+      "evidence_due_date": "2022-01-10T23:59:59.000Z",
+      "fee": 1500,
+      "net_amount": -2500,
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "reason": "credit_not_processed",
+      "status": "lost",
+      "settlement_summary": {
+        "settled_date": "2022-01-21"
+      },
+      "_links": {
+        "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
+        "method": "GET"
+      }
+    }
+  ]
+}
+```
+
+## Attributes you'll get in a 'Search disputes' response
+
+| Name                                  | Type           | Description                                |
+| ------------------------------------- | --------------- | ----------------------------------------- |
+| `page`                              | number          | The page of results you’re viewing.<br><br>To view other pages, make this request again using the `page` parameter.|
+| `count`                             | number          | Number of disputes on the current page of search results.|
+| `total`                             | number          | Number of total disputes matching your search criteria.|
+| `results`                           | object          | Contains disputes matching your search criteria.|
+| `amount`                            | number          | The disputed amount in pence.|
+| `created_date`                     | date (ISO 8601) | The date and time the user's bank told GOV.UK Pay about this dispute.|
+| `dispute_id`                       | string          | The unique ID GOV.UK Pay automatically associated with this dispute when the paying user disputed the payment.|
+| `evidence_due_date`               | date (ISO 8601) | The deadline for submitting your supporting evidence.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`.|
+| `fee`                               | number          | The payment service provider’s dispute fee, in pence.|
+| `net_amount`                       | number          | The amount, in pence, your payment service provider will take for a lost dispute. `net_amount` is deducted from your payout after you lose the dispute.<br><br>For example, a `net_amount` of `-1500` means your PSP will take £15.00 from your next payout into your bank account.<br><br>`net_amount` is always a negative value.<br><br>`net_amount` only appears if you lose the dispute.|
+| `payment_id`                       | string          | The unique ID GOV.UK Pay automatically associated with this payment when you created it.|
+| `reason`                            | string          | The reason the paying user gave for disputing this payment.<br><br>Possible values are:<br><br><li>`credit_not_processed`<br><li>`duplicate`<br><li>`fraudulent`<br><li>`general`<br><li>`product_not_received`<br><li>`product_unacceptable`<br><li>`unrecognised`<br><li>`subscription_cancelled`<br><li>`other`<br><br>You can [read about the meanings of the different `reason` values in our reporting guidance](/disputes/#reasons-for-disputes). |
+| `status`                            | string          | The current status of the dispute.<br><br>Possible values are:<br><br><li>`needs_response`<br><li>`won`<br><li>`lost`<br><li>`under_review`<br><br>You can [read more about the meanings of the different `status` values in our reporting guidance](/disputes/#dispute-status).|
+| <nobr>`settlement_summary`               | object          | Contains information about when a lost dispute was settled.<br><br>A dispute is settled when your payment service provider takes it from a payout to your bank account.<br><br>`settlement_summary` only appears if you lost the dispute.|
+| `settlement_summary.settled_date` | date (ISO 8601) | The date your payment service provider took the disputed payment and dispute fee from a payout to your bank account.<br><br>This value appears in ISO 8601 format - `YYYY-MM-DD`.<br><br>`settled_date` only appears if you lost the dispute.|
+| `_links`                           | object          | Contains links you can use to move between the pages of this search.|
+| `_links.self`                      | object          | Use this URL (`href`) to run the same search again.|
+| `_links.first_past`               | object          | Use this URL (`href`) to get the first page of results.|
+| `_links.last_page`                | object          | Use this URL (`href`) to get the last page of results.|
+| `_links.prev_page`                | object          | Use this URL (`href`) to get the previous page of results.|
+| `_links.next_page`                | object          | Use this URL (`href`) to get the next page of results.|
+| `results._links`                   | object          | Contains an API method and endpoint to get information about this payment.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns information about this payment.|

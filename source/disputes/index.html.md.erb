@@ -1,0 +1,95 @@
+---
+title: Report on a dispute
+last_reviewed_on: 2022-07-22
+review_in: 6 months
+weight: 65
+---
+
+# Report on a dispute
+
+A dispute is when a paying user challenges a completed payment through their bank.
+
+There are many possible reasons for a dispute. For example, your user might not recognise a payment on their bank statement, or they might believe they’ve paid for your service twice.
+
+GOV.UK Pay will email you whenever a user disputes a payment. Our email will explain the reason for the dispute and what you need to do. You might need to provide evidence that the user needed to make the payment.
+
+If you lose a dispute, your payment service provider automatically takes the disputed amount and a dispute fee from the next payment into your bank account. You’ll only pay for lost disputes raised on or after 8 August 2022. If you lose a dispute that was raised before 8 August 2022, you will not be charged.
+
+## Search disputes
+
+You can search disputes using the GOV.UK Pay API.
+
+Use the following endpoint to search disputes:
+
+`GET /v1/disputes`
+
+Example response:
+
+```json
+{
+  "page": 1,
+  "count": 20,
+  "total": 20,
+  "results:": [
+    {
+      "amount": 1200,
+      "created_date": "2022-01-21T17:15:000Z",
+      "dispute_id": "geCju5lhLGr0B2jfiT3jo5wDek",
+      "evidence_due_date": "2022-01-10T23:59:59.000Z",
+      "fee": 1500,
+      "net_amount": -2500,
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "reason": "credit_not_processed",
+      "status": "lost",
+      "settlement_summary": {
+        "settled_date": "2022-01-21"
+      },
+      "_links": {
+        "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
+        "method": "GET"
+      }
+    }
+  ]
+}
+
+```
+
+Each object in `results` represents a single dispute and contains:
+
+* the dispute amount in pence (`amount`)
+* when the user's bank told GOV.UK Pay about the dispute (`created_date`)
+* the unique ID GOV.UK Pay automatically associated with this dispute (`dispute_id`)
+* the deadline for submitting your supporting evidence (`evidence_due_date`)
+* your payment service provider's dispute fee (`fee`)
+* the [reason the paying user is disputing the payment](/disputes/#reasons-for-disputes) (`reason`)
+* the [current status of the dispute](/disputes/#dispute-status) (`status`)
+* information about when a lost dispute was taken from a payment to your bank account (`settlement_summary`)
+
+Read our [API reference](/api_reference/search_disputes_reference) for more information about this endpoint. For example, what parameters you can use to narrow your search, and a full index of response attributes and possible values.
+
+## Dispute status
+
+When you use the API to search for disputes, the `status` response attribute tells you where each dispute is in its lifecycle.
+
+| `status`              | Meaning |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <nobr>`needs_response` | You need to provide evidence to show why the payment should stand.<br><br>We sent you an email when the paying user first disputed this payment. Read that email for guidance on what you should do next.|
+| `won`             | You have won this dispute. The bank has decided the dispute in favour of your service.|
+| `lost`            | You have lost this dispute. The bank has decided the dispute in favour of the paying user.<br><br>The dispute amount and your payment service provider’s dispute fee will be taken from the next payment to your bank account. You can see how much will be taken from your payout in the `net_amount` response attribute. |
+| `under_review`   | The bank has received evidence and is reviewing the disputed payment.|
+
+## Reasons for disputes
+
+When a paying user disputes a payment, they need to give their bank a reason for disputing the payment. You can see the reason the user gave in the `reason` response attribute.
+
+| `reason`                  | Meaning                                                                                                                                                                           |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `credit_not_processed`  | The paying user claims they returned the product or cancelled the transaction, but you have not yet provided a refund or credit.                                                  |
+| `duplicate`               | The paying user claims you charged them more than once for the same product or service.                                                                                           |
+| `fraudulent`              | The paying user claims they did not authorise this payment.<br><br>This can happen if the card was lost or stolen, or the user does not recognise the payment.                    |
+| `general`                 | The bank has not categorised this dispute.<br><br>Contact the paying user to find out why they disputed this payment.                                                             |
+| `product_not_received`  | The paying user claims they did not receive the products or services they purchased.                                                                                              |
+| `product_unacceptable`   | The paying user claims the service they paid for was poor or not described accurately before they paid for it.                                                                    |
+| `unrecognised`            | The paying user claims they do not recognise the payment on their bank statement.                                                                                                 |
+| <nobr>`subscription_cancelled` | The paying user claims you continued to charge them after they cancelled their subscription to your service.                                                                      |
+| `other`                   | Your payment service provider has given an unexpected dispute reason.<br><br>[Contact us and we’ll investigate](/support_contact_and_more_information). |

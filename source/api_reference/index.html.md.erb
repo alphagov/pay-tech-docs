@@ -46,11 +46,18 @@ You can [get started with the GOV.UK Pay API quickly](https://docs.payments.serv
 | [Get information about a payment's refunds](/api_reference/payment_refunds_reference) | `GET /v1/payments/{PAYMENT_ID}/refunds`             | <nobr>Eventually consistent</nobr> |
 | [Search refunds](/api_reference/search_refunds_reference)                            | `GET /v1/refunds`                                   |  <nobr>Eventually consistent</nobr> |
 
-###Authorising payments
+### Disputes
 
 | Endpoint                                      | URL                                                 | Data consistency                   |
 |-----------------------------------------------|-----------------------------------------------------|------------------------------------|
-| [Send card details to authorise a MOTO payment](/api_reference/create_a_payment_reference)                          | `POST /v1/auth`            | <nobr>Strongly consistent</nobr> |
+| [Search disputes](/api_reference/search_disputes_reference)                          | `GET /v1/payments/disputes`            | <nobr>Strongly consistent</nobr> |
+
+
+### Authorising payments
+
+| Endpoint                                      | URL                                                 | Data consistency                   |
+|-----------------------------------------------|-----------------------------------------------------|------------------------------------|
+| [Send card details to authorise a MOTO payment](/api_reference/send_card_details_moto_reference/)                          | `POST /v1/auth`            | <nobr>Strongly consistent</nobr> |
 
 ## Data consistency
 
