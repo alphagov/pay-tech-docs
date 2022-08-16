@@ -1,0 +1,178 @@
+---
+title: Receive automatic payment event updates using webhooks
+last_reviewed_on: 2022-08-20
+review_in: 6 months
+weight: 59
+---
+
+# Receive automatic payment event updates using webhooks
+
+This section tells you how to use webhooks to automatically receive updates after payment events.
+
+A webhook is when GOV.UK Pay sends automatic `POST` requests to your service after payment events. A payment event is when a payment reaches a milestone in its journey and its `state` updates, such as when it’s created, paid, or refunded.
+
+You can receive updates when:
+
+* a payment succeeds
+* a payment fails
+* a payment expires
+* a payment is captured
+* a payment is settled
+* a payment is refunded
+
+You can create webhooks in the GOV.UK Pay admin tool. After selected payment events, your webhook sends a webhook message using a `POST` request to a secure callback URL you’ve configured. Your service acknowledges receipt of the webhook message.
+
+## Set up a callback URL to receive a webhook message
+
+You need to set up an endpoint (callback URL) that can receive webhook messages before creating the webhook.
+
+You must set up your endpoint to receive the `POST` body from your webhook and respond with a `2xx` successful reply within 15 seconds.
+
+Your callback URL must support HTTPS and present a valid certificate. You can use a HTTP URL for test accounts. GOV.UK webhooks support TLS version 1.2.
+
+## Create a webhook
+
+You can create a webhook for your service from the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
+
+1. Select your service from the **Overview** page in the GOV.UK Pay admin tool.
+
+1. Select **Settings**.
+
+1. Select **Webhooks**.
+
+1. Select **Create a new webhook**.
+
+1. Enter a **Callback URL** and **Description**.
+
+1. Select the payment events that the webhook will send.
+
+1. Select **Create webhook**.
+
+To change the callback URL, description, and payment event subscriptions select **Manage webhook** from the **Webhooks** page in the GOV.UK Pay admin tool.
+
+### Deactivate a webhook
+
+You can deactivate a webhook at any time. Deactivated webhooks do not send events to your callback URL.
+
+To deactivate your webhook:
+
+1. Open the **Webhooks** page in the GOV.UK Pay admin tool.
+
+1. Select **Manage webhook**.
+
+1. Select **Deactivate webhook**.
+
+You can reactivate the webhook at any time.
+
+## Receiving webhook messages
+
+Once you’ve created a webhook, GOV.UK Pay sends a webhook message to your callback URL after any of the events you subscribed to.
+
+Your service must send a `2xx` successful response within 15 seconds.
+
+<%= warning_text('Your service may receive webhooks messages in an unexpected order. Make sure that your integration does not depend on receiving events in a particular order.') %>
+
+### Verifying webhook messages from GOV.UK Pay
+
+Every webhook message from GOV.UK Pay is signed with the `Pay-Signature` header. The value of this header is a lower-case, hexadecimal hash-based message authentication code (HMAC) of the webhook message body, generated using the SHA-256 hash function. Your webhook signing secret is used as the key.
+
+To view your webhook’s signing secret, select **Manage signing secret** from the **Manage webhook** page in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
+
+Use your signing secret and the webhook message payload to verify the webhook message:
+
+1\. Generate a HMAC of the webhook message body. When generating the HMAC:
+
+* use the SHA-256 hash function
+* the message is the webhook message body, which is encoded as UTF-8 with no byte order mark (BOM)
+* the key is your webhooks’s signing secret, encoded as UTF-8 bytes with no BOM
+* output the HMAC as a lower-case hexadecimal string
+
+2\. Compare the value of the `Pay-Signature` header to your generated HMAC. If they do not match, the request has not come from GOV.UK Pay and should be ignored.
+
+Example code:
+
+```
+// JavaScript
+// webhookMessageBody - the POST body sent from GOV.UK Pay
+// webhookSigningSecret - the signing secret unique to the GOV.UK Pay webhook
+// paySignatureHeader - the value of the `Pay-Signature` header received with the POST from GOV.UK Pay
+
+const crypto = require('crypto')
+
+const hmac = crypto.createHmac('sha256', webhookSigningSecret)
+  .update(webhookMessageBody)
+  .digest('hex')
+
+const valid = hmac === paySignatureHeader
+```
+
+### Webhook message example
+
+When your webhook sends a message, it’ll look like this:
+
+```json
+{
+  "id": "123abc",
+  "api_version": 1
+  "created_date": "2019-07-11T10:36:26.988Z",
+  "resource_id": "hu20sqlact5260q2nanm0q8u93",
+  "resource_type": "PAYMENT",
+  "event_type": "CARD_PAYMENT_CAPTURED"
+  "resource": {
+    "amount": 5000,
+    "description": "Pay your council tax",
+    "reference": "12345",
+    "language": "en",
+    "email": "sherlock.holmes@example.com",
+    "state": {
+      "status": "submitted",
+      "finished": false
+    },
+    "payment_id": "hu20sqlact5260q2nanm0q8u93",
+    "payment_provider": "stripe",
+    "created_date": "2021-10-19T10:05:45.454Z",
+    "refund_summary": {
+      "status": "pending",
+      "amount_available": 5000,
+      "amount_submitted": 0
+    },
+    "settlement_summary": {},
+    "card_details": {
+      "last_digits_card_number": "1234",
+      "first_digits_card_number": "123456",
+      "cardholder_name": "Sherlock Holmes",
+      "expiry_date": "04/24",
+      "billing_address": {
+        "line1": "221 Baker Street",
+        "line2": "Flat b",
+        "postcode": "NW1 6XE",
+        "city": "London",
+        "country": "GB"
+      },
+      "card_brand": "Visa",
+      "card_type": "debit"
+    },
+    "delayed_capture": false,
+    "moto": false,
+    "provider_id": "10987654321",
+    "return_url": "https://your.service.gov.uk/completed",
+  }
+}
+```
+
+#### Attributes you’ll receive in a webhook message
+
+| Name               | Type            | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------ | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`             | string          | The unique identifier of this webhook message.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `created_date`  | date (ISO 8601) | When the payment event happened and activated the webhook.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `resource_id`   | string          | The unique ID that GOV.UK Pay automatically generated for the payment or reference.<br><br>When the resource is a payment, `resource_id` is identical to the `payment_id`. When the resource is a refund, `resource_id` is identical to the `refund_id`.                                                                                                                                                                                                                                                                                                                                                                                     |
+| `resource`       | object          | Contains details of the payment or refund that has activated the webhook.<br><br>Attributes in `resource` are the same as you get when finding a payment in the GOV.UK Pay API. <br><br>You can [read about the attributes in the `resource` object on our reference page for getting information about a payment](/api_reference/single_payment_reference).                                                                                                                                                                                                                                                                                                                                                                                             |
+| <nobr>`resource_type` | string          | Indicates whether the `resource` is a payment or a refund.<br><br>`resource_type` is one of the following:<br><br><li>`PAYMENT`<br><li>`REFUND`|
+| `event_type`    | string          | The event that activated the webhook. This value will be one of [the events you selected when you created the webhook](/webhooks/#create-a-webhook).<br><br>Possible values are:<br><br><li>`CARD_PAYMENT_SUCCEEDED` - your payment service provider has authorised the payment<br><li>`CARD_PAYMENT_CAPTURED` - GOV.UK Pay has taken (‘captured’) the payment from the user’s bank account<br><li>`CARD_PAYMENT_SETTLED` - your payment service provider has sent the payment to your bank account.<br><li>`CARD_PAYMENT_REFUNDED` - the refund has been sent to the user’s bank account by your payment service provider |
+
+### Retry mechanism
+
+If your service does not return a `2xx` successful response quickly after receiving a webhook message, we’ll send the message again.
+
+You can see the history of payment events and the message delivery status of each event by selecting **Manage webhook**. Each line of the **Events history** table is a single event. Select a payment event to see details of that event, including when it was sent, the body of the webhook message, and any previous delivery attempts.

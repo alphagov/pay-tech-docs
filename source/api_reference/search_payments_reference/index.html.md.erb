@@ -45,8 +45,10 @@ If your request has no query parameters, this endpoint returns all payments.
 | `cardholder_name` | string | Returns payments paid with cards under this cardholder name. |
 | `first_digits_card_number` | number | Returns payments paid by cards beginning with the `first_digits_card_number` value. <br><br>`first_digits_card_number` value must be 6 digits. |
 | `last_digits_card_number` | number | Returns payments paid by cards ending with the `last_digits_card_number` value.<br><br>`last_digits_card_number` value must be 4 digits. |
-| `from_settled_date` | date (ISO 8601) | Returns payments settled on or after the `from_settled_date` value.<br><br>You can only search by settled date if your payment service provider is Stripe.<br><br>Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`.<br><br>Payments are settled when [your payment service provider sends funds to your bank account](https://docs.payments.service.gov.uk/reporting/#filter-payments-by-when-your-psp-sent-payments-to-your-bank-account). |
+| <nobr>`from_settled_date` | date (ISO 8601) | Returns payments settled on or after the `from_settled_date` value.<br><br>You can only search by settled date if your payment service provider is Stripe.<br><br>Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`.<br><br>Payments are settled when [your payment service provider sends funds to your bank account](https://docs.payments.service.gov.uk/reporting/#filter-payments-by-when-your-psp-sent-payments-to-your-bank-account). |
 | `to_settled_date` | date (ISO 8601) | Returns payments settled before the `to_settled_date` value.<br><br>You can only search by settled date if your payment service provider is Stripe. <br><br>Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`.<br><br>Payments are settled when [your payment service provider sends funds to your bank account](/reporting/#filter-payments-by-when-your-psp-sent-payments-to-your-bank-account). |
+| `agreement_id` | string | Returns payments that were authorised using the agreement with this `agreement_id`.<br><br>Must be an exact match. |
+
 
 
 ## Example request for ‘Search payments’
@@ -168,6 +170,7 @@ After you send your request to search payments, you’ll receive a response simi
 | `payment_id` | string | The unique ID GOV.UK Pay automatically associated with this payment when you created it. |
 | `payment_provider` | string | The payment service provider (PSP) that processed this payment. |
 | `created_date` | date (ISO 8601) | The date and time you created this payment.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`. |
+| `agreement_id` | string | The unique ID of the agreement for recurring payments that GOV.UK  Pay used to take this payment.<br><br>`agreement_id` only appears if `authorisation_mode` is `agreement`. |
 | `refund_summary` | object | Contains information about refunds on this payment, such as refund availability.<br><br>You can [read more about refunding payments](/refunding_payments). |
 | `refund_summary.status` | string | Whether you can refund the payment.<br><br>Possible values are:<br><br><li>`pending`</li><li>`unavailable`</li><li>`available`</li><li>`full`</li><br>You can [read about the meanings of each refund `status` value](/refunding_payments/#status). |
 | `refund_summary.amount_available` | number | The amount you can refund to the user, in pence. |
@@ -191,6 +194,7 @@ After you send your request to search payments, you’ll receive a response simi
 | `net_amount` | number | The amount, in pence, that'll be paid into your bank account after your payment service provider takes the `fee`. |
 | `provider_id` | string | The unique ID your payment service provider generated for this payment.<br><br>This is not the same as the `payment_id`. |
 | `return_url` | string | The URL you directed the paying user to after their payment journey on GOV.UK Pay ended.<br><br>You can [read more about choosing your return URL and matching the paying user to a payment](/making_payments/#choose-the-return-url-and-match-your-users-to-payments). |
+| `authorisation_mode` | string | How GOV.UK Pay will authorise this payment.<br><br>Possible values are:<br><br><li>`web`<li>`moto_api`<li>`agreement`<br><br>`authorisation_mode` is set when you create a payment. You can [read more about the different authorisation modes in our API reference page for creating payments](/api_reference/create_a_payment_reference). |
 | `results._links` | object | Contains URLs and methods for actions related to this payment. |
 | `results._links.self` | object | Contains an API method and endpoint to get information about this payment.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns information about this payment. |
 | `results._links.cancel` | object | Contains an API method and endpoint to cancel this payment.<br><br>A `POST` request (`method`) to this endpoint (`href`) cancels this payment. <br><br>You can [read more about cancelling a payment that's in progress](/making_payments/#cancel-a-payment-that-s-in-progress).<br><br>`cancel` value is `null` if the payment cannot be cancelled. |
