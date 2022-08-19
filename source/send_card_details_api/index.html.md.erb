@@ -58,9 +58,9 @@ You’ll be using one of the following PSPs:
 
 To send a user's card details through the API, you need to set the payment’s authorisation mode when you create that payment.
 
-[Create a payment with the GOV.UK Pay API](/making_payments/), and include `”authorisation_mode”: “moto_api”` in the request body. You do not need to include a `return_url` in your request because there is no user to return.
+[Create a payment ](/making_payments/) using the `POST /v1/payments` endpoint and include `”authorisation_mode”: “moto_api”` in the request body. You do not need to include a `return_url` in your request because there's no user to return.
 
-You’ll receive a response that includes the `auth_url_post` object within the `_links` object. `auth_url_post` contains the URL (`href`), method (`method`), and unique token (`one_time_token`) you need to authorise the payment through our API.
+You’ll receive a response that includes the `auth_url_post` object within the `_links` object. `auth_url_post` contains the URL (`href`), method (`method`), and unique token (`one_time_token`) you need to authorise the payment through our API. `auth_url_post` looks like this:
 
 ```json
 "auth_url_post": {
@@ -75,18 +75,18 @@ You’ll receive a response that includes the `auth_url_post` object within the 
 
 You now need to collect the paying user’s card details and send the details through the GOV.UK Pay API.
 
-You can see request and response examples and full definitions of every attribute for this endpoint in the [GOV.UK Pay API reference](/api_reference/create_a_payment_reference/).
+You can see request and response examples and full definitions of every attribute for the create payment endpoint in the [GOV.UK Pay API reference](/api_reference/create_a_payment_reference/).
 
 ##Send card details through the API
 
-To send the paying user’s card details through our API, you’ll need to collect your user’s:
+To send the paying user’s card details through our API, you’ll first need to collect your user’s:
 
 * card number
 * card expiry date
 * card verification code (CVC) or card verification value (CVV)
 * name from their card
 
-When you have your user’s card details, send a `POST` request to the authorise payment endpoint, `publicapi.payments.service.gov.uk/v1/auth`.
+When you have your user’s card details, use the `POST /v1/auth` endpoint to authorise the payment.
 
 You must include the following parameters in the request body:
 
