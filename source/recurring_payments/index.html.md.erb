@@ -45,7 +45,7 @@ You can [read more about the lifecycle of agreements](/recurring_payments/#under
 
 4. Your service saves the `agreement_id` from the response.
 
-5. Your service [sets up the agreement by creating the user's first payment](/recurring_payments/#set_up_an_agreement_for_recurring_payments) using the `POST v1/payments` endpoint. In the request, you must include the `set_up_agreement` parameter with the `agreement_id` as its value.
+5. Your service [sets up the agreement by creating the user's first payment](/recurring_payments/#set-up-an-agreement-for-recurring-payments) using the `POST v1/payments` endpoint. In the request, you must include the `set_up_agreement` parameter with the `agreement_id` as its value.
 
 6. GOV.UK Pay returns a `201` successful response to your payment creation request.
 
@@ -53,7 +53,7 @@ You can [read more about the lifecycle of agreements](/recurring_payments/#under
 
 8. The user completes their first payment and GOV.UK Pay returns them to your service.
 
-9. Your service [creates recurring payments using the `POST v1/payments` endpoint](/recurring_payments/#taking_recurring_payments). In your request body, you  set `authorisation_mode` to `agreement` and include `"agreement_id": "{AGREEMENT_ID}"`, replacing `{AGREEMENT_ID}` with the agreement you set up earlier.
+9. Your service [creates recurring payments using the `POST v1/payments` endpoint](/recurring_payments/#taking-recurring-payments). In your request body, you  set `authorisation_mode` to `agreement` and include `"agreement_id": "{AGREEMENT_ID}"`, replacing `{AGREEMENT_ID}` with the agreement you set up earlier.
 
 10. GOV.UK Pay uses a token representing the user’s payment details to authorise the payment.
 
@@ -199,7 +199,7 @@ The API returns a standard create payment response. If your request succeeds, th
 
 GOV.UK Pay uses a token representing the user’s saved payment details from the agreement to automatically take the payment.
 
-If a recurring payment fails when we try to take it, it’s handled like any other failed payment. You can use [GOV.UK Pay’s webhooks to receive an automatic update](/recurring_payments/#using-webhooks-to-receive-automatic-event-updates-for-recurring-payments) when a recurring payment fails.
+If a recurring payment fails when we try to take it, it’s handled like any other failed payment. You can use [GOV.UK Pay’s webhooks to receive an automatic update](/recurring_payments/#use-webhooks-to-receive-automatic-event-updates) when a recurring payment fails.
 
 You should let your users know when you plan to take a payment.
 
