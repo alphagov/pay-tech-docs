@@ -132,7 +132,7 @@ This response contains:
 * the reference, description, and user identifier (if any) you associated with this agreement (`reference`, `description`, `user_identifier`)
 * the [agreement’s current status](/recurring_payments/#understanding-agreement-status) (`status`)
 * the date and time you created the agreement (`created_date`)
-* an object that will contain the user’s payment details when the agreement is set up (`payment_instrument`)
+* an object that will contain the user’s payment details when you set up the agreement (`payment_instrument`)
 
 You can see definitions and possible values of every parameter and attribute in [our reference documentation for this endpoint](/api_reference/create_an_agreement_reference).
 
@@ -342,16 +342,16 @@ Example response:
 
 In the response, you’ll receive:
 
-* details that were entered and generated when the agreement was created (`agreement_id`, `reference`, `description`)
+* details you entered and GOV.UK Pay generated when the agreement was created (`agreement_id`, `reference`, `description`)
 * the [current status of the agreement](/recurring_payments/#understanding-agreement-status) (`status`)
-* when the agreement was created (`created_date`)
-* details about the user’s payment method if the agreement is set up (`payment_instrument`)
+* the date you created the agreement (`created_date`)
+* details about the user’s payment method if you've set up the agreement (`payment_instrument`)
 
 Read our [API reference](/api_reference/single_agreement_reference) for a full index of this endpoint’s response attributes.
 
 ### Finding recurring payments by agreement
 
-You can use [the search payments endpoint](/api_reference/search_payments_reference) (`GET /v1/payments`) to find payments that were authorised using a specific agreement.
+You can use [the search payments endpoint](/api_reference/search_payments_reference) (`GET /v1/payments`) to find payments that GOV.UK Pay authorised using a specific agreement.
 
 Use the `agreement_id={AGREEMENT_ID}` query parameter. Replace `{AGREEMENT_ID}` with the ID of an agreement to return payments authorised by that agreement.
 
