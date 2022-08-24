@@ -35,6 +35,8 @@ You can [read more about the lifecycle of agreements](/recurring_payments/#under
 
 ### Understand the technical flow of recurring payments
 
+In this integration example, the service creates an agreement when a user says they want to make recurring payments, then uses that agreement to continue taking payments.
+
 ![A sequence diagram showing the journey of creating, setting up, and using an agreement to take recurring payments.](/images/recurring-payments-success-sequence.svg)
 
 1. A user visits consents to your service taking recurring payments. You record their consent.
@@ -99,7 +101,7 @@ Example request:
 
 ```json
 {
-"reference": "Council Tax bill agreement for 2022/23",
+"reference": "CT-22-23-0001",
 "description": "Dorset Council 2022/23 council tax subscription."
 "user_identifier": "council-tax-user4501"
 }
@@ -117,7 +119,7 @@ You’ll receive a response like this:
 ```json
 {
 "agreement_id": "cgc1ocvh0pt9fqs0ma67r42l58",
-"reference": "Council Tax bill agreement for 2022/23",
+"reference": "CT-22-23-0001",
 "description" : "Dorset Council 2022/23 council tax subscription."
 "status": "CREATED",
 "user_identifier": "council-tax-user4501",
@@ -257,7 +259,7 @@ Example response:
   results: [
     {
       "agreement_id": "cgc1ocvh0pt9fqs0ma67r42l58",
-      "reference": "Council Tax bill agreement for 2022/23",
+      "reference": "CT-22-23-0001",
       "description": "Dorset Council 2022/23 council tax subscription."
       "status": "active",
       "user_identifier": "council-tax-user4501"
@@ -282,8 +284,8 @@ Example response:
       }
     }
     {
-      "agreement_id": "cgc1ocvh0pt9fqs0ma67r42l58",
-      "reference": "Council Tax bill agreement for 2022/23",
+      "agreement_id": "tut4wrjk5lp1qbr5jz92a37t00",
+      "reference": "CT-22-23-0002",
       "status": "active",
       ...
     }
@@ -315,7 +317,7 @@ Example response:
 ```json
 {
   "agreement_id": "cgc1ocvh0pt9fqs0ma67r42l58",
-  "reference": "Council Tax bill agreement for 2022/23",
+  "reference": "CT-22-23-0001",
   "description": "Dorset Council 2022/23 council tax subscription."
   "status": "active",
   "created_date": "2022-07-08T14:33:00.000Z",
