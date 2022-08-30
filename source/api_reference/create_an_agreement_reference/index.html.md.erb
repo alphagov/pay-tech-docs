@@ -32,19 +32,19 @@ The data from this endpoint is strongly consistent, meaning it is updated immedi
 
 | Name                               | Type   | Description                                                                                                                                                                                                                            |
 | ---------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `reference`<br>(required)        | string | Associate a reference with this agreement to help you identify it.<br><br>`reference` is not unique – multiple agreements can have identical `reference` values.<br><br>Limited to 255 characters.                                 |
+| `reference`<br>(required)        | string | Associate a reference with this agreement to help you identify it.<br><br>Limited to 255 characters.                                 |
 | `description`<br>(required)      | string | A human-readable description of the purpose of the agreement for recurring payments.<br><br>We’ll show the `description` to your user when they make a one-off payment to activate this agreement.<br><br>Limited to 255 characters. |
-| <nobr>`user_identifier`<br>(optional) | string | Associate an identifier with the user who will enter into this agreement with your service.<br><br>`user_identifier` is not unique – multiple agreements can have identical `user_identifier` values.                            |
+| <nobr>`user_identifier`<br>(optional) | string | Associate an identifier with the user who will enter into this agreement with your service.<br><br>`user_identifier` is not unique – multiple agreements can have identical `user_identifier` values. <br><br>You should not include personal data in `user_identifier`. |
 
 ## Example request for ‘Create an agreement for recurring payments’
 
-This example request creates an agreement for the service to take council tax from the user `council-tax-user4501` for the year 2022/23:
+This example request creates an agreement for the service to take council tax from the user `user-3fb81107-76b7-4910` for the year 2022/23:
 
 ```json
 {
 reference : "CT-22-23-0001",
 description : "Dorset Council 2022/23 council tax subscription."
-user_identifier: "council-tax-user4501"
+user_identifier: "user-3fb81107-76b7-4910"
 }
 ```
 
@@ -58,9 +58,8 @@ After you send your request to create an agreement for recurring payments, you�
 "reference": "CT-22-23-0001",
 "description": "Dorset Council 2022/23 council tax subscription."
 "status": "created",
-"user_identifier": "council-tax-user4501",
+"user_identifier": "user-3fb81107-76b7-4910",
 "created_date": "2022-07-08T14:33:00.000Z",
-"payment_instrument": null
 }
 ```
 
@@ -72,6 +71,5 @@ After you send your request to create an agreement for recurring payments, you�
 | `reference`           | string          | The reference you sent when creating this agreement.                                                                                                                                                                                                                       |
 | `description`         | string          | The description you sent when creating this agreement.                                                                                                                                                                                                                     |
 | `status`              | string          | The status of this agreement.<br><br>`status` value will automatically be set to `created` because you’ve just created this agreement.<br><br>You can [read more about the meanings of each agreement status](/recurring_payments/#understanding-agreement-status). |
-| `user_identifier`    | status          | The identifier you sent when creating this agreement.<br><br>`user_identifier` helps you identify users in your records.                                                                                                                                                |
+| <nobr>`user_identifier`    | status          | The identifier you sent when creating this agreement.<br><br>`user_identifier` helps you identify users in your records.                                                                                                                                                |
 | `created_date`       | date (ISO 8601) | The date and time you created this agreement.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format – `YYYY-MM-DDTHH:MM:SSZ`.                                                                                                                      |
-| <nobr>`payment_instrument` | object          | Contains information about the user’s saved payment details.<br><br>`payment_instrument` will be `null` because the user has not yet set up the agreement by entering their card details.                                                                             |

@@ -103,7 +103,7 @@ Example request:
 {
 "reference": "CT-22-23-0001",
 "description": "Dorset Council 2022/23 council tax subscription."
-"user_identifier": "council-tax-user4501"
+"user_identifier": "user-3fb81107-76b7-4910"
 }
 ```
 
@@ -122,9 +122,8 @@ You’ll receive a response like this:
 "reference": "CT-22-23-0001",
 "description" : "Dorset Council 2022/23 council tax subscription."
 "status": "CREATED",
-"user_identifier": "council-tax-user4501",
+"user_identifier": "user-3fb81107-76b7-4910",
 "created_date": "2022-07-08T14:33:00.000Z",
-"payment_instrument": null
 }
 ```
 
@@ -134,7 +133,6 @@ This response contains:
 * the reference, description, and user identifier (if any) you associated with this agreement (`reference`, `description`, `user_identifier`)
 * the [agreement’s current status](/recurring_payments/#understanding-agreement-status) (`status`)
 * the date and time you created the agreement (`created_date`)
-* an object that will contain the user’s payment details when you set up the agreement (`payment_instrument`)
 
 You can see definitions and possible values of every parameter and attribute in [our reference documentation for this endpoint](/api_reference/create_an_agreement_reference).
 
@@ -161,9 +159,9 @@ Your request to create this first payment should look something like this:
 }
 ```
 
-`set_up_agreement` tells our API to save your user’s card details when they complete this payment. The user’s card details are saved to the agreement with the ID you send.
+`set_up_agreement` tells our API to save your user’s card details when they complete this payment. We use a token to represent the user's card details. This token is associated with the agreement with the ID you send.
 
-You can also use `set_up_agreement` to reactivate a cancelled agreement.
+You can also use `set_up_agreement` to reactivate a cancelled or expired agreement.
 
 When your user is making their first payment, GOV.UK Pay will show your user the `description` you sent when you created the agreement.
 
@@ -177,7 +175,7 @@ Read more about creating payments in [our guidance for taking payments](/making_
 
 Once you’ve set up the agreement, you can use it to take recurring payments without the paying user interacting with your service.
 
-You must tell your user that you are going to take a payment.
+Your user must know when you are going to take payments. For example, if you take payments on an agreed schedule, you must make your user aware of which day of the month you'll take payments. If you take payments irregularly, you must let your user know you're going to take a payment.
 
 To take a recurring payment, create a payment through the API (`POST v1/payments`) and include the following parameters in the request body:
 
@@ -197,7 +195,9 @@ Your request should look something like this:
 }
 ```
 
-The API returns a standard create payment response. If your request succeeds, the response includes the `agreement_id` you sent and `authorisation_mode` is `agreement`.
+The API returns a standard create payment response. Successful responses include the `agreement_id` you sent and `authorisation_mode` is `agreement`.
+
+To check if a payment authorised successfully, get information about it through the API (`GET v1/payments/{PAYMENT_ID}`).
 
 GOV.UK Pay uses a token representing the user’s saved payment details from the agreement to automatically take the payment.
 
@@ -207,11 +207,11 @@ You should let your users know when you plan to take a payment.
 
 Read more about creating payments in [our guidance for taking payments](/making_payments) or our [API reference page for creating payments](/api_reference/create_a_payment_reference).
 
-### Use idempotence to avoid double-charging a user
+### Use idempotency to avoid double-charging a user
 
-Idempotence in an API is when multiple identical requests have the same effect as making a single request. In GOV.UK Pay, you can avoid double charging users by making idempotent requests when creating recurring payments.
+Idempotency in an API is when multiple identical requests have the same effect as making a single request. In GOV.UK Pay, you can avoid double charging users by making idempotent requests when creating recurring payments.
 
-Idempotence is useful if you create a recurring payment through our API but do not receive a response due to network failure. With idempotence, further payment creation requests fail. Without idempotence, further payment creation requests will succeed and you may double charge your user.
+Idempotency is useful if you create a recurring payment through our API but do not receive a response due to network failure. With idempotency, further payment creation requests fail. Without idempotency, further payment creation requests will succeed and you may double charge your user.
 
 To make an idempotent request, use this header when creating a recurring payment:
 
@@ -262,7 +262,7 @@ Example response:
       "reference": "CT-22-23-0001",
       "description": "Dorset Council 2022/23 council tax subscription."
       "status": "active",
-      "user_identifier": "council-tax-user4501"
+      "user_identifier": "user-3fb81107-76b7-4910"
       "created_date": "2022-07-08T14:33:00.000Z",
       "payment_instrument": {
         "type": "card",
@@ -368,7 +368,7 @@ When you use the API to get information about agreements, the `status` response 
 | Status    | Meaning                                                                                                                                                                                                                                                                                                                                                                    |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `created`   | You have created the agreement using the API.<br><br>Your user has not yet made [their first payment to set up the agreement](/recurring_payments/#set-up-an-agreement-for-recurring-payments).                                                                                                                                                                         |
-| `active`    | You have set up the agreement by saving a user’s card details when they make their first payment.<br><br>You [use this agreement to take recurring payments](/recurring_payments/#taking-recurring-payments).                                                                                                                                                           |
+| `active`    | You have set up the agreement by saving a user’s card details when they make their first payment.<br><br>You can [use this agreement to take recurring payments](/recurring_payments/#taking-recurring-payments).                                                                                                                                                           |
 | <nobr>`cancelled` | You have cancelled the agreement.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.<br><br>Read more about [cancelling and reactivating agreements for recurring payments](/recurring_payments/#cancel-an-agreement-for-recurring-payments) or [API reference documentation](/api_reference/cancel_agreement_reference). |
 | `expired`   | The user’s payment method has expired or the token representing the user’s payment details has expired.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.                                                                                                                                                                        |
 

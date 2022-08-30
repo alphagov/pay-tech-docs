@@ -170,7 +170,7 @@ After you send your request to search payments, you’ll receive a response simi
 | `payment_id` | string | The unique ID GOV.UK Pay automatically associated with this payment when you created it. |
 | `payment_provider` | string | The payment service provider (PSP) that processed this payment. |
 | `created_date` | date (ISO 8601) | The date and time you created this payment.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`. |
-| `agreement_id` | string | The unique ID of the agreement for recurring payments that GOV.UK  Pay used to take this payment.<br><br>`agreement_id` only appears if `authorisation_mode` is `agreement`. |
+| `agreement_id` | string | The unique ID of the agreement for recurring payments that GOV.UK  Pay used to take this payment.<br><br>`agreement_id` only appears if `authorisation_mode` is `agreement` or if a payment was used to set up an agreement for recurring payments. |
 | `refund_summary` | object | Contains information about refunds on this payment, such as refund availability.<br><br>You can [read more about refunding payments](/refunding_payments). |
 | `refund_summary.status` | string | Whether you can refund the payment.<br><br>Possible values are:<br><br><li>`pending`</li><li>`unavailable`</li><li>`available`</li><li>`full`</li><br>You can [read about the meanings of each refund `status` value](/refunding_payments/#status). |
 | `refund_summary.amount_available` | number | The amount you can refund to the user, in pence. |

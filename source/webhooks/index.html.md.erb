@@ -30,7 +30,7 @@ You need to set up an endpoint (callback URL) that can receive webhook messages 
 
 You must set up your endpoint to receive the `POST` body from your webhook and respond with a `2xx` successful reply within 15 seconds.
 
-Your callback URL must support HTTPS and present a valid certificate. You can use a HTTP URL for test accounts. GOV.UK webhooks support TLS version 1.2.
+Your callback URL must use HTTPS and present a valid certificate. You can use a HTTP URL for test accounts. GOV.UK webhooks support TLS version 1.2.
 
 ## Create a webhook
 
@@ -175,6 +175,6 @@ When your webhook sends a message, it’ll look like this:
 
 ### Retry mechanism
 
-If your service does not return a `2xx` successful response quickly after receiving a webhook message, we’ll send the message again.
+If your service does not return a `2xx` successful response quickly after receiving a webhook message, we’ll try to send the message again. After several attempts, we'll stop retrying.
 
 You can see the history of payment events and the message delivery status of each event by selecting **Manage webhook**. Each line of the **Events history** table is a single event. Select a payment event to see details of that event, including when it was sent, the body of the webhook message, and any previous delivery attempts.
