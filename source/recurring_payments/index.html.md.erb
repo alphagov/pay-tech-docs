@@ -47,7 +47,7 @@ In this integration example, the service creates an agreement when a user says t
 
 4. Your service saves the `agreement_id` from the response.
 
-5. Your service [sets up the agreement by creating the user's first payment](/recurring_payments/#set-up-an-agreement-for-recurring-payments) using the `POST v1/payments` endpoint. In the request, you must include the `set_up_agreement` parameter with the `agreement_id` as its value.
+5. Your service [sets up the agreement by creating the user's first payment](/recurring_payments/#set-up-an-agreement-for-recurring-payments) using the `POST /v1/payments` endpoint. In the request, you must include the `set_up_agreement` parameter with the `agreement_id` as its value.
 
 6. GOV.UK Pay returns a `201` successful response to your payment creation request.
 
@@ -197,7 +197,7 @@ Your request should look something like this:
 
 The API returns a standard create payment response. Successful responses include the `agreement_id` you sent and `authorisation_mode` is `agreement`.
 
-To check if a payment authorised successfully, get information about it through the API (`GET v1/payments/{PAYMENT_ID}`).
+To check if a payment authorised successfully, wait a few moments and get information about it through the API (`GET v1/payments/{PAYMENT_ID}`).
 
 GOV.UK Pay uses a token representing the user’s saved payment details from the agreement to automatically take the payment.
 
