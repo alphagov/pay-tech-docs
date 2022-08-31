@@ -1,0 +1,45 @@
+---
+title: Cancel an agreement for recurring payments API reference
+last_reviewed_on: 2022-08-20
+review_in: 6 months
+weight: 45
+---
+
+# Cancel an agreement for recurring payments API reference
+
+## Path parameters for ‘Cancel a recurring payments agreement’
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following things you’ll use when cancelling a recurring payments agreement:
+
+* parameters
+* example requests
+* example responses
+* attributes you’ll get in your response
+
+You can also [read more about the end-to-end process of taking recurring payments using GOV.UK Pay in our task-based guidance](/recurring_payments).
+
+The URL for this endpoint is:
+
+```
+POST https://publicapi.payments.service.gov.uk/v1/agreements/{AGREEMENT_ID}/cancel
+```
+
+You can use this endpoint to cancel a recurring payments agreement in the `active` status. [Read more about agreement `status` values](/recurring_payments/#understanding-agreement-status).
+
+You cannot use a cancelled agreement to take recurring payments. Reactivate a cancelled agreement by [taking a payment from the user and telling the GOV.UK Pay API to save the user’s card details](/recurring_payments/#set-up-an-agreement-for-recurring-payments).
+
+The data from this endpoint is strongly consistent, meaning it is updated immediately after you make any changes. You can [read more about data consistency in our API](/api_reference/#data-consistency).
+
+## Example request for ‘Cancel an agreement for recurring payments’
+
+This example request cancels the recurring payments agreement with the ID `cgc1ocvh0pt9fqs0ma67r42l58`:
+
+```
+curl POST "https://publicapi.payments.service.gov.uk/v1/agreements/cgc1ocvh0pt9fqs0ma67r42l58/cancel" -H "Authorization: Bearer api_test_123abc456def"
+```
+
+## Example response for ‘Cancel an agreement for recurring payments’
+
+A successful agreement cancellation returns a `204` HTTP status code without a response body.
+
+You can [read more about HTTP status codes and their meanings in the GOV.UK Pay API](/api_reference/#responses).

@@ -1,0 +1,119 @@
+---
+title: Search agreements for recurring payments
+last_reviewed_on: 2022-08-20
+review_in: 6 months
+weight: 44
+---
+
+# Search agreements for recurring payments
+
+This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an index of the following things you’ll use when searching recurring payments agreements:
+
+* parameters
+* example requests
+* example responses
+* attributes you’ll get in your response
+
+You can also [read more about the end-to-end process of taking recurring payments using GOV.UK Pay in our task-based guidance](/recurring_payments).
+
+The URL for this endpoint is:
+
+```
+GET https://publicapi.payments.service.gov.uk/v1/agreements
+```
+
+You can use this endpoint to search for recurring payments agreements. The agreements are sorted by date, with the most recently-created agreements appearing first.
+
+An agreement represents an understanding between you and your paying user that you’ll use their card to make ongoing payments for a service.
+
+The data from this endpoint is ‘eventually consistent’, meaning it is updated on a delay. You can [read more about data consistency in our API](/api_reference/#data-consistency).
+
+## Query parameters for ‘Search agreements for recurring payments’
+
+Your request will return agreements that match all of the criteria specified in your query parameters.
+
+If your request has no query parameters, this endpoint returns all agreements.
+
+| Name                            | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `reference`<br>(optional)     | string | Returns agreements with a `reference` that exactly matches the value you sent.<br><br>This parameter is not case sensitive.<br><br>A `reference` was associated with the agreement when that agreement was created.                                                                                                                                                                                      |
+| `status`<br>(optional)        | string | Returns agreements in a matching `status`.<br><br>`status` reflects where an agreement is in its lifecycle.<br><br>Available `status` values are:<br><br><li>`created`<br><br><li>`active`<br><br><li>`cancelled`<br><br><li>`expired`<br><br><br>You can [read more about the meanings of the different agreement `status` values](/recurring_payments/#understanding-agreement-status). |
+| `page`<br>(optional)          | number | Returns a specific page of results.<br><br>Defaults to `1`.                                                                                                                                                                                                                                                                                                                                                |
+| <nobr>`display_size`<br>(optional) | number | The number of agreements returned per results page.<br><br>Defaults to `500`. Maximum value is `500`.|
+
+## Example request for ‘Search agreements for recurring payments’
+
+This example request returns agreements that are in the `active` status.
+
+```
+curl GET "https://publicapi.payments.service.gov.uk/v1/agreements?status=active" -H "Authorization: Bearer api_test_123abc456def"
+```
+
+## Example response for ‘Search agreements for recurring payments’
+
+```json
+{
+  total: 45,
+  count: 20,
+  page: 1,
+  results: [
+    {
+    "agreement_id": "cgc1ocvh0pt9fqs0ma67r42l58",
+    "reference": "CT-22-23-0001",
+    "description": "Dorset Council 2022/23 council tax subscription."
+    "status": "active",
+    "user_identifier": "user-3fb81107-76b7-4910"
+    "created_date": "2022-07-08T14:33:00.000Z",
+    "payment_instrument": {
+      "type": "card",
+      "card_details": {
+        "card_brand": "Visa",
+        "card_type": "debit",
+        "last_digits_card_number": "1234",
+        "first_digits_card_number": "123456",
+        "expiry_date": "04/24",
+        "cardholder_name": "Sherlock Holmes",
+        "billing_address": {
+          "line1": "221 Baker Street",
+          "line2": "Flat b",
+          "postcode": "NW1 6XE",
+          "city": "London",
+          "country": "GB"
+        }
+      }
+    }
+  }
+  {
+    "agreement_id": "tut4wrjk5lp1qbr5jz92a37t00",
+    "reference": "CT-22-23-0002",
+    "status": "active",
+    ...
+  }
+  ]
+}
+```
+
+## Attributes you’ll get in a ‘Search agreements for recurring payments’ response
+
+| Name                                                              | Type            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------------------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `total`                                                         | number          | Total number of agreements matching your search criteria.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `count`                                                         | number          | Number of agreements on the current page of search results.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `page`                                                          | number          | The page of results you’re viewing.<br><br>To view other pages, make this request again using the `page` parameter.                                                                                                                                                                                                                                                                                                                                                                               |
+| `results`                                                       | object          | Contains agreements matching your search criteria.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `agreement_id`                                                 | string          | The unique ID GOV.UK Pay automatically associated with this agreement.                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `reference`                                                     | string          | The reference you associated with this agreement.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `description`                                                   | string          | The description you associated with this agreement.                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `status`                                                        |                 | The status of this agreement.<br><br>Possible values are:<br><br><li>`created`<br><li>`active`<br><li>`cancelled`<br><br>You can [read more about the meanings of each agreement `status`](/recurring_payments/#understanding-agreement-status).                                                                                                                                                                                                                             |
+| `user_identifier`                                              | string          | An identifier to help you identify the user this agreement is with.                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `created_date`                                                 | date (ISO 8601) | The date and time you created this agreement.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format – `YYYY-MM-DDTHH:MM:SSZ`.                                                                                                                                                                                                                                                                                                                                               |
+| `payment_instrument`                                           | object          | Contains information about the user’s saved payment details.<br><br>`payment_instrument` only appears if you have [set up the agreement by saving the user’s payment details](/recurring_payments/#set-up-an-agreement-for-recurring-payments).                                                                                                                                                                                                                                        |
+| `payment_instrument.type`                                      | string          | The payment method the user is making recurring payments with.<br><br>Currently, the only possible value is `card`.                                                                                                                                                                                                                                                                                                                                                                               |
+| `payment_instrument.card_details`                             | object          | Contains information about the card the user is making recurring payments with.                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `payment_instrument.card_details.card_brand`                 | string          | The brand of card the user paid with.<br><br>Possible values are:<br><br><li>`american-express`<br><li>`diners-club`<br><li>`discover`<br><li>`Jcb`<br><li>`maestro`<br><li>`master-card`<br><li>`unionpay`<br><li>`visa`                                                                                                                                                                                                                               |
+| `payment_instrument.card_details.card_type`                  | string          | The type of card the user paid with.<br><br>Possible values are:<br><br><li>`credit`<br><li>`debit`<br><li>`null`<br><br>`null` means your user paid with Google Pay or we did not recognise which type of card they paid with.                                                                                                                                                                                                                                                 |
+| `payment_instrument.card_details.last_digits_card_number`  | number          | The last 4 digits of the card the user paid with.                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `payment_instrument.card_details.first_digits_card_number` | number          | The first 6 digits of the card the user paid with.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `payment_instrument.card_details.expiry_date`                | string          | The expiry date of the card the user paid with.                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `payment_instrument.card_details.cardholder_name`            | string          | The name on the card the user paid with.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `payment_instrument.card_details.billing_address`            | object          | Contains the billing address the user entered when they paid.<br><br>`billing_address` can contain:<br><br><li>`line1` (the first line of the paying user’s address)<br><li>`line2` (the second line of the paying user’s address)<br><li>`postcode` (the paying user’s postcode)<br><li>`city` (the paying user’s city)<br><li>`country` (the paying user’s country, displayed as a 2-character [ISO-3166-1-alpha-2 code](https://www.iso.org/obp/ui/#search/code/) |

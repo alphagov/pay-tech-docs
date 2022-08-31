@@ -1,0 +1,391 @@
+---
+title: Take recurring payments
+last_reviewed_on: 2022-08-20
+review_in: 1 months
+weight: 50
+---
+
+# Take recurring payments
+
+GOV.UK Pay is still developing recurring payments so this feature is only available to a limited number of services at the moment. [Contact us](/support_contact_and_more_information/#during-office-hours) if you’re interested in taking recurring payments.
+
+If you are a beta service, you can take recurring payments from a user using GOV.UK Pay. The user consents to making recurring payments, enters into an ‘agreement’ with your service, and provides their payment details. The agreement allows you to take further payments through our API without the user interacting with your service again.
+
+Your service has [additional responsibilities when taking recurring payments](/recurring_payments/#1-understand-what-your-service-is-responsible-for). You’re responsible for:
+
+* authenticating users
+* getting and recording users’ consent for you to take recurring payments
+* managing payment schedules
+* telling users when you’re going to take payments
+* letting users amend their recurring payments
+
+This section outlines the recurring payment flow, your responsibilities, and how to set up and use agreements to take recurring payments.
+
+## How recurring payments work
+
+1. You create an ‘agreement’ between your service and your user through our API. This is an agreement for you to use your user’s payment details to make ongoing payments for your service.
+
+1. You set up the agreement by getting your user’s consent and taking their first payment. You instruct our API to save their payment details. This makes the agreement for recurring payments active.
+
+1. You take recurring payments by referencing the active agreement in your API requests when creating payments. The agreement allows GOV.UK Pay to authorise the payment with the user’s saved payment details.
+
+1. You cancel the agreement when it is no longer needed or when the user requests a cancellation. GOV.UK Pay cannot use the cancelled agreement to authorise payments. You can set the agreement up again by taking another payment and instructing our API to save the user’s payment details.
+
+You can [read more about the lifecycle of agreements](/recurring_payments/#understanding-agreement-status).
+
+### Understand the technical flow of recurring payments
+
+In this integration example, the service creates an agreement when a user says they want to make recurring payments, then uses that agreement to continue taking payments.
+
+![A sequence diagram showing the journey of creating, setting up, and using an agreement to take recurring payments.](/images/recurring-payments-success-sequence.svg)
+
+1. A user visits consents to your service taking recurring payments. You record their consent.
+
+2. Your service [creates an 'agreement' for recurring payments through the `POST v1/agreements` endpoint](/recurring_payments/#create-an-agreement-for-recurring-payments).
+
+3. GOV.UK Pay returns a `201` successful response that includes an `agreement_id`.
+
+4. Your service saves the `agreement_id` from the response.
+
+5. Your service [sets up the agreement by creating the user's first payment](/recurring_payments/#set-up-an-agreement-for-recurring-payments) using the `POST /v1/payments` endpoint. In the request, you must include the `set_up_agreement` parameter with the `agreement_id` as its value.
+
+6. GOV.UK Pay returns a `201` successful response to your payment creation request.
+
+7. Your service directs the user to GOV.UK Pay to make their first payment. The user follows the standard payment flow.
+
+8. The user completes their first payment and GOV.UK Pay returns them to your service.
+
+9. Your service [creates recurring payments using the `POST v1/payments` endpoint](/recurring_payments/#taking-recurring-payments). In your request body, you  set `authorisation_mode` to `agreement` and include `"agreement_id": "{AGREEMENT_ID}"`, replacing `{AGREEMENT_ID}` with the agreement you set up earlier.
+
+10. GOV.UK Pay uses a token representing the user’s payment details to authorise the payment.
+
+## Before you start taking recurring payments
+
+You need to understand your service’s responsibilities and enable recurring payments with your payment service provider (PSP) before you can take recurring payments.
+
+### 1. Understand what your service is responsible for
+
+You have more responsibilities when taking recurring payments than when taking standard payments through GOV.UK Pay.
+
+Your additional responsibilities include:
+
+* authenticating users to use your service and manage payments – if you’re eligible, we recommend using [GOV.UK Sign In](https://www.sign-in.service.gov.uk/) to do this
+
+* making the terms, conditions, and purpose of the recurring payments clear to your users so they can consent and you can record this consent
+
+* setting up managing and fulfilling the scheduled to take payments from users
+
+* telling users when you are going to take a recurring payment
+
+* letting users manage or cancel recurring payments
+
+### 2. Enable recurring payments with GOV.UK Pay
+
+Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) and ask us to enable recurring payments on your test account.
+
+### 3. Enable recurring payments with your payment service provider
+
+If your PSP is Worldpay, you must enable tokenisation on your account before you can take recurring payments. Contact your Worldpay relationship manager and ask them to enable tokenisation.
+
+If your PSP is Stripe, you do not need to do anything before you start setting up recurring payments.
+
+## Create an agreement for recurring payments
+
+An agreement represents an understanding between you and your paying user that you’ll use their payment details to make ongoing payments for a service.
+
+Use this endpoint to create an agreement:
+
+`POST /v1/agreements`
+
+Example request:
+
+```json
+{
+"reference": "CT-22-23-0001",
+"description": "Dorset Council 2022/23 council tax subscription."
+"user_identifier": "user-3fb81107-76b7-4910"
+}
+```
+
+In the body of your request, you must include:
+
+* a human-readable description of the purpose of the agreement that we’ll show your user when they enter their payment details (`description`)
+* a reference for this agreement (`reference`)
+
+You can also send a `user_identifier` parameter to associate an identifier with this user to help you identify them.
+
+You’ll receive a response like this:
+
+```json
+{
+"agreement_id": "cgc1ocvh0pt9fqs0ma67r42l58",
+"reference": "CT-22-23-0001",
+"description" : "Dorset Council 2022/23 council tax subscription."
+"status": "CREATED",
+"user_identifier": "user-3fb81107-76b7-4910",
+"created_date": "2022-07-08T14:33:00.000Z",
+}
+```
+
+This response contains:
+
+* a unique ID GOV.UK Pay automatically associated with this agreement (`agreement_id`)
+* the reference, description, and user identifier (if any) you associated with this agreement (`reference`, `description`, `user_identifier`)
+* the [agreement’s current status](/recurring_payments/#understanding-agreement-status) (`status`)
+* the date and time you created the agreement (`created_date`)
+
+You can see definitions and possible values of every parameter and attribute in [our reference documentation for this endpoint](/api_reference/create_an_agreement_reference).
+
+## Set up an agreement for recurring payments
+
+Once you’ve created the agreement, you need to set it up to start taking recurring payments with the user’s card.
+
+To set up the agreement, you must take the first payment from your user and tell the GOV.UK Pay API to save their card details:
+
+1. Make your user aware of the terms, conditions, and purpose of the recurring payments. They must understand that you’ll use their payment details to take future payments.
+
+1. Record the user’s consent to your terms and conditions.
+
+1. Add `set_up_agreement: "{AGREEMENT_ID}"` to your request when creating the user’s first payment. Replace `{AGREEMENT_ID}` with the `agreement_id` the API sent when you created the agreement. You’ll also need to include the usual required parameters for creating a payment - `amount`, `description`, `reference`, and `return_url`.
+
+Your request to create this first payment should look something like this:
+
+```json
+{
+  "amount": 1000,
+  "description": "First payment for 2022/23 council tax.",
+  "return_url": "https://service.gov.uk",
+  "set_up_agreement": "cgc1ocvh0pt9fqs0ma67r42l58"
+}
+```
+
+`set_up_agreement` tells our API to save your user’s card details when they complete this payment. We use a token to represent the user's card details. This token is associated with the agreement with the ID you send.
+
+You can also use `set_up_agreement` to reactivate a cancelled or expired agreement.
+
+When your user is making their first payment, GOV.UK Pay will show your user the `description` you sent when you created the agreement.
+
+Once the user has made the payment, the agreement’s `status` will be `active`. You can use active agreements to take recurring payments.
+
+If the user’s payment fails, their payment details are not saved and the agreement’s `status` remains `created`.
+
+Read more about creating payments in [our guidance for taking payments](/making_payments) or our [API reference page for creating payments](/api_reference/create_a_payment_reference).
+
+## Taking recurring payments
+
+Once you’ve set up the agreement, you can use it to take recurring payments without the paying user interacting with your service.
+
+Your user must know when you are going to take payments. For example, if you take payments on an agreed schedule, you must make your user aware of which day of the month you'll take payments. If you take payments irregularly, you must let your user know you're going to take a payment.
+
+To take a recurring payment, create a payment through the API (`POST v1/payments`) and include the following parameters in the request body:
+
+* `"authorisation_mode" : "agreement"`
+* `"agreement_id": "{AGREEMENT_ID}"`
+
+Replace `{AGREEMENT_ID}` with the `agreement_id` you just set up.
+
+Your request should look something like this:
+
+```json
+{
+  "amount": 1000,
+  "description": "Council tax payment for 2022/23",
+  "authorisation_mode": "agreement",
+  "agreement_id": "cgc1ocvh0pt9fqs0ma67r42l58"
+}
+```
+
+The API returns a standard create payment response. Successful responses include the `agreement_id` you sent and `authorisation_mode` is `agreement`.
+
+To check if a payment authorised successfully, wait a few moments and get information about it through the API (`GET v1/payments/{PAYMENT_ID}`).
+
+GOV.UK Pay uses a token representing the user’s saved payment details from the agreement to automatically take the payment.
+
+If a recurring payment fails when we try to take it, it’s handled like any other failed payment. You can use [GOV.UK Pay’s webhooks to receive an automatic update](/recurring_payments/#use-webhooks-to-receive-automatic-event-updates) when a recurring payment fails.
+
+You should let your users know when you plan to take a payment.
+
+Read more about creating payments in [our guidance for taking payments](/making_payments) or our [API reference page for creating payments](/api_reference/create_a_payment_reference).
+
+### Use idempotency to avoid double-charging a user
+
+Idempotency in an API is when multiple identical requests have the same effect as making a single request. In GOV.UK Pay, you can avoid double charging users by making idempotent requests when creating recurring payments.
+
+Idempotency is useful if you create a recurring payment through our API but do not receive a response due to network failure. With idempotency, further payment creation requests fail. Without idempotency, further payment creation requests will succeed and you may double charge your user.
+
+To make an idempotent request, use this header when creating a recurring payment:
+
+```
+-H "Idempotency-Key: {KEY}"
+```
+
+Replace `{KEY}` with a [UUID (universally unique identifier)](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+
+If you try to create another payment using the same `Idempotency-Key` shortly after the first request, you’ll receive a `422` response. The response will let you know that you’ve already created a payment using that `Idempotency-Key`.
+
+### Use webhooks to receive automatic event updates
+
+You can use webhooks to automatically receive updates when recurring payments fail or succeed.
+
+You may want to use these webhooks to trigger a notification in your case management or finance systems.
+
+You can [read more about using webhooks to automatically receive updates](/webhooks).
+
+## Reporting on recurring payments
+
+You can find information about agreements you’ve created in the GOV.UK Pay admin tool or through our API.
+
+### Reporting using the GOV.UK Pay admin tool
+
+The [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) lists your service’s agreements for recurring payments.
+
+Using the admin tool, you can find agreements, cancel agreements, and see payments associated with an agreement.
+
+### Searching agreements for recurring payments
+
+You can use the GOV.UK Pay API to search agreements for recurring payments.
+
+Use the following endpoint to search agreements:
+
+`GET v1/agreements`
+
+Example response:
+
+```json
+{
+  total: 45,
+  count: 20,
+  page: 1,
+  results: [
+    {
+      "agreement_id": "cgc1ocvh0pt9fqs0ma67r42l58",
+      "reference": "CT-22-23-0001",
+      "description": "Dorset Council 2022/23 council tax subscription."
+      "status": "active",
+      "user_identifier": "user-3fb81107-76b7-4910"
+      "created_date": "2022-07-08T14:33:00.000Z",
+      "payment_instrument": {
+        "type": "card",
+        "card_details": {
+          "card_brand": "Visa",
+          "card_type": "debit",
+          "last_digits_card_number": "1234",
+          "first_digits_card_number": "123456",
+          "expiry_date": "04/24",
+          "cardholder_name": "Sherlock Holmes",
+          "billing_address": {
+            "line1": "221 Baker Street",
+            "line2": "Flat b",
+            "postcode": "NW1 6XE",
+            "city": "London",
+            "country": "GB"
+          }
+        }
+      }
+    }
+    {
+      "agreement_id": "tut4wrjk5lp1qbr5jz92a37t00",
+      "reference": "CT-22-23-0002",
+      "status": "active",
+      ...
+    }
+    ]
+  }
+```
+
+Each object in `results` represents a single agreement and contains:
+
+* the unique ID GOV.UK Pay automatically associated with this agreement (`agreement_id`)
+* the reference you associated with this agreement when you created it (`reference`)
+* the [current status of the agreement](/recurring_payments/#understanding-agreement-status) (`status`)
+* information about the user’s card (`payment_instrument`)
+
+Read our [API reference](/api_reference/search_agreements_reference) for more information about this endpoint. For example, what parameters you can use to narrow your search, and a full index of response attributes.
+
+### Getting information about an agreement for recurring payments
+
+You can get information about a specific recurring payments agreement through the GOV.UK Pay API.
+
+Use the following endpoint to get information about an agreement:
+
+`GET /v1/agreements/{AGREEMENT_ID}`
+
+Replace `{AGREEMENT_ID}` with the ID of the agreement you’re getting information about.
+
+Example response:
+
+```json
+{
+  "agreement_id": "cgc1ocvh0pt9fqs0ma67r42l58",
+  "reference": "CT-22-23-0001",
+  "description": "Dorset Council 2022/23 council tax subscription."
+  "status": "active",
+  "created_date": "2022-07-08T14:33:00.000Z",
+  "payment_instrument": {
+    "type": "card",
+    "card_details": {
+      "card_brand": "Visa",
+      "card_type": "debit",
+      "last_digits_card_number": "1234",
+      "first_digits_card_number": "123456",
+      "expiry_date": "04/24",
+      "cardholder_name": "Sherlock Holmes",
+      "billing_address": {
+        "line1": "221 Baker Street",
+        "line2": "Flat b",
+        "postcode": "NW1 6XE",
+        "city": "London",
+        "country": "GB"
+      }
+    }
+  }
+}
+```
+
+In the response, you’ll receive:
+
+* details you entered and GOV.UK Pay generated when the agreement was created (`agreement_id`, `reference`, `description`)
+* the [current status of the agreement](/recurring_payments/#understanding-agreement-status) (`status`)
+* the date you created the agreement (`created_date`)
+* details about the user’s payment method if you've set up the agreement (`payment_instrument`)
+
+Read our [API reference](/api_reference/single_agreement_reference) for a full index of this endpoint’s response attributes.
+
+### Finding recurring payments by agreement
+
+You can use [the search payments endpoint](/api_reference/search_payments_reference) (`GET /v1/payments`) to find payments that GOV.UK Pay authorised using a specific agreement.
+
+Use the `agreement_id={AGREEMENT_ID}` query parameter. Replace `{AGREEMENT_ID}` with the ID of an agreement to return payments authorised by that agreement.
+
+This example would return all payments authorised by the agreement with the ID `cgc1ocvh0pt9fqs0ma67r42l58`:
+
+`GET /v1/payments?agreement_id=cgc1ocvh0pt9fqs0ma67r42l58`
+
+### Understanding agreement status
+
+When you use the API to get information about agreements, the `status` response attribute tells you what state the agreement is currently in.
+
+| Status    | Meaning                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `created`   | You have created the agreement using the API.<br><br>Your user has not yet made [their first payment to set up the agreement](/recurring_payments/#set-up-an-agreement-for-recurring-payments).                                                                                                                                                                         |
+| `active`    | You have set up the agreement by saving a user’s card details when they make their first payment.<br><br>You can [use this agreement to take recurring payments](/recurring_payments/#taking-recurring-payments).                                                                                                                                                           |
+| <nobr>`cancelled` | You have cancelled the agreement.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.<br><br>Read more about [cancelling and reactivating agreements for recurring payments](/recurring_payments/#cancel-an-agreement-for-recurring-payments) or [API reference documentation](/api_reference/cancel_agreement_reference). |
+| `expired`   | The user’s payment method has expired or the token representing the user’s payment details has expired.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.                                                                                                                                                                        |
+
+## Cancel an agreement for recurring payments
+
+You can cancel an agreement for recurring payments at any time. You may want to cancel an agreement if a user no longer needs to make payments. You cannot use a cancelled agreement to take payments.
+
+You must provide a way for your users to return to your service and cancel their recurring payments.
+
+To cancel an agreement, use this endpoint:
+
+`POST /v1/agreements/{AGREEMENT_ID}/cancel`
+
+Replace `{AGREEMENT_ID}` with the ID of the agreement you’re cancelling.
+
+A successful agreement cancellation returns a `204` HTTP status code without a response body.
+
+You can set up a cancelled agreement again by taking a payment from the user and telling the GOV.UK Pay API to save the user’s card details. This is [the same thing you did to set up the agreement the first time](/recurring_payments/#set-up-an-agreement-for-recurring-payments).
+
+Read our [API reference](/api_reference/cancel_agreement_reference) for request and response examples, and a full index of this endpoint’s response attributes.
