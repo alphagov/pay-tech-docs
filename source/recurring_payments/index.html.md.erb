@@ -41,7 +41,7 @@ In this integration example, the service creates an agreement when a user says t
 
 1. A user visits consents to your service taking recurring payments. You record their consent.
 
-2. Your service [creates an 'agreement' for recurring payments through the `POST v1/agreements` endpoint](/recurring_payments/#create-an-agreement-for-recurring-payments).
+2. Your service [creates an 'agreement' for recurring payments through the `POST /v1/agreements` endpoint](/recurring_payments/#create-an-agreement-for-recurring-payments).
 
 3. GOV.UK Pay returns a `201` successful response that includes an `agreement_id`.
 
@@ -55,7 +55,7 @@ In this integration example, the service creates an agreement when a user says t
 
 8. The user completes their first payment and GOV.UK Pay returns them to your service.
 
-9. Your service [creates recurring payments using the `POST v1/payments` endpoint](/recurring_payments/#taking-recurring-payments). In your request body, you  set `authorisation_mode` to `agreement` and include `"agreement_id": "{AGREEMENT_ID}"`, replacing `{AGREEMENT_ID}` with the agreement you set up earlier.
+9. Your service [creates recurring payments using the `POST /v1/payments` endpoint](/recurring_payments/#taking-recurring-payments). In your request body, you  set `authorisation_mode` to `agreement` and include `"agreement_id": "{AGREEMENT_ID}"`, replacing `{AGREEMENT_ID}` with the agreement you set up earlier.
 
 10. GOV.UK Pay uses a token representing the user’s payment details to authorise the payment.
 
@@ -177,12 +177,14 @@ Once you’ve set up the agreement, you can use it to take recurring payments wi
 
 Your user must know when you are going to take payments. For example, if you take payments on an agreed schedule, you must make your user aware of which day of the month you'll take payments. If you take payments irregularly, you must let your user know you're going to take a payment.
 
-To take a recurring payment, create a payment through the API (`POST v1/payments`) and include the following parameters in the request body:
+To take a recurring payment, create a payment through the API (`POST /v1/payments`) and include the following parameters in the request body:
 
 * `"authorisation_mode" : "agreement"`
 * `"agreement_id": "{AGREEMENT_ID}"`
 
 Replace `{AGREEMENT_ID}` with the `agreement_id` you just set up.
+
+You do not need to send a `return_url`.
 
 Your request should look something like this:
 
@@ -197,9 +199,9 @@ Your request should look something like this:
 
 The API returns a standard create payment response. Successful responses include the `agreement_id` you sent and `authorisation_mode` is `agreement`.
 
-To check if a payment authorised successfully, wait a few moments and get information about it through the API (`GET v1/payments/{PAYMENT_ID}`).
-
 GOV.UK Pay uses a token representing the user’s saved payment details from the agreement to automatically take the payment.
+
+To check if a payment authorised successfully, wait a few moments and get information about it through the API (`GET /v1/payments/{PAYMENT_ID}`).
 
 If a recurring payment fails when we try to take it, it’s handled like any other failed payment. You can use [GOV.UK Pay’s webhooks to receive an automatic update](/recurring_payments/#use-webhooks-to-receive-automatic-event-updates) when a recurring payment fails.
 
@@ -247,7 +249,7 @@ You can use the GOV.UK Pay API to search agreements for recurring payments.
 
 Use the following endpoint to search agreements:
 
-`GET v1/agreements`
+`GET /v1/agreements`
 
 Example response:
 
