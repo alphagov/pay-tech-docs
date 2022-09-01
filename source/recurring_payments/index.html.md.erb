@@ -201,9 +201,9 @@ The API returns a standard create payment response. Successful responses include
 
 GOV.UK Pay uses a token representing the user’s saved payment details from the agreement to automatically take the payment.
 
-To check if a payment authorised successfully, wait a few moments and get information about it through the API (`GET /v1/payments/{PAYMENT_ID}`).
+Check the status of the payment by through our API (`GET /v1/payments/{PAYMENT_ID}`) or by [using webhooks to get automatic payment event updates]((/recurring_payments/#use-webhooks-to-receive-automatic-event-updates).
 
-If a recurring payment fails when we try to take it, it’s handled like any other failed payment. You can use [GOV.UK Pay’s webhooks to receive an automatic update](/recurring_payments/#use-webhooks-to-receive-automatic-event-updates) when a recurring payment fails.
+If a recurring payment fails when we try to take it, it’s handled like any other failed payment.
 
 You should let your users know when you plan to take a payment.
 
