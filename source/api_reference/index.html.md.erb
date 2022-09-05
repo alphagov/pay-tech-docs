@@ -9,8 +9,7 @@ weight: 180
 
 GOV.UK Pay is a payment platform for government. If you work in the public sector, [read more about using GOV.UK Pay to take payments](https://www.payments.service.gov.uk/).
 
-The base URL for the GOV.UK Pay API is
-`https://publicapi.payments.service.gov.uk/`.
+The base URL for the GOV.UK Pay API is `https://publicapi.payments.service.gov.uk/`.
 
 We use the same base URL for test and live accounts. You can create a test account from the [GOV.UK Pay homepage](https://www.payments.service.gov.uk/) and use it to test our API and your integration with it. You receive your live account when you [make your service live for your users](/switching_to_live/).
 
@@ -18,10 +17,21 @@ The API key you use determines which GOV.UK Pay service you use, and whether act
 
 <%= warning_text('If you’re testing our API, make sure you enter an API key from a test account to avoid generating real payments.') %>
 
-The API is based on REST principles. It returns data in JSON format, and uses
-standard HTTP error response codes.
+The API is based on REST principles. It returns data in JSON format, and uses standard HTTP error response codes.
 
 You can [get started with the GOV.UK Pay API quickly](https://docs.payments.service.gov.uk/quick_start_guide/#quick-start).
+
+This page has information about:
+
+* [endpoints](/api_reference/#endpoints)
+* [data consistency](/api_reference/#data-consistency)
+* [authentication](/api_reference/#authentication)
+* [rate limits](/api_reference/#rate-limits)
+* [pagination](/api_reference/#pagination)
+* [HTTP status codes](/api_reference/#responses)
+* [error codes](/api_reference/#gov-uk-pay-api-error-codes)
+* [the payment status lifecycle](/api_reference/#payment-status-lifecycle)
+* [API versioning](/api_reference/#api-versioning)
 
 ## Endpoints
 
