@@ -110,6 +110,34 @@ If you exceed the rate limit, this will return a `429` HTTP response code (Too m
 
 [Contact us](/support_contact_and_more_information/) if you would like to discuss rate limiting applied to your service account, or give us feedback.
 
+## Pagination
+
+Responses from search endpoints, such as [search payments](/api_reference/search_payments_reference) or [search refunds](/api_reference/search_refunds_reference), are split into pages. By default, these endpoints display 500 results per page and return the first page of results.
+
+You can use query parameters to view different pages and control the number of results on each page.
+
+| Query parameter | Description |
+|----|----|
+| `page` | Returns a specific page of results. <br><br>Defaults to `1`. |
+| <nobr>`display_size` | The number of results returned per results page.<br><br>Defaults to `500`. Maximum value is `500`. |
+
+### Pagination example
+
+There are 74 payments in the `created` state. In this example search request, these 74 payments are split into 4 pages of results because `display_size` is `20`. This request returns payments 41-60 because `page` is `3`:
+
+`GET /v1/payments?state=created&display_size=20&page=3`
+
+### Pagination links
+
+Search endpoints also return a `_links` object, which includes `href` and `method` fields you can use to move between pages. Use the fields in:
+
+* `self` to run the same search again
+* `first_page` to get the first page of results
+* `last_page` to get the last page
+* `prev_page` to get the previous page
+* `next_page` to get the next page
+
+
 ## OpenAPI file
 
 You can also generate a client library from [our OpenAPI file](https://github.com/alphagov/pay-publicapi/blob/master/openapi/publicapi_spec.json) using [Swagger Editor](http://editor.swagger.io/). This may be an easier way for you to integrate your service with GOV.UK Pay than writing a client library from scratch.
