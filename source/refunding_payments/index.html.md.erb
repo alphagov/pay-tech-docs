@@ -321,32 +321,3 @@ For example, to list all the refunds your PSP took on 16 June 2020:
 
 Dates must be in [ISO 8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard)
 and include a date value only. For example, `2015-08-13`.
-
-### Splitting results into pages
-
-You can use the following query parameters to split results into pages:
-
-* `display_size`, which has a default of `500`, and must be between `1` and `500`
-* `page`, which has a default of `1`
-
-These must be positive integers.
-
-For example, you run the following search and get 1500 refunds in the response:
-
-`GET
-/v1/refunds?from_date=2019-09-20T13:30:00Z&to_date=2019-09-22T15:00:00Z`
-
-You could then get a single page of these refunds by running:
-
-`GET
-/v1/refunds?from_date=2019-09-20T13:30:00Z&to_date=2019-09-22T15:00:00Z&display_size=500&page=2`
-
-This would return refunds 501 to 1000.
-
-The API response includes a `_links` object, which includes `href` and `method` fields you can use to move between pages. Use the fields in:
-
-- `self` to run the same search again
-- `first_page` to get the first page of results
-- `last_page` to get the last page
-- `prev_page` to get the previous page
-- `next_page` to get the next page

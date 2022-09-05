@@ -40,8 +40,8 @@ If your request has no query parameters, this endpoint returns all payments.
 | `card_brand` | string | Returns payments paid with a particular card brand.<br><br>Available `card_brand` values are: <br><br><ul> <li>`american-express`</li><li>`diners-club`</li><li>`discover`</li><li>`jcb`</li><li>`maestro`</li><li>`master-card`</li><li>`unionpay`</li><li>`visa`</li>|
 | `from_date` | date (ISO 8601) | Returns payments created on or after the `from_date`.<br><br>Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDTHH:MM:SSZ`.<br><br>You can [read more about filtering by date](/reporting/#filter-by-date). |
 | `to_date` | date (ISO 8601) | Returns payments created before the `to_date`.<br><br>Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDTHH:MM:SSZ`.<br><br>You can [read more about filtering by date](/reporting/#filter-by-date). |
-| `page` | number | Returns a specific page of results.<br><br>Defaults to `1`.<br><br>You can [read more about search pagination](/reporting/#pagination). |
-| `display_size` | number | The number of payments returned per results page. <br><br>Defaults to `500`. Maximum value is `500`.<br><br>You can [read more about search pagination](/reporting/#pagination). |
+| `page` | number | Returns a specific page of results.<br><br>Defaults to `1`.<br><br>You can [read more about search pagination](/api_reference/#pagination). |
+| `display_size` | number | The number of payments returned per results page. <br><br>Defaults to `500`. Maximum value is `500`.<br><br>You can [read more about search pagination](/api_reference/#pagination). |
 | `cardholder_name` | string | Returns payments paid with cards under this cardholder name. |
 | `first_digits_card_number` | number | Returns payments paid by cards beginning with the `first_digits_card_number` value. <br><br>`first_digits_card_number` value must be 6 digits. |
 | `last_digits_card_number` | number | Returns payments paid by cards ending with the `last_digits_card_number` value.<br><br>`last_digits_card_number` value must be 4 digits. |
@@ -157,7 +157,7 @@ After you send your request to search payments, you’ll receive a response simi
 |-----|-----|-----|
 | `total` | number | Number of total payments matching your search criteria. |
 | `count` | number | Number of payments on the current page of search results. |
-| `page` | number | The page of results you're viewing. <br><br>To view other pages, make this request again using the `page` parameter.<br><br>You can [read more about search pagination](/reporting/#pagination). |
+| `page` | number | The page of results you're viewing. <br><br>To view other pages, make this request again using the `page` parameter.<br><br>You can [read more about search pagination](/api_reference/#pagination). |
 | `results` | object | Contains payments matching your search criteria. |
 | `amount` | number | The amount, in pence, the user has paid or will pay. |
 | `description` | string | The description assigned to the payment when it was created. |
