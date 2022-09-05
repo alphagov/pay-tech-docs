@@ -25,22 +25,12 @@ __Confirm__ on the __Confirm your details__ page:
 `POST /v1/payments/{PAYMENT_ID}/capture` endpoint to send a delayed capture
 request
 
-There are 7 possible responses:
-
-|Status code | Meaning |
-|:---|:---|
-|204| Your capture request succeeded. |
-|400| The server cannot process the request due to a client error, for example missing details in the request or a failed payment cancellation. |
-|401|	Required authentication has failed or has not been provided. |
-|404| No payment matched the `paymentId` you provided. |
-|409| You cannot capture the payment because its `status` is not `capturable`. |
-|429|	Too many requests. Request rate is above the rate limit. |
-|500| Something is wrong with GOV.UK Pay. Please [contact us](/support_contact_and_more_information/). |
-
 Your service must send the delayed capture request within 120 hours (5 days) of creating the payment, regardless of how long your user takes to complete the payment flow. If you do not, [the payment will expire](/payment_flow/#6-your-user-confirms-payment).
 
 If you've enabled sending payment confirmation emails, GOV.UK Pay will send a
 payment confirmation email to your user once we've received and processed your service’s capture request.
+
+You can see definitions and possible values of every parameter and attribute for this endpoint in our [API reference](/api_reference/capture_payment_reference). You can also view [possible responses to your capture request](/api_reference/#responses).
 
 ## See the capture URL for a payment
 

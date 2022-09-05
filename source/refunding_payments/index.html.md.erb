@@ -71,6 +71,8 @@ Example refund request:
 }
 ```
 
+You can see definitions and possible values of every parameter and attribute for this endpoint in our [API reference](/api_reference/refund_payment_reference).
+
 ### amount
 
 `amount` is how much to refund your user in pence. You can refund all or part of the payment.
@@ -132,6 +134,8 @@ Example response:
   }
 }
 ```
+
+You can see definitions and possible values of every attribute for this endpoint in our [API reference](/api_reference/refund_status_reference).
 
 ### settlement_summary
 
@@ -225,6 +229,8 @@ Example response:
 }
 ```
 
+You can see definitions and possible values of every parameter and attribute for this endpoint in our [API reference](/api_reference/payment_refunds_reference).
+
 ## Searching refunds
 
 `GET /v1/refunds?{QUERY_PARAMETERS}`
@@ -279,6 +285,8 @@ Example search response:
 ```
 
 The `_links` object includes a `payment` URL and method that you can use to get information about the payment the refund is for.
+
+You can see definitions and possible values of every parameter and attribute for this endpoint in our [API reference](/api_reference/search_refunds_reference).
 
 ### Filtering by date
 
