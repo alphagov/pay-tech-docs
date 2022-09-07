@@ -22,7 +22,9 @@ You can receive updates when:
 * a payment is settled
 * a payment is refunded
 
-You can create webhooks in the GOV.UK Pay admin tool. After selected payment events, your webhook sends a webhook message using a `POST` request to a secure callback URL you’ve configured. Your service acknowledges receipt of the webhook message.
+After each of these payment events, your webhook sends a webhook message using a `POST` request to a secure callback URL you’ve configured. Your service acknowledges receipt of the webhook message.
+
+You can create webhooks in the GOV.UK Pay admin tool.
 
 ## Set up a callback URL to receive a webhook message
 
@@ -30,7 +32,7 @@ You need to set up an endpoint (callback URL) that can receive webhook messages 
 
 You must set up your endpoint to receive the `POST` body from your webhook and respond with a `2xx` successful reply within 15 seconds.
 
-Your callback URL must use HTTPS and present a valid certificate. You can use a HTTP URL for test accounts. GOV.UK webhooks support TLS version 1.2.
+Your callback URL must use HTTPS and present a valid certificate. GOV.UK webhooks support TLS version 1.2.
 
 ## Create a webhook
 

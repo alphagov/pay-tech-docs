@@ -62,7 +62,7 @@ This page has information about:
 |-----------------------------------------------|-----------------------------------------------------|------------------------------------|
 | [Create an agreement for recurring payments](/api_reference/create_an_agreement_reference)| `POST /v1/agreements`            | <nobr>Strongly consistent</nobr> |
 | [Search agreements for recurring payments](/api_reference/search_agreements_reference)| `GET /v1/agreements`            | <nobr>Eventually consistent</nobr> |
-| [Get information about a single agreement for recurring payments](/api_reference/single_agreement_reference)| <nobr> `GET </v1/agreements/{AGREEMENT_ID}`            | <nobr>Strongly consistent</nobr> |
+| [Get information about a single agreement for recurring payments](/api_reference/single_agreement_reference)| <nobr> `GET /v1/agreements/{AGREEMENT_ID}`            | <nobr>Strongly consistent</nobr> |
 | [Cancel an agreement for recurring payments](/api_reference/cancel_agreement_reference)| `POST /v1/agreements/{AGREEMENT_ID}/cancel`            | <nobr>Strongly consistent</nobr> |
 
 
@@ -210,7 +210,7 @@ These error descriptions are intended for developers, not your users.
 | P0402 | Search payments | The requested page of search results does not exist. |
 | P0498 | Search payments | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
 | P0500 | Cancel a payment | No payment matched the `{PAYMENT_ID}` you provided.<br><br>Check the `{PAYMENT_ID}` parameter you sent. |
-| P0501 | Cancel a payment | Cancelling the payment failed.<br><br>[Contact us with your error code](/support_contact_and_more_information/). |
+| P0501 | Cancel a payment | Cancelling the payment failed. This could be because this payment does not have a `cancel` attribute and so cannot be cancelled.<br><br>Read our [guidance on checking if you can cancel a payment](/making_payments/#check-if-you-can-cancel-a-payment).<br><br>If you think you should be able to cancel a payment but you're still receiving this error, [contact us](/support_contact_and_more_information/). |
 | P0502 | Cancel a payment | This payment cannot be cancelled. You can only cancel a payment if it has a `cancel` attribute when you check if you can cancel it. <br><br>There’s further [guidance on checking if you can cancel a payment](/making_payments/#check-if-you-can-cancel-a-payment). |
 | P0598 | Cancel a payment | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
 | P0600 | Refund a payment | No payment matched the `{PAYMENT_ID}` you provided.<br><br>Check the `{PAYMENT_ID}` parameter you sent. |
