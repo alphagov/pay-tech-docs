@@ -1,0 +1,51 @@
+---
+title: Use the API to take MOTO payments
+last_reviewed_on: 2022-02-21
+review_in: 6 months
+weight: 52
+---
+
+# Use the API to take MOTO payments
+
+If you have an integration with the GOV.UK Pay API, you can create MOTO payments through our API. Your paying user gives you their payment details by calling your service or sending their details through the post. An agent enters the paying user’s payment details and completes the payment.
+
+Make sure you've got your account [set up for MOTO (telephone or post) payments](LINK) first.
+
+## Create a MOTO payment using the GOV.UK Pay API
+
+1. If your PSP is Worldpay, go to **Services** in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) to make sure you're using an API key from your MOTO service. This is because you cannot use the same GOV.UK Pay account if your service takes both MOTO and online payments through Worldpay. If your PSP is Stripe you do not need to do this. If you need an API key you can create one in the **Settings** menu in the admin tool.
+
+2. [Use the API to create a payment](/making_payments/#creating-a-payment) (`POST /v1/payments`) and include `"moto": true` in the request body.
+
+3. Go to the [`next_url`](/making_payments/#receiving-the-api-response) included in the body of the response to your API call.
+
+4. Fill in your user’s payment details on the **Enter card details** page. The **Enter Card Details** page will not have a billing address field, even if you've enabled  billing address collection on your service.
+
+5. Confirm the payment on the **Confirm your payment** page. You will not need to do 3D Secure confirmation.
+
+### Taking a payment by post
+
+If you're taking a payment by post, make sure you've collected your user's:
+
+  - card number
+  - card expiry date
+  - card security code
+  - name from their card
+  - email address - if you’ve [enabled collecting your users’ email addresses](/integrate_with_govuk_pay/#collecting-your-users-39-billing-addresses)
+
+## Hide users' card information
+
+When taking payments over the phone, you can hide the card information of paying users. When a call centre agent enters a user’s card information, the details are hidden like a password. This protects the paying user’s card information from anyone that can see the call centre agent’s screen. You can hide:
+
+- the card number
+- the card verification value (CVV) or card verification code (CVC)
+
+To hide or unhide this information, you must have the Administrator role for your MOTO service. To see if you are an admin for a service, select **Manage team members** from the **Overview** screen.
+
+This change takes immediate effect, so you should tell your service team staff before changing these settings.
+
+1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk).
+1. Select the account you want to change.
+1. Go to **Settings** and then **Security**.
+1. Go to either **Hide card numbers** or **Hide card security codes** and select **Change**.
+1. Select either **Hidden** or **Visible** and then **Save changes**.

@@ -1,212 +1,58 @@
 ---
-title: Take a payment over the phone ('MOTO' payments)
+title: Take payments over the phone or by post ('MOTO')
 last_reviewed_on: 2022-02-21
 review_in: 6 months
 weight: 52
 ---
 
-# Take a payment over the phone (‘MOTO’ payments)
+# Take payments over the phone or by post (‘MOTO’)
 
-GOV.UK Pay can set up your GOV.UK Pay account so you can fill in GOV.UK Pay payment pages with your users’ details.
-
-This means you can take payments:
-
-- over the phone
-- by post
+We can set up your GOV.UK Pay account so you can fill in GOV.UK Pay MOTO payment pages with your users’ details. This means you can take payments over the phone and by post. This kind of payment does not have a section for billing addresses because they are not needed. 3D Secure does not apply to MOTO payments.
 
 These payments are also known as Mail Order / Telephone Order (MOTO) payments.
 
-There are 2 ways to take MOTO payments through GOV.UK Pay. You can:
+There are 3 ways to take MOTO payments through GOV.UK Pay. You can:
 
-- integrate with the GOV.UK Pay API
-- use telephone payment links
+* [use the admin tool to take MOTO payments](/moto_payments/moto_admin_tool)
+* [use the API to take MOTO payments](/moto_payments/moto_api)
+* [use an external system to send card details through the API](/moto_payments/moto_send_card_details_api)
+
+You need to set up MOTO payments on your GOV.UK Pay account before you can take payments over the phone or through the post.
 
 ## Set up MOTO payments
 
-Before you can take payments over the phone, you need to set up MOTO payments.
+<%= warning_text('If your PSP is Worldpay, you\'ll need to have separate services set up for MOTO and non-MOTO payments.')%>
 
 You can set up MOTO payments on a test account or a live account.
 
-MOTO payment screens are the same as online payment screens, except they do not have a section for billing addresses. 3D Secure does not apply to MOTO payments.
-
-### Set up MOTO payments on a test account
+### Test account - set up MOTO payments
 
 Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) and ask us to enable MOTO payments on your test account.
 
-You do not need to provide any supporting information at this time.
+You do not need to provide any supporting information yet.
 
-### Set up MOTO payments on a live account
+### Live account - set up MOTO payments
 
-How you set up MOTO payments on a live account differs depending on what PSP you use.
+How you set up MOTO payments on a live account differs depending on whether you use Stripe or Worldpay as your PSP.
 
-You'll be using one of the following PSPs:
-
-- Stripe
-- Worldpay
-
-#### Set up MOTO payments on a live account with Stripe
+#### Stripe - set up MOTO payments on a live account
 
 1. Make sure you comply with the [Payment Card Industry Data Security Standards (PCI DSS)](https://www.pcisecuritystandards.org/document_library?category=pcidss&document=pci_dss).
 
-1. Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) to confirm you are PCI DSS compliant and would like to take MOTO payments on your account. We’ll email you to let you know we’ve enabled MOTO payments.
+2. Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) to confirm you are PCI DSS compliant and would like to take MOTO payments on your account. We’ll email you to let you know we’ve enabled MOTO payments.
 
-1. You can now [take MOTO payments through the GOV.UK Pay API](#create-a-moto-payment-using-the-gov-uk-pay-api). If you do not have a technical team to help you integrate with our API, you’ll need to [set up a telephone payment link instead](#set-up-a-telephone-payment-link-optional).
+3. [Set up your telephone payment link](#set-up-a-telephone-payment-link-optional).
 
-#### Set up MOTO payments on a live account with Worldpay
+#### Worldpay - set up MOTO payments on a live account
 
 1. Create a new MOTO service that is separate from your online payments service - to do this, sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk) and select **Add a new service**.
 
-1. You need to process MOTO payments on a separate MOTO merchant code to the one you use for online payments. If you do not already have a merchant code for MOTO payments, ask for one by contacting Government Banking. You’ll use this merchant code when you [connect your new service to your PSP](https://docs.payments.service.gov.uk/switching_to_live/#go-live).
+2. You need to process MOTO payments on a separate MOTO merchant code to the one you use for online (non-MOTO) payments. If you do not already have a merchant code for MOTO payments, ask for one by contacting Government Banking. You’ll use this merchant code when you [connect your new service to your PSP](https://docs.payments.service.gov.uk/switching_to_live/#go-live).
 
-1. Make sure you comply with the [Payment Card Industry Data Security Standards (PCI DSS)](https://www.pcisecuritystandards.org/document_library?category=pcidss&document=pci_dss).
+3. Make sure you comply with the [Payment Card Industry Data Security Standards (PCI DSS)](https://www.pcisecuritystandards.org/document_library?category=pcidss&document=pci_dss).
 
-1. Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) to confirm you are PCI DSS compliant and would like to take MOTO payments on your account. We’ll email you to let you know we’ve enabled MOTO payments.
+4. Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) to confirm you are PCI DSS compliant and would like to take MOTO payments on your account. We’ll email you to let you know we’ve enabled MOTO payments.
 
-1. You can now [take MOTO payments through the GOV.UK Pay API](#create-a-moto-payment-using-the-gov-uk-pay-api). If you do not have a technical team to help you integrate with our API, you’ll need to [set up a telephone payment link instead](#set-up-a-telephone-payment-link-optional).
+5. [Set up your telephone payment link](#set-up-a-telephone-payment-link-optional).
 
 You can still [take online payments](https://docs.payments.service.gov.uk/making_payments/) through your non-MOTO service.
-
-### Set up a telephone payment link (optional)
-
-Telephone payment links allow you to take payments over the phone without having to integrate with the GOV.UK Pay API. Your call centre agents take calls from paying users and process payments through the GOV.UK Pay admin tool. The agent takes:
-
-- the user's payment reference
-- the payment amount
-- the user's card details
-
-Before you set up a telephone payment link, you must have [set up MOTO payments on your account](#set-up-moto-payments).
-
-You can only have one telephone payment link for each MOTO service.
-
-GOV.UK Pay is still developing telephone payment links and this functionality may change depending on user feedback.
-
-To set up a telephone payment link:
-
-1. Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) and request access to telephone payment links for your MOTO service.
-
-1. Give GOV.UK Pay the details of the telephone payment link when we ask you.
-
-#### Provide telephone payment link details
-
-The GOV.UK Pay support team will request details to create your telephone payment link. These details display as static text every time a call centre agent uses the payment link. Because you can only have one telephone payment link for each service, these details should be applicable to any payment you’ll take with this link.
-
-GOV.UK Pay will request:
-
-- [a payment description](#payment-description)
-- [details](#details-optional) (optional)
-- [the name of the reference](#name-of-the-reference)
-- [reference hint text](#reference-hint-text-optional) (optional)
-
-After you provide the telephone payment link details, we’ll notify you when we’ve created the telephone payment link for your service.
-
-##### Payment description
-
-The payment description explains the purpose of the payment. This description should help the paying user understand what they are paying for.
-
-For example, ‘Pay your council tax.’
-
-Call centre agents can see the payment description while taking the payment.
-
-Paying users can see this description in the payment confirmation email.
-
-##### Details (optional)
-
-These optional details can help to guide your call centre agent through the telephone payment. You can use ‘Details’ to remind your call centre agents to say or ask for certain things.
-
-For example, ‘Remind the paying user that we are recording this call for quality and training purposes.’
-
-Call centre agents can see these extra details at the start of the telephone payment process.
-
-Paying users will not be able to see this ‘Details’ description.
-
-##### Name of the reference
-
-The name of the reference is the name your service uses for unique payment references.
-
-For example, the name of the reference could be ‘Invoice number’ or ‘Customer ID’.
-
-Call centre agents can see this name next to the input field when they are entering the user’s reference.
-
-##### Reference hint text (optional)
-
-Reference hint text is guidance that call centre agents can give to the paying user to help them find their unique payment reference.
-
-For example, ‘Your customer ID is an 8 digit number. You can find it on any letter from Leeds City Council.’
-
-Call centre agents can see this hint text when they are entering the customer’s reference.
-
-Paying users will not be able to see the reference hint text.
-
-#### Assign user roles to access a telephone payment link
-
-Once GOV.UK Pay has created your telephone payment link, you can assign 2 new roles to your call centre agents in the GOV.UK Pay admin tool:
-
-- **View and take telephone payments**
-- **View, refund and take telephone payments**
-
-Users with these roles can take telephone payments from the service dashboard in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services). Users with **View, refund and take telephone payments** can also refund telephone payments.
-
-Assign these roles to your call centre agents to begin taking telephone payments. To assign the roles, select **Manage team members** for your MOTO service in the GOV.UK Pay admin tool.
-
-## Take a MOTO payment
-
-There are 2 ways to take payments over the phone through GOV.UK Pay. You can:
-
-- [take a MOTO payment using a telephone payment link](#take-a-moto-payment-using-a-telephone-payment-link)
-- [create a MOTO payment using the GOV.UK Pay API] (#create-a-moto-payment-using-the-gov-uk-pay-api)
-
-### Take a MOTO payment using a telephone payment link
-
-For your service to take a payment using a telephone payment link, you must have set up:
-
-- [MOTO payments](#set-up-moto-payments)
-- [a telephone payment link](#set-up-a-telephone-payment-link-optional)
-
-Users with one of the following roles can use the GOV.UK Pay admin tool to take a telephone payment:
-
-- **Administrator**
-- **View and take telephone payments**
-- **View, refund and take telephone payments**
-
-To take a telephone payment, open the service that has an associated telephone payment link in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) and select **Take a telephone payment**. Follow the instructions to take the payment.
-
-### Create a MOTO payment using the GOV.UK Pay API
-
-Before you create a MOTO payment, you must have [set up MOTO payments](#set-up-moto-payments).
-
-Follow these steps to create and complete the MOTO payment using the GOV.UK Pay API.
-
-1. If your PSP is Worldpay, go to **Services** in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) to make sure you're using an API key from your MOTO service.
-
-2. [Create a payment](/making_payments/#creating-a-payment) with the GOV.UK Pay API, and include `"moto": true` in the request body.
-
-3. Go to the [`next_url`](/making_payments/#receiving-the-api-response) included in the body of the response to your API call.
-
-4. Fill in your user’s information on the **Enter card details** page. The **Enter Card Details** page will not have a billing address field, even if you've enabled  billing address collection on your service.
-
-5. Confirm the payment on the **Confirm your payment** page. You will not need to do 3D Secure confirmation.
-
-If you're taking a payment by post, make sure you've collected your user's:
-
-  - card number
-  - card expiry date
-  - card security code
-  - name from their card
-  - email address - if you’ve [enabled collecting your users’ email addresses](/integrate_with_govuk_pay/#collecting-your-users-39-billing-addresses)
-
-## Hide users' card information
-
-When taking payments over the phone, you can hide the card information of paying users. When a call centre agent enters a user’s card information, the details are hidden like a password. This protects the paying user’s card information from anyone that can see the call centre agent’s screen. You can hide:
-
-- the card number
-- the card verification value (CVV) or card verification code (CVC)
-
-To hide or unhide this information, you must have the Administrator role for your MOTO service. To see if you are an admin for a service, select **Manage team members** from the **Overview** screen.
-
-This change takes immediate effect, so you should tell your service team staff before changing these settings.
-
-1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk).
-1. Select the account you want to change.
-1. Go to **Settings** and then **Security**.
-1. Go to either **Hide card numbers** or **Hide card security codes** and select **Change**.
-1. Select either **Hidden** or **Visible** and then **Save changes**.
