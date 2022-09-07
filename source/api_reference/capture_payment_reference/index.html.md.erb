@@ -18,7 +18,7 @@ You can also [read more about setting up and creating delayed payments, as well 
 The URL for this endpoint is:
 
 ```
-https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}/capture
+POST https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}/capture
 ```
 
 You can use this endpoint to take ('capture') a delayed payment from the paying user's bank account.
@@ -38,6 +38,8 @@ This example request captures the delayed payment with the payment ID `hu20sqlac
 ```
 curl -X POST "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/capture" -H "Authorization: Bearer api_test_123abc456def"
 ```
+
+You do not need to send anything in the body of requests to this endpoint.
 
 ## Example response for ‘Take a delayed payment’
 
