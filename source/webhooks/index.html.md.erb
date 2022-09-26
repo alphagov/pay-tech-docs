@@ -1,8 +1,8 @@
 ---
 title: Receive automatic payment event updates using webhooks
-last_reviewed_on: 2022-08-20
+last_reviewed_on: 2022-09-23
 review_in: 1 months
-weight: 65
+weight: 3300
 ---
 
 # Receive automatic payment event updates using webhooks
@@ -116,12 +116,12 @@ When your webhook sends a message, it’ll look like this:
 
 ```json
 {
-  "id": "123abc",
-  "api_version": 1
+  "webhook_message_id": "123abc",
+  "api_version": 1,
   "created_date": "2019-07-11T10:36:26.988Z",
   "resource_id": "hu20sqlact5260q2nanm0q8u93",
-  "resource_type": "PAYMENT",
-  "event_type": "CARD_PAYMENT_CAPTURED"
+  "resource_type": "payment",
+  "event_type": "card_payment_captured",
   "resource": {
     "amount": 5000,
     "description": "Pay your council tax",
@@ -159,7 +159,7 @@ When your webhook sends a message, it’ll look like this:
     "delayed_capture": false,
     "moto": false,
     "provider_id": "10987654321",
-    "return_url": "https://your.service.gov.uk/completed",
+    "return_url": "https://your.service.gov.uk/completed"
   }
 }
 ```
@@ -172,8 +172,8 @@ When your webhook sends a message, it’ll look like this:
 | `created_date`  | date (ISO 8601) | When the payment event happened and activated the webhook.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `resource_id`   | string          | The unique ID that GOV.UK Pay automatically generated for the payment or reference.<br><br>When the resource is a payment, `resource_id` is identical to the `payment_id`. When the resource is a refund, `resource_id` is identical to the `refund_id`.                                                                                                                                                                                                                                                                                                                                                                                     |
 | `resource`       | object          | Contains details of the payment or refund that has activated the webhook.<br><br>Attributes in `resource` are the same as you get when finding a payment in the GOV.UK Pay API. <br><br>You can [read about the attributes in the `resource` object on our reference page for getting information about a payment](/api_reference/single_payment_reference).                                                                                                                                                                                                                                                                                                                                                                                             |
-| <nobr>`resource_type` | string          | Indicates whether the `resource` is a payment or a refund.<br><br>`resource_type` is one of the following:<br><br><li>`PAYMENT`<br><li>`REFUND`|
-| `event_type`    | string          | The event that activated the webhook. This value will be one of [the events you selected when you created the webhook](/webhooks/#create-a-webhook).<br><br>Possible values are:<br><br><li>`CARD_PAYMENT_SUCCEEDED` - your payment service provider has authorised the payment<br><li>`CARD_PAYMENT_CAPTURED` - GOV.UK Pay has taken (‘captured’) the payment from the user’s bank account<br><li>`CARD_PAYMENT_SETTLED` - your payment service provider has sent the payment to your bank account.<br><li>`CARD_PAYMENT_REFUNDED` - the refund has been sent to the user’s bank account by your payment service provider |
+| <nobr>`resource_type` | string          | Indicates whether the `resource` is a payment or a refund.<br><br>`resource_type` is one of the following:<br><br><li>`payment`<br><li>`refund`|
+| `event_type`    | string          | The event that activated the webhook. This value will be one of [the events you selected when you created the webhook](/webhooks/#create-a-webhook).<br><br>Possible values are:<br><br><li>`card_payment_succeeded` - your payment service provider has authorised the payment<br><li>`card_payment_captured` - GOV.UK Pay has taken (‘captured’) the payment from the user’s bank account<br><li>`card_payment_settled` - your payment service provider has sent the payment to your bank account.<br><li>`card_payment_refunded` - the refund has been sent to the user’s bank account by your payment service provider |
 
 ### Retry mechanism
 

@@ -1,8 +1,8 @@
 ---
 title: Integrate with the GOV.UK Pay API
-last_reviewed_on: 2022-02-21
+last_reviewed_on: 2022-09-07
 review_in: 6 months
-weight: 140
+weight: 6100
 ---
 
 # Integrate with the GOV.UK Pay API
@@ -129,7 +129,7 @@ In most cases, you’ll want to confirm that a payment has been completed before
 
 The following example UML sequence diagram shows a typical happy-path payment journey:
 
-![Typical happy-path user payment sequence](/images/happy-path-sequence.svg)
+![Typical happy-path user payment sequence](/images/happy-path-payment-journey.svg)
 
 ## Identifying your user when they return to your service
 
@@ -184,7 +184,7 @@ In order to use a mop-up job, you need:
 
 The following UML sequence diagram shows an example of an incomplete payment journey, and how a mop-up job would clean it up:
 
-![A mop-up job acting on an incomplete payment journey](/images/incomplete-payment-journey-sequence.svg)
+![A mop-up job acting on an incomplete payment journey](/images/automatic-mop-up-job.svg)
 
 Your mop-up job should run frequently, for example every half an hour. The mop-up job should ignore payments made in the past 3 hours to avoid interfering with payments that are still being processed.
 
