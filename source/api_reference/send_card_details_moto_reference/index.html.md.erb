@@ -14,7 +14,7 @@ This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an in
 * example responses
 * attributes you’ll get in your response
 
-You can [read more about sending card details through our API in our task-based guidance](/send_card_details_api).
+You can [read more about sending card details through our API in our task-based guidance](/moto_payments/moto_send_card_details_api).
 
 The URL for this endpoint is:
 
@@ -32,7 +32,7 @@ The data from this endpoint is ‘strongly consistent’, meaning it is updated 
 
 | Name                 | Type   | Description                                                                                                                                                                                                                                                                                                                                                                     |
 | -------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `one_time_token` | string | A single use token that identifies the payment to authorise and authenticates this request.<br><br>GOV.UK Pay returns a `one_time_token` when you create a payment with `authorisation_mode` set to `moto_api`.<br><br>You can [read more about creating and authorising MOTO payments by sending card details through the API](/send_card_details_api). |
+| `one_time_token` | string | A single use token that identifies the payment to authorise and authenticates this request.<br><br>GOV.UK Pay returns a `one_time_token` when you create a payment with `authorisation_mode` set to `moto_api`.<br><br>You can [read more about creating and authorising MOTO payments by sending card details through the API](/moto_payments/moto_send_card_details_api). |
 | `card_number`     | string | The full card number from the paying user’s card.                                                                                                                                                                                                                                                                                                                               |
 | `cvc`              | string | The card verification code (CVC) or card verification value (CVV) on the paying user’s card.                                                                                                                                                                                                                                                                                    |
 | `expiry_date`     | string | The expiry date of the card the user paid with.<br><br>This value must be in `MM/YY` format.                                                                                                                                                                                                                                                                                  |

@@ -1,0 +1,85 @@
+---
+title: Take telephone or postal ('MOTO') payments using the GOV.UK Pay admin tool
+last_reviewed_on: 2022-02-21
+review_in: 6 months
+weight: 10
+---
+
+# Take telephone or postal ('MOTO') payments using the GOV.UK Pay admin tool
+
+You can take payments over the phone or by post without integrating with the API. A paying user calls or posts their details to your service. One of your agents logs in to the GOV.UK Pay admin tool and enters the paying user’s details.
+
+The agent takes:
+
+- the user's payment reference
+- the payment amount
+- the user's card details
+
+You can only have one telephone payment link for each MOTO service.
+
+The MOTO payment pages your agents use are similar to the pages your paying users use when making standard payments except they do not have a section for the billing address.
+
+Make sure you've enabled [MOTO (telephone or post) payments](/moto_payments/#enable-moto-payments) on your service first.
+
+## Set up a MOTO payment page
+
+Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk). In your email,  ask for access to MOTO payment pages for your service and include details for the MOTO payment page.
+
+The details you include in your email will display on the MOTO payment page every time a call centre agent uses it. Because you can only have one payment page for each service, these details should be applicable to any payment you’ll take with this page.
+To set up your MOTO payment page, we need:
+
+- [a payment description](#payment-description)
+- [details](#details-optional) (optional)
+- [the name of the reference](#name-of-the-reference)
+- [reference hint text](#reference-hint-text-optional) (optional)
+
+After you provide the details, we’ll tell you when we’ve created the page.
+
+### Payment description
+
+The payment description explains the purpose of the payment. This description should help the paying user understand what they are paying for.
+
+For example, ‘Pay your council tax.’
+
+Call centre agents can see the payment description while taking the payment.
+
+Paying users can see this description in the payment confirmation email.
+
+### Details (optional)
+
+These optional details can help to guide your call centre agent through the telephone payment. You can use ‘Details’ to remind your call centre agents to say or ask for certain things.
+
+For example, "Remind the paying user that we are recording this call for quality and training purposes."
+
+Call centre agents can see these extra details at the start of the payment process.
+
+Paying users will not be able to see this ‘Details’ description.
+
+### Name of the reference
+
+The name of the reference is the name your service uses for unique payment references.
+
+For example, the name of the reference could be "Invoice number" or "Customer ID".
+
+Call centre agents can see this name next to the input field when they are entering the user’s reference.
+
+### Reference hint text (optional)
+
+Reference hint text is guidance that agents can give to the paying user to help them find their unique payment reference.
+
+For example, "Your customer ID is an 8 digit number. You can find it on any letter from Leeds City Council."
+
+Call centre agents can see this hint text when they are entering the customer’s reference.
+
+Paying users will not be able to see the reference hint text.
+
+## Assign user roles to access a MOTO payment page
+
+Once GOV.UK Pay has created your MOTO payment page, you can assign 2 new roles to your agents in the GOV.UK Pay admin tool:
+
+* **View and take telephone payments**
+* **View, refund and take telephone payments**
+
+To assign the roles, select **Manage team members** for your MOTO service in the GOV.UK Pay admin tool.
+
+Users with these roles can take payments from the service dashboard in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) by selecting **Take a telephone payment**. Users with **View, refund and take telephone payments** can also refund payments.
