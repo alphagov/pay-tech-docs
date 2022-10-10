@@ -14,7 +14,7 @@ This page is part of [GOV.UK Pay’s API reference](/api_reference) and is an in
 * example responses
 * attributes you’ll get in your response
 
-You can also [read more about the GOV.UK Pay refund process in our task-based guidance](https://docs.payments.service.gov.uk/reporting/).
+You can also [read more about the GOV.UK Pay refund process in our task-based guidance](https://docs.payments.service.gov.uk/refunding_payments/).
 
 The URL for this endpoint is:
 
@@ -30,8 +30,8 @@ The data from this endpoint is strongly consistent, meaning it is updated immedi
 
 | Name | Type | Description |
 |-----|-----|-----|
-| `{PAYMENT_ID}` (required) | string | The unique ID of the payment you want to view a refund of.<br><br>GOV.UK Pay associates a unique `paymentId` with a payment [when you create that payment](/making_payments/#reference).  |
-| `{REFUND_ID}` (required) | string | The unique ID of the refund you want to view.<br><br>GOV.UK Pay associates a unique `refundId` with a refund [when you refund a payment](/refunding_payments).<br><br>If one payment has multiple refunds, each refund has a different `refund_id`. |
+| `{PAYMENT_ID}` (required) | string | The unique ID of the payment you want to view a refund of.<br><br>GOV.UK Pay associates a unique `paymentId` with a payment when you create that payment.  |
+| `{REFUND_ID}` (required) | string | The unique ID of the refund you want to view.<br><br>GOV.UK Pay associates a unique `refundId` with a refund when you refund a payment.<br><br>If one payment has multiple refunds, each refund has a different `refund_id`. |
 
 ## Example request for ‘Check the status of a refund’
 

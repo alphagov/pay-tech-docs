@@ -30,7 +30,7 @@ The data from this endpoint is ‘strongly consistent’, meaning it is updated 
 
 | Name | Type | Description |
 |-----|-----|-----|
-| `amount` (required) | number | Sets the amount the user will pay, in pence.<br><br>Maximum value is `10000000` (£100,000).<br><br> You can [read more about `amount`](/making_payments/#amount). |
+| `amount` (required) | number | Sets the amount the user will pay, in pence.<br><br>Maximum value is `10000000` (£100,000). |
 | `reference` (required) | string | Associate a reference with this payment. <br><br>`reference` is not unique - multiple payments can have identical `reference` values.<br><br>Limited to 255 characters and must not contain URLs. |
 | `return_url` (required) | string | The URL the paying user is directed to after their payment journey on GOV.UK Pay ends.<br><br>Limited to 2,000 characters and must not be JSON-encoded.<br><br>You can [read more about choosing your return URL and matching paying users to payments](/making_payments/#choose-the-return-url-and-match-your-users-to-payments). |
 | `description` (required) | string | A human-readable description of the payment you're creating. Paying users see this description on the payment pages. Service staff see the description in the GOV.UK Pay admin tool.<br><br>Limited to 255 characters and should not contain URLs. |

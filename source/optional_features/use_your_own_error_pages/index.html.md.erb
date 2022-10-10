@@ -22,8 +22,7 @@ Terminal, unsuccessful payment states are:
 
 If you use this feature, GOV.UK Pay will immediately redirect your user to the
 `return_url` when a payment reaches a terminal unsuccessful
-state. You can [set the `return_url` manually for your service](/making_payments/#return-url) in the request
-to the `POST /v1/payments` API call.
+state. You can set the `return_url` manually when you [create a payment](/making_payments/#creating-a-payment) with the `POST /v1/payments` API call.
 
 You should configure your service to query payments to determine what
 payment failure states are from API responses. Once your service
