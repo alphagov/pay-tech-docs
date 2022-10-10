@@ -42,6 +42,7 @@ after_build do |builder|
 end
 
 redirect "payment_flow_overview/index.html", to: "payment_flow/index.html"
+redirect "send_card_details_api/index.html", to: "moto_payments/moto_send_card_details_api/index.html"
 
 # Expose external assets (common analytics files) to to sprockets loader
 sprockets.append_path File.join root, "node_modules"
