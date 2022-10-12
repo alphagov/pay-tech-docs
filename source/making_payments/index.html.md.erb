@@ -25,6 +25,13 @@ The call to create a payment with the GOV.UK Pay API is:
 
 `POST  /v1/payments`
 
+You must send the following parameters in your request body when creating a payment:
+
+* the amount the user will pay, in pence (`amount`)
+* a reference to help you identify the payment (`reference`)
+* a human-readable description of the purpose of the payment (`description`)
+* a URL GOV.UK Pay will redirecty your paying to after they complete their payment (`return_url`)
+
 For example:
 
 ```javascript
@@ -54,15 +61,19 @@ For example:
 }
 ```
 
-### API call parameters
+You can see definitions, values, and the limits of every parameter for this endpoint in our [API reference](/api_reference/create_a_payment_reference).
 
-You can see definitions and possible values of every parameter and attribute for this endpoint in our [API reference](/api_reference/create_a_payment_reference).
+Depending on your integration, you can also:
+
+* [delay taking a payment](/delayed_capture)
+* [prefill some of the fields on the user's payment page](/optional_features/prefill_user_details/)
+* [add custom metadata to a payment](/custom_metadata/)
+* [use Welsh on your payment pages](/optional_features/welsh_language/)
+* [take the payment over the phone](/moto_payments)
 
 #### amount
 
-`amount` is the amount in pence. In the example, the payment is for £145.
-
-The amount must be a number data type rather than a string.
+The `amount` parameter sets the payment amount in pence.
 
 The minimum amount is one pence plus your payment service provider's (PSP's) transaction fee. To see your PSP's transaction fee, check your contract by either:
 
@@ -82,51 +93,9 @@ If you need to take payments above the maximum amount, either:
 - [contact us](/support_contact_and_more_information/)
 - [contact Government Banking](mailto:serviceteam.gbs@hmrc.gov.uk) if you are using Worldpay
 
-#### delayed_capture
-
-You can use this field to [delay taking a payment](/delayed_capture/#delay-taking-a-payment).
-
-#### description
-
-`description` is a human-readable description of the payment. This is shown to your user on the payment pages and to your staff on the GOV.UK Pay admin tool.
-
-The description must be no longer than 255 characters, and must not contain URLs.
-
-#### email and prefilled_cardholder_details
-
-You can use the `email` and `prefilled_cardholder_details` parameters to [prefill some of the fields on the **Enter card details** page](/optional_features/prefill_user_details/#prefill-payment-fields).
-
-#### language
-
-You can use the `language` field to [use Welsh on your payment pages](/optional_features/welsh_language/#use-welsh-on-your-payment-pages).
-
-#### metadata
-
-You can use the `metadata` parameter to [add custom metadata](/custom_metadata/#add-custom-metadata).
-
-#### reference
-
-`reference` is the reference number you wish to associate with this payment.
-
-The reference number does not need to be unique, and must not:
-
-- be longer than 255 characters
-- contain URLs
-
-The format is variable. If you have an existing format, you can keep using it if your values are no longer than 255 characters.
-
-#### return_url
-
-This is a URL that your service hosts for your user to return to, after their payment journey on GOV.UK Pay ends.
-
-You must [use HTTPS for your `return_url`](/security/#https), but you can use
-HTTP with test accounts.
-
-The URL must be no longer than 2,000 characters, and must not be JSON-encoded because backslashes are invalid characters in the API.
-
 ## Receiving the API response
 
-Example response:
+If your request to create a payment succeeds, you'll receive a response that looks like this:
 
 ```json
 {
@@ -157,72 +126,34 @@ Example response:
 }
 ```
 
-There are two URLs in the `_links` object -- one in the `self` section and one in the `next_url` section.
+This response includes:
 
-The URL in `self` is the unique URL for the new payment. You can also find this URL in the `Location` response header. A `GET` request to this URL returns information about the new payment and its status.
+* the details you sent in your request (`amount`, `description`, `reference`, `return_url`)
+* a unique ID GOV.UK Pay assigned to this payment (`payment_id`)
+* a unique ID your PSP assigned to this payment (`provider_id`)
+* the date and time you created the payment (`created_date`)
+* the URL the paying user will visit to make this payment (`_links.next_url`)
+* the URL and method you can use to check the status of this payment (`_links.self`)
+* other URLs and API methods for further actions for this payment (`_links`)
 
-The `next_url` is the URL the paying user will visit to make their payment. You should direct your users to this URL.
-
-Your service needs to store the `self` URL or the `payment_id` for each new payment you create. This is so you can check on the status of these payments later.
+You can see full definitions and values for every response attribute in our [API reference](/api_reference/create_a_payment_reference).
 
 Read more about [reporting](/reporting/#report-on-a-payment) and [payment flow](/payment_flow/#how-gov-uk-pay-works).
 
 <%= warning_text('Do not expose the `next_url` to anyone other than your paying user. Anyone in possession of the `next_url` could hijack your user’s payment.') %>
-
-### API response fields
-
-#### \_links
-
-The `_links` object includes `href` and `method` fields that you can use to make API requests related to the payment. Use the fields in:
-
-- `self` to [get information about the payment](/reporting/)
-- `events` to [get the payment's events](/reporting/#get-a-payment-s-events)
-- `refunds` to [get all refunds for the payment](/refunding_payments/#get-all-refunds-for-a-single-payment)
-- `cancel` to [cancel the payment](/making_payments/#cancel-a-payment-that-s-in-progress)
-
-The `_links` object also includes a `next_url_post` object,  For example:
-
-```json
-"next_url_post": {
-   "type": "application/x-www-form-urlencoded",
-   "params": {
-       "chargeTokenId": "bb0a272c-8eaf-468d-b3xf-ae5e000d2231"
-   },
-   "href": "https://www.payments.service.gov.uk/secure",
-   "method": "POST"
-},
-```
-
-You can use the `href` and `chargeTokenId` to make a `POST` API request to `next_url`, instead of a `GET` API request.
-
-#### created_date
-
-`created_date` is when you created the payment, in [ISO
-8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard).
-
-#### payment_provider
-
-`payment_provider` is the name of your payment service provider (PSP), or `sandbox` if you're using a test ('sandbox') account.
-
-#### provider_id
-
-`provider_id` is the unique ID your PSP generated for this payment.
-
-#### state
-
-Use `state` to see the [status of the payment](/api_reference/#payment-status-lifecycle).
 
 ## Track the progress of a payment
 
 You can track the progress of a payment by [getting information about it from the reporting API](/reporting/#get-information-about-a-single-payment) or [by receiving automatic updates through a webhook](/webhooks).
 
 The status of the payment will pass through several states until it either
-succeeds or fails. Read more about the [payment status lifecycle](https://docs.payments.service.gov.uk/api_reference/#payment-status-lifecycle).
+succeeds or fails. Read more about the [payment status lifecycle in our API reference](https://docs.payments.service.gov.uk/api_reference/#payment-status-lifecycle).
 
 ## Choose the return URL and match your users to payments
 
-For security reasons, GOV.UK Pay does not add the `payment_id` or outcome to
-your `return_url` as parameters.
+For security reasons, GOV.UK Pay does not add the `payment_id` or outcome to your `return_url` as parameters.
+
+You must [use HTTPS for your `return_url`](/security/#https), but you can use HTTP with test accounts.
 
 You can match your users with payments with an encrypted cookie, or by creating a
 secure random ID:
@@ -230,7 +161,7 @@ secure random ID:
 ### Use an encrypted cookie
 
 You can use an encrypted cookie containing the payment ID from GOV.UK Pay. Your
-service should issue this when a payment is created, before sending your user
+service should issue this when you create a payment, before sending your user
 to `next_url`. Your users will not be able to decrypt an encrypted cookie, so a
 malicious user could not alter the payment ID and intercept other users’
 payments.
@@ -242,7 +173,7 @@ the `return_url`. You should use a different `return_url` for each payment.
 Malicious users will be unable to guess securely generated UUIDs.
 
 If you use this method, you should store your IDs safely. For example, in a
-datastore mapped to the payment ID just after a payment is created.
+datastore mapped to the payment ID just after you create a payment.
 
 <%= warning_text('Make sure the way you match your returning users to payments is tamper-proof. <br><br> For example, don’t store the payment ID in an unencrypted cookie or rely on a `return_url` parameter that isn’t secret (like the payment ID or reference).') %>
 
@@ -266,8 +197,7 @@ If your user is directed to the `return_url`, they could have:
 ## When your user does not complete their payment journey
 
 Your user may close their browser or lose internet connectivity in the middle of
-their payment journey on GOV.UK Pay. In this event, your user will not be
-redirected back to your service.
+their payment journey on GOV.UK Pay. In this event, GOV.UK Pay will not redirect your user back to your service.
 
 You can still [check the status of these
 payments](/payment_flow/#7-show-a-final-page), but you should be
@@ -309,9 +239,11 @@ Replace `{PAYMENT_ID}` with the ID of the payment you are cancelling.
 
 A `204` response indicates success. Any other response indicates an error.
 
+You can see parameters, example requests, and example responses for this endpoint in our [API reference](/api_reference/cancel_payment_reference/). 
+
 ### Check if you can cancel a payment
 
-Use a `GET` request against a single payment to check if you can cancel that payment:
+Get information about a specific payment to check if you can cancel that payment:
 
 `GET /v1/payments/{PAYMENT_ID}`
 
