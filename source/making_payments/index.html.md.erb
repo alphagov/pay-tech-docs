@@ -30,7 +30,7 @@ You must send the following parameters in your request body when creating a paym
 * the amount the user will pay, in pence (`amount`)
 * a reference to help you identify the payment (`reference`)
 * a human-readable description of the purpose of the payment (`description`)
-* a URL GOV.UK Pay will redirect your user to after th user completes their payment (`return_url`)
+* a URL to redirect your user to after they complete their payment (`return_url`)
 
 For example:
 
@@ -73,7 +73,7 @@ You can see definitions, values, and the limits of every parameter for this endp
 
 #### amount
 
-The `amount` parameter sets the payment amount in pence.
+The `amount` parameter sets the payment amount in pence. `amount` must be a number.
 
 The minimum amount is one pence plus your payment service provider's (PSP's) transaction fee. To see your PSP's transaction fee, check your contract by either:
 
