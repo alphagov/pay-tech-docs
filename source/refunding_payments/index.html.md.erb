@@ -15,9 +15,15 @@ Your user will receive the refund in the same account they originally paid from.
 
 ## Check if you can refund a payment
 
-Check if you can refund a payment by using the API to [get information about the payment](/reporting/#get-information-about-a-single-payment).
+Before refunding a payment, check if you can make a refund by using the API to [get information about the payment](/reporting/#get-information-about-a-single-payment) (`GET /v1/payments/{PAYMENT_ID]}`).
 
-The API response includes a `refund_summary` object. For example, for a completed £50 payment with no previous refunds:
+The API response includes a `refund_summary` object containing details about:
+
+* whether you can refund the payment (`status`)
+* how much you can refund to the user, in pence (`amount_available`)
+* how much you've already refunded to the user, in pence (`amount_submitted`)
+
+This is a example of a `refund_summary` object for a completed £50 payment with no previous refunds:
 
 ```javascript
 "refund_summary": {
@@ -27,7 +33,7 @@ The API response includes a `refund_summary` object. For example, for a complete
 }
 ```
 
-For a completed £90 payment where £30 has already been refunded:
+This is an example of a `refund_summary` object for a completed £90 payment where £30 has already been refunded:
 
 ```javascript
 "refund_summary": {
@@ -37,13 +43,9 @@ For a completed £90 payment where £30 has already been refunded:
 }
 ```
 
-### amount_available
+If `status` is `available`, you can refund the payment.
 
-`amount_available` is how much you can refund in pence. The amount includes any [transaction fees](/reporting/#psp-fees) and [corporate card fees](/corporate_card_surcharges/#add-corporate-card-fees).
-
-### amount_submitted
-
-`amount_submitted` is how much you've already refunded.
+You can see definitions, values, and the limits of every parameter and response attribute for this endpoint in our [API reference](/api_reference/single_payment_reference).
 
 ### status
 
@@ -60,9 +62,14 @@ For a completed £90 payment where £30 has already been refunded:
 
 Replace `{PAYMENT_ID}` with the ID of the payment you are refunding.
 
-If the `status` in the `refund_summary` object is `available`, you can create a refund with the GOV.UK Pay API.
+In the body of your request, you must send:
 
-Example refund request:
+* `amount` - the amount you want to refund your user, in pence
+* `refund_amount_available` - the `amount_available` value you received when you checked if you could refund the payment
+
+GOV.UK Pay will reject your refund request if `refund_amount_available` does not match the `amount_available` from `GET /v1/payments/{PAYMENT_ID}`.
+
+This example requests refunds £20 of an available £50:
 
 ```javascript
 {
@@ -71,21 +78,11 @@ Example refund request:
 }
 ```
 
-You can see definitions and possible values of every parameter and attribute for this endpoint in our [API reference](/api_reference/refund_payment_reference).
-
-### amount
-
-`amount` is how much to refund your user in pence. You can refund all or part of the payment.
-
-### refund_amount_available (optional)
-
-`refund_amount_available` is the `amount_available` you received when you [checked if you can refund the payment](#check-if-you-can-refund-a-payment).
-
-GOV.UK Pay will reject your refund request if `refund_amount_available` does not match the amount that's available to refund. This stops you accidentally refunding your user twice.
+You can see definitions and possible values of these parameters in our [API reference](/api_reference/refund_payment_reference).
 
 ### Response
 
-Example response:
+After you send your request to refund a payment, you'll receive a response like this:
 
 ```javascript
 {
@@ -97,20 +94,16 @@ Example response:
 }
 ```
 
+The response includes:
+
+* the amount refunded to the user in pence (`amount`)
+* when you created the refund (`created_date`)
+* the unique ID GOV.UK Pay associated with this refund (`refund_id`)
+* the status of the refund (`status`)
+
+You can see full definitions of these response attribute in our [API reference](/api_reference/refund_payment_reference).
+
 If GOV.UK Pay could not successfully create the refund, the JSON response will contain an [API error code](/api_reference/#gov-uk-pay-api-error-codes) and a description of the error.
-
-### created_date
-
-`created_date` is when you created the refund, in [ISO
-8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard).
-
-### refund_id
-
-`refund_id` is the unique ID that GOV.UK Pay generated for this refund.
-
-### status
-
-Use the `status` field to [check the status of a refund](#checking-the-status-of-a-refund).
 
 ## Checking the status of a refund
 
@@ -118,8 +111,8 @@ Use the `status` field to [check the status of a refund](#checking-the-status-of
 
 Replace:
 
-* `{PAYMENT_ID}` with the ID of the payment you are checking
-* `{REFUND_ID}` with the ID of the refund you are checking
+* `{PAYMENT_ID}` with the ID of the payment you're checking
+* `{REFUND_ID}` with the ID of the refund you're checking
 
 Example response:
 
@@ -135,15 +128,19 @@ Example response:
 }
 ```
 
-You can see definitions and possible values of every attribute for this endpoint in our [API reference](/api_reference/refund_status_reference).
+This response contains:
 
-### settlement_summary
+* the amount refunded to the user (`amount`)
+* when you created the refund (`created_date`)
+* the unique ID GOV.UK Pay associated with this refund (`refund_id`)
+* the status of the refund (`status`)
+* when your payment service provider (PSP) refunded the payment, if your PSP is Stripe (`settlement_summary`)
 
-If your payment service provider (PSP) is Stripe, you can use the `settlement_summary` object to [check when Stripe took the refund](#where-your-psp-takes-the-refund-amount-from).
+You can see definitions and possible values of these attributes in our [API reference](/api_reference/refund_status_reference).
 
 ### status
 
-It may take up to 30 minutes for the `status` field to change. Do not check the status more than once every 5 minutes.
+The `status` attribute shows where the refund is in its lifecycle.
 
 |status|Meaning|
 |---|---|
@@ -163,9 +160,7 @@ If the payment has reached your bank account, your PSP will take the refund amou
 - the next payment or payments you receive from any of your users, if your PSP is Stripe
 - your bank account, if your PSP is Worldpay
 
-If your PSP is Stripe, you can see when Stripe took the refund when you make an API call to [check the status of a refund](/refunding_payments/#checking-the-status-of-a-refund).
-
-Example response:
+If your PSP is Stripe, you can see when Stripe took the refund by making an API call to [check the status of a refund](/refunding_payments/#checking-the-status-of-a-refund) (`GET /v1/payments/{PAYMENT_ID}/refunds/{REFUND_ID}`) and looking at the `settlement_summary` object:
 
 ```json
 "settlement_summary": {
@@ -176,21 +171,12 @@ Example response:
 
 `settled_date` will be either:
 
-- the date Stripe took the refund from the payments that Stripe sent to your bank account
-- missing if Stripe has not yet taken the refund
-
-All dates are in Coordinated Universal Time (UTC).
+* the date Stripe took the refund from the payments that Stripe sent to your bank account
+* missing if Stripe has not yet taken the refund
 
 ### Send email notifications about refunds
 
-You can use the GOV.UK Pay admin tool to turn on sending refund email notifications to your users. [Select the account in the GOV.UK admin tool](https://selfservice.payments.service.gov.uk/my-services), then select **Settings**.
-
-## Getting a list of refunds
-
-You can use the GOV.UK API to:
-
-- get all refunds for a single payment
-- search refunds
+You can use the GOV.UK Pay admin tool to turn on sending refund email notifications to your users. [Select your service in the GOV.UK admin tool](https://selfservice.payments.service.gov.uk/my-services), then select **Settings**.
 
 ## Get all refunds for a single payment
 
@@ -235,12 +221,13 @@ You can see definitions and possible values of every parameter and attribute for
 
 `GET /v1/refunds?{QUERY_PARAMETERS}`
 
-An example search request:
+You can see a full index of the search parameters for this endpoint in our [API reference](/api_reference/search_refunds_reference).
 
-`GET
-/v1/refunds?from_date=2019-09-20T13:30:00Z&to_date=2019-09-22T15:00:00Z`
+This example search request would return refunds made between 1:30pm on 20 September 2019 and 3:00pm on 22 September 2019:
 
-Example search response:
+`GET /v1/refunds?from_date=2019-09-20T13:30:00Z&to_date=2019-09-22T15:00:00Z`
+
+Example response:
 
 ```json
 {
@@ -284,40 +271,4 @@ Example search response:
 }
 ```
 
-The `_links` object includes a `payment` URL and method that you can use to get information about the payment the refund is for.
-
-You can see definitions and possible values of every parameter and attribute for this endpoint in our [API reference](/api_reference/search_refunds_reference).
-
-### Filtering by date
-
-You can use the following query parameters to filter refunds by date:
-
-* `from_date`, which is the start date to search, inclusive
-* `to_date`, which is the end date to search, exclusive
-
-All dates are in Coordinated Universal Time (UTC).
-
-Dates must be in [ISO
-8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard) and include a:
-
-* date
-* time in hours and minutes - seconds are optional
-* time zone designation
-
-For example, `2019-09-20T13:30Z`.
-
-### Filter refunds by when your PSP took refunds
-
-If your payment service provider (PSP) is Stripe, you can use the following query parameters to filter by [when your PSP took refunds](/refunding_payments/#where-your-psp-takes-the-refund-amount-from):
-
-- `from_settled_date` - the start date for payments to be searched, inclusive
-- `to_settled_date` - the end date for payments to be searched, inclusive
-
-All dates are in Coordinated Universal Time (UTC).
-
-For example, to list all the refunds your PSP took on 16 June 2020:
-
-`GET /v1/refunds?from_settled_date=2020-06-16&to_settled_date=2020-06-16`
-
-Dates must be in [ISO 8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard)
-and include a date value only. For example, `2015-08-13`.
+You can see definitions and possible values of every attribute for this endpoint in our [API reference](/api_reference/search_refunds_reference).
