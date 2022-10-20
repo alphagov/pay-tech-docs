@@ -56,6 +56,8 @@ You can use the GOV.UK Pay API to:
 
 ## Get information about a single payment
 
+Use the following API call to get information about a single payment:
+
 `GET /v1/payments/{PAYMENT_ID}`
 
 Replace `{PAYMENT_ID}` with the ID of the payment you are getting information about.
@@ -121,132 +123,32 @@ Example response:
 }
 ```
 
-Your user can continue their journey through your service if, in the `state` object, the:
+The response contains:
 
-- `status` field is `success`
-- `finished` field is `true`
+* when you created the payment (`created_date`)
+* the payment amount, in pence (`amount`)
+* the status of the payment (`state`)
+* details you sent when you created the payment (`reference`, `description`, `metadata`)
 
-### API response parameters
+You can see definitions and possible values for every attribute in this response in our [API reference for getting information about a single payment](/api_reference/single_payment_reference). 
 
-You can see definitions and possible values of every attribute for this endpoint in our [API reference](/api_reference/single_payment_reference).
-
-#### \_links
-
-The `_links` object includes `href` and `method` fields that you can use to make API requests related to the payment. Use:
-
-- `events` to [get the payment's events](/reporting/#get-a-payment-s-events)
-- `refunds` to [get all refunds for the payment](/refunding_payments/#get-all-refunds-for-a-single-payment)
-- `cancel` to [cancel the payment](/making_payments/#cancel-a-payment-that-s-in-progress)
-
-#### authorisation_summary
-
-If the payment was authenticated with 3D Secure (3DS), `authorisation_summary` and `three_d_secure` contain information about the authentication.
-
-`required` is `true` if the payment required 3D Secure authentication.
-
-`authorisation_summary` is only available for payments created on or after 1 September 2021.
-
-#### card_details
-
-If your user has gone far enough in their
-payment journey, the `card_details` section contains the information they entered when they made the payment. All the fields are strings.
-
-`billing_address` will be `null` if you've [disabled collecting your users’ billing addresses](/integrate_with_govuk_pay/#collecting-your-users-39-billing-addresses).
-
-`expiry_date` is in `MM/YY` format, for example `04/24`.
-
-`card_brand` is one of the following:
-
-- `American Express`
-- `Diners Club`
-- `Discover`
-- `Jcb`
-- `Maestro`
-- `Mastercard`
-- `Union Pay`
-- `Visa`
-
-`card_type` is one of the following:
-
-- `credit`
-- `debit`
-- `null` - if we did not recognise which type of card your user made the payment with, or your user used [Google Pay](/digital_wallets/#restrictions).
-
-#### corporate_card_surcharge
-
-`corporate_card_surcharge` shows the surcharge amount in pence if you've [set up adding corporate card fees](/corporate_card_surcharges/#add-corporate-card-fees).
-
-#### created_date
-
-`created_date` is when you created the payment, in [ISO
-8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard).
-
-#### delayed_capture
-
-`delayed_capture` is `true` if you're [controlling how long it takes GOV.UK Pay to take ('capture') a payment](/delayed_capture/#delay-taking-a-payment).
-
-#### fee
-
-If you use GOV.UK’s payment service provider (PSP), `fee` is the [PSP transaction fee](/reporting/#psp-fees) we took from the amount your user paid.
-
-`fee` only appears after we have taken ('captured') the payment from the user or if their payment fails after they have submitted their card details.
-
-#### metadata
-
-The `metadata` object includes any metadata keys and values you added when creating a payment. You can [add custom metadata to new payments](https://docs.payments.service.gov.uk/custom_metadata/#add-custom-metadata) to help with reconciliation and reporting.
-
-#### moto
-
-`moto` is `true` if you [took the payment over the phone](/moto_payments/moto_api).
-
-#### net_amount
-
-If your PSP is Stripe, `net_amount` is the amount that Stripe will pay into your account after GOV.UK Pay take the [PSP transaction fees](https://docs.payments.service.gov.uk/reporting/#psp-fees).
-
-`net_amount` can be a negative number if [Stripe charges fees on a failed payment](/reporting/#psp-fees).
-
-#### payment_id
-
-`payment_id` is the unique ID that GOV.UK Pay automatically generated for this payment.
-
-#### payment_provider
-
-`payment_provider` is the name of your PSP, or `sandbox` if you're using a test ('sandbox') account.
-
-#### refund_summary
-
-You can use `refund_summary` to [check if you can refund a payment](/refunding_payments/#check-if-you-can-refund-a-payment).
-
-#### return_url
-
-`return_url` is the URL that your service hosts for your user to return to, after their payment journey on GOV.UK Pay ended.
-
-#### settlement_summary
-
-Use `settlement_summary` to check when your PSP:
-
-- [took the payment from your user's account](#checking-when-your-psp-took-a-payment)
-- [sent a payment to your bank account](/integrate_with_govuk_pay/#checking-when-your-psp-sent-a-payment), if your PSP is Stripe
-
-#### state
-
-Use `state` to see the [status of the payment](/api_reference/#payment-status-lifecycle).
+You can also [read about the full payment status lifecycle](/api_reference/#payment-status-lifecycle) and what it means for your service and your user.
 
 ### Checking when your PSP took a payment
 
-You can see when your PSP took a payment from your user's account.
+You can see when your payment service provider (PSP) took a payment from your user's account.
 
-The response contains:
+The response from `GET /v1/payments/{PAYMENT_ID}` contains:
 
 - `capture_submit_time` if we've asked your PSP to take the payment from your user's account
 - `captured_date` if your PSP has taken the payment
 
-For example:
+In this example, GOV.UK Pay asked the PSP to take the payment from the user's account at 5:15pm on 21 January 2022 and the PSP took the payment on the same day:
 
 ```json
 "settlement_summary": {
-  "capture_submit_time": "2016-01-21T17:15:000Z",
-  "captured_date": "2016-01-21"
+  "capture_submit_time": "2022-01-21T17:15:000Z",
+  "captured_date": "2022-01-21"
 }
 ```
 
@@ -261,36 +163,27 @@ If your PSP is Worldpay, contact Worldpay support to find out your payment times
 
 ### PSP fees
 
-If you use GOV.UK's PSP, we'll automatically deduct the PSP's transaction fee from each payment. You can see how much the fee was when you make the API call to get information about a payment.
+If your PSP is Stripe, we'll automatically deduct the PSP's transaction fee from each payment. You can see how much the fee was when you make the API call to get information about a payment.
 
-Example response:
+In this example, we've deducted a £2 PSP fee (`fee`) from the user's £40 payment (`amount`), meaning a £38 net amount (`net_amount`) will be paid into your account:
 
-```JSON
-"total_amount": 4000,
+```json
+"amount": 4000,
 "fee": 200,
 "net_amount": 3800
 ```
 
-Where:
-
-- `total_amount` is the amount your user paid in pence and only appears if you added a [corporate card surcharge](/corporate_card_surcharges/#add-corporate-card-fees) to the payment
-- `fee` is the PSP transaction fee that we took from the amount your user paid, in pence
-- `net_amount` is the amount that will be paid into your account, in pence
-
-The response will not contain `fee` or `net_amount` if either:
-
-- your PSP is Worldpay - we do not deduct these PSPs' transaction fees
-- you're using an API key from your test ('sandbox') account - we do not deduct fees from payments in this account
-
-Stripe may charge transaction fees on failed payments. Until 6 April 2022, GOV.UK Pay will cover the cost of transaction fees on failed payments and these fees will not appear in a `GET /v1/payments/{PAYMENT_ID}` response.
-
-If Stripe charge transaction fees on a failed payment on or after 6 April 2022, `net_amount` will be a negative number. From 6 April 2022, Stripe will take negative amount from your Stripe account balance. For example, a `net_amount` of `-200` will take £2.00 from your Stripe account.
+Stripe may charge transaction fees on failed payments. If this happens, `net_amount` will be a negative number. From 6 April 2022, Stripe will take negative net amounts from your Stripe account balance. For example, a `net_amount` of `-200` on a payment will take £2.00 from your Stripe account.
 
 To test transaction fees, you can request a test Stripe account from your account in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
 
 You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see transaction fee information or export the information in a CSV file.
 
+If your PSP is Worldpay, you can see your transaction fees on your Worldpay invoices.
+
 ## Get a payment’s events
+
+A payment event is when a payment reaches a milestone in its journey and its `state` updates, such as when it's created, paid, or refunded. 
 
 Use the following API call to get a list of a payment’s events:
 
@@ -300,9 +193,8 @@ Replace `{PAYMENT_ID}` with the ID of the payment you are getting the events of.
 
 The API will respond with an `events` object. For each change to the payment's state, the `events` object includes:
 
-- an `updated` field that shows when the [`state`](/api_reference/#payment-status-lifecycle) changed, in [ISO
-8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard)
-- what the `state` was updated to
+- when the payment's state changed (`updated`)
+- what the payment's state changed to (`state`)
 
 The response starts with the oldest `state`.
 
@@ -342,25 +234,19 @@ You can create webhooks to notify you when payments reach certain states. Read o
 
 ## Search payments
 
+Use the following API call to search for payments from your service:
+
 `GET /v1/payments`
 
-Do not search payments using the API to check a payment's status during [payment flow](/payment_flow). The payment status field in the search results does not immediately update and so may not be up to date.
+[Read our API reference for a full index of the query parameters you can use to filter your search](/api_reference/search_payments_reference). 
 
-### Search criteria
+If you do not include query parameters in your request, this endpoint returns all payments.
 
-An example search request:
+Do not use this endpoint to check a payment's status during the [payment flow](/payment_flow). Data from this endpoint is updated on a delay and may not be up to date.
 
-`GET
-/v1/payments?from_date=2018-10-01T13:30:00Z&to_date=2018-10-14T15:00:00Z&reference=12345&state=success`
+If you search for a specific payment, all criteria you use must match. Otherwise, that payment will not be returned in the results.
 
-Some of the query parameters you can use to search for payments are:
-
-* `reference` - case insensitive, exact match only
-* `email` - case insensitive
-* `cardholder_name` - case insensitive
-* `state` - case sensitive, exact match only
-* `first_digits_card_number` - exact match only
-* `last_digits_card_number` - exact match only
+### Search payment response
 
 Example search response:
 
@@ -398,57 +284,4 @@ Example search response:
 }
 ```
 
-If you search for a specific payment, all criteria you use must match. Otherwise, that payment will not be returned in the results.
-
-If your request has no query parameters, the API will return all payments.
-
-#### Search by card brand
-
-|`card_brand` to search for|`card_brand` in API response|
-|---|---|
-|`american-express`|`American Express`|
-|`diners-club`|`Diners Club`|
-|`discover`|`Discover`|
-|`jcb`|`Jcb`|
-|`maestro`|`Maestro`|
-|`master-card`|`Mastercard`|
-|`unionpay`|`Union Pay`|
-|`visa`|`Visa`|
-
-`card_brand` is case insensitive. You cannot search for partial values of `card_brand`.
-
-#### Filter by date
-
-You can use the following query parameters to filter payments by date:
-
-* `from_date` - the start date for payments to be searched, inclusive
-* `to_date` - the end date for payments to be searched, exclusive
-
-All dates are in Coordinated Universal Time (UTC).
-
-Dates must be in [ISO
-8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard) and include a:
-
-* date
-* time in hours and minutes - seconds are optional
-* time zone designation
-
-For example, `2019-09-20T13:30Z`.
-
-#### Filter payments by when your PSP sent payments to your bank account
-
-If your PSP is Stripe, you can use the following query parameters to filter by when your PSP sent payments to your bank account:
-
-- `from_settled_date` - the start date for payments to be searched, inclusive
-- `to_settled_date` - the end date for payments to be searched, inclusive
-
-All dates are in Coordinated Universal Time (UTC).
-
-For example, to list all the payments your PSP sent to you on 16 June 2020:
-
-`GET /v1/payments?from_settled_date=2020-06-16&to_settled_date=2020-06-16`
-
-Dates must be in [ISO 8601 format](https://www.gov.uk/government/publications/open-standards-for-government/date-times-and-time-stamps-standard)
-and include a date value only. For example, `2015-08-13`.
-
-If your PSP has not sent this payment to your bank account yet, the payment will not be in the response.
+You can see definitions and possible values of every attribute for this endpoint in our [API reference](/api_reference/search_payments_reference).
