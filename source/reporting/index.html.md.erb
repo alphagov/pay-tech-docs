@@ -126,17 +126,17 @@ Example response:
 The response contains:
 
 * when you created the payment (`created_date`)
-* the amount of the payment, in pence (`amount`)
+* the payment amount, in pence (`amount`)
 * the status of the payment (`state`)
 * details you sent when you created the payment (`reference`, `description`, `metadata`)
 
-You can see definitions and possible values for every attribute in this response in our [API reference for this endpoint](/api_reference/single_payment_reference). 
+You can see definitions and possible values for every attribute in this response in our [API reference for getting information about a single payment](/api_reference/single_payment_reference). 
 
-You can also read about [the full payment status lifecycle](/api_reference/#payment-status-lifecycle) and what it means for your service and your user.
+You can also [read about the full payment status lifecycle](/api_reference/#payment-status-lifecycle) and what it means for your service and your user.
 
 ### Checking when your PSP took a payment
 
-You can see when your PSP took a payment from your user's account.
+You can see when your payment service provider (PSP) took a payment from your user's account.
 
 The response from `GET /v1/payments/{PAYMENT_ID}` contains:
 
@@ -178,6 +178,8 @@ Stripe may charge transaction fees on failed payments. If this happens, `net_amo
 To test transaction fees, you can request a test Stripe account from your account in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
 
 You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see transaction fee information or export the information in a CSV file.
+
+If your PSP is Worldpay, you can see your transaction fees on your Worldpay invoices.
 
 ## Get a payment’s events
 
@@ -236,7 +238,7 @@ Use the following API call to search for payments from your service:
 
 `GET /v1/payments`
 
-Read our [API reference](/api_reference/search_payments_reference) for a full index of the query parameters you can use to filter your search. 
+[Read our API reference for a full index of the query parameters you can use to filter your search](/api_reference/search_payments_reference). 
 
 If you do not include query parameters in your request, this endpoint returns all payments.
 
