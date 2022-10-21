@@ -175,11 +175,8 @@ datastore mapped to the payment ID just after you create a payment.
 If your user is directed to the `return_url`, they could have:
 
  * paid successfully
-
  * not paid because their card was rejected or they selected cancel
-
  * not paid because your service (via the API) cancelled the payment in progress
-
  * not paid because of a technical error
 
  Your service should use a `GET /v1/payments/{PAYMENT_ID}` call to [check the payment's status](https://docs.payments.service.gov.uk/reporting/#get-information-about-a-single-payment) when your user
@@ -222,9 +219,7 @@ You cannot resume a payment if the `status` is `failed`, `cancelled`, or `error`
 
 ## Cancel a payment that’s in progress
 
-Your user can select a link on the payment page to cancel a payment that’s in
-progress. Alternatively, a service can make the following API call for a given
-`payment_id`:
+Your user can select a link on the payment page to cancel a payment that’s in progress. Alternatively, you can make the following API call:
 
 `POST /v1/payments/{PAYMENT_ID}/cancel`
 
