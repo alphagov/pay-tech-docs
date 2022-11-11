@@ -39,14 +39,14 @@ The data from this endpoint is strongly consistent, meaning it is updated immedi
 | Name | Type | Description |
 |-----|-----|-----|
 | `amount` | number | The amount you want to refund to your user in pence.  |
-| `refund_amount_available` | number | The amount available to refund before submitting this request.<br><br>`refund_amount_available` must match the `amount_available` you receive when you check if you can refund a payment. Use `GET /v1/payments/{PAYMENT_ID}` to check if you can refund this payment.|
+| <nobr>`refund_amount_available` | number | The amount available to refund before submitting this request.<br><br>`refund_amount_available` must match the `amount_available` you receive when you check if you can refund a payment. Use `GET /v1/payments/{PAYMENT_ID}` to check if you can refund this payment.|
 
 ## Example request for ‘Refund a payment’
 
 This example request refunds £50 of an available £500 for the payment with the payment reference `hu20sqlact5260q2nanm0q8u93`:
 
 ```json
-curl "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds" \
+curl POST "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds" \
 -H 'Authorization: Bearer api_test_123abc456def' \
 -H 'Content-Type: application/json' \
 -d '{
@@ -88,4 +88,4 @@ After you send your request to refund a payment, you’ll receive a response sim
 | `status` | string | The status of this refund.<br><br>Possible values are:<br><br><ul> <li>`submitted`</li><li>`success`</li><li>`error`</li></ul><br>[Read more about the meanings of refund `status` values](/refunding_payments/#checking-the-status-of-a-refund-status).
 | `_links` | object | Contains URLs and methods for actions related to this payment.
 | `_links.self` | object | Contains an API method and URL to get information about the refund you've just created.<br><br>A `GET` request (`method`) to this URL (`href`) returns information about this refund. |
-| `_links.payment` | object | Contains an API method and URL to get information about this payment.<br><br>A `GET` request (`method`) to this URL (`href`) returns information about this payment. |
+| <nobr>`_links.payment` | object | Contains an API method and URL to get information about this payment.<br><br>A `GET` request (`method`) to this URL (`href`) returns information about this payment. |
