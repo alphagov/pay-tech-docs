@@ -37,7 +37,7 @@ The data from this endpoint is eventually consistent, meaning it is updated on a
 This example request gets information about refunds of the payment with the payment ID `hu20sqlact5260q2nanm0q8u93`:
 
 ```
-curl "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds" -H "Authorization: Bearer api_test_123abc456def"
+curl -X GET "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds" -H "Authorization: Bearer api_test_123abc456def"
 ```
 
 ## Example response for 'Get information about a payment's refunds'
