@@ -83,7 +83,7 @@ After you send your request to refund a payment, you’ll receive a response sim
 | Name | Type | Description |
 |-----|-----|-----|
 | `refund_id` | string | The unique ID GOV.UK Pay associated with this refund when you created it.<br><br>If you refund part of this payment again, each refund will have a different `refund_id`. |
-| `created_date` | date (ISO 8601) | The date and time you created this refund.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDThh:mm:ssZ`. |
+| `created_date` | date (ISO 8601) | The date and time you created this refund.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDThh:mm:ss.sssZ`. |
 | `amount` | number | The amount refunded to the user in pence. |
 | `status` | string | The status of this refund.<br><br>Possible values are:<br><br><ul> <li>`submitted`</li><li>`success`</li><li>`error`</li></ul><br>[Read more about the meanings of refund `status` values](/refunding_payments/#checking-the-status-of-a-refund-status).
 | `_links` | object | Contains URLs and methods for actions related to this payment.
