@@ -113,9 +113,9 @@ After you send your request to search disputes, you’ll receive a response simi
 | `total`                             | number          | Number of total disputes matching your search criteria.|
 | `results`                           | object          | Contains disputes matching your search criteria.|
 | `amount`                            | number          | The disputed amount in pence.|
-| `created_date`                     | date (ISO 8601) | The date and time the user's bank told GOV.UK Pay about this dispute.|
+| `created_date`                     | date (ISO 8601) | The date and time the user's bank told GOV.UK Pay about this dispute.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDThh:mm:ss.sssZ`.|
 | `dispute_id`                       | string          | The unique ID GOV.UK Pay automatically associated with this dispute when the paying user disputed the payment.|
-| `evidence_due_date`               | date (ISO 8601) | The deadline for submitting your supporting evidence.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDThh:mm:ssZ`.|
+| `evidence_due_date`               | date (ISO 8601) | The deadline for submitting your supporting evidence.<br><br>This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDThh:mm:ss.sssZ`.|
 | `fee`                               | number          | The payment service provider’s dispute fee, in pence.|
 | `net_amount`                       | number          | The amount, in pence, your payment service provider will take for a lost dispute. `net_amount` is deducted from your payout after you lose the dispute.<br><br>For example, a `net_amount` of `-1500` means your PSP will take £15.00 from your next payout into your bank account.<br><br>`net_amount` is always a negative value.<br><br>`net_amount` only appears if you lose the dispute.|
 | `payment_id`                       | string          | The unique ID GOV.UK Pay automatically associated with this payment when you created it.|
