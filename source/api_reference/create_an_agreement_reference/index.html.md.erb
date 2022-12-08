@@ -33,7 +33,7 @@ The data from this endpoint is strongly consistent, meaning it is updated immedi
 | Name                               | Type   | Description                                                                                                                                                                                                                            |
 | ---------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `reference`<br>(required)        | string | Associate a reference with this agreement to help you identify it.<br><br>Limited to 255 characters.                                 |
-| `description`<br>(required)      | string | A human-readable description of the purpose of the agreement for recurring payments.<br><br>We’ll show the `description` to your user when they make a one-off payment to activate this agreement.<br><br>Limited to 255 characters. |
+| `description`<br>(required)      | string | A human-readable description of the purpose of the agreement for recurring payments.<br><br>We’ll show the `description` to your user when they make their first payment to activate this agreement.<br><br>Limited to 255 characters. |
 | <nobr>`user_identifier`<br>(optional) | string | Associate an identifier with the user who will enter into this agreement with your service.<br><br>`user_identifier` is not unique – multiple agreements can have identical `user_identifier` values. <br><br>You should not include personal data in `user_identifier`. |
 
 ## Example request for ‘Create an agreement for recurring payments’
