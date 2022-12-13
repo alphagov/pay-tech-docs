@@ -37,7 +37,7 @@ You can [read more about the lifecycle of agreements](/recurring_payments/#under
 
 In this integration example, the service creates an agreement when a user says they want to make recurring payments, then uses that agreement to continue taking payments.
 
-![A sequence diagram showing the journey of creating, setting up, and using an agreement to take recurring payments.](/images/recurring-payments-success-sequence.svg)
+![](/images/recurring-payments-success-sequence.svg)
 
 1. A user consents to your service taking recurring payments. You record their consent.
 
@@ -57,7 +57,7 @@ In this integration example, the service creates an agreement when a user says t
 
 9. Your service [creates recurring payments using the `POST /v1/payments` endpoint](/recurring_payments/#taking-recurring-payments). In your request body, you  set `authorisation_mode` to `agreement` and include `"agreement_id": "{AGREEMENT_ID}"`, replacing `{AGREEMENT_ID}` with the agreement you set up earlier.
 
-10. GOV.UK Pay authorises the payment with the payment details the user entered for their first payment.
+10. GOV.UK Pay authorises the payment using the payment details the user entered for their first payment.
 
 ## Before you start taking recurring payments
 
