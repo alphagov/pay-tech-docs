@@ -47,7 +47,7 @@ If you do not include query parameters in your request, this endpoint returns al
 This example request is a search for disputes that were raised between 6:00am on 1 July 2022 and 11:59pm on 31 July 2022, and are still being reviewed by the bank:
 
 ```
-curl GET "https://publicapi.payments.service.gov.uk/v1/disputes?from_date=2022-07-01T06:00:00Z&to_date=2022-07-31T23:59:00&status=under_review" -H "Authorization: Bearer api_test_123abc456def"
+curl -X GET "https://publicapi.payments.service.gov.uk/v1/disputes?from_date=2022-07-01T06:00:00Z&to_date=2022-07-31T23:59:00&status=under_review" -H "Authorization: Bearer api_test_123abc456def"
 ```
 
 ## Example response for 'Search disputes'

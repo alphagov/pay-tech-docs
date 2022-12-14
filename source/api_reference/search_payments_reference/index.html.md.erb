@@ -56,7 +56,7 @@ If your request has no query parameters, this endpoint returns all payments.
 This example request is a payment search filtered to return payments that were created on or after 8:30am on 15 January 2021:
 
 ```
-curl GET "https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-15T08:30:00Z" -H "Authorization: Bearer api_test_123abc456def"
+curl -X GET "https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-15T08:30:00Z" -H "Authorization: Bearer api_test_123abc456def"
 ```
 
 ## Example response for ‘Search payments’
