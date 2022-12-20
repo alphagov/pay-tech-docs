@@ -53,11 +53,11 @@ In this integration example, the service creates an agreement when a user says t
 
 7. Your service directs the user to GOV.UK Pay to make their first payment. The user follows the standard payment flow.
 
-8. The user completes their first payment and GOV.UK Pay returns them to your service.
+8. The user completes their first payment and GOV.UK Pay returns them to your service. Your PSP stores the user's payment details.
 
 9. Your service [creates recurring payments using the `POST /v1/payments` endpoint](/recurring_payments/#taking-recurring-payments). In your request body, you  set `authorisation_mode` to `agreement` and include `"agreement_id": "{AGREEMENT_ID}"`, replacing `{AGREEMENT_ID}` with the agreement you set up earlier.
 
-10. GOV.UK Pay authorises the payment using the payment details the user entered for their first payment.
+10. GOV.UK Pay authorises the payment using the user's payment details your PSP saved during the first payment.
 
 ## Before you start taking recurring payments
 

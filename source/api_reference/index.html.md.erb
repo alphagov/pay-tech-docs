@@ -58,6 +58,8 @@ This page has information about:
 
 ### Agreements for recurring payments
 
+These endpoints are not yet available. 
+
 | Endpoint                                      | URL                                                 | Data consistency                   |
 |-----------------------------------------------|-----------------------------------------------------|------------------------------------|
 | [Create an agreement for recurring payments](/api_reference/create_an_agreement_reference)| `POST /v1/agreements`            | <nobr>Strongly consistent</nobr> |
@@ -70,7 +72,7 @@ This page has information about:
 
 | Endpoint                                      | URL                                                 | Data consistency                   |
 |-----------------------------------------------|-----------------------------------------------------|------------------------------------|
-| [Search disputes](/api_reference/search_disputes_reference)                          | `GET /v1/payments/disputes`            | <nobr>Strongly consistent</nobr> |
+| [Search disputes](/api_reference/search_disputes_reference)                          | `GET /v1/disputes`            | <nobr>Strongly consistent</nobr> |
 
 
 ### Authorising payments
@@ -166,7 +168,7 @@ The GOV.UK Pay API uses HTTP response codes to show the outcome of a request. `4
 | 204 - No content | Your request was successful. |
 | 400 - Bad request | Your request is invalid.<br><br> Check the `code` and `description` response attributes to find out why the request failed. |
 | 401 - Unauthorised | Your API key is missing or invalid.<br><br>[Read more about authenticating GOV.UK Pay API requests](/api_reference/#authentication). |
-| 404 - Not found | The payment or refund you tried to access does not exist.<br><br>Check the `{PAYMENT_ID}` or `{REFUND_ID}`. |
+| 404 - Not found | The payment, refund, or agreement you tried to access does not exist.<br><br>Check the ID you sent in your request. |
 | 409 - Conflict | The payment you tried to access has already been captured or cancelled. |
 | 412 - Precondition failed | The `refund_amount_available` value you sent does not match the amount available to refund.<br><br>[Read more about refunding payments](/refunding_payments/#creating-a-refund). |
 | 422 - Unprocessable entity | One of the values you sent is formatted incorrectly. This could be an invalid value, or a value that exceeds a character limit.<br><br>Check the `field`, `code`, and `description` attributes in the response for more information. |
