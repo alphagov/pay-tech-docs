@@ -1,6 +1,6 @@
 ---
 title: Search payments API reference
-last_reviewed_on: 2022-05-10
+last_reviewed_on: 2022-12-20
 review_in: 6 months
 weight: 14160
 ---
@@ -71,6 +71,12 @@ After you send your request to search payments, you’ll receive a response simi
   "results": [
     {
       "amount": 1200,
+      "authorisation_mode": "web",
+      "authorisation_summary": {
+        "three_d_secure": {
+        "required": true,
+        }
+      },
       "description": "Pay your council tax.",
       "reference": "12345",
       "language": "en",
