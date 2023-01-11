@@ -50,7 +50,7 @@ After you send your request to get information about a payment, you’ll receive
   "amount": 3750,
   "state": {
     "status": "success",
-    "finished": true,
+    "finished": true
   },
   "description": "Pay your council tax",
   "reference": "12345",
@@ -79,7 +79,7 @@ After you send your request to get information about a payment, you’ll receive
   "authorisation_mode": "web",
   "authorisation_summary": {
     "three_d_secure": {
-      "required": true,
+      "required": true
     }
   },
   "refund_summary": {
@@ -100,7 +100,7 @@ After you send your request to get information about a payment, you’ll receive
   "net_amount": 3800,
   "payment_provider": "worldpay",
   "provider_id": "10987654321",
-  "return_url": "https://your.service.gov.uk/completed"
+  "return_url": "https://your.service.gov.uk/completed",
   "_links": {
      "self": {
          "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
@@ -115,6 +115,7 @@ After you send your request to get information about a payment, you’ll receive
          "method": "GET"
      }
   }
+}
 ```
 
 ## Attributes you’ll get in a ‘Get information about a single payment’ response
