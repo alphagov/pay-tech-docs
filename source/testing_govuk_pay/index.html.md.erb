@@ -80,6 +80,16 @@ Mock card numbers do not work with your live account.
 |Invalid CVC code|4000000000000127|Visa| Credit or debit |
 |General error|4000000000000119|Visa| Credit or debit |
 
+##### Testing recurring payments
+
+You can use mock card numbers to test [recurring payments](/recurring_payments).
+
+To test unsuccessful recurring payments, you need to use this mock card number. This mock card can take one initial payment to set up the recurring payment agreement. Further attempts to make recurring payments with this mock card number will fail.
+
+|Testing action |Card number | Card brand | Card type |
+| -------- | ------- | ------- | ------- |
+|Declined recurring payment | 5105105105105100 | Mastercard | Debit |
+
 #### If you're using a test Stripe account
 
 The [PSP transaction fee](/reporting/#psp-fees) depends on which country the test card is from.
