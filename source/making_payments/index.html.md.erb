@@ -69,6 +69,8 @@ Depending on your integration, you can also:
 * [use Welsh on your payment pages](/optional_features/welsh_language/)
 * [take the payment over the phone](/moto_payments)
 
+Your user has 90 minutes to complete their payment once you have created it.
+
 You can see definitions, values, and the limits of every parameter for this endpoint in our [API reference](/api_reference/create_a_payment_reference).
 
 #### amount
@@ -189,10 +191,7 @@ If your user is directed to the `return_url`, they could have:
 Your user may close their browser or lose internet connectivity in the middle of
 their payment journey on GOV.UK Pay. In this event, GOV.UK Pay will not redirect your user back to your service.
 
-You can still [check the status of these
-payments](/payment_flow/#7-show-a-final-page), but you should be
-aware GOV.UK Pay will allow your user 90 minutes to resume their payment before
-it expires. You can only be certain of the payment’s status after this time.
+You can still [check the status of these payments](/payment_flow/#7-show-a-final-page), but you should be aware that the payment will expire 90 minutes after it was created. You can only be certain of the payment’s status after this time.
 
 If a [payment fails](/payment_flow/#show-a-failure-page), GOV.UK Pay will not
 allow your user to attempt the payment again with alternative card details. In
