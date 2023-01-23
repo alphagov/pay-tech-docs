@@ -22,7 +22,7 @@ You can receive updates when:
 * a payment is settled
 * a payment is refunded
 
-After each of these payment events, your webhook sends a webhook message using a `POST` request to a secure callback URL you’ve configured. Your service acknowledges receipt of the webhook message.
+After each of these payment events, your webhook receives a webhook message using a `POST` request to a secure callback URL you’ve configured. Your service acknowledges receipt of the webhook message.
 
 You can create webhooks in the GOV.UK Pay admin tool.
 
@@ -112,7 +112,7 @@ const valid = hmac === paySignatureHeader
 
 ### Webhook message example
 
-When your webhook sends a message, it’ll look like this:
+When your webhook receives a message, it’ll look like this:
 
 ```json
 {
