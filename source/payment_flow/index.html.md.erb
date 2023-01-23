@@ -39,6 +39,8 @@ When your user selects your payment button, you’ll make a [Create new payment 
 * the payment amount
 * a `return_url` in your service that we’ll send your user back to when they’ve finished paying
 
+Your user has 90 minutes to complete their payment once you have created it.
+
 ## 3. Redirect your user to GOV.UK Pay payment pages
 
 The [API response](/making_payments/#receiving-the-api-response) will include `next_url`, which is the URL of a payment page hosted on GOV.UK Pay.
@@ -95,7 +97,7 @@ Your PSP will then take (‘capture’) the payment from your user’s bank acco
 
 If your user decides not to complete the payment or the payment fails, your user will see a GOV.UK Pay error page, which includes a **Continue** button. When your user selects this, they’ll be redirected to your `return_url`.
 
-If your user does not complete their payment within 90 minutes, it will expire. GOV.UK Pay will send a cancellation to the payment provider and the status of the payment will be [P0020](/api_reference#gov-uk-pay-api-error-codes).
+The payment will expire if your user does not complete their journey within 90 minutes of you creating the payment. GOV.UK Pay will send a cancellation to the payment provider and you'll receive a [`P0020` error code](/api_reference/#errors-caused-by-payment-statuses) when you check the status of the expired payment.
 
 ## 7. Show a final page
 
