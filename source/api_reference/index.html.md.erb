@@ -152,7 +152,7 @@ Search endpoints also return a `_links` object, which includes `href` and `metho
 
 ## OpenAPI file
 
-You can also generate a client library from [our OpenAPI file](https://github.com/alphagov/pay-publicapi/blob/master/openapi/publicapi_spec.json) using [Swagger Editor](http://editor.swagger.io/). This may be an easier way for you to integrate your service with GOV.UK Pay than writing a client library from scratch.
+You can also generate a client library from [our OpenAPI file](https://github.com/alphagov/pay-publicapi/blob/master/openapi/publicapi_spec.json) using [Swagger Editor](https://editor.swagger.io/). This may be an easier way for you to integrate your service with GOV.UK Pay than writing a client library from scratch. You cannot use Swagger Editor to make test API calls.
 
 ## Responses
 
@@ -264,7 +264,7 @@ Failed payments return a `code` value in the `state` object when you use the API
 | Error code | Meaning | Cause |
 |------------|---------|-------|
 | P0010 | Payment method rejected | The payment was rejected due to the payment method selected or the payment information entered by the user.<br><br>For example, the user may have failed a fraud check, a 3D Secure authentication check, or they may not have sufficient funds in their account. |
-| P0020 | Payment expired | The payment timed out because the paying user did not confirm and complete it within 90 minutes of the payment being created.<br><br>If the paying user's bank already authorised the payment, GOV.UK Pay will automatically send a cancellation to the payment service provider. |
+| P0020 | Payment expired | The payment timed out because the paying user did not confirm and complete the payment within 90 minutes of the payment being created.<br><br>If the paying user's bank already authorised the payment, GOV.UK Pay will automatically send a cancellation to the payment service provider. |
 | P0030 | Payment cancelled by your user | The paying user selected **Cancel payment** during the payment journey.<br><br>If the paying user's bank already authorised the payment, GOV.UK Pay will automatically send a cancellation to the payment service provider. |
 | P0040 | Payment was cancelled by your service | Your service cancelled the payment.<br><br>You can [read more about cancelling payments](/making_payments/#cancel-a-payment-that-s-in-progress). |
 | P0050 | Payment provider returned an error | This error has multiple possible causes. For example, a configuration problem with the payment service provider, or incorrect credentials.<br><br>[Contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
