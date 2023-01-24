@@ -211,19 +211,24 @@ Read more about creating payments in [our guidance for taking payments](/making_
 
 ### Use idempotency to avoid double-charging a user
 
-Idempotency in an API is when multiple identical requests have the same effect as making a single request. In GOV.UK Pay, you can avoid double charging users by making idempotent requests when creating recurring payments.
+<%= warning_text('We have not yet built idempotency for recurring payments but this section explains how we intend to add it later in Q1 2023. This information is subject to change.') %>
 
-Idempotency is useful if you create a recurring payment through our API but do not receive a response due to network failure. With idempotency, further payment creation requests will fail if you use the same idempotency key. Without idempotency, further payment creation requests will succeed and you may double charge your user.
+Idempotency in an API is when multiple identical requests have the same effect as making a single request. In GOV.UK Pay, you’ll be able to avoid double-charging users by making idempotent requests when creating recurring payments.
 
-To make an idempotent request, use this header when creating a recurring payment:
+Idempotency is useful if you create a recurring payment through our API but do not receive a response due to network failure. In this situation: 
+
+* with idempotency, further payment creation requests with the same idempotency key will not create new payments 
+* without idempotency, further payment creation requests will create new payments and could double-charge your user
+
+We have not built idempotency into GOV.UK Pay yet but plan to finalise how it will work in Q1 2023. Our most likely approach will be to add a new header to API requests. To make an idempotent request, you’ll use this header when creating a recurring payment:
 
 ```
 -H "Idempotency-Key: {KEY}"
 ```
 
-Replace `{KEY}` with a [UUID (universally unique identifier)](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+Replace `{KEY}` with a unique identifier for this payment. You could randomly generate this identifier or follow a system, such as a combination of the agreement reference and payment date.
 
-If you try to create another payment using the same `Idempotency-Key` shortly after the first request, you’ll receive a `422` response. The response will let you know that you’ve already created a payment using that `Idempotency-Key`.
+If you make another payment creation request with the same `Idempotency-Key`, it will not create a new payment.
 
 ### Use webhooks to receive automatic event updates
 
