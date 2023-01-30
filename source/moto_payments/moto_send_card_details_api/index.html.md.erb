@@ -60,7 +60,7 @@ You’ll be using one of the following PSPs:
 
 To send a user's card details through the API, you need to set the payment’s authorisation mode when you create that payment.
 
-[Create a payment ](/making_payments/) using the `POST /v1/payments` endpoint and include `”authorisation_mode”: “moto_api”` in the request body. You do not need to include a `return_url` in your request because there's no user to return.
+[Create a payment ](/making_payments/) using the `POST /v1/payments` endpoint and include `"authorisation_mode": "moto_api"` in the request body. You do not need to include a `return_url` in your request because there's no user to return.
 
 You’ll receive a response that includes the `auth_url_post` object within the `_links` object. `auth_url_post` contains the URL (`href`), method (`method`), and unique token (`one_time_token`) you need to authorise the payment through our API. `auth_url_post` looks like this:
 
