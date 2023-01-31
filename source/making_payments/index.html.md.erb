@@ -36,27 +36,27 @@ For example:
 
 ```javascript
 {
-  "amount": 14500,
-  "reference" : "12345",
-  "description": "Pay your council tax",
-  "return_url": "https://your.service.gov.uk/completed",
-  "delayed_capture": false,
-  "metadata": {
-    "ledger_code": "AB100",
-    "an_internal_reference_number": 200
+  ”amount”: 14500,
+  ”reference” : ”12345”,
+  ”description”: ”Pay your council tax”,
+  ”return_url”: ”https://your.service.gov.uk/completed”,
+  ”delayed_capture”: false,
+  ”metadata”: {
+    ”ledger_code”: ”AB100”,
+    ”an_internal_reference_number”: 200
   },
-  "email": "sherlock.holmes@example.com",
-  "prefilled_cardholder_details": {
-    "cardholder_name": "Sherlock Holmes",
-    "billing_address": {
-        "line1": "221 Baker Street",
-        "line2": "Flat b",
-        "postcode": "NW1 6XE",
-        "city": "London",
-        "country": "GB"
+  ”email”: ”sherlock.holmes@example.com”,
+  ”prefilled_cardholder_details”: {
+    ”cardholder_name”: ”Sherlock Holmes”,
+    ”billing_address”: {
+        ”line1”: ”221 Baker Street”,
+        ”line2”: ”Flat b”,
+        ”postcode”: ”NW1 6XE”,
+        ”city”: ”London”,
+        ”country”: ”GB”
     }
   },
-  "language": "en",
+  ”language”: ”en”,
   ...
 }
 ```
@@ -94,29 +94,29 @@ If your request to create a payment succeeds, you'll receive a response that loo
 
 ```json
 {
-  "created_date": "2020-03-03T16:17:19.554Z",
-  "state": {
-    "status": "created",
-    "finished": false,
+  ”created_date”: ”2020-03-03T16:17:19.554Z”,
+  ”state”: {
+    ”status”: ”created”,
+    ”finished”: false,
   },
-  "_links": {
-    "self": {
-      "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
-      "method": "GET"
+  ”_links”: {
+    ”self”: {
+      ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93”,
+      ”method”: ”GET”
    },
-    "next_url": {
-      "href": "https://www.payments.service.gov.uk/secure/bb0a272c-8eaf-468d-b3xf-ae5e000d2231",
-      "method": "GET"
+    ”next_url”: {
+      ”href”: ”https://www.payments.service.gov.uk/secure/bb0a272c-8eaf-468d-b3xf-ae5e000d2231”,
+      ”method”: ”GET”
     },
     ...
   },
-  "amount": 14500,
-  "reference" : "12345",
-  "description": "Pay your council tax",
-  "return_url": "https://your.service.gov.uk/completed",
-  "payment_id": "hu20sqlact5260q2nanm0q8u93",
-  "payment_provider": "worldpay",
-  "provider_id": "10987654321",
+  ”amount”: 14500,
+  ”reference” : ”12345”,
+  ”description”: ”Pay your council tax”,
+  ”return_url”: ”https://your.service.gov.uk/completed”,
+  ”payment_id”: ”hu20sqlact5260q2nanm0q8u93”,
+  ”payment_provider”: ”worldpay”,
+  ”provider_id”: ”10987654321”,
   ...
 }
 ```
@@ -236,12 +236,12 @@ Get information about a specific payment to check if you can cancel that payment
 
 Replace `{PAYMENT_ID}` with the ID of the payment you are checking.
 
-If the JSON response body contains a `"cancel"` field (in the `_links` object)
+If the JSON response body contains a `”cancel”` field (in the `_links` object)
 that’s not `null`, you can cancel the payment. For example:
 
 ```
-"cancel": {
-  "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/cancel",
-  "method": "POST"
+”cancel”: {
+  ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/cancel”,
+  ”method”: ”POST”
 }
 ```

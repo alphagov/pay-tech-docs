@@ -15,7 +15,7 @@ During the delay, your user's available bank balance is reduced by the payment a
 
 You cannot use delayed capture if you only use [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/).
 
-To use this feature, include `"delayed_capture": true` in the body of a [Create new payment](/making_payments/#creating-a-payment) request.
+To use this feature, include `”delayed_capture”: true` in the body of a [Create new payment](/making_payments/#creating-a-payment) request.
 
 The user experience matches the current payment flow. Once your user selects
 __Confirm__ on the __Confirm your details__ page:
@@ -42,13 +42,13 @@ responses to API calls. For example:
 
 Replace ``{PAYMENT_ID}`` with the ID of the payment you want to see the capture URL for.
 
-The `"__links"` object will contain:
+The `__links` object will contain:
 
 ```
-"capture": {
-"href": "https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}/capture",
-    "method": "POST"
+”capture”: {
+”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}/capture”,
+    ”method”: ”POST”
     }
 ```
 
-If the payment is not available for capture, the `"__links"` object will not contain a `capture` object.
+If the payment is not available for capture, the `__links` object will not contain a `capture` object.

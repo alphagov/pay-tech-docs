@@ -37,7 +37,7 @@ The data from this endpoint is strongly consistent, meaning it is updated immedi
 This example request gets information about the payment with payment ID `hu20sqlact5260q2nanm0q8u93`:
 
 ```
-curl -X GET "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/" -H "Authorization: Bearer api_test_123abc456def"
+curl -X GET ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/” -H ”Authorization: Bearer api_test_123abc456def”
 ```
 
 ## Example response for ‘Get information about a single payment’
@@ -46,73 +46,73 @@ After you send your request to get information about a payment, you’ll receive
 
 ```json
 {
-  "created_date": "2019-07-11T10:36:26.988Z",
-  "amount": 3750,
-  "state": {
-    "status": "success",
-    "finished": true
+  ”created_date”: ”2019-07-11T10:36:26.988Z”,
+  ”amount”: 3750,
+  ”state”: {
+    ”status”: ”success”,
+    ”finished”: true
   },
-  "description": "Pay your council tax",
-  "reference": "12345",
-  "language": "en",
-  "metadata": {
-    "ledger_code": "AB100",
-    "internal_reference_number": 200
+  ”description”: ”Pay your council tax”,
+  ”reference”: ”12345”,
+  ”language”: ”en”,
+  ”metadata”: {
+    ”ledger_code”: ”AB100”,
+    ”internal_reference_number”: 200
   },
-  "email": "sherlock.holmes@example.com",
-  "card_details": {
-    "card_brand": "Visa",
-    "card_type": "debit",
-    "last_digits_card_number": "1234",
-    "first_digits_card_number": "123456",
-    "expiry_date": "04/24",
-    "cardholder_name": "Sherlock Holmes",
-    "billing_address": {
-        "line1": "221 Baker Street",
-        "line2": "Flat b",
-        "postcode": "NW1 6XE",
-        "city": "London",
-        "country": "GB"
+  ”email”: ”sherlock.holmes@example.com”,
+  ”card_details”: {
+    ”card_brand”: ”Visa”,
+    ”card_type”: ”debit”,
+    ”last_digits_card_number”: ”1234”,
+    ”first_digits_card_number”: ”123456”,
+    ”expiry_date”: ”04/24”,
+    ”cardholder_name”: ”Sherlock Holmes”,
+    ”billing_address”: {
+        ”line1”: ”221 Baker Street”,
+        ”line2”: ”Flat b”,
+        ”postcode”: ”NW1 6XE”,
+        ”city”: ”London”,
+        ”country”: ”GB”
     }
   },
-  "payment_id": "hu20sqlact5260q2nanm0q8u93",
-  "authorisation_mode": "web",
-  "authorisation_summary": {
-    "three_d_secure": {
-      "required": true
+  ”payment_id”: ”hu20sqlact5260q2nanm0q8u93”,
+  ”authorisation_mode”: ”web”,
+  ”authorisation_summary”: {
+    ”three_d_secure”: {
+      ”required”: true
     }
   },
-  "refund_summary": {
-    "status": "available",
-    "amount_available": 3500,
-    "amount_submitted": 500
+  ”refund_summary”: {
+    ”status”: ”available”,
+    ”amount_available”: 3500,
+    ”amount_submitted”: 500
   },
-  "settlement_summary": {
-    "capture_submit_time": "2019-07-12T17:15:000Z",
-    "captured_date": "2019-07-12",
-    "settled_date": "2019-07-12"
+  ”settlement_summary”: {
+    ”capture_submit_time”: ”2019-07-12T17:15:000Z”,
+    ”captured_date”: ”2019-07-12”,
+    ”settled_date”: ”2019-07-12”
   },
-  "delayed_capture": false,
-  "moto": false,
-  "corporate_card_surcharge": 250,
-  "total_amount": 4000,
-  "fee": 200,
-  "net_amount": 3800,
-  "payment_provider": "worldpay",
-  "provider_id": "10987654321",
-  "return_url": "https://your.service.gov.uk/completed",
-  "_links": {
-     "self": {
-         "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
-         "method": "GET"
+  ”delayed_capture”: false,
+  ”moto”: false,
+  ”corporate_card_surcharge”: 250,
+  ”total_amount”: 4000,
+  ”fee”: 200,
+  ”net_amount”: 3800,
+  ”payment_provider”: ”worldpay”,
+  ”provider_id”: ”10987654321”,
+  ”return_url”: ”https://your.service.gov.uk/completed”,
+  ”_links”: {
+     ”self”: {
+         ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93”,
+         ”method”: ”GET”
         },
-     "events": {
-         "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events",
-         "method": "GET"
+     ”events”: {
+         ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events”,
+         ”method”: ”GET”
         },
-     "refunds": {
-         "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds",
-         "method": "GET"
+     ”refunds”: {
+         ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds”,
+         ”method”: ”GET”
      }
   }
 }

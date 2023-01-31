@@ -42,7 +42,7 @@ The data from this endpoint is eventually consistent, meaning it is updated on a
 This example request is a refund search filtered by the date that refunds were created, with a limit of 5 refunds per page of results:
 
 ```
-curl -X GET "https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-04-01T08:00:00Z&display_size=5" -H 'Authorization: Bearer api_test_123abc456def'
+curl -X GET ”https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-04-01T08:00:00Z&display_size=5” -H 'Authorization: Bearer api_test_123abc456def'
 ```
 
 ## Example response for ‘Search refunds’
@@ -51,46 +51,46 @@ After you send your request to search refunds, you’ll receive a response simil
 
 ```json
 {
-    "total": 142,
-    "count": 5,
-    "page": 1,
-    "results": [
+    ”total”: 142,
+    ”count”: 5,
+    ”page”: 1,
+    ”results”: [
         {
-            "refund_id": "4jfabcee0ev36so050kooajabk",
-            "created_date": "2022-03-22T12:44:15.227Z",
-            "payment_id": "01k7da2d0021m0pcbjov354et8",
-            "amount": 1000,
-            "_links": {
-                "self": {
-                    "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds/4jfabcee0ev36so050kooajabk",
-                    "method": "GET"
+            ”refund_id”: ”4jfabcee0ev36so050kooajabk”,
+            ”created_date”: ”2022-03-22T12:44:15.227Z”,
+            ”payment_id”: ”01k7da2d0021m0pcbjov354et8”,
+            ”amount”: 1000,
+            ”_links”: {
+                ”self”: {
+                    ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds/4jfabcee0ev36so050kooajabk”,
+                    ”method”: ”GET”
                 },
-                "payment": {
-                    "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8",
-                    "method": "GET"
+                ”payment”: {
+                    ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8”,
+                    ”method”: ”GET”
                 }
             },
-            "status": "success",
-            "settlement_summary": {}
+            ”status”: ”success”,
+            ”settlement_summary”: {}
         },
         {
-            "refund_id": "c8pmgvrklqip57k8665vjamb60",
-            "created_date": "2021-04-07T09:55:20.758Z",
+            ”refund_id”: ”c8pmgvrklqip57k8665vjamb60”,
+            ”created_date”: ”2021-04-07T09:55:20.758Z”,
             ...
         }
     ],
-    "_links": {
-        "self": {
-            "href": "https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-01-01T00%3A00%3A00Z&display_size=500&page=1"
+    ”_links”: {
+        ”self”: {
+            ”href”: ”https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-01-01T00%3A00%3A00Z&display_size=500&page=1”
         },
-        "first_page": {
-            "href": "https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-01-01T00%3A00%3A00Z&display_size=500&page=1"
+        ”first_page”: {
+            ”href”: ”https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-01-01T00%3A00%3A00Z&display_size=500&page=1”
         },
-        "last_page": {
-            "href": "https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-01-01T00%3A00%3A00Z&display_size=500&page=1"
+        ”last_page”: {
+            ”href”: ”https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-01-01T00%3A00%3A00Z&display_size=500&page=1”
         },
-        "prev_page": {},
-        "next_page": {https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-04-01T08:00:00Z&display_size=5&page=2}
+        ”prev_page”: {},
+        ”next_page”: {https://publicapi.payments.service.gov.uk/v1/refunds?from_date=2021-04-01T08:00:00Z&display_size=5&page=2}
     }
 }
 ```
