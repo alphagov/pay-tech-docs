@@ -102,7 +102,7 @@ Do not add an allow list of IP addresses to your firewall, because GOV.UK Pay’
 
 GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer tokens](http://tools.ietf.org/html/rfc6750).
 
-When you make an API call, you need to use an “Authorization” HTTP header to provide your API key, with a “Bearer” prefix. For example:
+When you make an API call, you need to use an “Authorization" HTTP header to provide your API key, with a “Bearer" prefix. For example:
 
 ```text
 Authorization: Bearer {YOUR_API_KEY}
@@ -183,9 +183,9 @@ For example:
 
 ```json
 {
-  ”field”: ”amount”,
-  ”code”: ”P0102”,
-  ”description”: ”Invalid attribute value: amount. Must be less than or equal to 10000000”
+  "field": "amount",
+  "code": "P0102",
+  "description": "Invalid attribute value: amount. Must be less than or equal to 10000000"
 }
 ```
 
@@ -197,9 +197,9 @@ These error descriptions are intended for developers, not your users.
 |--------------|------------|---------|
 | P0101 | Create a payment<br><br>Send card details to authorise a MOTO payment | The request you sent is missing a required parameter.<br><br>Check the `field` attribute in the response to see which parameter is missing. |
 | P0102 | Create a payment<br><br>Send card details to authorise a MOTO payment | The value of a parameter you sent is invalid.<br><br>Check the `description` attribute in the response to find out which value is invalid. |
-| P0104 | Create a payment | You included `return_url` and `”authorisation_mode”: ”moto_api”` in your request. These parameters cannot be used together.<br><br>Remove the `return_url` parameter to create [a Mail Order / Telephone Order (MOTO) payment that accepts card details sent through the API](/moto_payments/moto_send_card_details_api).<br><br>Remove the `authorisation_mode` parameter to [create a standard payment](/making_payments). |
+| P0104 | Create a payment | You included `return_url` and `"authorisation_mode": "moto_api"` in your request. These parameters cannot be used together.<br><br>Remove the `return_url` parameter to create [a Mail Order / Telephone Order (MOTO) payment that accepts card details sent through the API](/moto_payments/moto_send_card_details_api).<br><br>Remove the `authorisation_mode` parameter to [create a standard payment](/making_payments). |
 | P0191 | Create a payment | The `Idempotency-Key` you sent in the request header has already been used to create a payment. |
-| P0195 | Create a payment | You tried to create a Mail Order / Telephone Order (MOTO) payment that accepts card details sent through the API but this feature is not enabled on your service.<br><br>You can [read more about setting up your service to accept card details sent through the API](/moto_payments/moto_send_card_details_api).<br><br>To create a standard payment, remove `”authorisation_mode”: ”moto_api”` from your request. |
+| P0195 | Create a payment | You tried to create a Mail Order / Telephone Order (MOTO) payment that accepts card details sent through the API but this feature is not enabled on your service.<br><br>You can [read more about setting up your service to accept card details sent through the API](/moto_payments/moto_send_card_details_api).<br><br>To create a standard payment, remove `"authorisation_mode": "moto_api"` from your request. |
 | P0196 | Create a payment | You tried to create a type of payment that is not enabled on your service.<br><br>Contact us about [setting up your service for MOTO payments](/moto_payments) or [recurring payments](/recurring_payments). |
 | P0197 | Create a payment | The JSON you sent in the request body is invalid.<br><br>Check the formatting of the request body. |
 | P0198 | Create a payment | There's something wrong with GOV.UK Pay. <br><br>If there are no issues on [our status page](https://payments.statuspage.io), you can [contact us with your error code](/support_contact_and_more_information/) and we'll investigate. |
@@ -278,12 +278,12 @@ For example:
 
 ```json
 {
-  ”amount”: 2000,
-  ”state”: {
-      ”status”: ”failed”,
-      ”finished”: true,
-      ”message”: ”Payment expired”,
-      ”code”: ”P0020”
+  "amount": 2000,
+  "state": {
+      "status": "failed",
+      "finished": true,
+      "message": "Payment expired",
+      "code": "P0020"
   }
   ...
 }
@@ -304,7 +304,7 @@ The `status` value indicates where the payment is in the payment status lifecycl
 | <nobr>`success`</nobr>    | Your user successfully completed the payment by selecting **Confirm**.<br><br>We redirected your user to a payment confirmation page.                                                                                                                                                                                                                                      | <nobr>`true`</nobr>     |
 | <nobr>`failed`</nobr>     | The payment failed. This failure could be because the payment timed out after 90 minutes, the user's payment method was rejected, or your user cancelled the payment.<br><br>We showed the user a failure screen.<br><br>Check the [payment status error codes](/api_reference/#errors-caused-by-payment-statuses) for the possible reasons for a `failed` payment. | <nobr>`true`</nobr>     |
 | <nobr>`cancelled`</nobr>  | Your service cancelled the payment using an API call or the GOV.UK Pay admin tool.<br><br>You can [read more about how to cancel payments.](https://docs.payments.service.gov.uk/making_payments/#cancel-a-payment-that-s-in-progress)                                    | <nobr>`true`</nobr>     |
-| <nobr>`error`</nobr>      | Something went wrong with GOV.UK Pay or the underlying payment service provider. The payment failed safely with no money taken from the user.<br><br>We showed the paying user a screen stating “**We’re experiencing technical problems. No money has been taken from your account. Cancel and go back to try the payment again.**”                                       | <nobr>`true`</nobr>     |
+| <nobr>`error`</nobr>      | Something went wrong with GOV.UK Pay or the underlying payment service provider. The payment failed safely with no money taken from the user.<br><br>We showed the paying user a screen stating “**We’re experiencing technical problems. No money has been taken from your account. Cancel and go back to try the payment again.**"                                       | <nobr>`true`</nobr>     |
 
 If something went wrong with a payment, the `code` and `message` attributes in the API response can help you find out what happened.
 

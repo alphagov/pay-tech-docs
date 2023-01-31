@@ -37,7 +37,7 @@ The data from this endpoint is eventually consistent, meaning it is updated on a
 This example request gets information about refunds of the payment with the payment ID `hu20sqlact5260q2nanm0q8u93`:
 
 ```
-curl -X GET ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds” -H ”Authorization: Bearer api_test_123abc456def”
+curl -X GET "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds" -H "Authorization: Bearer api_test_123abc456def"
 ```
 
 ## Example response for 'Get information about a payment's refunds'
@@ -46,50 +46,50 @@ After you send your request to get information about a payment’s refunds, you�
 
 ```json
 {
-    ”payment_id”: ”01k7da2d0021m0pcbjov354et8”,
-    ”_links”: {
-        ”self”: {
-            ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds”,
-            ”method”: ”GET”
+    "payment_id": "01k7da2d0021m0pcbjov354et8",
+    "_links": {
+        "self": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds",
+            "method": "GET"
         },
-        ”payment”: {
-            ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8”,
-            ”method”: ”GET”
+        "payment": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8",
+            "method": "GET"
         }
     },
-    ”_embedded”: {
-        ”refunds”: [
+    "_embedded": {
+        "refunds": [
             {
-                ”refund_id”: ”fvtj4naca8nstj2u0roq3t4p6r”,
-                ”created_date”: ”2022-02-17T12:42:55.510Z”,
-                ”amount”: 5000,
-                ”status”: ”success”,
-                ”settlement_summary”: {},
-                ”_links”: {
-                    ”self”: {
-                        ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds/fvtj4naca8nstj2u0roq3t4p6r”,
-                        ”method”: ”GET”
+                "refund_id": "fvtj4naca8nstj2u0roq3t4p6r",
+                "created_date": "2022-02-17T12:42:55.510Z",
+                "amount": 5000,
+                "status": "success",
+                "settlement_summary": {},
+                "_links": {
+                    "self": {
+                        "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds/fvtj4naca8nstj2u0roq3t4p6r",
+                        "method": "GET"
                     },
-                    ”payment”: {
-                        ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8”,
-                        ”method”: ”GET”
+                    "payment": {
+                        "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8",
+                        "method": "GET"
                     }
                 }
             },
             {
-                ”refund_id”: ”4jfabcee0ev36so050kooajabk”,
-                ”created_date”: ”2022-03-22T12:44:15.227Z”,
-                ”amount”: 1000,
-                ”status”: ”success”,
-                ”settlement_summary”: {},
-                ”_links”: {
-                    ”self”: {
-                        ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds/4jfabcee0ev36so050kooajabk”,
-                        ”method”: ”GET”
+                "refund_id": "4jfabcee0ev36so050kooajabk",
+                "created_date": "2022-03-22T12:44:15.227Z",
+                "amount": 1000,
+                "status": "success",
+                "settlement_summary": {},
+                "_links": {
+                    "self": {
+                        "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8/refunds/4jfabcee0ev36so050kooajabk",
+                        "method": "GET"
                     },
-                    ”payment”: {
-                        ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8”,
-                        ”method”: ”GET”
+                    "payment": {
+                        "href": "https://publicapi.payments.service.gov.uk/v1/payments/01k7da2d0021m0pcbjov354et8",
+                        "method": "GET"
                     }
                 }
             }

@@ -43,14 +43,14 @@ The data from this endpoint is ‘strongly consistent’, meaning it is updated 
 This example request sends card details to authorise the MOTO payment that returned the `one_time_token` of `9a084cca-2f23-4938-92ca-d7ebd1db537e` when that payment was created:
 
 ```json
-curl ”https://publicapi.payments.service.gov.uk/v1/auth” \
+curl "https://publicapi.payments.service.gov.uk/v1/auth" \
 -H 'Content-Type: application/json' \
 -d '{
-  ”one_time_token”: ”9a084cca-2f23-4938-92ca-d7ebd1db537e”,
-  ”card_number”: ”1111222233334444”,
-  ”cvc”: ”123”,
-  ”expiry_date”: ”02/24”,
-  ”cardholder_name”: ”Sherlock Holmes”
+  "one_time_token": "9a084cca-2f23-4938-92ca-d7ebd1db537e",
+  "card_number": "1111222233334444",
+  "cvc": "123",
+  "expiry_date": "02/24",
+  "cardholder_name": "Sherlock Holmes"
 }'
 ```
 

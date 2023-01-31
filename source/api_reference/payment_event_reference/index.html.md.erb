@@ -40,7 +40,7 @@ The data from this endpoint is strongly consistent, meaning it is updated immedi
 This example request gets the events for the payment with the payment ID `hu20sqlact5260q2nanm0q8u93`:
 
 ```
-curl ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events” -H ”Authorization: Bearer api_test_123abc456def”
+curl "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events" -H "Authorization: Bearer api_test_123abc456def"
 ```
 
 ## Example response for 'Get a payment's events'
@@ -49,55 +49,55 @@ After you send your request to get a payment’s events, you’ll receive a resp
 
 ```json
 {
-  ”events”: [
+  "events": [
     {
-      ”payment_id”: ”hu20sqlact5260q2nanm0q8u93”,
-      ”state”: {
-        ”status”: ”created”,
-        ”finished”: false
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "state": {
+        "status": "created",
+        "finished": false
       },
-      ”updated”: ”2022-01-19T15:32:48.819Z”,
-      ”_links”: {
-        ”payment_url”: {
-          ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/aogf0qtmvnug0rr2oa4jobfmtn”,
-          ”method”: ”GET”
+      "updated": "2022-01-19T15:32:48.819Z",
+      "_links": {
+        "payment_url": {
+          "href": "https://publicapi.payments.service.gov.uk/v1/payments/aogf0qtmvnug0rr2oa4jobfmtn",
+          "method": "GET"
         }
       }
     },
     {
-      ”payment_id”: ”hu20sqlact5260q2nanm0q8u93”,
-      ”state”: {
-        ”status”: ”started”,
-        ”finished”: false
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "state": {
+        "status": "started",
+        "finished": false
       },
-      ”updated”: ”2022-01-19T15:33:36.633Z”,
+      "updated": "2022-01-19T15:33:36.633Z",
       ...
     },
     {
-      ”payment_id”: ”hu20sqlact5260q2nanm0q8u93”,
-      ”state”: {
-        ”status”: ”submitted”,
-        ”finished”: false
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "state": {
+        "status": "submitted",
+        "finished": false
       },
-      ”updated”: ”2022-01-19T15:34:06.973Z”,
+      "updated": "2022-01-19T15:34:06.973Z",
       ...
     },
     {
-      ”payment_id”: ”hu20sqlact5260q2nanm0q8u93”,
-      ”state”: {
-        ”status”: ”success”,
-        ”finished”: true
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "state": {
+        "status": "success",
+        "finished": true
       },
-      ”updated”: ”2022-01-19T15:34:13.550Z”,
+      "updated": "2022-01-19T15:34:13.550Z",
       ...
       }
     }
   ]
-  ”payment_id”: ”hu20sqlact5260q2nanm0q8u93”,
-  ”_links”: {
-    ”self”: {
-      ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events”,
-      ”method”: ”GET”
+  "payment_id": "hu20sqlact5260q2nanm0q8u93",
+  "_links": {
+    "self": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events",
+      "method": "GET"
     }
   }
 }

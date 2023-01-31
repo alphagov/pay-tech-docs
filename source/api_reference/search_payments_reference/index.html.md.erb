@@ -56,7 +56,7 @@ If your request has no query parameters, this endpoint returns all payments.
 This example request is a payment search filtered to return payments that were created on or after 8:30am on 15 January 2021:
 
 ```
-curl -X GET ”https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-15T08:30:00Z” -H ”Authorization: Bearer api_test_123abc456def”
+curl -X GET "https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-15T08:30:00Z" -H "Authorization: Bearer api_test_123abc456def"
 ```
 
 ## Example response for ‘Search payments’
@@ -65,92 +65,92 @@ After you send your request to search payments, you’ll receive a response simi
 
 ```json
 {
-  ”total”: 100,
-  ”count”: 20,
-  ”page”: 1,
-  ”results”: [
+  "total": 100,
+  "count": 20,
+  "page": 1,
+  "results": [
     {
-      ”amount”: 1200,
-      ”authorisation_mode”: ”web”,
-      ”authorisation_summary”: {
-        ”three_d_secure”: {
-        ”required”: true,
+      "amount": 1200,
+      "authorisation_mode": "web",
+      "authorisation_summary": {
+        "three_d_secure": {
+        "required": true,
         }
       },
-      ”description”: ”Pay your council tax.”,
-      ”reference”: ”12345”,
-      ”language”: ”en”,
-      ”email”: ”sherlock.holmes@example.com”,
-      ”state”: {
-        ”status”: ”success”,
-        ”finished”: true
+      "description": "Pay your council tax.",
+      "reference": "12345",
+      "language": "en",
+      "email": "sherlock.holmes@example.com",
+      "state": {
+        "status": "success",
+        "finished": true
       },
-      ”payment_id”: ”hu20sqlact5260q2nanm0q8u93”,
-      ”payment_provider”: ”sandbox”,
-      ”created_date”: ”2021-04-07T09:49:36.631Z”,
-      ”refund_summary”: {
-        ”status”: ”available”,
-        ”amount_available”: 7000,
-        ”amount_submitted”: 5000
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "payment_provider": "sandbox",
+      "created_date": "2021-04-07T09:49:36.631Z",
+      "refund_summary": {
+        "status": "available",
+        "amount_available": 7000,
+        "amount_submitted": 5000
       },
-      ”settlement_summary”: {
-        ”capture_submit_time”: ”2021-04-07T09:53:46.084Z”,
-        ”captured_date”: ”2021-04-07”
+      "settlement_summary": {
+        "capture_submit_time": "2021-04-07T09:53:46.084Z",
+        "captured_date": "2021-04-07"
       },
-      ”card_details”: {
-        ”last_digits_card_number”: ”1111”,
-        ”first_digits_card_number”: ”444433”,
-        ”cardholder_name”: ”MR RALPH ELLISON”,
-        ”expiry_date”: ”10/23”,
-        ”billing_address”: {
-          ”line1”: ”52 Invisible Street”,
-          ”line2”: ”Flat 581”,
-          ”postcode”: ”IN5 M4N”,
-          ”city”: ”London”,
-          ”country”: ”GB”
+      "card_details": {
+        "last_digits_card_number": "1111",
+        "first_digits_card_number": "444433",
+        "cardholder_name": "MR RALPH ELLISON",
+        "expiry_date": "10/23",
+        "billing_address": {
+          "line1": "52 Invisible Street",
+          "line2": "Flat 581",
+          "postcode": "IN5 M4N",
+          "city": "London",
+          "country": "GB"
         },
-        ”card_brand”: ”Visa”,
-        ”card_type”: ”credit”
+        "card_brand": "Visa",
+        "card_type": "credit"
       },
-      ”delayed_capture”: false,
-      ”moto”: false,
-      ”total_amount”: 12000,
-      ”provider_id”: ”4718b3be-d765-4bcd-a7aa-4c2fcbb986cf”,
-      ”return_url”: ”https://stripe.com/docs/payments/checkout/custom-success-page”,
-      ”_links”: {
-        ”self”: {
-          ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93”,
-          ”method”: ”GET”
+      "delayed_capture": false,
+      "moto": false,
+      "total_amount": 12000,
+      "provider_id": "4718b3be-d765-4bcd-a7aa-4c2fcbb986cf",
+      "return_url": "https://stripe.com/docs/payments/checkout/custom-success-page",
+      "_links": {
+        "self": {
+          "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
+          "method": "GET"
         },
-        ”cancel”: null,
-        ”events”: {
-          ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events”,
-          ”method”: ”GET”
+        "cancel": null,
+        "events": {
+          "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events",
+          "method": "GET"
         },
-        ”refunds”: {
-          ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds”,
-          ”method”: ”GET”
+        "refunds": {
+          "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds",
+          "method": "GET"
         },
-        ”capture”: null
+        "capture": null
       },
-      ”card_brand”: ”Visa”
+      "card_brand": "Visa"
     }
     {
-      ”amount”: 1200,
-      ”description”: ”Pay your council tax.”,
-      ”reference”: ”12345”,
+      "amount": 1200,
+      "description": "Pay your council tax.",
+      "reference": "12345",
       . . .
     }
     ]
-  “_links”: {
-    ”self”: {
-      ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-01T08%3A00%3A00Z&display_size=500&state=success&page=1”
+  “_links": {
+    "self": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-01T08%3A00%3A00Z&display_size=500&state=success&page=1"
         },
-      ”first_page”: {
-            ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-01T08%3A00%3A00Z&display_size=500&state=success&page=1”
+      "first_page": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-01T08%3A00%3A00Z&display_size=500&state=success&page=1"
       },
-      ”last_page”: {
-            ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-01T08%3A00%3A00Z&display_size=500&state=success&page=1”
+      "last_page": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments?from_date=2021-01-01T08%3A00%3A00Z&display_size=500&state=success&page=1"
       }
     }
   }

@@ -46,7 +46,7 @@ If your request has no query parameters, this endpoint returns all agreements.
 This example request returns agreements that are in the `active` status.
 
 ```
-curl -X GET ”https://publicapi.payments.service.gov.uk/v1/agreements?status=active” -H ”Authorization: Bearer api_test_123abc456def”
+curl -X GET "https://publicapi.payments.service.gov.uk/v1/agreements?status=active" -H "Authorization: Bearer api_test_123abc456def"
 ```
 
 ## Example response for ‘Search agreements for recurring payments’
@@ -58,35 +58,35 @@ curl -X GET ”https://publicapi.payments.service.gov.uk/v1/agreements?status=ac
   page: 1,
   results: [
     {
-    ”agreement_id”: ”cgc1ocvh0pt9fqs0ma67r42l58”,
-    ”reference”: ”CT-22-23-0001”,
-    ”description”: ”Dorset Council 2022/23 council tax subscription.”
-    ”status”: ”active”,
-    ”user_identifier”: ”user-3fb81107-76b7-4910”
-    ”created_date”: ”2022-07-08T14:33:00.000Z”,
-    ”payment_instrument”: {
-      ”type”: ”card”,
-      ”card_details”: {
-        ”card_brand”: ”Visa”,
-        ”card_type”: ”debit”,
-        ”last_digits_card_number”: ”1234”,
-        ”first_digits_card_number”: ”123456”,
-        ”expiry_date”: ”04/24”,
-        ”cardholder_name”: ”Sherlock Holmes”,
-        ”billing_address”: {
-          ”line1”: ”221 Baker Street”,
-          ”line2”: ”Flat b”,
-          ”postcode”: ”NW1 6XE”,
-          ”city”: ”London”,
-          ”country”: ”GB”
+    "agreement_id": "cgc1ocvh0pt9fqs0ma67r42l58",
+    "reference": "CT-22-23-0001",
+    "description": "Dorset Council 2022/23 council tax subscription."
+    "status": "active",
+    "user_identifier": "user-3fb81107-76b7-4910"
+    "created_date": "2022-07-08T14:33:00.000Z",
+    "payment_instrument": {
+      "type": "card",
+      "card_details": {
+        "card_brand": "Visa",
+        "card_type": "debit",
+        "last_digits_card_number": "1234",
+        "first_digits_card_number": "123456",
+        "expiry_date": "04/24",
+        "cardholder_name": "Sherlock Holmes",
+        "billing_address": {
+          "line1": "221 Baker Street",
+          "line2": "Flat b",
+          "postcode": "NW1 6XE",
+          "city": "London",
+          "country": "GB"
         }
       }
     }
   }
   {
-    ”agreement_id”: ”tut4wrjk5lp1qbr5jz92a37t00”,
-    ”reference”: ”CT-22-23-0002”,
-    ”status”: ”active”,
+    "agreement_id": "tut4wrjk5lp1qbr5jz92a37t00",
+    "reference": "CT-22-23-0002",
+    "status": "active",
     ...
   }
   ]

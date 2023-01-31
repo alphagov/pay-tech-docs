@@ -52,31 +52,31 @@ The data from this endpoint is ‘strongly consistent’, meaning it is updated 
 This example request creates a £145 council tax payment with a reference of `12345`. It also prefills some payment fields and uses metadata to add an internal ledger code and reference number:
 
 ```json
-curl ”https://publicapi.payments.service.gov.uk/v1/payments” \
+curl "https://publicapi.payments.service.gov.uk/v1/payments" \
 -H 'Authorization: Bearer api_test_123abc456def' \
 -H 'Content-Type: application/json' \
 -d '{
-          ”amount”: 14500,
-          ”reference” : ”12345”,
-          ”description”: ”Pay your council tax”,
-          ”return_url”: ”https://your.service.gov.uk/completed”,
-          ”delayed_capture”: false,
-          ”metadata”: {
-                ”ledger_code”: ”AB100”,
-                ”internal_reference_number”: 200
+          "amount": 14500,
+          "reference" : "12345",
+          "description": "Pay your council tax",
+          "return_url": "https://your.service.gov.uk/completed",
+          "delayed_capture": false,
+          "metadata": {
+                "ledger_code": "AB100",
+                "internal_reference_number": 200
           },
-          ”email”: ”sherlock.holmes@example.com”,
-          ”prefilled_cardholder_details”: {
-            ”cardholder_name”: ”Sherlock Holmes”,
-            ”billing_address”: {
-                ”line1”: ”221 Baker Street”,
-                ”line2”: ”Flat b”,
-                ”postcode”: ”NW1 6XE”,
-                ”city”: ”London”,
-                ”country”: ”GB”
+          "email": "sherlock.holmes@example.com",
+          "prefilled_cardholder_details": {
+            "cardholder_name": "Sherlock Holmes",
+            "billing_address": {
+                "line1": "221 Baker Street",
+                "line2": "Flat b",
+                "postcode": "NW1 6XE",
+                "city": "London",
+                "country": "GB"
             }
           },
-          ”language”: ”en”
+          "language": "en"
 }'
 ```
 
@@ -84,54 +84,54 @@ curl ”https://publicapi.payments.service.gov.uk/v1/payments” \
 
 ```json
 {
-    ”amount”: 14500,
-    ”description”: ”Pay your council tax.”,
-    ”reference”: ”12345”,
-    ”language”: ”en”,
-    ”state”: {
-        ”status”: ”created”,
-        ”finished”: false
+    "amount": 14500,
+    "description": "Pay your council tax.",
+    "reference": "12345",
+    "language": "en",
+    "state": {
+        "status": "created",
+        "finished": false
     },
-    ”payment_id”: ”hu20sqlact5260q2nanm0q8u93”,
-    ”payment_provider”: ”stripe”,
-    ”created_date”: ”2022-03-25T13:11:29.019Z”,
-    ”refund_summary”: {
-        ”status”: ”pending”,
-        ”amount_available”: 14500,
-        ”amount_submitted”: 0
+    "payment_id": "hu20sqlact5260q2nanm0q8u93",
+    "payment_provider": "stripe",
+    "created_date": "2022-03-25T13:11:29.019Z",
+    "refund_summary": {
+        "status": "pending",
+        "amount_available": 14500,
+        "amount_submitted": 0
     },
-    ”settlement_summary”: {},
-    ”delayed_capture”: false,
-    ”moto”: false,
-    ”return_url”: ”https://your.service.gov.uk/completed”,
-    ”_links”: {
-        ”self”: {
-            ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93”,
-            ”method”: ”GET”
+    "settlement_summary": {},
+    "delayed_capture": false,
+    "moto": false,
+    "return_url": "https://your.service.gov.uk/completed",
+    "_links": {
+        "self": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
+            "method": "GET"
         },
-        ”next_url”: {
-            ”href”: ”https://www.payments.service.gov.uk/secure/ef1b6ff1-db34-4c62-b854-3ed4ba3c4049”,
-            ”method”: ”GET”
+        "next_url": {
+            "href": "https://www.payments.service.gov.uk/secure/ef1b6ff1-db34-4c62-b854-3ed4ba3c4049",
+            "method": "GET"
         },
-        ”next_url_post”: {
-            ”type”: ”application/x-www-form-urlencoded”,
-            ”params”: {
-                ”chargeTokenId”: ”ef1b6ff1-db34-4c62-b854-3ed4ba3c4049”
+        "next_url_post": {
+            "type": "application/x-www-form-urlencoded",
+            "params": {
+                "chargeTokenId": "ef1b6ff1-db34-4c62-b854-3ed4ba3c4049"
             },
-            ”href”: ”https://www.payments.service.gov.uk/secure”,
-            ”method”: ”POST”
+            "href": "https://www.payments.service.gov.uk/secure",
+            "method": "POST"
         },
-        ”events”: {
-            ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events”,
-            ”method”: ”GET”
+        "events": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/events",
+            "method": "GET"
         },
-        ”refunds”: {
-            ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds”,
-            ”method”: ”GET”
+        "refunds": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/refunds",
+            "method": "GET"
         },
-        ”cancel”: {
-            ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/cancel”,
-            ”method”: ”POST”
+        "cancel": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93/cancel",
+            "method": "POST"
         }
     }
 }

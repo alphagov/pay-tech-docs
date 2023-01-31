@@ -26,20 +26,20 @@ The API response includes a `refund_summary` object containing details about:
 This is an example of a `refund_summary` object for a completed £50 payment with no previous refunds:
 
 ```javascript
-”refund_summary”: {
-  ”status”: ”available”,
-  ”amount_available”: 5000,
-  ”amount_submitted”: 0
+"refund_summary": {
+  "status": "available",
+  "amount_available": 5000,
+  "amount_submitted": 0
 }
 ```
 
 This is an example of a `refund_summary` object for a completed £90 payment where £30 has already been refunded:
 
 ```javascript
-”refund_summary”: {
-  ”status”: ”available”,
-  ”amount_available”: 6000,
-  ”amount_submitted”: 3000
+"refund_summary": {
+  "status": "available",
+  "amount_available": 6000,
+  "amount_submitted": 3000
 }
 ```
 
@@ -73,8 +73,8 @@ This example requests refunds £20 of an available £50:
 
 ```javascript
 {
-  ”amount”: 2000,
-  ”refund_amount_available”: 5000
+  "amount": 2000,
+  "refund_amount_available": 5000
 }
 ```
 
@@ -86,10 +86,10 @@ After you send your request to refund a payment, you'll receive a response like 
 
 ```javascript
 {
-  ”amount”: 2000,
-  ”created_date”: ”2019-09-19T16:53:03.213Z”,
-  ”refund_id”: ”j6se0f2o427g28g8yg3u3i”,
-  ”status”: ”submitted”,
+  "amount": 2000,
+  "created_date": "2019-09-19T16:53:03.213Z",
+  "refund_id": "j6se0f2o427g28g8yg3u3i",
+  "status": "submitted",
   ...
 }
 ```
@@ -118,12 +118,12 @@ Example response:
 
 ```json
 {
-  ”amount”: 2000,
-  ”created_date”: ”2019-09-19T16:53:03.213Z”,
-  ”refund_id”: ”j6se0f2o427g28g8yg3u3i”,
-  ”status”: ”success”,
-  ”settlement_summary”: {
-    ”settled_date”: ”2019-09-21”
+  "amount": 2000,
+  "created_date": "2019-09-19T16:53:03.213Z",
+  "refund_id": "j6se0f2o427g28g8yg3u3i",
+  "status": "success",
+  "settlement_summary": {
+    "settled_date": "2019-09-21"
   }
 }
 ```
@@ -163,9 +163,9 @@ If the payment has reached your bank account, your PSP will take the refund amou
 If your PSP is Stripe, you can see when Stripe took the refund by making an API call to [check the status of a refund](/refunding_payments/#checking-the-status-of-a-refund) (`GET /v1/payments/{PAYMENT_ID}/refunds/{REFUND_ID}`) and looking at the `settlement_summary` object:
 
 ```json
-”settlement_summary”: {
+"settlement_summary": {
   ...
-  ”settled_date”: ”2019-09-21”,
+  "settled_date": "2019-09-21",
 }
 ```
 
@@ -188,26 +188,26 @@ Example response:
 
 ```javascript
 {
-  ”payment_id”: ”hu20sqlact5260q2nanm0q8u93”,
+  "payment_id": "hu20sqlact5260q2nanm0q8u93",
   ...
-  ”_embedded”: {
-    ”refunds”: [
+  "_embedded": {
+    "refunds": [
       {
-        ”refund_id”: ”act4c33g40j3edfmi8jknab84x”,
-        ”created_date”: ”2019-09-19T16:52:07.855Z”,
-        ”amount”: 120,
-        ”status”: ”success”
-        ”settlement_summary”: {
-          ”settled_date”: ”2019-09-21”
+        "refund_id": "act4c33g40j3edfmi8jknab84x",
+        "created_date": "2019-09-19T16:52:07.855Z",
+        "amount": 120,
+        "status": "success"
+        "settlement_summary": {
+          "settled_date": "2019-09-21"
         }
       },
       {
-        ”refund_id”: ”9rwjbdcpjd54ol1btog2a8zowh”,
-        ”created_date”: ”2019-09-20T20:46:01.121Z”,
-        ”amount”: 60,
-        ”status”: ”success”
-        ”settlement_summary”: {
-          ”settled_date”: ”2019-09-21”
+        "refund_id": "9rwjbdcpjd54ol1btog2a8zowh",
+        "created_date": "2019-09-20T20:46:01.121Z",
+        "amount": 60,
+        "status": "success"
+        "settlement_summary": {
+          "settled_date": "2019-09-21"
         }
       }
     ]
@@ -231,39 +231,39 @@ Example response:
 
 ```json
 {
-  ”total”: 100,
-  ”count”: 20,
-  ”page”: 2,
-  ”results”: [
+  "total": 100,
+  "count": 20,
+  "page": 2,
+  "results": [
     {
-      ”refund_id”: ”act4c33g40j3edfmi8jknab84x”,
-      ”created_date”: ”2017-01-10T16:52:07.855Z”,
-      ”amount”: 120,
-      ”status”: ”success”,
-      ”settlement_summary”: {
-        ”settled_date”: ”2017-01-11”
+      "refund_id": "act4c33g40j3edfmi8jknab84x",
+      "created_date": "2017-01-10T16:52:07.855Z",
+      "amount": 120,
+      "status": "success",
+      "settlement_summary": {
+        "settled_date": "2017-01-11"
       }
-      ”_links”: {
-        ”payment”: {
-            ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/5chu1yzxglqajfv97ous23s22i”,
-            ”method”: ”GET”
+      "_links": {
+        "payment": {
+            "href": "https://publicapi.payments.service.gov.uk/v1/payments/5chu1yzxglqajfv97ous23s22i",
+            "method": "GET"
         }
       ...
       }
     },
     {
-      ”refund_id”: ”efj6834secviyyxe8vs861pg3j”,
+      "refund_id": "efj6834secviyyxe8vs861pg3j",
       ...
     }
   ],
-  ”_links”: {
-    ”prev_page”: {
-      ”href”: ”https://publicapi.payments.service.gov.uk/v1/refunds?display_size=20&page=1”,
-      ”method”: ”GET”
+  "_links": {
+    "prev_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/refunds?display_size=20&page=1",
+      "method": "GET"
     },
-    ”next_page”: {
-      ”href”: ”https://publicapi.payments.service.gov.uk/v1/refunds?display_size=20&page=3”,
-      ”method”: ”GET”
+    "next_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/refunds?display_size=20&page=3",
+      "method": "GET"
     }
     ...
   }

@@ -47,7 +47,7 @@ If you do not include query parameters in your request, this endpoint returns al
 This example request is a search for disputes that were raised between 6:00am on 1 July 2022 and 11:59pm on 31 July 2022, and are still being reviewed by the bank:
 
 ```
-curl -X GET ”https://publicapi.payments.service.gov.uk/v1/disputes?from_date=2022-07-01T06:00:00Z&to_date=2022-07-31T23:59:00&status=under_review” -H ”Authorization: Bearer api_test_123abc456def”
+curl -X GET "https://publicapi.payments.service.gov.uk/v1/disputes?from_date=2022-07-01T06:00:00Z&to_date=2022-07-31T23:59:00&status=under_review" -H "Authorization: Bearer api_test_123abc456def"
 ```
 
 ## Example response for 'Search disputes'
@@ -56,48 +56,48 @@ After you send your request to search disputes, you’ll receive a response simi
 
 ```json
 {
-  ”_links”: {
-    ”self”: {
-      ”href”: ”https://publicapi.payments.service.gov.uk/v1/disputes?page=1”,
-      ”method”: ”GET”
+  "_links": {
+    "self": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/disputes?page=1",
+      "method": "GET"
     },
-    ”first_page”: {
-      ”href”: ”https://publicapi.payments.service.gov.uk/v1/disputes?page=1”,
-      ”method”: ”GET”
+    "first_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/disputes?page=1",
+      "method": "GET"
     },
-    ”last_page”: {
-      ”href”: ”https://publicapi.payments.service.gov.uk/v1/disputes?page=1”,
-      ”method”: ”GET”
+    "last_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/disputes?page=1",
+      "method": "GET"
     },
-    ”prev_page”: {
-      ”href”: ”https://publicapi.payments.service.gov.uk/v1/disputes?page=1”,
-      ”method”: ”GET”
+    "prev_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/disputes?page=1",
+      "method": "GET"
     },
-    ”next_page”: {
-      ”href”: ”https://publicapi.payments.service.gov.uk/v1/disputes?page=1”,
-      ”method”: ”GET”
+    "next_page": {
+      "href": "https://publicapi.payments.service.gov.uk/v1/disputes?page=1",
+      "method": "GET"
     }
   },
-  ”page”: 1,
-  ”count”: 20,
-  ”total”: 20,
-  ”results:”: [
+  "page": 1,
+  "count": 20,
+  "total": 20,
+  "results:": [
     {
-      ”amount”: 1200,
-      ”created_date”: ”2022-01-21T17:15:000Z”,
-      ”dispute_id”: ”geCju5lhLGr0B2jfiT3jo5wDek”,
-      ”evidence_due_date”: ”2022-01-10T23:59:59.000Z”,
-      ”fee”: 1500,
-      ”net_amount”: -2500,
-      ”payment_id”: ”hu20sqlact5260q2nanm0q8u93”,
-      ”reason”: ”credit_not_processed”,
-      ”status”: ”lost”,
-      ”settlement_summary”: {
-        ”settled_date”: ”2022-01-21”
+      "amount": 1200,
+      "created_date": "2022-01-21T17:15:000Z",
+      "dispute_id": "geCju5lhLGr0B2jfiT3jo5wDek",
+      "evidence_due_date": "2022-01-10T23:59:59.000Z",
+      "fee": 1500,
+      "net_amount": -2500,
+      "payment_id": "hu20sqlact5260q2nanm0q8u93",
+      "reason": "credit_not_processed",
+      "status": "lost",
+      "settlement_summary": {
+        "settled_date": "2022-01-21"
       },
-      ”_links”: {
-        ”href”: ”https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93”,
-        ”method”: ”GET”
+      "_links": {
+        "href": "https://publicapi.payments.service.gov.uk/v1/payments/hu20sqlact5260q2nanm0q8u93",
+        "method": "GET"
       }
     }
   ]
