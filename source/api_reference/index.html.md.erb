@@ -102,7 +102,7 @@ Do not add an allow list of IP addresses to your firewall, because GOV.UK Pay’
 
 GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer tokens](http://tools.ietf.org/html/rfc6750).
 
-When you make an API call, you need to use an "Authorization" HTTP header to provide your API key, with a "Bearer" prefix. For example:
+When you make an API call, you need to use an `Authorization` HTTP header to provide your API key, with a "Bearer" prefix. For example:
 
 ```text
 Authorization: Bearer {YOUR_API_KEY}
@@ -304,7 +304,7 @@ The `status` value indicates where the payment is in the payment status lifecycl
 | <nobr>`success`</nobr>    | Your user successfully completed the payment by selecting **Confirm**.<br><br>We redirected your user to a payment confirmation page.                                                                                                                                                                                                                                      | <nobr>`true`</nobr>     |
 | <nobr>`failed`</nobr>     | The payment failed. This failure could be because the payment timed out after 90 minutes, the user's payment method was rejected, or your user cancelled the payment.<br><br>We showed the user a failure screen.<br><br>Check the [payment status error codes](/api_reference/#errors-caused-by-payment-statuses) for the possible reasons for a `failed` payment. | <nobr>`true`</nobr>     |
 | <nobr>`cancelled`</nobr>  | Your service cancelled the payment using an API call or the GOV.UK Pay admin tool.<br><br>You can [read more about how to cancel payments.](https://docs.payments.service.gov.uk/making_payments/#cancel-a-payment-that-s-in-progress)                                    | <nobr>`true`</nobr>     |
-| <nobr>`error`</nobr>      | Something went wrong with GOV.UK Pay or the underlying payment service provider. The payment failed safely with no money taken from the user.<br><br>We showed the paying user a screen stating "**We’re experiencing technical problems. No money has been taken from your account. Cancel and go back to try the payment again.**"                                       | <nobr>`true`</nobr>     |
+| <nobr>`error`</nobr>      | Something went wrong with GOV.UK Pay or the underlying payment service provider. The payment failed safely with no money taken from the user.<br><br>We showed the paying user a screen stating ”**We’re experiencing technical problems. No money has been taken from your account. Cancel and go back to try the payment again.**”                                       | <nobr>`true`</nobr>     |
 
 If something went wrong with a payment, the `code` and `message` attributes in the API response can help you find out what happened.
 
