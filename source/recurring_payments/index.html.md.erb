@@ -226,24 +226,32 @@ You can use some of GOV.UK Pay's optional features when taking recurring payment
 
 ### Use idempotency to avoid double-charging a user
 
-<%= warning_text('We have not yet built idempotency for recurring payments but this section explains how we intend to add it later in Q1 2023. This information is subject to change.') %>
-
-Idempotency in an API is when multiple identical requests have the same effect as making a single request. In GOV.UK Pay, you’ll be able to avoid double-charging users by making idempotent requests when creating recurring payments.
+Idempotency in an API is when multiple identical requests have the same effect as making a single request. In GOV.UK Pay, you can avoid double-charging users by using the `Idempotency-Key` header to make your API requests idempotent when taking recurring payments.
 
 Idempotency is useful if you create a recurring payment through our API but do not receive a response due to network failure. In this situation: 
 
 * with idempotency, further payment creation requests with the same idempotency key will not create new payments 
 * without idempotency, further payment creation requests will create new payments and could double-charge your user
 
-We have not built idempotency into GOV.UK Pay yet but plan to finalise how it will work in Q1 2023. Our most likely approach will be to add a new header to API requests. To make an idempotent request, you’ll use this header when creating a recurring payment:
+Use this header when creating a recurring payment to make your request idempotent:
 
 ```
 -H "Idempotency-Key: {KEY}"
 ```
 
-Replace `{KEY}` with a unique identifier for this payment. You could randomly generate this identifier or follow a system, such as a combination of the agreement reference and payment date.
+Replace `{KEY}` with a unique identifier for this payment. You could follow a system to generate this identifier, such as a combination of the agreement reference and payment date. You could also randomly generate this identifier using version 4 universally unique identifiers (UUIDs). For example:
 
-If you make another payment creation request with the same `Idempotency-Key`, it will not create a new payment.
+```
+-H "Idempotency-Key: 77b115e0-f765-4bbe-8891-eec2239e633e"
+```
+
+ `Idempotency-Key` must be between 1 and 255 characters and made up of numbers, letters, or hyphens. Do not use special characters.
+
+If you send a payment creation request with an identical `Idempotency-Key` and request body within 24 hours of your original request, you’ll get a `200` successful response. Our API returns details of the original payment. You have not created a new payment.
+
+If you send a payment creation request with the same `Idempotency-Key`  but a different request body, our API returns a `409` response. You have not created a new payment.
+
+If you send an invalid `Idempotency-Key`, our API returns a `422` response. You have not created a new payment.
 
 ### Use webhooks to receive automatic event updates
 
