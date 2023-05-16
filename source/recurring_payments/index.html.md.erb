@@ -168,7 +168,7 @@ Your request to create this first payment should look something like this:
 
 `set_up_agreement` tells our API to save your user’s card details when they complete this payment. We use a token to represent the user's card details. This token is associated with the agreement with the ID you send.
 
-You can also use `set_up_agreement` to reactivate a cancelled or expired agreement.
+You can also use `set_up_agreement` to reactivate a cancelled, inactive, or expired agreement.
 
 When your user is making their first payment, GOV.UK Pay will show your user the `description` you sent when you created the agreement.
 
@@ -399,12 +399,13 @@ This example would return all payments authorised by the agreement with the ID `
 
 When you use the API to get information about agreements, the `status` response attribute tells you what state the agreement is currently in.
 
-| Status    | Meaning                                                                                                                                                                                                                                                                                                                                                                    |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `created`   | You have created the agreement using the API.<br><br>Your user has not yet made [their first payment to set up the agreement](/recurring_payments/#set-up-an-agreement-for-recurring-payments).                                                                                                                                                                         |
-| `active`    | You have set up the agreement by saving a user’s card details when they make their first payment.<br><br>You can [use this agreement to take recurring payments](/recurring_payments/#taking-recurring-payments).                                                                                                                                                           |
+| Status            | Meaning                                                                                                                                                                                                                                                                                                                                                            |
+|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `created`         | You have created the agreement using the API.<br><br>Your user has not yet made [their first payment to set up the agreement](/recurring_payments/#set-up-an-agreement-for-recurring-payments).                                                                                                                                                                    |
+| `active`          | You have set up the agreement by saving a user’s card details when they make their first payment.<br><br>You can [use this agreement to take recurring payments](/recurring_payments/#taking-recurring-payments).                                                                                                                                                  |
 | <nobr>`cancelled` | You have cancelled the agreement.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.<br><br>Read more about [cancelling and reactivating agreements for recurring payments](/recurring_payments/#cancel-an-agreement-for-recurring-payments) or [API reference documentation](/api_reference/cancel_agreement_reference). |
-| `expired`   | The user’s payment method has expired.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.                                                                                                                                                                        |
+| `expired`         | The user’s payment method has expired.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.                                                                                                                                                                                                                                 |
+| `inactive`        | The payment method was rejected and cannot be re-tried.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.                                                                                                                                                                                                                |
 
 ## Cancel an agreement for recurring payments
 
