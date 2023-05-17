@@ -2,6 +2,9 @@
   "name": "pay-tech-docs",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "^16.14.0"
+  },
   "dependencies": {
     "@govuk-pay/pay-js-commons": "^3.8.13",
     "govuk-frontend": "^3.14.0"
