@@ -57,7 +57,7 @@ jobs:
             type: docker-image
             source:
               repository: ruby
-              tag: 2.7.2-buster
+              tag: 3.2.2-buster
           inputs:
             - name: pay-tech-docs
           outputs:
@@ -108,7 +108,7 @@ jobs:
             type: docker-image
             source:
               repository: ruby
-              tag: 2.7.2-buster
+              tag: 3.2.2-buster
           inputs:
             - name: pull-request
           caches:
