@@ -81,9 +81,10 @@ jobs:
                 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
                 source "$NVM_DIR/nvm.sh"
 
+                set -x
                 gem install bundler
                 bundle install --deployment
-                npm install --only=production
+                npm ci --omit=dev
                 bundle exec middleman build
       - put: paas
         params:
@@ -129,8 +130,10 @@ jobs:
                 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
                 source "$NVM_DIR/nvm.sh"
 
+                set -x
                 gem install bundler
                 bundle install --deployment
+                npm ci --omit=dev
                 bundle exec middleman build
         on_failure:
           put: pull-request
