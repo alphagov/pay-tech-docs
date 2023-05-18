@@ -71,7 +71,16 @@ jobs:
               - -c
               - |
                 set -o errexit -o nounset -o pipefail
-                apt-get update && apt-get install -y nodejs npm
+
+                # Debian buster only has nodejs v10 and pay-js-commons requires node 16+
+                # so lets install it with nvm
+                export NODE_VERSION=$(cat ../.nvmrc)
+                export NVM_DIR=/usr/local/nvm
+
+                mkdir "$NVM_DIR"
+                curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+                source "$NVM_DIR/nvm.sh"
+
                 gem install bundler
                 bundle install --deployment
                 npm install --only=production
@@ -110,7 +119,16 @@ jobs:
               - -c
               - |
                 set -o errexit -o nounset -o pipefail
-                apt-get update && apt-get install -y nodejs npm
+
+                # Debian buster only has nodejs v10 and pay-js-commons requires node 16+
+                # so lets install it with nvm
+                export NODE_VERSION=$(cat ../.nvmrc)
+                export NVM_DIR=/usr/local/nvm
+
+                mkdir "$NVM_DIR"
+                curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+                source "$NVM_DIR/nvm.sh"
+
                 gem install bundler
                 bundle install --deployment
                 bundle exec middleman build
