@@ -57,8 +57,9 @@ GEM
       nokogiri
       openapi3_parser (~> 0.9.0)
       redcarpet (~> 3.5.1)
-    haml (5.2.2)
-      temple (>= 0.8.0)
+    haml (6.1.1)
+      temple (>= 0.8.2)
+      thor
       tilt
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
@@ -187,7 +188,7 @@ PLATFORMS
 
 DEPENDENCIES
   govuk_tech_docs (~> 3.3.1)
-  haml (~> 5.2, >= 5.2.2)
+  haml (~> 6.1)
   html-proofer
 
 BUNDLED WITH
