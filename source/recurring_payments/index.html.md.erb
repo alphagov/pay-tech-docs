@@ -211,9 +211,48 @@ GOV.UK Pay uses a token representing the user’s saved payment details from the
 
 Check the status of the payment through our API (`GET /v1/payments/{PAYMENT_ID}`) or by [using webhooks to get automatic payment event updates](/recurring_payments/#use-webhooks-to-receive-automatic-event-updates).
 
-If a recurring payment fails when we try to take it, it’s handled like any other failed payment.
+If a recurring payment fails when we try to take it, it’s handled like any other failed payment. You can [read more about what you need to do when a recurring payment fails](#handling-failed-recurring-payments).
 
 Read more about creating payments in [our guidance for taking payments](/making_payments) or our [API reference page for creating payments](/api_reference/create_a_payment_reference).
+
+### Handling failed recurring payments
+
+If a recurring payment fails, you may not be able to continue using the same agreement for recurring payments.
+
+Get information about the failed recurring payment through our API (`GET v1/payments/{PAYMENT_ID}`) to find out if you can continue using the agreement to take payments. 
+
+Our API returns a `can_retry` attribute in the `state` object. Depending on why the payment failed, `can_retry` has two possible values:
+
+* `true` - you can try to take another payment with the the associated agreement 
+* `false` - you cannot try to take another payment with the associated agreement
+
+You can try to take another payment with the user’s agreement if, for example, the paying user had insufficient funds when you first tried to take the payment. 
+
+You cannot try to take more payments with the same agreement if, for example, the paying user has lost their payment card or contacted their bank to block payments to your service.
+
+#### Handling failed recurring payments that can be retried
+
+If `can_retry` is `true`, you can try to take another recurring payment with the agreement.
+
+Take another payment in the same way you usually take recurring payments. Create a new payment (`POST /v1/payments`) and include `"authorisation_mode": "agreement"` and `"agreement_id": "{AGREEMENT_ID}"`  in your request body.
+
+Before you try to take the payment again, contact your paying user to tell them their payment was declined. You should also tell them when you will try to take the payment again. 
+
+You should wait at least 48 hours after a declined payment before trying to take another payment. 
+
+If you try to take a payment more than 15 times in 30 days, card issuers may charge you for excessive retries.
+
+#### Handling failed recurring payments that cannot be retried
+
+If `can_retry` is `false`, you cannot take another recurring payment with the agreement. The agreement’s `status` will become `inactive` and additional recurring payment attempts will fail. Your payment service provider may charge fees on failed recurring payments.
+
+You should contact the user to resolve the situation.
+
+To continue using the same agreement to take recurring payments, you must [set up the agreement again by taking a payment from your user](#set-up-an-agreement-for-recurring-payments). This is the same thing you did when you set up the agreement the first time. Depending on your user journey, you may need to get consent from the user again.
+
+You can also [create a new agreement for recurring payments](#create-an-agreement-for-recurring-payments). The user’s payment history will still be associated with the cancelled agreement. Any new recurring payments will be associated with the new agreement.
+
+
 
 ### Use GOV.UK Pay's optional features with recurring payments
 
@@ -404,6 +443,7 @@ When you use the API to get information about agreements, the `status` response 
 | `created`   | You have created the agreement using the API.<br><br>Your user has not yet made [their first payment to set up the agreement](/recurring_payments/#set-up-an-agreement-for-recurring-payments).                                                                                                                                                                         |
 | `active`    | You have set up the agreement by saving a user’s card details when they make their first payment.<br><br>You can [use this agreement to take recurring payments](/recurring_payments/#taking-recurring-payments).                                                                                                                                                           |
 | <nobr>`cancelled` | You have cancelled the agreement.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.<br><br>Read more about [cancelling and reactivating agreements for recurring payments](/recurring_payments/#cancel-an-agreement-for-recurring-payments) or [API reference documentation](/api_reference/cancel_agreement_reference). |
+| `inactive` | You have tried to take a payment with this agreement, but the payment failed.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.<br><br>Read more about [handling failed recurring payments](#handling-failed-recurring-payments). |
 
 ## Cancel an agreement for recurring payments
 
