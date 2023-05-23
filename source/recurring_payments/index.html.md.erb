@@ -228,7 +228,7 @@ Our API returns a `can_retry` attribute in the `state` object. Depending on why 
 
 You can try to take another payment with the user’s agreement if, for example, the paying user had insufficient funds when you first tried to take the payment. 
 
-You cannot try to take more payments with the same agreement if, for example, the paying user has lost their payment card, or contacted their bank to block payments to your service. To continue taking payments you would need to set up a new agreement, with the user's consent.
+You cannot try to take more payments with the same agreement if, for example, the paying user has lost their payment card or contacted their bank to block payments to your service.
 
 #### Handling failed recurring payments that can be retried
 
@@ -443,7 +443,7 @@ When you use the API to get information about agreements, the `status` response 
 | `created`   | You have created the agreement using the API.<br><br>Your user has not yet made [their first payment to set up the agreement](/recurring_payments/#set-up-an-agreement-for-recurring-payments).                                                                                                                                                                         |
 | `active`    | You have set up the agreement by saving a user’s card details when they make their first payment.<br><br>You can [use this agreement to take recurring payments](/recurring_payments/#taking-recurring-payments).                                                                                                                                                           |
 | <nobr>`cancelled` | You have cancelled the agreement.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.<br><br>Read more about [cancelling and reactivating agreements for recurring payments](/recurring_payments/#cancel-an-agreement-for-recurring-payments) or [API reference documentation](/api_reference/cancel_agreement_reference). |
-| `inactive` | You have tried to take a payment with this agreement but the payment failed.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.<br><br>Read more about [handling failed recurring payments](#handling-failed-recurring-payments). |
+| `inactive` | You have tried to take a payment with this agreement, but the payment failed.<br><br>You cannot use this agreement to take recurring payments unless you set it up again.<br><br>Read more about [handling failed recurring payments](#handling-failed-recurring-payments). |
 
 ## Cancel an agreement for recurring payments
 
