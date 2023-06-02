@@ -30,7 +30,7 @@ You can create webhooks in the GOV.UK Pay admin tool.
 
 You need to set up an endpoint (callback URL) that can receive webhook messages before creating the webhook.
 
-You must set up your endpoint to receive the `POST` body from your webhook and respond with a `2xx` successful reply within 15 seconds.
+You must set up your endpoint to receive the `POST` body from your webhook and respond with a `2xx` successful response as soon as possible. To avoid timeouts, return this response before you process the webhook message.
 
 Your callback URL must use HTTPS and present a valid certificate. GOV.UK webhooks support TLS version 1.2.
 
@@ -72,7 +72,7 @@ You can reactivate the webhook at any time.
 
 Once you’ve created a webhook, GOV.UK Pay sends a webhook message to your callback URL after any of the events you subscribed to.
 
-Your service must send a `2xx` successful response within 15 seconds.
+Your service must send a `2xx` successful response as soon as possible. To avoid timeouts, return this response before you process the webhook message.
 
 <%= warning_text('Your service may receive webhooks messages in an unexpected order. Make sure that your integration does not depend on receiving events in a particular order.') %>
 
