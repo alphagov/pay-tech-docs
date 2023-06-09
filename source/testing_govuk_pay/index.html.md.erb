@@ -56,6 +56,11 @@ You can enter any valid value for other payment fields. For example, the card ex
 
 Mock card numbers do not work with your live account.
 
+There are separate sets of mock card numbers for:
+
+* [GOV.UK Pay test accounts](#if-you-39-re-using-a-test-39-sandbox-39-account) 
+* [Stripe test accounts](#if-you-39-re-using-a-test-stripe-account)
+
 #### If you're using a test ('sandbox') account
 
 |Testing action |Card number | Card brand | Card type |
@@ -80,15 +85,17 @@ Mock card numbers do not work with your live account.
 |Invalid CVC code|4000000000000127|Visa| Credit or debit |
 |General error|4000000000000119|Visa| Credit or debit |
 
-##### Testing recurring payments
+##### Testing recurring payments on a test account
 
-You can use mock card numbers to test [recurring payments](/recurring_payments).
+You can test successful [recurring payments](/recurring_payments) using the same mock card numbers you use to test normal GOV.UK Pay payments.
 
-To test unsuccessful recurring payments, you need to use this mock card number. This mock card can take one initial payment to set up the recurring payment agreement. Further attempts to make recurring payments with this mock card number will fail.
+To test unsuccessful recurring payments, use this mock card number:
 
-|Testing action |Card number | Card brand | Card type |
+|Testing actions |Card number | Card brand | Card type |
 | -------- | ------- | ------- | ------- |
-|Declined recurring payment | 5105105105105100 | Mastercard | Debit |
+|Successful set up payment<br><br>Unsuccessful recurring payment | 5105105105105100 | Mastercard | Debit |
+
+This card takes one initial payment to set up the recurring payment agreement, but fails further recurring payment attempts.
 
 #### If you're using a test Stripe account
 
@@ -111,6 +118,24 @@ The [PSP transaction fee](/reporting/#psp-fees) depends on which country the tes
 |Payment disputed and lost|4000000000000259|Visa|Credit| US |
 |Payment disputed and won|4000000000002685|Visa|Credit| US |
 |General error|4000000000000119|Visa| Credit or debit | US |
+
+##### Testing recurring payments on a test Stripe account
+
+There are additional mock card numbers to test recurring payments with Stripe. 
+
+Use these cards to test the two main steps of [the recurring payment flow](/recurring_payments/#how-recurring-payments-work):
+
+* taking a payment to set up an agreement for recurring payments
+* taking further recurring payments without user input
+
+Each card has a different result for these two steps.
+
+| Testing actions                                                            | Card number      | Card brand | Card type | Country |
+| -------------------------------------------------------------------------- | ---------------- | ---------- | --------- | ------- |
+| Successful set up payment without 3DS<br><br>Successful recurring payments | 4242424242424242 | Visa       | Credit    | US      |
+| Successful set up payment with 3DS<br><br>Successful recurring payments    | 4000002500003155 | Visa       | Credit    | France  |
+| Successful set up payment with 3DS<br><br>Unsuccessful recurring payments  | 4000002760003184 | Visa       | Credit    | Germany |
+| Unsuccessful set up payment                                                | 4000000000009995 | Visa       | Credit    | US      |
 
 ### Mock email addresses
 
