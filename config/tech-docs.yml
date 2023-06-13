@@ -42,6 +42,6 @@ collapsible_nav: true
 enable_search: true
 
 owner_slack_workspace: gds
-default_owner_slack: '#govuk-pay-support'
+default_owner_slack: '#govuk-pay-stroopwafel'
 show_review_banner: false
 show_expiry: false
