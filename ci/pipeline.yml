@@ -32,6 +32,7 @@ resources:
     icon: github
     source:
       repository: alphagov/pay-tech-docs
+      disable_forks: true
       access_token: ((github-access-token))
 
   - name: paas
