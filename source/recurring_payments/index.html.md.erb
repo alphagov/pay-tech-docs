@@ -176,6 +176,14 @@ If the user’s payment fails, their payment details are not saved and the agree
 
 Read more about creating payments in [our guidance for taking payments](/making_payments) or our [API reference page for creating payments](/api_reference/create_a_payment_reference).
 
+### Update a user’s recurring payment card details
+
+You can update the card used to take recurring payments. This overrides the existing card details. You should do this if a user’s existing card is going to expire soon, or if a user tells you they want to pay with a different card.
+
+To update the user’s card details, repeat [the process to set up an agreement](#set-up-an-agreement-for-recurring-payments) by creating a payment and adding `set_up_agreement: "{AGREEMENT_ID}"` to your API request body. Replace `"{AGREEMENT_ID}"` with the same `agreement_id` you sent when first setting up this agreement.
+
+Once the user has successfully made the payment, you can take recurring payments using their new card. 
+
 ## Taking recurring payments
 
 Once you’ve set up the agreement, you can use it to take recurring payments without the paying user interacting with your service.
