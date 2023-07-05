@@ -5,25 +5,38 @@ updates:
   schedule:
     interval: daily
     time: "03:00"
-  open-pull-requests-limit: 10
+  open-pull-requests-limit: 0
   labels:
   - dependencies
   - govuk-pay
+  - ruby
 - package-ecosystem: pip
   directory: "/"
   schedule:
     interval: daily
     time: "03:00"
-  open-pull-requests-limit: 10
+  open-pull-requests-limit: 0
   labels:
   - dependencies
   - govuk-pay
+  - python
 - package-ecosystem: npm
   directory: "/"
   schedule:
     interval: daily
     time: "03:00"
-  open-pull-requests-limit: 10
+  open-pull-requests-limit: 0
   labels:
   - dependencies
   - govuk-pay
+  - javascript
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "03:00"
+  open-pull-requests-limit: 0
+  labels:
+    - dependencies
+    - govuk-pay
+    - github_actions
