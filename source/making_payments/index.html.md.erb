@@ -65,7 +65,7 @@ Depending on your integration, you can also:
 
 * [delay taking a payment](/delayed_capture)
 * [prefill some of the fields on the user's payment page](/optional_features/prefill_user_details/)
-* [add custom metadata to a payment](/custom_metadata/)
+* [add custom metadata to a payment](/reporting/#add-additional-information-your-users-will-not-be-able-to-see-39-custom-metadata-39-or-39-reporting-columns-39)
 * [use Welsh on your payment pages](/optional_features/welsh_language/)
 * [take the payment over the phone](/moto_payments)
 
@@ -133,7 +133,7 @@ This response includes:
 
 You can see full definitions and values for every response attribute in our [API reference](/api_reference/create_a_payment_reference).
 
-Read more about [reporting](/reporting/#report-on-a-payment) and [payment flow](/payment_flow/#how-gov-uk-pay-works).
+Read more about [reporting and reconciliation](/reporting) and [payment flow](/payment_flow/#how-gov-uk-pay-works).
 
 <%= warning_text('Do not expose the `next_url` to anyone other than your paying user. Anyone in possession of the `next_url` could hijack your user’s payment.') %>
 
@@ -184,7 +184,7 @@ If your user is directed to the `return_url`, they could have:
  Your service should use a `GET /v1/payments/{PAYMENT_ID}` call to [check the payment's status](https://docs.payments.service.gov.uk/reporting/#get-information-about-a-single-payment) when your user
  reaches the `return_url`. You should provide an appropriate response based on the `state` the payment attempt.
 
- Do not use other API calls to check the payment’s status. Other calls, such as [search payments](/reporting/#search-payments), do not update immediately and so may not be up to date.
+ Do not use other API calls to check the payment’s status. Other calls, such as [search payments](/reporting/#get-a-list-of-payments-matching-search-criteria), do not update immediately and so may not be up to date.
 
 ## When your user does not complete their payment journey
 
