@@ -13,21 +13,28 @@ Government Banking's contracted payment service provider (PSP) is currently Worl
 
 You must be an admin on your GOV.UK Pay account to connect to Worldpay.
 
-## Check your Worldpay account
+## 1. Check your Worldpay account
 
 Make sure your Worldpay account is both:
 
 - an admin account
 - using the Worldpay Corporate Gateway, not the Worldpay Business Gateway
 
-## Switch to Production Mode for your merchant code
+## 2. Switch to Production Mode for your merchant code
 
 Sign in to your [Worldpay
 account](https://secure.worldpay.com/sso/public/auth/login.html) and select your merchant code.
 
 If __Test Mode__ is at the bottom of the left-hand menu, switch to __Production Mode__. Worldpay uses the term 'production' for live accounts.
 
-## Connect your Worldpay account to GOV.UK Pay
+## 3. Connect your Worldpay account to GOV.UK Pay
+
+How you connect your Worldpay account to your GOV.UK Pay service depends on the type of payment you are going to take. There are different processes for:
+
+* [one-off online payments and mail order / telephone order (MOTO) payments](#3a-connect-your-one-off-or-moto-payments-service-to-your-worldpay-account)
+* [recurring payments](#3b-connect-your-recurring-payments-service-to-your-worldpay-account)
+
+### 3a. Connect your one-off or MOTO payments service to your Worldpay account
 
 1. Select your live account from the [__Overview__ page](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
 
@@ -63,7 +70,59 @@ If __Test Mode__ is at the bottom of the left-hand menu, switch to __Production 
 
 14. In your GOV.UK Pay account, select __Save credentials__.
 
-## Enable 3DS2 (3DS Flex)
+Continue to [step 4 to enable 3DS Flex](#4-enable-3ds2-3ds-flex).
+
+### 3b. Connect your recurring payments service to your Worldpay account
+
+1. Select your live account from the [**Overview page**](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
+
+1. Go to the **Settings** page and select **Your PSP - Worldpay**.
+
+1. Select **Change** in the **Recurring customer initiated transaction (CIT) credentials** table.
+
+1. In your [Worldpay account](https://secure.worldpay.com/sso/public/auth/login.html), select your customer initiated transaction (CIT) merchant code. Your CIT merchant code ends in `ECOMGBP`. 
+
+    If you're unsure which merchant code is your CIT, contact either Government Banking or your Worldpay account manager. 
+
+1. In your Worldpay account, select **Account** and the **Profile** tab.
+
+1. In your Worldpay account, copy the **Merchant Code** value from the **Identification** section. Paste this value into the **CIT merchant code** field in the GOV.UK Pay admin tool.
+
+1. In your Worldpay account, copy the **New Username** value. Paste this value into the **Username** field in the GOV.UK Pay admin tool.
+
+1. In your Worldpay account, if you have not set your XML password for this merchant code before, set it by selecting the pencil icon next to **XML Password** and choosing a password.
+
+    If you’ve set your XML password before but you cannot remember it, you can set a new password. But you must add the new password to your other services that use this Worldpay account, or they’ll stop working. 
+
+    You should follow the guidance about [choosing and storing passwords](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers) from the National Cyber Security Centre (NCSC).
+
+1. Confirm your password by selecting **Add new password**, then **OK**.
+
+1. Save the password by selecting the pencil icon again, then **Complete**, then **OK**.
+
+1. In your Worldpay account, copy your XML password. Paste this password into the **Password** field in your GOV.UK Pay account.
+
+1. Go to the **Payment service** section of your Worldpay account.
+
+1. Set **Capture delay (days)** to **Off** (not **0**).
+
+    If you do not do this, you may take money from your users before they’ve confirmed their payment.
+
+1. Contact Worldpay if you want to take payments higher than the amount in __Maximum Transaction Amount__.
+
+1. In the GOV.UK Pay admin tool, select **Save credentials**.
+
+1. Select **Change** in the **Recurring merchant initiated transaction (MIT) credentials** table.
+
+1. In your Worldpay account, select your merchant initiated transaction (MIT) merchant code from the navigation panel on the left. Your MIT merchant code ends in `RECGBP`. 
+
+    If you're unsure which merchant code is your MIT, contact either Government Banking or your Worldpay account manager. 
+
+1. Repeat steps 6 to 15 to link your MIT merchant code to your recurring payment service.
+
+Continue to [step 4 to enable 3DS Flex](#4-enable-3ds2-3ds-flex).
+
+## 4. Enable 3DS2 (3DS Flex)
 
 3DS Flex is a Worldpay product that enables 3DS2 payment authentication. You must turn on 3DS Flex to take payments using GOV.UK Pay.
 
@@ -73,15 +132,17 @@ As part of your onboarding, Worldpay should have sent you your 3DS Flex credenti
 
 1. In the GOV.UK Pay admin tool, select the account you want to set up on the **Overview** page.
 
-1. In **Your PSP**, enter your 3DS Flex credentials.
+1. Select **Settings**, then **Payment channels**.
 
-1. Select **Save credentials**.
+1. Select **Add Worldpay 3DS Flex credentials**, then enter your 3DS Flex credentials in the **Organisational unit ID**, **Issuer (API ID)**, and **JWT MAC key (API key)** fields.
 
-1. Select **Turn on 3DS Flex**.
+1. Select **Save and continue**.
 
 ## Set up your Worldpay 'Merchant Channels'
 
 You must set up your Worldpay 'Merchant Channels' so Worldpay can notify GOV.UK Pay about payment events.
+
+If you're setting up a recurring payments service, you must make these changes for both your customer initiated transaction and your merchant initiated transaction merchant codes.
 
 In your Worldpay account, select __Integration__ then the __Merchant Channel__ tab.
 
@@ -102,7 +163,7 @@ In the __http__ row, set:
 - __Method__ to __POST__
 - __Client certificate__ to __no__
 
-### Set up ‘Merchant Channel Events’
+### 5. Set up ‘Merchant Channel Events’
 
 In both the __Merchant Channel Events (Production)__ and __Merchant Channel Events (Test)__ sections, select the following in the __http__ row.
 
