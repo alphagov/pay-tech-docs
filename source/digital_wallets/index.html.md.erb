@@ -57,21 +57,21 @@ Google Pay supports, but does not require, your users to authenticate digital wa
 
 See the [GOV.UK Pay page on Apple Pay and Google Pay](https://www.payments.service.gov.uk/apple-pay-and-google-pay/) for more information.
 
-## Restrictions
+## Restrictions of digital wallet payments
 
-The GOV.UK Pay platform cannot apply [corporate card surcharges](/corporate_card_surcharges/#add-corporate-card-fees) to digital wallet transactions made with a corporate card.
+GOV.UK Pay cannot apply [corporate card surcharges](/corporate_card_surcharges/#add-corporate-card-fees) to digital wallet transactions made with a corporate card.
 
-When you look at a non-digital wallet transaction in your GOV.UK Pay account transactions list, you see the first 6 digits and last 4 digits of the card number. When you look at a digital wallet transaction in your GOV.UK Pay account transactions list, you only see the last 4 digits of the card number or digital wallet account number.
+GOV.UK Pay stores different cardholder information for digital wallet payments than standard card payments. There are further differences between payments made through Apple Pay and Google Pay.
 
-GOV.UK Pay does not collect or transfer any cardholder information during a digital wallet transaction, as this information is transferred directly between Apple or Google Pay and the payment service provider (PSP).
+If you rely on cardholder information as part of your service, you should not collect this information through GOV.UK Pay. Cardholder information in digital wallet payments is unreliable because of how Google Pay and Apple Pay handle payment cards.
 
-If you use cardholder information as part of your service, you should not collect this information through GOV.UK Pay, as we can only collect cardholder information to initiate a payment.
-
-### Google Pay
-
-If a user makes a payment with Google Pay, we cannot tell if they used a credit card or a debit card. This means:
-
-- the `card_type` is `null` when you [get information about a payment](/reporting)
-- you cannot restrict transactions to one type of card
-
-You can still restrict transactions to one card scheme, like Visa.
+| Cardholder information        | Stored for standard payments?                 | Stored for Apple Pay payments?                              | Stored for Google Pay payments?                       |
+| ----------------------------- | --------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------- |
+| Cardholder name               | Yes                                           | No                                                          | Yes, but it may not match the name on the user’s card |
+| Billing address               | Yes, if you enable billing address collection | No                                                          | No                                                    |
+| Card expiry date              | Yes                                           | Yes, but this may not match the date on the user’s card     | No                                                    |
+| Card type (credit or debit)   | Yes                                           | Yes                                                         | No                                                    |
+| Card brand                    | Yes                                           | Yes                                                         | Yes                                                   |
+| Last 4 digits of card number  | Yes                                           | Yes, but this may not match the 4 digits on the user’s card | Sometimes, but the digits may not be accurate         |
+| First 6 digits of card number | Yes                                           | No                                                          | No                                                    |
+| Email address                 | Yes, if you enable email address collection   | Yes, if you enable email address collection                 | Yes, if you enable email address collection           |
