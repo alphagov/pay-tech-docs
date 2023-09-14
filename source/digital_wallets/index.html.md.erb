@@ -75,3 +75,19 @@ If you rely on cardholder information as part of your service, you should not co
 | Last 4 digits of card number  | Yes                                           | Yes, but this may not match the 4 digits on the user’s card | Sometimes, but the digits may not be accurate         |
 | First 6 digits of card number | Yes                                           | No                                                          | No                                                    |
 | Email address                 | Yes, if you enable email address collection   | Yes, if you enable email address collection                 | Yes, if you enable email address collection           |
+
+The GOV.UK Pay API returns a `null` value for any cardholder information that we do not store for digital wallet payments.
+
+For example:
+
+```
+"card_details":{
+    "last_digits_card_number":"2783",
+    "first_digits_card_number":null,
+    "cardholder_name":null,
+    "expiry_date":"10/26",
+    "billing_address":null,
+    "card_brand":"Mastercard",
+    "card_type":"debit"
+}
+```
