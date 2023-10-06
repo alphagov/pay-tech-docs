@@ -74,7 +74,7 @@ To enable Google Pay on a Worldpay service, you need to get a Google Pay merchan
 
 ## Test digital wallet payments
 
-You can test digital wallet payments using a GOV.UK Pay test account.
+You can test digital wallet payments using a Stripe test account.
 
 ### Test Google Pay
 
@@ -86,11 +86,11 @@ To test Google Pay:
 
 1. In your test service, [create a payment through the API](https://docs.payments.service.gov.uk/making_payments/#creating-a-payment) or create a payment link through the GOV.UK Pay admin tool.
 
-1. Open Chrome.
+1. Open Chrome on a desktop or Android device.
 
 1. Sign in to a Google account.
 
-1. In your chosen browser, visit the `next_url` you received when you created the test payment or visit the payment link.
+1. Visit the `next_url` you received when you created the test payment or visit the payment link.
 
 1. Complete the test payment using a real card or a test card. We will not take any money if you use a real debit or credit card.
 
@@ -113,22 +113,6 @@ To test Apple Pay:
 1. In your chosen browser, visit the `next_url` you received when you created the test payment or visit the payment link.
 
 1. Complete the test payment using the credit or debit card you added to your Apple Wallet. We will not take any money.
-
-### Test failed digital wallet payments
-
-You can test failed digital wallet payments through the GOV.UK Pay API if your PSP is Stripe.
-
-Change your `description` value to `DECLINED` when you send your payment creation request to your test service. 
-
-When you try to complete the payment, we’ll decline the payment and redirect you to your [service’s failure page](https://docs.payments.service.gov.uk/payment_flow/#show-a-failure-page).
-
-### Test 3D secure (3DS) with digital wallet payments
-
-You can force a 3DS check on a digital wallet payment through the GOV.UK Pay API if your PSP is Stripe.
-
-Change your `description` value to `3DS` when you send your payment creation request to your test service. 
-
-When you complete the payment, there’ll be a 3DS check. 
 
 ## Strong Customer Authentication (3D Secure)
 
