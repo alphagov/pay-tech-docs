@@ -110,7 +110,7 @@ After you send your request to search payments, you’ll receive a response simi
           "country": "GB"
         },
         "card_brand": "Visa",
-        "card_type": "credit",
+        "card_type": "credit"
       },
       "delayed_capture": false,
       "moto": false,
@@ -202,7 +202,7 @@ After you send your request to search payments, you’ll receive a response simi
 | `net_amount` | number | The amount, in pence, that'll be paid into your bank account after your payment service provider takes the `fee`. |
 | `provider_id` | string | The unique ID your payment service provider generated for this payment.<br><br>This is not the same as the `payment_id`. |
 | `return_url` | string | The URL you directed the paying user to after their payment journey on GOV.UK Pay ended.<br><br>You can [read more about choosing your return URL and matching the paying user to a payment](/making_payments/#choose-the-return-url-and-match-your-users-to-payments). |
-| <nobr>`authorisation_mode` | string | How GOV.UK Pay will authorise this payment.<br><br>Possible values are:<br><br><li>`web`<li>`moto_api`<li>`agreement`<br><br>`authorisation_mode` is set when you create a payment. You can [read more about the different authorisation modes in our API reference page for creating payments](/api_reference/create_a_payment_reference). |
+| <nobr>`authorisation_mode`</nobr> | string | How GOV.UK Pay will authorise this payment.<br><br>Possible values are:<br><br><li>`web`<li>`moto_api`<li>`agreement`<br><br>`authorisation_mode` is set when you create a payment. You can [read more about the different authorisation modes in our API reference page for creating payments](/api_reference/create_a_payment_reference). |
 | `results._links` | object | Contains URLs and methods for actions related to this payment. |
 | `results._links.self` | object | Contains an API method and endpoint to get information about this payment.<br><br>A `GET` request (`method`) to this endpoint (`href`) returns information about this payment. |
 | `results._links.cancel` | object | Contains an API method and endpoint to cancel this payment.<br><br>A `POST` request (`method`) to this endpoint (`href`) cancels this payment. <br><br>You can [read more about cancelling a payment that's in progress](/making_payments/#cancel-a-payment-that-s-in-progress).<br><br>`cancel` value is `null` if the payment cannot be cancelled. |
