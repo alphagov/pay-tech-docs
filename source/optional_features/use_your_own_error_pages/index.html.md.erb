@@ -26,7 +26,7 @@ state. You can set the `return_url` manually when you [create a payment](/making
 
 You should configure your service to query payments to determine what
 payment failure states are from API responses. Once your service
-knows the [state of a payment](/payment_flow/#7-show-a-final-page), it should direct your user appropriately. For
+knows the [state of a payment](/api_reference/#payment-status-lifecycle), it should [direct your user appropriately](/payment_flow/#7-show-a-final-page). For
 example if your user's payment expires, you may want your service to return your user to the start of their payment journey.
 
 In very rare cases, GOV.UK Pay is unable to redirect payments. You should

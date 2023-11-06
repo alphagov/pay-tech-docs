@@ -87,15 +87,17 @@ There are separate sets of mock card numbers for:
 
 ##### Testing recurring payments on a test account
 
-You can test successful [recurring payments](/recurring_payments) using the same mock card numbers you use to test normal GOV.UK Pay payments.
+Recurring payments are made up of two stages:
 
-To test unsuccessful recurring payments, use this mock card number:
+1. An initial payment to set up the agreement for recurring payments.
+2. Further recurring payments that are taken automatically without a user's input.
+
+To test both stages, we offer mock cards that have two testing actions - one for the initial payment and one for the further recurring payments.
 
 |Testing actions |Card number | Card brand | Card type |
 | -------- | ------- | ------- | ------- |
-|Successful set up payment<br><br>Unsuccessful recurring payment | 5105105105105100 | Mastercard | Debit |
-
-This card takes one initial payment to set up the recurring payment agreement, but fails further recurring payment attempts.
+|1. Successul set up payment<br><br>2. Successful recurring payment | 4000056655665556 | Visa | Debit |
+|1. Successful set up payment<br><br>2. Unsuccessful recurring payment | 5105105105105100 | Mastercard | Debit |
 
 #### If you're using a test Stripe account
 
