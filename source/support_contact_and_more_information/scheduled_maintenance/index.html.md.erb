@@ -25,9 +25,15 @@ During these times, you cannot:
 * sign in to the GOV.UK Pay admin tool
 * query, report on or refund any payments
 
+If a user tries to make a payment during these windows, we'll show them a message explaining your service is unavailable. The message will tell the user to retry their payment at a specific time outside of the maintenance window.
+
+If your service sends an API request during these windows, we'll return a `503` response. The response body will contain [a `P0999` error](api_reference/#gov-uk-pay-api-error-codes).
+
 If there are any issues with the maintenance during either of these windows, we have scheduled a backup date:
 
 * Tuesday 28 November, 4:00am to 8:00am
+
+We'll update our [status page](https://payments.statuspage.io/) on Tuesday 21 November to let you know if we need to use this backup date.
 
 ## Partial GOV.UK Pay outage
 
@@ -48,9 +54,13 @@ You'll still be able to:
 * take payments using existing payment links
 * refund payments through the API
 
+If your service sends a request to our search API during these windows, we'll return a `503` response. The response body will contain [a `P0999` error](api_reference/#gov-uk-pay-api-error-codes).
+
 If there are any issues with the maintenance during this window, we have scheduled a backup date:
 
 * Thursday 16 November, 10:00am to 2:00pm
+
+We'll update our [status page](https://payments.statuspage.io/) on Wednesday 15 November to let you know if we need to use this backup date.
 
 ## Communicate the maintenance with stakeholders
 
