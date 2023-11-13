@@ -27,7 +27,8 @@ During these times, you cannot:
 
 If a user tries to make a payment during these windows, we'll show them a message explaining your service is unavailable. The message will tell the user to retry their payment at a specific time outside of the maintenance window.
 
-If your service sends an API request during these windows, we'll return a `503` response. The response body will contain [a `P0999` error](api_reference/#gov-uk-pay-api-error-codes).
+If your service sends an API request during these windows, we'll return a `503` response. The response body will contain [a `P0999` error](/api_reference/#gov-uk-pay-api-error-codes). 
+
 
 If there are any issues with the maintenance during either of these windows, we have scheduled a backup date:
 
@@ -54,7 +55,8 @@ You'll still be able to:
 * take payments using existing payment links
 * refund payments through the API
 
-If your service sends a request to our search API during these windows, we'll return a `503` response. The response body will contain [a `P0999` error](api_reference/#gov-uk-pay-api-error-codes).
+If your service sends a request to our search API during these windows, we'll return a `503` response. The response body will contain [a `P0999` error](/api_reference/#gov-uk-pay-api-error-codes).
+
 
 If there are any issues with the maintenance during this window, we have scheduled a backup date:
 
