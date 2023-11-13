@@ -25,7 +25,7 @@ During these times, you cannot:
 * sign in to the GOV.UK Pay admin tool
 * query, report on or refund any payments
 
-If a user try to make a payment during these windows, we'll show them a message explaining your service is unavailable. The message will tell the user to retry their payment at a specific time outside of the maintenance window.
+If a user tries to make a payment during these windows, we'll show them a message explaining your service is unavailable. The message will tell the user to retry their payment at a specific time outside of the maintenance window.
 
 If your service sends an API request during these windows, we'll return a `503` response. The response body will contain [a `P0999` error](api_reference/#gov-uk-pay-api-error-codes).
 
