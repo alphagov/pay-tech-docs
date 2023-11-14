@@ -1,0 +1,136 @@
+name: Static
+
+on:
+  push:
+    branches:
+      - 'master'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  run-tests:
+    name: Unit tests and static build
+    uses: ./.github/workflows/run-tests.yml
+  static:
+    name:  Deploy and release Pay tech-doc pages
+    needs: run-tests
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@7d546f4868fb108ed378764d873683f920672ae2
+        with:
+          ruby-version: '.ruby-version'
+          bundler-cache: true
+      - name: Setup Node
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - name: Setup Pages
+        uses: actions/configure-pages@f156874f8191504dae5b037505266ed5dda6c382
+      - name: Get Package version
+        id: get-package-version
+        run: |
+          echo "package_version=$(cat package.json | jq -r '.version')" >> $GITHUB_OUTPUT
+      - name: Get latest release version
+        id: get-latest-release-version
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
+          script: |
+            try {
+              const getReleaseResp = await github.rest.repos.getLatestRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              })
+              return getReleaseResp.data.name
+            } catch(err) {
+              if (err.name == 'HttpError') {
+                console.warn("Found HttpError")
+                if (err.status == 404)  {
+                  console.log("No previous GitHub Releases found. Defaulting to 0.0.0")
+                  return "0.0.0"
+                }
+              } else {
+                console.error(`Failed to get the latest release: ${err.message}`)
+                throw err
+              }
+            }
+      - name: Next release version
+        id: next-version
+        uses: alphagov/pay-ci/actions/next-semver@master
+        with:
+          package_version: ${{ steps.get-package-version.outputs.package_version }}
+          release_version: ${{ steps.get-latest-release-version.outputs.result }}
+      - name: Install and Build
+        run: |
+          npm ci
+          bundle exec middleman build
+          cat <<EOF > ./build/package.json
+          {
+            "name": "pay-tech-doc-page",
+            "version": "${{ steps.next-version.outputs.version }}"
+          }
+          EOF
+      - name: Set artifact name
+        id: set-artifact-name
+        run: echo "name=pay-tech-doc-page-${{ steps.next-version.outputs.version }}" >> $GITHUB_OUTPUT
+      - name: Prepare archive for upload
+        id: archive-assets
+        shell: sh
+        run: |
+          chmod -c -R +rX "build"
+          tar \
+            --dereference --hard-dereference \
+            --directory "build" \
+            -cvf "${{ steps.set-artifact-name.outputs.name }}.tar" \
+            .
+      - name: Create Release
+        id: create-release
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            var fs = require('fs')
+            try {
+              const releaseResponse = await github.rest.repos.createRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag_name: "${{ steps.next-version.outputs.version }}",
+                name: "${{ steps.next-version.outputs.version }}"
+              })
+              const fileName = "${{ steps.set-artifact-name.outputs.name }}.tar"
+              const releaseUploadResponse = await github.rest.repos.uploadReleaseAsset({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: releaseResponse.data.id,
+                name: fileName,
+                data: fs.readFileSync(fileName)
+              })
+            } catch(err) {
+              console.error(`Failed to create release: ${err.message}`)
+              throw err
+            }
+      - name: Upload Pages artifact
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce
+        with:
+          name: 'github-pages'
+          path: ${{ steps.set-artifact-name.outputs.name }}.tar
+          retention-days: 7
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@af48cf94a42f2c634308b1c9dc0151830b6f190a
