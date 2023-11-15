@@ -16,8 +16,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  run-tests:
+    name: Unit tests and static build
+    uses: ./.github/workflows/run-tests.yml
   static:
     name: Build and release Pay tech-doc static site
+    needs: run-tests
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
