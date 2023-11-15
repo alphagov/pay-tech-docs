@@ -40,7 +40,7 @@ jobs:
       - name: Get Package version
         id: get-package-version
         run: |
-          echo "package_version=$(cat package.json | jq -r '.version')" >> $GITHUB_OUTPUT
+          echo "package_version=$(jq -r '.version' package.json)" >> $GITHUB_OUTPUT
       - name: Get latest release version
         id: get-latest-release-version
         uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410
