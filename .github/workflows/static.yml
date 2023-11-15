@@ -20,7 +20,7 @@ jobs:
     name: Unit tests and static build
     uses: ./.github/workflows/run-tests.yml
   static:
-    name: Build and release Pay tech-doc static site
+    name: Build and release Pay tech-docs static site
     needs: run-tests
     environment:
       name: github-pages
@@ -82,13 +82,13 @@ jobs:
           bundle exec middleman build
           cat <<EOF > ./build/package.json
           {
-            "name": "pay-tech-doc-page",
+            "name": "pay-tech-docs",
             "version": "${{ steps.next-version.outputs.version }}"
           }
           EOF
       - name: Set artifact name
         id: set-artifact-name
-        run: echo "name=pay-tech-doc-page-${{ steps.next-version.outputs.version }}" >> $GITHUB_OUTPUT
+        run: echo "name=pay-tech-docs-${{ steps.next-version.outputs.version }}" >> $GITHUB_OUTPUT
       - name: Prepare archive for upload
         id: archive-assets
         shell: sh
