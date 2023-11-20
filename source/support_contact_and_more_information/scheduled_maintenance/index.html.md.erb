@@ -16,7 +16,7 @@ We’ve also scheduled two backup windows that we’ll only use if we cannot com
 GOV.UK Pay will be completely unavailable on the following dates:
 
 * Tuesday 14 November, 4:00am to 8:00am
-* Tuesday 21 November, 4:00m to 8:00am
+* Tuesday 21 November, 4:00am to 8:00am
 
 During these times, you cannot:
 
@@ -28,7 +28,6 @@ During these times, you cannot:
 If a user tries to make a payment during these windows, we'll show them a message explaining your service is unavailable. The message will tell the user to retry their payment at a specific time outside of the maintenance window.
 
 If your service sends an API request during these windows, we'll return a `503` response. The response body will contain [a `P0999` error](/api_reference/#gov-uk-pay-api-error-codes). 
-
 
 If there are any issues with the maintenance during either of these windows, we have scheduled a backup date:
 
@@ -56,7 +55,6 @@ You'll still be able to:
 * refund payments through the API
 
 If your service sends a request to our search API during these windows, we'll return a `503` response. The response body will contain [a `P0999` error](/api_reference/#gov-uk-pay-api-error-codes).
-
 
 If there are any issues with the maintenance during this window, we have scheduled a backup date:
 
