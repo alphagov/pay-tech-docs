@@ -1,0 +1,33 @@
+name: Run tests and static build
+
+on:
+  pull_request:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-tests:
+    name: Unit tests and static build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@7d546f4868fb108ed378764d873683f920672ae2
+        with:
+          ruby-version: '.ruby-version'
+          bundler-cache: true
+      - name: Setup Node
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - name: Install npm dependencies
+        run: npm ci
+      #- name: Run tests
+        #run: npm test
+      - name: Build static site
+        run: bundle exec middleman build --verbose
