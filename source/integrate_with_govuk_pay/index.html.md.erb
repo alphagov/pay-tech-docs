@@ -122,14 +122,14 @@ If the mop-up job finds ‘stale’ incomplete payment journeys then it’s like
 
 ## Collecting your users' billing addresses
 
-You can enable or disable collecting your users’ billing addresses by selecting an account in the [GOV.UK Pay admin
+You can turn user billing address collection on or off by selecting an account in the [GOV.UK Pay admin
 tool](https://selfservice.payments.service.gov.uk/), then selecting **Settings**.
 
 This change can take up to 15 minutes to take effect.
 
 If you collect your users' billing addresses in your service before you redirect them to GOV.UK Pay, you can [prefill the billing address field](/optional_features/prefill_user_details) on the __Enter card details__ page.
 
-<%= warning_text('If you disable billing address collection, your service will receive a `null` `billing_address` object in API responses. <br><br> The `billing_address` object is inside the `card_details` object. <br><br> You should check if disabling billing address collection will affect your service‘s integration with GOV.UK Pay.') %>
+<%= warning_text('If you turn off billing address collection, your service will receive a `null` `billing_address` object in API responses. <br><br> The `billing_address` object is inside the `card_details` object. <br><br> You should check if disabling billing address collection will affect your service‘s integration with GOV.UK Pay.') %>
 
 ## Existing integrations with GOV.UK Pay
 
