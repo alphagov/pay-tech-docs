@@ -90,7 +90,7 @@ You can use the GOV.UK Pay API to:
 
 #### Get information about a single payment
 
-Use the following API call to get information about a single payment:
+Use the following API request to get information about a single payment:
 
 `GET /v1/payments/{PAYMENT_ID}`
 
@@ -198,7 +198,7 @@ If your PSP is Worldpay, contact Worldpay support to find out your payment times
 
 ##### PSP fees
 
-If your PSP is Stripe, we'll automatically deduct the PSP's transaction fee from each payment. You can see how much the fee was when you make the API call to get information about a payment.
+If your PSP is Stripe, we'll automatically deduct the PSP's transaction fee from each payment. You can see how much the fee was when you make the API request to get information about a payment.
 
 In this example, we've deducted a £2 PSP fee (`fee`) from the user's £40 payment (`amount`), meaning a £38 net amount (`net_amount`) will be paid into your account:
 
@@ -220,7 +220,7 @@ If your PSP is Worldpay, you can see your transaction fees on your Worldpay invo
 
 A payment event is when a payment reaches a milestone in its journey and its `state` updates, such as when it's created, paid, or refunded. 
 
-Use the following API call to get a list of a payment’s events:
+Use the following API request to get a list of a payment’s events:
 
 `GET /v1/payments/{PAYMENT_ID}/events`
 
@@ -269,7 +269,7 @@ You can create webhooks to notify you when payments reach certain states. Read o
 
 #### Get a list of payments matching search criteria
 
-Use the following API call to search for payments from your service:
+Use the following API request to search for payments from your service:
 
 `GET /v1/payments`
 

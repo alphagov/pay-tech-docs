@@ -23,12 +23,12 @@ their service with the GOV.UK Pay API. It describes:
 
 Your service backend is server-side software. You should build this to:
 
-* make a call to the GOV.UK Pay API to start the payment journey
+* make a request to the GOV.UK Pay API to start the payment journey
 * store information about user payment journeys in your datastore
 * redirect your user to the `next_url` provided by GOV.UK Pay, where your user will [enter their payment information and confirm their payment](/payment_flow/#4-your-user-enters-their-payment-details)
 * receive your user's request when they are redirected back to your service via the `return_url`, where your user will return [after they complete their payment](/payment_flow/#7-show-a-final-page)
 * identify your returning user via the session
-* make a call to the GOV.UK Pay API to determine the outcome of the payment
+* make a request to the GOV.UK Pay API to determine the outcome of the payment
 * display information about the outcome of the payment and next steps to your user
 
 ## Datastore
@@ -118,7 +118,7 @@ The following UML sequence diagram shows an example of an incomplete payment jou
 
 Your mop-up job should run frequently, for example every half an hour. The mop-up job should ignore payments made in the past 3 hours to avoid interfering with payments that are still being processed.
 
-If the mop-up job finds ‘stale’ incomplete payment journeys then it’s likely your users have abandoned those payments. The mop-up job should call the GOV.UK Pay API to determine the [status of the payment](/api_reference/#payment-status-lifecycle).
+If the mop-up job finds ‘stale’ incomplete payment journeys then it’s likely your users have abandoned those payments. The mop-up job should send a request to the GOV.UK Pay API to determine the [status of the payment](/api_reference/#payment-status-lifecycle).
 
 ## Collecting your users' billing addresses
 

@@ -21,7 +21,7 @@ payment journey on GOV.UK Pay ends.
 
 ## Creating a payment
 
-The call to create a payment with the GOV.UK Pay API is:
+The request to create a payment with the GOV.UK Pay API is:
 
 `POST  /v1/payments`
 
@@ -181,10 +181,10 @@ If your user is directed to the `return_url`, they could have:
  * not paid because your service (via the API) cancelled the payment in progress
  * not paid because of a technical error
 
- Your service should use a `GET /v1/payments/{PAYMENT_ID}` call to [check the payment's status](https://docs.payments.service.gov.uk/reporting/#get-information-about-a-single-payment) when your user
+ Your service should use a `GET /v1/payments/{PAYMENT_ID}` request to [check the payment's status](https://docs.payments.service.gov.uk/reporting/#get-information-about-a-single-payment) when your user
  reaches the `return_url`. You should provide an appropriate response based on the `state` the payment attempt.
 
- Do not use other API calls to check the payment’s status. Other calls, such as [search payments](/reporting/#get-a-list-of-payments-matching-search-criteria), do not update immediately and so may not be up to date.
+ Do not use other API requests to check the payment’s status. Other requests, such as [search payments](/reporting/#get-a-list-of-payments-matching-search-criteria), do not update immediately and so may not be up to date.
 
 ## When your user does not complete their payment journey
 
@@ -218,7 +218,7 @@ You cannot resume a payment if the `status` is `failed`, `cancelled`, or `error`
 
 ## Cancel a payment that’s in progress
 
-Your user can select a link on the payment page to cancel a payment that’s in progress. Alternatively, you can make the following API call:
+Your user can select a link on the payment page to cancel a payment that’s in progress. Alternatively, you can make the following API request:
 
 `POST /v1/payments/{PAYMENT_ID}/cancel`
 

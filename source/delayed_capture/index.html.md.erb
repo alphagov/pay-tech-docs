@@ -24,7 +24,7 @@ The user experience matches the current payment flow. Once your user selects
 __Confirm__ on the __Confirm your details__ page:
 
 - the [payment status](/api_reference/#payment-status-lifecycle) will change to `capturable`
-- your service can call the
+- your service can make a request to the
 `POST /v1/payments/{PAYMENT_ID}/capture` endpoint to send a delayed capture
 request
 
@@ -38,7 +38,7 @@ You can see definitions and possible values of every parameter and attribute for
 ## See the capture URL for a payment
 
 If a payment is available for capture, you can see its capture URL in
-responses to API calls. For example:
+responses to API requests. For example:
 
 * `GET /v1/payments`
 * `GET /v1/payments/{PAYMENT_ID}`
