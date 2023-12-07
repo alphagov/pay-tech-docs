@@ -7,7 +7,7 @@ weight: 2200
 
 # Take recurring payments
 
-You can take recurring payments from a user using GOV.UK Pay. The user consents to making recurring payments, enters into an ‘agreement’ with your service, and provides their payment details. The agreement allows you to take further payments through our API without the user interacting with your service again.
+You can take recurring payments from a user using GOV.UK Pay. The user consents to making recurring payments, enters into an ‘agreement’ with your service, and provides their payment details. The agreement lets you take further payments through our API without the user interacting with your service again.
 
 Your service has [additional responsibilities when taking recurring payments](/recurring_payments/#1-understand-what-your-service-is-responsible-for). You’re responsible for:
 
@@ -27,7 +27,7 @@ This section outlines the recurring payment flow, your responsibilities, and how
 
 1. You set up the agreement by getting your user’s consent and taking their first payment. You instruct our API to save their payment details. This makes the agreement for recurring payments active.
 
-1. You take recurring payments by referencing the active agreement in your API requests when creating payments. The agreement allows GOV.UK Pay to authorise the payment with the user’s saved payment details.
+1. You take recurring payments by referencing the active agreement in your API requests when creating payments. The agreement lets GOV.UK Pay authorise the payment with the user’s saved payment details.
 
 1. You cancel the agreement when it is no longer needed or when the user requests a cancellation. GOV.UK Pay cannot use the cancelled agreement to authorise payments. You can set the agreement up again by taking another payment and instructing our API to save the user’s payment details.
 
