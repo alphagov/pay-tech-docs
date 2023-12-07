@@ -107,7 +107,7 @@ You should make sure your service team checks the outcomes of payments in the [G
 A ‘mop-up job’ provides the best guarantee that the failure cases are handled properly
 and automatically. A mop-up job is a background process which checks the outcome of incomplete payment journeys.
 
-In order to use a mop-up job, you need:
+To use a mop-up job, you need:
 
 * a datastore which keeps track of incomplete payment journeys
 * a server-side process which periodically checks the datastore for incomplete payment journeys, and queries the GOV.UK Pay API to determine the outcome
