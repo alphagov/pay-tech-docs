@@ -160,7 +160,7 @@ If the payment has reached your bank account, your PSP will take the refund amou
 - the next payment or payments you receive from any of your users, if your PSP is Stripe
 - your bank account, if your PSP is Worldpay
 
-If your PSP is Stripe, you can see when Stripe took the refund by making an API call to [check the status of a refund](/refunding_payments/#checking-the-status-of-a-refund) (`GET /v1/payments/{PAYMENT_ID}/refunds/{REFUND_ID}`) and looking at the `settlement_summary` object:
+If your PSP is Stripe, you can see when Stripe took the refund by making an API request to [check the status of a refund](/refunding_payments/#checking-the-status-of-a-refund) (`GET /v1/payments/{PAYMENT_ID}/refunds/{REFUND_ID}`) and looking at the `settlement_summary` object:
 
 ```json
 "settlement_summary": {
@@ -176,7 +176,7 @@ If your PSP is Stripe, you can see when Stripe took the refund by making an API 
 
 ### Send email notifications about refunds
 
-You can use the GOV.UK Pay admin tool to turn on sending refund email notifications to your users. To enable refund email notifications, select your service in [the GOV.UK admin tool](https://selfservice.payments.service.gov.uk/my-services), select **Settings**, and set **Refund emails** to **On**.
+You can use the GOV.UK Pay admin tool to turn on sending refund email notifications to your users. To turn on refund email notifications, select your service in [the GOV.UK admin tool](https://selfservice.payments.service.gov.uk/my-services), select **Settings**, and set **Refund emails** to **On**.
 
 ## Get all refunds for a single payment
 

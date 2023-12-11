@@ -47,8 +47,8 @@ To set up a payment link, [create an account](https://selfservice.payments.servi
 ## The GOV.UK Pay API
 
 The GOV.UK Pay API is based on REST principles with endpoints returning data
-in JSON format, and standard HTTP error response codes. The platform API
-allows you to:
+in JSON format, and standard HTTP error response codes. Our API
+lets you:
 
 * begin and complete payments
 * view the event history for individual payments
@@ -64,7 +64,7 @@ You'll be able to generate API keys for 2 different accounts. These are your:
 If your payment service provider (PSP) is Stripe, you can also ask us for a test Stripe account so you can see how [transaction fees](/reporting/#psp-fees) and payments to your bank account work.
 
 When you've signed up for a test account, follow these instructions to get started
-with our API and make a test API call.
+with our API and make a test API request.
 
 ## Test the API
 
@@ -84,14 +84,13 @@ Make sure you [keep your API keys safe](/security/#securing-your-developer-keys)
 
 <%= warning_text('Only use a test API key on your test account. Do not use a live API key on your test account.') %>
 
-### Make a test API call
+### Make a test API request
 
-You can make test API calls to GOV.UK Pay, using your test API key for [authentication](/api_reference/#authentication).
+You can make test API requests to GOV.UK Pay, using your test API key for [authentication](/api_reference/#authentication).
 
-You can use API testing tools such as <a href="https://www.getpostman.com/">Postman</a> or <a href="https://insomnia.rest/">Insomnia REST</a> to make test API calls.
+You can use API testing tools such as <a href="https://www.getpostman.com/">Postman</a> or <a href="https://insomnia.rest/">Insomnia REST</a> to make test API requests.
 
-This section shows an example API call and request body, to make a new payment
-for a passport application:
+This is an example API request and request body to create a new payment for a passport application:
 
 ```POST /v1/payments```
 
@@ -107,7 +106,7 @@ for a passport application:
 Services that use test accounts can optionally use HTTP, rather than HTTPS,
 for return URLs.
 
-If the test call is successful, you will receive a `201 Created` response with
+If the test request is successful, you will receive a `201 Created` response with
 a JSON body.
 
 The JSON includes a ``next_url`` link. This URL is where your service should

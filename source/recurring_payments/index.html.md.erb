@@ -7,7 +7,7 @@ weight: 2200
 
 # Take recurring payments
 
-You can take recurring payments from a user using GOV.UK Pay. The user consents to making recurring payments, enters into an ‘agreement’ with your service, and provides their payment details. The agreement allows you to take further payments through our API without the user interacting with your service again.
+You can take recurring payments from a user using GOV.UK Pay. The user consents to making recurring payments, enters into an ‘agreement’ with your service, and provides their payment details. The agreement lets you take further payments through our API without the user interacting with your service again.
 
 Your service has [additional responsibilities when taking recurring payments](/recurring_payments/#1-understand-what-your-service-is-responsible-for). You’re responsible for:
 
@@ -27,7 +27,7 @@ This section outlines the recurring payment flow, your responsibilities, and how
 
 1. You set up the agreement by getting your user’s consent and taking their first payment. You instruct our API to save their payment details. This makes the agreement for recurring payments active.
 
-1. You take recurring payments by referencing the active agreement in your API requests when creating payments. The agreement allows GOV.UK Pay to authorise the payment with the user’s saved payment details.
+1. You take recurring payments by referencing the active agreement in your API requests when creating payments. The agreement lets GOV.UK Pay authorise the payment with the user’s saved payment details.
 
 1. You cancel the agreement when it is no longer needed or when the user requests a cancellation. GOV.UK Pay cannot use the cancelled agreement to authorise payments. You can set the agreement up again by taking another payment and instructing our API to save the user’s payment details.
 
@@ -61,7 +61,7 @@ In this integration example, the service creates an agreement when a user says t
 
 ## Before you start taking recurring payments
 
-You need to understand your service’s responsibilities and enable recurring payments with your payment service provider (PSP) before you can take recurring payments.
+You need to understand your service’s responsibilities and turn on recurring payments with your payment service provider (PSP) before you can take recurring payments.
 
 ### 1. Understand what your service is responsible for
 
@@ -75,7 +75,7 @@ Your additional responsibilities include:
 
 * making the terms, conditions, and purpose of the recurring payments clear to your users so they can consent and you can record this consent
 
-* setting up, managing, and fulfilling the schedule to take payments from users
+* setting up, managing, and meeting the schedule to take payments from users
 
 * telling users when you're going to take a recurring payment and how much the payment will be
 
@@ -83,13 +83,13 @@ Your additional responsibilities include:
 
 * letting users manage or cancel recurring payments
 
-### 2. Enable recurring payments with GOV.UK Pay
+### 2. Turn on recurring payments with GOV.UK Pay
 
-Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) and ask us to enable recurring payments on your test account.
+Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) and ask us to turn on recurring payments on your test account.
 
-### 3. Enable recurring payments with your payment service provider
+### 3. Turn on recurring payments with your payment service provider
 
-If your PSP is Worldpay, you must enable tokenisation on your account before you can take recurring payments. Contact your Worldpay relationship manager and ask them to enable tokenisation.
+If your PSP is Worldpay, you must turn on tokenisation on your account before you can take recurring payments. Contact your Worldpay relationship manager and ask them to turn on tokenisation.
 
 If your PSP is Stripe, you do not need to do anything before you start setting up recurring payments.
 
@@ -103,7 +103,7 @@ Use this endpoint to create an agreement:
 
 `POST /v1/agreements`
 
-Example request:
+This example request would create an agreement to take council tax from the paying user `user-3fb81107-76b7-4910`:
 
 ```json
 {

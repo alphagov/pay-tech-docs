@@ -21,7 +21,7 @@ payment journey on GOV.UK Pay ends.
 
 ## Creating a payment
 
-The call to create a payment with the GOV.UK Pay API is:
+The request to create a payment with the GOV.UK Pay API is:
 
 `POST  /v1/payments`
 
@@ -32,7 +32,7 @@ You must send the following parameters in your request body when creating a paym
 * a human-readable description of the purpose of the payment (`description`)
 * a URL to redirect your user to after they complete their payment (`return_url`)
 
-For example:
+This example request creates a £145 council tax payment:
 
 ```javascript
 {
@@ -181,10 +181,10 @@ If your user is directed to the `return_url`, they could have:
  * not paid because your service (via the API) cancelled the payment in progress
  * not paid because of a technical error
 
- Your service should use a `GET /v1/payments/{PAYMENT_ID}` call to [check the payment's status](https://docs.payments.service.gov.uk/reporting/#get-information-about-a-single-payment) when your user
+ Your service should use a `GET /v1/payments/{PAYMENT_ID}` request to [check the payment's status](https://docs.payments.service.gov.uk/reporting/#get-information-about-a-single-payment) when your user
  reaches the `return_url`. You should provide an appropriate response based on the `state` the payment attempt.
 
- Do not use other API calls to check the payment’s status. Other calls, such as [search payments](/reporting/#get-a-list-of-payments-matching-search-criteria), do not update immediately and so may not be up to date.
+ Do not use other API requests to check the payment’s status. Other requests, such as [search payments](/reporting/#get-a-list-of-payments-matching-search-criteria), do not update immediately and so may not be up to date.
 
 ## When your user does not complete their payment journey
 
@@ -194,7 +194,7 @@ their payment journey on GOV.UK Pay. In this event, GOV.UK Pay will not redirect
 You can still [check the status of these payments](/payment_flow/#7-show-a-final-page), but you should be aware that the payment will expire 90 minutes after it was created. You can only be certain of the payment’s status after this time.
 
 If a [payment fails](/payment_flow/#show-a-failure-page), GOV.UK Pay will not
-allow your user to attempt the payment again with alternative card details. In
+let your user attempt the payment again with alternative card details. In
 this situation your user would need to return to the service to retry the
 payment. Your service should account for this.
 
@@ -212,13 +212,13 @@ Resume the payment by redirecting the paying user to the `next_url` in the API r
 
 Do not reuse the `next_url` you received in the API response when you first created the payment. Each `next_url` has a unique token so you can only use that `next_url` once.
 
-GOV.UK Pay will take your user to a screen that's appropriate for the status of the payment and allows the paying user to finish their payment. For example, if the `status` of the payment is `submitted`, we'll show the Confirm your payment page.
+GOV.UK Pay will take your user to a screen that's appropriate for the status of the payment and lets the paying user finish their payment. For example, if the `status` of the payment is `submitted`, we'll show the Confirm your payment page.
 
 You cannot resume a payment if the `status` is `failed`, `cancelled`, or `error`. [Create a new payment](/making_payments/#creating-a-payment) instead.
 
 ## Cancel a payment that’s in progress
 
-Your user can select a link on the payment page to cancel a payment that’s in progress. Alternatively, you can make the following API call:
+Your user can select a link on the payment page to cancel a payment that’s in progress. Alternatively, you can make the following API request:
 
 `POST /v1/payments/{PAYMENT_ID}/cancel`
 
