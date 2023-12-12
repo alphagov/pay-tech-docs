@@ -17,7 +17,7 @@ The API key you use determines which GOV.UK Pay service you use, and whether act
 
 <%= warning_text('If you’re testing our API, make sure you enter an API key from a test account to avoid generating real payments.') %>
 
-The API is based on REST principles. It returns data in JSON format, and uses standard HTTP error response codes.
+The API is based on REST principles. It returns data in JSON format, and uses standard HTTP status codes.
 
 You can [get started with the GOV.UK Pay API quickly](https://docs.payments.service.gov.uk/quick_start_guide/#quick-start).
 
@@ -57,8 +57,6 @@ This page has information about:
 | [Search refunds](/api_reference/search_refunds_reference)                            | `GET /v1/refunds`                                   |  <nobr>Eventually consistent</nobr> |
 
 ### Agreements for recurring payments
-
-These endpoints are not yet available. 
 
 | Endpoint                                      | URL                                                 | Data consistency                   |
 |-----------------------------------------------|-----------------------------------------------------|------------------------------------|
@@ -118,7 +116,7 @@ Per second, you can make:
 
 `GET` requests are also rate-limited, but at a very high level. In the future, we will publish an official rate limit for `GET` requests.
 
-If you exceed the rate limit, this will return a `429` HTTP response code (Too many requests) and error code `P0900`. After a second, you’ll be able to retry your attempt in a reasonable way. For example, using [exponential backoff](https://en.wikipedia.org/wiki/Exponential_backoff).
+If you exceed the rate limit, this will return a `429` HTTP status code (Too many requests) and error code `P0900`. After a second, you’ll be able to retry your attempt in a reasonable way. For example, using [exponential backoff](https://en.wikipedia.org/wiki/Exponential_backoff).
 
 [Contact us](/support_contact_and_more_information/) if you would like to discuss rate limiting applied to your service account, or give us feedback.
 
