@@ -52,7 +52,7 @@ You can see definitions, values, and the limits of every parameter and response 
 |Status|Meaning|
 |---|---|
 |pending|You cannot refund the payment yet because your user has not completed the payment.|
-|unavailable|You cannot refund the payment, usually because the payment failed.|
+|unavailable|You cannot refund the payment. There are two possible reasons for this:<br><br><li>the payment failed<li>the payment was processed by a PSP that we no longer support, such as ePDQ or Smartpay|
 |available|You can refund the payment. Check how much you can refund in `amount_available`.|
 |full|You cannot refund the payment because you've already refunded the full amount.|
 
