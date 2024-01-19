@@ -182,7 +182,9 @@ Read more about creating payments in [our guidance for taking payments](/making_
 
 ### Update a user’s recurring payment card details
 
-You can update the card used to take recurring payments. This overrides the existing card details. You should do this if a user’s existing card is going to expire soon, or if a user tells you they want to pay with a different card.
+You can update the card that GOV.UK Pay uses to take recurring payments from users. This overrides the existing card details. You should do this if a user’s existing card is going to expire soon, or if a user tells you they want to pay with a different card. 
+
+You could be charged failed payment fees if you try to take payments from an expired card.
 
 To update the user’s card details, repeat [the process to set up an agreement](#set-up-an-agreement-for-recurring-payments) by creating a payment and adding `set_up_agreement: "{AGREEMENT_ID}"` to your API request body. Replace `"{AGREEMENT_ID}"` with the same `agreement_id` you sent when first setting up this agreement.
 
@@ -219,7 +221,7 @@ The API returns a standard create payment response. Successful responses include
 
 GOV.UK Pay uses a token representing the user’s saved payment details from the agreement to take the payment.
 
-Check the status of the payment through our API (`GET /v1/payments/{PAYMENT_ID}`) or by [using webhooks to get automatic payment event updates](/recurring_payments/#use-webhooks-to-receive-automatic-event-updates).
+The payment enters the `submitted` status while we process it. You can check the status of the payment through our API (`GET /v1/payments/{PAYMENT_ID}`) or by [using webhooks to get automatic payment event updates](/recurring_payments/#use-webhooks-to-receive-automatic-event-updates).
 
 If a recurring payment fails when we try to take it, it’s handled like any other failed payment. You can [read more about what you need to do when a recurring payment fails](#handling-failed-recurring-payments).
 
@@ -461,7 +463,20 @@ You can cancel an agreement for recurring payments at any time. You may want to 
 
 You must provide a way for your users to return to your service and cancel their recurring payments.
 
-To cancel an agreement, use this endpoint:
+You can cancel an agreement through the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) or the API.
+
+### Cancel an agreement through the GOV.UK Pay admin tool
+
+1. Go to **Agreements**.
+1. Select the agreement you want to cancel.
+1. Select **Cancel this agreement**. 
+1. Select **Confirm cancellation**.
+
+You can see who cancelled an agreement and when they cancelled it in **Agreement details**.
+
+### Cancel an agreement through the API
+
+To cancel an agreement through the API, use this endpoint:
 
 `POST /v1/agreements/{AGREEMENT_ID}/cancel`
 
