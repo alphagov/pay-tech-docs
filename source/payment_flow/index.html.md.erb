@@ -49,7 +49,7 @@ Redirect your user to `next_url`.
 
 ## 4. Your user enters their payment details
 
-When your service redirects your user to `next_url`, they’ll see an **Enter card details** page where they can enter their:
+When your service redirects your user to `next_url`, they’ll see an **Enter payment details** page where they can enter their:
 
 * card number
 * card expiry date
@@ -58,9 +58,11 @@ When your service redirects your user to `next_url`, they’ll see an **Enter ca
 * billing address
 * email address
 
+If your service takes [digital wallet payments](/digital_wallets/), your user can also choose to pay with Apple Pay or Google Pay from this page.
+
 This page also shows the `description` and the amount your user has to pay, making it clear what they’re paying for.
 
-<%= image_tag "/images/flow-payment-details-page.png", { :alt => '' } %>
+<%= image_tag "/images/flow-payment-details-page-jan24.png", { :alt => '' } %>
 
 Your user enters their payment details and selects **Continue**. You can also [prefill some of the fields](/optional_features/prefill_user_details).
 

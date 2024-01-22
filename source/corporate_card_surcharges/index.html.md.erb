@@ -11,8 +11,7 @@ GOV.UK Pay supports adding a fee or 'surcharge' if your user pays with a corpora
 credit or debit card. You can [contact GOV.UK Pay support](/support_contact_and_more_information/) to ask the team to
 set this up for you.
 
-Each surcharge is a flat amount added to a payment. If you’d like to discuss
-adding surcharges as percentages, please contact us.
+Each surcharge is a flat amount added to a payment. If you’d like to discuss adding surcharges as percentages, please contact us.
 
 You can set a different surcharge for each of the following 3 corporate card types:
 
@@ -22,10 +21,11 @@ You can set a different surcharge for each of the following 3 corporate card typ
 
 When your user enters a card number in a payment journey, GOV.UK Pay checks to determine if it’s one of the 3 corporate card types. If you have turned on surcharges, we'll tell the user that a surcharge of a certain amount will be added to the total.
 
-We will not apply a surcharge if we cannot tell if the card is:
+We will not apply a surcharge if:
 
-- credit or debit
-- prepaid or not - we cannot tell this for most Mastercard cards
+- we cannot tell if the user is using credit or debit card
+- we cannot tell if a card is prepaid or not - we cannot tell this for most Mastercard cards
+- the user pays with [a digital wallet](/digital_wallets) like Apple Pay or Google Pay
 
 You can sign in to the [GOV.UK Pay admin
 tool](https://selfservice.payments.service.gov.uk/login) to see the payment
@@ -36,12 +36,8 @@ If a payment has a surcharge applied, the full amount available for refund inclu
 If a surcharge is applied to a particular payment, you can see this in API
 response fields:
 
-<div style="height:1px;font-size:1px;">&nbsp;</div>
-
 | Response field                   | Meaning
 |----------------------------------|-----------------------------------------------------------------------------------------------------------------------|
 | `amount`                       | Contains the amount in pence, without any surcharge. </br> This field always appears, even if a surcharge is not applicable.|
 | `total_amount`                 | Contains the total amount in pence, including any surcharge. </br> Only appears if a surcharge is applicable.               |
-| `corporate_card_surcharge`     | Contains only the surcharge amount, in pence. </br> Only appears if a surcharge is applicable.                              |
-
-<div style="height:1px;font-size:1px;">&nbsp;</div>
+| <nobr>`corporate_card_surcharge`     | Contains only the surcharge amount, in pence. </br> Only appears if a surcharge is applicable.                              |
