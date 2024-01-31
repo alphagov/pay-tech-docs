@@ -43,8 +43,7 @@ You will likely need some kind of server-side datastore to record payment inform
 
 ## The GOV.UK Pay API
 
-The GOV.UK Pay API offers a set of operations to conduct and report on
-payments. For more information:
+The GOV.UK Pay API offers a set of endpoints to help your organisation reconcile and report on payments. For more information:
 
 - read our [API reference](/api_reference)
 - look at our <a href="https://github.com/alphagov/pay-publicapi/blob/master/openapi/publicapi_spec.json" target="blank">OpenAPI file</a>
@@ -127,7 +126,7 @@ tool](https://selfservice.payments.service.gov.uk/), then selecting **Settings**
 
 This change can take up to 15 minutes to take effect.
 
-If you collect your users' billing addresses in your service before you redirect them to GOV.UK Pay, you can [prefill the billing address field](/optional_features/prefill_user_details) on the __Enter card details__ page.
+If you collect your users' billing addresses in your service before you redirect them to GOV.UK Pay, you can [prefill the billing address field](/optional_features/prefill_user_details) on the __Enter payment details__ page.
 
 <%= warning_text('If you turn off billing address collection, your service will receive a `null` `billing_address` object in API responses. <br><br> The `billing_address` object is inside the `card_details` object. <br><br> You should check if disabling billing address collection will affect your service‘s integration with GOV.UK Pay.') %>
 
