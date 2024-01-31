@@ -1,6 +1,6 @@
 ---
 title: Security
-last_reviewed_on: 2023-06-22
+last_reviewed_on: 2024-01-31
 review_in: 6 months
 weight: 9200
 ---
@@ -11,7 +11,7 @@ weight: 9200
 
 If you believe GOV.UK Pay security has been breached, contact us immediately at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk). If you are a live user and the suspected breach is severe, consider using the urgent contact details provided to your service manager.
 
-Please do not disclose the suspected breach publicly until it has been fixed.
+Please do not disclose the details of a suspected breach publicly until it has been fixed. Pay can work with you on any communication and reporting needs.
 
 ## Securing your developer keys
 
@@ -22,7 +22,7 @@ the test environment, but keys for real integrations should only be shared
 with the minimum number of people necessary.
 
 This is because these keys can be
-used to create and manipulate payments. Do not commit these keys to public
+used to create and manipulate payments. You must not commit these keys to public
 source code repositories.
 
 Follow these steps to revoke your API key immediately if you believe it has been accidentally shared or compromised:
@@ -50,6 +50,8 @@ To further secure your live developer keys:
  * revoke your developer keys when they’re no longer needed (this limits the number of entry points into your account)
 
  * have a leavers’ process, so that a developer’s API key is revoked when they leave
+
+Pay is currently investigating ways to ensure that publicly exposed keys are revoked promptly.
 
 ## Securing your integration with GOV.UK Pay
 
@@ -85,6 +87,8 @@ Standards](https://www.pcisecuritystandards.org/document_library?category=pcidss
 GOV.UK Pay is certified as fully compliant as a Level 1 Service Provider with
 PCI DSS version 3.2.1. All GOV.UK Pay partners must be compliant with PCI DSS,
 and must validate their compliance annually.
+
+Pay will be audited against PCI 4.0 in Summer 2024, at which point all relevant documentation will be updated. You may be asked to provide certain information from Pay as part of your own PCI compliance process, some of which may not be available until we have completed our PCI 4.0 transition work. In the interim this should not affect your ability to become PCI 4.0 compliant as there is a recognised transition period.
 
 ### Use your Merchant ID to report PCI DSS compliance
 
@@ -127,7 +131,7 @@ cardholder data.
 For most services using GOV.UK Pay, SAQ A should apply. If your service uses MOTO payments, you may need to choose a different SAQ.
 
 To make sure you complete the appropriate SAQ, follow the decision tree on the
-final page of [the PCI SAQ guidance](https://www.pcisecuritystandards.org/documents/SAQ-InstrGuidelines-v3_2.pdf).
+final page of [the PCI SAQ guidance](https://docs-prv.pcisecuritystandards.org/SAQ%20(Assessment)/Instructions%20%26%20Guidance/SAQ-Instructions-Guidelines-PCI-DSS-v4-0.pdf).
 
 #### Process more than 6 million transactions per year
 
@@ -156,7 +160,7 @@ Security  (TLS) protocol is used by the platform to authenticate servers /
 clients and to provide secure connections.
 
 You must use HTTPS for all direct communication between your service and
-GOV.UK Pay.
+GOV.UK Pay. A current TLS cipher must be used (1.3 is recommended).
 
 Return URLs for live services using GOV.UK Pay must use HTTPS, but you can use HTTP for return
 URLs with test accounts.
