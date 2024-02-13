@@ -18,7 +18,7 @@ You cannot use delayed capture for:
 * payments made with [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/)
 * [recurring payments](/recurring_payments)
 
-To use this feature, include `"delayed_capture": true` in the body of your [request to create a new payment](/making_payments/#creating-a-payment) request:
+To use this feature, include `"delayed_capture": true` in the body of your [request to create a new payment](/making_payments/#creating-a-payment):
 
 `POST /v1/payments`
 
@@ -32,25 +32,20 @@ To use this feature, include `"delayed_capture": true` in the body of your [requ
 }
 ```
 
-Your user will follow the standard payment flow. After your user selects
-__Confirm__ on the __Confirm your details__ page:
+Your user will follow the standard payment flow. After your user selects __Confirm__ on the __Confirm your details__ page:
 
 - the [payment's status](/api_reference/#payment-status-lifecycle) will change to `capturable`
-- your service can make a request to the
-`POST /v1/payments/{PAYMENT_ID}/capture` endpoint to send a delayed capture
-request
+- your service can make a request to the `POST /v1/payments/{PAYMENT_ID}/capture` endpoint to send a delayed capture request
 
 Your service must send the delayed capture request within 120 hours (5 days) of creating the payment, regardless of when your user completes the payment flow. If you do not, [the payment will expire](/payment_flow/#6-your-user-confirms-payment).
 
-If you've turned on payment confirmation emails, GOV.UK Pay will send a
-payment confirmation email to your user once we've received and processed your service’s capture request.
+If you've turned on payment confirmation emails, GOV.UK Pay will send a payment confirmation email to your user once we've received and processed your service’s capture request.
 
 You can see definitions and possible values of every parameter and attribute for this endpoint in our [API reference](/api_reference/capture_payment_reference). You can also view [possible responses to your capture request](/api_reference/#responses).
 
 ## See the capture URL for a payment
 
-If a payment is available for capture, you can see its capture URL in
-responses to API requests. For example:
+If a payment is available for capture, you can see its capture URL in responses to API requests. For example:
 
 * `GET /v1/payments`
 * `GET /v1/payments/{PAYMENT_ID}`
@@ -59,9 +54,9 @@ Replace ``{PAYMENT_ID}`` with the ID of the payment you want to see the capture 
 
 The `_links` object will contain:
 
-```
+```json
 "capture": {
-"href": "https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}/capture",
+    "href": "https://publicapi.payments.service.gov.uk/v1/payments/{PAYMENT_ID}/capture",
     "method": "POST"
     }
 ```
