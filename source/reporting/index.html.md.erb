@@ -90,7 +90,7 @@ You can use the GOV.UK Pay API to:
 
 #### Get information about a single payment
 
-Use the following API request to get information about a single payment:
+Use the following endpoint to get information about a single payment:
 
 `GET /v1/payments/{PAYMENT_ID}`
 
@@ -399,19 +399,29 @@ You can use custom metadata to add more information to new payments when creatin
 
 Paying users cannot see metadata while they're making a payment.
 
-Include a `metadata` object in the body of your request to [create a new payment](/making_payments/#take-a-payment), for example:
+Include a `metadata` object in the body of your request to [create a new payment](/api_reference/create_a_payment_reference). 
 
-```javascript
-"metadata": {
-   "ledger_code": "AB100",
-   "an_internal_reference_number": 200,
-...
+This example request creates a payment for a £100 fine and adds a ledger code and an internal reference number as metadata:
+
+`POST /v1/payments`
+
+```json
+{
+  "amount": 10000,
+  "reference" : "WA5678",
+  "description": "Pay a fine for a late tax filing.",
+  "return_url": "https://your.service.gov.uk/completed",
+  "language": "cy",
+  "metadata": {
+    "ledger_code": "AB100",
+    "an_internal_reference_number": 200
+  }
 }
 ```
 
-The `metadata` object must contain between 1 and 10 parameters.
+The `metadata` object must contain between 1 and 10 parameters as key-value pairs.
 
-Each parameter key must be a unique case-insensitive string between 1 and 30 characters long. If 2 or more keys are identical, the API will remove all but one of the identical keys from the `metadata` object.
+Each parameter key must be a unique, case-insensitive string between 1 and 30 characters long. If 2 or more keys are identical, the API will remove all but one of the identical keys from the `metadata` object.
 
 The data type of each parameter value must be either a:
 

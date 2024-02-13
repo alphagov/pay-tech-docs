@@ -16,30 +16,36 @@ To prefill fields, include the following optional parameters in the API request 
 - `email`
 - `prefilled_cardholder_details` - with optional `cardholder_name` and `billing_address` parameters
 
-For example:
+This example request creates a £100 fine and prefills the user's email address, billing address, and the cardholder name:
 
-```javascript
-"email": "sherlock.holmes@example.com",
-"prefilled_cardholder_details": {
-  "cardholder_name": "Sherlock Holmes",
-  "billing_address": {
+```json
+{
+  "amount": 10000,
+  "reference" : "54321",
+  "description": "Pay a fine you've been issued.",
+  "return_url": "https://your.service.gov.uk/completed",
+  "email": "sherlock.holmes@example.com",
+  "prefilled_cardholder_details": {
+    "cardholder_name": "Sherlock Holmes",
+    "billing_address": {
       "line1": "221 Baker Street",
       "line2": "Flat b",
       "postcode": "NW1 6XE",
       "city": "London",
       "country": "GB"
+    }
   }
 }
 ```
 
-All the parameters in `billing_address` are optional, and these parameters' values must be no longer than:
+All the parameters in `billing_address` are optional, and the values must be no longer than:
 
 - 254 characters for `email`
 - 255 characters for `cardholder_name`
 - 255 characters each for `line1`, `line2` and `city` in `billing_address`
 - 25 characters for `postcode` in `billing_address`
 
-If you include the `country` parameter, it must be an <a href="https://www.iso.org/obp/ui/#search/code/" target="_blank">ISO 3166-1 alpha-2 code</a>. If the parameter is invalid or missing, the __Country or territory__ field on the payment page will default to 'United Kingdom'.
+The `country` parameter must be an <a href="https://www.iso.org/obp/ui/#search/code/" target="_blank">ISO 3166-1 alpha-2 code</a>. If you do not include `country` or send an invalid value, the __Country or territory__ field on the payment page will default to 'United Kingdom'.
 
 ## Data collected by your GOV.UK Pay admin account
 
@@ -47,6 +53,6 @@ After your user completes their payment, your GOV.UK Pay account will collect yo
 
 - email address - even if you've turned off user email address collection
 - cardholder name
-- billing address - you can only see this by [using the API to get information about a payment](/reporting/#get-information-about-a-single-payment)
+- billing address - you can only see this by [using the API to get information about a payment](/api_reference/single_payment_reference)
 
 If your user does not complete their payment, your GOV.UK Pay account will still collect the `billing_address` value. This will happen even if you've chosen not to collect your users' billing addresses.

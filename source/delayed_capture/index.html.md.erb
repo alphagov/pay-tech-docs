@@ -18,17 +18,29 @@ You cannot use delayed capture for:
 * payments made with [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/)
 * [recurring payments](/recurring_payments)
 
-To use this feature, include `"delayed_capture": true` in the body of a [Create new payment](/making_payments/#creating-a-payment) request.
+To use this feature, include `"delayed_capture": true` in the body of your [request to create a new payment](/making_payments/#creating-a-payment) request:
 
-The user experience matches the current payment flow. Once your user selects
+`POST /v1/payments`
+
+```json
+{
+  "amount": 5000,
+  "reference" : "LE2504",
+  "description": "Pay a penalty charge notice (PCN)",
+  "return_url": "https://your.service.gov.uk/completed",
+  "delayed_capture": true
+}
+```
+
+Your user will follow the standard payment flow. After your user selects
 __Confirm__ on the __Confirm your details__ page:
 
-- the [payment status](/api_reference/#payment-status-lifecycle) will change to `capturable`
+- the [payment's status](/api_reference/#payment-status-lifecycle) will change to `capturable`
 - your service can make a request to the
 `POST /v1/payments/{PAYMENT_ID}/capture` endpoint to send a delayed capture
 request
 
-Your service must send the delayed capture request within 120 hours (5 days) of creating the payment, regardless of how long your user takes to complete the payment flow. If you do not, [the payment will expire](/payment_flow/#6-your-user-confirms-payment).
+Your service must send the delayed capture request within 120 hours (5 days) of creating the payment, regardless of when your user completes the payment flow. If you do not, [the payment will expire](/payment_flow/#6-your-user-confirms-payment).
 
 If you've turned on payment confirmation emails, GOV.UK Pay will send a
 payment confirmation email to your user once we've received and processed your service’s capture request.
