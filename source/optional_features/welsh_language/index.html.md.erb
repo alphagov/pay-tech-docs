@@ -7,13 +7,13 @@ weight: 5220
 
 # Use Welsh on your payment pages
 
-GOV.UK Pay supports Welsh-language payment pages.
+GOV.UK Pay supports Welsh language payment pages.
 
 You can also [create payment links in Welsh](https://www.payments.service.gov.uk/govuk-payment-pages/).
 
 To use Welsh, include `"language": "cy"` in the API request when you [create a new payment](/making_payments/#creating-a-payment).
 
-This example request creates a £50 fine that will use Welsh-language payment pages:
+This example request creates a £50 fine that will use Welsh language payment pages:
 
 `POST /v1/payments`
 
@@ -27,9 +27,9 @@ This example request creates a £50 fine that will use Welsh-language payment pa
 }
 ```
 
-GOV.UK Pay defaults to English-language payment pages if you do not send the `language` parameter.
+GOV.UK Pay defaults to English language payment pages if you do not send the `language` parameter.
 
-Your users see a [description of the payment](/payment_flow/#4-your-user-enters-their-payment-details) when they pay. If you use Welsh-language payment pages, you may also want to use Welsh text in the `description`.
+Your users see a [description of the payment](/payment_flow/#4-your-user-enters-their-payment-details) when they pay. If you use Welsh language payment pages, you may also want to use Welsh text in the `description`.
 
 GOV.UK Pay does not automatically translate emails into Welsh. If you want to send your own emails in Welsh, stop GOV.UK Pay sending emails by selecting a service in [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) and selecting **Settings**.
 
@@ -37,8 +37,8 @@ GOV.UK Pay does not automatically translate emails into Welsh. If you want to se
 
 ## Add a Welsh service name
 
-You can show a Welsh service name on payments that use Welsh-language payment pages. 
+You can show a Welsh service name on payments that use Welsh language payment pages. 
 
 Sign in to [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) and select **Edit name** next to the service you want to add a Welsh name to.
 
-Your users will see the Welsh service name when making payments with Welsh-language payment pages, and the English service name when making payments with English-language payment pages.
+Your users will see the Welsh service name when making payments with Welsh language payment pages, and the English service name when making payments with English language payment pages.
