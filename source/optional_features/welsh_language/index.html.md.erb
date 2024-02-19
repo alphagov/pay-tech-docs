@@ -27,11 +27,16 @@ This example request creates a £50 fine that will use Welsh language payment pa
 }
 ```
 
-GOV.UK Pay defaults to English language payment pages if you do not send the `language` parameter.
+If you do not include the `language` parameter in your request, GOV.UK Pay defaults to English language payment pages.
 
 Your users see a [description of the payment](/payment_flow/#4-your-user-enters-their-payment-details) when they pay. If you use Welsh language payment pages, you may also want to use Welsh text in the `description`.
 
-GOV.UK Pay does not automatically translate emails into Welsh. If you want to send your own emails in Welsh, stop GOV.UK Pay sending emails by selecting a service in [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) and selecting **Settings**.
+GOV.UK Pay does not automatically translate emails into Welsh. If you want to send your own emails in Welsh, stop GOV.UK Pay sending emails:
+
+1. Sign in to [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
+1. Select your service from the **Overview** page.
+1. Select **Settings**.
+1. Change **Payment confirmation emails** to **Off**.
 
 [Contact us](/support_contact_and_more_information/) if you'd like us to develop a feature to automatically translate emails into Welsh.
 
