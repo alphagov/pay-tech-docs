@@ -34,30 +34,12 @@ You must send the following parameters in your request body when creating a paym
 
 This example request creates a £145 council tax payment:
 
-```javascript
+```json
 {
   "amount": 14500,
   "reference" : "12345",
   "description": "Pay your council tax",
-  "return_url": "https://your.service.gov.uk/completed",
-  "delayed_capture": false,
-  "metadata": {
-    "ledger_code": "AB100",
-    "an_internal_reference_number": 200
-  },
-  "email": "sherlock.holmes@example.com",
-  "prefilled_cardholder_details": {
-    "cardholder_name": "Sherlock Holmes",
-    "billing_address": {
-        "line1": "221 Baker Street",
-        "line2": "Flat b",
-        "postcode": "NW1 6XE",
-        "city": "London",
-        "country": "GB"
-    }
-  },
-  "language": "en",
-  ...
+  "return_url": "https://your.service.gov.uk/completed"
 }
 ```
 
@@ -65,7 +47,7 @@ Depending on your integration, you can also:
 
 * [delay taking a payment](/delayed_capture)
 * [prefill some of the fields on the user's payment page](/optional_features/prefill_user_details/)
-* [add custom metadata to a payment](/reporting/#add-additional-information-your-users-will-not-be-able-to-see-39-custom-metadata-39-or-39-reporting-columns-39)
+* [add custom metadata to a payment](/reporting/#add-more-information-to-a-payment-39-custom-metadata-39-or-39-reporting-columns-39)
 * [use Welsh on your payment pages](/optional_features/welsh_language/)
 * [take the payment over the phone](/moto_payments)
 

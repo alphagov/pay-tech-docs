@@ -7,23 +7,46 @@ weight: 5220
 
 # Use Welsh on your payment pages
 
-GOV.UK Pay supports Welsh-language payment pages.
+GOV.UK Pay supports Welsh language payment pages.
 
 You can also [create payment links in Welsh](https://www.payments.service.gov.uk/govuk-payment-pages/).
 
-To use Welsh, include `"language": "cy"` in the API request when you [create a new payment](/making_payments/#creating-a-payment). Your users will see Welsh text on the payment pages as they complete the [payment flow](/payment_flow).  If you do not specify a language,
-GOV.UK Pay will default to using English-language payment pages.
+To use Welsh, include `"language": "cy"` in the API request when you [create a new payment](/making_payments/#creating-a-payment).
 
-To add a Welsh service name to your service, sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) and select **Edit name**.
+This example request creates a £50 fine that will use Welsh language payment pages:
 
-If you add a Welsh service name to your service, your users will see this on Welsh-language
-payment pages instead of the English service name.
+`POST /v1/payments`
 
-When your user makes a payment, they will also see a
-[`description`](/payment_flow/#4-your-user-enters-their-payment-details). If you use Welsh-language
-payment pages, you may also want to use Welsh text in the
-`description`.
+```json
+{
+  "amount": 5000,
+  "reference" : "WA5678",
+  "description": "Talu dirwy.",
+  "return_url": "https://your.service.gov.uk/completed",
+  "language": "cy"
+}
+```
 
-GOV.UK Pay does not automatically translate emails into Welsh. If you want to send your own emails in Welsh, stop GOV.UK Pay sending emails by [selecting an account in the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) and selecting **Settings**.
+If you do not include the `language` parameter in your request, GOV.UK Pay defaults to English language payment pages.
+
+Your users see a [description of the payment](/payment_flow/#4-your-user-enters-their-payment-details) when they pay. If you use Welsh language payment pages, you may also want to use Welsh text in the `description`.
+
+GOV.UK Pay does not automatically translate emails into Welsh. If you want to send your own emails in Welsh, stop GOV.UK Pay sending emails:
+
+1. Sign in to [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
+1. Select your service from the **Overview** page.
+1. Select **Settings**.
+1. Change **Payment confirmation emails** to **Off**.
 
 [Contact us](/support_contact_and_more_information/) if you'd like us to develop a feature to automatically translate emails into Welsh.
+
+## Add a Welsh service name
+
+You can show a Welsh service name on payments that use Welsh language payment pages. 
+
+Sign in to [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) and select **Edit name** next to the service you want to add a Welsh name to.
+
+Your users will see:
+
+* the Welsh service name when making payments with Welsh language payment pages
+* the English service name when making payments with English language payment pages
