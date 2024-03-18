@@ -15,7 +15,7 @@ Make sure you've [turned on MOTO (telephone or post) payments on your account](/
 
 <%= warning_text('If your payment service provider is Worldpay, you must use an API key from your MOTO service.')%>
 
-1. [Use the API to create a payment](/making_payments/#creating-a-payment) (`POST /v1/payments`) and include `"moto": true` in the request body:
+1. Use the [`POST /v1/payments` endpoint](/making_payments/#creating-a-payment) to request a payment and include `"moto": true` in the request body:
   
     ```json
     {
