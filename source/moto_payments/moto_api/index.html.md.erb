@@ -15,13 +15,20 @@ Make sure you've [turned on MOTO (telephone or post) payments on your account](/
 
 <%= warning_text('If your payment service provider is Worldpay, you must use an API key from your MOTO service.')%>
 
-1. [Use the API to create a payment](/making_payments/#creating-a-payment) (`POST /v1/payments`) and include `"moto": true` in the request body.
-
-1. Go to the [`next_url`](/making_payments/#receiving-the-api-response) included in the body of the response to your API request.
-
-1. Fill in your user’s payment details on the **Enter payment details** page. The **Enter payment details** page will not have a billing address field, even if you've turned on  billing address collection on your service.
-
-1. Confirm the payment on the **Confirm your payment** page. You will not need to do 3D Secure confirmation.
+1. Use the [`POST /v1/payments` endpoint](/making_payments/#creating-a-payment) to request a payment and include `"moto": true` in the request body:
+  
+    ```json
+    {
+      "amount": 14500,
+      "reference" : "12345",
+      "description": "Pay your council tax",
+      "return_url": "https://your.service.gov.uk/payment_complete_page",
+      "moto": true
+    }
+    ```
+2. Go to the `next_url` included in the response to your API request.
+3. On the **Enter payment details** page, enter your user’s payment details. The **Enter payment details** page does not have a billing address field, even if you've turned on billing address collection on your service.
+4. On the **Confirm your payment** page, confirm the payment details. You will not need to do a 3D Secure confirmation.
 
 ### Taking a payment by post
 

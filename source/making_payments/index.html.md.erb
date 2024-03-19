@@ -9,6 +9,8 @@ weight: 2100
 
 This section tells you how to take a payment using the GOV.UK Pay API.
 
+You can also take payments using our no-code solution, [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/).
+
 When your user makes a payment, your service should supply a `reference`. If
 possible, this should be a unique identifier for the payment. If your
 organisation already has an existing identifier for payments, you can use it
@@ -21,7 +23,7 @@ payment journey on GOV.UK Pay ends.
 
 ## Creating a payment
 
-The request to create a payment with the GOV.UK Pay API is:
+To create a payment with the GOV.UK Pay API, use this endpoint:
 
 `POST  /v1/payments`
 
