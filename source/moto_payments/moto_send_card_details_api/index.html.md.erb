@@ -100,6 +100,20 @@ You must include the following parameters in the request body:
 
 This endpoint does not need an [API bearer token](/api_reference/#authentication). The request is instead secured with the `one_time_token` you received when you created this payment.
 
+This example request sends the details of a card with the number `1111222233334444`, CVC `123`, and expiry date `02/24`. This example authorises the MOTO payment that returned the `one_time_token` of `9a084cca-2f23-4938-92ca-d7ebd1db537e` when that payment was created:
+
+```json
+curl "https://publicapi.payments.service.gov.uk/v1/auth" \
+-H 'Content-Type: application/json' \
+-d '{
+  "one_time_token": "9a084cca-2f23-4938-92ca-d7ebd1db537e",
+  "card_number": "1111222233334444",
+  "cvc": "123",
+  "expiry_date": "02/24",
+  "cardholder_name": "Sherlock Holmes"
+}'
+```
+
 If the authorisation request is successful, you’ll receive a `204` response. The response body will be empty.
 
 If the authorisation request is unsuccessful, you’ll receive a `4xx` HTTP status code and an error code in the `code` attribute. You can see [the meanings of GOV.UK Pay API error codes in our API reference](/api_reference/#http-status-codes).

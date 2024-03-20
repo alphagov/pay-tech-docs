@@ -207,9 +207,9 @@ To take a recurring payment, create a payment through the API (`POST /v1/payment
 
 Replace `{AGREEMENT_ID}` with the `agreement_id` you just set up.
 
-You do not need to send a `return_url`.
+You must not send a `return_url`.
 
-Your request should look something like this:
+This example request creates a £10 council tax payment that we'll take with payment details from the agreement `cgc1ocvh0pt9fqs0ma67r42l58`:
 
 ```json
 {
