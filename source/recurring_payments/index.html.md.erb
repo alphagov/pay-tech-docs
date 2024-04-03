@@ -320,6 +320,127 @@ You can [read more about using webhooks to automatically receive updates](/webho
 
 GOV.UK Pay have [mock card numbers for you to test your integration](/testing_govuk_pay/#mock-card-numbers), including a [mock card number for testing recurring payments](/testing_govuk_pay/#testing-recurring-payments-on-a-test-account). You can use this mock card number to set up an agreement with an initial payment, but further recurring payments will be declined.
 
+
+##Contacting your users
+
+Use these templates to write the emails you'll send your paying users when they set up or cancel agreements with your service. Change these as needed to make sense for your service.
+###Agreement successfully set up first time
+
+The following email example is for when your user makes their first payment to set up the agreement for recurring payments. Replace all `{PLACEHOLDERS}` with text that is relevant to your service.
+
+```
+Subject: Payment confirmed: {SERVICE}
+
+You have paid £{AMOUNT} for {SERVICE / LICENCE / REPAYMENT / OTHER}.
+
+This means you can {FISH / DRIVE / OTHER}. {ADD A LINK HERE TO MORE INFORMATION, FOR EXAMPLE ABOUT WHAT THE SERVICE COVERS}
+
+{ADD THE NAME ON LICENCE AND OTHER DETAILS, IF APPLICABLE}
+
+You have also set up automatic card payments. You'll be charged {AMOUNT} every {MONTH / WEEK / YEAR} unless you cancel.
+
+Your next payment date is {DD MONTH YYYY}.
+
+We'll take a single payment on {FUTURE DATE} using these details:
+ 
+Card number: XXXX XXXX XXXX 4242
+Name: J BLOGGS
+Expiry date: XX/20XX
+
+{THE FOLLOWING TEXT IS AN EXAMPLE OF HOW YOU MIGHT EXPLAIN HOW THE USER CAN CANCEL YOUR SERVICE }
+
+To cancel, call {PHONE NUMBER}. You’ll need {REFERENCE OR ACCOUNT NUMBER, IF APPLICABLE}.
+
+To cancel, {LOG INTO YOUR ACCOUNT / CLICK THIS LINK}.
+```
+###Reminder of upcoming payment (card is not due to expire before payment taken)
+
+The following email example is for when you need to remind a user that you’ll be taking a recurring payment soon. Replace all `{PLACEHOLDERS}` with text that is relevant to your service.
+
+```
+Subject: Reminder: {SERVICE}
+
+Your {SERVICE / LICENCE / REPAYMENT / OTHER} will renew on {DATE}
+
+Your next payment for £{AMOUNT} is due on {DATE}
+
+You do not need to do anything. We’ll collect your payment on {DATE} from this card:
+
+Name on card: J BLOGGS
+Card number: XXXX XXXX XXXX 1234
+Expiry date: XX/XXXX
+
+{THE FOLLOWING TEXT IS AN EXAMPLE OF HOW YOU MIGHT EXPLAIN HOW THE USER CAN CANCEL YOUR SERVICE}
+
+To cancel, call {PHONE NUMBER}. You’ll need {REFERENCE OR ACCOUNT NUMBER, IF APPLICABLE}.
+
+To cancel, {LOG INTO YOUR ACCOUNT / CLICK THIS LINK TO CANCEL}.
+```
+
+###Payment fails - card expired
+
+The following email example is for when you need to contact a user because their recurring payment failed due to an expired card. Replace all `{PLACEHOLDERS}` with text that is relevant to your service.
+
+```
+Subject: Payment failed: {SERVICE}
+
+We tried to take a payment of £{AMOUNT} for {SERVICE} but your card has expired.
+
+Name on card: J BLOGGS
+Card number: XXXX XXXX XXXX 1234
+Expiry date: XX/XXXX
+
+To continue to receive this service and make more payments, {LOG IN / CALL NUMBER / CLICK THIS LINK / OTHER} and update your details. If you do not make a payment, we’ll {CANCEL} your {SERVICE} on {DATE / IMMEDIATELY}.
+```
+
+###Payment fails - other reason (for example insufficient funds)
+
+The following email example is for when you need to contact a user because their card was declined for a recurring payment. Replace all `{PLACEHOLDERS}` with text that is relevant to your service.
+
+```
+Subject: Payment failed: {SERVICE}
+
+We tried to take a payment of £{AMOUNT} for {SERVICE} but your card was declined.
+
+Name on card: J BLOGGS
+Card number: XXXX XXXX XXXX 1234
+Expiry date: XX/XXXX
+
+To continue to receive this service and make more payments, {LOG IN / CALL NUMBER / CLICK THIS LINK / OTHER}. If you do not make a payment, we will cancel your {SERVICE} on {DATE / IMMEDIATELY}.
+```
+
+###Agreement cancelled - confirmation
+
+The following email example is for when a user cancels their agreement for recurring payments. Replace all `{PLACEHOLDERS}` with text that is relevant to your service.
+
+```
+Subject: Cancelled: {SERVICE}
+
+You have cancelled your {SERVICE}.
+
+We will not take any more payments.
+
+{REFUND DETAILS IF APPLICABLE}.
+```
+
+###Card is expired or will expire before upcoming payment (1 month before due)
+```
+Subject: Card expired: {SERVICE} payment due soon
+
+Your next payment for £{AMOUNT} is due on {1 JANUARY 2025} but your saved payment card has expired. If you do not update your card, your payment may fail and {SOMETHING WILL HAPPEN, FOR EXAMPLE YOU WILL NOT BE LICENSED}.
+
+Current details:
+
+Name on card: J BLOGGS
+Card number: XXXX XXXX XXXX 1234
+Expiry date: XX/XXXX
+
+You can {UPDATE YOUR CARD HERE} To cancel, call {PHONE NUMBER}. You’ll need {REFERENCE OR ACCOUNT NUMBER, IF APPLICABLE}.
+
+To cancel, {LOG INTO YOUR ACCOUNT / CLICK THIS LINK}
+```
+
+
 ## Reporting on recurring payments
 
 You can find information about agreements you’ve created in the GOV.UK Pay admin tool or through our API.
