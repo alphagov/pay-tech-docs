@@ -11,7 +11,7 @@ describe("Application JS", () => {
     document.cookie = "govuk_pay_cookie_policy=;expires=Thu, 01 Jan 1970 00:00:00 UTC;domain=.example.org";
 
     window.GovUkPay.cookies.showBannerIfConsentNotSet = jest.fn()
-    window.initialiseGoogleAnalytics = jest.fn()
+    window.initialiseGtag = jest.fn()
 
     // Override Document ready function in the test
     window.addEventListener = (event, callback) => {
@@ -33,7 +33,7 @@ describe("Application JS", () => {
     require("./application")
 
     expect(
-      window.initialiseGoogleAnalytics.mock.calls.length
+      window.initialiseGtag.mock.calls.length
       ).toBe(0);
   });
 
@@ -43,7 +43,7 @@ describe("Application JS", () => {
     require("./application")
 
     expect(
-      window.initialiseGoogleAnalytics.mock.calls.length
+      window.initialiseGtag.mock.calls.length
       ).toBe(0);
   });
 
@@ -54,7 +54,7 @@ describe("Application JS", () => {
     require("./application")
 
     expect(
-      window.initialiseGoogleAnalytics.mock.calls.length
+      window.initialiseGtag.mock.calls.length
     ).toBe(1);
   });
 });
