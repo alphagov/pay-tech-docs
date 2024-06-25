@@ -98,7 +98,7 @@ bundle update govuk_tech_docs
 
 Read [the changelog for the gem][gem-changelog] for the latest changes.
 
-[gem-changelog]: https://github.com/alphagov/tech-docs-gem/blob/master/CHANGELOG.md
+[gem-changelog]: https://github.com/alphagov/tech-docs-gem/blob/main/CHANGELOG.md
 
 [rvm]: https://www.ruby-lang.org/en/documentation/installation/#managers
 [bundler]: http://bundler.io/
