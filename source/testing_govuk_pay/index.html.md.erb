@@ -7,7 +7,43 @@ weight: 6200
 
 # Test your integration
 
-<%= warning_text('From August 2024, we will limit each GOV.UK Pay service to one live account and one test account.<br><br>This change will not affect most GOV.UK Pay services. If your service has more than one test account, we will be in touch to help you prepare.<br><br>Please do not request additional test accounts.') %>
+<%= warning_text('From September 2024, we will limit each GOV.UK Pay service to one live account and one test account.<br><br>This change will not affect most GOV.UK Pay services. If your service has more than one test account, we will be in touch to help you prepare.<br><br>Please do not request additional test accounts.') %>
+
+## How test accounts work in GOV.UK Pay
+
+Each GOV.UK Pay service has:
+
+* one test account to test how GOV.UK Pay works
+* one live account to take real payments from users
+
+Your test account type depends on your chosen payment service provider (PSP). 
+
+| Payment service provider       | Test account type    |
+| ------------------------------ | -------------------  |
+| Stripe                         | Stripe test account  |
+| Worldpay                       | Sandbox test account |
+
+You're limited to one test account per GOV.UK Pay service. For example, if you have a sandbox test account and request a Stripe test account, the Stripe account will replace the sandbox account. You will lose your test data and API keys.
+
+### Request a Stripe test account
+
+If you created your GOV.UK Pay service before September 2024 and chose Stripe as your PSP, you may have a sandbox test account. You can swap this for a Stripe test account. 
+
+You can use a Stripe test account to see how the following work:
+
+* [transaction fees](/reporting/#psp-fees)
+* payments to your bank account
+
+To request a Stripe test account, you need to use the admin tool. 
+
+1. [Sign in to the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
+1. Select Test account (sandbox) for your service. 
+1. From the Dashboard page, select Test Stripe’s reporting functionality and follow the instructions.
+
+<%= warning_text('Your Stripe test account will replace your sandbox test account. You will lose any test data and API keys in your sandbox account.
+.') %>
+
+Stripe test accounts have [a different set of mock card numbers](#if-you-39-re-using-a-test-stripe-account).
 
 ## Testing your service
 
@@ -34,11 +70,6 @@ You can also:
 - test any [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/) you have set up
 
 You cannot use 3D Secure (3DS) with test accounts.
-
-If your payment service provider (PSP) is Stripe, you can request a test Stripe account from your account in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services). You can use a test Stripe account to see how the following work:
-
-- [transaction fees](/reporting/#psp-fees)
-- payments to your bank account
 
 ## Performance testing
 
