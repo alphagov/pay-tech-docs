@@ -57,6 +57,13 @@ Your user has 90 minutes to complete their payment once you have created it.
 
 You can see definitions, values, and the limits of every parameter for this endpoint in our [API reference](/api_reference/create_a_payment_reference).
 
+### Avoid redundant entry
+
+[Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry) specifies that ‘services should avoid asking users for the same information twice in the same session’. 
+
+Consider prefilling some payment fields if your service already collects any details the user will need to enter when they pay. To do this, include the `prefilled_cardholder_details` object when you create the payment. You can [read more about how to prefill payment fields](/optional_features/prefill_user_details).
+
+
 #### amount
 
 The `amount` parameter sets the payment amount in pence. `amount` must be a number.
