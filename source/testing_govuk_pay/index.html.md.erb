@@ -7,7 +7,7 @@ weight: 6200
 
 # Test your integration
 
-<%= warning_text('From September 2024, we will limit each GOV.UK Pay service to one live account and one test account.<br><br>This change will not affect most GOV.UK Pay services. If your service has more than one test account, we will be in touch to help you prepare.<br><br>Please do not request additional test accounts.') %>
+<%= warning_text('In September 2024, we limited each GOV.UK Pay service to one live account and one test account.<br><br>This change did not affect most GOV.UK Pay services.') %>
 
 ## How test accounts work in GOV.UK Pay
 
@@ -23,25 +23,29 @@ Your test account type depends on your chosen payment service provider (PSP).
 | Stripe                         | Stripe test account  |
 | Worldpay                       | Sandbox test account |
 
-You're limited to one test account per GOV.UK Pay service. For example, if you have a sandbox test account and request a Stripe test account, the Stripe account will replace the sandbox account. You will lose your test data and API keys.
+You're limited to one test account per GOV.UK Pay service. For example, if you have a sandbox test account, you cannot request a Stripe test account on the same GOV.UK Pay service.
 
-### Request a Stripe test account
-
-If you created your GOV.UK Pay service before September 2024 and chose Stripe as your PSP, you may have a sandbox test account. You can swap this for a Stripe test account. 
+### Get a Stripe test account
 
 You can use a Stripe test account to see how the following work:
 
 * [transaction fees](/reporting/#psp-fees)
 * payments to your bank account
 
-To request a Stripe test account, you need to use the admin tool. 
+You already have a Stripe test account if you created your GOV.UK Pay service after September 2024 and chose Stripe as your PSP.
+
+You may have a sandbox test account if you created your GOV.UK Pay service before September 2024 and chose Stripe as your PSP.
+
+It is not possible to swap a sandbox test account for a Stripe test account within the same GOV.UK Pay service. To get a Stripe test account, you need to create a new GOV.UK Pay service.
 
 1. [Sign in to the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
-1. Select Test account (sandbox) for your service. 
-1. From the Dashboard page, select Test Stripe’s reporting functionality and follow the instructions.
+1. Select **Add a new service**. 
+1. When asked which type of organisation you work for, select **Local authority, armed forces or police**.
+1. Select **Create service**.
 
-<%= warning_text('Your Stripe test account will replace your sandbox test account. You will lose any test data and API keys in your sandbox account.
-.') %>
+Your new service will have a Stripe test account.
+
+Test data and API keys in your sandbox test account will not be available in your Stripe test account.
 
 Stripe test accounts have [a different set of mock card numbers](#if-you-39-re-using-a-test-stripe-account).
 
