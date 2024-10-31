@@ -40,14 +40,14 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
       - name: Setup Pages
-        uses: actions/configure-pages@f156874f8191504dae5b037505266ed5dda6c382
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
       - name: Get Package version
         id: get-package-version
         run: |
           echo "package_version=$(jq -r '.version' package.json)" >> $GITHUB_OUTPUT
       - name: Get latest release version
         id: get-latest-release-version
-        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           result-encoding: string
@@ -101,7 +101,7 @@ jobs:
             .
       - name: Create Release
         id: create-release
-        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -126,11 +126,11 @@ jobs:
               throw err
             }
       - name: Upload Pages artifact
-        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
         with:
           name: 'github-pages'
           path: ${{ steps.set-artifact-name.outputs.name }}.tar
           retention-days: 7
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@af48cf94a42f2c634308b1c9dc0151830b6f190a
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
