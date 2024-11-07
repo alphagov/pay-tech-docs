@@ -18,7 +18,7 @@ concurrency:
 jobs:
   run-tests:
     name: Unit tests and static build
-    uses: ./.github/workflows/run-tests.yml
+    uses: ./.github/workflows/_run-tests.yml
   static:
     name: Build and release Pay tech-docs static site
     needs: run-tests
