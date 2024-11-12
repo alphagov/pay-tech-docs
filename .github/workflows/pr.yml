@@ -1,0 +1,15 @@
+name: PR
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    uses: ./.github/workflows/_run-tests.yml
+
+  dependency-review:
+    name: Dependency Review scan
+    uses: alphagov/pay-ci/.github/workflows/_run-dependency-review.yml@master

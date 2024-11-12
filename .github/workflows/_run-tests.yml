@@ -1,7 +1,6 @@
 name: Run tests and static build
 
 on:
-  pull_request:
   workflow_call:
   workflow_dispatch:
 
@@ -9,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  run-tests:
+  tests:
     name: Unit tests and static build
     runs-on: ubuntu-latest
     steps:
