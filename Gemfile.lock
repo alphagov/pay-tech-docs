@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (7.0.8.5)
+    activesupport (7.0.8.6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -47,10 +47,10 @@ GEM
     fast_blank (1.0.1)
     fastimage (2.3.1)
     ffi (1.15.5)
-    google-protobuf (4.28.2)
+    google-protobuf (4.28.3)
       bigdecimal
       rake (>= 13)
-    govuk_tech_docs (4.1.0)
+    govuk_tech_docs (4.1.1)
       autoprefixer-rails (~> 10.2)
       base64
       bigdecimal
@@ -178,7 +178,7 @@ GEM
     rexml (3.3.9)
     rouge (3.30.0)
     sass (3.4.25)
-    sass-embedded (1.80.3)
+    sass-embedded (1.80.7)
       google-protobuf (~> 4.28)
       rake (>= 13)
     sassc (2.4.0)
@@ -202,14 +202,14 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
-    webrick (1.8.2)
+    webrick (1.9.0)
     yell (2.2.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  govuk_tech_docs (~> 4.1.0)
+  govuk_tech_docs (~> 4.1.1)
   haml (~> 6.0)
   html-proofer
 
