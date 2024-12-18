@@ -179,6 +179,8 @@ When your webhook receives a message, it’ll look like this:
 
 ### Retry mechanism
 
-If your service does not return a `2xx` successful response quickly after receiving a webhook message, we’ll try to send the message again. After several attempts, we'll stop retrying.
+GOV.UK Pay sends each webhook message at least once. If we do not receive a `2xx` successful response from your service quickly after sending a webhook message, we’ll try to send the message again. After several attempts, we'll stop retrying.
+
+Sometimes, your service will return a successful response but we might not receive it and will try to send the webhook message again. Your integration should be able to handle receiving the same webhook message more than once.
 
 You can see the history of payment events and the message delivery status of each event by selecting **Manage webhook** in [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/). Each line of the **Events history** table is a single event. Select a payment event to see details of that event, including when it was sent, the body of the webhook message, and any previous delivery attempts.
