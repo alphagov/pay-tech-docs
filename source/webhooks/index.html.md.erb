@@ -179,7 +179,11 @@ When your webhook receives a message, it’ll look like this:
 
 ### Retry mechanism
 
-GOV.UK Pay sends each webhook message at least once. If we do not receive a `2xx` successful response from your service quickly after sending a webhook message, we’ll try to send the message again. After several attempts, we'll stop retrying.
+GOV.UK Pay sends each webhook message at least once. 
+
+If we receive a `2xx` successful response from your service, we will not try to send the webhook message again.
+
+If we do not receive a `2xx` successful response from your service quickly after sending a webhook message, we’ll try to send the message again. After several attempts, we'll stop trying.
 
 Sometimes, your service will return a successful response but we might not receive it and will try to send the webhook message again. Your integration should be able to handle receiving the same webhook message more than once.
 
