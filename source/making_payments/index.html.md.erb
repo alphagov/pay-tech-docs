@@ -68,16 +68,16 @@ Consider prefilling some payment fields if your service already collects any det
 
 The `amount` parameter sets the payment amount in pence. `amount` must be a number.
 
-The minimum amount is one pence plus your payment service provider's (PSP's) transaction fee. To see your PSP's transaction fee, check your contract by either:
+The minimum amount depends on your payment service provider (PSP). 
 
-- signing into the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) if you use Stripe
-- [contacting Government Banking](mailto:serviceteam.gbs@hmrc.gov.uk) if you are using Worldpay
-- asking your PSP
+If you use Stripe, the minimum `amount` value is `30` (30 pence).
+
+If you use Worldpay, you need to contact Government Banking or ask Worldpay directly to find out your minimum payment amount.
 
 The maximum amount is either:
 
 - 10,000,000 pence (£100,000)
-- 500,000 pence (£5,000) if you use Government Banking
+- 500,000 pence (£5,000) if you use Worldpay
 
 ## Receiving the API response
 
