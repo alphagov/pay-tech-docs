@@ -62,6 +62,17 @@ To send a user's card details through the API, you need to set the payment’s a
 
 [Create a payment ](/making_payments/) using the `POST /v1/payments` endpoint and include `"authorisation_mode": "moto_api"` in the request body. You do not need to include a `return_url` in your request because there's no user to return.
 
+This example request creates a £150 payment that will be authorised by sending the user card details through the API:
+
+```json
+{
+  "amount": 15000,
+  "reference" : "12345",
+  "description": "Pay your council tax",
+  "authorisation_mode": "moto_api"
+}
+```
+
 You’ll receive a response that includes the `auth_url_post` object within the `_links` object. `auth_url_post` contains the URL (`href`), method (`method`), and unique token (`one_time_token`) you need to authorise the payment through our API. `auth_url_post` looks like this:
 
 ```json

@@ -93,9 +93,13 @@ Email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support
 
 ### 3. Turn on recurring payments with your payment service provider
 
-If your PSP is Worldpay, you must turn on tokenisation on your account before you can take recurring payments. Contact your Worldpay relationship manager and ask them to turn on tokenisation.
-
 If your PSP is Stripe, you do not need to do anything before you start setting up recurring payments.
+
+If your PSP is Worldpay, you must:
+
+* create a new GOV.UK Pay service to take recurring payments
+* contact your Worldpay relationship manager and ask them to turn on tokenisation on your Worldpay account
+* make sure you have the 2 required merchant codes - one merchant code for one-off payments, and one merchant code for recurring payments
 
 When you've tested your recurring payments service, follow our [go live documentation](/switching_to_live) to start taking payments from your users.
 
