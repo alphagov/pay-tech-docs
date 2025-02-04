@@ -3,7 +3,7 @@ host: https://docs.payments.service.gov.uk
 
 # Header-related options
 show_govuk_logo: true
-service_name: Pay
+service_name: Pay technical documentation
 service_link: https://www.payments.service.gov.uk/
 
 # Links to show on right-hand-side of header
