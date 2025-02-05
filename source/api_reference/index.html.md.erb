@@ -193,6 +193,7 @@ These error descriptions are intended for developers, not your users.
 
 | Error code | Endpoint(s) | Meaning |
 |--------------|------------|---------|
+| P0010 | Send card details to authorise a MOTO payment | The paying user's bank rejected the payment authorisation.<br><br>This is because the user entered incorrect payment details or they did not have sufficient funds in their account. |
 | P0101 | Create a payment<br><br>Send card details to authorise a MOTO payment | The request you sent is missing a required parameter.<br><br>Check the `field` attribute in the response to see which parameter is missing. |
 | P0102 | Create a payment<br><br>Send card details to authorise a MOTO payment | A header or parameter value you sent in your request is invalid.<br><br>Check the `description` attribute in the response to find out which value is invalid. |
 | P0104 | Create a payment | You included `return_url` and `"authorisation_mode": "moto_api"` in your request. These parameters cannot be used together.<br><br>Remove the `return_url` parameter to create [a Mail Order / Telephone Order (MOTO) payment that accepts card details sent through the API](/moto_payments/moto_send_card_details_api).<br><br>Remove the `authorisation_mode` parameter to [create a standard payment](/making_payments). |
