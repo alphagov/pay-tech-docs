@@ -127,7 +127,18 @@ curl "https://publicapi.payments.service.gov.uk/v1/auth" \
 
 If the authorisation request is successful, you’ll receive a `204` response. The response body will be empty.
 
-If the authorisation request is unsuccessful, you’ll receive a `4xx` HTTP status code and an error code in the `code` attribute. You can see [the meanings of GOV.UK Pay API error codes in our API reference](/api_reference/#http-status-codes).
+If the authorisation request is unsuccessful, you’ll receive a `402` HTTP status code. The response body will contain a `P0010` code and a `description` of the error. 
+
+For example:
+
+```json
+{
+  "code": "P0010",
+  "description": "The payment was rejected"
+}
+```
+
+You can see [the meanings of GOV.UK Pay API error codes in our API reference](/api_reference/#gov-uk-pay-api-error-codes).
 
 We time out requests to `/v1/auth` after about 10 seconds. If your request times out, you’ll receive a `500` HTTP status code and a `P0050` API error code.
 
