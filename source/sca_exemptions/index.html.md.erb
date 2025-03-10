@@ -1,0 +1,136 @@
+---
+title: Exempt payments from Secure Customer Authentication
+last_reviewed_on: 2025-03-05
+review_in: 6 months
+weight: 2700
+---
+
+# Exempt payments from Secure Customer Authentication
+
+GOV.UK Pay authenticates payments with 3D Secure 2 (3DS) when the paying user’s bank requests it. This 3DS check allows the payment to meet Secure Customer Authentication (SCA) requirements. 
+
+GOV.UK Pay’s payment service providers (PSPs) can request an exemption from SCA for payments in certain situations. If the paying user’s bank approves the exemption request, the paying user will not have to authenticate using 3DS. The [Financial Conduct Authority lists situations that may not require SCA](https://www.handbook.fca.org.uk/techstandards/PS/2021/2021_01/chapter-iii/?view=chapter).
+
+Stripe handles exemption requests in the background. If your GOV.UK Pay service uses Stripe, you do not need to do anything. 
+
+This page focuses on exemptions for GOV.UK Pay services that use Worldpay.
+
+## Worldpay Exemption Engine
+
+Worldpay has a product called the Exemption Engine to request SCA exemptions. Ask your Worldpay Relationship Manager about the extra costs associated with turning on the Exemption Engine.
+
+If you turn on the Exemption Engine, Worldpay analyses each payment to see which exemption the user’s bank is most likely to honour. Worldpay will always request one exemption.
+
+If the user’s bank rejects the exemption request, GOV.UK Pay will try to authorise the payment again without requesting an exemption. The paying user is more likely to have to complete a 3DS check if the exemption is rejected, but there is no noticeable difference in their payment journey.
+
+Worldpay’s Exemption Engine cannot request corporate card exemptions. GOV.UK Pay uses another feature to support corporate card exemptions for Worldpay services. You can [read more about how we support corporate card exemptions for Worldpay services](#request-a-corporate-card-exemption).
+
+You can [read more about the Exemption Engine in Worldpay’s documentation](https://docs.worldpay.com/apis/wpg/scaexemptionservices/exemptionengine).
+
+### Turn on the Worldpay Exemption Engine
+
+1. Ask your Relationship Manager at Worldpay to turn on the Exemption Engine for your Merchant Code(s).
+
+1. After Worldpay turn on the Exemption Engine, email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) and tell us:
+    * the Exemption Engine is turned on
+    * which service(s) the Exemption Engine is turned on for
+
+We’ll email you when we have turned on Exemption Engine support for your GOV.UK Pay service.
+
+## Request a corporate card exemption
+
+Online payments made with corporate cards sometimes fail 3DS checks because corporate cards do not belong to a specific person. In some situations, PSPs can request a corporate exemption for a payment made with a corporate card. This makes the payment more likely to succeed.
+
+GOV.UK Pay can detect if a user is trying to pay with a corporate card and request a corporate exemption.
+
+Corporate card exemptions are currently only available for GOV.UK Pay services that use Worldpay.
+
+If the user’s bank rejects the corporate exemption request, the authorisation fails and GOV.UK Pay will show the user a payment failure page.
+
+### Turn on corporate card exemptions
+
+Worldpay will contact services or the GOV.UK Pay team directly if they think you need to turn on corporate card exemptions exemptions. Corporate card exemptions are not appropriate for most GOV.UK Pay services. 
+
+If Worldpay tells you they have turned on corporate card exemptions, email GOV.UK Pay support at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) and tell us your:
+
+* GOV.UK Pay service name 
+* Worldpay merchant code
+
+We’ll email you when we have turned on corporate card exemptions for your GOV.UK Pay service.
+
+### Corporate exemption request outcomes
+
+Banks do not honour every SCA corporate exemption request. You can see if an exemption was requested and honoured through our API, or by selecting a payment in the GOV.UK Pay admin tool.
+
+Our API returns the `exemption` object if GOV.UK Pay requested a corporate card exemption for a payment. `exemption` will not appear if it’s too early in the payment journey to tell whether an exemption was requested.
+
+`exemption` contains the following attributes.
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `requested` | boolean | Indicates whether GOV.UK Pay requested an exemption. |
+| `type` | string | The type of exemption GOV.UK Pay requested. |
+| `outcome` | object | Contains information about the outcome of the exemption request. |
+| `outcome.result` | string | The result of the exemption request.<br><br>Possible `result` values are:<li>`honoured`<li>`rejected`<li>`out of scope` |
+
+There are 3 possible values for the `result` attribute:
+
+* `honoured` means the user’s bank accepted the exemption request
+* `rejected` means the user’s bank rejected the exemption request
+* `out of scope` means the user’s bank decided the requested exemption was not appropriate for the payment
+
+In the following example, GOV.UK Pay requested a corporate exemption and the paying user’s bank honoured the request.
+
+```json
+"exemption": {
+    "requested": true,
+    "type": "corporate",
+    "outcome": {
+ 		"result": "honoured"
+    }
+}
+```
+
+Our API returns the `exemption` object when you:
+
+* [get information about a single payment](https://docs.payments.service.gov.uk/api_reference/single_payment_reference)
+* [search for payments](https://docs.payments.service.gov.uk/api_reference/search_payments_reference/)
+
+## See if 3DS was required
+
+You can see if 3DS was required for SCA on a payment through the [GOV.UK Pay admin tool](#see-if-3ds-was-required-in-the-admin-tool) or [through our API](#see-if-3ds-was-required-through-the-api).
+
+### See if 3DS was required in the admin tool
+
+1. Sign in to [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
+1. Select the relevant service from **My services**.
+1. Select **Transactions**.
+1. Select the relevant transaction from the list.
+
+You can see the payment’s 3DS status in the **3D Secure (3DS)** row. **3D Secure (3DS)** will not appear if it is too early in the payment journey to tell if 3DS is required.
+
+### See if 3DS was required through the API
+The `authorisation_summary` object tells you if a payment required a 3DS check. 
+
+`authorisation_summary` will not appear if a payment did not require 3DS or if it’s too early in the payment journey to tell if 3DS is required.
+
+`authorisation_summary` contains the following attributes:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `three_d_secure` | object | Contains information about this payment’s 3DS check. |
+| `required` | boolean | Indicates whether or not 3DS was required on this payment. |
+
+In the following example, the paying user had to complete a 3DS check to authorise their payment:
+
+ ```json
+"authorisation_summary": {
+    "three_d_secure": {
+        "required": true
+    }
+}
+```
+Our API returns the `authorisation_summary` object when you:
+
+* [get information about a single payment](https://docs.payments.service.gov.uk/api_reference/single_payment_reference)
+* [search for payments](https://docs.payments.service.gov.uk/api_reference/search_payments_reference/)
