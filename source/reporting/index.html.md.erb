@@ -1,6 +1,6 @@
 ---
 title: Reconcile and report on payments
-last_reviewed_on: 2024-03-24
+last_reviewed_on: 2025-03-19
 review_in: 6 months
 weight: 3100
 ---
@@ -12,6 +12,7 @@ The GOV.UK Pay admin tool and API have features to make it easier for finance te
 This page covers:
 
 * [how payouts work in GOV.UK Pay](#how-payouts-work)
+* [how timezones work in GOV.UK Pay](#timezones-in-gov-uk-pay)
 * [how to find payments in the admin tool and through our API](#find-payments)
 * [reconciling your payments through the admin tool and the API](#check-your-payments-are-correct-39-reconciliation-39)
 
@@ -43,6 +44,28 @@ The payout from Stripe will appear on your bank statement with a description bas
 
 The minimum payout for Stripe is £1.
 
+## Timezones in GOV.UK Pay
+
+Dates and times in GOV.UK Pay use either local UK time or Coordinated Universal Time (UTC), depending on where you get your data.
+
+Local UK time is used in the GOV.UK Pay admin tool. [Check GOV.UK to see if the UK is on Greenwich Mean Time (GMT) or British Summer Time (BST)](https://www.gov.uk/when-do-the-clocks-change).
+
+UTC is used in:
+
+* the GOV.UK Pay API
+* any CSV reports downloaded from the GOV.UK Pay admin tool
+* any reports you get from Worldpay
+
+UTC is:
+
+* the same time as GMT
+* 1 hour behind BST
+
+When the UK is on BST, the times on your CSV reports or API responses will be 1 hour behind the times listed in the GOV.UK Pay admin tool.
+
+For historical payments, the date and time in the GOV.UK Pay admin tool are the local UK timezone when the payment was taken. For example, a payment taken during GMT will still have GMT time in the admin tool, even if you view it during BST.
+
+
 ## Find payments
 
 You can find payments in the GOV.UK Pay admin tool or [through the API](#use-the-api-to-find-payments).
@@ -61,7 +84,7 @@ You can find payments using:
 - a user’s email address
 - the payment status (for example in disputed, refunded, in progress)
 - the payment amount
-- the date you created the payment
+- the date your service created the payment
 - the user’s card details
 
 
@@ -70,8 +93,10 @@ When you select a payment, you can see the history of the payment. For example, 
 
 You can also download a CSV spreadsheet of all your selected payments to help with [reconciliation](#check-your-payments-are-correct-39-reconciliation-39). You can download one report for all your services or one report for each separate service.
 
-
 You can also see payments made to your bank account by following the link from **My services**. This is only available for live Stripe accounts and test Stripe accounts.
+
+Dates and times in the GOV.UK Pay admin tool use local UK time. You can [read more about timezones in GOV.UK Pay](#timezones-in-gov-uk-pay).
+
 
 ### Use the API to find payments
 
@@ -161,7 +186,7 @@ Example response:
 
 The response contains:
 
-* when you created the payment (`created_date`)
+* when you created the payment in UTC (`created_date`)
 * the payment amount, in pence (`amount`)
 * the status of the payment (`state`)
 * details you sent when you created the payment (`reference`, `description`, `metadata`)
@@ -361,6 +386,8 @@ If you have more than 5,000 transactions, you must apply a filter before the CSV
 The CSV file contains all transaction data, which is much more comprehensive than the information on the **Transactions** page.
 
 You can process CSV files using spreadsheet software and edit the contents you do not need.
+
+Dates and times in GOV.UK Pay's CSV files use Coordinated Universal Time (UTC). You can [read more about timezones in GOV.UK Pay](#timezones-in-gov-uk-pay).
 
 If you want to automate this process you can [use the API](#reconcile-payments-with-the-api).
 
