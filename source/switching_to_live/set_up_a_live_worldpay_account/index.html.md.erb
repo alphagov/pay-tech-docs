@@ -1,6 +1,6 @@
 ---
 title: Connect your live account to Worldpay
-last_reviewed_on: 2023-09-13
+last_reviewed_on: 2025-03-26
 review_in: 6 months
 weight: 7120
 ---
@@ -36,47 +36,59 @@ How you connect your Worldpay account to your GOV.UK Pay service depends on the 
 
 ### 3a. Connect your one-off or MOTO payments service to your Worldpay account
 
-1. Select your live account from the [__Overview__ page](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
+You need to open both the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) and your [Worldpay account](https://secure.worldpay.com/sso/public/auth/login.html) to complete this step.
 
-2. Go to the __Settings__ page and select __Your PSP - Worldpay__.
+1. Select your live account from [**My services**](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
 
-3. In your Worldpay account, select __Account__ and the __Profile__ tab, then your merchant code if you're asked for one.
+1. Select **Settings**.
 
-4. In your Worldpay account, copy the __Merchant Code__ value from the __Identification__ section. Paste this value into the __Merchant code__ field in your GOV.UK Pay account.
+1. Under **Payment provider**, select **Worldpay details**.
 
-5. In your Worldpay account, copy the __New Username__ value. Paste this value into the __Username__ field in your GOV.UK Pay account.
+1. Select **Link your Worldpay account with GOV.UK Pay**.
 
-6. In your Worldpay account, if you see a checkbox labelled __Disable Original XML Username__, select the checkbox and then select __Save Profile__ at the bottom.
+1. In your Worldpay account, select __Account__ and the __Profile__ tab, then your merchant code if you're asked for one.
 
-7. In your Worldpay account, if you have not set your XML password for this merchant code before, set it by selecting the pencil icon next to __XML Password__ and choosing a password.
+1. In your Worldpay account, copy the __Merchant Code__ value from the __Identification__ section. Paste this value into the __Merchant code__ field in your GOV.UK Pay account.
+
+1. In your Worldpay account, copy the __New Username__ value. Paste this value into the __Username__ field in your GOV.UK Pay account.
+
+1. In your Worldpay account, if you see a checkbox labelled __Disable Original XML Username__, select the checkbox and then select __Save Profile__ at the bottom.
+
+1. In your Worldpay account, if you have not set your XML password for this merchant code before, set it by selecting the pencil icon next to __XML Password__ and choosing a password.
 
     If you've set your XML password before but you cannot remember it, you can set a new password. But you must add the new password to your other services that use this Worldpay account, or they'll stop working.
 
     You should follow the guidance about [choosing and storing passwords](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers) from the National Cyber Security Centre (NCSC).
 
-8. Confirm your password by selecting __Add new password__, then __OK__.
+1. Confirm your password by selecting __Add new password__, then __OK__.
 
-9. Save the password by selecting the pencil icon again, then __Complete__, then __OK__.
+1. Save the password by selecting the pencil icon again, then __Complete__, then __OK__.
 
-10. In your Worldpay account, copy your XML password. Paste this password into the __Password__ field in your GOV.UK Pay account.
+1. In your Worldpay account, copy your XML password. Paste this password into the __Password__ field in your GOV.UK Pay account.
 
-11. Go to the __Payment service__ section of your Worldpay account.
+1. Go to the __Payment service__ section of your Worldpay account.
 
-12. Set __Capture delay (days)__ to __Off__ (not __0__).
+1. Set __Capture delay (days)__ to __Off__ (not __0__).
 
     If you do not do this, you may take money from your users before they've confirmed their payment.
 
-13. Contact Worldpay if you want to take payments higher than the amount in __Maximum Transaction Amount__.
+1. Contact Worldpay if you want to take payments higher than the amount in __Maximum Transaction Amount__.
 
-14. In your GOV.UK Pay account, select __Save credentials__.
+1. In your GOV.UK Pay account, select __Save credentials__.
 
 Continue to [step 4 to turn on 3DS Flex](#4-turn-on-3ds2-3ds-flex).
 
 ### 3b. Connect your recurring payments service to your Worldpay account
 
-1. Select your live account from the [**Overview page**](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
+You need to open both the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) and your [Worldpay account](https://secure.worldpay.com/sso/public/auth/login.html) to complete this step.
 
-1. Go to the **Settings** page and select **Your PSP - Worldpay**.
+1. Select your live account from [**My services**](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
+
+1. Select **Settings**.
+
+1. Under **Payment provider**, select **Worldpay details**.
+
+1. Select **Link your Worldpay account with GOV.UK Pay**.
 
 1. Select **Change** in the **Recurring customer initiated transaction (CIT) credentials** table.
 
@@ -130,15 +142,14 @@ If you are setting up a [MOTO service](/moto_payments/), you do not need to turn
 
 As part of your onboarding, Worldpay should have sent you your 3DS Flex credentials. You can also find your 3DS credentials in [Worldpay’s Merchant Admin Interface](https://secure.worldpay.com/sso/public/auth/login.html?serviceIdentifier=merchantadmin) by selecting **INTEGRATION** and then **3DS Flex**.
 
-1. In the GOV.UK Pay admin tool, select the account you want to set up on the **Overview** page.
+1. Select the service you are making live from **My services** in [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
+1. Select **Settings**.
+1. Under **Payment provider**, select **Worldpay details**.
+1. Select **Configure 3DS**.
+1. Enter your 3DS Flex credentials in the **Organisational unit ID**, **Issuer (API ID)**, and **JWT MAC key (API key)** fields.
+1. Select **Save credentials**.
 
-1. Select **Settings**, then **Payment channels**.
-
-1. Select **Add Worldpay 3DS Flex credentials**, then enter your 3DS Flex credentials in the **Organisational unit ID**, **Issuer (API ID)**, and **JWT MAC key (API key)** fields.
-
-1. Select **Save and continue**.
-
-## Set up your Worldpay 'Merchant Channels'
+## 5. Set up your Worldpay 'Merchant Channels'
 
 You must set up your Worldpay 'Merchant Channels' so Worldpay can notify GOV.UK Pay about payment events.
 
@@ -146,7 +157,7 @@ If you're setting up a recurring payments service, you must make these changes f
 
 In your Worldpay account, select __Integration__ then the __Merchant Channel__ tab.
 
-### Set up ‘Merchant Channels’
+### 5a. Set up ‘Merchant Channels’
 
 You must make the following changes in both the __Merchant Channels (Production)__ and __Merchant Channels (Test)__ sections.
 
@@ -163,7 +174,7 @@ In the __http__ row, set:
 - __Method__ to __POST__
 - __Client certificate__ to __no__
 
-### 5. Set up ‘Merchant Channel Events’
+### 5b. Set up ‘Merchant Channel Events’
 
 In both the __Merchant Channel Events (Production)__ and __Merchant Channel Events (Test)__ sections, select the following in the __http__ row.
 
