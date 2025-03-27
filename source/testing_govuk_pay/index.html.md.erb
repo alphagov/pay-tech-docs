@@ -76,12 +76,15 @@ Do not use your test account for automated integration tests that run every time
 
 ## Testing the whole user journey
 
-You should test the whole user journey.
+You should test the whole user journey. To help you do this, you can create a reusable payment that will behave as if it was created through the API.
 
-If you're using the API integration, you can create a link to GOV.UK Pay payment pages and add it to your service's test page.
+This feature is for services that intend to integrate with the GOV.UK Pay API but have not yet finished building their integration.
 
-1. [Select the account you want to test in the GOV.UK admin tool](https://selfservice.payments.service.gov.uk/my-services).
-2. Select **Test with your users** to create the link.
+You will get a link to a GOV.UK Pay payment page that you can add to your prototypes. You can also specify a return URL that GOV.UK Pay will return you to after finishing the test payment. This lets you test the whole user journey.
+
+1. Sign in to [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk).
+1. Select the service you want to test in **My services**.
+1. Select **Test with your users** to create the link.
 
 You can also:
 
