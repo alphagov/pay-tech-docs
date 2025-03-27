@@ -9,11 +9,14 @@ weight: 7210
 
 This guidance tells you how to switch your payment service provider (PSP) to Stripe.
 
+Users making payments as you switch are unaffected. Your old PSP will process their payments until you finalise the switch.
+
 You must be a GOV.UK Pay admin user to switch PSP. To check if you are an admin user for a service:
 
-1. Select **View team members** or **Manage team members** next to the service on the **Overview** page.
-
-2. If your email address is listed under **Administrators**, you are an admin user.
+1. Select the service from **My services**.
+1. Select **Settings**.
+1. Under **About your service**, select **Team members**.
+1. If your email address is listed under **Administrators**, you are an admin user.
 
 ## Prepare to switch to Stripe
 
@@ -53,67 +56,27 @@ Before switching, read the:
 * [Memorandum of Understanding](https://selfservice.payments.service.gov.uk/policy/memorandum-of-understanding-for-crown-bodies) (if you are a Crown organisation)
 * [Stripe Connected Account Agreement](https://selfservice.payments.service.gov.uk/policy/stripe-connected-account-agreement)
 
-To get to the **Switch payment service provider** page:
-
-1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
-
-2. Select the service you want to switch from the **Overview** page - services you can switch are labelled **LIVE - SWITCH PSP**.
-
-3. On your service dashboard, select the ‘**...how to switch to Stripe**' link in the banner at the top of the page, or select **Settings** in the navigation.
-
-4. In **Settings**, select **Switch PSP** from the side navigation.
 
 ## Switch to Stripe
 
 You need to repeat the following process for each service you want to switch.
 
-### Provide your details and test the integration with Stripe
 
-To test the integration between Stripe and GOV.UK Pay, you need to make a live payment. This step makes sure you have integrated your GOV.UK Pay and Stripe accounts correctly.
+### Provide your organisation details
 
-The live payment is £2.00 and is refundable. Your new Stripe account will be debited a small transaction fee.
+1. Sign in to the GOV.UK Pay admin tool.
+1. Select the service you want to switch from **My services** - services you can switch are labelled **LIVE - SWITCH PSP**.
+1. Select **Settings**.
+1. Under **Payment provider**, select **Switch to Stripe**.
 
-1. Select **Provide your bank details**.
+Complete the tasks on this screen to start switching to Stripe.
 
-1. Enter your sort code and account number.
 
-1. Select **Save and continue** to return to the **Switch payment service provider (PSP)** page.
+### Make a test payment to complete the switch to Stripe
 
-1. Select **Provide details about your responsible person**.
+Before you complete the switch to Stripe, you need to make a live payment. This payment tests the integration between Stripe and GOV.UK Pay and makes sure you have correctly connected your Stripe account with your GOV.UK Pay service.
 
-1. Complete the **Name**, **Home address**, **Date of birth**, **Telephone number**, and **Email address** sections.
-
-1. Select **Save and continue**.
-
-1. Select **Add information about the director of your organisation**.
-
-1. Enter the details of the director (or someone at director level) for your service.
-
-1. Select **Save and continue**.
-
-1. Select **Provide your organisation’s VAT number**.
-
-1. Enter your organisation’s VAT number.
-
-1. Select **Save and continue**.
-
-1. Select **Provide your company’s registration number**.
-
-1. If your organisation has a company registration number, select **Yes** and enter your company registration number.
-
-1. If your organisation does not have a company registration number, select **No**.
-
-1. Select **Save and continue**.
-
-1. Select **Upload a government entity document**.
-
-1. Select **Choose file** and upload a document that verifies your organisation is a government entity.
-
-1. Select **Save and continue**.
-
-1. Select **Add organisation URL**.
-
-1. Enter your organisation's URL.
+The live payment is £2.00 and you can refund it after completing your switch to Stripe. Your new Stripe account will be debited a small transaction fee.
 
 1. Select **Make a live payment to test your Stripe PSP** - you will need a debit or credit card for this step.
 
@@ -121,21 +84,11 @@ The live payment is £2.00 and is refundable. Your new Stripe account will be de
 
 1. Enter your card details.
 
-1. Select **Continue**. You’ll be returned to the **Switch payment service provider** page.
-
-A **Success** banner confirms the payment and you can also find it in the **Transactions** list.
+1. Select **Confirm payment**.
 
 If your service uses the GOV.UK Pay API for reporting, you may want to check the test transaction appears correctly in your systems.
 
-<%= warning_text('Your existing PSP is still processing this service’s payments. You have not switched your PSP yet.') %>
-
-### Switch PSP to Stripe
-
-You’re ready to switch once you’ve provided your details in the GOV.UK Pay admin tool, and made a live payment to test the integration.
-
-Users making payments as you switch are unaffected. Your old PSP will process their payments.
-
-To switch, select **Switch to Stripe**. A **Success** banner confirms the switch.
+To finalise your service’s switch to Stripe, select **Switch to Stripe**. A **Success** banner confirms the switch.
 
 You have now switched PSP to Stripe. Stripe will process new payments.
 
