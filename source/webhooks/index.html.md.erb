@@ -1,6 +1,6 @@
 ---
 title: Receive automatic payment event updates using webhooks
-last_reviewed_on: 2023-09-13
+last_reviewed_on: 2025-03-27
 review_in: 6 months
 weight: 3300
 ---
@@ -40,21 +40,15 @@ We can allow other domains if you cannot host your callback URL on a domain that
 
 You can create a webhook for your service from the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
 
-1. Select your service from the **Overview** page in the GOV.UK Pay admin tool.
-
+1. Select your service from **My services** in the GOV.UK Pay admin tool.
 1. Select **Settings**.
-
-1. Select **Webhooks**.
-
+1. Under **Developers**, select **Webhooks**.
 1. Select **Create a new webhook**.
-
 1. Enter a **Callback URL** and **Description**.
-
 1. Select the payment events that the webhook will send.
+1. Select **Save**.
 
-1. Select **Create webhook**.
-
-To change the callback URL, description, and payment event subscriptions select **Manage webhook** from the **Webhooks** page in the GOV.UK Pay admin tool.
+To change the callback URL, description, and payment event subscriptions, select **Update** next to the webhook on the **Webhooks** settings page in the GOV.UK Pay admin tool.
 
 ### Deactivate a webhook
 
@@ -62,10 +56,8 @@ You can deactivate a webhook at any time. Deactivated webhooks do not send event
 
 To deactivate your webhook:
 
-1. Open the **Webhooks** page in the GOV.UK Pay admin tool.
-
-1. Select **Manage webhook**.
-
+1. Open the **Webhooks** settings page in the GOV.UK Pay admin tool.
+1. Select **View** next to the webhook.
 1. Select **Deactivate webhook**.
 
 You can reactivate the webhook at any time.
@@ -82,7 +74,7 @@ Your service must send a `2xx` successful response as soon as possible. To avoid
 
 Every webhook message from GOV.UK Pay is signed with the `Pay-Signature` header. The value of this header is a lower-case, hexadecimal hash-based message authentication code (HMAC) of the webhook message body, generated using the SHA-256 hash function. Your webhook signing secret is used as the key.
 
-To view your webhook’s signing secret, select **Manage signing secret** from the **Manage webhook** page in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
+To view your webhook’s signing secret, select **View** next to the webhook from the **Webhooks** settings page in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login).
 
 Use your signing secret and the webhook message payload to verify the webhook message:
 
@@ -187,4 +179,6 @@ If we do not receive a `2xx` successful response from your service quickly after
 
 Sometimes, your service will return a successful response but we might not receive it and will try to send the webhook message again. Your integration should be able to handle receiving the same webhook message more than once.
 
-You can see the history of payment events and the message delivery status of each event by selecting **Manage webhook** in [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/). Each line of the **Events history** table is a single event. Select a payment event to see details of that event, including when it was sent, the body of the webhook message, and any previous delivery attempts.
+You can see the history of payment events and the message delivery status of each event by selecting **View** next to the webhook in [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/). Each line of the **Events** table is a single event. 
+
+Select **View details** next to a payment event to see details of that event, including when the webhook was sent, the body of the webhook message, and any previous delivery attempts.
