@@ -12,11 +12,7 @@ GovukTechDocs.configure(self)
 
 after_build do |builder|
   begin
-    js_source_file = File.join(config[:build_dir], 'javascripts', 'application.min.js')
-    js_target_file = File.join(config[:build_dir], 'javascripts', 'application.js')
-
-    File.rename(js_source_file, js_target_file)
-    puts "Renamed JavaScript file from application.min.js to application.js"
+    js_source_file = File.join(config[:build_dir], 'javascripts', 'application.js')
 
     HTMLProofer.check_directory(config[:build_dir],
       { :assume_extension => true,
