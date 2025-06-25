@@ -30,7 +30,7 @@ You should also have a clear call to action that tells your user they’re about
 
 You do not need to tell your user that they’ll be taken to GOV.UK Pay’s pages to make their payment.
 
-<%= image_tag "/images/flow-service-payment-page.png", { :alt => '' } %>
+<%= image_tag "/images/flow-service-payment-page.svg", { :alt => '' } %>
 
 ## 2. Create a new GOV.UK Pay payment
 
@@ -62,7 +62,7 @@ If your service takes [digital wallet payments](/digital_wallets/), your user ca
 
 This page also shows the `description` and the amount your user has to pay, making it clear what they’re paying for.
 
-<%= image_tag "/images/flow-payment-details-page-jan24.png", { :alt => '' } %>
+<%= image_tag "/images/flow-payment-details-page.svg", { :alt => '' } %>
 
 Your user enters their payment details and selects **Continue**. You can also [prefill some of the fields](/optional_features/prefill_user_details).
 
@@ -88,7 +88,7 @@ The payment confirmation page shows what your user entered for their:
 
 This page also shows the `description` and the amount your user has to pay.
 
-<%= image_tag "/images/flow-payment-confirm-page.png", { :alt => '' } %>
+<%= image_tag "/images/flow-payment-confirm-page.svg", { :alt => '' } %>
 
 If your user decides to complete the payment, they select **Confirm payment**. They will then:
 
@@ -137,6 +137,6 @@ If your user’s payment failed - for example because they cancelled or their pa
 
 For example:
 
-<%= image_tag "/images/flow-payment-declined.png", { :alt => '' } %>
+<%= image_tag "/images/flow-payment-declined.svg", { :alt => '' } %>
 
 If you do not use your own payment failure pages, you can configure GOV.UK Pay to display [standard GOV.UK Pay payment failure pages](/optional_features/use_your_own_error_pages/#use-your-own-payment-failure-pages).
