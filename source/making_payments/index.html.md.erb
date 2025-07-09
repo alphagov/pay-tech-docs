@@ -236,3 +236,16 @@ that’s not `null`, you can cancel the payment. For example:
   "method": "POST"
 }
 ```
+
+## Other considerations when taking a payment
+
+### Taking payments from users outside of the UK
+
+GOV.UK Pay only supports payments in British pounds (GBP), however users from outside of the UK can still make payments.
+
+In this situation:
+
+* the user’s bank will do a currency conversion into GBP if the payment card uses a foreign currency
+* the user’s bank may charge a conversion fee and give the user an unfavourable exchange rate
+* payments are more likely to be declined during fraud checks
+* your PSP may charge you additional transaction fees for cards issued outside the UK
