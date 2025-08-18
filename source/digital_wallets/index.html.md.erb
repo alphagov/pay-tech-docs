@@ -1,15 +1,17 @@
 ---
-title: Take a digital wallet payment
+title: Take payments with Apple Pay and Google Pay
 last_reviewed_on: 2025-03-25
 review_in: 6 months
 weight: 2300
 ---
 
-# Take a digital wallet payment
+# Take payments with Apple Pay and Google Pay
 
-Your users can make payments with [Google Pay](https://pay.google.com/intl/en_uk/about/) and [Apple Pay](https://www.apple.com/uk/apple-pay/). This page tells you how to turn on digital wallet payments, test digital wallet payments, and the restrictions around digital wallets.
+Your users can make payments with [Google Pay](https://pay.google.com/intl/en_uk/about/) and [Apple Pay](https://www.apple.com/uk/apple-pay/). Apple Pay and Google Pay are often called 'digital wallets'.
 
-Users can use digital wallets with:
+This page tells you how to turn on digital wallets, test Apple Pay and Google Pay, and the restrictions around digital wallets.
+
+Users can use Apple Pay and Google Pay with:
 
 * payment links
 * payments created through the GOV.UK Pay API
@@ -18,13 +20,13 @@ Users can only use Google Pay if they're making payments in a supported browser,
 
 Users can only use Apple Pay if they're making payments on a compatible Mac, iPhone, or iPad in a supported browser, such as Safari.
 
-If your payment service provider (PSP) is Stripe, both digital wallets are turned on by default. 
+If your payment service provider (PSP) is Stripe, Apple Pay and Google Pay are turned on by default. 
 
 If your PSP is Worldpay, Apple Pay is turned on by default, but you'll need to turn on Google Pay manually.
 
 You can turn off Apple Pay and Google Pay in the GOV.UK Pay admin tool.
 
-There are no additional PSP fees if your service takes digital wallet payments.
+There are no additional PSP fees if your service takes payments with Apple Pay and Google Pay.
 
 If you have turned off any card brands through the GOV.UK Pay admin tool, these card brands will also be turned off for digital wallet payments.
 
@@ -118,7 +120,7 @@ To test Apple Pay:
 
 ## Strong Customer Authentication (3D Secure)
 
-Apple Pay needs your users to authenticate digital wallet transactions using a secure method such as a fingerprint scan. Your Apple Pay users do not need to complete a Strong Customer Authentication (SCA) method such as 3D Secure separately.
+Apple Pay needs your users to authenticate digital wallet transactions using a secure method such as a fingerprint scan. Your Apple Pay users do not need to separately complete a Strong Customer Authentication (SCA) method such as 3D Secure.
 
 Google Pay supports, but does not need, your users to authenticate digital wallet transactions using a secure method. Your users who do not use Google Pay’s secure authentication may have to complete SCA separately.
 
@@ -126,9 +128,9 @@ See the [GOV.UK Pay page on Apple Pay and Google Pay](https://www.payments.servi
 
 ## Restrictions of digital wallet payments
 
-GOV.UK Pay cannot apply [corporate card surcharges](/corporate_card_surcharges/#add-corporate-card-fees) to digital wallet payments made with a corporate card.
+GOV.UK Pay cannot apply [corporate card surcharges](/corporate_card_surcharges/#add-corporate-card-fees) to payments made with a corporate card through Apple Pay or Google Pay.
 
-Users cannot make recurring payments with digital wallets.
+Users cannot make recurring payments with Apple Pay or Google Pay.
 
 ### Stored cardholder information in digital wallet payments
 
