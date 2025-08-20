@@ -2,7 +2,7 @@
 title: Integrate with the GOV.UK Pay API
 last_reviewed_on: 2025-03-27
 review_in: 6 months
-weight: 6100
+weight: 2050
 ---
 
 # Integrate with the GOV.UK Pay API
@@ -133,6 +133,10 @@ This change can take up to 15 minutes to take effect.
 If you collect your users' billing addresses in your service before you redirect them to GOV.UK Pay, you can [prefill the billing address field](/optional_features/prefill_user_details) on the __Enter payment details__ page.
 
 <%= warning_text('If you turn off billing address collection, your service will receive a `null` `billing_address` object in API responses. <br><br> The `billing_address` object is inside the `card_details` object. <br><br> You should check if disabling billing address collection will affect your service‘s integration with GOV.UK Pay.') %>
+
+## Test your new integration
+
+You should thoroughly test your integration. You can use [our guidance on testing the GOV.UK Pay API](/testing_govuk_pay).
 
 ## Existing integrations with GOV.UK Pay
 
