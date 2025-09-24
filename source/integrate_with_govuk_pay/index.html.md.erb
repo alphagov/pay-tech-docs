@@ -63,7 +63,7 @@ The following example UML sequence diagram shows a typical happy-path payment jo
 1. A user visits your service and tells you they want to make a payment. The user typically does this with some kind of call to action, such as a Buy a fishing license button.
 1. The user’s browser sends a request to your service to start the payment journey. 
 1. Your service starts a user session.
-1. Your service creates a payment using the `POST /v1/payments` endpoint. This request includes `amount`, `description`, `reference`, and `return_url` values for the payment. You can [read more about these parameters in our API reference](/api_reference/api_reference/create_a_payment_reference/#json-body-parameters-for-39-create-a-payment-39).
+1. Your service creates a payment using the `POST /v1/payments` endpoint. This request includes `amount`, `description`, `reference`, and `return_url` values for the payment. You can [read more about these parameters in our API reference](/api_reference/create_a_payment_reference/#json-body-parameters-for-39-create-a-payment-39).
 1. GOV.UK Pay returns a `201` successful response. This response contains  `payment_id` and `next_url` attributes.
 1. Your service extracts the values of `payment_id` and `next_url` from the response.
 1. Your service stores the `payment_id` in a list of incomplete payment journeys, and records the incomplete journey in the user session.
