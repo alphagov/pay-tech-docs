@@ -48,16 +48,15 @@ The GOV.UK Pay API offers a set of endpoints to help your organisation reconcile
 - read our [API reference](/api_reference)
 - look at our <a href="https://github.com/alphagov/pay-publicapi/blob/master/openapi/publicapi_spec.json" target="blank">OpenAPI file</a>
 
-## When to let your users access your service
+## When to release your service to your users
 
-Your organisation needs to decide what point of the payment journey you will give users access to your service. This will depend on the nature of your service.
+It's your responsibility to decide when to release your service to your users. This will depend on the nature of your service.
 
-In some cases, you may be comfortable letting users access your service before a payment has been confirmed. For example, if you’re taking payments in advance because a user has an account with you.
+In some cases you may be comfortable releasing a service before a payment has been confirmed. For example, if you’re taking payments in advance because a user has an account with you.
 
-In most cases, you’ll want to confirm that a payment has been completed before letting your users access the service. You’ll typically do this when your user visits the `return_url` on your service.
+In most cases, you’ll want to confirm that a payment has been completed before releasing the service to your users. Typically you’ll do this when your user visits the `return_url` on your service.
 
 The following example UML sequence diagram shows a typical happy-path payment journey:
-
 ![Typical happy-path user payment sequence](/images/happy-path-payment-journey-2025.svg)
 
 1. A user visits your service and tells you they want to make a payment. The user typically does this with some kind of call to action, such as a Buy a fishing license button.
