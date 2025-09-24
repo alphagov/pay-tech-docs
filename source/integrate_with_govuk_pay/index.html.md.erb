@@ -57,8 +57,24 @@ In some cases you may be comfortable releasing a service before a payment has be
 In most cases, you’ll want to confirm that a payment has been completed before releasing the service to your users. Typically you’ll do this when your user visits the `return_url` on your service.
 
 The following example UML sequence diagram shows a typical happy-path payment journey:
+![Typical happy-path user payment sequence](/images/happy-path-payment-journey-2025.svg)
 
-![Typical happy-path user payment sequence](/images/happy-path-payment-journey.svg)
+1. A user visits your service and tells you they want to make a payment. The user typically does this with some kind of call to action, such as a Buy a fishing license button.
+1. The user’s browser sends a request to your service to start the payment journey. 
+1. Your service starts a user session.
+1. Your service creates a payment using the `POST /v1/payments` endpoint. This request includes `amount`, `description`, `reference`, and `return_url` values for the payment. You can [read more about these parameters in our API reference](/api_reference/create_a_payment_reference/#json-body-parameters-for-39-create-a-payment-39).
+1. GOV.UK Pay returns a `201` successful response. This response contains  `payment_id` and `next_url` attributes.
+1. Your service extracts the values of `payment_id` and `next_url` from the response.
+1. Your service stores the `payment_id` in a list of incomplete payment journeys, and records the incomplete journey in the user session.
+1. Your service uses a `302` redirect to send the user to the `next_url` from the payment creation response. The user’s browser will automatically follow this redirect.
+1. The user enters their card details on GOV.UK Pay and confirms the payment.
+1. GOV.UK Pay redirects the user to the `return_url` you sent when you created the payment.
+1. Your service gets the `return_url` from the session cookie.
+1. Your service finds the incomplete payment journey using data from the user session, then looks up the `payment_id`.
+1. Your service gets information about the outcome of the payment from GOV.UK Pay using the `GET /v1/payments/{PAYMENT_ID}` endpoint.
+1. GOV.UK Pay returns a `200` response that includes `”status”: “success”` or `”status”: “failed”`, depending on the outcome of the payment.
+1. Your service marks the payment journey as complete.
+1. Your service displays a payment success or payment failure confirmation screen to your user, depending on the payment status.
 
 ## Identifying your user when they return to your service
 
