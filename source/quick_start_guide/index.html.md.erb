@@ -1,6 +1,6 @@
 ---
 title: Quick start
-last_reviewed_on: 2025-03-25
+last_reviewed_on: 2025-11-12
 review_in: 6 months
 weight: 1200
 ---
@@ -57,15 +57,14 @@ lets you:
 * issue full or partial refunds
 * create agreements to take recurring payments
 
-You'll be able to create API keys for 2 different accounts. These are your:
+You can create two types of API keys for your GOV.UK Pay service. These are:
 
-- test account, for [testing the GOV.UK Pay API and your service](/testing_govuk_pay)
-- live account, for taking payments from your users after you [switch to live](/switching_to_live)
+- test API keys, for [testing your service before it goes live and for testing in sandbox mode](/testing_govuk_pay)
+- live API keys, for taking payments from your users after you [go live](/switching_to_live)
 
-If your payment service provider (PSP) is Stripe, you can get a Stripe test account to see how [transaction fees](/reporting/#psp-fees) and payments to your bank account work.
+If your payment service provider (PSP) is Stripe, you can test how [transaction fees](/reporting/#psp-fees) and payments to your bank account work.
 
-When you've signed up for a test account, follow these instructions to get started
-with our API and make a test API request.
+When you've signed up for GOV.UK Pay and created a service, follow these instructions to get started with our API and make a test API request.
 
 ## Test the API
 
@@ -74,15 +73,15 @@ with our API and make a test API request.
 1. Sign in to the [GOV.UK Pay admin
    tool](https://selfservice.payments.service.gov.uk/).
 
-2. Select your test service from **My services**.
+1. Select the service you want to test from **My services**.
 
-3. Select **Settings**, then **API keys** under **Developers**.
+1. Select **Developers**, then **API keys**.
 
-3. Select **Create a new API key**.
+1. Select **Create a new API key**.
 
 Make sure you [keep your API keys safe](/security/#securing-your-developer-keys).
 
-<%= warning_text('Only use a test API key on your test account. Do not use a live API key on your test account.') %>
+<%= warning_text('Only use test API keys in sandbox mode or before your service goes live. Do not use a live API key in sandbox mode. It will not work properly.') %>
 
 ### Make a test API request
 
