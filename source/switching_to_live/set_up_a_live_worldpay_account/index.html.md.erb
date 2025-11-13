@@ -1,17 +1,17 @@
 ---
-title: Connect your live account to Worldpay
+title: Connect your live service to Worldpay
 last_reviewed_on: 2025-03-26
 review_in: 6 months
 weight: 7120
 ---
 
-# Connect your live account to Worldpay
+# Connect your live service to Worldpay
 
 This is part of [going live](/switching_to_live/#go-live). You need to complete the steps on that page before continuing here.
 
 Government Banking's contracted payment service provider (PSP) is currently Worldpay. You must be a central government or health sector organisation to use Government Banking's contracted PSP.
 
-You must be an admin on your GOV.UK Pay account to connect to Worldpay.
+You must be an admin on your GOV.UK Pay service to connect to Worldpay.
 
 ## 1. Check your Worldpay account
 
@@ -38,11 +38,9 @@ How you connect your Worldpay account to your GOV.UK Pay service depends on the 
 
 You need to open both the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) and your [Worldpay account](https://secure.worldpay.com/sso/public/auth/login.html) to complete this step.
 
-1. Select your live account from [**My services**](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
+1. Select your live service from [**My services**](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
 
-1. Select **Settings**.
-
-1. Under **Payment provider**, select **Worldpay details**.
+1. Select **Payment provider**, then select **Worldpay details**.
 
 1. Select **Link your Worldpay account with GOV.UK Pay**.
 
@@ -50,7 +48,7 @@ You need to open both the [GOV.UK Pay admin tool](https://selfservice.payments.s
 
 1. In your Worldpay account, copy the __Merchant Code__ value from the __Identification__ section. Paste this value into the __Merchant code__ field in your GOV.UK Pay account.
 
-1. In your Worldpay account, copy the __New Username__ value. Paste this value into the __Username__ field in your GOV.UK Pay account.
+1. In your Worldpay account, copy the __New Username__ value. Paste this value into the __Username__ field in the GOV.UK Pay admin tool.
 
 1. In your Worldpay account, if you see a checkbox labelled __Disable Original XML Username__, select the checkbox and then select __Save Profile__ at the bottom.
 
@@ -64,7 +62,7 @@ You need to open both the [GOV.UK Pay admin tool](https://selfservice.payments.s
 
 1. Save the password by selecting the pencil icon again, then __Complete__, then __OK__.
 
-1. In your Worldpay account, copy your XML password. Paste this password into the __Password__ field in your GOV.UK Pay account.
+1. In your Worldpay account, copy your XML password. Paste this password into the __Password__ field in the GOV.UK Pay admin tool.
 
 1. Go to the __Payment service__ section of your Worldpay account.
 
@@ -74,7 +72,7 @@ You need to open both the [GOV.UK Pay admin tool](https://selfservice.payments.s
 
 1. Contact Worldpay if you want to take payments higher than the amount in __Maximum Transaction Amount__.
 
-1. In your GOV.UK Pay account, select __Save credentials__.
+1. In the GOV.UK Pay admin tool, select __Save credentials__.
 
 Continue to [step 4 to turn on 3DS Flex](#4-turn-on-3ds2-3ds-flex).
 
@@ -82,11 +80,9 @@ Continue to [step 4 to turn on 3DS Flex](#4-turn-on-3ds2-3ds-flex).
 
 You need to open both the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services) and your [Worldpay account](https://secure.worldpay.com/sso/public/auth/login.html) to complete this step.
 
-1. Select your live account from [**My services**](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
+1. Select your live service from [**My services**](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
 
-1. Select **Settings**.
-
-1. Under **Payment provider**, select **Worldpay details**.
+1. Select **Payment provider**, then select **Worldpay details**.
 
 1. Select **Link your Worldpay account with GOV.UK Pay**.
 
@@ -112,7 +108,7 @@ You need to open both the [GOV.UK Pay admin tool](https://selfservice.payments.s
 
 1. Save the password by selecting the pencil icon again, then **Complete**, then **OK**.
 
-1. In your Worldpay account, copy your XML password. Paste this password into the **Password** field in your GOV.UK Pay account.
+1. In your Worldpay account, copy your XML password. Paste this password into the **Password** field in the GOV.UK Pay admin tool.
 
 1. Go to the **Payment service** section of your Worldpay account.
 
@@ -143,10 +139,9 @@ If you are setting up a [MOTO service](/moto_payments/), you do not need to turn
 As part of your onboarding, Worldpay should have sent you your 3DS Flex credentials. You can also find your 3DS credentials in [Worldpay’s Merchant Admin Interface](https://secure.worldpay.com/sso/public/auth/login.html?serviceIdentifier=merchantadmin) by selecting **INTEGRATION** and then **3DS Flex**.
 
 1. Select the service you are making live from **My services** in [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
-1. Select **Settings**.
-1. Under **Payment provider**, select **Worldpay details**.
-1. Select **Configure 3DS**.
-1. Enter your 3DS Flex credentials in the **Organisational unit ID**, **Issuer (API ID)**, and **JWT MAC key (API key)** fields.
+1. Select **Payment provider**, then select **Worldpay details**.
+1. In the **3DS Flex credentials** table, select **Change**.
+1. Enter your 3DS Flex credentials in the **Organisational Unit ID**, **Issuer (API ID)**, and **JWT MAC key (API key)** fields.
 1. Select **Save credentials**.
 
 ## 5. Set up your Worldpay 'Merchant Channels'
@@ -194,4 +189,4 @@ In both the __Merchant Channel Events (Production)__ and __Merchant Channel Even
 - __REFUSED_BY_BANK__ (production only)
 - __REFUND_FAILED__
 
-Once you’ve set up your Worldpay 'Merchant Channels', your live account is connected to Worldpay. Continue with the next steps to [going live](/switching_to_live/#3-choose-which-card-types-to-accept).
+Once you’ve set up your Worldpay 'Merchant Channels', your live service is connected to Worldpay. Continue with the next steps to [going live](/switching_to_live/#3-choose-which-card-types-to-accept).
