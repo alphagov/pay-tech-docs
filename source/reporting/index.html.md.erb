@@ -26,7 +26,7 @@ You will receive one payment into your bank account for each Worldpay merchant c
 
 If you have more than one service in Pay, you can choose to use the same merchant code for each service or a different merchant code for each one. 
 
-If you have multiple services on one merchant code, you can use our reporting API to find all the transactions that are on that merchant code. Alternatively, select **View transactions for all your services** in the admin tool to download a CSV with this information. The merchant code itself is not shown in the API or the CSV, but you can use the description line to find the relevant transactions.
+If you have multiple services on one merchant code, you can use our reporting API to find all the transactions that are on that merchant code. Alternatively, select **Transactions for all services** in the admin tool to download a CSV with this information. The merchant code itself is not shown in the API or the CSV, but you can use the description line to find the relevant transactions.
 
 You can change what is shown on your bank statement for the payment in the Worldpay settings.
 
@@ -83,9 +83,9 @@ You can find payments using:
 - a reference number
 - a user’s email address
 - the payment status (for example in disputed, refunded, in progress)
-- the payment amount
 - the date your service created the payment
 - the user’s card details
+- metadata or reporting columns
 
 
 When you select a payment, you can see the history of the payment. For example, you can see when your service created the payment and when the user paid.
@@ -93,7 +93,7 @@ When you select a payment, you can see the history of the payment. For example, 
 
 You can also download a CSV spreadsheet of all your selected payments to help with [reconciliation](#check-your-payments-are-correct-39-reconciliation-39). You can download one report for all your services or one report for each separate service.
 
-You can also see payments made to your bank account by following the link from **My services**. This is only available for live Stripe accounts and test Stripe accounts.
+You can also see payments made to your bank account by following the link from **My services**. This is only available for GOV.UK Pay services that use Stripe.
 
 Dates and times in the GOV.UK Pay admin tool use local UK time. You can [read more about timezones in GOV.UK Pay](#timezones-in-gov-uk-pay).
 
@@ -219,7 +219,7 @@ If your PSP is Stripe, you should receive the payment in your bank account withi
 - 2 working days of `captured_date` if your user completed their payment during the week
 - 3 working days of `captured_date` if your user completed their payment at the weekend or on a bank holiday
 
-You can confirm when Stripe makes payments into your bank account by signing in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/) then selecting __View payments to your bank account__.
+You can confirm when Stripe makes payments into your bank account by signing in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/) then selecting **Payments to your bank account**.
 
 If your PSP is Worldpay, contact Worldpay support to find out your payment times.
 
@@ -237,7 +237,7 @@ In this example, we've deducted a £2 PSP fee (`fee`) from the user's £40 payme
 
 Stripe may charge transaction fees on failed payments. If this happens, `net_amount` will be a negative number. From 6 April 2022, Stripe will take negative net amounts from your Stripe account balance. For example, a `net_amount` of `-200` on a payment will take £2.00 from your Stripe account.
 
-To test transaction fees, you can request a test Stripe account from your account in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
+You can test Stripe transaction fees by making test payments in sandbox or 'not live yet' modes. 
 
 You can also sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/login) to see transaction fee information or export the information in a CSV file.
 
@@ -373,7 +373,7 @@ The GOV.UK Pay admin tool can help you reconcile your payments. You can:
 
 You can use the GOV.UK Pay admin tool to download transaction information in a CSV file. You can import this into your finance systems. You can download one file for one service's transactions, or one file for all your services' transactions.
 
-1. Go to [the **Overview** page](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
+1. Go to [**My services**](https://selfservice.payments.service.gov.uk/my-services) in the GOV.UK Pay admin tool.
 1. If you want to export one service's transactions, select the service account you want reporting information for, then select **Transactions**.
 
 You can also [view transactions for all your live services](https://selfservice.payments.service.gov.uk/all-service-transactions) if you want to export all your services' transactions.
