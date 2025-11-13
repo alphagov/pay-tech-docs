@@ -81,7 +81,7 @@ When you've signed up for GOV.UK Pay and created a service, follow these instruc
 
 Make sure you [keep your API keys safe](/security/#securing-your-developer-keys).
 
-<%= warning_text('Only use test API keys in sandbox mode or before your service goes live. Do not use a live API key in sandbox mode. It will not work properly.') %>
+<%= warning_text('Only use test API keys in sandbox or 'not live yet' modes. Do not use a live API key in these modes. It will not work properly.') %>
 
 ### Make a test API request
 
@@ -102,7 +102,7 @@ This is an example API request and request body to create a new payment for a pa
 }
 ```
 
-Services that use test accounts can optionally use HTTP, rather than HTTPS,
+Services testing in sandbox or 'not live yet' modes can optionally use HTTP, rather than HTTPS,
 for return URLs.
 
 If the test request is successful, you will receive a `201 Created` response with
@@ -115,10 +115,7 @@ Read more about [taking payments](/making_payments/#take-a-payment).
 
 ### Simulate your users' payment journey
 
-Go to the ``next_url`` with a browser, and you’ll see the payment screen.
-Choose a [mock card number](/testing_govuk_pay/#mock-card-numbers) and
-enter it to simulate a payment in the test environment. For the other required
-details, enter some test information which should have:
+Go to the ``next_url`` with a browser, and you’ll see the payment screen. Choose a [mock card number](/testing_govuk_pay/#mock-card-numbers) and enter it to simulate a payment. For the other required details, enter some test information which should have:
 
   * an expiry date that is in the future and in the format MM/YYYY or MM/YY
 
