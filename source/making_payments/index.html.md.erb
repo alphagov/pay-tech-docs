@@ -1,6 +1,6 @@
 ---
 title: Take a payment
-last_reviewed_on: 2023-11-09
+last_reviewed_on: 2025-11-25
 review_in: 3 months
 weight: 2100
 ---
@@ -139,7 +139,7 @@ succeeds or fails. Read more about the [payment status lifecycle in our API refe
 
 For security reasons, GOV.UK Pay does not add the `payment_id` or outcome to your `return_url` as parameters.
 
-You must [use HTTPS for your `return_url`](/security/#https), but you can use HTTP with test accounts.
+You must [use HTTPS for your `return_url`](/security/#https) when taking real payments, but you can use HTTP for test payments with your service in sandbox or 'not live yet' modes.
 
 You can match your users with payments with an encrypted cookie, or by creating a
 secure random ID:

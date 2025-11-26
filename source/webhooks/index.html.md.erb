@@ -1,6 +1,6 @@
 ---
 title: Receive automatic payment event updates using webhooks
-last_reviewed_on: 2025-03-27
+last_reviewed_on: 2025-11-13
 review_in: 6 months
 weight: 3300
 ---
@@ -32,7 +32,7 @@ You must set up your endpoint to receive the `POST` body from your webhook and r
 
 Your callback URL must use HTTPS and present a valid certificate. GOV.UK webhooks support TLS version 1.2.
 
-Your callback URL must have a domain that ends with `.gov.uk`. This restriction does not apply if you're using webhooks on a test service.
+Your callback URL must have a domain that ends with `.gov.uk`. This restriction does not apply if you're using webhooks on a service in sandbox or 'not live yet' modes.
 
 We can allow other domains if you cannot host your callback URL on a domain that ends with `.gov.uk`. You can ask us to allow a domain by emailing support at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk). We'll only allow domains that exclusively belong to your service or your service's parent organisation. There may be a delay before we allow your domain to give us time to discuss your request.
 
@@ -42,7 +42,7 @@ You can create a webhook for your service from the [GOV.UK Pay admin tool](https
 
 1. Select your service from **My services** in the GOV.UK Pay admin tool.
 1. Select **Settings**.
-1. Under **Developers**, select **Webhooks**.
+1. Select **Developers**, then select **Webhooks**.
 1. Select **Create a new webhook**.
 1. Enter a **Callback URL** and **Description**.
 1. Select the payment events that the webhook will send.

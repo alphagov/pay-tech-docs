@@ -1,6 +1,6 @@
 ---
 title: Delay taking a payment
-last_reviewed_on: 2023-07-18
+last_reviewed_on: 2025-11-13
 review_in: 12 months
 weight: 2500
 ---
@@ -34,7 +34,7 @@ This example request creates a £50 parking fine that the service can capture at
 }
 ```
 
-Your paying user will follow the standard payment flow. After your user selects __Confirm__ on the __Confirm your details__ page:
+Your paying user will follow the standard payment flow. After your user selects **Confirm** on the **Confirm your payment** page:
 
 - the [payment's status](/api_reference/#payment-status-lifecycle) will change to `capturable`
 - you can make a request to the `POST /v1/payments/{PAYMENT_ID}/capture` endpoint when you want to capture the delayed
