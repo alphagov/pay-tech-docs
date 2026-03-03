@@ -11,18 +11,29 @@ Follow these steps to start taking real payments from users.
 
 ## Before you start
 
-You must:
+Before you go live, you must:
 
-- have successfully finished [testing your integration](/testing_govuk_pay/#test-your-integration)
-- read about [payment service provider (PSP) fees](/reporting/#psp-fees) (Stripe only)
-- have a secure domain for your service, because you must use HTTPS for the `return_url` when you [create a payment](/making_payments/#creating-a-payment) in a live service (does not apply if you use [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/))
-- sign up for updates on the [GOV.UK Pay status page](https://payments.statuspage.io), so you get a notification when there's an incident
-- know how to [contact us](/support_contact_and_more_information/) to report an incident or if you need help going live
+- finish [testing your integration](/testing_govuk_pay/#test-your-integration)
+- read about [fees](/reporting/#psp-fees) if you use Stripe
+- use a secure HTTPS domain if you send a `return_url`
+- sign up for [GOV.UK Pay status updates](https://payments.statuspage.io)
+- know how to [contact us](/support_contact_and_more_information/)
 
-Compared to when you have tested your service, your live service may have a:
+If you use [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/)), the `return_url` requirement does not apply.
 
-- slower response time, because GOV.UK Pay must wait for responses from your payment service provider (PSP)
-- lower transaction limit - check with your PSP
+If you use Worldpay, you must also:
+
+- have Worldpay admin account sign in details
+- find your merchant codes in emails from Government Banking
+
+### How live is different from testing
+
+Compared with testing, your live service may have:
+
+- slower response times
+- lower transaction limits
+
+GOV.UK Pay waits for payment service provider (PSP) responses. Check transaction limits with your PSP.
 
 ## 1. Request to go live with your GOV.UK Pay service
 
