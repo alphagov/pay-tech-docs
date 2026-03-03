@@ -1,125 +1,194 @@
 ---
 title: Test your integration
-last_reviewed_on: 2025-03-27
+last_reviewed_on: 2026-03-02
 review_in: 6 months
 weight: 6200
 ---
 
 # Test your integration
 
-<%= warning_text('In November 2025, we updated the GOV.UK Pay admin tool. This update removed the concept of test accounts, replacing them with a sandbox mode for live services, and a &#39;not live yet&#39; mode for new services.<br><br>We will update this page soon to reflect these new testing modes. Until then, some of the content on this page is outdated.') %>
+Use GOV.UK Pay testing features to check your integration before you go live, and to test changes after your service is live.
 
-## How test accounts work in GOV.UK Pay
+The way you test depends on:
 
-Each GOV.UK Pay service has:
+* whether your service is live
+* which payment service provider (PSP) you use
+* whether you are testing the GOV.UK Pay API, the full user journey, or both
 
-* one test account to test how GOV.UK Pay works
-* one live account to take real payments from users
+## Choose a testing mode
 
-Your test account type depends on your chosen payment service provider (PSP). 
+Each GOV.UK Pay service has one test point.
 
-| Payment service provider       | Test account type    |
-| ------------------------------ | -------------------  |
-| Stripe                         | Stripe test account  |
-| Worldpay                       | Sandbox test account |
+You can use it in 2 modes:
 
-You're limited to one test account per GOV.UK Pay service. For example, if you have a sandbox test account, you cannot request a Stripe test account on the same GOV.UK Pay service.
+* ‘not live yet’ for a new service
+* sandbox for a live service
 
-### Get a Stripe test account
+### Use ‘not live yet’ for a new service
 
-You can use a Stripe test account to see how the following work:
+When you first create a GOV.UK Pay service, it is labelled ‘not live yet’ in the GOV.UK Pay admin tool.
 
+Use this mode to:
+
+* explore how the GOV.UK Pay API works
+* test payments
+* test service settings
+* check your integration before you go live
+
+### Use sandbox for a live service
+
+After your service goes live, use sandbox mode to test changes.
+
+To enter sandbox mode:
+
+1. From the admin tool dashboard, select **Enter sandbox mode**.
+1. On the Enter sandbox mode page, select **Enter sandbox mode**.
+
+You can use sandbox mode to:
+
+* make demo payments
+* view test transactions
+* try different settings and functionality
+* run automated smoke tests
+
+Changes in sandbox mode do not affect your live service. Users can still make payments to the live version.
+
+You can leave sandbox mode at any time.
+
+### Important limitations
+
+Do not use both testing modes for automated integration tests that run when you change your code.
+
+If you need automated integration tests, build a stub to simulate the GOV.UK Pay API instead. For example, you can use [WireMock](https://wiremock.org/).
+
+In sandbox mode, use the same test API keys created in ‘not live yet’ mode. Create new live API keys only when you [go live](/switching_to_live) to take payments.
+
+## What you can test by payment service provider
+
+### If your PSP is Stripe
+
+If your service uses Stripe, you can use ‘not live yet’ and sandbox modes to test:
 * [transaction fees](/reporting/#psp-fees)
 * payments to your bank account
+* 3D Secure (3DS) with specific test card numbers
 
-You already have a Stripe test account if you created your GOV.UK Pay service after September 2024 and chose Stripe as your PSP.
+### If your PSP is Worldpay
 
-You may have a sandbox test account if you created your GOV.UK Pay service before September 2024 and chose Stripe as your PSP.
-
-It is not possible to swap a sandbox test account for a Stripe test account within the same GOV.UK Pay service. To get a Stripe test account, you need to create a new GOV.UK Pay service.
-
-1. [Sign in to the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/my-services).
-1. Select **Add a new service**. 
-1. When asked which type of organisation you work for, select **Local authority, armed forces or police**.
-1. Select **Create service**.
-
-Your new service will have a Stripe test account.
-
-Test data and API keys in your sandbox test account will not be available in your Stripe test account.
-
-Stripe test accounts have [a different set of mock card numbers](#if-you-39-re-using-a-test-stripe-account).
-
-### Get a Worldpay test account
-
-It’s possible to link a Worldpay test account to GOV.UK Pay. Some services might find a Worldpay test account useful to connect GOV.UK Pay to Worldpay’s reporting products.
-
-For most organisations, a Worldpay test account is not necessary and we do not recommend using it. GOV.UK Pay cannot support you if you encounter problems.
-
-You can test the entire payment journey with a standard GOV.UK Pay test account, as well as:
+If your service uses Worldpay, you can use ‘not live yet’ and sandbox modes for:
 
 * reporting on payments
-* smoke testing
-* viewing and refunding transactions
+* [smoke testing](https://www.gov.uk/service-manual/technology/deploying-software-regularly#using-smoke-tests-after-you-deploy)
+* viewing transactions
+* refunding transactions
 
-If you get a Worldpay test account, you should not use it for long term, automated testing.
+Worldpay does not support 3DS testing in sandbox mode.
 
-Email GOV.UK Pay support (govuk-pay-support@digital.cabinet-office.gov.uk) to request a Worldpay test account. If GOV.UK Pay support approves your request, we will add your Worldpay test account as a separate GOV.UK Pay service.
+## Worldpay test accounts
 
-## Testing your service
+You can link a Worldpay test account to GOV.UK Pay.
 
-You can use your test account to:
+Some services use a Worldpay test account to connect GOV.UK Pay to Worldpay reporting products.
 
-- explore how the GOV.UK Pay API works
-- run automated [smoke tests](https://www.gov.uk/service-manual/technology/deploying-software-regularly#using-smoke-tests-after-you-deploy)
+Most organisations do not need a Worldpay test account. We do not recommend using one unless you have a clear reason.
 
-Do not use your test account for automated integration tests that run every time you change your code. Build a ‘stub’ to simulate the GOV.UK Pay API instead, using a tool like [WireMock](https://wiremock.org/).
+If you use a Worldpay test account:
 
-## Testing the whole user journey
+* GOV.UK Pay cannot support problems with the account
+* you should not use it for long-term automated testing
 
-You should test the whole user journey. To help you do this, you can create a reusable payment that will behave as if it was created through the API.
+To ask for a Worldpay test account, email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk). 
 
-This feature is for services that intend to integrate with the GOV.UK Pay API but have not yet finished building their integration.
+If we approve your request, we will add the test account as a separate GOV.UK Pay service.
 
-You will get a link to a GOV.UK Pay payment page that you can add to your prototypes. You can also specify a return URL that GOV.UK Pay will return you to after finishing the test payment. This lets you test the whole user journey.
+## Test the whole user journey
 
-1. Sign in to [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk).
+Test the full user journey as well as the API.
+
+You can create a reusable link in the GOV.UK Pay admin tool. It behaves like a payment link created through the API.
+
+You can use the link to:
+
+* open a GOV.UK Pay payment page from your prototype
+* complete a test payment
+* send the user back to your service with a `return_url`
+* test the full payment journey
+
+To create a reusable payment link:
+
+1. Sign in to the [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk).
 1. Select the service you want to test in **My services**.
 1. Select **Test with your users** to create the link.
 
 You can also:
 
-- use [mock card numbers](#mock-card-numbers) to test both successful and unsuccessful payments
-- use HTTP instead of HTTPs for the `return_url` with your test account, so you do not need to set up a secure url for testing
-- test any [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/) you have set up
+* use [mock card numbers](#mock-card-numbers) to test successful and unsuccessful payments
+* use HTTP instead of HTTPS for the `return_url` while your service is in sandbox or ‘not live yet’ mode
+* test any payment links you have already set up
 
-You cannot use 3D Secure (3DS) with test accounts.
+You do not need to set up a secure URL for testing.
 
 ## Performance testing
 
 You must [contact us](/support_contact_and_more_information) to get written approval before you do any performance testing.
 
-## Mock card numbers and email addresses
+## Use mock card numbers
 
-Use mock card numbers and email addresses with your test account when you try payments as a user.
+Use mock card numbers when you test payments. Do not use real card numbers.
 
-Do not use real card numbers or fake email addresses with your test account.
+You can use any valid value for the other payment fields. For example, the card expiry date can be any future date.
 
-You must use mock email addresses when doing automated testing. If you are testing manually, you can use real email addresses.
-
-You can enter any valid value for other payment fields. For example, the card expiry date can be any date in the future.
-
-### Mock card numbers
-
-Mock card numbers do not work with your live account.
+Mock card numbers work for all test payments in sandbox and ‘not live yet’ modes.
 
 There are separate sets of mock card numbers for:
 
-* [GOV.UK Pay test accounts](#if-you-39-re-using-a-test-39-sandbox-39-account) 
-* [Stripe test accounts](#if-you-39-re-using-a-test-stripe-account)
+* [Stripe services](#mock-card-numbers-for-stripe)
+* [Worldpay services](#moc-card-numbers-for-worldpay)
 
-#### If you're using a test ('sandbox') account
+### Mock card numbers for Stripe
 
-|Testing action |Card number | Card brand | Card type |
+The [PSP transaction fee](/reporting/#psp-fees) depends on the card country.
+
+| Testing action | Card number | Card brand | Card type | Country |
+|--|--|--|--|--|--|
+|Successful payment |4000008260000000| Visa | Credit | UK |
+|Successful payment |4000058260000005| Visa | Debit | UK |
+|Successful payment |4000002500000003| Visa | Credit | France |
+|Successful payment |4242424242424242| Visa | Credit | US |
+|Successful payment |4000056655665556| Visa | Debit | US |
+|Successful payment |5105105105105100| Mastercard | Debit | US |
+|Successful payment |5200828282828210| Mastercard | Debit | US |
+|Successful payment |371449635398431| American Express | Credit | US |
+|Requires 3DS check |4000002500003155| Visa | Credit | France |
+|Card declined|4000000000000002|Visa| Credit or debit | US |
+|Card expired|4000000000000069|Visa| Credit or debit | US |
+|Invalid CVC code|4000000000000127|Visa| Credit or debit | US |
+|Payment disputed and lost|4000000000000259|Visa|Credit| US |
+|Payment disputed and won|4000000000002685|Visa|Credit| US |
+|General error|4000000000000119|Visa| Credit or debit | US |
+
+#### Test recurring payments for a Stripe service
+
+There are additional mock card numbers to test recurring payments with Stripe. 
+
+Use these mock card numbers to test recurring payments with Stripe.
+
+[Recurring payments](/recurring_payments/#how-recurring-payments-work) have 2 steps:
+
+1. Take an initial payment to set up an agreement.
+1. Take later recurring payments automatically.
+
+Each test card gives a result for both steps.
+
+| Testing actions                                                            | Card number      | Card brand | Card type | Country |
+| -------------------------------------------------------------------------- | ---------------- | ---------- | --------- | ------- |
+| Successful set up payment without 3DS<br><br>Successful recurring payments | 4242424242424242 | Visa       | Credit    | US      |
+| Successful set up payment with 3DS<br><br>Successful recurring payments    | 4000002500003155 | Visa       | Credit    | France  |
+| Successful set up payment with 3DS<br><br>Unsuccessful recurring payments  | 4000002760003184 | Visa       | Credit    | Germany |
+| Unsuccessful set up payment                                                | 4000000000009995 | Visa       | Credit    | US      |
+
+### Mock card numbers for Worldpay
+
+| Testing action | Card number | Card brand | Card type |
 | -------- | ------- | ------- | ------- |
 |Successful payment | 4444333322221111 | Visa | Credit |
 |Successful payment |4242424242424242| Visa | Credit |
@@ -141,64 +210,28 @@ There are separate sets of mock card numbers for:
 |Invalid CVC code|4000000000000127|Visa| Credit or debit |
 |General error|4000000000000119|Visa| Credit or debit |
 
-##### Testing recurring payments on a test account
+#### Test recurring payments for a Worldpay service
 
-Recurring payments are made up of two stages:
+Use these mock card numbers to test recurring payments with Worldpay.
 
-1. An initial payment to set up the agreement for recurring payments.
-2. Further recurring payments that are taken automatically without a user's input.
+[Recurring payments](/recurring_payments/#how-recurring-payments-work) have 2 steps:
 
-To test both stages, we offer mock cards that have two testing actions - one for the initial payment and one for the further recurring payments.
+1. Take an initial payment to set up an agreement.
+1. Take later recurring payments automatically.
 
-|Testing actions |Card number | Card brand | Card type |
+Each test card gives a result for both steps.
+
+| Testing actions | Card number | Card brand | Card type |
 | -------- | ------- | ------- | ------- |
-|1. Successul set up payment<br><br>2. Successful recurring payment | 4000056655665556 | Visa | Debit |
+|1. Successful set up payment<br><br>2. Successful recurring payment | 4000056655665556 | Visa | Debit |
 |1. Successful set up payment<br><br>2. Unsuccessful recurring payment | 5105105105105100 | Mastercard | Debit |
 
-#### If you're using a test Stripe account
+## Use mock email addresses
 
-The [PSP transaction fee](/reporting/#psp-fees) depends on which country the test card is from.
+If you are testing manually, you can use real email addresses.
 
-|Testing action |Card number |Card brand |Card type | Country |
-|--|--|--|--|--|--|
-|Successful payment |4000008260000000| Visa | Credit | UK |
-|Successful payment |4000058260000005| Visa | Debit | UK |
-|Successful payment |4000002500000003| Visa | Credit | France |
-|Successful payment |4242424242424242| Visa | Credit | US |
-|Successful payment |4000056655665556| Visa | Debit | US |
-|Successful payment |5105105105105100| Mastercard | Debit | US |
-|Successful payment |5200828282828210| Mastercard | Debit | US |
-|Successful payment |371449635398431| American Express | Credit | US |
-|Requires 3DS check |4000002500003155| Visa | Credit | France |
-|Card declined|4000000000000002|Visa| Credit or debit | US |
-|Card expired|4000000000000069|Visa| Credit or debit | US |
-|Invalid CVC code|4000000000000127|Visa| Credit or debit | US |
-|Payment disputed and lost|4000000000000259|Visa|Credit| US |
-|Payment disputed and won|4000000000002685|Visa|Credit| US |
-|General error|4000000000000119|Visa| Credit or debit | US |
+If you are doing automated tests, you must use one of these mock email addresses.
 
-##### Testing recurring payments on a test Stripe account
-
-There are additional mock card numbers to test recurring payments with Stripe. 
-
-Use these cards to test the two main steps of [the recurring payment flow](/recurring_payments/#how-recurring-payments-work):
-
-* taking a payment to set up an agreement for recurring payments
-* taking further recurring payments without user input
-
-Each card has a different result for these two steps.
-
-| Testing actions                                                            | Card number      | Card brand | Card type | Country |
-| -------------------------------------------------------------------------- | ---------------- | ---------- | --------- | ------- |
-| Successful set up payment without 3DS<br><br>Successful recurring payments | 4242424242424242 | Visa       | Credit    | US      |
-| Successful set up payment with 3DS<br><br>Successful recurring payments    | 4000002500003155 | Visa       | Credit    | France  |
-| Successful set up payment with 3DS<br><br>Unsuccessful recurring payments  | 4000002760003184 | Visa       | Credit    | Germany |
-| Unsuccessful set up payment                                                | 4000000000009995 | Visa       | Credit    | US      |
-
-### Mock email addresses
-
-Use one of the following mock email addresses when doing automated testing:
-
-- simulate-delivered@notifications.service.gov.uk
-- simulate-delivered-2@notifications.service.gov.uk
-- simulate-delivered-3@notifications.service.gov.uk
+* simulate-delivered@notifications.service.gov.uk
+* simulate-delivered-2@notifications.service.gov.uk
+* simulate-delivered-3@notifications.service.gov.uk
