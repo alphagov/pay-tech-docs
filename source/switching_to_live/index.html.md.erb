@@ -14,26 +14,22 @@ Follow these steps to start taking real payments from users.
 Before you go live, you must:
 
 - finish [testing your integration](/testing_govuk_pay/#test-your-integration)
-- read about [fees](/reporting/#psp-fees) if you use Stripe
-- use a secure HTTPS domain if you send a `return_url`
+- read about [payment service provider (PSP) fees](/reporting/#psp-fees) if you use Stripe
+- use a secure HTTPS domain for any return_url you send ([payment links](https://www.payments.service.gov.uk/govuk-payment-pages/) do not use `return_url`)
 - sign up for [GOV.UK Pay status updates](https://payments.statuspage.io)
 - know how to [contact us](/support_contact_and_more_information/)
-
-If you use [payment links](https://www.payments.service.gov.uk/govuk-payment-pages/)), the `return_url` requirement does not apply.
 
 If you use Worldpay, you must also:
 
 - have Worldpay admin account sign in details
-- find your merchant codes in emails from Government Banking
+- have your merchant codes - you can find these in emails from Government Banking
 
 ### How live is different from testing
 
 Compared with testing, your live service may have:
 
-- slower response times
-- lower transaction limits
-
-GOV.UK Pay waits for payment service provider (PSP) responses. Check transaction limits with your PSP.
+- slower response times, because GOV.UK Pay must wait for responses from your PSP
+- lower transaction limits - you should check these with your PSP
 
 ## 1. Request to go live with your GOV.UK Pay service
 
