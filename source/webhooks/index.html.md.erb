@@ -1,6 +1,6 @@
 ---
 title: Receive automatic payment event updates using webhooks
-last_reviewed_on: 2025-11-13
+last_reviewed_on: 2026-03-02
 review_in: 6 months
 weight: 3300
 ---
@@ -26,15 +26,14 @@ You can create webhooks in the GOV.UK Pay admin tool.
 
 ## Set up a callback URL to receive a webhook message
 
-You need to set up an endpoint (callback URL) that can receive webhook messages before creating the webhook.
+Set up an endpoint (callback URL) to receive webhook messages before you create the webhook. It must:
 
-You must set up your endpoint to receive the `POST` body from your webhook and respond with a `2xx` successful response as soon as possible. To avoid timeouts, return this response before you process the webhook message.
+* accept the `POST` body from your webhook
+* return a `2xx` successful response immediately (before processing the message to avoid timeouts)
+* use HTTPS with a valid certificate (TLS 1.2 is required)
+* end with a `.gov.uk` domain (unless in [sandbox or ‘not live yet’ modes](/testing_govuk_pay/))
 
-Your callback URL must use HTTPS and present a valid certificate. GOV.UK webhooks support TLS version 1.2.
-
-Your callback URL must have a domain that ends with `.gov.uk`. This restriction does not apply if you're using webhooks on a service in sandbox or 'not live yet' modes.
-
-We can allow other domains if you cannot host your callback URL on a domain that ends with `.gov.uk`. You can ask us to allow a domain by emailing support at [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk). We'll only allow domains that exclusively belong to your service or your service's parent organisation. There may be a delay before we allow your domain to give us time to discuss your request.
+If you cannot use a `.gov.uk` domain, email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) to request an exception. We allow only domains that belong to your service or its parent organisation. Approval may take time because we may need to discuss your request.
 
 ## Create a webhook
 

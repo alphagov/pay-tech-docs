@@ -1,6 +1,6 @@
 ---
 title: Quick start
-last_reviewed_on: 2025-11-13
+last_reviewed_on: 2026-03-02
 review_in: 6 months
 weight: 1200
 ---
@@ -15,8 +15,7 @@ Read this section to learn about what to do to get started with GOV.UK Pay.
 
 Before you start using GOV.UK Pay, you should:
 
-* read how to [get started](https://www.payments.service.gov.uk/getstarted/) and decide if GOV.UK
-Pay is right for your service
+* read how to [get started](https://www.payments.service.gov.uk/getstarted/) and decide if GOV.UK Pay is right for your service
 * sign up to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/register/email-address)
 * create a service in the GOV.UK Pay admin tool
 * read the GOV.UK Service Manual guidance on [deploying new
@@ -47,9 +46,7 @@ To set up a payment link, [create an account](https://selfservice.payments.servi
 
 ## The GOV.UK Pay API
 
-The GOV.UK Pay API is based on REST principles with endpoints returning data
-in JSON format, and standard HTTP error response codes. Our API
-lets you:
+You can use the GOV.UK Pay API to:
 
 * begin and complete payments
 * view the event history for individual payments
@@ -57,14 +54,16 @@ lets you:
 * issue full or partial refunds
 * create agreements to take recurring payments
 
-You can create 2 types of API keys for your GOV.UK Pay service. These are:
+The API follows REST principles. Endpoints return JSON data and use standard HTTP status codes for errors. 
 
-- test API keys, for [testing your service before it goes live and for testing in sandbox mode](/testing_govuk_pay)
-- live API keys, for taking payments from your users after you [go live](/switching_to_live)
+You can create 2 types of API keys for your GOV.UK Pay service. You can create:
 
-If your payment service provider (PSP) is Stripe, you can test how [transaction fees](/reporting/#psp-fees) and payments to your bank account work.
+* test API keys for a service that is [‘not live yet’](/testing_govuk_pay)
+* live API keys after [go live](/switching_to_live)
 
-When you've signed up for GOV.UK Pay and created a service, follow these instructions to get started with our API and make a test API request.
+When you’ve signed up for GOV.UK Pay and created a service, create a test API key and make a test payment request.
+
+You can still use test API keys for a service after it goes live.
 
 ## Test the API
 
@@ -117,17 +116,15 @@ Read more about [taking payments](/making_payments/#take-a-payment).
 
 ### Simulate your users' payment journey
 
-Go to the ``next_url`` with a browser, and you’ll see the payment screen. Choose a [mock card number](/testing_govuk_pay/#mock-card-numbers) and enter it to simulate a payment. For the other required details, enter some test information which should have:
+Go to the `next_url` with a browser, and you’ll see the payment page. Choose a [mock card number](/testing_govuk_pay/#use-mock-card-numbers) and enter it to simulate a payment. For the other required details, enter some test information, which should have:
 
   * an expiry date that is in the future and in the format MM/YYYY or MM/YY
-
   * a valid postcode
 
 Submit the payment.
 
 ### View transactions at GOV.UK Pay admin tool
 
-Select an account in the [GOV.UK Pay admin
-tool](https://selfservice.payments.service.gov.uk/), then select __Transactions__.
+Select an account in the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk/), then select **Transactions**.
 
 You can also view test transactions using the API.
