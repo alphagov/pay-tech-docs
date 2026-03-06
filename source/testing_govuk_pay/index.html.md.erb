@@ -68,6 +68,7 @@ In sandbox mode, use the same test API keys created in ‘not live yet’ mode. 
 ### If your PSP is Stripe
 
 If your service uses Stripe, you can use ‘not live yet’ and sandbox modes to test:
+
 * [transaction fees](/reporting/#psp-fees)
 * payments to your bank account
 * 3D Secure (3DS) with specific test card numbers
@@ -149,7 +150,7 @@ There are separate sets of mock card numbers for:
 The [PSP transaction fee](/reporting/#psp-fees) depends on the card country.
 
 | Testing action | Card number | Card brand | Card type | Country |
-|--|--|--|--|--|--|
+| -------------- | ----------- | ---------- | --------- | ------- |
 |Successful payment |4000008260000000| Visa | Credit | UK |
 |Successful payment |4000058260000005| Visa | Debit | UK |
 |Successful payment |4000002500000003| Visa | Credit | France |
@@ -189,7 +190,7 @@ Each test card gives a result for both steps.
 ### Mock card numbers for Worldpay
 
 | Testing action | Card number | Card brand | Card type |
-| -------- | ------- | ------- | ------- |
+| -------------- | ----------- | ---------- | --------- |
 |Successful payment | 4444333322221111 | Visa | Credit |
 |Successful payment |4242424242424242| Visa | Credit |
 |Successful payment |4000056655665556| Visa | Debit |
@@ -222,7 +223,7 @@ Use these mock card numbers to test recurring payments with Worldpay.
 Each test card gives a result for both steps.
 
 | Testing actions | Card number | Card brand | Card type |
-| -------- | ------- | ------- | ------- |
+| --------------- | ----------- | ---------- | --------- |
 |1. Successful set up payment<br><br>2. Successful recurring payment | 4000056655665556 | Visa | Debit |
 |1. Successful set up payment<br><br>2. Unsuccessful recurring payment | 5105105105105100 | Mastercard | Debit |
 
