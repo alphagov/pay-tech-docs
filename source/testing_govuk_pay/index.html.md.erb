@@ -1,6 +1,6 @@
 ---
 title: Test your integration
-last_reviewed_on: 2026-03-02
+last_reviewed_on: 2026-05-05
 review_in: 6 months
 weight: 6200
 ---
@@ -55,7 +55,7 @@ Changes in sandbox mode do not affect your live service. Users can still make pa
 
 You can leave sandbox mode at any time.
 
-### Important limitations when testing GOV.UK Pay
+### Important limitations when testing GOV.UK Pay
 
 Do not use both testing modes for automated integration tests that run when you change your code.
 
@@ -63,7 +63,7 @@ If you need automated integration tests, build a stub to simulate the GOV.UK Pay
 
 In sandbox mode, use the same test API keys created in ‘not live yet’ mode. Create new live API keys only when you [go live](/switching_to_live) to take payments.
 
-## What you can test by payment service provider
+## What you can test by payment service provider
 
 ### If your PSP is Stripe
 
@@ -84,7 +84,7 @@ If your service uses Worldpay, you can use ‘not live yet’ and sandbox modes 
 
 Worldpay does not support 3DS testing in sandbox mode.
 
-## Worldpay test accounts
+## Worldpay test accounts
 
 You can link a Worldpay test account to GOV.UK Pay.
 
@@ -97,11 +97,11 @@ If you use a Worldpay test account:
 * GOV.UK Pay cannot support problems with the account
 * you should not use it for long-term automated testing
 
-To ask for a Worldpay test account, email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk). 
+To ask for a Worldpay test account, email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk).
 
 If we approve your request, we will add the test account as a separate GOV.UK Pay service.
 
-## Test the whole user journey
+## Test the whole user journey
 
 Test the full user journey as well as the API.
 
@@ -116,7 +116,7 @@ You can use the link to:
 
 To create a reusable payment link:
 
-1. Sign in to the [the GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk).
+1. Sign in to the [GOV.UK Pay admin tool](https://selfservice.payments.service.gov.uk).
 1. Select the service you want to test in **My services**.
 1. Select **Test with your users** to create the link.
 
@@ -130,9 +130,9 @@ You do not need to set up a secure URL for testing.
 
 ## Performance testing
 
-You must [contact us](/support_contact_and_more_information) to get written approval before you do any performance testing.
+You must email [govuk-pay-support@digital.cabinet-office.gov.uk](mailto:govuk-pay-support@digital.cabinet-office.gov.uk) for performance testing approval.
 
-## Use mock card numbers
+## Use mock card numbers
 
 Use mock card numbers when you test payments. Do not use real card numbers.
 
@@ -169,7 +169,7 @@ The [PSP transaction fee](/reporting/#psp-fees) depends on the card country.
 
 #### Test recurring payments for a Stripe service
 
-There are additional mock card numbers to test recurring payments with Stripe. 
+There are additional mock card numbers to test recurring payments with Stripe.
 
 Use these mock card numbers to test recurring payments with Stripe.
 
@@ -227,7 +227,7 @@ Each test card gives a result for both steps.
 |1. Successful set up payment<br><br>2. Successful recurring payment | 4000056655665556 | Visa | Debit |
 |1. Successful set up payment<br><br>2. Unsuccessful recurring payment | 5105105105105100 | Mastercard | Debit |
 
-## Use mock email addresses
+## Use mock email addresses
 
 If you are testing manually, you can use real email addresses.
 
@@ -236,3 +236,29 @@ If you are doing automated tests, you must use one of these mock email addresses
 * simulate-delivered@notifications.service.gov.uk
 * simulate-delivered-2@notifications.service.gov.uk
 * simulate-delivered-3@notifications.service.gov.uk
+
+## Minimum testing requirements
+
+Before your service goes live or you release changes to a live service, use the testing methods on this page to check your service can:
+
+* send users to a GOV.UK Pay payment page
+* complete a successful test payment
+* handle relevant unsuccessful payment journeys
+* receive users when GOV.UK Pay redirects them to the `return_url`, if your service provides one
+* show users the payment outcome and what to do next, if your service handles the outcome
+
+Unsuccessful payment journeys can include failed payments, cancelled payments, technical errors, or journeys where users do not return to your service.
+
+If you use the GOV.UK Pay API, test that your service can [create a payment](/making_payments/#creating-a-payment).
+
+If your service takes recurring payments, test the first payment and at least one recurring payment.
+
+## After you finish testing
+
+If your service is not live yet, follow the guidance on [going live](/switching_to_live/#go-live).
+
+If you tested changes to a live service, release the changes using your organisation’s usual process.
+
+If testing shows a problem, fix the problem and test the affected journey again before you go live or release the change.
+
+
